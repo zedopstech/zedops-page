@@ -4,6 +4,7 @@ description: How to roll out tenant setup, roles, and your first project so team
 date: 2026-03-18
 category: blog
 author: ZedOps Team
+image: https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=85&auto=format&fit=crop
 ---
 
 This guide walks through the first week with ZedOps: tenant boundaries, who gets which role, and how to stand up a **pilot project** without boiling the ocean.

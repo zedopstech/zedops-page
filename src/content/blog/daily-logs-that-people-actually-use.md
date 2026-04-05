@@ -4,6 +4,7 @@ description: Lightweight habits - photos, weather, trade, and a single source of
 date: 2026-04-03
 category: blog
 author: ZedOps Team
+image: https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=85&auto=format&fit=crop
 ---
 
 Daily logs die when they feel like **homework for the home office**. The ones that survive are fast on mobile, honest about rough conditions, and useful when something goes wrong six months later.

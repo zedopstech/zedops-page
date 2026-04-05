@@ -4,6 +4,7 @@ description: A practical read on scoping menus, data, exports, and the copilot s
 date: 2026-03-22
 category: blog
 author: ZedOps Team
+image: https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=85&auto=format&fit=crop
 ---
 
 Construction software fails when **permissions are an afterthought**. ZedOps treats roles as the spine of navigation, data access, exports - and **Zed AI**.

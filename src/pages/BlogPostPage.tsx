@@ -52,7 +52,7 @@ function ArticleSidebar({ toc, shareUrl, title }: { toc: TocItem[]; shareUrl: st
     "flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F4F5F7] text-[#42526E] transition-colors hover:bg-[#EBECF0] hover:text-[#172B4D]";
 
   return (
-    <aside className="space-y-10 lg:sticky lg:top-28 lg:self-start">
+    <aside className="min-w-0 max-w-full space-y-10 lg:sticky lg:top-28 lg:self-start">
       <div>
         <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#97A0AF]">Share</p>
         <div className="mt-4 flex flex-wrap gap-2">
@@ -165,7 +165,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
   const mins = readingMinutes(post);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-clip bg-white text-[#172B4D]">
       <Navbar />
       <div className="pt-[100px]">
         <article>
@@ -187,7 +187,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
               aria-hidden
             />
 
-            <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
+            <div className="relative z-10 mx-auto min-w-0 max-w-3xl px-4 text-center sm:px-6">
               <motion.nav
                 initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -210,7 +210,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: 0.05 }}
-                className="mt-8 text-3xl font-extrabold leading-[1.12] tracking-tight text-[#172B4D] sm:text-4xl lg:text-[2.65rem]"
+                className="mt-8 break-words text-3xl font-extrabold leading-[1.12] tracking-tight text-[#172B4D] sm:text-4xl lg:text-[2.65rem]"
               >
                 {post.title}
               </motion.h1>
@@ -219,7 +219,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: 0.1 }}
-                className="mt-5 text-lg leading-relaxed text-[#42526E]"
+                className="mt-5 break-words text-base leading-relaxed text-[#42526E] sm:text-lg"
               >
                 {post.description}
               </motion.p>
@@ -271,9 +271,9 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
           </header>
 
           <div className="border-t border-gray-100 bg-[#FAFBFC]">
-            <div className="mx-auto max-w-6xl px-6 py-14 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
-              <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
-                <div className="lg:col-span-8 lg:pr-4">
+            <div className="mx-auto max-w-6xl min-w-0 px-4 py-12 sm:px-8 sm:py-20 lg:px-10 lg:py-24">
+              <div className="grid min-w-0 gap-12 lg:grid-cols-12 lg:gap-16 lg:gap-y-14">
+                <div className="min-w-0 lg:col-span-8 lg:pr-4">
                   <BlogMarkdown>{post.body}</BlogMarkdown>
                   <div className="mt-20 border-t border-gray-200 pt-12">
                     <Link
@@ -285,7 +285,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
                     </Link>
                   </div>
                 </div>
-                <div className="lg:col-span-4">
+                <div className="min-w-0 lg:col-span-4">
                   <ArticleSidebar toc={toc} shareUrl={shareUrl} title={post.title} />
                 </div>
               </div>

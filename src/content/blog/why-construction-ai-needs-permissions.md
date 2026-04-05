@@ -4,6 +4,7 @@ description: Copilot features are only credible when they respect the same scope
 date: 2026-04-01
 category: blog
 author: ZedOps Team
+image: https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=85&auto=format&fit=crop
 ---
 
 Generic AI demos show a chat box that can “read everything.” **Live sites do not work that way.** Subcontractor data, owner reports, and internal variances need different walls.

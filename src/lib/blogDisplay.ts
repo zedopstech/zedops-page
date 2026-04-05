@@ -1,19 +1,21 @@
 import { format, parseISO } from "date-fns";
 import type { BlogPost } from "./blog";
 
-/** Default covers when frontmatter has no `image:` */
-const COVER_POOL = [
-  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=85&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1590658046490-b2ccf47c6ea8?w=1200&q=85&auto=format&fit=crop",
-] as const;
+/**
+ * Cover image URL from post frontmatter (`image:`). No fallback — set `image` in each `.md` file.
+ */
+export function postCoverImage(post: BlogPost): string | undefined {
+  return post.image;
+}
 
-export function postCoverImage(post: BlogPost, index: number): string {
-  if (post.image) return post.image;
-  return COVER_POOL[Math.abs(index) % COVER_POOL.length];
+/** Thumbnail-friendly URL when the host supports resize query params (e.g. Unsplash). */
+export function coverThumbUrl(fullUrl: string | undefined, width = 200): string | undefined {
+  if (!fullUrl) return undefined;
+  if (fullUrl.includes("images.unsplash.com")) {
+    const base = fullUrl.split("?")[0];
+    return `${base}?w=${width}&q=80&auto=format&fit=crop`;
+  }
+  return fullUrl;
 }
 
 /** ~200 wpm; at least 1 minute */

@@ -7,7 +7,7 @@ export interface BlogPostMeta {
   /** ISO date string YYYY-MM-DD */
   date: string;
   author: string;
-  /** Optional hero/cover URL from frontmatter `image:` */
+  /** Listing & card cover URL from frontmatter `image:` (e.g. full Unsplash URL). */
   image?: string;
 }
 

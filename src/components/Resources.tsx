@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { format, parseISO } from "date-fns";
 import { getAllPosts } from "@/lib/blog";
 import type { BlogPost } from "@/lib/blog";
-import { avatarUrl, postCoverImage } from "@/lib/blogDisplay";
+import { avatarUrl, coverThumbUrl, postCoverImage } from "@/lib/blogDisplay";
 
 function authorMeta(author: string): { name: string; role: string } {
   const parts = author.split(",").map((s) => s.trim());
@@ -12,13 +12,8 @@ function authorMeta(author: string): { name: string; role: string } {
   return { name: author || "ZedOps", role: "ZedOps" };
 }
 
-function coverThumbFromPost(post: BlogPost, index: number): string {
-  const u = postCoverImage(post, index);
-  if (u.includes("unsplash.com")) {
-    const base = u.split("?")[0];
-    return `${base}?w=200&q=80&auto=format&fit=crop`;
-  }
-  return u;
+function coverThumbFromPost(post: BlogPost): string | undefined {
+  return coverThumbUrl(post.image, 200);
 }
 
 export default function Resources() {
@@ -28,9 +23,9 @@ export default function Resources() {
   const extraPosts = posts.slice(2, 5);
 
   const sidebarItems = useMemo(() => {
-    const fromBlog = extraPosts.map((p, i) => ({
+    const fromBlog = extraPosts.map((p) => ({
       href: `/blog/${p.slug}`,
-      img: coverThumbFromPost(p, i + 2),
+      img: coverThumbFromPost(p),
       title: p.description,
     }));
     const staticExtras = [
@@ -79,16 +74,23 @@ export default function Resources() {
             transition={{ duration: 0.5 }}
             className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr_340px]"
           >
-            {featured.map((article, i) => {
+            {featured.map((article) => {
               const { name, role } = authorMeta(article.author);
+              const cover = postCoverImage(article);
               return (
                 <a key={article.slug} href={`/blog/${article.slug}`} className="group flex cursor-pointer flex-col">
-                  <div className="relative mb-4 overflow-hidden" style={{ borderRadius: 6 }}>
-                    <img
-                      src={postCoverImage(article, i)}
-                      alt=""
-                      className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                  <div className="relative mb-4 h-52 w-full overflow-hidden" style={{ borderRadius: 6 }}>
+                    {cover ? (
+                      <img
+                        src={cover}
+                        alt=""
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#172B4D] to-[#2d4a7c] px-4 text-center">
+                        <span className="line-clamp-3 text-sm font-extrabold text-white">{article.title}</span>
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
                     <div className="absolute bottom-3 left-3">
                       <span
@@ -124,12 +126,18 @@ export default function Resources() {
                     i < sidebarItems.length - 1 ? "border-b border-gray-100" : ""
                   }`}
                 >
-                  <div className="h-16 w-16 shrink-0 overflow-hidden" style={{ borderRadius: 6 }}>
-                    <img
-                      src={item.img}
-                      alt=""
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
+                  <div className="h-16 w-16 shrink-0 overflow-hidden bg-[#F4F5F7]" style={{ borderRadius: 6 }}>
+                    {item.img ? (
+                      <img
+                        src={item.img}
+                        alt=""
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-[#172B4D] text-[10px] font-bold text-white">
+                        ···
+                      </div>
+                    )}
                   </div>
                   <p className="text-sm font-medium leading-snug text-[#42526E] transition-colors duration-150 group-hover:text-[#172B4D]">
                     {item.title}

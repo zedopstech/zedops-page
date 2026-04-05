@@ -5,7 +5,7 @@ import { ArrowRight, BookOpen, ChevronDown, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, type BlogPost } from "@/lib/blog";
 import {
   authorFirstName,
   avatarUrl,
@@ -24,15 +24,32 @@ const blueprintBg = {
   backgroundSize: "80px 80px, 80px 80px, 20px 20px, 20px 20px",
 } as const;
 
+function PostCoverMedia({ post, className }: { post: BlogPost; className: string }) {
+  const url = postCoverImage(post);
+  if (url) {
+    return <img src={url} alt="" className={className} />;
+  }
+  return (
+    <div
+      className={`flex h-full w-full items-center justify-center bg-gradient-to-br from-[#172B4D] via-[#243d64] to-[#172B4D] px-4 text-center ${className}`}
+      aria-hidden
+    >
+      <span className="line-clamp-4 text-sm font-extrabold leading-snug text-white sm:text-base">{post.title}</span>
+    </div>
+  );
+}
+
 function AuthorDateRow({ author, date }: { author: string; date: string }) {
   const name = authorFirstName(author);
   return (
-    <div className="mt-auto flex items-center gap-2.5 pt-4">
+    <div className="mt-auto flex min-w-0 flex-wrap items-center gap-2.5 pt-4">
       <img src={avatarUrl(name)} alt="" className="h-9 w-9 shrink-0 rounded-full object-cover" />
-      <p className="text-sm text-[#6B778C]">
+      <p className="min-w-0 text-sm text-[#6B778C]">
         <span className="font-medium text-[#42526E]">{name}</span>
-        <span className="mx-2 inline-block h-3 w-px bg-[#DFE1E6]" aria-hidden />
-        <time dateTime={date}>{formatBlogDate(date)}</time>
+        <span className="mx-2 inline-block h-3 w-px shrink-0 bg-[#DFE1E6]" aria-hidden />
+        <time dateTime={date} className="inline-block">
+          {formatBlogDate(date)}
+        </time>
       </p>
     </div>
   );
@@ -55,7 +72,7 @@ export default function BlogIndexPage() {
   });
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-clip bg-white text-[#172B4D]">
       <Navbar />
       <div className="pt-[100px]">
         {/* Hero  -  gradient + blueprint (centered; no side panel) */}
@@ -77,7 +94,7 @@ export default function BlogIndexPage() {
             aria-hidden
           />
 
-          <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
+          <div className="relative z-10 mx-auto min-w-0 max-w-3xl px-4 text-center sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -129,7 +146,7 @@ export default function BlogIndexPage() {
           </div>
         </section>
 
-        <main className="mx-auto max-w-7xl bg-[#FAFBFC] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <main className="mx-auto max-w-7xl min-w-0 bg-[#FAFBFC] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           {posts.length === 0 ? (
             <p className="py-24 text-center text-[#6B778C]">No posts yet.</p>
           ) : (
@@ -146,9 +163,8 @@ export default function BlogIndexPage() {
                     <Link href={`/blog/${spotlight.slug}`} className="group block">
                       <div className="flex flex-col">
                         <div className="relative aspect-[16/9] overflow-hidden rounded-xl lg:aspect-[21/10]">
-                          <img
-                            src={postCoverImage(spotlight, 0)}
-                            alt=""
+                          <PostCoverMedia
+                            post={spotlight}
                             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                           />
                           <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-rose-100 px-3 py-1.5 text-xs font-bold text-rose-700">
@@ -179,9 +195,8 @@ export default function BlogIndexPage() {
                       <Link href={`/blog/${sideFeatured.slug}`} className="group block h-full">
                         <div className="flex h-full flex-col">
                           <div className="relative aspect-[4/3] shrink-0 overflow-hidden rounded-xl sm:aspect-[16/11] lg:aspect-[4/3]">
-                            <img
-                              src={postCoverImage(sideFeatured, 1)}
-                              alt=""
+                            <PostCoverMedia
+                              post={sideFeatured}
                               className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                             />
                           </div>
@@ -216,9 +231,8 @@ export default function BlogIndexPage() {
                         <Link href={`/blog/${post.slug}`} className="group flex h-full flex-col">
                           <div className="flex h-full flex-col">
                             <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
-                              <img
-                                src={postCoverImage(post, i + 2)}
-                                alt=""
+                              <PostCoverMedia
+                                post={post}
                                 className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                               />
                             </div>
