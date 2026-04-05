@@ -1,0 +1,89 @@
+import { Switch, Route, Router as WouterRouter } from "wouter";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import Home from "@/pages/Home";
+import PricingPage from "@/pages/PricingPage";
+import SolutionsPage from "@/pages/SolutionsPage";
+import PlatformPage from "@/pages/PlatformPage";
+import PlatformModulePage from "@/pages/PlatformModulePage";
+import ZedAIPage from "@/pages/ZedAIPage";
+import SecurityPage from "@/pages/SecurityPage";
+import EarlyAccessPage from "@/pages/EarlyAccessPage";
+import ContactPage from "@/pages/ContactPage";
+import PrivacyPage from "@/pages/PrivacyPage";
+import TermsPage from "@/pages/TermsPage";
+import AboutPage from "@/pages/AboutPage";
+import RoadmapPage from "@/pages/RoadmapPage";
+import BlogIndexPage from "@/pages/BlogIndexPage";
+import BlogPostPage from "@/pages/BlogPostPage";
+import WhoWeServePage from "@/pages/WhoWeServePage";
+import HowWeHelpHubPage from "@/pages/HowWeHelpHubPage";
+import HowWeHelpProjectStagePage from "@/pages/HowWeHelpProjectStagePage";
+import HowWeHelpCompanyPage from "@/pages/HowWeHelpCompanyPage";
+import HowWeHelpTeamPage from "@/pages/HowWeHelpTeamPage";
+import HowWeHelpRolePage from "@/pages/HowWeHelpRolePage";
+import GCPage from "@/pages/personas/GCPage";
+import OwnersPage from "@/pages/personas/OwnersPage";
+import PMPage from "@/pages/personas/PMPage";
+import ConsultantsPage from "@/pages/personas/ConsultantsPage";
+import NotFound from "@/pages/not-found";
+
+const queryClient = new QueryClient();
+
+/** Wouter treats non-empty bases literally; `./` makes paths `~/...` and breaks pattern matching. */
+function routerBaseFromVite(): string {
+  const raw = import.meta.env.BASE_URL ?? "/";
+  const trimmed = raw.replace(/\/$/, "");
+  if (trimmed === "" || trimmed === "/" || trimmed === "." || trimmed === "./") return "";
+  return trimmed;
+}
+
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/pricing" component={PricingPage} />
+      <Route path="/solutions" component={SolutionsPage} />
+      <Route path="/platform/module/:moduleId" component={PlatformModulePage} />
+      <Route path="/platform/:sectionId" component={PlatformPage} />
+      <Route path="/platform" component={PlatformPage} />
+      <Route path="/zed-ai" component={ZedAIPage} />
+      <Route path="/security" component={SecurityPage} />
+      <Route path="/early-access" component={EarlyAccessPage} />
+      <Route path="/contact" component={ContactPage} />
+      <Route path="/privacy" component={PrivacyPage} />
+      <Route path="/terms" component={TermsPage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/roadmap" component={RoadmapPage} />
+      <Route path="/blog/:slug" component={BlogPostPage} />
+      <Route path="/blog" component={BlogIndexPage} />
+      <Route path="/how-we-help/project-stage" component={HowWeHelpProjectStagePage} />
+      <Route path="/how-we-help/company" component={HowWeHelpCompanyPage} />
+      <Route path="/how-we-help/team" component={HowWeHelpTeamPage} />
+      <Route path="/how-we-help/role" component={HowWeHelpRolePage} />
+      <Route path="/how-we-help" component={HowWeHelpHubPage} />
+      <Route path="/who-we-serve" component={WhoWeServePage} />
+      <Route path="/who-we-serve/general-contractors" component={GCPage} />
+      <Route path="/who-we-serve/owners" component={OwnersPage} />
+      <Route path="/who-we-serve/project-managers" component={PMPage} />
+      <Route path="/who-we-serve/consultants" component={ConsultantsPage} />
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <WouterRouter base={routerBaseFromVite()}>
+          <Router />
+        </WouterRouter>
+        <Toaster />
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+}
+
+export default App;
