@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -247,6 +249,7 @@ const capabilities = [
 ];
 
 export default function ZedAIPage() {
+  const isMobile = useIsMobile();
   const [showcaseTab, setShowcaseTab] = useState("copilot");
 
   useSEO({
@@ -281,12 +284,7 @@ export default function ZedAIPage() {
         {/* Tabbed showcase  -  pill tabs, tinted frame, two-column copy + visual (reference layout) */}
         <section className="border-t border-gray-100 bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mx-auto mb-8 max-w-3xl text-center md:mb-10"
-            >
+            <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.45 })} className="mx-auto mb-8 max-w-3xl text-center md:mb-10">
               <h2 className="text-2xl font-extrabold leading-snug tracking-tight text-[#172B4D] sm:text-3xl md:text-4xl">
                 AI features that add speed and clarity from preconstruction through closeout
               </h2>
@@ -381,10 +379,7 @@ export default function ZedAIPage() {
             {roleStoryBlocks.map((block, i) => (
               <motion.div
                 key={block.href}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: i * 0.04 }}
+                {...scrollMotionProps(isMobile, { y: 18, duration: 0.42, delay: i * 0.04 })}
                 className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8 md:rounded-2xl md:p-10 lg:p-12"
               >
                 <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
@@ -419,10 +414,7 @@ export default function ZedAIPage() {
               {capabilities.map((c, i) => (
                 <motion.div
                   key={c.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
+                  {...scrollMotionProps(isMobile, { y: 16, duration: 0.4, delay: i * 0.06 })}
                   className="text-center sm:text-left"
                 >
                   <div className="w-11 h-11 rounded-xl bg-[#EBF0FF] flex items-center justify-center mx-auto sm:mx-0 mb-4">

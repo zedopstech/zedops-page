@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const NAVY = "#172B4D";
 const ORANGE = "#F79625";
@@ -39,6 +41,7 @@ const cards = [
 ];
 
 export default function PricingTestimonials() {
+  const isMobile = useIsMobile();
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
 
@@ -57,10 +60,7 @@ export default function PricingTestimonials() {
 
         {/* Heading */}
         <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
+          {...scrollMotionProps(isMobile, { y: 16, duration: 0.45 })}
           className="text-center text-3xl sm:text-4xl font-extrabold tracking-tight mb-10"
           style={{ color: NAVY }}
         >
@@ -172,10 +172,7 @@ export default function PricingTestimonials() {
 
         {/* Trust strip */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          {...scrollMotionProps(isMobile, { fadeOnly: true, duration: 0.5, delay: 0.2 })}
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-10 text-center border-t border-gray-100 pt-10"
         >
           {[

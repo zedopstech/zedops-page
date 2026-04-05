@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 function useCountUp(target: number, duration: number, inView: boolean) {
   const [count, setCount] = useState(0);
@@ -36,7 +37,8 @@ function AnimatedStat({ target, suffix, duration = 1.6, className = "", inView }
 
 export default function BentoStats() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const isMobile = useIsMobile();
+  const inView = useInView(ref, { once: true, ...(isMobile ? { margin: "0px" as const } : { margin: "-80px" as const }) });
 
   return (
     <section className="bg-[#0D1117] border-t border-white/5">

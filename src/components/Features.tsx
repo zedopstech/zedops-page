@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { FileText, PenTool, BarChart2, MessageSquare, Box, Zap, ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const features = [
   { icon: FileText, title: "Smart Daily Logs", description: "Capture structured daily site activity with smart templates. AI summarizes key events and flags anomalies instantly." },
@@ -11,16 +13,12 @@ const features = [
 ];
 
 export default function Features() {
+  const isMobile = useIsMobile();
+
   return (
     <section id="features" className="bg-[#EFF6FF] border-t border-blue-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid lg:grid-cols-2 gap-10 lg:gap-24 items-end mb-14"
-        >
+        <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid lg:grid-cols-2 gap-10 lg:gap-24 items-end mb-14">
           <div>
             <div className="flex items-center gap-2 mb-5">
               <div className="w-3 h-3 rounded-sm bg-[#172B4D] rotate-45" />
@@ -39,10 +37,7 @@ export default function Features() {
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
+              {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: i * 0.07 })}
               className="bg-white border border-blue-100 p-7 group hover:border-[#172B4D]/30 transition-all duration-200 cursor-pointer rounded-md"
             >
               <div className="flex items-start justify-between mb-5">

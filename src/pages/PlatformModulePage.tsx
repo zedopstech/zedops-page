@@ -3,6 +3,8 @@ import type { RouteComponentProps } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FinalCTA from "@/components/FinalCTA";
@@ -21,6 +23,7 @@ function moduleMetaDescription(section: { title: string; items: { name: string; 
 
 export default function PlatformModulePage({ params }: RouteComponentProps<{ moduleId: string }>) {
   const ctx = useMemo(() => getModuleNavContext(params.moduleId), [params.moduleId]);
+  const isMobile = useIsMobile();
 
   useSEO({
     title: ctx ? `${ctx.section.title}  -  ZedOps platform` : "Platform module  -  ZedOps",
@@ -91,13 +94,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
         {/* Everything in this module  -  headline, then feature cards with mini mocks */}
         <section className="border-t border-gray-200 bg-white py-20 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45 }}
-              className="mb-14 max-w-3xl lg:mb-16"
-            >
+            <motion.div {...scrollMotionProps(isMobile, { y: 22, duration: 0.45 })} className="mb-14 max-w-3xl lg:mb-16">
               <h2 className="text-3xl font-extrabold leading-[1.12] tracking-tight text-[#172B4D] sm:text-4xl lg:text-[2.65rem]">
                 Everything in <span className="text-[#0052CC]">{section.title}</span>
               </h2>
@@ -112,10 +109,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
               {section.items.map((item, i) => (
                 <motion.article
                   key={item.name}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-32px" }}
-                  transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.25) }}
+                  {...scrollMotionProps(isMobile, { y: 18, duration: 0.4, delay: Math.min(i * 0.05, 0.25) })}
                   className="flex h-full flex-col rounded-2xl border border-gray-200/90 bg-white p-6 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-shadow duration-200 hover:shadow-[0_12px_28px_-12px_rgba(23,43,77,0.12)] md:p-7"
                 >
                   <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#EBF0FF]">
@@ -136,13 +130,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
         {/* Continue exploring  -  structured like a home sub-footer band */}
         <section className="border-t border-gray-200 bg-white py-14 lg:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="mb-8 text-center"
-            >
+            <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })} className="mb-8 text-center">
               <h2 className="mx-auto max-w-xl text-2xl font-extrabold tracking-tight text-[#172B4D] sm:text-3xl">
                 Other platform areas
               </h2>

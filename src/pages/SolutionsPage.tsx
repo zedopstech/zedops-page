@@ -1,4 +1,6 @@
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { motion } from "framer-motion";
 import { Brain, FileText, PenLine, BarChart2, ArrowRight, Check, Cpu } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -84,6 +86,8 @@ const modules = [
 ];
 
 export default function SolutionsPage() {
+  const isMobile = useIsMobile();
+
   useSEO({
     title: "Platform  -  ZedOps",
     description:
@@ -122,10 +126,7 @@ export default function SolutionsPage() {
             {modules.map((mod, i) => (
               <motion.div
                 key={mod.tag}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.05 }}
+                {...scrollMotionProps(isMobile, { y: 28, duration: 0.5, delay: 0.05 })}
                 className="bg-white border border-gray-100 rounded-2xl p-8 lg:p-10 hover:border-gray-300 transition-all duration-200"
               >
                 <div className={`grid lg:grid-cols-2 gap-10 items-center ${mod.image === "left" ? "lg:flex-row-reverse" : ""}`}>

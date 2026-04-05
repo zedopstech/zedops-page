@@ -1,4 +1,6 @@
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { motion } from "framer-motion";
 import { Building2, ArrowRight, Hammer, Users, Zap } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -24,6 +26,8 @@ const values = [
 ];
 
 export default function AboutPage() {
+  const isMobile = useIsMobile();
+
   useSEO({
     title: "About  -  ZedOps",
     description: "ZedOps is building the operating system for construction. Learn about our mission to give every construction team the visibility of a $10B developer.",
@@ -43,12 +47,7 @@ export default function AboutPage() {
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] border-t border-gray-100">
           <div className="max-w-4xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-14 items-center">
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
+              <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })}>
                 <p className="text-xs font-bold text-[#97A0AF] uppercase tracking-widest mb-4">Our mission</p>
                 <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-[#172B4D] mb-5">
                   Give every construction team the visibility of a $10B developer.
@@ -62,10 +61,7 @@ export default function AboutPage() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                {...scrollMotionProps(isMobile, { x: 20, duration: 0.5 })}
                 className="bg-[#0D1117] rounded-2xl p-8 text-white"
               >
                 <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-4">Founding team note</p>
@@ -87,10 +83,7 @@ export default function AboutPage() {
               {values.map((v, i) => (
                 <motion.div
                   key={v.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: i * 0.08 })}
                   className="bg-[#F8FAFC] border border-gray-100 rounded-xl p-6"
                 >
                   <div className="w-10 h-10 bg-[#172B4D]/8 rounded-lg flex items-center justify-center mb-4">

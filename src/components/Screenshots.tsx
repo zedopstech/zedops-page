@@ -1,5 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { BarChart2, FileText, PenTool, MessageSquare, ClipboardList, Calendar, Play } from "lucide-react";
 
 const tabs = [
@@ -45,6 +47,7 @@ const tabContent: Record<string, { title: string; description: string; color: st
 };
 
 export default function Screenshots() {
+  const isMobile = useIsMobile();
   const [activeTab, setActiveTab] = useState("dashboard");
   const content = tabContent[activeTab];
   const tab = tabs.find((t) => t.id === activeTab)!;
@@ -52,13 +55,7 @@ export default function Screenshots() {
   return (
     <section id="product-tour" className="bg-white border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-end mb-12"
-        >
+        <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-end mb-12">
           <div>
             <div className="flex items-center gap-2 mb-5">
               <div className="w-3 h-3 rounded-sm bg-[#172B4D] rotate-45" />
@@ -73,13 +70,7 @@ export default function Screenshots() {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="border border-gray-200 overflow-hidden rounded-md"
-        >
+        <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5, delay: 0.1 })} className="border border-gray-200 overflow-hidden rounded-md">
           {/* Dark tab bar  -  like reference */}
           <div className="bg-[#0F1117] flex overflow-x-auto">
             {tabs.map((t) => (

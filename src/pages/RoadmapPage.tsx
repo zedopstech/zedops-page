@@ -1,4 +1,6 @@
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { motion } from "framer-motion";
 import {
   FileText,
@@ -102,6 +104,8 @@ const columns = [
 ];
 
 export default function RoadmapPage() {
+  const isMobile = useIsMobile();
+
   useSEO({
     title: "Product Roadmap  -  ZedOps",
     description:
@@ -225,13 +229,7 @@ export default function RoadmapPage() {
         <section className="relative border-t border-gray-200/90 bg-white py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-linear-to-b from-[#F2F6FF]/90 to-transparent" aria-hidden />
           <div className="relative mx-auto max-w-7xl px-4">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="mx-auto mb-12 max-w-2xl text-center text-base leading-relaxed text-[#42526E] lg:mb-16"
-            >
+            <motion.p {...scrollMotionProps(isMobile, { y: 10, duration: 0.4 })} className="mx-auto mb-12 max-w-2xl text-center text-base leading-relaxed text-[#42526E] lg:mb-16">
               Four horizons from production to what we&apos;re exploring next  -  each card is something we&apos;re committed to
               shipping or evaluating with customers.
             </motion.p>
@@ -240,10 +238,7 @@ export default function RoadmapPage() {
               {columns.map((col, ci) => (
                 <motion.div
                   key={col.label}
-                  initial={{ opacity: 0, y: 22 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.45, delay: Math.min(ci * 0.07, 0.2) }}
+                  {...scrollMotionProps(isMobile, { y: 22, duration: 0.45, delay: Math.min(ci * 0.07, 0.2) })}
                   className="group flex flex-col"
                 >
                   <div
@@ -261,10 +256,7 @@ export default function RoadmapPage() {
                     {col.items.map((item, ii) => (
                       <motion.div
                         key={item.title}
-                        initial={{ opacity: 0, y: 14 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-32px" }}
-                        transition={{ duration: 0.35, delay: Math.min(ci * 0.05 + ii * 0.04, 0.25) }}
+                        {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: Math.min(ci * 0.05 + ii * 0.04, 0.25) })}
                         className="rounded-2xl border border-gray-200/90 bg-linear-to-br from-white to-[#FAFBFC] px-4 py-4 shadow-[0_1px_3px_rgba(23,43,77,0.06)] ring-1 ring-[#172B4D]/5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C7D5F5] hover:shadow-[0_14px_32px_-18px_rgba(23,43,77,0.15)]"
                       >
                         <div className="flex items-start gap-3">
@@ -292,38 +284,18 @@ export default function RoadmapPage() {
         <section className="relative overflow-hidden bg-[#172B4D] py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="pointer-events-none absolute inset-0 opacity-[0.08]" style={blueprintBg} aria-hidden />
           <div className="relative mx-auto max-w-2xl px-4 text-center">
-            <motion.p
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#F79625]"
-            >
+            <motion.p {...scrollMotionProps(isMobile, { y: 8, duration: 0.38 })} className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#F79625]">
               Your voice, on the roadmap
             </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 }}
-              className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl"
-            >
+            <motion.h2 {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.05 })} className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
               Tell us what your team needs.
             </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.08 }}
-              className="mb-10 text-base leading-relaxed text-white/65"
-            >
+            <motion.p {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.08 })} className="mb-10 text-base leading-relaxed text-white/65">
               Every feature on this roadmap came from a real conversation with a construction professional. If something is
               missing, let us know  -  we read every message.
             </motion.p>
             <motion.form
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              {...scrollMotionProps(isMobile, { y: 14, duration: 0.45, delay: 0.1 })}
               onSubmit={(e) => {
                 e.preventDefault();
                 const form = e.currentTarget;

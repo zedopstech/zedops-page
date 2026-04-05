@@ -9,6 +9,8 @@ import Footer from "@/components/Footer";
 import { platformFeatureSections, PLATFORM_FEATURE_PREVIEW_COUNT } from "@/data/platformFeatures";
 import type { PlatformFeatureSection } from "@/data/platformFeatures";
 import { platformSectionMockType } from "@/data/platformSectionMocks";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import type { MockType } from "@/components/ProductMocks";
 import { PlatformSectionRichMock } from "@/components/PlatformSectionRichMock";
 
@@ -249,6 +251,7 @@ function PlatformSectionBlock({
   isExpanded: boolean;
   onToggleExpand: () => void;
 }) {
+  const isMobile = useIsMobile();
   const mockType = platformSectionMockType[section.id] ?? "dashboard";
   const isEven = si % 2 === 0;
   const limit = PLATFORM_FEATURE_PREVIEW_COUNT;
@@ -259,10 +262,7 @@ function PlatformSectionBlock({
   return (
     <motion.div
       id={section.id}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, delay: Math.min(si * 0.03, 0.12) }}
+      {...scrollMotionProps(isMobile, { y: 24, duration: 0.5, delay: Math.min(si * 0.03, 0.12) })}
       className="scroll-mt-[116px]"
     >
       <div className={`flex flex-col gap-12 lg:gap-16 ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} items-stretch`}>

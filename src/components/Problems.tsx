@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { MessageSquareX, ClipboardList, Eye, TrendingDown, Timer } from "lucide-react";
+import { useScrollSectionMotion, useVariantScrollReveal } from "@/hooks/useScrollSectionMotion";
 
 const PRIMARY = "#172B4D";
 const ORANGE = "#F79625";
@@ -71,18 +72,16 @@ const cardVariants = {
 };
 
 export default function Problems() {
+  const headerReveal = useScrollSectionMotion({ y: 20, duration: 0.5 });
+  const calloutReveal = useScrollSectionMotion({ y: 16, delay: 0.08, duration: 0.45 });
+  const cardScroll = useVariantScrollReveal(cardVariants);
+
   return (
     <section className="bg-[#F4F6FB] border-t border-blue-100 py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-24 mb-14"
-        >
+        <motion.div {...headerReveal} className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-24 mb-14">
           <div className="shrink-0">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
               Challenges holding<br />
@@ -101,11 +100,7 @@ export default function Problems() {
             return (
               <motion.div
                 key={p.num}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={cardVariants}
+                {...cardScroll(i)}
                 className="relative bg-white border border-gray-200 rounded-md p-8 flex flex-col overflow-hidden group hover:border-gray-300 transition-all duration-200"
               >
                 {/* Faded number watermark */}
@@ -144,11 +139,7 @@ export default function Problems() {
             return (
               <motion.div
                 key={p.num}
-                custom={i + 2}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={cardVariants}
+                {...cardScroll(i + 2)}
                 className="relative bg-white border border-gray-200 rounded-md p-7 flex flex-col overflow-hidden group hover:border-gray-300 transition-all duration-200"
               >
                 {/* Faded number watermark */}
@@ -181,13 +172,7 @@ export default function Problems() {
         </div>
 
         {/* ── Bottom callout ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45, delay: 0.3 }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-5 bg-[#172B4D] rounded-md px-8 py-6"
-        >
+        <motion.div {...calloutReveal} className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-5 bg-[#172B4D] rounded-md px-8 py-6">
           <p className="text-white text-sm font-semibold leading-relaxed max-w-lg">
             <span className="text-white font-extrabold">ZedOps addresses every one of these</span> - with a single platform built specifically for construction teams.
           </p>

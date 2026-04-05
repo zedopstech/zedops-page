@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Building2 } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import PageHero from "@/components/PageHero";
 import HowWeHelpPageShell from "@/components/HowWeHelpPageShell";
 import { companyArchetypes } from "@/data/howWeHelp";
 
 export default function HowWeHelpCompanyPage() {
+  const isMobile = useIsMobile();
+
   useSEO({
     title: "By company type  -  How ZedOps helps  -  ZedOps",
     description:
@@ -36,13 +40,7 @@ export default function HowWeHelpCompanyPage() {
 
       <section className="border-t border-gray-200 bg-white py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
-            className="mb-14 grid items-end gap-8 lg:grid-cols-2 lg:gap-20"
-          >
+          <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.45 })} className="mb-14 grid items-end gap-8 lg:grid-cols-2 lg:gap-20">
             <div>
               <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#172B4D] sm:text-4xl">
                 Pick the profile closest to yours
@@ -57,10 +55,7 @@ export default function HowWeHelpCompanyPage() {
             {companyArchetypes.map((c, i) => (
               <motion.article
                 key={c.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+                {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: i * 0.05 })}
                 className="group flex h-full flex-col bg-white p-7 transition-colors hover:bg-[#FAFBFC] md:p-8"
               >
                 <div className="mb-4 flex items-center gap-3">

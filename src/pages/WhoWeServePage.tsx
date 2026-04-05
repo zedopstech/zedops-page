@@ -1,4 +1,6 @@
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { motion } from "framer-motion";
 import { ArrowRight, HardHat, Building2, ClipboardList, Briefcase, Users, MessageSquare } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -46,6 +48,8 @@ const personas = [
 ];
 
 export default function WhoWeServePage() {
+  const isMobile = useIsMobile();
+
   useSEO({
     title: "Built for you  -  ZedOps",
     description: "ZedOps is built for every role in construction: General Contractors, Owners & Developers, Project Managers, and Consultants & CM Firms.",
@@ -98,10 +102,7 @@ export default function WhoWeServePage() {
                 <motion.a
                   key={p.title}
                   href={p.href}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: i * 0.08 }}
+                  {...scrollMotionProps(isMobile, { y: 24, duration: 0.45, delay: i * 0.08 })}
                   className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:border-gray-300 transition-all duration-300 flex flex-col"
                 >
                   {/* Image */}

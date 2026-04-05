@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import type { ComponentType } from "react";
 import Navbar from "@/components/Navbar";
 import FinalCTA from "@/components/FinalCTA";
@@ -74,6 +76,8 @@ export default function PersonaTemplate({
   features,
   earlyAccessLabel = "Request early access for your team",
 }: PersonaTemplateProps) {
+  const isMobile = useIsMobile();
+
   return (
     <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
       <Navbar />
@@ -207,10 +211,7 @@ export default function PersonaTemplate({
             {challenges.map((c, i) => (
               <motion.div
                 key={c.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.1 }}
+                {...scrollMotionProps(isMobile, { y: 24, duration: 0.45, delay: i * 0.1 })}
                 className="relative py-10 sm:py-8 lg:py-10 px-6 sm:px-8 lg:px-10 min-h-[320px] sm:min-h-[380px] lg:min-h-[420px] flex flex-col bg-transparent"
               >
                 <div
@@ -258,10 +259,7 @@ export default function PersonaTemplate({
               return (
                 <motion.div
                   key={f.title}
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.55, delay: 0.05 }}
+                  {...scrollMotionProps(isMobile, { y: 32, duration: 0.55, delay: 0.05 })}
                   className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-16 items-stretch lg:items-center`}
                 >
                   {/* Mock UI side  -  tall rectangle */}

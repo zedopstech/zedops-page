@@ -1,7 +1,10 @@
+import type { ReactNode } from "react";
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MotionConfig, useReducedMotion } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useIsMobile } from "@/hooks/use-mobile";
 import Home from "@/pages/Home";
 import PricingPage from "@/pages/PricingPage";
 import SolutionsPage from "@/pages/SolutionsPage";
@@ -73,15 +76,34 @@ function Router() {
   );
 }
 
+function AppMotion({ children }: { children: ReactNode }) {
+  const isMobile = useIsMobile();
+  const prefersReducedMotion = useReducedMotion();
+  return (
+    <MotionConfig
+      reducedMotion={prefersReducedMotion ? "always" : "user"}
+      transition={
+        isMobile
+          ? { type: "tween", duration: 0.18, ease: "easeOut" }
+          : { type: "tween", duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
+      }
+    >
+      {children}
+    </MotionConfig>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <div className="min-h-screen overflow-x-clip">
-          <WouterRouter base={routerBaseFromVite()}>
-            <Router />
-          </WouterRouter>
-        </div>
+        <AppMotion>
+          <div className="min-h-screen overflow-x-clip">
+            <WouterRouter base={routerBaseFromVite()}>
+              <Router />
+            </WouterRouter>
+          </div>
+        </AppMotion>
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>

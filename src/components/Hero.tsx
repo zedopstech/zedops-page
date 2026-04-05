@@ -1,5 +1,6 @@
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { ArrowRight, TrendingDown, Zap, Play, Sparkles, X } from "lucide-react";
 import AppMockup from "./DashboardMockup";
 
@@ -297,10 +298,14 @@ function Float({ children, duration, delay = 0, amplitude = 8 }: {
 }
 
 export default function Hero() {
+  const isMobile = useIsMobile();
   const { scrollY } = useScroll();
   // Only parallax the pure background layers  -  no interactive elements inside them
   const bgY  = useTransform(scrollY, [0, 600], [0, 140]);
   const dotY = useTransform(scrollY, [0, 600], [0, 90]);
+  // Scroll-linked transforms are a common source of jank / flicker on mobile Safari
+  const parallaxYBg = isMobile ? 0 : bgY;
+  const parallaxYGrid = isMobile ? 0 : dotY;
 
   const [overviewOpen, setOverviewOpen] = useState(false);
   const closeOverview = useCallback(() => setOverviewOpen(false), []);
@@ -313,7 +318,7 @@ export default function Hero() {
       <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{
-          y: bgY,
+          y: parallaxYBg,
           background: "linear-gradient(155deg, #C4D9FF 0%, #D9EBFF 28%, #ECF3FF 58%, #F2F6FF 100%)",
           top: "-20%", bottom: "-20%",
         }}
@@ -322,7 +327,7 @@ export default function Hero() {
       <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{
-          y: dotY,
+          y: parallaxYGrid,
           backgroundImage: [
             "linear-gradient(rgba(1,47,176,0.045) 1px, transparent 1px)",
             "linear-gradient(90deg, rgba(1,47,176,0.045) 1px, transparent 1px)",
@@ -346,7 +351,7 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center pt-16 pb-0 sm:px-6">
 
         <motion.div
-          initial={{ opacity: 0, y: -8 }}
+          initial={isMobile ? false : { opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="mb-7 inline-flex max-w-full flex-wrap items-center justify-center gap-2 border border-[#172B4D]/20 bg-white/80 px-3 py-1.5 sm:px-4"
@@ -359,7 +364,7 @@ export default function Hero() {
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 22 }}
+          initial={isMobile ? false : { opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.06 }}
           className="text-4xl font-extrabold leading-[1.08] tracking-tight text-[#172B4D] mb-5 sm:text-5xl md:text-6xl lg:text-[70px] lg:leading-[1.03]"
@@ -368,7 +373,7 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 14 }}
+          initial={isMobile ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.48, delay: 0.14 }}
           className="text-[#42526E] text-lg leading-relaxed max-w-xl mx-auto mb-9"
@@ -377,7 +382,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={isMobile ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.44, delay: 0.22 }}
           className="mb-16 flex flex-col items-center gap-3 px-1"
@@ -411,7 +416,7 @@ export default function Hero() {
       {/* ── Mockup  -  no scroll transform, eliminates button lag ── */}
       <div className="relative z-10 mx-auto max-w-[1160px] min-w-0 px-4 sm:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 44 }}
+          initial={isMobile ? false : { opacity: 0, y: 44 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.28 }}
           className="relative"
@@ -428,15 +433,16 @@ export default function Hero() {
             {/* Watch button  -  centred, no backdrop-blur, with pulse ring */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="relative pointer-events-auto">
-                {/* Pulse rings */}
-                {[1, 2].map((n) => (
-                  <motion.div
-                    key={n}
-                    className="absolute inset-0 rounded-xl bg-white/30"
-                    animate={{ scale: [1, 1.55 + n * 0.15], opacity: [0.45, 0] }}
-                    transition={{ duration: 2.2, delay: n * 0.55, repeat: Infinity, ease: "easeOut" }}
-                  />
-                ))}
+                {/* Pulse rings — infinite scale/opacity is noisy on mobile GPUs */}
+                {!isMobile &&
+                  [1, 2].map((n) => (
+                    <motion.div
+                      key={n}
+                      className="absolute inset-0 rounded-xl bg-white/30"
+                      animate={{ scale: [1, 1.55 + n * 0.15], opacity: [0.45, 0] }}
+                      transition={{ duration: 2.2, delay: n * 0.55, repeat: Infinity, ease: "easeOut" }}
+                    />
+                  ))}
                 <motion.button
                   type="button"
                   whileHover={{ scale: 1.05 }}

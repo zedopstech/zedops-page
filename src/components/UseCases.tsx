@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { HardHat, Building2, ClipboardList, Briefcase, ArrowRight, Check } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const useCases = [
   {
@@ -73,17 +75,13 @@ const useCases = [
 ];
 
 export default function UseCases() {
+  const isMobile = useIsMobile();
+
   return (
     <section id="use-cases" className="bg-white border-t border-gray-200">
       {/* Section header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-14">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-end"
-        >
+        <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-end">
           <div>
             <div className="flex items-center gap-2 mb-5">
               <div className="w-3 h-3 rounded-sm bg-[#172B4D] rotate-45" />
@@ -103,10 +101,7 @@ export default function UseCases() {
       {useCases.map((uc, i) => (
         <motion.div
           key={uc.label}
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.05 }}
+          {...scrollMotionProps(isMobile, { y: 32, duration: 0.55, delay: 0.05 })}
           className={`border-t border-gray-100 ${i % 2 === 0 ? "bg-white" : "bg-[#F9FAFB]"}`}
         >
           <div className={`max-w-7xl mx-auto grid lg:grid-cols-2 min-h-[480px] ${i % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}>

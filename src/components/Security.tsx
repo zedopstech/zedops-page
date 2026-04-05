@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Database, Cloud, Users, Lock, ShieldCheck, ArrowRight, Check, Key } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import PageHero from "@/components/PageHero";
 
 const pillars = [
@@ -46,6 +48,8 @@ const checklist = [
 ];
 
 export default function Security() {
+  const isMobile = useIsMobile();
+
   return (
     <div className="min-h-screen bg-white text-[#172B4D]">
       <PageHero
@@ -69,10 +73,7 @@ export default function Security() {
             {pillars.map((pillar, i) => (
               <motion.div
                 key={pillar.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.1 }}
+                {...scrollMotionProps(isMobile, { y: 24, duration: 0.45, delay: i * 0.1 })}
                 className="bg-white border border-gray-100 rounded-2xl p-8 flex flex-col gap-5 hover:border-[#C7D5F5] transition-all duration-200"
               >
                 <div>
@@ -170,10 +171,7 @@ export default function Security() {
             ].map((step, i) => (
               <motion.div
                 key={step.step}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
+                {...scrollMotionProps(isMobile, { y: 16, duration: 0.4, delay: i * 0.1 })}
                 className="bg-[#161B22] border border-white/5 rounded-xl p-6"
               >
                 <div className="flex items-center gap-3 mb-4">

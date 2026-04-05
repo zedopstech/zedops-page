@@ -1,4 +1,6 @@
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Sparkles, Zap, Users, Rocket, Plus, Minus } from "lucide-react";
@@ -74,12 +76,11 @@ function EarlyAccessFaqItem({
   invert?: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.35, delay: index * 0.05 }}
+      {...scrollMotionProps(isMobile, { y: 12, duration: 0.35, delay: index * 0.05 })}
       className={invert ? "border-b border-white/10 last:border-b-0" : "border-b border-gray-200 last:border-b-0"}
     >
       <button type="button" onClick={() => setOpen(!open)} className="group flex w-full items-center justify-between gap-4 py-4 text-left sm:py-5">

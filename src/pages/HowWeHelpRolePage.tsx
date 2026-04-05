@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, UserCog } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import PageHero from "@/components/PageHero";
 import HowWeHelpPageShell from "@/components/HowWeHelpPageShell";
 
@@ -12,6 +14,8 @@ const personaQuickLinks = [
 ] as const;
 
 export default function HowWeHelpRolePage() {
+  const isMobile = useIsMobile();
+
   useSEO({
     title: "Roles & permissions  -  How ZedOps helps  -  ZedOps",
     description:
@@ -43,13 +47,7 @@ export default function HowWeHelpRolePage() {
 
       <section className="border-t border-gray-200 bg-[#172B4D] py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
-            className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16"
-          >
+          <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.45 })} className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
             <div>
               <h2 className="text-2xl font-extrabold leading-tight text-white sm:text-3xl">
                 Roles gate menus, records, exports - and the copilot.
@@ -76,12 +74,7 @@ export default function HowWeHelpRolePage() {
 
       <section className="border-t border-gray-200 bg-[#F8FAFC] py-20 lg:py-24">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
-          >
+          <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.45 })}>
             <h2 className="text-3xl font-extrabold tracking-tight text-[#172B4D] sm:text-4xl">
               Persona pages live under Built for you
             </h2>

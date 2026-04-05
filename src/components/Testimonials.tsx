@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Zap, Sparkles } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const pillars = [
   {
@@ -20,18 +22,15 @@ const pillars = [
 ];
 
 export default function Testimonials() {
+  const isMobile = useIsMobile();
+
   return (
     <section className="bg-[#0D1117] border-t border-white/5 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
           {/* Left  -  heading + CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })}>
             <p className="text-[#B8C9DC] text-xs font-bold uppercase tracking-[0.15em] mb-4">Early Access Program</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight tracking-tight mb-6">
               Built with construction teams,<br />
@@ -55,10 +54,7 @@ export default function Testimonials() {
             {pillars.map((p, i) => (
               <motion.div
                 key={p.label}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
+                {...scrollMotionProps(isMobile, { x: 20, duration: 0.4, delay: i * 0.1 })}
                 className="flex items-center gap-5 bg-[#161B22] border border-white/5 px-6 py-5"
                 style={{ borderRadius: 6 }}
               >
@@ -73,10 +69,7 @@ export default function Testimonials() {
             ))}
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.35 }}
+              {...scrollMotionProps(isMobile, { x: 20, duration: 0.4, delay: 0.35 })}
               className="bg-[#172B4D]/60 border border-white/10 px-6 py-5 mt-1"
               style={{ borderRadius: 6 }}
             >

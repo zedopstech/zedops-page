@@ -2,6 +2,8 @@ import type { ComponentType } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft, UsersRound } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import PageHero from "@/components/PageHero";
 import HowWeHelpPageShell from "@/components/HowWeHelpPageShell";
 import { teamFocusAreas } from "@/data/howWeHelp";
@@ -29,6 +31,8 @@ function StippleIconIllustration({ Icon }: { Icon: IconComp }) {
 }
 
 export default function HowWeHelpTeamPage() {
+  const isMobile = useIsMobile();
+
   useSEO({
     title: "By team  -  How ZedOps helps  -  ZedOps",
     description:
@@ -69,13 +73,7 @@ export default function HowWeHelpTeamPage() {
 
       <section className="border-t border-neutral-200 bg-white py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10">
-          <motion.header
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.35 }}
-            className="mb-10 max-w-5xl"
-          >
+          <motion.header {...scrollMotionProps(isMobile, { y: 8, duration: 0.35 })} className="mb-10 max-w-5xl">
             <h2 className="text-3xl font-extrabold tracking-tight text-[#172B4D] sm:text-4xl lg:text-[2.5rem] lg:leading-[1.1]">
               How the work shows up inside ZedOps
             </h2>
@@ -91,10 +89,7 @@ export default function HowWeHelpTeamPage() {
                 <motion.a
                   key={t.title}
                   href={t.relatedPath}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.3, delay: Math.min(i * 0.05, 0.15) }}
+                  {...scrollMotionProps(isMobile, { y: 10, duration: 0.3, delay: Math.min(i * 0.05, 0.15) })}
                   className={`group flex min-h-[280px] flex-col border-r border-b border-neutral-200 bg-white px-7 py-9 transition-colors hover:bg-neutral-50/70 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#0052CC] sm:min-h-[300px] sm:px-9 sm:py-10 ${span}`}
                   aria-label={`${t.title}: ${t.relatedLabel}`}
                 >

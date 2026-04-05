@@ -5,6 +5,8 @@ import { ArrowRight, BookOpen, ChevronDown, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { getAllPosts, type BlogPost } from "@/lib/blog";
 import {
   authorFirstName,
@@ -56,6 +58,7 @@ function AuthorDateRow({ author, date }: { author: string; date: string }) {
 }
 
 export default function BlogIndexPage() {
+  const isMobile = useIsMobile();
   const posts = useMemo(() => getAllPosts(), []);
   const [gridVisible, setGridVisible] = useState(3);
 
@@ -223,10 +226,7 @@ export default function BlogIndexPage() {
                     {visibleGrid.map((post, i) => (
                       <motion.article
                         key={post.slug}
-                        initial={{ opacity: 0, y: 14 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-32px" }}
-                        transition={{ duration: 0.35, delay: Math.min(i * 0.06, 0.18) }}
+                        {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: Math.min(i * 0.06, 0.18) })}
                       >
                         <Link href={`/blog/${post.slug}`} className="group flex h-full flex-col">
                           <div className="flex h-full flex-col">

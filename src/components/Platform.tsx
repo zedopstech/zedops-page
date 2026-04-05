@@ -1,6 +1,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const ORANGE = "#F79625";
 const NAVY = "#172B4D";
@@ -344,12 +346,15 @@ function LogoTile({ logo }: { logo: Logo }) {
 
 /* ── Category card ─────────────────────────────────────────────────── */
 function CategoryCard({ category, index }: { category: typeof categories[0]; index: number }) {
+  const isMobile = useIsMobile();
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+      {...scrollMotionProps(isMobile, {
+        y: 24,
+        duration: 0.4,
+        delay: index * 0.06,
+        ease: [0.16, 1, 0.3, 1] as const,
+      })}
       className="bg-white border border-gray-200 rounded-md p-5 group hover:border-gray-300 transition-all duration-200 relative overflow-hidden"
     >
       <div className="flex items-center justify-between mb-3">
@@ -370,20 +375,15 @@ function CategoryCard({ category, index }: { category: typeof categories[0]; ind
 /* ── Main ──────────────────────────────────────────────────────────── */
 export default function Platform() {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const isMobile = useIsMobile();
+  const inView = useInView(ref, { once: true, ...(isMobile ? { margin: "0px" as const } : { margin: "-60px" as const }) });
 
   return (
     <section id="platform" className="bg-white border-t border-gray-200 py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-6"
-        >
+        <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="text-center mb-6">
           <div className="flex items-center justify-center gap-2 mb-5">
             <div className="w-3 h-3 rounded-sm bg-[#172B4D] rotate-45" />
             <span className="text-[#172B4D] text-xs font-bold tracking-[0.15em] uppercase">Integrations</span>
@@ -410,13 +410,7 @@ export default function Platform() {
         </div>
 
         {/* ── Stats strip ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-gray-200 border border-gray-200 overflow-hidden rounded-md"
-        >
+        <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.5, delay: 0.15 })} className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-gray-200 border border-gray-200 overflow-hidden rounded-md">
           {[
             { value: "200+", label: "Integrations" },
             { value: "<1 day", label: "Average setup time" },

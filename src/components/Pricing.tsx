@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, X, ArrowRight, Shield, Zap, Building2, ChevronDown, Brain, Clock, RefreshCw, Lock } from "lucide-react";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const NAVY = "#172B4D";
 const ORANGE = "#F79625";
@@ -124,6 +126,7 @@ function Cell({ val }: { val: boolean | string }) {
 }
 
 export default function Pricing() {
+  const isMobile = useIsMobile();
   const [annual, setAnnual] = useState(true);
   const [showTable, setShowTable] = useState(false);
 
@@ -157,13 +160,7 @@ export default function Pricing() {
         </div>
 
         {/* ── Why ZedOps? ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-12 grid grid-cols-1 gap-px overflow-hidden rounded-md border border-blue-100 bg-blue-100 sm:grid-cols-2 lg:grid-cols-4"
-        >
+        <motion.div {...scrollMotionProps(isMobile, { y: 18, duration: 0.5, delay: 0.1 })} className="mb-12 grid grid-cols-1 gap-px overflow-hidden rounded-md border border-blue-100 bg-blue-100 sm:grid-cols-2 lg:grid-cols-4">
           {whyZedOps.map(({ icon: Icon, label, desc }, i) => (
             <div key={label} className="flex min-w-0 items-start gap-3 bg-white px-4 py-4 sm:gap-4 sm:px-5 sm:py-5 lg:px-6">
               <div
@@ -185,10 +182,7 @@ export default function Pricing() {
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              {...scrollMotionProps(isMobile, { y: 24, duration: 0.5, delay: i * 0.1 })}
               className={`relative flex flex-col p-6 sm:p-8 lg:p-10 ${i < plans.length - 1 ? "border-b border-gray-200 lg:border-b-0" : ""} ${i < 2 ? "lg:border-r lg:border-gray-200" : ""} ${plan.isPro ? "bg-[#172B4D]" : "bg-white"}`}
             >
               {plan.badge && <div className="absolute top-0 left-0 right-0 h-1 bg-[#F79625]" />}
@@ -310,12 +304,7 @@ export default function Pricing() {
           )}
         </AnimatePresence>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center text-[#6B778C] text-sm"
-        >
+        <motion.p {...scrollMotionProps(isMobile, { fadeOnly: true, duration: 0.45 })} className="text-center text-[#6B778C] text-sm">
           All plans include a <strong className="text-[#172B4D]">14-day free trial</strong> with no credit card required.{" "}
           <a href="#" className="text-[#172B4D] hover:underline font-semibold">Contact sales</a> for volume discounts.
         </motion.p>

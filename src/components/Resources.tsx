@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { format, parseISO } from "date-fns";
 import { getAllPosts } from "@/lib/blog";
 import type { BlogPost } from "@/lib/blog";
@@ -17,6 +19,7 @@ function coverThumbFromPost(post: BlogPost): string | undefined {
 }
 
 export default function Resources() {
+  const isMobile = useIsMobile();
   const posts = useMemo(() => getAllPosts(), []);
 
   const featured = posts.slice(0, 2);
@@ -67,13 +70,7 @@ export default function Resources() {
         {posts.length === 0 ? (
           <p className="text-center text-[#6B778C]">Articles coming soon.</p>
         ) : (
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr_340px]"
-          >
+          <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr_340px]">
             {featured.map((article) => {
               const { name, role } = authorMeta(article.author);
               const cover = postCoverImage(article);

@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle, Puzzle, Users } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const supportCards = [
   { icon: MessageCircle, title: "Founder-led support", description: "During early access, you talk directly to the team who built the product  -  fast response, real answers." },
@@ -8,18 +10,14 @@ const supportCards = [
 ];
 
 export default function FinalCTA() {
+  const isMobile = useIsMobile();
+
   return (
     <section className="bg-[#172B4D]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* CTA block */}
         <div className="py-24 border-b border-white/10">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center"
-          >
+          <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <div>
               <h2 className="text-4xl sm:text-5xl lg:text-[52px] font-extrabold text-white leading-tight tracking-tight">
                 Build <span className="text-[#DCE6F0]">smarter</span> projects with ZedOps.
@@ -52,10 +50,7 @@ export default function FinalCTA() {
             {supportCards.map((card, i) => (
               <motion.div
                 key={card.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                {...scrollMotionProps(isMobile, { y: 16, duration: 0.4, delay: i * 0.08 })}
                 className="bg-[#1E3A5F] px-7 py-7 flex gap-4 border border-white/5 hover:bg-[#234270] transition-colors duration-200 group"
                 style={{ borderRadius: 6 }}
               >

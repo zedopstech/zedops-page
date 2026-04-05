@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Building2, ClipboardList, HardHat } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import PageHero from "@/components/PageHero";
 import HowWeHelpPageShell from "@/components/HowWeHelpPageShell";
 import { projectStages } from "@/data/howWeHelp";
@@ -9,6 +11,8 @@ import { projectStages } from "@/data/howWeHelp";
 const phaseIcons = [ClipboardList, HardHat, Building2] as const;
 
 export default function HowWeHelpProjectStagePage() {
+  const isMobile = useIsMobile();
+
   useSEO({
     title: "By project stage  -  How ZedOps helps  -  ZedOps",
     description:
@@ -63,13 +67,7 @@ export default function HowWeHelpProjectStagePage() {
 
       <section className="border-t border-gray-200 bg-[#F4F6FB] py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="mb-12 flex flex-col gap-4 lg:mb-14 lg:flex-row lg:items-end lg:gap-20"
-          >
+          <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.4 })} className="mb-12 flex flex-col gap-4 lg:mb-14 lg:flex-row lg:items-end lg:gap-20">
             <div>
               <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#172B4D] sm:text-4xl">
                 From bid to <span className="text-[#0052CC]">closeout</span> - how ZedOps maps to the job.
@@ -89,10 +87,7 @@ export default function HowWeHelpProjectStagePage() {
                 <motion.article
                   key={stage.id}
                   id={stage.id}
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-48px" }}
-                  transition={{ duration: 0.45, delay: 0.05 }}
+                  {...scrollMotionProps(isMobile, { y: 28, duration: 0.45, delay: 0.05 })}
                   className="group relative scroll-mt-28 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-gray-300 hover:shadow-md"
                 >
                   <div

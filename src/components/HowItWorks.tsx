@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Map, HardHat, Brain } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const steps = [
   {
@@ -26,18 +28,14 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const isMobile = useIsMobile();
+
   return (
     <section className="bg-[#FFFBF5] border-t border-orange-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         {/* Compact heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="flex flex-col lg:flex-row lg:items-end gap-4 lg:gap-20 mb-10"
-        >
+        <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.4 })} className="flex flex-col lg:flex-row lg:items-end gap-4 lg:gap-20 mb-10">
           <div>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
@@ -54,10 +52,7 @@ export default function HowItWorks() {
           {steps.map((step, i) => (
             <motion.div
               key={step.step}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
+              {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: i * 0.1 })}
               className="bg-white p-7 flex flex-col group"
             >
               {/* Step number + icon */}

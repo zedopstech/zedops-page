@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const NAVY = "#172B4D";
 const ORANGE = "#F79625";
@@ -42,15 +44,10 @@ const faqs = [
 
 function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.055 }}
-      className="border-b border-gray-200 last:border-b-0"
-    >
+    <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4, delay: index * 0.055 })} className="border-b border-gray-200 last:border-b-0">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between gap-4 py-5 text-left group"
@@ -95,6 +92,8 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
 }
 
 export default function PricingFAQ() {
+  const isMobile = useIsMobile();
+
   return (
     <section className="bg-[#F8FAFF] border-t border-blue-100 py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,13 +101,7 @@ export default function PricingFAQ() {
 
           {/* Left  -  sticky heading */}
           <div className="lg:w-80 shrink-0">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="lg:sticky lg:top-28"
-            >
+            <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.5 })} className="lg:sticky lg:top-28">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-3 h-3 rounded-sm rotate-45 bg-[#172B4D]" />
                 <span className="text-[#172B4D] text-xs font-bold tracking-[0.15em] uppercase">FAQ</span>

@@ -353,6 +353,21 @@ body {
   overflow-x: clip;
 }
 
+/* Infinite gradient / rotate animations often shimmer or flicker on mobile GPUs (esp. with blur). */
+@media (max-width: 767px) {
+  .animated-gradient-border,
+  .animated-gradient-border-cool,
+  .animated-gradient-border-cool-card,
+  .solutions-mega-highlight-border,
+  .platform-intelligence-spin-border::before,
+  .platform-intelligence-aurora,
+  .platform-intelligence-aurora-slow,
+  .platform-intelligence-card-aurora,
+  .platform-intelligence-card-aurora-slow {
+    animation: none;
+  }
+}
+
 /* Animated gradient border wrapper */
 .animated-gradient-border {
   background: linear-gradient(270deg, #F79625, #3B82F6, #172B4D, #F79625);

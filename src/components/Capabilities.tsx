@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { BarChart2, FileText, PenTool, MessageSquare, Box, CheckCircle2, Sparkles } from "lucide-react";
 
 const aiCap = {
@@ -36,6 +38,16 @@ const TYPING_DURATION = 1100;
 const RESET_DELAY = 3800;
 
 function TypingDots() {
+  const isMobile = useIsMobile();
+  if (isMobile) {
+    return (
+      <div className="flex items-center gap-1 px-3 py-2.5" style={{ borderRadius: 6 }}>
+        {[0, 1, 2].map((i) => (
+          <span key={i} className="block h-1.5 w-1.5 rounded-full bg-blue-400/60" />
+        ))}
+      </div>
+    );
+  }
   return (
     <div className="flex gap-1 items-center px-3 py-2.5" style={{ borderRadius: 6 }}>
       {[0, 1, 2].map((i) => (
@@ -207,20 +219,18 @@ const coreCapabilities = [
 ];
 
 export default function Capabilities() {
+  const isMobile = useIsMobile();
   const aiCardRef = useRef<HTMLDivElement>(null);
-  const aiCardInView = useInView(aiCardRef, { once: false, margin: "-100px 0px" });
+  const aiCardInView = useInView(aiCardRef, {
+    once: true,
+    ...(isMobile ? { margin: "0px" as const } : { margin: "-100px 0px" as const }),
+  });
 
   return (
     <section id="capabilities" className="bg-white border-t border-gray-200 py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-end mb-14"
-        >
+        <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-end mb-14">
           <div>
             <h2 className="text-4xl sm:text-5xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
               Built for every part of <span className="text-[#172B4D]">the project.</span>
@@ -233,10 +243,7 @@ export default function Capabilities() {
 
         {/* AI Copilot  -  wide hero card */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          {...scrollMotionProps(isMobile, { y: 24, duration: 0.5, delay: 0.1 })}
           ref={aiCardRef}
           className="mb-px flex flex-col overflow-hidden rounded-t-md bg-[#172B4D] min-w-0 lg:flex-row"
         >
@@ -312,10 +319,7 @@ export default function Capabilities() {
           {coreCapabilities.slice(0, 3).map((cap, i) => (
             <motion.div
               key={cap.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
+              {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: i * 0.07 })}
               className="bg-white p-7 flex flex-col group hover:bg-[#FAFBFC] transition-colors duration-150"
             >
               <div className="flex items-start justify-between mb-5">
@@ -351,10 +355,7 @@ export default function Capabilities() {
           {coreCapabilities.slice(3).map((cap, i) => (
             <motion.div
               key={cap.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: i * 0.06 }}
+              {...scrollMotionProps(isMobile, { y: 16, duration: 0.35, delay: i * 0.06 })}
               className="flex min-w-0 items-center gap-3 bg-[#FAFBFC] px-4 py-5 group transition-colors duration-150 hover:bg-white sm:gap-4 sm:px-6"
             >
               <div className="w-9 h-9 flex items-center justify-center flex-shrink-0" style={{ background: "#172B4D0D", borderRadius: 6 }}>
