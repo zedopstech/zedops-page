@@ -77,9 +77,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={routerBaseFromVite()}>
-          <Router />
-        </WouterRouter>
+        <div className="min-h-screen overflow-x-clip">
+          <WouterRouter base={routerBaseFromVite()}>
+            <Router />
+          </WouterRouter>
+        </div>
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>

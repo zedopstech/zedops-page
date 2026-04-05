@@ -37,7 +37,7 @@ export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, c
 
       {/* Warm glow at bottom */}
       <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[260px] pointer-events-none"
+        className="pointer-events-none absolute bottom-0 left-1/2 h-[260px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
         style={{
           background: "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.11) 0%, transparent 65%)",
           filter: "blur(40px)",
@@ -45,7 +45,7 @@ export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, c
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
         {/* Pill */}
         <motion.div
           initial={{ opacity: 0, y: -8 }}

@@ -17,7 +17,7 @@ export default function Home() {
     description: "ZedOps is an AI-native construction operations platform. Manage projects, daily logs, drawings, RFIs, and risk from one intelligent dashboard.",
   });
   return (
-    <div className="min-h-screen bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-clip bg-white text-[#172B4D]">
       <Navbar />
       <Hero />
       <Problems />

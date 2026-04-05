@@ -92,7 +92,7 @@ export default function PersonaTemplate({
 
         {/* Right  -  content */}
         <div
-          className="relative flex items-center"
+          className="relative flex min-w-0 items-center"
           style={{
             background:
               "linear-gradient(155deg, #C4D9FF 0%, #D9EBFF 28%, #ECF3FF 58%, #F2F6FF 100%)",
@@ -107,7 +107,7 @@ export default function PersonaTemplate({
               filter: "blur(40px)",
             }}
           />
-          <div className="relative z-10 px-8 sm:px-12 lg:px-16 py-16 lg:py-20">
+          <div className="relative z-10 min-w-0 px-5 py-14 sm:px-12 lg:px-16 lg:py-20">
             <motion.div
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}

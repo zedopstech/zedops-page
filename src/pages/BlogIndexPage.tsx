@@ -69,7 +69,7 @@ export default function BlogIndexPage() {
           />
           <div className="pointer-events-none absolute inset-0" style={blueprintBg} aria-hidden />
           <div
-            className="pointer-events-none absolute bottom-0 left-1/2 h-[280px] w-[900px] max-w-[120%] -translate-x-1/2"
+            className="pointer-events-none absolute bottom-0 left-1/2 h-[280px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
             style={{
               background: "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.11) 0%, transparent 65%)",
               filter: "blur(40px)",

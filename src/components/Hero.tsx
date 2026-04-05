@@ -334,30 +334,35 @@ export default function Hero() {
         }}
       />
       {/* Warm glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] pointer-events-none" style={{
-        background: "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.11) 0%, transparent 65%)",
-        filter: "blur(40px)",
-      }} />
+      <div
+        className="pointer-events-none absolute bottom-0 left-1/2 h-[300px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
+        style={{
+          background: "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.11) 0%, transparent 65%)",
+          filter: "blur(40px)",
+        }}
+      />
 
       {/* ── Text block  -  no scroll transform to avoid lag ── */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center pt-16 pb-0">
+      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center pt-16 pb-0 sm:px-6">
 
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-7 inline-flex border border-[#172B4D]/20 bg-white/80 items-center gap-2 px-4 py-1.5"
+          className="mb-7 inline-flex max-w-full flex-wrap items-center justify-center gap-2 border border-[#172B4D]/20 bg-white/80 px-3 py-1.5 sm:px-4"
           style={{ borderRadius: 99 }}
         >
-          <Sparkles size={12} className="text-[#F79625]" />
-          <span className="text-[#172B4D] text-xs font-bold tracking-[0.12em] uppercase">AI-Powered · Built for Construction Teams</span>
+          <Sparkles size={12} className="shrink-0 text-[#F79625]" />
+          <span className="max-w-[min(100%,18rem)] text-center text-[10px] font-bold uppercase tracking-[0.08em] text-[#172B4D] sm:max-w-none sm:text-xs sm:tracking-[0.12em]">
+            AI-Powered · Built for Construction Teams
+          </span>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.06 }}
-          className="text-5xl sm:text-6xl lg:text-[70px] font-extrabold leading-[1.03] tracking-tight text-[#172B4D] mb-5"
+          className="text-4xl font-extrabold leading-[1.08] tracking-tight text-[#172B4D] mb-5 sm:text-5xl md:text-6xl lg:text-[70px] lg:leading-[1.03]"
         >
           End-to-end construction operations.
         </motion.h1>
@@ -375,21 +380,21 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.44, delay: 0.22 }}
-          className="flex flex-col items-center gap-3 mb-16"
+          className="mb-16 flex flex-col items-center gap-3 px-1"
         >
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex w-full max-w-md flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href="/early-access"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#172B4D] hover:bg-[#0e1e38] text-white font-bold text-sm transition-all duration-150"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-center text-sm font-bold text-white transition-all duration-150 bg-[#172B4D] hover:bg-[#0e1e38] sm:inline-flex"
               style={{ borderRadius: 6 }}
             >
               Request early access
-              <ArrowRight size={15} />
+              <ArrowRight size={15} className="shrink-0" />
             </a>
-            <div className="animated-gradient-border">
+            <div className="animated-gradient-border w-full sm:w-auto">
               <a
                 href="/contact?topic=demo"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-white hover:bg-[#F6F8FA] text-[#172B4D] font-semibold text-sm transition-all duration-150"
+                className="inline-flex w-full items-center justify-center gap-2 px-7 py-3.5 text-center text-sm font-semibold text-[#172B4D] transition-all duration-150 bg-white hover:bg-[#F6F8FA] sm:w-auto"
                 style={{ borderRadius: 6 }}
               >
                 Book a demo
@@ -404,7 +409,7 @@ export default function Hero() {
       </div>
 
       {/* ── Mockup  -  no scroll transform, eliminates button lag ── */}
-      <div className="relative z-10 px-6" style={{ maxWidth: 1160, margin: "0 auto" }}>
+      <div className="relative z-10 mx-auto max-w-[1160px] min-w-0 px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 44 }}
           animate={{ opacity: 1, y: 0 }}

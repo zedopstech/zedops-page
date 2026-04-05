@@ -43,15 +43,14 @@ export default function BentoStats() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div
           ref={ref}
-          className="grid gap-2"
-          style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr", gridTemplateRows: "auto auto" }}
+          className="grid min-w-0 auto-rows-auto grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4"
         >
           {/* Cell 1  -  Brand badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4 }}
-            className="row-span-2 bg-[#172B4D] p-8 flex flex-col justify-between min-h-[300px] relative overflow-hidden"
+            className="min-w-0 bg-[#172B4D] p-6 sm:p-8 flex flex-col justify-between min-h-[240px] sm:min-h-[300px] relative overflow-hidden lg:row-span-2"
             style={{ borderRadius: 6 }}
           >
             <div className="absolute inset-0 opacity-10" style={{
@@ -74,10 +73,10 @@ export default function BentoStats() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.06 }}
-            className="bg-[#161B22] flex flex-col justify-center p-8"
+            className="min-w-0 bg-[#161B22] flex flex-col justify-center p-6 sm:p-8"
             style={{ borderRadius: 6 }}
           >
-            <AnimatedStat target={500} suffix="+" duration={1.4} inView={inView} className="text-white font-black text-6xl leading-none mb-2" />
+            <AnimatedStat target={500} suffix="+" duration={1.4} inView={inView} className="text-white font-black text-4xl leading-none mb-2 sm:text-5xl lg:text-6xl" />
             <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Projects designed to support</p>
           </motion.div>
 
@@ -86,11 +85,11 @@ export default function BentoStats() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="bg-[#161B22] flex flex-col justify-center p-8 relative overflow-hidden"
+            className="min-w-0 bg-[#161B22] flex flex-col justify-center p-6 sm:p-8 relative overflow-hidden"
             style={{ borderRadius: 6 }}
           >
             <div className="absolute right-0 bottom-0 w-32 h-32 rounded-full bg-[#172B4D]/20 blur-2xl" />
-            <AnimatedStat target={10} suffix="×" duration={1.2} inView={inView} className="text-white font-black text-6xl leading-none mb-2" />
+            <AnimatedStat target={10} suffix="×" duration={1.2} inView={inView} className="text-white font-black text-4xl leading-none mb-2 sm:text-5xl lg:text-6xl" />
             <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Faster reporting*</p>
           </motion.div>
 
@@ -99,10 +98,10 @@ export default function BentoStats() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.14 }}
-            className="bg-[#161B22] flex flex-col justify-center p-8"
+            className="min-w-0 bg-[#161B22] flex flex-col justify-center p-6 sm:p-8"
             style={{ borderRadius: 6 }}
           >
-            <AnimatedStat target={35} suffix="%" duration={1.3} inView={inView} className="text-white font-black text-6xl leading-none mb-2" />
+            <AnimatedStat target={35} suffix="%" duration={1.3} inView={inView} className="text-white font-black text-4xl leading-none mb-2 sm:text-5xl lg:text-6xl" />
             <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Projected fewer cost overruns*</p>
           </motion.div>
 
@@ -111,14 +110,14 @@ export default function BentoStats() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.18 }}
-            className="bg-[#161B22] p-8 flex flex-col justify-between"
+            className="min-w-0 bg-[#161B22] p-6 sm:p-8 flex flex-col justify-between"
             style={{ borderRadius: 6 }}
           >
-            <div>
+            <div className="min-w-0">
               <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-4">Hours saved · per PM · per week</p>
               <div className="flex items-end gap-1.5">
-                <AnimatedStat target={52} suffix="" duration={1.5} inView={inView} className="text-white font-black text-5xl leading-none" />
-                <span className="text-[#F79625] text-3xl font-black mb-0.5">hrs</span>
+                <AnimatedStat target={52} suffix="" duration={1.5} inView={inView} className="text-white font-black text-4xl leading-none sm:text-5xl" />
+                <span className="text-[#F79625] text-2xl font-black mb-0.5 sm:text-3xl">hrs</span>
               </div>
               <p className="text-white/50 text-xs mt-2 leading-relaxed">Reclaimed from reporting, data entry, and status calls</p>
             </div>
@@ -130,9 +129,9 @@ export default function BentoStats() {
                   { label: "Data entry", before: 65, after: 8, color: "#172B4D" },
                   { label: "Status calls", before: 55, after: 15, color: "#4B5563" },
                 ].map(({ label, before, after, color }) => (
-                  <div key={label} className="flex items-center gap-2">
-                    <span className="text-white/30 text-[8px] w-14 shrink-0">{label}</span>
-                    <div className="flex-1 h-3 bg-white/5 relative overflow-hidden">
+                  <div key={label} className="flex min-w-0 items-center gap-2">
+                    <span className="text-white/30 text-[8px] w-12 shrink-0 sm:w-14">{label}</span>
+                    <div className="min-w-0 flex-1 h-3 bg-white/5 relative overflow-hidden">
                       <div className="absolute inset-y-0 left-0 bg-white/15" style={{ width: `${before}%` }} />
                       <motion.div
                         className="absolute inset-y-0 left-0"
@@ -157,13 +156,13 @@ export default function BentoStats() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.22 }}
-            className="bg-[#161B22] p-8 flex flex-col justify-between"
+            className="min-w-0 bg-[#161B22] p-6 sm:p-8 flex flex-col justify-between"
             style={{ borderRadius: 6 }}
           >
-            <div>
+            <div className="min-w-0">
               <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-4">Projected ROI impact*</p>
-              <p className="text-white font-black text-5xl leading-none">
-                $2.4<span className="text-[#F79625] text-3xl">M</span>
+              <p className="text-white font-black text-4xl leading-none sm:text-5xl">
+                $2.4<span className="text-[#F79625] text-2xl sm:text-3xl">M</span>
               </p>
               <p className="text-white/50 text-xs mt-2 leading-relaxed">Projected savings per large commercial project</p>
             </div>
@@ -173,9 +172,9 @@ export default function BentoStats() {
                 { label: "Avoided delay penalties", val: "$890K" },
                 { label: "Labour efficiency gains", val: "$870K" },
               ].map(({ label, val }) => (
-                <div key={label} className="flex items-center justify-between border-t border-white/5 pt-2">
-                  <span className="text-white/40 text-xs">{label}</span>
-                  <span className="text-[#F79625] font-bold text-xs">{val}</span>
+                <div key={label} className="flex min-w-0 items-center justify-between gap-2 border-t border-white/5 pt-2">
+                  <span className="text-white/40 text-xs break-words">{label}</span>
+                  <span className="text-[#F79625] font-bold text-xs shrink-0">{val}</span>
                 </div>
               ))}
             </div>
@@ -186,13 +185,13 @@ export default function BentoStats() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.26 }}
-            className="bg-[#F79625] p-8 flex flex-col justify-between relative overflow-hidden"
+            className="min-w-0 bg-[#F79625] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden sm:col-span-2 lg:col-span-1"
             style={{ borderRadius: 6 }}
           >
             <div className="absolute -right-6 -bottom-6 w-28 h-28 bg-white/10 rounded-full" />
             <div className="absolute -right-2 -bottom-2 w-16 h-16 bg-white/10 rounded-full" />
-            <div>
-              <AnimatedStat target={3} suffix="×" duration={1.0} inView={inView} className="text-white font-black text-6xl leading-none mb-2" />
+            <div className="relative min-w-0">
+              <AnimatedStat target={3} suffix="×" duration={1.0} inView={inView} className="text-white font-black text-4xl leading-none mb-2 sm:text-5xl lg:text-6xl" />
               <p className="text-white/80 text-xs font-bold uppercase tracking-widest">Faster decisions</p>
             </div>
             <p className="text-white/70 text-xs mt-4 leading-relaxed">
@@ -200,7 +199,7 @@ export default function BentoStats() {
             </p>
           </motion.div>
         </div>
-        <p className="text-white/20 text-[10px] mt-4 text-right">* Based on design targets and industry benchmarks. Actual results will vary.</p>
+        <p className="text-white/20 text-[10px] mt-4 text-balance sm:text-right">* Based on design targets and industry benchmarks. Actual results will vary.</p>
       </div>
     </section>
   );

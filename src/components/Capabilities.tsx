@@ -238,10 +238,10 @@ export default function Capabilities() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
           ref={aiCardRef}
-          className="bg-[#172B4D] mb-px overflow-hidden flex flex-col lg:flex-row rounded-t-md"
+          className="mb-px flex flex-col overflow-hidden rounded-t-md bg-[#172B4D] min-w-0 lg:flex-row"
         >
           {/* Left text */}
-          <div className="flex-1 p-8 lg:p-12">
+          <div className="min-w-0 flex-1 p-8 lg:p-12">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 bg-[#F79625] flex items-center justify-center flex-shrink-0" style={{ borderRadius: 6 }}>
                 <Sparkles size={18} className="text-white" />
@@ -278,7 +278,7 @@ export default function Capabilities() {
           </div>
 
           {/* Right  -  animated AI chat */}
-          <div className="lg:w-[420px] bg-[#0E1E38] p-6 lg:p-8 flex flex-col justify-between border-t border-white/5 lg:border-t-0 lg:border-l lg:border-white/5">
+          <div className="flex w-full min-w-0 flex-col justify-between border-t border-white/5 bg-[#0E1E38] p-6 lg:w-[420px] lg:max-w-full lg:shrink-0 lg:border-l lg:border-t-0 lg:border-white/5 lg:p-8">
             {/* Header */}
             <div className="flex items-center gap-2 mb-5">
               <div className="w-2 h-2 rounded-full bg-[#F79625] animate-pulse" />
@@ -355,7 +355,7 @@ export default function Capabilities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: i * 0.06 }}
-              className="bg-[#FAFBFC] px-6 py-5 flex items-center gap-4 group hover:bg-white transition-colors duration-150"
+              className="flex min-w-0 items-center gap-3 bg-[#FAFBFC] px-4 py-5 group transition-colors duration-150 hover:bg-white sm:gap-4 sm:px-6"
             >
               <div className="w-9 h-9 flex items-center justify-center flex-shrink-0" style={{ background: "#172B4D0D", borderRadius: 6 }}>
                 <cap.icon size={16} style={{ color: "#172B4D" }} />

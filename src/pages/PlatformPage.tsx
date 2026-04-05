@@ -40,7 +40,7 @@ export default function PlatformPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-clip bg-white text-[#172B4D]">
       <Navbar />
       <div className="pt-[100px]">
         <section className="relative overflow-hidden pt-20 pb-14 lg:pb-20" aria-labelledby="platform-page-title">
@@ -66,7 +66,7 @@ export default function PlatformPage() {
             aria-hidden
           />
           <div
-            className="absolute bottom-0 left-1/2 w-[900px] max-w-[120%] -translate-x-1/2 h-[280px] pointer-events-none"
+            className="pointer-events-none absolute bottom-0 left-1/2 h-[280px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
             style={{
               background: "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.11) 0%, transparent 65%)",
               filter: "blur(40px)",
@@ -74,7 +74,7 @@ export default function PlatformPage() {
             aria-hidden
           />
 
-          <div className="relative z-10 mx-auto max-w-6xl px-6">
+          <div className="relative z-10 mx-auto max-w-6xl min-w-0 px-4 sm:px-6">
             <div className="grid items-stretch gap-10 lg:grid-cols-12 lg:gap-12 lg:items-center">
               {/* Primary headline  -  one clear page header */}
               <div className="text-center lg:col-span-7 lg:text-left">

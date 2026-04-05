@@ -46,137 +46,144 @@ const barChart = [
 
 export default function DashboardMockup() {
   return (
-    <div className="font-sans text-[#172B4D] bg-[#F8FAFC] overflow-hidden" style={{ borderRadius: 6, height: 640 }}>
+    <div
+      className="min-h-[min(480px,72vh)] h-[min(62vh,580px)] min-w-0 max-w-full overflow-hidden rounded-[10px] bg-[#F8FAFC] font-sans text-[#172B4D] shadow-[0_24px_48px_-28px_rgba(23,43,77,0.2)] ring-1 ring-[#172B4D]/10 md:h-[640px] md:min-h-[640px] md:rounded-md md:shadow-none md:ring-0"
+    >
 
       {/* Top navbar */}
-      <div className="bg-[#111827] flex items-center px-3 py-0" style={{ height: 40 }}>
-        <div className="flex items-center gap-2 mr-4">
-          <img src="/logo.png" alt="ZedOps" className="w-6 h-6 shrink-0 object-cover" style={{ borderRadius: 6 }} />
+      <div className="flex min-h-10 min-w-0 items-center overflow-hidden bg-[#111827] px-2.5 py-0 sm:min-h-[40px] sm:px-3">
+        <div className="mr-2 flex shrink-0 items-center gap-2 sm:mr-4">
+          <img src="/logo.png" alt="ZedOps" className="h-6 w-6 shrink-0 object-cover sm:h-7 sm:w-7" style={{ borderRadius: 6 }} />
         </div>
         {/* Project selector */}
-        <div className="flex items-center gap-1 bg-white/10 px-2.5 py-1 mr-4 cursor-pointer hover:bg-white/15" style={{ borderRadius: 6 }}>
-          <span className="text-white/90 text-xs font-semibold truncate max-w-[110px]">Dubai Mall Expa...</span>
-          <ChevronDown size={11} className="text-white/60 flex-shrink-0" />
+        <div className="mr-2 flex min-w-0 shrink cursor-pointer items-center gap-1 bg-white/10 px-2 py-1 hover:bg-white/15 sm:mr-4 sm:shrink-0 sm:px-2.5" style={{ borderRadius: 6 }}>
+          <span className="truncate text-[11px] font-semibold text-white/90 sm:text-xs">Dubai Mall</span>
+          <ChevronDown size={11} className="shrink-0 text-white/60" />
         </div>
-        {/* Nav tabs */}
-        <div className="flex items-center gap-0 flex-1">
-          {["Core", "Project", "Finance", "Supply Chain", "Daily Logs"].map((nav, i) => (
-            <div key={nav} className={`px-3 py-2.5 text-[11px] font-medium cursor-pointer transition-colors whitespace-nowrap flex items-center gap-1 ${i === 0 ? "text-white border-b border-white" : "text-white/50 hover:text-white/75"}`}>
-              {nav}
-              {i < 4 && <ChevronDown size={9} className="text-white/40" />}
-            </div>
-          ))}
+        {/* Nav tabs — desktop row; mobile peek */}
+        <div className="ml-auto flex max-md:mr-2 md:mx-0 md:min-w-0 md:flex-1 md:items-center md:gap-0">
+          <div className="hidden min-w-0 flex-1 items-center gap-0 overflow-x-auto md:flex [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {["Core", "Project", "Finance", "Supply Chain", "Daily Logs"].map((nav, i) => (
+              <div key={nav} className={`flex shrink-0 cursor-pointer items-center gap-1 px-3 py-2.5 text-[11px] font-medium whitespace-nowrap transition-colors ${i === 0 ? "border-b border-white text-white" : "text-white/50 hover:text-white/75"}`}>
+                {nav}
+                {i < 4 && <ChevronDown size={9} className="text-white/40" />}
+              </div>
+            ))}
+          </div>
+          <span className="rounded-md bg-white/10 px-2 py-1 text-[9px] font-bold text-white/80 md:hidden">Workspace</span>
         </div>
         {/* Right actions */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 bg-[#F79625] px-2.5 py-1 cursor-pointer" style={{ borderRadius: 6 }}>
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <div className="flex cursor-pointer items-center gap-1 bg-[#F79625] px-2 py-1 sm:px-2.5" style={{ borderRadius: 6 }}>
             <Sparkles size={10} className="text-white" />
-            <span className="text-white text-[10px] font-bold">Zed AI</span>
+            <span className="text-[9px] font-bold text-white sm:text-[10px]">Zed AI</span>
           </div>
-          <div className="w-6 h-6 rounded-full bg-[#3B82F6] flex items-center justify-center cursor-pointer">
-            <span className="text-white text-[10px] font-bold">A</span>
+          <div className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-[#3B82F6] sm:h-6 sm:w-6">
+            <span className="text-[10px] font-bold text-white">A</span>
           </div>
         </div>
       </div>
 
-      {/* Main area */}
-      <div className="flex" style={{ height: "calc(100% - 40px)" }}>
+      {/* Main area — column on mobile for readable density */}
+      <div className="flex min-h-0 flex-1 flex-col lg:flex-row" style={{ height: "calc(100% - 40px)" }}>
 
-        {/* Left content */}
-        <div className="flex-1 overflow-hidden bg-white flex flex-col">
+        {/* Primary workspace */}
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden bg-white">
           {/* Greeting */}
-          <div className="px-4 pt-3 pb-2 flex items-start justify-between border-b border-gray-100">
-            <div>
-              <h2 className="text-sm font-bold text-[#111827]">Good morning! 👋</h2>
-              <p className="text-[10px] text-gray-400 mt-0.5">Here's what's happening with your projects today.</p>
+          <div className="flex flex-col gap-2 border-b border-gray-100 px-3 pb-2.5 pt-2.5 sm:flex-row sm:items-start sm:justify-between sm:px-4 sm:pt-3">
+            <div className="min-w-0">
+              <h2 className="text-[13px] font-bold leading-tight text-[#111827] sm:text-sm">Good morning! 👋</h2>
+              <p className="mt-0.5 text-[9px] leading-snug text-gray-500 sm:text-[10px]">Here's what's happening with your projects today.</p>
             </div>
-            <div className="flex items-center gap-1.5 flex-shrink-0">
-              <button className="flex items-center gap-1 px-2.5 py-1 border border-gray-200 bg-white text-[10px] font-medium text-gray-600 hover:bg-gray-50" style={{ borderRadius: 6 }}>
-                <span>View All Projects</span>
+            <div className="flex shrink-0 flex-wrap items-center justify-end gap-1.5 sm:justify-start">
+              <button
+                type="button"
+                className="hidden rounded-md border border-gray-200 bg-white px-2.5 py-1 text-[10px] font-medium text-gray-600 hover:bg-gray-50 sm:inline-flex sm:items-center sm:gap-1"
+                style={{ borderRadius: 6 }}
+              >
+                View all projects
               </button>
-              <button className="flex items-center gap-1 px-2.5 py-1 bg-[#172B4D] text-white text-[10px] font-bold" style={{ borderRadius: 6 }}>
+              <button className="flex items-center gap-1 rounded-md bg-[#172B4D] px-2.5 py-1 text-[9px] font-bold text-white sm:text-[10px]" style={{ borderRadius: 6 }} type="button">
                 <Plus size={10} />
-                <span>New Project</span>
+                New
               </button>
             </div>
           </div>
 
-          {/* Stat cards */}
-          <div className="grid grid-cols-6 gap-px bg-gray-100 border-b border-gray-100 flex-shrink-0">
+          {/* Stat cards — 2×3 on phone, 3×2 on sm, full strip on lg */}
+          <div className="grid shrink-0 grid-cols-2 gap-px border-b border-gray-100 bg-gray-100 sm:grid-cols-3 lg:grid-cols-6">
             {statCards.map(({ label, val, sub, iconBg, icon }) => (
-              <div key={label} className="bg-white px-3 py-2.5">
-                <div className="flex items-start justify-between mb-1">
-                  <span className="text-[8px] font-bold text-gray-400 tracking-wide leading-tight">{label}</span>
-                  <div className={`w-5 h-5 flex items-center justify-center text-white text-[9px] flex-shrink-0 ml-1 ${iconBg}`} style={{ borderRadius: 4 }}>
+              <div key={label} className="bg-white px-2.5 py-2 sm:px-3 sm:py-2.5">
+                <div className="mb-1 flex items-start justify-between gap-1">
+                  <span className="text-[7px] font-bold uppercase leading-tight tracking-wide text-gray-400 sm:text-[8px]">{label}</span>
+                  <div className={`ml-1 flex h-5 w-5 shrink-0 items-center justify-center text-[9px] text-white sm:h-5 sm:w-5 ${iconBg}`} style={{ borderRadius: 4 }}>
                     {icon}
                   </div>
                 </div>
-                <div className="text-xl font-black text-[#111827] leading-none">{val}</div>
-                <div className="text-[8px] text-gray-400 mt-0.5">{sub}</div>
+                <div className="text-lg font-black leading-none text-[#111827] sm:text-xl">{val}</div>
+                <div className="mt-0.5 text-[7px] text-gray-400 sm:text-[8px]">{sub}</div>
               </div>
             ))}
           </div>
 
-          {/* Bottom: Chart + Activities */}
-          <div className="flex flex-1 overflow-hidden gap-px bg-gray-100 min-h-0">
+          {/* Chart + activities */}
+          <div className="flex min-h-0 flex-1 flex-col gap-px overflow-hidden bg-gray-100 lg:flex-row">
             {/* Bar chart */}
-            <div className="flex-1 bg-white px-4 py-3 overflow-hidden min-h-0">
-              <div className="flex items-center justify-between mb-1">
-                <div>
-                  <div className="text-xs font-bold text-[#111827]">Project Status Distribution</div>
-                  <div className="text-[8px] text-gray-400">All projects by current status</div>
+            <div className="min-h-0 min-w-0 flex-1 overflow-hidden bg-white px-3 py-2.5 sm:px-4 sm:py-3">
+              <div className="mb-1 flex items-start justify-between gap-2">
+                <div className="min-w-0">
+                  <div className="text-[11px] font-bold leading-tight text-[#111827] sm:text-xs">Project status</div>
+                  <div className="text-[8px] text-gray-400">By current phase</div>
                 </div>
-                <button className="text-[9px] text-[#3B82F6] font-medium">View All ↗</button>
+                <button type="button" className="shrink-0 text-[9px] font-medium text-[#3B82F6]">View ↗</button>
               </div>
-              {/* Y-axis + bars */}
-              <div className="flex gap-1 mt-2" style={{ height: 90 }}>
-                {/* Y-axis labels */}
-                <div className="flex flex-col justify-between pb-4 mr-1" style={{ width: 12 }}>
-                  {[8, 6, 4, 2, 0].map(v => (
-                    <span key={v} className="text-[7px] text-gray-300 text-right leading-none">{v}</span>
+              <div className="mt-1 flex gap-1 sm:mt-2" style={{ height: 72 }}>
+                <div className="flex flex-col justify-between pb-3 mr-0.5 w-2.5 sm:mr-1 sm:w-3">
+                  {[8, 6, 4, 2, 0].map((v) => (
+                    <span key={v} className="text-[6px] leading-none text-gray-300 sm:text-[7px]">
+                      {v}
+                    </span>
                   ))}
                 </div>
-                {/* Bars */}
-                <div className="flex items-end gap-2 flex-1 pb-4 border-l border-b border-gray-100">
+                <div className="flex flex-1 items-end gap-1 border-b border-l border-gray-100 pb-3 sm:gap-2">
                   {barChart.map(({ label, h, color }) => (
-                    <div key={label} className="flex flex-col items-center flex-1 min-w-0 gap-1">
-                      <div className="w-full" style={{ height: `${h}%`, background: color, minHeight: 3 }} />
-                      <span className="text-[7px] text-gray-400 truncate w-full text-center leading-tight">{label}</span>
+                    <div key={label} className="flex min-w-0 flex-1 flex-col items-center gap-0.5 sm:gap-1">
+                      <div className="w-full rounded-t-[2px]" style={{ height: `${h}%`, background: color, minHeight: 4 }} />
+                      <span className="w-full truncate text-center text-[6px] leading-tight text-gray-400 sm:text-[7px]">{label}</span>
                     </div>
                   ))}
                 </div>
               </div>
-              {/* Count row */}
-              <div className="grid grid-cols-5 gap-2 mt-1">
+              <div className="mt-1 grid grid-cols-5 gap-1 sm:gap-2">
                 {barChart.map(({ count, label, color }) => (
-                  <div key={label} className="text-center">
-                    <div className="text-[9px] font-bold" style={{ color }}>{count}</div>
-                    <div className="text-[7px] text-gray-300 truncate">{label}</div>
+                  <div key={label} className="min-w-0 text-center">
+                    <div className="text-[8px] font-bold sm:text-[9px]" style={{ color }}>{count}</div>
+                    <div className="truncate text-[6px] text-gray-300 sm:text-[7px]">{label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Recent Activities */}
-            <div className="bg-white px-3 py-3 overflow-hidden min-h-0" style={{ width: 220 }}>
-              <div className="flex items-center justify-between mb-2">
+            <div className="max-h-[140px] min-h-0 w-full shrink-0 overflow-hidden border-t border-gray-100 bg-white px-3 py-2 sm:max-h-none lg:h-auto lg:w-[220px] lg:border-l lg:border-t-0 lg:py-3">
+              <div className="mb-1.5 flex items-center justify-between sm:mb-2">
                 <div>
-                  <div className="text-xs font-bold text-[#111827]">Recent Activities</div>
-                  <div className="text-[8px] text-gray-400">Latest updates</div>
+                  <div className="text-[11px] font-bold text-[#111827] sm:text-xs">Recent activity</div>
+                  <div className="text-[8px] text-gray-400">Latest</div>
                 </div>
                 <Clock size={11} className="text-gray-300" />
               </div>
-              <div className="space-y-2 overflow-hidden">
+              <div className="space-y-1.5 overflow-hidden sm:space-y-2">
                 {recentActivities.map((act, i) => (
                   <div key={i} className="flex items-start gap-1.5">
-                    <div className="w-5 h-5 rounded-full bg-[#3B82F6] flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-white text-[8px] font-bold">A</span>
+                    <div className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#3B82F6] sm:h-5 sm:w-5 ">
+                      <span className="text-[7px] font-bold text-white sm:text-[8px]">A</span>
                     </div>
                     <div className="min-w-0">
-                      <p className="text-[8px] text-gray-600 leading-snug">
-                        <span className="truncate block">{act.text}</span>
-                        <span className="text-gray-400"> by {act.by}</span>
-                        {" "}<span className={`inline-flex items-center px-1 py-0.5 text-[7px] font-semibold ${act.badgeColor}`}>{act.badge}</span>
+                      <p className="text-[7px] leading-snug text-gray-600 sm:text-[8px]">
+                        <span className="line-clamp-2 sm:line-clamp-none sm:truncate sm:block">{act.text}</span>
+                        <span className="text-gray-400"> · {act.by}</span>{" "}
+                        <span className={`inline-flex items-center px-1 py-0.5 text-[6px] font-semibold sm:text-[7px] ${act.badgeColor}`}>{act.badge}</span>
                       </p>
                     </div>
                   </div>
@@ -187,7 +194,7 @@ export default function DashboardMockup() {
         </div>
 
         {/* Zed Copilot panel */}
-        <div className="bg-white border-l border-gray-100 flex flex-col overflow-hidden" style={{ width: 240 }}>
+        <div className="flex max-h-[200px] min-h-0 w-full shrink-0 flex-col overflow-hidden border-t border-gray-100 bg-white min-[480px]:max-h-[220px] lg:max-h-none lg:w-[240px] lg:border-l lg:border-t-0">
           {/* Copilot header */}
           <div className="flex items-center justify-between px-3 py-2.5 border-b border-gray-100 flex-shrink-0">
             <div className="flex items-center gap-1.5">
@@ -210,9 +217,11 @@ export default function DashboardMockup() {
                 <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wide">Snag Status Distribution</span>
                 <Download size={10} className="text-gray-300" />
               </div>
-              <div className="flex items-center gap-3">
-                <PieChart open={67} />
-                <div className="flex flex-col gap-2">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="shrink-0 scale-[0.82] origin-left sm:scale-100">
+                  <PieChart open={67} />
+                </div>
+                <div className="flex min-w-0 flex-col gap-1.5 sm:gap-2">
                   <div>
                     <div className="flex items-center gap-1">
                       <div className="w-2 h-2 rounded-sm bg-[#172B4D]" />

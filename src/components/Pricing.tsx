@@ -131,24 +131,27 @@ export default function Pricing() {
     <section id="pricing" className="bg-[#F0F4FF] border-t border-blue-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
 
-        {/* ── Billing toggle ── */}
-        <div className="text-center mb-10">
-          {/* Toggle */}
-          <div className="inline-flex items-center gap-1 border border-blue-200 p-1 bg-white" style={{ borderRadius: 6 }}>
+        {/* ── Billing toggle (horizontal tabs on all breakpoints) ── */}
+        <div className="mb-10 flex justify-center px-1">
+          <div className="inline-flex items-center gap-1 border border-blue-200 bg-white p-1" style={{ borderRadius: 6 }}>
             <button
+              type="button"
               onClick={() => setAnnual(false)}
-              className={`px-5 py-2 text-sm font-semibold transition-all duration-150 ${!annual ? "bg-[#172B4D] text-white" : "text-[#6B778C] hover:text-[#42526E]"}`}
+              className={`px-4 py-2 text-sm font-semibold transition-all duration-150 sm:px-5 sm:py-2 ${!annual ? "bg-[#172B4D] text-white" : "text-[#6B778C] hover:text-[#42526E]"}`}
               style={{ borderRadius: 6 }}
             >
               Monthly
             </button>
             <button
+              type="button"
               onClick={() => setAnnual(true)}
-              className={`flex items-center gap-2 px-5 py-2 text-sm font-semibold transition-all duration-150 ${annual ? "bg-[#172B4D] text-white" : "text-[#6B778C] hover:text-[#42526E]"}`}
+              className={`inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold transition-all duration-150 sm:gap-2 sm:px-5 sm:py-2 ${annual ? "bg-[#172B4D] text-white" : "text-[#6B778C] hover:text-[#42526E]"}`}
               style={{ borderRadius: 6 }}
             >
               Annual
-              <span className="text-xs bg-green-100 text-green-700 px-1.5 py-0.5 font-bold border border-green-200">Save 20%</span>
+              <span className="shrink-0 rounded border border-green-200 bg-green-100 px-1 py-0.5 text-[10px] font-bold text-green-800 sm:px-1.5 sm:text-xs">
+                Save 20%
+              </span>
             </button>
           </div>
         </div>
@@ -159,19 +162,19 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-blue-100 border border-blue-100 mb-12 overflow-hidden rounded-md"
+          className="mb-12 grid grid-cols-1 gap-px overflow-hidden rounded-md border border-blue-100 bg-blue-100 sm:grid-cols-2 lg:grid-cols-4"
         >
           {whyZedOps.map(({ icon: Icon, label, desc }, i) => (
-            <div key={label} className="bg-white px-6 py-5 flex items-start gap-4">
+            <div key={label} className="flex min-w-0 items-start gap-3 bg-white px-4 py-4 sm:gap-4 sm:px-5 sm:py-5 lg:px-6">
               <div
-                className="w-9 h-9 flex items-center justify-center shrink-0"
+                className="flex h-9 w-9 shrink-0 items-center justify-center"
                 style={{ background: i === 0 ? NAVY : "#EBF0FF", borderRadius: 6 }}
               >
                 <Icon size={16} color={i === 0 ? "white" : NAVY} />
               </div>
-              <div>
-                <div className="text-sm font-bold mb-0.5" style={{ color: NAVY }}>{label}</div>
-                <div className="text-xs text-[#6B778C] leading-snug">{desc}</div>
+              <div className="min-w-0 flex-1">
+                <div className="mb-0.5 text-sm font-bold leading-snug" style={{ color: NAVY }}>{label}</div>
+                <div className="text-xs leading-relaxed text-[#6B778C]">{desc}</div>
               </div>
             </div>
           ))}
@@ -186,7 +189,7 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`flex flex-col p-10 relative ${i < 2 ? "border-r border-gray-200" : ""} ${plan.isPro ? "bg-[#172B4D]" : "bg-white"}`}
+              className={`relative flex flex-col p-6 sm:p-8 lg:p-10 ${i < plans.length - 1 ? "border-b border-gray-200 lg:border-b-0" : ""} ${i < 2 ? "lg:border-r lg:border-gray-200" : ""} ${plan.isPro ? "bg-[#172B4D]" : "bg-white"}`}
             >
               {plan.badge && <div className="absolute top-0 left-0 right-0 h-1 bg-[#F79625]" />}
               {plan.badge && (
