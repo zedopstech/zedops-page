@@ -9,7 +9,7 @@ import AppMockup from "./DashboardMockup";
  * If `youtubeId` is set, an embed is used (takes precedence over MP4).
  */
 const PLATFORM_OVERVIEW_VIDEO = {
-  youtubeId: "",
+  youtubeId: "k0DaV2pgF_I",
   mp4: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
   poster: "",
 } as const;
