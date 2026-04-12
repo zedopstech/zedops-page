@@ -1,29 +1,32 @@
 import { motion } from "framer-motion";
-import { Map, HardHat, Brain } from "lucide-react";
+import { CalendarClock, ClipboardList, ListChecks } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const steps = [
   {
     step: "01",
-    icon: Map,
-    title: "Plan your project",
-    description: "Create your project structure, set milestones, define scope, and connect your team. Import schedules from Primavera or MS Project in seconds.",
-    details: ["Gantt & CPM scheduling", "Budget breakdown structure", "Subcontractor onboarding", "Document library setup"],
+    icon: CalendarClock,
+    title: "Schedule → tasks",
+    description:
+      "Break the programme into owned tasks with due dates and dependencies. When the timeline shifts, the work queue updates so MEP crews know what moved, not just what turned red on a chart.",
+    details: ["Phases & milestones tied to real assignments", "Task owners and handoffs between trades", "Schedule changes reflected in what people see next"],
   },
   {
     step: "02",
-    icon: HardHat,
-    title: "Track site execution",
-    description: "Field teams log daily activity, capture photos, submit RFIs, and report progress from any device. Data flows instantly to dashboards.",
-    details: ["Mobile daily logs", "QA inspection checklists", "Material delivery tracking", "Safety incident reporting"],
+    icon: ClipboardList,
+    title: "Daily log → follow-up",
+    description:
+      "Capture site reality in structured logs, then convert issues into tasks with owners. The log stops being a filing cabinet and becomes the start of the fix.",
+    details: ["Fast daily log entry with project context", "Link observations to corrective actions", "Permissioned so the right trade sees the right work"],
   },
   {
     step: "03",
-    icon: Brain,
-    title: "Get AI insights and act faster",
-    description: "ZedOps AI analyzes patterns, detects risks, and surfaces actionable recommendations before problems escalate.",
-    details: ["Delay risk prediction", "Cost variance analysis", "Resource optimization", "Automated executive reports"],
+    icon: ListChecks,
+    title: "Inspection & punch → closeout",
+    description:
+      "Run inspections from templates, route findings to tasks, and drive punch lists to sign-off. Closeout stays measurable when every item has an owner and a status.",
+    details: ["Inspections linked to logs and tasks", "Punch items tracked to completion", "AI assists drafts and summaries where enabled"],
   },
 ];
 
@@ -39,11 +42,11 @@ export default function HowItWorks() {
           <div>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
-              From plan to <span className="text-[#172B4D]">closeout</span> - three steps.
+              From <span className="text-[#172B4D]">schedule</span> to sign-off, with action in between.
             </h2>
           </div>
           <p className="text-[#42526E] text-base leading-relaxed lg:max-w-xs lg:pb-1">
-            Simple, powerful, and built for how construction teams actually work.
+            Built for MEP and field teams: every step pushes work forward (tasks, logs, inspections, and punch), not passive reporting.
           </p>
         </motion.div>
 

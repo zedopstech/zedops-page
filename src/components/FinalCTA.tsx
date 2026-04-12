@@ -4,9 +4,9 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const supportCards = [
-  { icon: MessageCircle, title: "Founder-led support", description: "During early access, you talk directly to the team who built the product  -  fast response, real answers." },
-  { icon: Puzzle, title: "Key integrations built-in", description: "Connect to Procore, Primavera, AutoCAD, and ERP systems  -  more integrations added based on your feedback." },
-  { icon: Users, title: "Construction community", description: "Join a growing network of construction professionals shaping the future of project management with AI." },
+  { icon: MessageCircle, title: "Founder-led support", description: "During early access, you talk directly to the team who built the product, with fast answers on workflows like schedule → task and punch closeout." },
+  { icon: Puzzle, title: "Key integrations built-in", description: "Connect scheduling, documents, and ERP-style systems so execution data isn’t trapped in a silo." },
+  { icon: Users, title: "MEP & field–first roadmap", description: "We’re prioritising trade execution (tasks, logs, inspections, and punch) alongside AI that respects permissions." },
 ];
 
 export default function FinalCTA() {
@@ -20,12 +20,12 @@ export default function FinalCTA() {
           <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <div>
               <h2 className="text-4xl sm:text-5xl lg:text-[52px] font-extrabold text-white leading-tight tracking-tight">
-                Build <span className="text-[#DCE6F0]">smarter</span> projects with ZedOps.
+                Run <span className="text-[#DCE6F0]">MEP jobs</span> with execution in the loop.
               </h2>
             </div>
             <div>
               <p className="text-blue-200 text-lg leading-relaxed mb-8">
-                Stop reacting to problems. Start predicting and preventing them. Be among the first construction teams to run on AI from day one.
+                Give supers and PMs one place where the schedule, daily log, inspections, and punch list all drive assigned work, with AI that fits your permissions, not a generic chatbox.
               </p>
               <div className="flex flex-wrap items-center gap-4">
                 <a

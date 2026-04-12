@@ -2,151 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import type React from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, ArrowRight, Cpu, Building2, HardHat, ClipboardList, Briefcase, FileText, BarChart2, MessageSquare, BookOpen, Video, FileQuestion, Users, Map, Lightbulb, LayoutGrid, ScrollText } from "lucide-react";
-
-const dropdownMenus = {
-  Solutions: {
-    sections: [
-      {
-        heading: "Platform",
-        items: [
-          {
-            icon: LayoutGrid,
-            label: "All platform features",
-            desc: "Full module list from the product",
-            subtitle: "Planning, execution, finance, documents, quality, and closeout - every module in one place, with permissions that match how your teams actually work.",
-            href: "/platform",
-            highlight: true,
-          },
-          {
-            icon: Cpu,
-            label: "Zed AI",
-            desc: "In-product copilot",
-            subtitle: "Insights, report prep, writing assist, and actions  -  live project data and your permissions.",
-            href: "/zed-ai",
-            highlight: true,
-          },
-        ],
-      },
-      {
-        heading: "By Project Stage",
-        items: [
-          { icon: ClipboardList, label: "Preconstruction", desc: "Estimation & library", href: "/how-we-help/project-stage#preconstruction" },
-          { icon: HardHat, label: "Construction", desc: "Projects, tasks, work logs", href: "/how-we-help/project-stage#construction" },
-          { icon: Building2, label: "Closeout", desc: "Punch list & inspections", href: "/how-we-help/project-stage#closeout" },
-        ],
-      },
-    ],
-    cta: { label: "Explore all capabilities", href: "/solutions" },
-    featured: {
-      tag: "Overview",
-      title: "One platform from preconstruction through closeout - projects, logs, RFIs, and field teams in sync.",
-      readTime: "How we help",
-      href: "/how-we-help",
-      image: "",
-    },
-  },
-  "Built for you": {
-    sections: [
-      {
-        heading: "By Role",
-        items: [
-          {
-            icon: HardHat,
-            label: "General Contractors",
-            desc: "End-to-end project control from bid to closeout",
-            href: "/who-we-serve/general-contractors",
-            image: "/Persona/site-supervisor.jpg",
-          },
-          {
-            icon: Building2,
-            label: "Owners & Developers",
-            desc: "Portfolio-level visibility across every project",
-            href: "/who-we-serve/owners",
-            image: "/Persona/company-owner.jpg",
-          },
-          {
-            icon: ClipboardList,
-            label: "Project Managers",
-            desc: "Unified workspace for every task and team",
-            href: "/who-we-serve/project-managers",
-            image: "/Persona/project-managers.jpg",
-          },
-          {
-            icon: Briefcase,
-            label: "Consultants & CM Firms",
-            desc: "Multi-client management from one dashboard",
-            href: "/who-we-serve/consultants",
-            image: "/Persona/subcontractor.jpg",
-          },
-        ],
-      },
-    ],
-    cta: { label: "Find your use case", href: "/who-we-serve" },
-  },
-  Resources: {
-    sections: [
-      {
-        heading: "Explore",
-        items: [
-          {
-            icon: ScrollText,
-            label: "ZedDocs",
-            desc: "Official guides, modules, and ZedDocs Assistant  -  hosted at docs.zedops.com",
-            href: "https://docs.zedops.com/",
-            tag: "Knowledge base",
-            external: true,
-          },
-          {
-            icon: BookOpen,
-            label: "Blog",
-            desc: "Construction tech insights and how-tos",
-            href: "/blog",
-            tag: "New posts weekly",
-          },
-          {
-            icon: Video,
-            label: "Webinars",
-            desc: "Live and on-demand expert sessions",
-            href: "#",
-            tag: "Live every month",
-          },
-          {
-            icon: FileQuestion,
-            label: "Case Studies",
-            desc: "Real results from construction teams",
-            href: "#",
-            tag: "12 stories",
-          },
-          {
-            icon: Users,
-            label: "Community",
-            desc: "Connect with peers and share best practices",
-            href: "#",
-            tag: "2,400+ members",
-          },
-          {
-            icon: Map,
-            label: "Product Roadmap",
-            desc: "See what's live, in progress, and coming next",
-            href: "/roadmap",
-            tag: "Updated weekly",
-          },
-        ],
-      },
-    ],
-    cta: { label: "See all resources", href: "#" },
-    featured: {
-      tag: "Case Study",
-      title: "How a mid-size GC cut RFI response time by 60% with ZedOps",
-      readTime: "4 min read",
-      date: "April 3, 2026",
-      href: "#",
-      image:
-        "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=480&h=320&q=80",
-    },
-  },
-};
+import { Menu, X, ChevronDown, ArrowRight, Lightbulb, LayoutGrid } from "lucide-react";
+import { SITE_FOCUS_MEP_EXECUTION } from "@/config/siteFocus";
+import { dropdownMenus, mobileNavLinks } from "@/data/navDropdownMenus";
 
 type DropdownKey = keyof typeof dropdownMenus;
 type AnyItem = {
@@ -185,7 +43,7 @@ function SolutionsNavMockUI() {
       aria-hidden
     >
       <div className="flex gap-0.5 border-b border-gray-200/90 bg-[#F4F5F7] px-2 py-1.5">
-        {["Projects", "RFIs", "Daily log"].map((t, i) => (
+        {["Tasks", "Daily log", "Punch"].map((t, i) => (
           <span
             key={t}
             className={`rounded px-2 py-0.5 text-[7.5px] font-bold ${i === 0 ? "bg-white text-[#172B4D] shadow-sm" : "text-[#6B778C]"}`}
@@ -250,7 +108,13 @@ function SolutionsFeaturedPanel({
             <span className="rounded-full bg-[#b45309] px-2.5 py-0.5 text-[10px] font-bold text-white">{featured.tag}</span>
             <span className="text-[10px] text-white/50">{featured.readTime}</span>
           </div>
-          <p className="text-[17px] font-bold leading-tight tracking-tight text-white">{featured.title}</p>
+          <p
+            className={`font-bold tracking-tight text-white ${
+              SITE_FOCUS_MEP_EXECUTION ? "text-[15px] leading-snug sm:text-[16px]" : "text-[17px] leading-tight"
+            }`}
+          >
+            {featured.title}
+          </p>
           <div className="mt-4 flex items-center gap-1 text-[12px] font-semibold text-[#8FB8FF] transition-colors group-hover:text-[#B8D4FF]">
             {ctaLabel}
             <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
@@ -356,21 +220,41 @@ export default function Navbar() {
     >
       {/* Announcement banner */}
       <div className="bg-[#172B4D] flex items-center justify-center gap-2.5 h-10 px-4 border-b border-white/10">
-        <Lightbulb size={12} className="text-[#F79625] shrink-0" />
-        <span className="text-white/70 text-xs hidden sm:inline">Help shape ZedOps  - </span>
-        <a
-          href="/roadmap"
-          className="text-xs font-bold text-[#F79625] hover:text-white transition-colors underline-offset-2 hover:underline"
-        >
-          Tell us what to build next
-        </a>
-        <span className="text-white/40 text-xs hidden sm:inline">·</span>
-        <a
-          href="/roadmap"
-          className="text-white/60 text-xs hover:text-white transition-colors hidden sm:inline"
-        >
-          View product roadmap →
-        </a>
+        {SITE_FOCUS_MEP_EXECUTION ? (
+          <>
+            <span className="text-white/80 text-[11px] sm:text-xs text-center max-w-[min(100%,44rem)] leading-snug">
+              MEP execution: schedule, logs, QA, cost &amp; supply, tied to real work.{" "}
+              <a href="/zed-ai" className="font-semibold text-[#F79625] hover:text-white underline-offset-2 hover:underline">
+                Zed AI
+              </a>{" "}
+              uses the same job data.
+            </span>
+            <a
+              href="/early-access"
+              className="text-xs font-bold text-[#F79625] hover:text-white transition-colors shrink-0 underline-offset-2 hover:underline"
+            >
+              Get access
+            </a>
+          </>
+        ) : (
+          <>
+            <Lightbulb size={12} className="text-[#F79625] shrink-0" />
+            <span className="text-white/70 text-xs hidden sm:inline">Help shape ZedOps  - </span>
+            <a
+              href="/roadmap"
+              className="text-xs font-bold text-[#F79625] hover:text-white transition-colors underline-offset-2 hover:underline"
+            >
+              Tell us what to build next
+            </a>
+            <span className="text-white/40 text-xs hidden sm:inline">·</span>
+            <a
+              href="/roadmap"
+              className="text-white/60 text-xs hover:text-white transition-colors hidden sm:inline"
+            >
+              View product roadmap →
+            </a>
+          </>
+        )}
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[60px]">
@@ -422,7 +306,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Dropdown Panels */}
+      {/* Dropdown Panels: data from `navDropdownMenus.ts` (general vs MEP by siteFocus) */}
       {(Object.keys(dropdownMenus) as DropdownKey[]).map((key) => {
         const menu = dropdownMenus[key];
         const isBuiltForYouMenu = key === "Built for you";
@@ -449,7 +333,11 @@ export default function Navbar() {
                     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <div>
                         <p className="text-[10px] font-bold text-[#97A0AF] uppercase tracking-[0.16em] mb-0.5">Built for you</p>
-                        <p className="text-sm font-semibold text-[#172B4D]">Built for every role on the project</p>
+                        <p className="text-sm font-semibold text-[#172B4D]">
+                          {SITE_FOCUS_MEP_EXECUTION
+                            ? "MEP trades & field leadership"
+                            : "Built for every role on the project"}
+                        </p>
                       </div>
                       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                         <a
@@ -576,7 +464,11 @@ export default function Navbar() {
                         <div className="mb-5 flex items-center justify-between">
                           <div>
                             <p className="text-[10px] font-bold text-[#97A0AF] uppercase tracking-[0.16em] mb-0.5">Solutions</p>
-                            <p className="text-sm font-semibold text-[#172B4D]">Platform highlights and project stage</p>
+                                                       <p className="text-sm font-semibold text-[#172B4D]">
+                              {SITE_FOCUS_MEP_EXECUTION
+                                ? "Platform, AI & modules for field execution"
+                                : "Platform highlights and project stage"}
+                            </p>
                           </div>
                           <a
                             href={menu.cta.href}
@@ -599,14 +491,22 @@ export default function Navbar() {
                                 key={item.label}
                                 href={item.href}
                                 onClick={() => setActiveDropdown(null)}
-                                className="group -mx-3 flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors duration-100 hover:bg-white/90"
+                                className={`group -mx-3 flex items-start gap-3 rounded-lg px-3 transition-colors duration-100 hover:bg-white/90 ${
+                                  item.desc ? "py-2.5" : "py-2"
+                                }`}
                               >
-                                <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white transition-colors group-hover:bg-[#172B4D]">
+                                <div
+                                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white transition-colors group-hover:bg-[#172B4D] ${
+                                    item.desc ? "mt-0.5" : "mt-px"
+                                  }`}
+                                >
                                   <item.icon size={14} className="text-[#0052CC] transition-colors group-hover:text-white" />
                                 </div>
                                 <div>
                                   <p className="text-[13px] font-semibold leading-tight text-[#172B4D] transition-colors group-hover:text-[#0052CC]">{item.label}</p>
-                                  <p className="mt-0.5 text-[12px] leading-snug text-[#6B778C]">{item.desc}</p>
+                                  {item.desc ? (
+                                    <p className="mt-0.5 text-[12px] leading-snug text-[#6B778C]">{item.desc}</p>
+                                  ) : null}
                                 </div>
                               </a>
                             );
@@ -618,20 +518,28 @@ export default function Navbar() {
                                     <div className="grid grid-cols-2 gap-5">
                                       {highlights.map((item) => {
                                         const sub = item.subtitle ?? item.desc;
+                                        const compactHighlights = SITE_FOCUS_MEP_EXECUTION;
                                         return (
-                                          <div key={item.label} className="solutions-mega-highlight-border min-h-[240px] min-w-0 shadow-sm">
+                                          <div
+                                            key={item.label}
+                                            className={`solutions-mega-highlight-border min-w-0 shadow-sm ${
+                                              compactHighlights ? "min-h-[200px]" : "min-h-[240px]"
+                                            }`}
+                                          >
                                             <a
                                               href={item.href}
                                               onClick={() => setActiveDropdown(null)}
-                                              className="group flex h-full min-h-[236px] min-w-0 flex-col rounded-lg bg-white p-5 transition-colors duration-150 hover:bg-[#FAFBFC]"
+                                              className={`group flex h-full min-w-0 flex-col rounded-lg bg-white p-5 transition-colors duration-150 hover:bg-[#FAFBFC] ${
+                                                compactHighlights ? "min-h-[196px]" : "min-h-[236px]"
+                                              }`}
                                             >
-                                              <div className="mb-4 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#EBF0FF] transition-colors group-hover:bg-[#172B4D]">
-                                                <item.icon size={26} className="text-[#172B4D] transition-colors group-hover:text-white" />
+                                              <div className="mb-3.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EBF0FF] transition-colors group-hover:bg-[#172B4D] sm:h-14 sm:w-14">
+                                                <item.icon size={24} className="text-[#172B4D] transition-colors group-hover:text-white" />
                                               </div>
-                                              <p className="text-[16px] font-extrabold leading-snug tracking-tight text-[#172B4D] transition-colors group-hover:text-[#0052CC]">
+                                              <p className="text-[15px] font-extrabold leading-snug tracking-tight text-[#172B4D] transition-colors group-hover:text-[#0052CC] sm:text-[16px]">
                                                 {item.label}
                                               </p>
-                                              <p className="mt-2 flex-1 text-[12.5px] leading-relaxed text-[#6B778C]">{sub}</p>
+                                              <p className="mt-2 flex-1 text-[12px] leading-relaxed text-[#6B778C] sm:text-[12.5px]">{sub}</p>
                                               <div className="mt-4 flex items-center gap-1 text-[11.5px] font-semibold text-[#0052CC] opacity-90 transition-opacity group-hover:opacity-100">
                                                 Open <ArrowRight size={11} className="transition-transform group-hover:translate-x-0.5" />
                                               </div>
@@ -725,16 +633,7 @@ export default function Navbar() {
             className="lg:hidden bg-white border-t border-gray-100 max-h-[80vh] overflow-y-auto"
           >
             <div className="px-4 py-4 flex flex-col gap-1">
-              {[
-                { label: "Solutions", href: "/solutions" },
-                { label: "All features", href: "/platform" },
-                { label: "How we help", href: "/how-we-help" },
-                { label: "Zed AI", href: "/zed-ai" },
-                { label: "ZedDocs", href: "https://docs.zedops.com/", external: true },
-                { label: "Built for you", href: "/who-we-serve" },
-                { label: "Roadmap", href: "/roadmap" },
-                { label: "Pricing", href: "/pricing" },
-              ].map((link) => (
+              {mobileNavLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}

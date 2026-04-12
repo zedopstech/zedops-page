@@ -2,20 +2,28 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
-import { BarChart2, FileText, PenTool, MessageSquare, Box, CheckCircle2, Sparkles } from "lucide-react";
+import {
+  Sparkles,
+  CheckCircle2,
+  Layers,
+  FolderKanban,
+  CalendarClock,
+  ShieldCheck,
+  FolderOpen,
+  Landmark,
+} from "lucide-react";
 
 const aiCap = {
   description:
-    "Zed AI is an in-product copilot: live project data, insights, report prep, writing assist, and actions where enabled  -  fewer tabs, same permissions.",
+    "Zed AI is the intelligence layer on every module below: same tenants, same permissions. Draft from a daily log, tighten an inspection note, prep a pay-app narrative, or ask what’s still open on punch, without exporting to a generic LLM.",
   features: [
-    "Context-aware  -  modules you can access",
-    "Insights and summaries from real records",
-    "In-product actions where configured",
-    "Report drafts to review",
-    "Writing assist; templates and more on the roadmap",
+    "Scoped to projects and records you can already open",
+    "Task- and log-aware summaries and drafts",
+    "Suggested next steps where your org enables actions",
+    "No answers from data you wouldn’t see in the app",
   ],
   stat: "3×",
-  statLabel: "faster decision-making",
+  statLabel: "faster follow-through on open items",
 };
 
 const CHAT_MSGS = [
@@ -161,60 +169,94 @@ function ZedAIChat({ active }: { active: boolean }) {
   );
 }
 
-const coreCapabilities = [
+/**
+ * Six flagship areas aligned with `platformFeatureSections` in @/data/platformFeatures.
+ * Order emphasises execution: schedule → log → QA/punch → job context → org spine → cost.
+ */
+const corePlatformModules = [
   {
-    id: "intelligence",
-    icon: BarChart2,
-    title: "Project Intelligence",
-    description: "Live dashboards with schedule performance, budget variance, productivity trends, and safety metrics across every site.",
-    features: ["Live schedule vs. baseline", "Budget variance alerts", "Executive PDF exports"],
-    stat: "70%",
-    statLabel: "less reporting time",
+    moduleId: "planning-execution",
+    icon: CalendarClock,
+    title: "Planning & execution",
+    description:
+      "The programme becomes a queue of work: estimates and library rates feed plans; schedules and dependencies roll into tasks with owners, so MEP supers assign the next trade action, not just stare at a Gantt.",
+    features: [
+      "Build estimates from library-backed cost structures.",
+      "Plan phases, milestones, and dependencies in one timeline.",
+      "Assign work, track status, and export or hand off where supported.",
+    ],
+    stat: "3",
+    statLabel: "capabilities in Planning",
   },
   {
-    id: "logs",
-    icon: FileText,
-    title: "Daily Logs & Reports",
-    description: "Mobile-first daily logs with smart templates. Field teams capture progress, photos, and manpower in under 3 minutes.",
-    features: ["Smart log templates", "Offline mode support", "AI-generated summaries"],
-    stat: "12hrs",
-    statLabel: "saved per PM/week",
+    moduleId: "information-management",
+    icon: FolderOpen,
+    title: "Information management",
+    description:
+      "Daily logs and documents stay on the job. Open the log from anywhere, pick the project once, and feed what happened on site into tasks and follow-ups; the paper trail stays tied to execution.",
+    features: [
+      "Folders and files organised per project  -  your controlled repository.",
+      "Top-bar access to the daily log with a project picker when none is active.",
+      "Structured work logs that connect to reporting and AI context.",
+    ],
+    stat: "2",
+    statLabel: "capabilities in IM",
   },
   {
-    id: "drawings",
-    icon: PenTool,
-    title: "Drawing Annotation",
-    description: "Real-time markup and collaborative annotation on construction drawings with full version control and audit trail.",
-    features: ["Multi-layer PDF markup", "Version control & history", "RFI-linked issue pins"],
-    stat: "2 days",
-    statLabel: "faster approvals",
+    moduleId: "quality-safety-closeout",
+    icon: ShieldCheck,
+    title: "Quality, safety, and closeout",
+    description:
+      "Inspections and punch are operational: template-based walks, defects with owners, and incidents with follow-up, so QA and closeout are lists of work to finish, not PDFs in a folder.",
+    features: [
+      "Run inspections from templates; link to daily logs and corrective actions.",
+      "Track defects from walkthrough to sign-off.",
+      "Document safety and other incidents with follow-up and reporting.",
+    ],
+    stat: "4",
+    statLabel: "capabilities in QSC",
   },
   {
-    id: "rfi",
-    icon: MessageSquare,
-    title: "RFI & Submittals",
-    description: "Automated routing, deadline tracking, and response logging. Built-in escalation ensures nothing falls through the cracks.",
-    features: ["Automated routing", "Deadline escalation", "Outlook & Teams sync"],
-    stat: "40%",
-    statLabel: "faster RFI turnaround",
+    moduleId: "projects",
+    icon: FolderKanban,
+    title: "Projects",
+    description:
+      "One active job context for MEP: equipment, materials, issues, surveys, and work logs roll up under the project you’re executing, so field and office aren’t reconciling three spreadsheets.",
+    features: [
+      "Browse every job or open one project for day-to-day execution.",
+      "Charts and views that summarise how a single project is performing.",
+      "Structured work log entries connected to real project activity.",
+    ],
+    stat: "7",
+    statLabel: "capabilities in Projects",
   },
   {
-    id: "bim",
-    icon: Box,
-    title: "BIM Integration",
-    description: "Overlay actual progress data on your 3D model. See completed scope and schedule slippage visualized in BIM  -  not spreadsheets.",
-    features: ["Revit & Navisworks sync", "Progress overlays on 3D", "As-built documentation"],
-    stat: "50%",
-    statLabel: "less rework from clashes",
+    moduleId: "core",
+    icon: Layers,
+    title: "Core",
+    description:
+      "People, roles, time, and the shared library hub: one backbone for estimating and operations so MEP teams price and run work from the same masters.",
+    features: [
+      "Single place for people and contacts tied to your organisation.",
+      "Capture and review hours for payroll and job costing inputs.",
+      "Shared reference data for estimating and operations  -  one structured library.",
+    ],
+    stat: "4",
+    statLabel: "capabilities in Core",
   },
   {
-    id: "compliance",
-    icon: CheckCircle2,
-    title: "Safety & Compliance",
-    description: "Digitize site inspections, track near-misses, and auto-generate safety reports. Stay audit-ready across every project at all times.",
-    features: ["Mobile inspection checklists", "Incident & near-miss tracking", "ISO & OSHA audit exports"],
-    stat: "60%",
-    statLabel: "fewer safety incidents reported",
+    moduleId: "finance",
+    icon: Landmark,
+    title: "Finance",
+    description:
+      "Budget, change, and pay apps stay aligned to what happened on site, so when execution shifts scope, the money thread matches the task thread.",
+    features: [
+      "Project budgets anchored to cost codes from settings.",
+      "Financial change orders from scope shifts through approval.",
+      "Request, review, and track payments against contract and progress.",
+    ],
+    stat: "5",
+    statLabel: "capabilities in Finance",
   },
 ];
 
@@ -233,11 +275,16 @@ export default function Capabilities() {
         <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-end mb-14">
           <div>
             <h2 className="text-4xl sm:text-5xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
-              Built for every part of <span className="text-[#172B4D]">the project.</span>
+              Built for <span className="text-[#172B4D]">MEP execution</span>, not just views.
             </h2>
           </div>
-          <p className="text-[#42526E] text-lg leading-relaxed">
-            Six core modules, one unified platform. Every feature is purpose-built for construction not adapted from generic software.
+          <p className="text-[#42526E] text-base sm:text-lg leading-relaxed">
+            Planning through supply, built for action, not just dashboards.{" "}
+            <span className="font-semibold text-[#172B4D]">Zed AI</span> uses the same permissioned data.{" "}
+            <a href="/platform" className="font-semibold text-[#0052CC] hover:text-[#0747A6]">
+              Full platform
+            </a>{" "}
+            for reporting, access, and settings.
           </p>
         </motion.div>
 
@@ -259,7 +306,7 @@ export default function Capabilities() {
               </div>
             </div>
             <h3 className="text-2xl lg:text-3xl font-extrabold text-white leading-snug mb-4">
-              Your construction<br />intelligence copilot
+              Zed AI: copilot on<br />tasks, logs &amp; cost
             </h3>
             <p className="text-white/55 text-sm leading-relaxed mb-7 max-w-md">
               {aiCap.description}
@@ -314,62 +361,43 @@ export default function Capabilities() {
           </div>
         </motion.div>
 
-        {/* Primary modules  -  top 3, full detail */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200 overflow-hidden mb-px">
-          {coreCapabilities.slice(0, 3).map((cap, i) => (
-            <motion.div
-              key={cap.id}
-              {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: i * 0.07 })}
-              className="bg-white p-7 flex flex-col group hover:bg-[#FAFBFC] transition-colors duration-150"
+        {/* Platform modules  -  six flagship areas, same ids as /platform/module/:id */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200 overflow-hidden rounded-b-md">
+          {corePlatformModules.map((cap, i) => (
+            <motion.article
+              key={cap.moduleId}
+              {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: Math.min(i * 0.05, 0.25) })}
+              className="bg-white p-7 flex h-full flex-col group hover:bg-[#FAFBFC] transition-colors duration-150"
             >
               <div className="flex items-start justify-between mb-5">
                 <div className="w-11 h-11 flex items-center justify-center flex-shrink-0" style={{ background: "#172B4D15", borderRadius: 6 }}>
-                  <cap.icon size={20} style={{ color: "#172B4D" }} />
+                  <cap.icon size={20} style={{ color: "#172B4D" }} aria-hidden />
                 </div>
               </div>
               <h3 className="text-base font-extrabold text-[#172B4D] mb-2 leading-tight">{cap.title}</h3>
               <p className="text-[#42526E] text-sm leading-relaxed mb-5 flex-1">{cap.description}</p>
               <ul className="space-y-1.5 mb-5">
                 {cap.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-xs text-[#42526E]">
-                    <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-[#172B4D]" />
-                    {f}
+                  <li key={f} className="flex items-start gap-2 text-xs text-[#42526E]">
+                    <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-[#172B4D] mt-1.5" />
+                    <span className="leading-snug">{f}</span>
                   </li>
                 ))}
               </ul>
-              <div className="border-t border-gray-100 pt-4 flex items-end justify-between">
+              <div className="border-t border-gray-100 pt-4 mt-auto flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                   <div className="text-2xl font-black text-[#172B4D] leading-none">{cap.stat}</div>
                   <div className="text-xs text-[#97A0AF] mt-0.5">{cap.statLabel}</div>
                 </div>
-                <div className="text-xs font-bold text-[#172B4D] flex items-center gap-1 transition-all duration-150 opacity-0 group-hover:opacity-100">
-                  Learn more →
-                </div>
+                <a
+                  href={`/platform/module/${cap.moduleId}`}
+                  className="text-xs font-bold text-[#0052CC] inline-flex items-center gap-1 transition-colors hover:text-[#0747A6]"
+                >
+                  View module
+                  <span aria-hidden>→</span>
+                </a>
               </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Secondary modules  -  bottom 3, compact */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200 overflow-hidden rounded-b-md ">
-          {coreCapabilities.slice(3).map((cap, i) => (
-            <motion.div
-              key={cap.id}
-              {...scrollMotionProps(isMobile, { y: 16, duration: 0.35, delay: i * 0.06 })}
-              className="flex min-w-0 items-center gap-3 bg-[#FAFBFC] px-4 py-5 group transition-colors duration-150 hover:bg-white sm:gap-4 sm:px-6"
-            >
-              <div className="w-9 h-9 flex items-center justify-center flex-shrink-0" style={{ background: "#172B4D0D", borderRadius: 6 }}>
-                <cap.icon size={16} style={{ color: "#172B4D" }} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-extrabold text-[#172B4D] leading-tight">{cap.title}</h3>
-                <p className="text-[#6B778C] text-xs mt-0.5 leading-snug truncate">{cap.description.split(".")[0]}.</p>
-              </div>
-              <div className="text-right flex-shrink-0">
-                <div className="text-lg font-black text-[#172B4D] leading-none">{cap.stat}</div>
-                <div className="text-[10px] text-[#97A0AF] mt-0.5 leading-tight max-w-[80px]">{cap.statLabel}</div>
-              </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

@@ -60,7 +60,7 @@ export default function DashboardMockup() {
           <span className="truncate text-[11px] font-semibold text-white/90 sm:text-xs">Dubai Mall</span>
           <ChevronDown size={11} className="shrink-0 text-white/60" />
         </div>
-        {/* Nav tabs — desktop row; mobile peek */}
+        {/* Nav tabs: desktop row; mobile peek */}
         <div className="ml-auto flex max-md:mr-2 md:mx-0 md:min-w-0 md:flex-1 md:items-center md:gap-0">
           <div className="hidden min-w-0 flex-1 items-center gap-0 overflow-x-auto md:flex [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {["Core", "Project", "Finance", "Supply Chain", "Daily Logs"].map((nav, i) => (
@@ -84,7 +84,7 @@ export default function DashboardMockup() {
         </div>
       </div>
 
-      {/* Main area — column on mobile for readable density */}
+      {/* Main area: column on mobile for readable density */}
       <div className="flex min-h-0 flex-1 flex-col lg:flex-row" style={{ height: "calc(100% - 40px)" }}>
 
         {/* Primary workspace */}
@@ -110,7 +110,7 @@ export default function DashboardMockup() {
             </div>
           </div>
 
-          {/* Stat cards — 2×3 on phone, 3×2 on sm, full strip on lg */}
+          {/* Stat cards: 2×3 on phone, 3×2 on sm, full strip on lg */}
           <div className="grid shrink-0 grid-cols-2 gap-px border-b border-gray-100 bg-gray-100 sm:grid-cols-3 lg:grid-cols-6">
             {statCards.map(({ label, val, sub, iconBg, icon }) => (
               <div key={label} className="bg-white px-2.5 py-2 sm:px-3 sm:py-2.5">

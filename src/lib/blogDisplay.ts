@@ -2,7 +2,7 @@ import { format, parseISO } from "date-fns";
 import type { BlogPost } from "./blog";
 
 /**
- * Cover image URL from post frontmatter (`image:`). No fallback — set `image` in each `.md` file.
+ * Cover image URL from post frontmatter (`image:`). No fallback; set `image` in each `.md` file.
  */
 export function postCoverImage(post: BlogPost): string | undefined {
   return post.image;

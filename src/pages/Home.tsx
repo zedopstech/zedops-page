@@ -10,11 +10,13 @@ import BentoStats from "@/components/BentoStats";
 import Resources from "@/components/Resources";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import { HIDE_HOME_RESOURCES_SECTION } from "@/config/siteFocus";
 
 export default function Home() {
   useSEO({
-    title: "ZedOps  -  AI-Powered Construction Intelligence",
-    description: "ZedOps is an AI-native construction operations platform. Manage projects, daily logs, drawings, RFIs, and risk from one intelligent dashboard.",
+    title: "ZedOps  -  MEP Operations & Field Execution",
+    description:
+      "ZedOps for mechanical, electrical, and plumbing contractors: connect schedule to tasks, daily logs to follow-ups, inspections and punch to closeout work, with AI where you need it.",
   });
   return (
     <div className="min-h-screen overflow-x-clip bg-white text-[#172B4D]">
@@ -28,7 +30,7 @@ export default function Home() {
       {/* Integrations section  -  uncomment when ready
       <Platform />
       */}
-      <Resources />
+      {!HIDE_HOME_RESOURCES_SECTION ? <Resources /> : null}
       <FinalCTA />
       <Footer />
     </div>

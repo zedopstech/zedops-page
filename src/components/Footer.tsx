@@ -1,3 +1,6 @@
+import { SITE_FOCUS_MEP_EXECUTION } from "@/config/siteFocus";
+
+/** Full link set always shown; MEP mode only changes the tagline. */
 const footerLinks: Record<string, { label: string; href: string }[]> = {
   Product: [
     { label: "Platform overview", href: "/solutions" },
@@ -25,6 +28,10 @@ const footerLinks: Record<string, { label: string; href: string }[]> = {
 };
 
 export default function Footer() {
+  const tagline = SITE_FOCUS_MEP_EXECUTION
+    ? "Operations for mechanical, electrical, and plumbing: planning, logs, QA, punch, finance, supply chain, wired for action, with Zed AI on the same permissioned data."
+    : "AI-powered construction intelligence platform helping teams plan, track, and deliver projects smarter  -  from preconstruction to closeout.";
+
   return (
     <footer className="bg-white border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,7 +42,7 @@ export default function Footer() {
               <span className="text-[#172B4D] font-black text-lg tracking-tight">ZedOps</span>
             </div>
             <p className="text-[#6B778C] text-sm leading-relaxed max-w-xs mb-6">
-              AI-powered construction intelligence platform helping teams plan, track, and deliver projects smarter  -  from preconstruction to closeout.
+              {tagline}
             </p>
             <div className="flex items-center gap-2 mb-8">
               {["𝕏", "LinkedIn", "GitHub", "YouTube"].map((name) => (
@@ -64,7 +71,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-3 grid grid-cols-2 sm:grid-cols-4 gap-8">
+          <div className="lg:col-span-3 grid grid-cols-2 gap-8 sm:grid-cols-4">
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
                 <h4 className="text-[#172B4D] font-bold text-xs uppercase tracking-widest mb-4">{category}</h4>

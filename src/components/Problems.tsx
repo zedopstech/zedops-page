@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageSquareX, ClipboardList, Eye, TrendingDown, Timer } from "lucide-react";
+import { ClipboardList, Eye, Split, TrendingDown, ListTodo } from "lucide-react";
 import { useScrollSectionMotion, useVariantScrollReveal } from "@/hooks/useScrollSectionMotion";
 
 const PRIMARY = "#172B4D";
@@ -8,21 +8,21 @@ const ORANGE = "#F79625";
 const problems = [
   {
     num: "01",
-    icon: MessageSquareX,
-    tag: "Communication",
-    title: "Fragmented Communication",
+    icon: Split,
+    tag: "Coordination",
+    title: "Trades out of sync",
     description:
-      "Teams rely on disconnected tools like WhatsApp, spreadsheets, and emails, creating information silos that slow every decision on site.",
-    stat: "72%",
-    statDetail: "of project delays caused by communication breakdowns",
+      "Mechanical, electrical, and plumbing crews juggle different tools and threads. When the schedule moves, field reality rarely updates in one place everyone trusts.",
+    stat: "3+",
+    statDetail: "systems MEP teams often use to track one job",
   },
   {
     num: "02",
     icon: ClipboardList,
     tag: "Reporting",
-    title: "Manual Site Reporting",
+    title: "Logs that don’t become work",
     description:
-      "Daily reports are often delayed, incomplete, or inaccurate  -  costing project managers 12+ hours every week that should be spent leading teams.",
+      "Daily logs capture what happened, but follow-ups live in email, texts, or nowhere. Promised actions slip because they aren’t tied to tasks and owners.",
     stat: "12+ hrs",
     statDetail: "wasted per PM every week on manual data entry",
   },
@@ -30,9 +30,9 @@ const problems = [
     num: "03",
     icon: Eye,
     tag: "Visibility",
-    title: "Lack of Real-Time Visibility",
+    title: "Dashboards without a next step",
     description:
-      "Project managers struggle to track progress across multiple sites. By the time data surfaces, it's already too late to act.",
+      "Charts show red flags, but the crew still asks “what do I do now?” Without schedule → task and inspection → task links, insight rarely turns into execution.",
     stat: "8%",
     statDetail: "of construction projects finish on time and on budget",
   },
@@ -40,21 +40,21 @@ const problems = [
     num: "04",
     icon: TrendingDown,
     tag: "Budget",
-    title: "Cost Overruns",
+    title: "Cost drift from late fixes",
     description:
-      "Poor coordination and delayed insights allow small variances to compound silently into project-wide budget crises that nobody saw coming.",
+      "Rework and punch drag when deficiencies aren’t assigned and closed in a loop. Small misses across trades compound into margin and schedule pain.",
     stat: "$280B",
     statDetail: "lost annually to cost overruns in the US alone",
   },
   {
     num: "05",
-    icon: Timer,
-    tag: "Decisions",
-    title: "Delayed Decision Making",
+    icon: ListTodo,
+    tag: "Execution",
+    title: "Punch & QA stuck in limbo",
     description:
-      "Critical project decisions are slowed by missing or outdated data. The average team waits 48–72 hours for actionable answers.",
+      "Walkthroughs and inspections generate lists, but items float without clear owners, due dates, and verification. Closeout stretches when punch isn’t operational.",
     stat: "48–72 hrs",
-    statDetail: "average delay for critical decisions on live projects",
+    statDetail: "typical lag before a punch item gets a real owner",
   },
 ];
 
@@ -84,12 +84,12 @@ export default function Problems() {
         <motion.div {...headerReveal} className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-24 mb-14">
           <div className="shrink-0">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
-              Challenges holding<br />
-              construction <span className="text-[#172B4D]">back.</span>
+              Where MEP execution<br />
+              breaks <span className="text-[#172B4D]">down.</span>
             </h2>
           </div>
           <p className="text-[#42526E] text-base leading-relaxed max-w-md lg:pb-1">
-            Every project lost to delays, cost blowouts, and missed milestones traces back to the same five underlying problems. ZedOps solves all of them.
+            Coordination across mechanical, electrical, and plumbing needs the same thing: clear handoffs from plan to task, from site to follow-up, and from punch to done. ZedOps is built around that loop.
           </p>
         </motion.div>
 

@@ -335,7 +335,8 @@ export default function Hero() {
             "linear-gradient(90deg, rgba(1,47,176,0.02) 1px, transparent 1px)",
           ].join(", "),
           backgroundSize: "80px 80px, 80px 80px, 20px 20px, 20px 20px",
-          top: "-20%", bottom: "-20%",
+          top: "-20%",
+          bottom: "-20%",
         }}
       />
       {/* Warm glow */}
@@ -358,8 +359,8 @@ export default function Hero() {
           style={{ borderRadius: 99 }}
         >
           <Sparkles size={12} className="shrink-0 text-[#F79625]" />
-          <span className="max-w-[min(100%,18rem)] text-center text-[10px] font-bold uppercase tracking-[0.08em] text-[#172B4D] sm:max-w-none sm:text-xs sm:tracking-[0.12em]">
-            AI-Powered · Built for Construction Teams
+          <span className="max-w-[min(100%,26rem)] text-center text-[10px] font-bold uppercase tracking-[0.08em] text-[#172B4D] sm:max-w-none sm:text-xs sm:tracking-[0.12em]">
+            Powered by Zed AI copilot · Built for MEP
           </span>
         </motion.div>
 
@@ -369,23 +370,23 @@ export default function Hero() {
           transition={{ duration: 0.55, delay: 0.06 }}
           className="text-4xl font-extrabold leading-[1.08] tracking-tight text-[#172B4D] mb-5 sm:text-5xl md:text-6xl lg:text-[70px] lg:leading-[1.03]"
         >
-          End-to-end construction operations.
+          Execution-first operations for MEP trades.
         </motion.h1>
 
         <motion.p
           initial={isMobile ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.48, delay: 0.14 }}
-          className="text-[#42526E] text-lg leading-relaxed max-w-xl mx-auto mb-9"
+          className="text-[#42526E] text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-8 text-center text-balance"
         >
-          From preconstruction to closeout - ZedOps gives your teams real-time visibility, predictive risk alerts, and AI-assisted decisions so nothing falls through the cracks.
+          Connect the programme to tasks, daily logs to follow-ups, and inspections &amp; punch to closeout with finance and supply on the same thread so supers and PMs see what to do next, not just reports
         </motion.p>
 
         <motion.div
           initial={isMobile ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.44, delay: 0.22 }}
-          className="mb-16 flex flex-col items-center gap-3 px-1"
+          className="mb-12 flex flex-col items-center gap-3 px-1 sm:mb-14"
         >
           <div className="flex w-full max-w-md flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center">
             <a
@@ -407,8 +408,8 @@ export default function Hero() {
             </div>
           </div>
           {/* Social proof */}
-          <p className="text-[#97A0AF] text-xs font-medium">
-            Early access by application · Or book a walkthrough first via Contact
+          <p className="text-[#97A0AF] text-[11px] font-medium sm:text-xs">
+            Early access by application · One product · MEP execution focus
           </p>
         </motion.div>
       </div>
@@ -433,7 +434,7 @@ export default function Hero() {
             {/* Watch button  -  centred, no backdrop-blur, with pulse ring */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="relative pointer-events-auto">
-                {/* Pulse rings — infinite scale/opacity is noisy on mobile GPUs */}
+                {/* Pulse rings: infinite scale/opacity is noisy on mobile GPUs */}
                 {!isMobile &&
                   [1, 2].map((n) => (
                     <motion.div

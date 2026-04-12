@@ -61,11 +61,11 @@ export default function BentoStats() {
             <div className="relative z-10">
               <img src="/logo.png" alt="ZedOps" className="w-10 h-10 mb-4 object-cover" style={{ borderRadius: 6 }} />
               <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-1">Early Access</p>
-              <p className="text-white font-extrabold text-xl leading-snug">AI-First<br />Construction<br />Platform</p>
+              <p className="text-white font-extrabold text-xl leading-snug">MEP &amp;<br />field<br />execution</p>
             </div>
             <div className="relative z-10">
               <span className="inline-block border border-white/30 text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5" style={{ borderRadius: 6 }}>
-                Built for Construction
+                Action, not only analytics
               </span>
             </div>
           </motion.div>
@@ -79,7 +79,7 @@ export default function BentoStats() {
             style={{ borderRadius: 6 }}
           >
             <AnimatedStat target={500} suffix="+" duration={1.4} inView={inView} className="text-white font-black text-4xl leading-none mb-2 sm:text-5xl lg:text-6xl" />
-            <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Projects designed to support</p>
+            <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Jobs &amp; programmes supported</p>
           </motion.div>
 
           {/* Cell 3  -  Stat: Reporting speed */}
@@ -92,7 +92,7 @@ export default function BentoStats() {
           >
             <div className="absolute right-0 bottom-0 w-32 h-32 rounded-full bg-[#172B4D]/20 blur-2xl" />
             <AnimatedStat target={10} suffix="×" duration={1.2} inView={inView} className="text-white font-black text-4xl leading-none mb-2 sm:text-5xl lg:text-6xl" />
-            <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Faster reporting*</p>
+            <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Faster reporting cycles*</p>
           </motion.div>
 
           {/* Cell 4  -  Stat: Cost reduction */}
@@ -121,7 +121,7 @@ export default function BentoStats() {
                 <AnimatedStat target={52} suffix="" duration={1.5} inView={inView} className="text-white font-black text-4xl leading-none sm:text-5xl" />
                 <span className="text-[#F79625] text-2xl font-black mb-0.5 sm:text-3xl">hrs</span>
               </div>
-              <p className="text-white/50 text-xs mt-2 leading-relaxed">Reclaimed from reporting, data entry, and status calls</p>
+              <p className="text-white/50 text-xs mt-2 leading-relaxed">Reclaimed from chasing status, re-keying, and rework coordination</p>
             </div>
             <div className="mt-5">
               <p className="text-white/30 text-[9px] font-bold uppercase tracking-widest mb-2">Before vs. After ZedOps</p>
@@ -197,7 +197,7 @@ export default function BentoStats() {
               <p className="text-white/80 text-xs font-bold uppercase tracking-widest">Faster decisions</p>
             </div>
             <p className="text-white/70 text-xs mt-4 leading-relaxed">
-              AI surfaces risks before they become problems.
+              Turn signals into the next task, with AI where you enable it.
             </p>
           </motion.div>
         </div>

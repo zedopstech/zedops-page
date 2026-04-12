@@ -33,11 +33,11 @@ export default function Testimonials() {
           <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })}>
             <p className="text-[#B8C9DC] text-xs font-bold uppercase tracking-[0.15em] mb-4">Early Access Program</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight tracking-tight mb-6">
-              Built with construction teams,<br />
-              <span className="text-[#DCE6F0]">for construction teams.</span>
+              Built with field &amp; MEP teams,<br />
+              <span className="text-[#DCE6F0]">for how jobs actually run.</span>
             </h2>
             <p className="text-blue-200/70 text-base leading-relaxed mb-8 max-w-md">
-              We're working closely with a select group of GCs, developers, and project managers during early access. Want to shape what we build next?
+              We’re focused on execution workflows (tasks, logs, inspections, punch) with teams who live on site. Want to help steer what ships next?
             </p>
             <a
                       href="/early-access"
