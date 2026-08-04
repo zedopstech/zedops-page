@@ -56,14 +56,14 @@ export default function HowWeHelpTeamPage() {
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
           <a
             href="/how-we-help/company"
-            className="inline-flex items-center gap-2 rounded-full border border-[#172B4D]/15 bg-white/80 px-6 py-3 text-base font-bold text-[#172B4D] transition-colors hover:border-[#172B4D]/25"
+            className="inline-flex items-center gap-2 rounded-md border border-[#172B4D]/15 bg-white/80 px-6 py-3 text-base font-bold text-[#172B4D] transition-colors hover:border-[#172B4D]/25"
           >
             <ArrowLeft className="h-4 w-4 opacity-60" aria-hidden />
             Company type
           </a>
           <a
             href="/how-we-help/role"
-            className="inline-flex items-center gap-2 rounded-full bg-[#172B4D] px-6 py-3 text-base font-bold text-white transition-colors hover:bg-[#0e1e38]"
+            className="inline-flex items-center gap-2 rounded-md bg-brand-orange px-6 py-3 text-base font-bold text-white transition-colors hover:bg-brand-orange-soft"
           >
             Roles &amp; permissions
             <ArrowRight className="h-4 w-4" aria-hidden />

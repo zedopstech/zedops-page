@@ -36,7 +36,7 @@ const useCases = [
     stat: { value: "48hr → 4min", label: "average decision lag improvement" },
     img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=85&auto=format&fit=crop&crop=center",
     tag: "Built for you",
-    accent: "#F79625",
+    accent: "#FE5D02",
   },
   {
     icon: ClipboardList,
@@ -70,7 +70,7 @@ const useCases = [
     stat: { value: "3×", label: "projects managed per consultant" },
     img: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=900&q=85&auto=format&fit=crop&crop=center",
     tag: "Built for you",
-    accent: "#F79625",
+    accent: "#FE5D02",
   },
 ];
 

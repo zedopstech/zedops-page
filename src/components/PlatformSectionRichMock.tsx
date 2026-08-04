@@ -140,7 +140,7 @@ function RichDashboard({ section }: { section: PlatformFeatureSection }) {
               height: `${height}%`,
               minHeight: 12,
               opacity: i === 3 ? 1 : 0.15 + (i % 4) * 0.12,
-              background: i === 5 ? "#F79625" : "#172B4D",
+              background: i === 5 ? "#FE5D02" : "#172B4D",
             }}
           />
         ))}
@@ -169,7 +169,7 @@ function RichSchedule({ section }: { section: PlatformFeatureSection }) {
             <div className="mt-1 flex min-h-[36px] flex-col justify-end gap-0.5 rounded-md border border-gray-100/80 bg-[#F8FAFC] p-1">
               {i === busy ? (
                 <>
-                  <div className="h-2 rounded-sm bg-[#F79625]" />
+                  <div className="h-2 rounded-sm bg-brand-orange" />
                   <div className="h-1.5 rounded-sm bg-[#172B4D]/25" />
                 </>
               ) : null}
@@ -257,7 +257,7 @@ function RichFinance({ section }: { section: PlatformFeatureSection }) {
     <PanelShell section={section}>
       <div className="mb-4 rounded-xl bg-[#172B4D] px-4 py-3 text-white">
         <div className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-wide text-white/50">
-          <Wallet size={12} className="text-[#F79625]" aria-hidden />
+          <Wallet size={12} className="text-brand-orange" aria-hidden />
           <span>Commercial snapshot</span>
         </div>
         {headline ? (
@@ -290,9 +290,9 @@ function RichSupply({ section }: { section: PlatformFeatureSection }) {
         {items.map((item, i) => {
           const pct = 30 + seed(item.name, i) % 65;
           return (
-            <div key={item.name} className="rounded-xl border border-gray-100 bg-[#FFFBF5] px-3 py-2.5">
+            <div key={item.name} className="rounded-xl border border-gray-100 bg-[#F8FAFC] px-3 py-2.5">
               <div className="flex items-center gap-2">
-                <Package size={14} className="shrink-0 text-[#F79625]" aria-hidden />
+                <Package size={14} className="shrink-0 text-brand-orange" aria-hidden />
                 <div className="min-w-0 flex-1">
                   <p className="text-[11px] font-extrabold text-[#172B4D] sm:text-xs">{item.name}</p>
                   <p className="mt-1 text-[10px] leading-relaxed text-[#42526E] sm:text-[11px]">
@@ -302,7 +302,7 @@ function RichSupply({ section }: { section: PlatformFeatureSection }) {
                 <span className="shrink-0 text-[10px] font-black text-[#172B4D]">{pct}%</span>
               </div>
               <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-gray-100">
-                <div className="h-full rounded-full bg-[#F79625]" style={{ width: `${pct}%` }} />
+                <div className="h-full rounded-full bg-brand-orange" style={{ width: `${pct}%` }} />
               </div>
             </div>
           );
@@ -322,7 +322,7 @@ function RichReports({ section }: { section: PlatformFeatureSection }) {
         <div
           className="relative h-20 w-20 shrink-0 rounded-full"
           style={{
-            background: `conic-gradient(#172B4D 0 ${a}%, #F79625 ${a}% ${a + b}%, #E4E7EC ${a + b}% 100%)`,
+            background: `conic-gradient(#172B4D 0 ${a}%, #FE5D02 ${a}% ${a + b}%, #E4E7EC ${a + b}% 100%)`,
           }}
         >
           <div className="absolute inset-2 rounded-full bg-white" />
@@ -332,7 +332,7 @@ function RichReports({ section }: { section: PlatformFeatureSection }) {
             <div key={item.name} className="flex items-start gap-2">
               <span
                 className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
-                style={{ background: ["#172B4D", "#F79625", "#0052CC", "#97A0AF"][i % 4] }}
+                style={{ background: ["#172B4D", "#FE5D02", "#0052CC", "#97A0AF"][i % 4] }}
               />
               <div className="min-w-0">
                 <p className="text-[11px] font-bold text-[#172B4D] sm:text-xs">{item.name}</p>
@@ -411,7 +411,7 @@ function RichChat({ section }: { section: PlatformFeatureSection }) {
     <PanelShell section={section}>
       <div className="space-y-3">
         <div className="flex gap-2">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F79625] text-[11px] font-black text-white">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-orange text-[11px] font-black text-white">
             Z
           </div>
           <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md border border-gray-100 bg-[#F8FAFC] px-3 py-2">

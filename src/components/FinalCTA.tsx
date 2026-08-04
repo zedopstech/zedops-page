@@ -13,7 +13,7 @@ export default function FinalCTA() {
   const isMobile = useIsMobile();
 
   return (
-    <section className="bg-[#172B4D]">
+    <section className="bg-brand-navy">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* CTA block */}
         <div className="py-24 border-b border-white/10">
@@ -24,19 +24,19 @@ export default function FinalCTA() {
               </h2>
             </div>
             <div>
-              <p className="text-blue-200 text-lg leading-relaxed mb-8">
+              <p className="mb-8 text-lg leading-relaxed text-[#B8C9DC]">
                 Give supers and PMs one place where the schedule, daily log, inspections, and punch list all drive assigned work, with AI that fits your permissions, not a generic chatbox.
               </p>
               <div className="flex flex-wrap items-center gap-4">
                 <a
                   href="/early-access"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#F79625] hover:bg-[#e07a10] text-white font-bold text-sm transition-all duration-150 group"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm transition-all duration-150 group"
                   style={{ borderRadius: 6 }}
                 >
                   Get a personalised demo
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </a>
-                <a href="/pricing" className="text-white font-semibold text-sm hover:text-[#F79625] transition-colors duration-150">
+                <a href="/pricing" className="text-white font-semibold text-sm hover:text-brand-orange transition-colors duration-150">
                   View pricing →
                 </a>
               </div>
@@ -51,15 +51,15 @@ export default function FinalCTA() {
               <motion.div
                 key={card.title}
                 {...scrollMotionProps(isMobile, { y: 16, duration: 0.4, delay: i * 0.08 })}
-                className="bg-[#1E3A5F] px-7 py-7 flex gap-4 border border-white/5 hover:bg-[#234270] transition-colors duration-200 group"
+                className="flex gap-4 border border-white/5 bg-brand-navy-soft px-7 py-7 transition-colors duration-200 group hover:bg-[#132038]"
                 style={{ borderRadius: 6 }}
               >
                 <div className="w-11 h-11 bg-white/10 border border-white/10 flex items-center justify-center flex-shrink-0" style={{ borderRadius: 6 }}>
                   <card.icon size={18} className="text-white" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-sm mb-1.5 group-hover:text-[#F79625] transition-colors">{card.title}</h4>
-                  <p className="text-blue-300 text-sm leading-relaxed">{card.description}</p>
+                  <h4 className="text-white font-bold text-sm mb-1.5 group-hover:text-brand-orange transition-colors">{card.title}</h4>
+                  <p className="text-sm leading-relaxed text-[#97A0AF]">{card.description}</p>
                 </div>
               </motion.div>
             ))}

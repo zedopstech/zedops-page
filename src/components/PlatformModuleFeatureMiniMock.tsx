@@ -234,13 +234,13 @@ function FloatingAi({ c }: { c: FeatureMockContent }) {
       <Eyebrow>{c.eyebrow || "ASSISTANT"}</Eyebrow>
       <div className="space-y-2.5">
         <div className="flex gap-2">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F79625] text-[10px] font-black text-white">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-orange text-[10px] font-black text-white">
             Z
           </div>
           <div className="min-w-0 flex-1 rounded-2xl rounded-tl-md border border-gray-100 bg-[#F8FAFC] px-3 py-2">
             <div className="mb-1.5 flex items-center gap-1">
-              <Zap size={10} className="shrink-0 text-[#F79625]" />
-              <div className="h-1.5 min-w-0 flex-1 rounded-full bg-orange-100" />
+              <Zap size={10} className="shrink-0 text-brand-orange" />
+              <div className="h-1.5 min-w-0 flex-1 rounded-full bg-brand-orange/15" />
             </div>
             <p className="text-[8px] font-semibold leading-snug text-[#42526E]">{clampStr(c.lines[0], 120)}</p>
           </div>
@@ -327,7 +327,7 @@ function FloatingAnalytics({ c }: { c: FeatureMockContent }) {
             className="flex-1 rounded-t"
             style={{
               height: `${height}%`,
-              background: i === (Math.abs(hashCode(c.seed)) % 8) ? "#F79625" : "#172B4D",
+              background: i === (Math.abs(hashCode(c.seed)) % 8) ? "#FE5D02" : "#172B4D",
               opacity: i === (Math.abs(hashCode(c.seed)) % 8) ? 1 : 0.2 + (i % 5) * 0.12,
             }}
           />
@@ -390,7 +390,7 @@ function FloatingTaskList({ c }: { c: FeatureMockContent }) {
           <div key={`${t}-${i}`} className="flex items-start gap-2">
             <ListChecks
               size={14}
-              className={`mt-0.5 shrink-0 ${done[i] ? "text-emerald-600" : "text-gray-300"}`}
+              className={`mt-0.5 shrink-0 ${done[i] ? "text-emerald-600" : "text-[#C7D5F5]"}`}
             />
             <div className="min-w-0 flex-1">
               <div
@@ -450,7 +450,7 @@ function FloatingSchedule({ c }: { c: FeatureMockContent }) {
             <div className="mt-1 flex min-h-[44px] flex-col justify-end gap-0.5 rounded-md bg-[#F8FAFC] p-1">
               {i === busyIdx && (
                 <>
-                  <div className="h-2 rounded-sm bg-[#F79625]" />
+                  <div className="h-2 rounded-sm bg-brand-orange" />
                   <div className="h-1.5 rounded-sm bg-[#172B4D]/25" />
                 </>
               )}
@@ -486,7 +486,7 @@ function FloatingFinance({ c }: { c: FeatureMockContent }) {
         </div>
       </div>
       <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-gray-100">
-        <div className="h-1.5 rounded-full bg-[#F79625]" style={{ width: `${barW}%` }} />
+        <div className="h-1.5 rounded-full bg-brand-orange" style={{ width: `${barW}%` }} />
       </div>
     </FloatSurface>
   );
@@ -556,7 +556,7 @@ function FloatingDirectory({ c }: { c: FeatureMockContent }) {
                 {ROLE_HINTS[Math.abs(hashCode(`${c.seed}:role:${i}`)) % ROLE_HINTS.length]}
               </div>
             </div>
-            <Users size={12} className="shrink-0 text-gray-300" />
+            <Users size={12} className="shrink-0 text-[#C7D5F5]" />
           </div>
         ))}
       </div>
@@ -577,7 +577,7 @@ function FloatingForm({ c }: { c: FeatureMockContent }) {
         <div className="flex min-h-7 items-center rounded-md border border-gray-200 bg-[#F8FAFC] px-2 py-1">
           <span className="text-[8px] font-medium text-[#42526E]">{hint2}</span>
         </div>
-        <div className="mt-1 flex h-8 items-center justify-center rounded-md bg-[#F79625] px-2">
+        <div className="mt-1 flex h-8 items-center justify-center rounded-md bg-brand-orange px-2">
           <span className="text-[8px] font-bold text-white/95">{clampStr(c.summaryClip || "Submit", 22)}</span>
         </div>
       </div>
@@ -595,7 +595,7 @@ function FloatingReport({ c }: { c: FeatureMockContent }) {
         <div
           className="relative h-14 w-14 shrink-0 rounded-full"
           style={{
-            background: `conic-gradient(#172B4D 0 ${a}%, #F79625 ${a}% ${a + b}%, #E4E7EC ${a + b}% 100%)`,
+            background: `conic-gradient(#172B4D 0 ${a}%, #FE5D02 ${a}% ${a + b}%, #E4E7EC ${a + b}% 100%)`,
           }}
         >
           <div className="absolute inset-1.5 rounded-full bg-white" />
@@ -606,7 +606,7 @@ function FloatingReport({ c }: { c: FeatureMockContent }) {
               <span
                 className="h-1.5 w-1.5 shrink-0 rounded-full"
                 style={{
-                  background: ["#172B4D", "#F79625", "#DFE1E6"][i % 3],
+                  background: ["#172B4D", "#FE5D02", "#DFE1E6"][i % 3],
                 }}
               />
               <span className="truncate text-[9px] font-semibold text-[#42526E]">{clampStr(label, 32)}</span>
@@ -636,7 +636,7 @@ function FloatingFieldLog({ c }: { c: FeatureMockContent }) {
 }
 
 function FloatingHeatmap({ c }: { c: FeatureMockContent }) {
-  const tone = ["bg-[#E8F0FE]", "bg-[#172B4D]/15", "bg-[#F79625]/35"];
+  const tone = ["bg-[#E8F0FE]", "bg-[#172B4D]/15", "bg-brand-orange/35"];
   const n = 20;
   return (
     <FloatSurface>

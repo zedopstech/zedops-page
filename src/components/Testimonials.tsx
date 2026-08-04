@@ -25,7 +25,7 @@ export default function Testimonials() {
   const isMobile = useIsMobile();
 
   return (
-    <section className="bg-[#0D1117] border-t border-white/5 py-20">
+    <section className="border-t border-white/5 bg-brand-navy py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
@@ -36,12 +36,12 @@ export default function Testimonials() {
               Built with field &amp; MEP teams,<br />
               <span className="text-[#DCE6F0]">for how jobs actually run.</span>
             </h2>
-            <p className="text-blue-200/70 text-base leading-relaxed mb-8 max-w-md">
+            <p className="mb-8 max-w-md text-base leading-relaxed text-[#B8C9DC]">
               We’re focused on execution workflows (tasks, logs, inspections, punch) with teams who live on site. Want to help steer what ships next?
             </p>
             <a
-                      href="/early-access"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#F79625] hover:bg-[#e07a10] text-white font-bold text-sm transition-all duration-150 group"
+              href="/early-access"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm transition-all duration-150 group"
               style={{ borderRadius: 6 }}
             >
               Join the early access program
@@ -55,11 +55,11 @@ export default function Testimonials() {
               <motion.div
                 key={p.label}
                 {...scrollMotionProps(isMobile, { x: 20, duration: 0.4, delay: i * 0.1 })}
-                className="flex items-center gap-5 bg-[#161B22] border border-white/5 px-6 py-5"
+                className="flex items-center gap-5 border border-white/5 bg-brand-navy-soft px-6 py-5"
                 style={{ borderRadius: 6 }}
               >
                 <div className="w-11 h-11 bg-[#172B4D] border border-white/10 flex items-center justify-center shrink-0" style={{ borderRadius: 6 }}>
-                  <p.icon size={18} className="text-[#F79625]" />
+                  <p.icon size={18} className="text-brand-orange" />
                 </div>
                 <div>
                   <p className="text-white font-bold text-sm">{p.label}</p>

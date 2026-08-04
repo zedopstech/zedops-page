@@ -98,8 +98,11 @@ export default function PersonaTemplate({
         <div
           className="relative flex min-w-0 items-center"
           style={{
-            background:
-              "linear-gradient(155deg, #C4D9FF 0%, #D9EBFF 28%, #ECF3FF 58%, #F2F6FF 100%)",
+            backgroundImage:
+              "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
           }}
         >
           <div className="absolute inset-0 pointer-events-none" style={blueprintBg} />
@@ -107,7 +110,7 @@ export default function PersonaTemplate({
             className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-48 pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.12) 0%, transparent 65%)",
+                "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.12) 0%, transparent 65%)",
               filter: "blur(40px)",
             }}
           />
@@ -119,7 +122,7 @@ export default function PersonaTemplate({
               className="mb-6 inline-flex border border-[#172B4D]/20 bg-white/80 items-center gap-2 px-4 py-1.5"
               style={{ borderRadius: 99 }}
             >
-              <PillIcon size={12} className="text-[#F79625]" />
+              <PillIcon size={12} className="text-brand-orange" />
               <span className="text-[#172B4D] text-xs font-bold tracking-[0.12em] uppercase">{pill}</span>
             </motion.div>
             <motion.h1
@@ -146,7 +149,7 @@ export default function PersonaTemplate({
             >
               <a
                 href="/early-access"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#172B4D] hover:bg-[#0e1e38] text-white font-bold text-sm rounded-md transition-all duration-150 group"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all duration-150 group"
               >
                 {earlyAccessLabel}
                 <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
@@ -166,7 +169,7 @@ export default function PersonaTemplate({
       <section className="bg-[#172B4D] px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-3xl mx-auto text-center">
           <div
-            className="text-[#F79625] leading-none mb-4 font-serif select-none"
+            className="text-brand-orange leading-none mb-4 font-serif select-none"
             style={{ fontSize: "5rem" }}
             aria-hidden="true"
           >
@@ -270,13 +273,13 @@ export default function PersonaTemplate({
                         style={{
                           background: isEven
                             ? "linear-gradient(135deg, #EBF0FF 0%, #F2F6FF 100%)"
-                            : "linear-gradient(135deg, #FFF7ED 0%, #FFFBF5 100%)",
+                            : "linear-gradient(135deg, #EBF0FF 0%, #F8FAFC 100%)",
                         }}
                       />
                       <div
                         className="absolute w-40 h-40 rounded-full blur-3xl opacity-45"
                         style={{
-                          background: isEven ? "#C4D9FF" : "#F79625",
+                          background: isEven ? "#C4D9FF" : "#FE5D02",
                           top: "-12px",
                           [isEven ? "right" : "left"]: "-8px",
                         }}
@@ -317,7 +320,7 @@ export default function PersonaTemplate({
           <div className="text-center mt-24 pt-16 border-t border-gray-100">
             <a
               href="/early-access"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#172B4D] hover:bg-[#0e1e38] text-white font-bold text-sm rounded-md transition-all duration-150 group"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all duration-150 group"
             >
               {earlyAccessLabel}
               <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />

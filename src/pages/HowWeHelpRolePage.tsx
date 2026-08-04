@@ -63,7 +63,7 @@ export default function HowWeHelpRolePage() {
                 "Consultants and CMs can work across clients without cross-leaking sensitive detail when roles are set carefully.",
               ].map((line) => (
                 <li key={line} className="flex gap-3">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#F79625]" aria-hidden />
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-orange" aria-hidden />
                   {line}
                 </li>
               ))}
@@ -83,7 +83,7 @@ export default function HowWeHelpRolePage() {
             </p>
             <a
               href="/who-we-serve"
-              className="mt-8 inline-flex items-center gap-2 rounded-md bg-[#172B4D] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#0e1e38]"
+              className="mt-8 inline-flex items-center gap-2 rounded-md bg-brand-orange px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
             >
               Open Built for you
               <ArrowRight className="h-4 w-4" aria-hidden />

@@ -32,7 +32,7 @@ export function MockWindow({ children, bodyClassName }: { children: ReactNode; b
           </div>
           <div className="mx-3 flex h-5 min-w-0 flex-1 items-center gap-1 rounded-full border border-gray-200 bg-white px-3">
             <div className="h-2 w-2 shrink-0 rounded-full bg-gray-300" />
-            <span className="truncate text-[10px] text-gray-400">app.zedops.com</span>
+            <span className="truncate text-[10px] text-[#97A0AF]">app.zedops.com</span>
           </div>
         </div>
       ) : null}
@@ -60,11 +60,11 @@ export function MockChat() {
         </div>
         <div className="flex-1 flex flex-col gap-3 min-w-0">
           <div className="flex gap-2">
-            <div className="w-7 h-7 rounded-full bg-[#F79625] shrink-0 flex items-center justify-center text-white text-[10px] font-black">Z</div>
+            <div className="w-7 h-7 rounded-full bg-brand-orange shrink-0 flex items-center justify-center text-white text-[10px] font-black">Z</div>
             <div className="bg-[#F8FAFC] border border-gray-100 rounded-2xl rounded-tl-none p-3 flex-1">
               <div className="flex items-center gap-1.5 mb-2">
-                <div className="w-2 h-2 rounded-full bg-orange-400" />
-                <div className="h-2 bg-orange-200 rounded w-20" />
+                <div className="w-2 h-2 rounded-full bg-brand-orange" />
+                <div className="h-2 bg-brand-orange/25 rounded w-20" />
               </div>
               <div className="space-y-1.5">
                 <div className="h-2 bg-gray-200 rounded w-full" />
@@ -81,7 +81,7 @@ export function MockChat() {
             <div className="w-7 h-7 rounded-full bg-gray-200 shrink-0" />
           </div>
           <div className="flex gap-2">
-            <div className="w-7 h-7 rounded-full bg-[#F79625] shrink-0 flex items-center justify-center text-white text-[10px] font-black">Z</div>
+            <div className="w-7 h-7 rounded-full bg-brand-orange shrink-0 flex items-center justify-center text-white text-[10px] font-black">Z</div>
             <div className="bg-[#F8FAFC] border border-gray-100 rounded-2xl rounded-tl-none p-3 flex-1">
               <div className="space-y-1.5">
                 <div className="h-2 bg-gray-200 rounded w-full" />
@@ -93,7 +93,7 @@ export function MockChat() {
             <div className="flex-1 h-9 bg-gray-50 border border-gray-200 rounded-xl flex items-center px-3">
               <div className="h-2 bg-gray-200 rounded w-1/3" />
             </div>
-            <div className="w-9 h-9 bg-[#F79625] rounded-xl shrink-0 flex items-center justify-center">
+            <div className="w-9 h-9 bg-brand-orange rounded-xl shrink-0 flex items-center justify-center">
               <div className="w-3 h-3 bg-white/80 rounded-sm" style={{ clipPath: "polygon(0 0, 100% 50%, 0 100%)" }} />
             </div>
           </div>
@@ -110,12 +110,12 @@ export function MockDashboard() {
         <div className="grid grid-cols-3 gap-2">
           {[
             { label: "On Track", value: "12", color: "text-green-600", bg: "bg-green-50", border: "border-green-200" },
-            { label: "At Risk", value: "3", color: "text-orange-600", bg: "bg-orange-50", border: "border-orange-200" },
+            { label: "At Risk", value: "3", color: "text-brand-orange", bg: "bg-brand-orange/10", border: "border-brand-orange/30" },
             { label: "Delayed", value: "1", color: "text-red-600", bg: "bg-red-50", border: "border-red-200" },
           ].map((s) => (
             <div key={s.label} className={`${s.bg} border ${s.border} rounded-xl p-3 text-center`}>
               <div className={`text-2xl font-extrabold ${s.color} leading-none mb-1`}>{s.value}</div>
-              <div className="text-[9px] text-gray-500 font-semibold">{s.label}</div>
+              <div className="text-[9px] text-[#6B778C] font-semibold">{s.label}</div>
             </div>
           ))}
         </div>
@@ -124,7 +124,7 @@ export function MockDashboard() {
             <div className="h-2.5 bg-gray-300 rounded w-24" />
             <div className="flex gap-1">
               {["W", "M", "Q"].map((t, i) => (
-                <div key={t} className={`text-[9px] font-bold px-2 py-0.5 rounded ${i === 1 ? "bg-[#172B4D] text-white" : "text-gray-400"}`}>{t}</div>
+                <div key={t} className={`text-[9px] font-bold px-2 py-0.5 rounded ${i === 1 ? "bg-[#172B4D] text-white" : "text-[#97A0AF]"}`}>{t}</div>
               ))}
             </div>
           </div>
@@ -139,7 +139,7 @@ export function MockDashboard() {
           </div>
           <div className="flex justify-between mt-1.5">
             {["Jan", "Feb", "Mar", "Apr", "May"].map((m) => (
-              <div key={m} className="text-[8px] text-gray-400">{m}</div>
+              <div key={m} className="text-[8px] text-[#97A0AF]">{m}</div>
             ))}
           </div>
         </div>
@@ -147,7 +147,7 @@ export function MockDashboard() {
           <div className="h-2 bg-gray-300 rounded w-20 mb-2" />
           {[
             { dot: "bg-red-400" },
-            { dot: "bg-orange-400" },
+            { dot: "bg-brand-orange" },
           ].map((r, i) => (
             <div key={i} className="flex items-center gap-2.5 py-1.5 border-b border-gray-50 last:border-0">
               <div className={`w-2 h-2 rounded-full shrink-0 ${r.dot}`} />
@@ -179,7 +179,7 @@ export function MockLog() {
           <div className="flex gap-2">
             {[0, 1, 2].map((i) => (
               <div key={i} className="w-16 h-14 bg-gray-100 rounded-xl border border-gray-200 flex items-center justify-center">
-                <span className="text-gray-300 text-lg" aria-hidden>🏗</span>
+                <span className="text-[#C7D5F5] text-lg" aria-hidden>🏗</span>
               </div>
             ))}
             <div className="w-16 h-14 bg-[#EBF0FF] rounded-xl border-2 border-dashed border-[#172B4D]/20 flex items-center justify-center text-[#172B4D]/30 text-2xl font-light">+</div>
@@ -201,7 +201,7 @@ export function MockLog() {
         </div>
         <div className="flex gap-2 pt-1 mt-auto">
           <div className="flex-1 h-9 border border-gray-200 rounded-lg" />
-          <div className="px-4 h-9 bg-[#F79625] rounded-lg flex items-center">
+          <div className="px-4 h-9 bg-brand-orange rounded-lg flex items-center">
             <div className="h-2 bg-white/60 rounded w-12" />
           </div>
         </div>
@@ -216,11 +216,11 @@ export function MockAnnotation() {
       <div className="space-y-3 flex-1 flex flex-col">
         <div className="flex items-center gap-1.5 pb-3 border-b border-gray-100 shrink-0">
           {["✏️", "T", "□", "→"].map((t) => (
-            <div key={t} className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center text-[11px] text-gray-500 font-bold">{t}</div>
+            <div key={t} className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center text-[11px] text-[#6B778C] font-bold">{t}</div>
           ))}
           <div className="w-px h-5 bg-gray-200 mx-1" />
           <div className="flex gap-1">
-            {["#EF4444", "#F79625", "#22C55E"].map((c) => (
+            {["#EF4444", "#FE5D02", "#22C55E"].map((c) => (
               <div key={c} className="w-5 h-5 rounded-full border-2 border-white" style={{ background: c }} />
             ))}
           </div>
@@ -245,7 +245,7 @@ export function MockAnnotation() {
             <line x1="90" y1="68" x2="90" y2="108" stroke="#172B4D" strokeWidth="1" />
           </svg>
           <div className="absolute top-4 left-36 bg-red-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded">RFI #23</div>
-          <div className="absolute bottom-10 left-7 bg-[#F79625] text-white text-[8px] font-bold px-1.5 py-0.5 rounded">Rev. 4</div>
+          <div className="absolute bottom-10 left-7 bg-brand-orange text-white text-[8px] font-bold px-1.5 py-0.5 rounded">Rev. 4</div>
           <div className="absolute top-12 left-8 bg-green-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded">Approved</div>
           <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
             <line x1="35%" y1="16%" x2="50%" y2="16%" stroke="#EF4444" strokeWidth="1.5" strokeDasharray="3,2" />
@@ -270,14 +270,14 @@ export function MockList() {
     { done: false, urgency: "bg-red-100 text-red-700", label: "Due today" },
     { done: true, urgency: "bg-green-100 text-green-700", label: "Done" },
     { done: false, urgency: "bg-blue-100 text-blue-700", label: "In review" },
-    { done: false, urgency: "bg-gray-100 text-gray-500", label: "Upcoming" },
+    { done: false, urgency: "bg-gray-100 text-[#6B778C]", label: "Upcoming" },
   ];
   return (
     <MockWindow bodyClassName="min-h-[280px]">
       <div className="space-y-3 flex-1 flex flex-col">
         <div className="flex gap-4 border-b border-gray-100 pb-2 shrink-0">
           {["Tasks", "RFIs", "Submittals"].map((t, i) => (
-            <div key={t} className={`text-[11px] font-bold pb-1 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-gray-400"}`}>{t}</div>
+            <div key={t} className={`text-[11px] font-bold pb-1 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-[#97A0AF]"}`}>{t}</div>
           ))}
           <div className="ml-auto h-6 px-2 bg-[#EBF0FF] rounded-md flex items-center">
             <div className="h-2 bg-[#172B4D]/40 rounded w-10" />
@@ -306,7 +306,7 @@ export function MockList() {
           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
             <div className="h-full bg-[#172B4D] rounded-full" style={{ width: "65%" }} />
           </div>
-          <div className="text-[9px] text-gray-400 mt-1 text-right">65% complete</div>
+          <div className="text-[9px] text-[#97A0AF] mt-1 text-right">65% complete</div>
         </div>
       </div>
     </MockWindow>
@@ -369,7 +369,7 @@ export function MockPeople() {
           </div>
         </div>
         <div className="rounded-xl border border-gray-200 overflow-hidden flex-1 min-h-[160px]">
-          <div className="grid grid-cols-[1fr_1fr_80px] gap-2 px-3 py-2 bg-gray-50 border-b border-gray-100 text-[9px] font-bold text-gray-500 uppercase tracking-wide">
+          <div className="grid grid-cols-[1fr_1fr_80px] gap-2 px-3 py-2 bg-gray-50 border-b border-gray-100 text-[9px] font-bold text-[#6B778C] uppercase tracking-wide">
             <span>Name</span>
             <span>Role</span>
             <span className="text-right">Status</span>
@@ -378,7 +378,7 @@ export function MockPeople() {
             { w: "w-3/4", r: "w-1/2", s: "bg-green-100 text-green-700", t: "Active" },
             { w: "w-2/3", r: "w-3/5", s: "bg-green-100 text-green-700", t: "Active" },
             { w: "w-4/5", r: "w-1/2", s: "bg-amber-100 text-amber-800", t: "Pending" },
-            { w: "w-1/2", r: "w-2/5", s: "bg-gray-100 text-gray-600", t: "Away" },
+            { w: "w-1/2", r: "w-2/5", s: "bg-gray-100 text-[#42526E]", t: "Away" },
           ].map((row, i) => (
             <div key={i} className="grid grid-cols-[1fr_1fr_80px] gap-2 items-center px-3 py-2.5 border-b border-gray-50 last:border-0">
               <div className="flex items-center gap-2 min-w-0">
@@ -414,7 +414,7 @@ export function MockDocuments() {
         <div className="flex-1 flex flex-col gap-2 min-w-0">
           <div className="flex gap-2 border-b border-gray-100 pb-2 shrink-0">
             {["Documents", "Daily log"].map((t, i) => (
-              <div key={t} className={`text-[10px] font-bold pb-1 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-gray-400"}`}>{t}</div>
+              <div key={t} className={`text-[10px] font-bold pb-1 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-[#97A0AF]"}`}>{t}</div>
             ))}
           </div>
           <div className="space-y-2 flex-1">
@@ -424,7 +424,7 @@ export function MockDocuments() {
               { icon: "bg-gray-100", ext: "XLS" },
             ].map((f, i) => (
               <div key={i} className="flex items-center gap-3 p-2 rounded-xl border border-gray-100 hover:bg-gray-50/80">
-                <div className={`w-9 h-10 rounded-lg ${f.icon} flex items-center justify-center text-[8px] font-black text-gray-600 shrink-0`}>{f.ext}</div>
+                <div className={`w-9 h-10 rounded-lg ${f.icon} flex items-center justify-center text-[8px] font-black text-[#42526E] shrink-0`}>{f.ext}</div>
                 <div className="flex-1 min-w-0 space-y-1">
                   <div className="h-2 bg-gray-300 rounded w-4/5" />
                   <div className="h-2 bg-gray-200 rounded w-1/3" />
@@ -448,7 +448,7 @@ export function MockFinance() {
           <div className="h-2.5 bg-[#172B4D]/70 rounded w-36" />
           <div className="flex gap-1">
             {["Budget", "CO", "Pay"].map((t, i) => (
-              <div key={t} className={`text-[9px] font-bold px-2 py-1 rounded-md ${i === 0 ? "bg-[#172B4D] text-white" : "bg-gray-100 text-gray-500"}`}>{t}</div>
+              <div key={t} className={`text-[9px] font-bold px-2 py-1 rounded-md ${i === 0 ? "bg-[#172B4D] text-white" : "bg-gray-100 text-[#6B778C]"}`}>{t}</div>
             ))}
           </div>
         </div>
@@ -458,9 +458,9 @@ export function MockFinance() {
             { l: "Forecast", v: "$2.7M", sub: "At completion" },
           ].map((c) => (
             <div key={c.l} className="rounded-xl border border-gray-200 bg-linear-to-br from-white to-gray-50/80 p-3">
-              <div className="text-[9px] font-bold text-gray-500 uppercase mb-1">{c.l}</div>
+              <div className="text-[9px] font-bold text-[#6B778C] uppercase mb-1">{c.l}</div>
               <div className="text-xl font-extrabold text-[#172B4D] leading-none">{c.v}</div>
-              <div className="text-[9px] text-gray-400 mt-1">{c.sub}</div>
+              <div className="text-[9px] text-[#97A0AF] mt-1">{c.sub}</div>
             </div>
           ))}
         </div>
@@ -472,7 +472,7 @@ export function MockFinance() {
           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
             <div className="h-full bg-[#00875A] rounded-full" style={{ width: "72%" }} />
           </div>
-          <div className="flex justify-between mt-2 text-[8px] text-gray-400">
+          <div className="flex justify-between mt-2 text-[8px] text-[#97A0AF]">
             <span>Actual</span>
             <span>Budget cap</span>
           </div>
@@ -489,11 +489,11 @@ export function MockSupply() {
       <div className="space-y-3 flex-1 flex flex-col min-h-0">
         <div className="flex gap-3 border-b border-gray-100 pb-2 shrink-0 overflow-x-auto">
           {["POs", "Inventory", "Receipts", "Requests"].map((t, i) => (
-            <div key={t} className={`text-[10px] font-bold whitespace-nowrap pb-1 shrink-0 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-gray-400"}`}>{t}</div>
+            <div key={t} className={`text-[10px] font-bold whitespace-nowrap pb-1 shrink-0 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-[#97A0AF]"}`}>{t}</div>
           ))}
         </div>
         <div className="rounded-xl border border-gray-200 overflow-hidden flex-1">
-          <div className="grid grid-cols-[1fr_72px_72px] gap-2 px-3 py-2 bg-gray-50 border-b border-gray-100 text-[9px] font-bold text-gray-500 uppercase">
+          <div className="grid grid-cols-[1fr_72px_72px] gap-2 px-3 py-2 bg-gray-50 border-b border-gray-100 text-[9px] font-bold text-[#6B778C] uppercase">
             <span>Order / ref</span>
             <span>Qty</span>
             <span className="text-right">Status</span>
@@ -543,7 +543,7 @@ export function MockReports() {
               </div>
               <div className="flex-1 min-w-0 space-y-1">
                 <div className="h-2 bg-gray-300 rounded w-3/5" />
-                <div className="text-[9px] text-gray-400 font-medium">{row.t}</div>
+                <div className="text-[9px] text-[#97A0AF] font-medium">{row.t}</div>
               </div>
               <div className="text-[9px] font-bold text-[#00875A] shrink-0">{row.st}</div>
             </div>
@@ -561,7 +561,7 @@ export function MockInspection() {
       <div className="space-y-3 flex-1 flex flex-col min-h-0">
         <div className="flex gap-3 border-b border-gray-100 pb-2 shrink-0">
           {["Inspections", "Punch", "Incidents"].map((t, i) => (
-            <div key={t} className={`text-[10px] font-bold pb-1 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-gray-400"}`}>{t}</div>
+            <div key={t} className={`text-[10px] font-bold pb-1 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-[#97A0AF]"}`}>{t}</div>
           ))}
         </div>
         <div className="rounded-xl border border-amber-200/60 bg-amber-50/40 p-3 space-y-2">
@@ -627,7 +627,7 @@ export function MockSchedule() {
     { label: "Site prep", start: 0, width: 38, color: "#22C55E" },
     { label: "Foundation", start: 33, width: 28, color: "#172B4D" },
     { label: "Framing", start: 55, width: 26, color: "#3B82F6" },
-    { label: "Electrical", start: 66, width: 20, color: "#F79625" },
+    { label: "Electrical", start: 66, width: 20, color: "#FE5D02" },
     { label: "Plumbing", start: 66, width: 22, color: "#8B5CF6" },
   ];
   return (
@@ -637,19 +637,19 @@ export function MockSchedule() {
           <div className="h-3 bg-[#172B4D]/70 rounded w-28" />
           <div className="flex gap-1">
             {["Week", "Month", "Quarter"].map((t, i) => (
-              <div key={t} className={`text-[9px] font-bold px-2 py-1 rounded ${i === 1 ? "bg-[#172B4D] text-white" : "text-gray-400 bg-gray-100"}`}>{t}</div>
+              <div key={t} className={`text-[9px] font-bold px-2 py-1 rounded ${i === 1 ? "bg-[#172B4D] text-white" : "text-[#97A0AF] bg-gray-100"}`}>{t}</div>
             ))}
           </div>
         </div>
         <div className="flex ml-20 gap-0 shrink-0">
           {["Jan", "Feb", "Mar", "Apr"].map((m) => (
-            <div key={m} className="flex-1 text-[8px] text-gray-400 font-semibold border-l border-gray-100 pl-1">{m}</div>
+            <div key={m} className="flex-1 text-[8px] text-[#97A0AF] font-semibold border-l border-gray-100 pl-1">{m}</div>
           ))}
         </div>
         <div className="space-y-2 flex-1">
           {rows.map((row, i) => (
             <div key={i} className="flex items-center gap-2">
-              <div className="w-16 text-[9px] text-gray-500 font-semibold text-right shrink-0">{row.label}</div>
+              <div className="w-16 text-[9px] text-[#6B778C] font-semibold text-right shrink-0">{row.label}</div>
               <div className="flex-1 h-6 bg-gray-100 rounded-md relative overflow-hidden">
                 <div
                   className="absolute h-full rounded-md"
@@ -662,8 +662,8 @@ export function MockSchedule() {
         <div className="flex items-center gap-2 shrink-0">
           <div className="w-16 shrink-0" />
           <div className="flex-1 relative h-4">
-            <div className="absolute h-full border-l-2 border-dashed border-[#F79625]" style={{ left: "62%" }}>
-              <div className="text-[8px] text-[#F79625] font-bold whitespace-nowrap ml-1 -mt-0.5">Today</div>
+            <div className="absolute h-full border-l-2 border-dashed border-brand-orange" style={{ left: "62%" }}>
+              <div className="text-[8px] text-brand-orange font-bold whitespace-nowrap ml-1 -mt-0.5">Today</div>
             </div>
           </div>
         </div>
@@ -681,7 +681,7 @@ export function MockWritingAssist() {
           {["Improve", "Shorten", "Expand", "Suggest"].map((a, i) => (
             <div
               key={a}
-              className={`text-[10px] font-bold px-2.5 py-1 rounded-md border ${i === 0 ? "bg-[#F79625] text-white border-[#F79625]" : "bg-white border-gray-200 text-gray-500"}`}
+              className={`text-[10px] font-bold px-2.5 py-1 rounded-md border ${i === 0 ? "bg-brand-orange text-white border-brand-orange" : "bg-white border-gray-200 text-[#6B778C]"}`}
             >
               {a}
             </div>
@@ -693,7 +693,7 @@ export function MockWritingAssist() {
           <div className="h-2 bg-gray-200 rounded w-[80%]" />
           <div className="mt-4 pt-3 border-t border-dashed border-gray-200">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-5 h-5 rounded-full bg-[#F79625]/20 flex items-center justify-center text-[8px] font-black text-[#F79625]">Z</div>
+              <div className="w-5 h-5 rounded-full bg-brand-orange/20 flex items-center justify-center text-[8px] font-black text-brand-orange">Z</div>
               <div className="h-2 bg-[#172B4D]/20 rounded w-32" />
             </div>
             <div className="h-2 bg-[#172B4D]/10 rounded w-full" />

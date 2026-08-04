@@ -58,11 +58,11 @@ const columns = [
   {
     label: "Early Access",
     sublabel: "Available now  -  invite only",
-    accent: "#F79625",
-    accentSoft: "rgba(247,150,37,0.14)",
-    dot: "bg-[#F79625]",
-    dotRing: "ring-orange-200/90",
-    border: "border-orange-200/70",
+    accent: "#FE5D02",
+    accentSoft: "rgba(254,93,2,0.14)",
+    dot: "bg-brand-orange",
+    dotRing: "ring-brand-orange/25",
+    border: "border-brand-orange/30",
     items: [
       { icon: Brain, title: "AI Copilot Essentials", desc: "Daily summaries and basic project Q&A powered by AI." },
       { icon: BarChart2, title: "Project Intelligence Dashboard", desc: "Real-time analytics across tasks, costs, and risk." },
@@ -121,7 +121,10 @@ export default function RoadmapPage() {
           <div
             className="pointer-events-none absolute inset-0"
             style={{
-              background: "linear-gradient(155deg, #C4D9FF 0%, #D9EBFF 28%, #ECF3FF 58%, #F2F6FF 100%)",
+              backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
             }}
             aria-hidden
           />
@@ -129,7 +132,7 @@ export default function RoadmapPage() {
           <div
             className="pointer-events-none absolute bottom-0 left-1/2 h-[280px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
             style={{
-              background: "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.11) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.11) 0%, transparent 65%)",
               filter: "blur(40px)",
             }}
             aria-hidden
@@ -145,7 +148,7 @@ export default function RoadmapPage() {
                   className="mb-6 inline-flex items-center gap-2 border border-[#172B4D]/20 bg-white/80 px-4 py-1.5"
                   style={{ borderRadius: 99 }}
                 >
-                  <Map size={12} className="text-[#F79625]" aria-hidden />
+                  <Map size={12} className="text-brand-orange" aria-hidden />
                   <span className="text-xs font-bold tracking-[0.12em] text-[#172B4D] uppercase">Product Roadmap</span>
                 </motion.div>
                 <motion.h1
@@ -284,7 +287,7 @@ export default function RoadmapPage() {
         <section className="relative overflow-hidden bg-[#172B4D] py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="pointer-events-none absolute inset-0 opacity-[0.08]" style={blueprintBg} aria-hidden />
           <div className="relative mx-auto max-w-2xl px-4 text-center">
-            <motion.p {...scrollMotionProps(isMobile, { y: 8, duration: 0.38 })} className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#F79625]">
+            <motion.p {...scrollMotionProps(isMobile, { y: 8, duration: 0.38 })} className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-orange">
               Your voice, on the roadmap
             </motion.p>
             <motion.h2 {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.05 })} className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -311,7 +314,7 @@ export default function RoadmapPage() {
                 <select
                   id="role"
                   name="role"
-                  className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white transition-colors focus:border-[#F79625] focus:outline-none"
+                  className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white transition-colors focus:border-brand-orange focus:outline-none"
                 >
                   <option value="" className="text-[#172B4D]">
                     Select your role
@@ -343,12 +346,12 @@ export default function RoadmapPage() {
                   rows={4}
                   required
                   placeholder="Describe the feature or workflow you wish existed..."
-                  className="w-full resize-none rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder-white/35 transition-colors focus:border-[#F79625] focus:outline-none"
+                  className="w-full resize-none rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder-white/35 transition-colors focus:border-brand-orange focus:outline-none"
                 />
               </div>
               <button
                 type="submit"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#F79625] px-7 py-3.5 text-sm font-bold text-white transition-all duration-150 hover:bg-[#e07a10]"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-orange px-7 py-3.5 text-sm font-bold text-white transition-all duration-150 hover:bg-brand-orange-soft"
               >
                 Send feature request
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />

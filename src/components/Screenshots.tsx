@@ -79,7 +79,7 @@ export default function Screenshots() {
                 onClick={() => setActiveTab(t.id)}
                 className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold whitespace-nowrap transition-all duration-150 border-b-2 flex-shrink-0 ${
                   activeTab === t.id
-                    ? "bg-white text-[#172B4D] border-[#F79625]"
+                    ? "bg-white text-[#172B4D] border-brand-orange"
                     : "text-white/50 border-transparent hover:text-white/80 hover:bg-white/5"
                 }`}
               >
@@ -137,7 +137,7 @@ export default function Screenshots() {
                   <p className="text-[#172B4D] font-bold text-base mb-1.5">{tab.label}  -  video coming soon</p>
                   <p className="text-[#97A0AF] text-sm">
                     We're recording walkthroughs for each module.<br />
-                    <span className="text-[#F79625] font-semibold">Request early access</span> for a live demo instead.
+                    <span className="text-brand-orange font-semibold">Request early access</span> for a live demo instead.
                   </p>
                 </div>
               </div>

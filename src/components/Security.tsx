@@ -141,7 +141,7 @@ export default function Security() {
       </section>
 
       {/* Architecture diagram  -  text-based */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#0D1117]">
+      <section className="bg-brand-navy px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-[#B8C9DC] text-xs font-bold uppercase tracking-[0.15em] mb-3">Infrastructure</p>
@@ -175,7 +175,7 @@ export default function Security() {
                 className="bg-[#161B22] border border-white/5 rounded-xl p-6"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-[#F79625] font-black text-xs">{step.step}</span>
+                  <span className="text-brand-orange font-black text-xs">{step.step}</span>
                   <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
                     <step.icon size={15} className="text-white/60" />
                   </div>
@@ -198,7 +198,7 @@ export default function Security() {
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#172B4D] hover:bg-[#0e1e38] text-white font-bold text-sm transition-all duration-150 group rounded-md"
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm transition-all duration-150 group rounded-md"
           >
             Talk to our team
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />

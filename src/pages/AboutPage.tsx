@@ -62,7 +62,7 @@ export default function AboutPage() {
 
               <motion.div
                 {...scrollMotionProps(isMobile, { x: 20, duration: 0.5 })}
-                className="bg-[#0D1117] rounded-2xl p-8 text-white"
+                className="rounded-2xl bg-[#172B4D] p-8 text-white"
               >
                 <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-4">Founding team note</p>
                 <p className="text-white/80 text-base leading-relaxed">
@@ -98,7 +98,7 @@ export default function AboutPage() {
         </section>
 
         {/* Hiring */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#0D1117]">
+        <section className="bg-brand-navy px-4 py-16 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-4">We're hiring</p>
             <h2 className="text-3xl font-extrabold text-white mb-4">
@@ -109,7 +109,7 @@ export default function AboutPage() {
             </p>
             <a
               href="mailto:careers@zedops.com"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#F79625] hover:bg-[#e07a10] text-white font-bold text-sm rounded-md transition-all duration-150 group"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all duration-150 group"
             >
               careers@zedops.com
               <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
