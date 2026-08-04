@@ -3,7 +3,7 @@ import { ClipboardList, Eye, Split, TrendingDown, ListTodo } from "lucide-react"
 import { useScrollSectionMotion, useVariantScrollReveal } from "@/hooks/useScrollSectionMotion";
 
 const PRIMARY = "#172B4D";
-const ORANGE = "#F79625";
+const ORANGE = "#FE5D02";
 
 const problems = [
   {
@@ -126,7 +126,7 @@ export default function Problems() {
                 </div>
 
                 {/* Hover accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#F79625] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-b-md" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-orange scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-b-md" />
               </motion.div>
             );
           })}
@@ -165,7 +165,7 @@ export default function Problems() {
                 </div>
 
                 {/* Hover accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#F79625] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-b-md" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-orange scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-b-md" />
               </motion.div>
             );
           })}
@@ -178,7 +178,7 @@ export default function Problems() {
           </p>
           <a
             href="#capabilities"
-            className="inline-flex items-center gap-2 bg-[#F79625] hover:bg-[#e07a10] text-white text-sm font-bold px-6 py-3 rounded-md transition-colors whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-soft text-white text-sm font-bold px-6 py-3 rounded-md transition-colors whitespace-nowrap shrink-0"
           >
             See how we fix it →
           </a>

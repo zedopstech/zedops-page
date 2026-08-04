@@ -1,10 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
+@config "../tailwind.config.ts";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Brand palette */
+  --color-brand-orange: #FE5D02;
+  --color-brand-orange-soft: #F15F22;
+  --color-brand-navy: #041129;
+  --color-brand-navy-soft: #0C162A;
+  --color-button: #FE5D02;
+  --color-button-hover: #F15F22;
+
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-border: hsl(var(--border));
@@ -96,14 +105,14 @@
   --secondary-foreground: 210 40% 90%;
   --muted: 220 25% 13%;
   --muted-foreground: 215 16% 55%;
-  --accent: 32 93% 56%;
+  --accent: 22 99% 50%;
   --accent-foreground: 220 30% 8%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --input: 217 19% 22%;
   --ring: 218 100% 37%;
   --chart-1: 218 100% 37%;
-  --chart-2: 32 93% 56%;
+  --chart-2: 22 99% 50%;
   --chart-3: 145 60% 45%;
   --chart-4: 280 65% 60%;
   --chart-5: 200 80% 55%;
@@ -152,14 +161,14 @@
   --secondary-foreground: 210 40% 90%;
   --muted: 220 25% 13%;
   --muted-foreground: 215 16% 55%;
-  --accent: 32 93% 56%;
+  --accent: 22 99% 50%;
   --accent-foreground: 220 30% 8%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --input: 217 19% 22%;
   --ring: 218 100% 37%;
   --chart-1: 218 100% 37%;
-  --chart-2: 32 93% 56%;
+  --chart-2: 22 99% 50%;
   --chart-3: 145 60% 45%;
   --chart-4: 280 65% 60%;
   --chart-5: 200 80% 55%;
@@ -202,7 +211,7 @@
   }
 
   .gradient-text-orange {
-    background: linear-gradient(135deg, #F79625 0%, #f5d020 100%);
+    background: linear-gradient(135deg, #FE5D02 0%, #f5d020 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -229,7 +238,7 @@
   }
 
   .section-glow-orange {
-    background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(247, 150, 37, 0.08) 0%, transparent 70%);
+    background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(254, 93, 2, 0.08) 0%, transparent 70%);
   }
 
   .noise-bg {
@@ -247,7 +256,7 @@
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, rgba(1, 47, 176, 0.4), rgba(247, 150, 37, 0.2), rgba(1, 47, 176, 0.1));
+    background: linear-gradient(135deg, rgba(1, 47, 176, 0.4), rgba(254, 93, 2, 0.2), rgba(1, 47, 176, 0.1));
     z-index: -1;
   }
 
@@ -370,7 +379,7 @@ body {
 
 /* Animated gradient border wrapper */
 .animated-gradient-border {
-  background: linear-gradient(270deg, #F79625, #3B82F6, #172B4D, #F79625);
+  background: linear-gradient(270deg, #FE5D02, #3B82F6, #172B4D, #FE5D02);
   background-size: 300% 300%;
   animation: gradient-border-flow 4s ease infinite;
   padding: 1px;
@@ -411,7 +420,7 @@ body {
   width: 100%;
   padding: 2px;
   border-radius: 10px;
-  background: linear-gradient(125deg, #38bdf8, #3b82f6, #172b4d, #f79625, #60a5fa, #38bdf8);
+  background: linear-gradient(125deg, #38bdf8, #3b82f6, #172b4d, #fe5d02, #60a5fa, #38bdf8);
   background-size: 300% 300%;
   animation: gradient-border-flow 7s ease infinite;
 }
@@ -485,7 +494,7 @@ body {
   height: 160%;
   left: -30%;
   top: -30%;
-  background: linear-gradient(270deg, #f79625, #3b82f6, #172b4d, #6366f1, #f79625);
+  background: linear-gradient(270deg, #fe5d02, #3b82f6, #172b4d, #6366f1, #fe5d02);
   background-size: 300% 300%;
   animation: gradient-border-flow 10s ease infinite;
   opacity: 0.42;
@@ -499,7 +508,7 @@ body {
   height: 120%;
   left: -10%;
   top: -10%;
-  background: linear-gradient(125deg, rgba(247, 150, 37, 0.35), rgba(59, 130, 246, 0.22), rgba(23, 43, 77, 0.5), rgba(247, 150, 37, 0.28));
+  background: linear-gradient(125deg, rgba(254, 93, 2, 0.35), rgba(59, 130, 246, 0.22), rgba(23, 43, 77, 0.5), rgba(254, 93, 2, 0.28));
   background-size: 200% 200%;
   animation: intelligence-aurora-drift 18s ease-in-out infinite;
   filter: blur(56px);

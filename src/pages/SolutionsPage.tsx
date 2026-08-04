@@ -21,7 +21,7 @@ const modules = [
       "Actions where configured",
     ],
     tiers: [
-      { label: "Essentials", plan: "Starter", color: "bg-gray-100 text-gray-600" },
+      { label: "Essentials", plan: "Starter", color: "bg-[#F0F4FF] text-[#6B778C]" },
       { label: "Full access", plan: "Professional", color: "bg-[#EBF0FF] text-[#172B4D]" },
       { label: "Full + BYOK", plan: "Enterprise", color: "bg-[#172B4D] text-white" },
     ],
@@ -57,7 +57,7 @@ const modules = [
       "BIM 3D viewer with drawing overlay (Professional+)",
     ],
     tiers: [
-      { label: "View only", plan: "Starter", color: "bg-gray-100 text-gray-600" },
+      { label: "View only", plan: "Starter", color: "bg-[#F0F4FF] text-[#6B778C]" },
       { label: "Full annotation", plan: "Professional", color: "bg-[#EBF0FF] text-[#172B4D]" },
       { label: "BIM + custom", plan: "Enterprise", color: "bg-[#172B4D] text-white" },
     ],
@@ -76,12 +76,12 @@ const modules = [
       "Export to PDF, CSV, and shareable live links",
     ],
     tiers: [
-      { label: "Basic dashboard", plan: "Starter", color: "bg-gray-100 text-gray-600" },
+      { label: "Basic dashboard", plan: "Starter", color: "bg-[#F0F4FF] text-[#6B778C]" },
       { label: "Full intelligence", plan: "Professional", color: "bg-[#EBF0FF] text-[#172B4D]" },
       { label: "Portfolio + custom", plan: "Enterprise", color: "bg-[#172B4D] text-white" },
     ],
     image: "left",
-    accent: "#F79625",
+    accent: "#FE5D02",
   },
 ];
 
@@ -106,7 +106,7 @@ export default function SolutionsPage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <a
               href="/platform"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#172B4D] hover:bg-[#0e1e38] text-white font-bold text-sm rounded-md transition-all duration-150 group"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all duration-150 group"
             >
               Full feature list
               <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
@@ -157,7 +157,7 @@ export default function SolutionsPage() {
                     <ul className="flex flex-col gap-2.5 mb-7">
                       {mod.features.map((feat) => (
                         <li key={feat} className="flex items-start gap-2.5 text-sm text-[#172B4D]">
-                          <Check size={14} className="text-[#F79625] mt-0.5 shrink-0" strokeWidth={3} />
+                          <Check size={14} className="text-brand-orange mt-0.5 shrink-0" strokeWidth={3} />
                           {feat}
                         </li>
                       ))}

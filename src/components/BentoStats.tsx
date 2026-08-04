@@ -30,7 +30,7 @@ function AnimatedStat({ target, suffix, duration = 1.6, className = "", inView }
   const count = useCountUp(target, duration, inView);
   return (
     <p className={className}>
-      {count}<span className="text-[#F79625]">{suffix}</span>
+      {count}<span className="text-brand-orange">{suffix}</span>
     </p>
   );
 }
@@ -41,7 +41,7 @@ export default function BentoStats() {
   const inView = useInView(ref, { once: true, ...(isMobile ? { margin: "0px" as const } : { margin: "-80px" as const }) });
 
   return (
-    <section className="bg-[#0D1117] border-t border-white/5">
+    <section className="border-t border-white/5 bg-brand-navy">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div
           ref={ref}
@@ -59,7 +59,7 @@ export default function BentoStats() {
               backgroundImage: "repeating-linear-gradient(45deg, white 0px, white 1px, transparent 1px, transparent 20px)",
             }} />
             <div className="relative z-10">
-              <img src="/logo.png" alt="ZedOps" className="w-10 h-10 mb-4 object-cover" style={{ borderRadius: 6 }} />
+              <img src="/ICON.jpg" alt="ZedOps" className="w-10 h-10 mb-4 object-cover" style={{ borderRadius: 6 }} />
               <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-1">Early Access</p>
               <p className="text-white font-extrabold text-xl leading-snug">MEP &amp;<br />field<br />execution</p>
             </div>
@@ -119,7 +119,7 @@ export default function BentoStats() {
               <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-4">Hours saved · per PM · per week</p>
               <div className="flex items-end gap-1.5">
                 <AnimatedStat target={52} suffix="" duration={1.5} inView={inView} className="text-white font-black text-4xl leading-none sm:text-5xl" />
-                <span className="text-[#F79625] text-2xl font-black mb-0.5 sm:text-3xl">hrs</span>
+                <span className="text-brand-orange text-2xl font-black mb-0.5 sm:text-3xl">hrs</span>
               </div>
               <p className="text-white/50 text-xs mt-2 leading-relaxed">Reclaimed from chasing status, re-keying, and rework coordination</p>
             </div>
@@ -127,7 +127,7 @@ export default function BentoStats() {
               <p className="text-white/30 text-[9px] font-bold uppercase tracking-widest mb-2">Before vs. After ZedOps</p>
               <div className="space-y-1.5">
                 {[
-                  { label: "Reporting", before: 80, after: 10, color: "#F79625" },
+                  { label: "Reporting", before: 80, after: 10, color: "#FE5D02" },
                   { label: "Data entry", before: 65, after: 8, color: "#172B4D" },
                   { label: "Status calls", before: 55, after: 15, color: "#4B5563" },
                 ].map(({ label, before, after, color }) => (
@@ -148,7 +148,7 @@ export default function BentoStats() {
               </div>
               <div className="flex items-center gap-3 mt-2">
                 <div className="flex items-center gap-1"><div className="w-2 h-2 bg-white/15" /><span className="text-white/30 text-[8px]">Before</span></div>
-                <div className="flex items-center gap-1"><div className="w-2 h-2 bg-[#F79625]" /><span className="text-white/30 text-[8px]">After</span></div>
+                <div className="flex items-center gap-1"><div className="w-2 h-2 bg-brand-orange" /><span className="text-white/30 text-[8px]">After</span></div>
               </div>
             </div>
           </motion.div>
@@ -164,7 +164,7 @@ export default function BentoStats() {
             <div className="min-w-0">
               <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-4">Projected ROI impact*</p>
               <p className="text-white font-black text-4xl leading-none sm:text-5xl">
-                $2.4<span className="text-[#F79625] text-2xl sm:text-3xl">M</span>
+                $2.4<span className="text-brand-orange text-2xl sm:text-3xl">M</span>
               </p>
               <p className="text-white/50 text-xs mt-2 leading-relaxed">Projected savings per large commercial project</p>
             </div>
@@ -176,7 +176,7 @@ export default function BentoStats() {
               ].map(({ label, val }) => (
                 <div key={label} className="flex min-w-0 items-center justify-between gap-2 border-t border-white/5 pt-2">
                   <span className="text-white/40 text-xs break-words">{label}</span>
-                  <span className="text-[#F79625] font-bold text-xs shrink-0">{val}</span>
+                  <span className="text-brand-orange font-bold text-xs shrink-0">{val}</span>
                 </div>
               ))}
             </div>
@@ -187,7 +187,7 @@ export default function BentoStats() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.26 }}
-            className="min-w-0 bg-[#F79625] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden sm:col-span-2 lg:col-span-1"
+            className="min-w-0 bg-brand-orange p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden sm:col-span-2 lg:col-span-1"
             style={{ borderRadius: 6 }}
           >
             <div className="absolute -right-6 -bottom-6 w-28 h-28 bg-white/10 rounded-full" />

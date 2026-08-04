@@ -17,7 +17,7 @@ const proseArticle =
     "prose-strong:font-bold prose-strong:text-[#172B4D]",
     "prose-ul:my-5 prose-ol:my-5 prose-ul:pl-1 prose-ol:pl-1",
     "prose-li:my-2 prose-li:leading-[1.65] prose-li:pl-1 prose-li:text-sm",
-    "prose-blockquote:my-6 prose-blockquote:border-l-4 prose-blockquote:border-[#F79625] prose-blockquote:bg-[#FFF9F3]/80 prose-blockquote:py-3 prose-blockquote:pl-4 prose-blockquote:pr-3 prose-blockquote:not-italic prose-blockquote:text-sm prose-blockquote:text-[#42526E] sm:prose-blockquote:pl-5",
+    "prose-blockquote:my-6 prose-blockquote:border-l-4 prose-blockquote:border-brand-orange prose-blockquote:bg-[#F8FAFC] prose-blockquote:py-3 prose-blockquote:pl-4 prose-blockquote:pr-3 prose-blockquote:not-italic prose-blockquote:text-sm prose-blockquote:text-[#42526E] sm:prose-blockquote:pl-5",
     "prose-hr:my-10 prose-hr:border-gray-200",
     "prose-code:rounded-md prose-code:bg-[#F4F5F7] prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:text-[0.8125rem] prose-code:text-[#172B4D] prose-code:break-words before:prose-code:content-none after:prose-code:content-none",
     "prose-pre:my-6 prose-pre:max-w-full prose-pre:overflow-x-auto prose-pre:rounded-lg prose-pre:bg-[#172B4D] prose-pre:px-3 prose-pre:py-3 prose-pre:text-[0.75rem] prose-pre:leading-relaxed prose-pre:text-[#F4F5F7] sm:prose-pre:px-4 sm:prose-pre:text-[0.8125rem]",

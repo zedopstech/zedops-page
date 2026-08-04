@@ -26,6 +26,12 @@ const aiCap = {
   statLabel: "faster follow-through on open items",
 };
 
+const aiRibbonChips = [
+  "Permission-aware",
+  "Action-ready",
+  "Across every module",
+] as const;
+
 const CHAT_MSGS = [
   { id: 0, role: "user", text: "Where do we stand on Harbor Bridge  -  budget and schedule?" },
   {
@@ -51,7 +57,7 @@ function TypingDots() {
     return (
       <div className="flex items-center gap-1 px-3 py-2.5" style={{ borderRadius: 6 }}>
         {[0, 1, 2].map((i) => (
-          <span key={i} className="block h-1.5 w-1.5 rounded-full bg-blue-400/60" />
+          <span key={i} className="block h-1.5 w-1.5 rounded-full bg-[#0052CC]/50" />
         ))}
       </div>
     );
@@ -61,7 +67,7 @@ function TypingDots() {
       {[0, 1, 2].map((i) => (
         <motion.span
           key={i}
-          className="block w-1.5 h-1.5 rounded-full bg-blue-400/60"
+          className="block w-1.5 h-1.5 rounded-full bg-[#0052CC]/50"
           animate={{ y: [0, -5, 0] }}
           transition={{ duration: 0.55, delay: i * 0.15, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -131,8 +137,8 @@ function ZedAIChat({ active }: { active: boolean }) {
             className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
           >
             {msg.role === "ai" && (
-              <div className="w-5 h-5 rounded-full bg-[#F79625]/20 flex items-center justify-center mr-1.5 flex-shrink-0 mt-0.5">
-                <Sparkles size={9} className="text-[#F79625]" />
+              <div className="w-5 h-5 rounded-full bg-brand-orange/20 flex items-center justify-center mr-1.5 flex-shrink-0 mt-0.5">
+                <Sparkles size={9} className="text-brand-orange" />
               </div>
             )}
             <div
@@ -156,8 +162,8 @@ function ZedAIChat({ active }: { active: boolean }) {
             transition={{ duration: 0.2 }}
             className="flex justify-start items-center"
           >
-            <div className="w-5 h-5 rounded-full bg-[#F79625]/20 flex items-center justify-center mr-1.5 flex-shrink-0">
-              <Sparkles size={9} className="text-[#F79625]" />
+            <div className="w-5 h-5 rounded-full bg-brand-orange/20 flex items-center justify-center mr-1.5 flex-shrink-0">
+              <Sparkles size={9} className="text-brand-orange" />
             </div>
             <div className="bg-[#1A3352] border border-blue-800/30" style={{ borderRadius: 8, borderBottomLeftRadius: 2 }}>
               <TypingDots />
@@ -189,20 +195,6 @@ const corePlatformModules = [
     statLabel: "capabilities in Planning",
   },
   {
-    moduleId: "information-management",
-    icon: FolderOpen,
-    title: "Information management",
-    description:
-      "Daily logs and documents stay on the job. Open the log from anywhere, pick the project once, and feed what happened on site into tasks and follow-ups; the paper trail stays tied to execution.",
-    features: [
-      "Folders and files organised per project  -  your controlled repository.",
-      "Top-bar access to the daily log with a project picker when none is active.",
-      "Structured work logs that connect to reporting and AI context.",
-    ],
-    stat: "2",
-    statLabel: "capabilities in IM",
-  },
-  {
     moduleId: "quality-safety-closeout",
     icon: ShieldCheck,
     title: "Quality, safety, and closeout",
@@ -229,6 +221,20 @@ const corePlatformModules = [
     ],
     stat: "7",
     statLabel: "capabilities in Projects",
+  },
+  {
+    moduleId: "information-management",
+    icon: FolderOpen,
+    title: "Information management",
+    description:
+      "Daily logs and documents stay on the job. Open the log from anywhere, pick the project once, and feed what happened on site into tasks and follow-ups; the paper trail stays tied to execution.",
+    features: [
+      "Folders and files organised per project  -  your controlled repository.",
+      "Top-bar access to the daily log with a project picker when none is active.",
+      "Structured work logs that connect to reporting and AI context.",
+    ],
+    stat: "2",
+    statLabel: "capabilities in IM",
   },
   {
     moduleId: "core",
@@ -281,117 +287,129 @@ export default function Capabilities() {
           <p className="text-[#42526E] text-base sm:text-lg leading-relaxed">
             Planning through supply, built for action, not just dashboards.{" "}
             <span className="font-semibold text-[#172B4D]">Zed AI</span> uses the same permissioned data.{" "}
-            <a href="/platform" className="font-semibold text-[#0052CC] hover:text-[#0747A6]">
+            <a href="/platform" className="font-semibold text-brand-navy hover:text-brand-orange">
               Full platform
             </a>{" "}
             for reporting, access, and settings.
           </p>
         </motion.div>
 
-        {/* AI Copilot  -  wide hero card */}
+        {/* AI ribbon - compact layer across the platform map */}
         <motion.div
           {...scrollMotionProps(isMobile, { y: 24, duration: 0.5, delay: 0.1 })}
           ref={aiCardRef}
-          className="mb-px flex flex-col overflow-hidden rounded-t-md bg-[#172B4D] min-w-0 lg:flex-row"
+          className="mb-10 overflow-hidden rounded-2xl border border-[#172B4D]/10 bg-linear-to-r from-[#0C162A] via-[#13213A] to-[#172B4D] shadow-[0_24px_64px_-36px_rgba(23,43,77,0.35)]"
         >
-          {/* Left text */}
-          <div className="min-w-0 flex-1 p-8 lg:p-12">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-[#F79625] flex items-center justify-center flex-shrink-0" style={{ borderRadius: 6 }}>
-                <Sparkles size={18} className="text-white" />
-              </div>
-              <div>
-                <span className="text-[9px] font-bold bg-white/10 text-white/70 px-2 py-0.5 uppercase tracking-widest mr-2">New</span>
-                <span className="text-white/50 text-xs font-semibold uppercase tracking-widest">Zed AI</span>
-              </div>
-            </div>
-            <h3 className="text-2xl lg:text-3xl font-extrabold text-white leading-snug mb-4">
-              Zed AI: copilot on<br />tasks, logs &amp; cost
-            </h3>
-            <p className="text-white/55 text-sm leading-relaxed mb-7 max-w-md">
-              {aiCap.description}
-            </p>
-            <ul className="space-y-2.5">
-              {aiCap.features.map((f) => (
-                <li key={f} className="flex items-start gap-2.5 text-sm text-white/75">
-                  <CheckCircle2 size={14} className="text-[#F79625] mt-0.5 flex-shrink-0" />
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 flex items-center gap-3">
-              <a
-                href="/zed-ai"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#F79625] hover:bg-[#e5870f] text-white text-sm font-bold transition-colors"
-                style={{ borderRadius: 6 }}
-              >
-                Learn more →
-              </a>
-              
-            </div>
-          </div>
-
-          {/* Right  -  animated AI chat */}
-          <div className="flex w-full min-w-0 flex-col justify-between border-t border-white/5 bg-[#0E1E38] p-6 lg:w-[420px] lg:max-w-full lg:shrink-0 lg:border-l lg:border-t-0 lg:border-white/5 lg:p-8">
-            {/* Header */}
-            <div className="flex items-center gap-2 mb-5">
-              <div className="w-2 h-2 rounded-full bg-[#F79625] animate-pulse" />
-              <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Live · Zed AI Copilot</span>
-            </div>
-
-            {/* Animated chat  -  triggers only when section is in view */}
-            <div className="flex-1">
-              <ZedAIChat active={aiCardInView} />
-            </div>
-
-            {/* Input bar */}
-            <div className="mt-5 pt-4 border-t border-white/5">
-              <div className="flex items-center gap-2 bg-[#172B4D]/60 border border-white/8 px-3 py-2" style={{ borderRadius: 8 }}>
-                <span className="text-white/25 text-[11px] flex-1">Insights, report prep, or next action…</span>
-                <div className="w-6 h-6 bg-[#F79625] flex items-center justify-center flex-shrink-0" style={{ borderRadius: 4 }}>
-                  <Sparkles size={11} className="text-white" />
+          <div className="grid min-w-0 gap-0 lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="min-w-0 p-6 sm:p-7 lg:p-8">
+              <div className="mb-4 flex flex-wrap items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center bg-brand-orange shrink-0" style={{ borderRadius: 8 }}>
+                  <Sparkles size={18} className="text-white" />
+                </div>
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full bg-white/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white/75">Zed AI</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-orange">Across the platform</span>
+                  </div>
                 </div>
               </div>
-              {/* Stat */}
-              <div className="mt-4 flex items-end gap-2">
-                <span className="text-4xl font-black text-[#F79625] leading-none">{aiCap.stat}</span>
-                <span className="text-white/35 text-xs pb-1">{aiCap.statLabel}</span>
+
+              <div className="min-w-0 max-w-2xl">
+                <h3 className="text-xl flex-shrink-0 font-extrabold leading-tight text-white sm:text-2xl">
+                  One AI layer across tasks, logs, reporting, cost, and follow-through.
+                </h3>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/68">
+                  {aiCap.description}
+                </p>
+              </div>
+
+              <div className="mt-5 flex flex-wrap items-center gap-2.5">
+                {aiRibbonChips.map((chip) => (
+                  <span
+                    key={chip}
+                    className="inline-flex items-center rounded-full border border-white/10 bg-white/7 px-3 py-1.5 text-[11px] font-semibold text-white/78"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <a
+                  href="/zed-ai"
+                  className="inline-flex items-center gap-2 bg-brand-orange px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
+                  style={{ borderRadius: 6 }}
+                >
+                  Learn more
+                  <span aria-hidden>→</span>
+                </a>
+                <a
+                  href="/platform"
+                  className="text-sm font-semibold text-white/72 transition-colors hover:text-white"
+                >
+                  Explore full platform
+                </a>
+                <div className="ml-auto flex items-end gap-2">
+                  <span className="text-4xl font-black leading-none text-brand-orange">{aiCap.stat}</span>
+                  <span className="pb-1 text-xs text-white/45">{aiCap.statLabel}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-white/6 bg-[#0B1528]/78 p-5 lg:border-l lg:border-t-0 lg:p-6">
+              <div className="mb-4 flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-brand-orange animate-pulse" />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">Live · Zed AI Copilot</span>
+              </div>
+              <div className="min-h-[188px]">
+                <ZedAIChat active={aiCardInView} />
+              </div>
+              <div className="mt-4 border-t border-white/6 pt-4">
+                <div className="flex items-center gap-2 border border-white/8 bg-white/4 px-3 py-2" style={{ borderRadius: 8 }}>
+                  <span className="flex-1 text-[11px] text-white/25">Insights, report prep, or next action…</span>
+                  <div className="flex h-6 w-6 items-center justify-center bg-brand-orange shrink-0" style={{ borderRadius: 4 }}>
+                    <Sparkles size={11} className="text-white" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Platform modules  -  six flagship areas, same ids as /platform/module/:id */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200 border border-gray-200 overflow-hidden rounded-b-md">
+        {/* Platform modules - platform map first, AI as the layer above */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {corePlatformModules.map((cap, i) => (
             <motion.article
               key={cap.moduleId}
               {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: Math.min(i * 0.05, 0.25) })}
-              className="bg-white p-7 flex h-full flex-col group hover:bg-[#FAFBFC] transition-colors duration-150"
+              className="group flex h-full flex-col rounded-2xl border border-gray-200/90 bg-white p-7 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C7D5F5] hover:bg-[#FAFBFC] hover:shadow-[0_18px_38px_-24px_rgba(23,43,77,0.18)]"
             >
-              <div className="flex items-start justify-between mb-5">
-                <div className="w-11 h-11 flex items-center justify-center flex-shrink-0" style={{ background: "#172B4D15", borderRadius: 6 }}>
+              <div className="mb-5 flex items-start justify-between gap-3">
+                <div className="flex h-11 w-11 items-center justify-center shrink-0 rounded-lg bg-[#172B4D]/8">
                   <cap.icon size={20} style={{ color: "#172B4D" }} aria-hidden />
                 </div>
+                <span className="rounded-full bg-[#F8FAFC] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#97A0AF]">
+                  {cap.statLabel}
+                </span>
               </div>
               <h3 className="text-base font-extrabold text-[#172B4D] mb-2 leading-tight">{cap.title}</h3>
               <p className="text-[#42526E] text-sm leading-relaxed mb-5 flex-1">{cap.description}</p>
-              <ul className="space-y-1.5 mb-5">
+              <ul className="space-y-2 mb-5">
                 {cap.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-xs text-[#42526E]">
-                    <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-[#172B4D] mt-1.5" />
+                    <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-orange" />
                     <span className="leading-snug">{f}</span>
                   </li>
                 ))}
               </ul>
-              <div className="border-t border-gray-100 pt-4 mt-auto flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div className="mt-auto flex flex-col gap-3 border-t border-gray-100 pt-4 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <div className="text-2xl font-black text-[#172B4D] leading-none">{cap.stat}</div>
-                  <div className="text-xs text-[#97A0AF] mt-0.5">{cap.statLabel}</div>
+                  <div className="text-2xl font-black leading-none text-[#172B4D]">{cap.stat}</div>
+                  <div className="mt-0.5 text-xs text-[#97A0AF]">flagship areas</div>
                 </div>
                 <a
                   href={`/platform/module/${cap.moduleId}`}
-                  className="text-xs font-bold text-[#0052CC] inline-flex items-center gap-1 transition-colors hover:text-[#0747A6]"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-brand-orange transition-colors hover:text-brand-navy/90"
                 >
                   View module
                   <span aria-hidden>→</span>
@@ -400,6 +418,22 @@ export default function Capabilities() {
             </motion.article>
           ))}
         </div>
+
+        <motion.div
+          {...scrollMotionProps(isMobile, { y: 16, duration: 0.38, delay: 0.12 })}
+          className="mt-8 flex flex-col items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-[#F8FAFC] px-5 py-4 text-center sm:flex-row sm:text-left"
+        >
+          <p className="text-sm text-[#42526E]">
+            Access, reporting, and settings are part of the same platform map, with role-aware navigation and exports.
+          </p>
+          <a
+            href="/platform"
+            className="inline-flex items-center gap-2 text-sm font-bold text-brand-orange transition-colors hover:text-brand-navy"
+          >
+            Explore full platform
+            <span aria-hidden>→</span>
+          </a>
+        </motion.div>
       </div>
     </section>
   );

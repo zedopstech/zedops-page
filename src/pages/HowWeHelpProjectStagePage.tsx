@@ -58,7 +58,7 @@ export default function HowWeHelpProjectStagePage() {
           </nav>
           <a
             href="/platform"
-            className="rounded-md bg-[#172B4D] px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-[#0e1e38]"
+            className="rounded-md bg-brand-orange px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-brand-orange-soft"
           >
             All modules
           </a>

@@ -224,25 +224,25 @@ export default function Navbar() {
           <>
             <span className="text-white/80 text-[11px] sm:text-xs text-center max-w-[min(100%,44rem)] leading-snug">
               MEP execution: schedule, logs, QA, cost &amp; supply, tied to real work.{" "}
-              <a href="/zed-ai" className="font-semibold text-[#F79625] hover:text-white underline-offset-2 hover:underline">
+              <a href="/zed-ai" className="font-semibold text-brand-orange hover:text-white underline-offset-2 hover:underline">
                 Zed AI
               </a>{" "}
               uses the same job data.
             </span>
             <a
               href="/early-access"
-              className="text-xs font-bold text-[#F79625] hover:text-white transition-colors shrink-0 underline-offset-2 hover:underline"
+              className="text-xs font-bold text-brand-orange hover:text-white transition-colors shrink-0 underline-offset-2 hover:underline"
             >
               Get access
             </a>
           </>
         ) : (
           <>
-            <Lightbulb size={12} className="text-[#F79625] shrink-0" />
+            <Lightbulb size={12} className="text-brand-orange shrink-0" />
             <span className="text-white/70 text-xs hidden sm:inline">Help shape ZedOps  - </span>
             <a
               href="/roadmap"
-              className="text-xs font-bold text-[#F79625] hover:text-white transition-colors underline-offset-2 hover:underline"
+              className="text-xs font-bold text-brand-orange hover:text-white transition-colors underline-offset-2 hover:underline"
             >
               Tell us what to build next
             </a>
@@ -260,8 +260,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-[60px]">
           <div className="flex items-center gap-8">
             <a href="/" className="flex items-center gap-2.5 shrink-0">
-              <img src="/logo.png" alt="ZedOps" className="w-8 h-8 rounded-md object-cover" />
-              <span className="text-[#172B4D] font-extrabold text-lg tracking-tight">ZedOps</span>
+              <img src="/ICON.jpg" alt="ZedOps" className="w-8 h-8 rounded-md object-cover" />
+              <span className="font-extrabold text-lg tracking-tight text-brand-navy">Zed<span className="text-brand-orange">Ops</span></span>
             </a>
 
             <div className="hidden lg:flex items-center gap-0.5">
@@ -295,7 +295,7 @@ export default function Navbar() {
             <a href="#" className="text-sm text-[#42526E] hover:text-[#172B4D] font-semibold px-3 py-2 transition-colors">
               Log in
             </a>
-            <a href="/early-access" className="text-sm font-bold text-white bg-[#F79625] hover:bg-[#e07a10] transition-all duration-150 px-5 py-2.5" style={{ borderRadius: 6 }}>
+            <a href="/early-access" className="text-sm font-bold text-white bg-brand-orange hover:bg-brand-orange-soft transition-all duration-150 px-5 py-2.5" style={{ borderRadius: 6 }}>
               Request a demo
             </a>
           </div>
@@ -646,7 +646,7 @@ export default function Navbar() {
               ))}
               <div className="pt-3 border-t border-gray-100 mt-1 flex flex-col gap-2">
                 <a href="#" className="block w-full text-center text-sm font-bold text-[#172B4D] border border-[#172B4D] py-2.5 rounded-md">Log in</a>
-                <a href="/early-access" className="block w-full text-center text-sm font-bold text-white bg-[#F79625] hover:bg-[#e07a10] transition-all duration-150 py-3 rounded-md">
+                <a href="/early-access" className="block w-full text-center text-sm font-bold text-white bg-brand-orange hover:bg-brand-orange-soft transition-all duration-150 py-3 rounded-md">
                   Request a demo
                 </a>
               </div>

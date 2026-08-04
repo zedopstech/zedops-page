@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
-const ORANGE = "#F79625";
+const ORANGE = "#FE5D02";
 const NAVY = "#172B4D";
 
 type Logo = { name: string; color: string; abbr: string; icon?: string };
@@ -280,7 +280,7 @@ function HubIllustration({ inView }: { inView: boolean }) {
         </clipPath>
       </defs>
       <motion.image
-        href="/logo.png"
+        href="/ICON.jpg"
         x={CX - 44} y={CY - 44}
         width={88} height={88}
         clipPath="url(#hub-clip)"
@@ -359,7 +359,7 @@ function CategoryCard({ category, index }: { category: typeof categories[0]; ind
     >
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-sm font-extrabold text-[#172B4D]">{category.label}</h3>
-        <ArrowRight size={13} className="text-gray-200 group-hover:text-[#F79625] group-hover:translate-x-0.5 transition-all duration-200" />
+        <ArrowRight size={13} className="text-gray-200 group-hover:text-brand-orange group-hover:translate-x-0.5 transition-all duration-200" />
           </div>
       <p className="text-xs text-[#6B778C] leading-snug mb-4">{category.description}</p>
       <div className="flex items-center gap-3">

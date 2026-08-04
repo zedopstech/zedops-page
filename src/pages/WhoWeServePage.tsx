@@ -69,7 +69,7 @@ export default function WhoWeServePage() {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#172B4D]">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-start gap-4 mb-8">
-              <MessageSquare size={20} className="text-[#F79625] shrink-0 mt-1" />
+              <MessageSquare size={20} className="text-brand-orange shrink-0 mt-1" />
               <p className="text-white/70 text-xs font-bold uppercase tracking-widest">Before we built anything</p>
             </div>
             <p className="text-white text-xl lg:text-2xl font-semibold leading-relaxed mb-6">
@@ -86,7 +86,7 @@ export default function WhoWeServePage() {
                 { label: "Platform to solve them", value: "ZedOps" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-3xl font-extrabold text-[#F79625] mb-1">{stat.value}</div>
+                  <div className="text-3xl font-extrabold text-brand-orange mb-1">{stat.value}</div>
                   <div className="text-white/50 text-xs font-medium leading-tight">{stat.label}</div>
                 </div>
               ))}

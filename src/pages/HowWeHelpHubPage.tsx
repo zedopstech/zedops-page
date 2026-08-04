@@ -32,7 +32,7 @@ export default function HowWeHelpHubPage() {
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
           <a
             href="/platform"
-            className="inline-flex items-center gap-2 rounded-md bg-[#172B4D] px-6 py-3 text-sm font-bold text-white shadow-[0_8px_24px_-8px_rgba(23,43,77,0.45)] transition-colors hover:bg-[#0e1e38]"
+            className="inline-flex items-center gap-2 rounded-md bg-brand-orange px-6 py-3 text-sm font-bold text-white shadow-[0_8px_24px_-8px_rgba(254,93,2,0.35)] transition-colors hover:bg-brand-orange-soft"
           >
             Full module list
             <ArrowRight className="h-4 w-4" aria-hidden />
@@ -53,7 +53,7 @@ export default function HowWeHelpHubPage() {
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -left-32 bottom-0 h-[320px] w-[320px] rounded-full bg-[#F79625]/10 blur-3xl"
+          className="pointer-events-none absolute -left-32 bottom-0 h-[320px] w-[320px] rounded-full bg-brand-orange/10 blur-3xl"
           aria-hidden
         />
         <div

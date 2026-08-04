@@ -134,7 +134,7 @@ export const companyArchetypes: CompanyArchetype[] = [
       "Estimator workflows lean on library fidelity and clean assumptions. When commercial and operations share one library hub, pricing and field reality drift less between bid and build.",
     bullets: ["Central library for engineering, labour, and equipment norms", "Handoff hooks from planning into active projects", "Less duplication between estimating and PM systems"],
     href: "/platform/core",
-    accent: "#F79625",
+    accent: "#FE5D02",
   },
 ];
 
@@ -174,7 +174,7 @@ export const teamFocusAreas: TeamFocus[] = [
     summary: "Costs and commitments roll up so variance conversations start sooner.",
     relatedPath: "/platform/finance",
     relatedLabel: "Finance modules",
-    accent: "#F79625",
+    accent: "#FE5D02",
   },
   {
     icon: ShieldCheck,

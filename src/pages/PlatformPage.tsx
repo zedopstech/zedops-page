@@ -50,7 +50,10 @@ export default function PlatformPage() {
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: "linear-gradient(155deg, #C4D9FF 0%, #D9EBFF 28%, #ECF3FF 58%, #F2F6FF 100%)",
+              backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
             }}
             aria-hidden
           />
@@ -70,7 +73,7 @@ export default function PlatformPage() {
           <div
             className="pointer-events-none absolute bottom-0 left-1/2 h-[280px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
             style={{
-              background: "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.11) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.11) 0%, transparent 65%)",
               filter: "blur(40px)",
             }}
             aria-hidden
@@ -87,7 +90,7 @@ export default function PlatformPage() {
                   className="mb-6 inline-flex items-center gap-2 border border-[#172B4D]/20 bg-white/80 px-4 py-1.5"
                   style={{ borderRadius: 99 }}
                 >
-                  <LayoutGrid size={12} className="text-[#F79625]" />
+                  <LayoutGrid size={12} className="text-brand-orange" />
                   <span className="text-[#172B4D] text-xs font-bold tracking-[0.12em] uppercase">Product</span>
                 </motion.div>
                 <motion.h1
@@ -272,13 +275,13 @@ function PlatformSectionBlock({
             style={{
               background: isEven
                 ? "linear-gradient(145deg, #EBF0FF 0%, #F4F7FF 50%, #FFFFFF 100%)"
-                : "linear-gradient(145deg, #FFF7ED 0%, #FFFBF5 50%, #FFFFFF 100%)",
+                : "linear-gradient(145deg, #EBF0FF 0%, #F8FAFC 50%, #FFFFFF 100%)",
             }}
           >
             <div
               className="absolute w-48 h-48 rounded-full blur-3xl opacity-50 pointer-events-none"
               style={{
-                background: isEven ? "#C4D9FF" : "#F79625",
+                background: isEven ? "#C4D9FF" : "#FE5D02",
                 top: "-10%",
                 [isEven ? "right" : "left"]: "-5%",
               }}

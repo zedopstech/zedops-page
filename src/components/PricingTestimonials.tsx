@@ -5,7 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const NAVY = "#172B4D";
-const ORANGE = "#F79625";
+const ORANGE = "#FE5D02";
 
 const cards = [
   {
@@ -35,7 +35,7 @@ const cards = [
     role: "New features land based on real team feedback",
     company: "Weekly\nReleases",
     badge: "Active roadmap",
-    badgeBg: "#FFF7ED",
+    badgeBg: "#EBF0FF",
     badgeColor: ORANGE,
   },
 ];

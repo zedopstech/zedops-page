@@ -5,7 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const NAVY = "#172B4D";
-const ORANGE = "#F79625";
+const ORANGE = "#FE5D02";
 
 const faqs = [
   {

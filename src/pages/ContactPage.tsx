@@ -67,7 +67,10 @@ export default function ContactPage() {
         <div
           className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-16 lg:py-24 relative overflow-hidden"
           style={{
-            background: "linear-gradient(155deg, #C4D9FF 0%, #D9EBFF 28%, #ECF3FF 58%, #F2F6FF 100%)",
+            backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
           }}
         >
           <div
@@ -85,7 +88,7 @@ export default function ContactPage() {
           <div
             className="absolute bottom-0 left-0 right-0 h-[300px] pointer-events-none"
             style={{
-              background: "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.13) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.13) 0%, transparent 65%)",
               filter: "blur(40px)",
             }}
           />
@@ -98,7 +101,7 @@ export default function ContactPage() {
               className="mb-7 inline-flex border border-[#172B4D]/20 bg-white/80 items-center gap-2 px-4 py-1.5"
               style={{ borderRadius: 99 }}
             >
-              <Sparkles size={12} className="text-[#F79625]" />
+              <Sparkles size={12} className="text-brand-orange" />
               <span className="text-[#172B4D] text-xs font-bold tracking-[0.12em] uppercase">Contact</span>
             </motion.div>
 
@@ -131,7 +134,7 @@ export default function ContactPage() {
                   className="flex items-start gap-4 bg-white/70 border border-white/60 px-4 py-3.5 rounded-xl backdrop-blur-sm"
                 >
                   <div className="w-9 h-9 bg-[#172B4D] flex items-center justify-center shrink-0 rounded-lg mt-0.5">
-                    <perk.icon size={16} className="text-[#F79625]" />
+                    <perk.icon size={16} className="text-brand-orange" />
                   </div>
                   <div>
                     <p className="text-[#172B4D] font-bold text-sm">{perk.title}</p>
@@ -169,7 +172,7 @@ export default function ContactPage() {
               </p>
               <a
                 href="/"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#172B4D] hover:bg-[#0e1e38] text-white font-bold text-sm rounded-md transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all"
               >
                 Back to home <ArrowRight size={14} />
               </a>
@@ -240,7 +243,7 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#172B4D] hover:bg-[#0e1e38] text-white font-bold text-sm rounded-md transition-all duration-150 group mt-1"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all duration-150 group mt-1"
                 >
                   Send message
                   <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />

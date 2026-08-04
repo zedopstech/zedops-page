@@ -34,50 +34,52 @@ export default function HowItWorks() {
   const isMobile = useIsMobile();
 
   return (
-    <section className="bg-[#FFFBF5] border-t border-orange-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-
-        {/* Compact heading */}
-        <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.4 })} className="flex flex-col lg:flex-row lg:items-end gap-4 lg:gap-20 mb-10">
+    <section className="border-t border-gray-100 bg-[#F8FAFC]">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <motion.div
+          {...scrollMotionProps(isMobile, { y: 20, duration: 0.4 })}
+          className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:gap-20"
+        >
           <div>
-
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
-              From <span className="text-[#172B4D]">schedule</span> to sign-off, with action in between.
+            <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#172B4D] sm:text-4xl">
+              From schedule to sign-off, with action in between.
             </h2>
           </div>
-          <p className="text-[#42526E] text-base leading-relaxed lg:max-w-xs lg:pb-1">
+          <p className="text-base leading-relaxed text-[#42526E] lg:max-w-xs lg:pb-1">
             Built for MEP and field teams: every step pushes work forward (tasks, logs, inspections, and punch), not passive reporting.
           </p>
         </motion.div>
 
-        {/* 3-column cards */}
-        <div className="grid lg:grid-cols-3 gap-px bg-orange-100 border border-orange-100 overflow-hidden rounded-md">
+        <div className="grid overflow-hidden rounded-md border border-gray-200 lg:grid-cols-3">
           {steps.map((step, i) => (
             <motion.div
               key={step.step}
               {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: i * 0.1 })}
-              className="bg-white p-7 flex flex-col group"
+              className={`relative flex flex-col bg-white p-7 group ${
+                i < steps.length - 1 ? "border-b border-gray-200 lg:border-b-0 lg:border-r" : ""
+              }`}
             >
-              {/* Step number + icon */}
-              <div className="flex items-center gap-4 mb-5">
-                <span className="text-5xl font-black text-orange-100 leading-none select-none">{step.step}</span>
-                <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 rounded-md" style={{ background: "#FFF3E0" }}>
-                  <step.icon size={18} className="text-[#F79625]" />
+              <div className="mb-5 flex items-center gap-4">
+                <span className="select-none text-5xl font-black leading-none text-[#EBF0FF]">{step.step}</span>
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-[#EBF0FF]">
+                  <step.icon size={18} className="text-brand-orange" />
                 </div>
               </div>
 
-              {/* Connector line between steps */}
               {i < steps.length - 1 && (
-                <div className="hidden lg:block absolute right-0 top-1/2 w-6 h-px bg-orange-200" style={{ transform: "translateY(-50%)" }} />
+                <div
+                  className="absolute right-0 top-1/2 z-10 hidden h-px w-6 -translate-y-1/2 translate-x-1/2 bg-[#C7D5F5] lg:block"
+                  aria-hidden
+                />
               )}
 
-              <h3 className="text-[#172B4D] font-extrabold text-lg mb-2.5 leading-snug">{step.title}</h3>
-              <p className="text-[#42526E] text-sm leading-relaxed mb-5 flex-1">{step.description}</p>
+              <h3 className="mb-2.5 text-lg font-extrabold leading-snug text-[#172B4D]">{step.title}</h3>
+              <p className="mb-5 flex-1 text-sm leading-relaxed text-[#42526E]">{step.description}</p>
 
-              <ul className="space-y-2 pt-4 border-t border-gray-100">
+              <ul className="space-y-2 border-t border-gray-100 pt-4">
                 {step.details.map((detail) => (
                   <li key={detail} className="flex items-center gap-2 text-xs text-[#6B778C]">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#F79625] flex-shrink-0" />
+                    <div className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-orange" />
                     {detail}
                   </li>
                 ))}
@@ -85,7 +87,6 @@ export default function HowItWorks() {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

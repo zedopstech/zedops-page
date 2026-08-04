@@ -173,7 +173,10 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
             <div
               className="pointer-events-none absolute inset-0"
               style={{
-                background: "linear-gradient(155deg, #C4D9FF 0%, #D9EBFF 28%, #ECF3FF 58%, #F2F6FF 100%)",
+                backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
               }}
               aria-hidden
             />
@@ -181,7 +184,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
             <div
               className="pointer-events-none absolute bottom-0 left-1/2 h-[240px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
               style={{
-                background: "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.08) 0%, transparent 65%)",
+                background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.08) 0%, transparent 65%)",
                 filter: "blur(40px)",
               }}
               aria-hidden
@@ -255,7 +258,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
                 <a
                   href="/early-access"
                   className="inline-flex w-full items-center justify-center px-6 py-3 text-sm font-bold text-white transition-colors hover:opacity-95 sm:w-auto"
-                  style={{ borderRadius: 6, background: "#F79625" }}
+                  style={{ borderRadius: 6, background: "#FE5D02" }}
                 >
                   Request a demo
                 </a>

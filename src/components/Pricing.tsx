@@ -5,7 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 
 const NAVY = "#172B4D";
-const ORANGE = "#F79625";
+const ORANGE = "#FE5D02";
 
 const plans = [
   {
@@ -51,7 +51,7 @@ const plans = [
     ],
     cta: "Request early access",
     ctaHref: "/early-access",
-    ctaStyle: "bg-[#F79625] text-white hover:bg-[#e07a10]",
+    ctaStyle: "bg-brand-orange text-white hover:bg-brand-orange-soft",
     isPro: true,
   },
   {
@@ -120,7 +120,7 @@ const comparisonRows = [
 ];
 
 function Cell({ val }: { val: boolean | string }) {
-  if (val === true)  return <Check size={16} className="mx-auto text-[#F79625]" />;
+  if (val === true)  return <Check size={16} className="mx-auto text-brand-orange" />;
   if (val === false) return <X size={14} className="mx-auto text-gray-300" />;
   return <span className="text-[#42526E] text-sm font-medium">{val}</span>;
 }
@@ -160,7 +160,7 @@ export default function Pricing() {
         </div>
 
         {/* ── Why ZedOps? ── */}
-        <motion.div {...scrollMotionProps(isMobile, { y: 18, duration: 0.5, delay: 0.1 })} className="mb-12 grid grid-cols-1 gap-px overflow-hidden rounded-md border border-blue-100 bg-blue-100 sm:grid-cols-2 lg:grid-cols-4">
+        <motion.div {...scrollMotionProps(isMobile, { y: 18, duration: 0.5, delay: 0.1 })} className="mb-12 grid grid-cols-1 gap-px overflow-hidden rounded-md border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-4">
           {whyZedOps.map(({ icon: Icon, label, desc }, i) => (
             <div key={label} className="flex min-w-0 items-start gap-3 bg-white px-4 py-4 sm:gap-4 sm:px-5 sm:py-5 lg:px-6">
               <div
@@ -185,9 +185,9 @@ export default function Pricing() {
               {...scrollMotionProps(isMobile, { y: 24, duration: 0.5, delay: i * 0.1 })}
               className={`relative flex flex-col p-6 sm:p-8 lg:p-10 ${i < plans.length - 1 ? "border-b border-gray-200 lg:border-b-0" : ""} ${i < 2 ? "lg:border-r lg:border-gray-200" : ""} ${plan.isPro ? "bg-[#172B4D]" : "bg-white"}`}
             >
-              {plan.badge && <div className="absolute top-0 left-0 right-0 h-1 bg-[#F79625]" />}
+              {plan.badge && <div className="absolute top-0 left-0 right-0 h-1 bg-brand-orange" />}
               {plan.badge && (
-                <span className="inline-block text-[#F79625] text-xs font-black uppercase tracking-widest mb-4">{plan.badge}</span>
+                <span className="inline-block text-brand-orange text-xs font-black uppercase tracking-widest mb-4">{plan.badge}</span>
               )}
 
               <div className="flex items-center gap-3 mb-2">
@@ -200,7 +200,7 @@ export default function Pricing() {
                 <h3 className={`font-extrabold text-xl ${plan.isPro ? "text-white" : "text-[#172B4D]"}`}>{plan.name}</h3>
               </div>
 
-              <p className={`text-sm leading-relaxed mb-6 ${plan.isPro ? "text-blue-200" : "text-[#6B778C]"}`}>{plan.description}</p>
+              <p className={`text-sm leading-relaxed mb-6 ${plan.isPro ? "text-[#B8C9DC]" : "text-[#6B778C]"}`}>{plan.description}</p>
 
               <div className="mb-8 pb-8 border-b" style={{ borderColor: plan.isPro ? "rgba(255,255,255,0.1)" : "#E5E7EB" }}>
                 {plan.price.monthly ? (
@@ -209,10 +209,10 @@ export default function Pricing() {
                       <span className={`text-5xl font-extrabold ${plan.isPro ? "text-white" : "text-[#172B4D]"}`}>
                         ${annual ? plan.price.annual : plan.price.monthly}
                       </span>
-                      <span className={`text-sm ${plan.isPro ? "text-blue-300" : "text-[#6B778C]"}`}>/mo</span>
+                      <span className={`text-sm ${plan.isPro ? "text-[#97A0AF]" : "text-[#6B778C]"}`}>/mo</span>
                     </div>
                     {annual && (
-                      <p className={`text-xs mt-1 ${plan.isPro ? "text-blue-300" : "text-[#97A0AF]"}`}>
+                      <p className={`text-xs mt-1 ${plan.isPro ? "text-[#97A0AF]" : "text-[#97A0AF]"}`}>
                         Billed annually · save ${((plan.price.monthly! - plan.price.annual!) * 12).toLocaleString()}/yr
                       </p>
                     )}
@@ -220,7 +220,7 @@ export default function Pricing() {
                 ) : (
                   <div>
                     <span className={`text-4xl font-extrabold ${plan.isPro ? "text-white" : "text-[#172B4D]"}`}>Custom</span>
-                    <p className={`text-xs mt-1 ${plan.isPro ? "text-blue-300" : "text-[#97A0AF]"}`}>Tailored to your portfolio</p>
+                    <p className={`text-xs mt-1 ${plan.isPro ? "text-[#97A0AF]" : "text-[#97A0AF]"}`}>Tailored to your portfolio</p>
                   </div>
                 )}
               </div>
@@ -228,8 +228,8 @@ export default function Pricing() {
               <ul className="space-y-3 flex-1 mb-8">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5 text-sm">
-                    <Check size={14} className={`shrink-0 mt-0.5 ${plan.isPro ? "text-[#F79625]" : "text-[#172B4D]"}`} />
-                    <span className={plan.isPro ? "text-blue-200" : "text-[#42526E]"}>{f}</span>
+                    <Check size={14} className={`shrink-0 mt-0.5 ${plan.isPro ? "text-brand-orange" : "text-[#172B4D]"}`} />
+                    <span className={plan.isPro ? "text-[#B8C9DC]" : "text-[#42526E]"}>{f}</span>
                   </li>
                 ))}
               </ul>

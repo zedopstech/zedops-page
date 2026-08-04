@@ -53,7 +53,7 @@ export default function DashboardMockup() {
       {/* Top navbar */}
       <div className="flex min-h-10 min-w-0 items-center overflow-hidden bg-[#111827] px-2.5 py-0 sm:min-h-[40px] sm:px-3">
         <div className="mr-2 flex shrink-0 items-center gap-2 sm:mr-4">
-          <img src="/logo.png" alt="ZedOps" className="h-6 w-6 shrink-0 object-cover sm:h-7 sm:w-7" style={{ borderRadius: 6 }} />
+          <img src="/ICON.jpg" alt="ZedOps" className="h-6 w-6 shrink-0 object-cover sm:h-7 sm:w-7" style={{ borderRadius: 6 }} />
         </div>
         {/* Project selector */}
         <div className="mr-2 flex min-w-0 shrink cursor-pointer items-center gap-1 bg-white/10 px-2 py-1 hover:bg-white/15 sm:mr-4 sm:shrink-0 sm:px-2.5" style={{ borderRadius: 6 }}>
@@ -74,7 +74,7 @@ export default function DashboardMockup() {
         </div>
         {/* Right actions */}
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <div className="flex cursor-pointer items-center gap-1 bg-[#F79625] px-2 py-1 sm:px-2.5" style={{ borderRadius: 6 }}>
+          <div className="flex cursor-pointer items-center gap-1 bg-brand-orange px-2 py-1 sm:px-2.5" style={{ borderRadius: 6 }}>
             <Sparkles size={10} className="text-white" />
             <span className="text-[9px] font-bold text-white sm:text-[10px]">Zed AI</span>
           </div>
@@ -93,12 +93,12 @@ export default function DashboardMockup() {
           <div className="flex flex-col gap-2 border-b border-gray-100 px-3 pb-2.5 pt-2.5 sm:flex-row sm:items-start sm:justify-between sm:px-4 sm:pt-3">
             <div className="min-w-0">
               <h2 className="text-[13px] font-bold leading-tight text-[#111827] sm:text-sm">Good morning! 👋</h2>
-              <p className="mt-0.5 text-[9px] leading-snug text-gray-500 sm:text-[10px]">Here's what's happening with your projects today.</p>
+              <p className="mt-0.5 text-[9px] leading-snug text-[#6B778C] sm:text-[10px]">Here's what's happening with your projects today.</p>
             </div>
             <div className="flex shrink-0 flex-wrap items-center justify-end gap-1.5 sm:justify-start">
               <button
                 type="button"
-                className="hidden rounded-md border border-gray-200 bg-white px-2.5 py-1 text-[10px] font-medium text-gray-600 hover:bg-gray-50 sm:inline-flex sm:items-center sm:gap-1"
+                className="hidden rounded-md border border-gray-200 bg-white px-2.5 py-1 text-[10px] font-medium text-[#42526E] hover:bg-gray-50 sm:inline-flex sm:items-center sm:gap-1"
                 style={{ borderRadius: 6 }}
               >
                 View all projects
@@ -115,13 +115,13 @@ export default function DashboardMockup() {
             {statCards.map(({ label, val, sub, iconBg, icon }) => (
               <div key={label} className="bg-white px-2.5 py-2 sm:px-3 sm:py-2.5">
                 <div className="mb-1 flex items-start justify-between gap-1">
-                  <span className="text-[7px] font-bold uppercase leading-tight tracking-wide text-gray-400 sm:text-[8px]">{label}</span>
+                  <span className="text-[7px] font-bold uppercase leading-tight tracking-wide text-[#97A0AF] sm:text-[8px]">{label}</span>
                   <div className={`ml-1 flex h-5 w-5 shrink-0 items-center justify-center text-[9px] text-white sm:h-5 sm:w-5 ${iconBg}`} style={{ borderRadius: 4 }}>
                     {icon}
                   </div>
                 </div>
                 <div className="text-lg font-black leading-none text-[#111827] sm:text-xl">{val}</div>
-                <div className="mt-0.5 text-[7px] text-gray-400 sm:text-[8px]">{sub}</div>
+                <div className="mt-0.5 text-[7px] text-[#97A0AF] sm:text-[8px]">{sub}</div>
               </div>
             ))}
           </div>
@@ -133,14 +133,14 @@ export default function DashboardMockup() {
               <div className="mb-1 flex items-start justify-between gap-2">
                 <div className="min-w-0">
                   <div className="text-[11px] font-bold leading-tight text-[#111827] sm:text-xs">Project status</div>
-                  <div className="text-[8px] text-gray-400">By current phase</div>
+                  <div className="text-[8px] text-[#97A0AF]">By current phase</div>
                 </div>
                 <button type="button" className="shrink-0 text-[9px] font-medium text-[#3B82F6]">View ↗</button>
               </div>
               <div className="mt-1 flex gap-1 sm:mt-2" style={{ height: 72 }}>
                 <div className="flex flex-col justify-between pb-3 mr-0.5 w-2.5 sm:mr-1 sm:w-3">
                   {[8, 6, 4, 2, 0].map((v) => (
-                    <span key={v} className="text-[6px] leading-none text-gray-300 sm:text-[7px]">
+                    <span key={v} className="text-[6px] leading-none text-[#C7D5F5] sm:text-[7px]">
                       {v}
                     </span>
                   ))}
@@ -149,7 +149,7 @@ export default function DashboardMockup() {
                   {barChart.map(({ label, h, color }) => (
                     <div key={label} className="flex min-w-0 flex-1 flex-col items-center gap-0.5 sm:gap-1">
                       <div className="w-full rounded-t-[2px]" style={{ height: `${h}%`, background: color, minHeight: 4 }} />
-                      <span className="w-full truncate text-center text-[6px] leading-tight text-gray-400 sm:text-[7px]">{label}</span>
+                      <span className="w-full truncate text-center text-[6px] leading-tight text-[#97A0AF] sm:text-[7px]">{label}</span>
                     </div>
                   ))}
                 </div>
@@ -158,7 +158,7 @@ export default function DashboardMockup() {
                 {barChart.map(({ count, label, color }) => (
                   <div key={label} className="min-w-0 text-center">
                     <div className="text-[8px] font-bold sm:text-[9px]" style={{ color }}>{count}</div>
-                    <div className="truncate text-[6px] text-gray-300 sm:text-[7px]">{label}</div>
+                    <div className="truncate text-[6px] text-[#C7D5F5] sm:text-[7px]">{label}</div>
                   </div>
                 ))}
               </div>
@@ -169,9 +169,9 @@ export default function DashboardMockup() {
               <div className="mb-1.5 flex items-center justify-between sm:mb-2">
                 <div>
                   <div className="text-[11px] font-bold text-[#111827] sm:text-xs">Recent activity</div>
-                  <div className="text-[8px] text-gray-400">Latest</div>
+                  <div className="text-[8px] text-[#97A0AF]">Latest</div>
                 </div>
-                <Clock size={11} className="text-gray-300" />
+                <Clock size={11} className="text-[#C7D5F5]" />
               </div>
               <div className="space-y-1.5 overflow-hidden sm:space-y-2">
                 {recentActivities.map((act, i) => (
@@ -180,9 +180,9 @@ export default function DashboardMockup() {
                       <span className="text-[7px] font-bold text-white sm:text-[8px]">A</span>
                     </div>
                     <div className="min-w-0">
-                      <p className="text-[7px] leading-snug text-gray-600 sm:text-[8px]">
+                      <p className="text-[7px] leading-snug text-[#42526E] sm:text-[8px]">
                         <span className="line-clamp-2 sm:line-clamp-none sm:truncate sm:block">{act.text}</span>
-                        <span className="text-gray-400"> · {act.by}</span>{" "}
+                        <span className="text-[#97A0AF]"> · {act.by}</span>{" "}
                         <span className={`inline-flex items-center px-1 py-0.5 text-[6px] font-semibold sm:text-[7px] ${act.badgeColor}`}>{act.badge}</span>
                       </p>
                     </div>
@@ -198,15 +198,15 @@ export default function DashboardMockup() {
           {/* Copilot header */}
           <div className="flex items-center justify-between px-3 py-2.5 border-b border-gray-100 flex-shrink-0">
             <div className="flex items-center gap-1.5">
-              <div className="w-5 h-5 bg-[#F79625] flex items-center justify-center" style={{ borderRadius: 4 }}>
+              <div className="w-5 h-5 bg-brand-orange flex items-center justify-center" style={{ borderRadius: 4 }}>
                 <Sparkles size={10} className="text-white" />
               </div>
               <div>
                 <div className="text-[10px] font-bold text-[#111827]">Zed Copilot</div>
-                <div className="text-[8px] text-gray-400">Copilot · insights & actions</div>
+                <div className="text-[8px] text-[#97A0AF]">Copilot · insights & actions</div>
               </div>
             </div>
-            <Maximize2 size={11} className="text-gray-300 cursor-pointer hover:text-gray-500" />
+            <Maximize2 size={11} className="text-[#C7D5F5] cursor-pointer hover:text-[#6B778C]" />
           </div>
 
           {/* Scrollable copilot content */}
@@ -214,8 +214,8 @@ export default function DashboardMockup() {
             {/* Pie chart */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wide">Snag Status Distribution</span>
-                <Download size={10} className="text-gray-300" />
+                <span className="text-[9px] font-bold text-[#6B778C] uppercase tracking-wide">Snag Status Distribution</span>
+                <Download size={10} className="text-[#C7D5F5]" />
               </div>
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <div className="shrink-0 scale-[0.82] origin-left sm:scale-100">
@@ -225,13 +225,13 @@ export default function DashboardMockup() {
                   <div>
                     <div className="flex items-center gap-1">
                       <div className="w-2 h-2 rounded-sm bg-[#172B4D]" />
-                      <span className="text-[9px] text-gray-600 font-medium">Open 67%</span>
+                      <span className="text-[9px] text-[#42526E] font-medium">Open 67%</span>
                     </div>
                   </div>
                   <div>
                     <div className="flex items-center gap-1">
                       <div className="w-2 h-2 rounded-sm bg-[#4B9EFF]" />
-                      <span className="text-[9px] text-gray-600 font-medium">Closed 33%</span>
+                      <span className="text-[9px] text-[#42526E] font-medium">Closed 33%</span>
                     </div>
                   </div>
                 </div>
@@ -243,10 +243,10 @@ export default function DashboardMockup() {
 
             {/* Suggested */}
             <div>
-              <p className="text-[8px] text-gray-400 font-semibold mb-1.5">Suggested:</p>
+              <p className="text-[8px] text-[#97A0AF] font-semibold mb-1.5">Suggested:</p>
               <div className="flex flex-wrap gap-1">
                 {["My tasks", "Today's log", "Project overview"].map((s) => (
-                  <button key={s} className="px-2 py-1 text-[8px] bg-gray-100 text-gray-600 font-medium hover:bg-gray-200 border border-gray-200" style={{ borderRadius: 12 }}>
+                  <button key={s} className="px-2 py-1 text-[8px] bg-gray-100 text-[#42526E] font-medium hover:bg-gray-200 border border-gray-200" style={{ borderRadius: 12 }}>
                     {s}
                   </button>
                 ))}
@@ -257,13 +257,13 @@ export default function DashboardMockup() {
             <div>
               <div className="flex border-b border-gray-100 mb-2">
                 <button className="text-[9px] font-bold text-[#172B4D] pb-1.5 border-b-2 border-[#172B4D] pr-3">Insights</button>
-                <button className="text-[9px] text-gray-400 pb-1.5 pl-3">Action</button>
+                <button className="text-[9px] text-[#97A0AF] pb-1.5 pl-3">Action</button>
               </div>
               <div className="space-y-1.5">
                 {[
                   { label: "📊 Project Risk Summary", color: "bg-blue-50 border-blue-100 text-blue-700" },
                   { label: "🔴 Safety Issues", color: "bg-red-50 border-red-100 text-red-600" },
-                  { label: "📅 Today's Schedule", color: "bg-orange-50 border-orange-100 text-orange-700" },
+                  { label: "📅 Today's Schedule", color: "bg-brand-orange/10 border-brand-orange/20 text-brand-orange" },
                 ].map(({ label, color }) => (
                   <button key={label} className={`w-full text-left text-[8px] font-semibold px-2 py-1.5 border ${color} hover:opacity-80 transition-opacity`} style={{ borderRadius: 6 }}>
                     {label}
@@ -279,7 +279,7 @@ export default function DashboardMockup() {
               <input
                 readOnly
                 placeholder="What would you like to do?"
-                className="flex-1 bg-transparent text-[9px] text-gray-500 placeholder-gray-400 outline-none min-w-0"
+                className="flex-1 bg-transparent text-[9px] text-[#6B778C] placeholder-gray-400 outline-none min-w-0"
               />
               <button className="w-5 h-5 bg-[#172B4D] flex items-center justify-center flex-shrink-0" style={{ borderRadius: 6 }}>
                 <Send size={9} className="text-white" />

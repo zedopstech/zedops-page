@@ -86,7 +86,7 @@ function EarlyAccessFaqItem({
       <button type="button" onClick={() => setOpen(!open)} className="group flex w-full items-center justify-between gap-4 py-4 text-left sm:py-5">
         <span
           className={`text-sm font-bold leading-snug sm:text-base ${
-            open ? "text-[#F79625]" : invert ? "text-white" : "text-[#172B4D]"
+            open ? "text-brand-orange" : invert ? "text-white" : "text-[#172B4D]"
           }`}
         >
           {q}
@@ -94,7 +94,7 @@ function EarlyAccessFaqItem({
         <div
           className="flex h-7 w-7 shrink-0 items-center justify-center transition-colors duration-150"
           style={{
-            background: open ? "#F79625" : invert ? "rgba(255,255,255,0.12)" : "#F0F4FF",
+            background: open ? "#FE5D02" : invert ? "rgba(255,255,255,0.12)" : "#F0F4FF",
             borderRadius: 6,
           }}
         >
@@ -162,7 +162,10 @@ export default function EarlyAccessPage() {
         <div
           className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-16 lg:py-24 relative overflow-hidden"
           style={{
-            background: "linear-gradient(155deg, #C4D9FF 0%, #D9EBFF 28%, #ECF3FF 58%, #F2F6FF 100%)",
+            backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
           }}
         >
           {/* Blueprint grid */}
@@ -182,7 +185,7 @@ export default function EarlyAccessPage() {
           <div
             className="absolute bottom-0 left-0 right-0 h-[300px] pointer-events-none"
             style={{
-              background: "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.13) 0%, transparent 65%)",
+              background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.13) 0%, transparent 65%)",
               filter: "blur(40px)",
             }}
           />
@@ -196,7 +199,7 @@ export default function EarlyAccessPage() {
               className="mb-7 inline-flex border border-[#172B4D]/20 bg-white/80 items-center gap-2 px-4 py-1.5"
               style={{ borderRadius: 99 }}
             >
-              <Sparkles size={12} className="text-[#F79625]" />
+              <Sparkles size={12} className="text-brand-orange" />
               <span className="text-[#172B4D] text-xs font-bold tracking-[0.12em] uppercase">Early Access · Limited spots</span>
             </motion.div>
 
@@ -232,7 +235,7 @@ export default function EarlyAccessPage() {
                   className="flex items-start gap-4 bg-white/70 border border-white/60 px-4 py-3.5 rounded-xl backdrop-blur-sm"
                 >
                   <div className="w-9 h-9 bg-[#172B4D] flex items-center justify-center shrink-0 rounded-lg mt-0.5">
-                    <perk.icon size={16} className="text-[#F79625]" />
+                    <perk.icon size={16} className="text-brand-orange" />
                   </div>
                   <div>
                     <p className="text-[#172B4D] font-bold text-sm">{perk.title}</p>
@@ -260,7 +263,7 @@ export default function EarlyAccessPage() {
               </p>
               <a
                 href="/"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#172B4D] hover:bg-[#0e1e38] text-white font-bold text-sm rounded-md transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all"
               >
                 Back to home <ArrowRight size={14} />
               </a>
@@ -357,7 +360,7 @@ export default function EarlyAccessPage() {
 
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-[#F79625] hover:bg-[#e07a10] text-white font-bold text-sm rounded-md transition-all duration-150 group mt-1"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all duration-150 group mt-1"
                 >
                   Request early access
                   <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
@@ -391,7 +394,7 @@ export default function EarlyAccessPage() {
             Quick answers about timing, fit, and what to expect. Still unsure?{" "}
             <a
               href="/contact"
-              className="font-semibold text-[#F79625] underline-offset-2 hover:text-white hover:underline"
+              className="font-semibold text-brand-orange underline-offset-2 hover:text-white hover:underline"
             >
               Contact us
             </a>
@@ -404,15 +407,15 @@ export default function EarlyAccessPage() {
           </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-center text-xs font-semibold text-white/55">
             <span className="text-[10px] font-bold uppercase tracking-widest text-[#B8C9DC]">Explore</span>
-            <a href="/platform" className="text-white/90 hover:text-[#F79625]">
+            <a href="/platform" className="text-white/90 hover:text-brand-orange">
               Platform features
             </a>
             <span className="hidden text-white/25 sm:inline">·</span>
-            <a href="/solutions" className="text-white/90 hover:text-[#F79625]">
+            <a href="/solutions" className="text-white/90 hover:text-brand-orange">
               Solutions
             </a>
             <span className="hidden text-white/25 sm:inline">·</span>
-            <a href="/zed-ai" className="text-white/90 hover:text-[#F79625]">
+            <a href="/zed-ai" className="text-white/90 hover:text-brand-orange">
               Zed AI
             </a>
           </div>

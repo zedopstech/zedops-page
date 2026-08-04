@@ -154,7 +154,7 @@ function PortfolioHealthCard() {
         {[
           { label: "On Schedule", pct: 74, color: "#172B4D", delay: 0.6 },
           { label: "Budget OK",   pct: 81, color: "#10B981", delay: 0.75 },
-          { label: "Safety Pass", pct: 96, color: "#F79625", delay: 0.9 },
+          { label: "Safety Pass", pct: 96, color: "#FE5D02", delay: 0.9 },
         ].map(({ label, pct, color, delay }) => (
           <div key={label}>
             <div className="flex justify-between text-[9px] mb-0.5">
@@ -190,7 +190,7 @@ function BudgetVarianceCard() {
             animate={{ height: `${h}%` }}
             transition={{ duration: 0.7, delay: 0.7 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              background: i === 5 ? "#F79625" : "#172B4D",
+              background: i === 5 ? "#FE5D02" : "#172B4D",
               opacity: i === 5 ? 1 : 0.3 + i * 0.1,
             }}
           />
@@ -212,7 +212,7 @@ function AIRiskCard() {
           animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Zap size={11} className="text-[#F79625]" />
+          <Zap size={11} className="text-brand-orange" />
         </motion.div>
         <span className="text-[10px] text-[#97A0AF] font-bold uppercase tracking-wider">AI Risk Alerts</span>
       </div>
@@ -319,7 +319,11 @@ export default function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           y: parallaxYBg,
-          background: "linear-gradient(155deg, #C4D9FF 0%, #D9EBFF 28%, #ECF3FF 58%, #F2F6FF 100%)",
+          backgroundImage:
+            "linear-gradient(155deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.82) 35%, rgba(255,255,255,0.76) 62%, rgba(255,255,255,0.86) 100%), url('/hero-banner.png')",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
           top: "-20%", bottom: "-20%",
         }}
       />
@@ -343,7 +347,7 @@ export default function Hero() {
       <div
         className="pointer-events-none absolute bottom-0 left-1/2 h-[300px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
         style={{
-          background: "radial-gradient(ellipse at center bottom, rgba(247,150,37,0.11) 0%, transparent 65%)",
+          background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.11) 0%, transparent 65%)",
           filter: "blur(40px)",
         }}
       />
@@ -358,7 +362,7 @@ export default function Hero() {
           className="mb-7 inline-flex max-w-full flex-wrap items-center justify-center gap-2 border border-[#172B4D]/20 bg-white/80 px-3 py-1.5 sm:px-4"
           style={{ borderRadius: 99 }}
         >
-          <Sparkles size={12} className="shrink-0 text-[#F79625]" />
+          <Sparkles size={12} className="shrink-0 text-brand-orange" />
           <span className="max-w-[min(100%,26rem)] text-center text-[10px] font-bold uppercase tracking-[0.08em] text-[#172B4D] sm:max-w-none sm:text-xs sm:tracking-[0.12em]">
             Powered by Zed AI copilot · Built for MEP
           </span>
@@ -391,7 +395,7 @@ export default function Hero() {
           <div className="flex w-full max-w-md flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center">
             <a
               href="/early-access"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-center text-sm font-bold text-white transition-all duration-150 bg-[#172B4D] hover:bg-[#0e1e38] sm:inline-flex"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-center text-sm font-bold text-white transition-all duration-150 bg-brand-orange hover:bg-brand-orange-soft sm:inline-flex"
               style={{ borderRadius: 6 }}
             >
               Request early access
@@ -528,7 +532,7 @@ export default function Hero() {
             <p className="text-center text-xs text-[#97A0AF] sm:text-left">
               <a
                 href="/early-access"
-                className="font-bold text-[#172B4D] underline-offset-2 hover:text-[#0052CC] hover:underline"
+                className="font-bold text-[#172B4D] underline-offset-2 hover:text-brand-orange hover:underline"
               >
                 Request access
               </a>

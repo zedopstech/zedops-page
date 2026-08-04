@@ -38,22 +38,53 @@ export default function Footer() {
         <div className="py-16 grid grid-cols-1 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-5">
-              <img src="/logo.png" alt="ZedOps" className="w-8 h-8 rounded-md object-cover" />
-              <span className="text-[#172B4D] font-black text-lg tracking-tight">ZedOps</span>
+              <img src="/ICON.jpg" alt="ZedOps" className="w-8 h-8 rounded-md object-cover" />
+              <span className="text-brand-navy font-black text-lg tracking-tight">Zed<span className="text-brand-orange">Ops</span></span>
             </div>
             <p className="text-[#6B778C] text-sm leading-relaxed max-w-xs mb-6">
               {tagline}
             </p>
             <div className="flex items-center gap-2 mb-8">
-              {["𝕏", "LinkedIn", "GitHub", "YouTube"].map((name) => (
+              {["𝕏"].map((name) => (
                 <a
                   key={name}
-                  href="#"
+                  href="https://x.com/zedopstech"
                   className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-[#172B4D] hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
                 >
                   {name}
                 </a>
               ))}
+
+              {["LinkedIn"].map((name) => (
+                <a
+                  key={name}
+                  href="https://www.linkedin.com/company/zedops"
+                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-[#172B4D] hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
+                >
+                  {name}
+                </a>
+              ))}
+
+              {["GitHub"].map((name) => (
+                <a
+                  key={name}
+                  href="https://github.com/zedops"
+                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-[#172B4D] hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
+                >
+                  {name}
+                </a>
+              ))}
+
+              {["YouTube"].map((name) => (
+                <a
+                  key={name}
+                  href="https://www.youtube.com/@zedopstech"
+                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-[#172B4D] hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
+                >
+                  {name}
+                </a>
+              ))}
+
             </div>
             <div>
               <p className="text-[#6B778C] text-xs mb-3 font-semibold uppercase tracking-wide">Subscribe to product updates</p>
@@ -64,7 +95,7 @@ export default function Footer() {
                   className="flex-1 border border-gray-200 px-3 py-2 text-xs text-[#42526E] placeholder:text-[#97A0AF] outline-none focus:border-[#172B4D] bg-white transition-colors rounded-md"
                   readOnly
                 />
-                <button className="px-3 py-2 bg-[#F79625] hover:bg-[#e07a10] text-white text-xs font-bold transition-colors shrink-0 rounded-md">
+                <button className="px-3 py-2 bg-brand-orange hover:bg-brand-orange-soft text-white text-xs font-bold transition-colors shrink-0 rounded-md">
                   Subscribe
                 </button>
               </div>

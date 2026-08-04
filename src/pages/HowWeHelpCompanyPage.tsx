@@ -77,7 +77,7 @@ export default function HowWeHelpCompanyPage() {
                 <ul className="mt-5 space-y-2">
                   {c.bullets.map((b) => (
                     <li key={b} className="flex gap-2 text-sm text-[#42526E]">
-                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[#F79625]" aria-hidden />
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-brand-orange" aria-hidden />
                       {b}
                     </li>
                   ))}

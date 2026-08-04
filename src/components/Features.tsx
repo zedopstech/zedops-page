@@ -44,7 +44,7 @@ export default function Features() {
                 <div className="w-11 h-11 bg-[#EBF0FF] flex items-center justify-center group-hover:bg-[#172B4D] transition-colors duration-200 rounded-md">
                   <feature.icon size={18} className="text-[#172B4D] group-hover:text-white transition-colors" />
                 </div>
-                <ArrowRight size={16} className="text-gray-200 group-hover:text-[#F79625] group-hover:translate-x-1 transition-all duration-200 mt-1" />
+                <ArrowRight size={16} className="text-gray-200 group-hover:text-brand-orange group-hover:translate-x-1 transition-all duration-200 mt-1" />
               </div>
               <h3 className="text-[#172B4D] font-bold text-base mb-2.5 leading-snug">{feature.title}</h3>
               <p className="text-[#6B778C] text-sm leading-relaxed">{feature.description}</p>

@@ -91,7 +91,7 @@ export default function Resources() {
                     <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
                     <div className="absolute bottom-3 left-3">
                       <span
-                        className="bg-[#F79625] px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-white"
+                        className="bg-brand-orange px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-white"
                         style={{ borderRadius: 6 }}
                       >
                         Blog
@@ -143,7 +143,7 @@ export default function Resources() {
               ))}
               <a
                 href="/blog"
-                className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#172B4D] transition-colors duration-150 hover:text-[#F79625]"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#172B4D] transition-colors duration-150 hover:text-brand-orange"
               >
                 See all articles <ArrowRight size={13} />
               </a>
