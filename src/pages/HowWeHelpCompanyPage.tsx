@@ -32,7 +32,7 @@ export default function HowWeHelpCompanyPage() {
       >
         <a
           href="/how-we-help/team"
-          className="inline-flex items-center gap-2 text-sm font-bold text-[#42526E] transition-colors hover:text-[#172B4D]"
+          className="inline-flex items-center gap-2 text-sm font-bold text-[#42526E] transition-colors hover:text-brand-navy"
         >
           Next: how internal teams use ZedOps →
         </a>
@@ -42,7 +42,7 @@ export default function HowWeHelpCompanyPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.45 })} className="mb-14 grid items-end gap-8 lg:grid-cols-2 lg:gap-20">
             <div>
-              <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#172B4D] sm:text-4xl">
+              <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
                 Pick the profile closest to yours
               </h2>
             </div>
@@ -72,7 +72,7 @@ export default function HowWeHelpCompanyPage() {
                     {c.tag}
                   </span>
                 </div>
-                <h3 className="text-lg font-extrabold leading-snug text-[#172B4D]">{c.title}</h3>
+                <h3 className="text-lg font-extrabold leading-snug text-brand-navy">{c.title}</h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-[#6B778C]">{c.summary}</p>
                 <ul className="mt-5 space-y-2">
                   {c.bullets.map((b) => (

@@ -9,7 +9,7 @@ export default function SecurityPage() {
     description: "ZedOps security architecture: dedicated database per tenant, AWS private VPC hosting, role-based access control, and Bring Your Own AI API Key (BYOK) for enterprise.",
   });
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
       <div className="pt-[100px]">
         <Security />

@@ -9,8 +9,8 @@
   /* Brand palette */
   --color-brand-orange: #FE5D02;
   --color-brand-orange-soft: #F15F22;
-  --color-brand-navy: #041129;
-  --color-brand-navy-soft: #0C162A;
+  --color-brand-navy: #172B4D;
+  --color-brand-navy-soft: #172B4D;
   --color-button: #FE5D02;
   --color-button-hover: #F15F22;
 
@@ -182,7 +182,7 @@
   body {
     @apply font-sans antialiased;
     background-color: #ffffff;
-    color: #172B4D;
+    color: var(--color-brand-navy);
   }
 
   html {
@@ -379,7 +379,7 @@ body {
 
 /* Animated gradient border wrapper */
 .animated-gradient-border {
-  background: linear-gradient(270deg, #FE5D02, #3B82F6, #172B4D, #FE5D02);
+  background: linear-gradient(270deg, #FE5D02, #3B82F6, var(--color-brand-navy), #FE5D02);
   background-size: 300% 300%;
   animation: gradient-border-flow 4s ease infinite;
   padding: 1px;
@@ -395,7 +395,7 @@ body {
 
 /* Same motion as .animated-gradient-border, navy/blue only (e.g. Platform hero Zed AI CTA) */
 .animated-gradient-border-cool {
-  background: linear-gradient(270deg, #1e40af, #3b82f6, #172b4d, #38bdf8, #1e40af);
+  background: linear-gradient(270deg, #1e40af, #3b82f6, var(--color-brand-navy), #38bdf8, #1e40af);
   background-size: 300% 300%;
   animation: gradient-border-flow 5s ease infinite;
   padding: 1px;
@@ -405,7 +405,7 @@ body {
 
 /* Full-width card frame - same gradient + animation as .animated-gradient-border-cool */
 .animated-gradient-border-cool-card {
-  background: linear-gradient(270deg, #1e40af, #3b82f6, #172b4d, #38bdf8, #1e40af);
+  background: linear-gradient(270deg, #1e40af, #3b82f6, var(--color-brand-navy), #38bdf8, #1e40af);
   background-size: 300% 300%;
   animation: gradient-border-flow 5s ease infinite;
   padding: 1px;
@@ -420,7 +420,7 @@ body {
   width: 100%;
   padding: 2px;
   border-radius: 10px;
-  background: linear-gradient(125deg, #38bdf8, #3b82f6, #172b4d, #fe5d02, #60a5fa, #38bdf8);
+  background: linear-gradient(125deg, #38bdf8, #3b82f6, var(--color-brand-navy), #fe5d02, #60a5fa, #38bdf8);
   background-size: 300% 300%;
   animation: gradient-border-flow 7s ease infinite;
 }
@@ -494,7 +494,7 @@ body {
   height: 160%;
   left: -30%;
   top: -30%;
-  background: linear-gradient(270deg, #fe5d02, #3b82f6, #172b4d, #6366f1, #fe5d02);
+  background: linear-gradient(270deg, #fe5d02, #3b82f6, var(--color-brand-navy), #6366f1, #fe5d02);
   background-size: 300% 300%;
   animation: gradient-border-flow 10s ease infinite;
   opacity: 0.42;
@@ -538,7 +538,7 @@ body {
   height: 160%;
   left: -30%;
   top: -30%;
-  background: linear-gradient(270deg, #1e40af, #3b82f6, #172b4d, #334155, #1e40af);
+  background: linear-gradient(270deg, #1e40af, #3b82f6, var(--color-brand-navy), #334155, #1e40af);
   background-size: 300% 300%;
   animation: gradient-border-flow 12s ease infinite;
   opacity: 0.32;

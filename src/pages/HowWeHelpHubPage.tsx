@@ -31,15 +31,15 @@ export default function HowWeHelpHubPage() {
       >
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
           <a
-            href="/platform"
+            href="/how-we-help/project-stage"
             className="inline-flex items-center gap-2 rounded-md bg-brand-orange px-6 py-3 text-sm font-bold text-white shadow-[0_8px_24px_-8px_rgba(254,93,2,0.35)] transition-colors hover:bg-brand-orange-soft"
           >
-            Full module list
+            By project stage
             <ArrowRight className="h-4 w-4" aria-hidden />
           </a>
           <a
             href="/who-we-serve"
-            className="inline-flex items-center gap-2 rounded-md border-2 border-[#172B4D]/20 bg-white/70 px-6 py-3 text-sm font-bold text-[#172B4D] backdrop-blur-sm transition-all hover:border-[#172B4D]/35 hover:bg-white"
+            className="inline-flex items-center gap-2 rounded-md border-2 border-brand-navy/20 bg-white/70 px-6 py-3 text-sm font-bold text-brand-navy backdrop-blur-sm transition-all hover:border-brand-navy/35 hover:bg-white"
           >
             Built for you
             <ArrowRight className="h-4 w-4 opacity-70" aria-hidden />
@@ -64,7 +64,7 @@ export default function HowWeHelpHubPage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.45 })} className="mb-14 lg:mb-16">
             <div className="mx-auto max-w-3xl text-center lg:mx-0 lg:max-w-none lg:text-left">
-              <h2 className="text-3xl font-extrabold leading-[1.12] tracking-tight text-[#172B4D] sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
+              <h2 className="text-3xl font-extrabold leading-[1.12] tracking-tight text-brand-navy sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
                 Four ways to see how ZedOps fits
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#42526E] lg:mx-0 lg:max-w-xl lg:text-[1.05rem]">
@@ -100,7 +100,7 @@ export default function HowWeHelpHubPage() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <h3 className="mt-6 text-xl font-extrabold leading-snug tracking-tight text-[#172B4D] transition-colors group-hover:text-[#0052CC] lg:text-[1.35rem]">
+                  <h3 className="mt-6 text-xl font-extrabold leading-snug tracking-tight text-brand-navy transition-colors group-hover:text-[#0052CC] lg:text-[1.35rem]">
                     {item.title}
                   </h3>
                   <p className="mt-3 flex-1 text-[15px] leading-relaxed text-[#6B778C]">{item.desc}</p>
@@ -117,8 +117,8 @@ export default function HowWeHelpHubPage() {
 
           <motion.p {...scrollMotionProps(isMobile, { fadeOnly: true, duration: 0.4, delay: 0.15 })} className="mx-auto mt-14 max-w-2xl text-center text-sm leading-relaxed text-[#6B778C] lg:mt-16">
             Every lens ends at the same product graph.{" "}
-            <a href="/platform" className="font-semibold text-[#0052CC] underline decoration-[#0052CC]/25 underline-offset-[3px] transition-colors hover:text-[#0747A6]">
-              Browse the full module list
+            <a href="/how-we-help/project-stage" className="font-semibold text-[#0052CC] underline decoration-[#0052CC]/25 underline-offset-[3px] transition-colors hover:text-[#0747A6]">
+              See how modules show up by stage
             </a>{" "}
             when you’re ready to go granular.
           </motion.p>

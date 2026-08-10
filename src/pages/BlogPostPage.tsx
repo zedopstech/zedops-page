@@ -49,7 +49,7 @@ function ArticleSidebar({ toc, shareUrl, title }: { toc: TocItem[]; shareUrl: st
   };
 
   const iconBtn =
-    "flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F4F5F7] text-[#42526E] transition-colors hover:bg-[#EBECF0] hover:text-[#172B4D]";
+    "flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F4F5F7] text-[#42526E] transition-colors hover:bg-[#EBECF0] hover:text-brand-navy";
 
   return (
     <aside className="min-w-0 max-w-full space-y-10 lg:sticky lg:top-28 lg:self-start">
@@ -96,7 +96,7 @@ function ArticleSidebar({ toc, shareUrl, title }: { toc: TocItem[]; shareUrl: st
             className="flex w-full items-center justify-between gap-2 text-left"
             aria-expanded={tocOpen}
           >
-            <span className="text-sm font-extrabold text-[#172B4D]">Table of contents</span>
+            <span className="text-sm font-extrabold text-brand-navy">Table of contents</span>
             <ChevronDown
               className={`h-4 w-4 shrink-0 text-[#6B778C] transition-transform ${tocOpen ? "rotate-180" : ""}`}
               aria-hidden
@@ -141,7 +141,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
 
   if (!post) {
     return (
-      <div className="min-h-screen overflow-x-clip bg-[#FAFBFC] text-[#172B4D]">
+      <div className="min-h-screen overflow-x-clip bg-[#FAFBFC] text-brand-navy">
         <Navbar />
         <div className="mx-auto max-w-lg px-6 pt-[120px] pb-24 text-center">
           <h1 className="text-2xl font-extrabold">Article not found</h1>
@@ -165,7 +165,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
   const mins = readingMinutes(post);
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
       <div className="pt-[100px]">
         <article>
@@ -213,7 +213,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: 0.05 }}
-                className="mt-8 break-words text-3xl font-extrabold leading-[1.12] tracking-tight text-[#172B4D] sm:text-4xl lg:text-[2.65rem]"
+                className="mt-8 break-words text-3xl font-extrabold leading-[1.12] tracking-tight text-brand-navy sm:text-4xl lg:text-[2.65rem]"
               >
                 {post.title}
               </motion.h1>
@@ -264,7 +264,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
                 </a>
                 <a
                   href="/contact"
-                  className="inline-flex w-full items-center justify-center border border-[#172B4D]/20 bg-white/90 px-6 py-3 text-sm font-bold text-[#172B4D] backdrop-blur-sm transition-colors hover:border-[#172B4D]/35 sm:w-auto"
+                  className="inline-flex w-full items-center justify-center border border-brand-navy/20 bg-white/90 px-6 py-3 text-sm font-bold text-brand-navy backdrop-blur-sm transition-colors hover:border-brand-navy/35 sm:w-auto"
                   style={{ borderRadius: 6 }}
                 >
                   Contact

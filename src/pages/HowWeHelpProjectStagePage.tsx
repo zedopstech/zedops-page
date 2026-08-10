@@ -39,7 +39,7 @@ export default function HowWeHelpProjectStagePage() {
         pill="Project lifecycle"
         PillIcon={ClipboardList}
         title="From estimate to handover without switching systems."
-        subtitle="Preconstruction leans on libraries and estimates; construction on projects, field logs, and supply chain; closeout on inspections, punch, handover, and reporting - all on one tenant so context is not re-entered phase to phase."
+        subtitle="Preconstruction leans on libraries and estimates; construction on projects, field logs, and material management; closeout on inspections, punch, handover, and reporting - all on one tenant so context is not re-entered phase to phase."
       >
         <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 px-2">
           <nav aria-label="Phases on this page" className="flex flex-wrap justify-center gap-2">
@@ -47,7 +47,7 @@ export default function HowWeHelpProjectStagePage() {
               <a
                 key={s.id}
                 href={`#${s.id}`}
-                className="inline-flex items-center rounded-full border border-gray-200 bg-white/95 px-4 py-2.5 text-left text-xs font-bold text-[#172B4D] shadow-sm transition-all hover:border-[#C7D5F5] hover:bg-[#EBF0FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0052CC] focus-visible:ring-offset-2"
+                className="inline-flex items-center rounded-full border border-gray-200 bg-white/95 px-4 py-2.5 text-left text-xs font-bold text-brand-navy shadow-sm transition-all hover:border-[#C7D5F5] hover:bg-[#EBF0FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0052CC] focus-visible:ring-offset-2"
               >
                 <span className="mr-2 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#EBF0FF] text-[11px] font-extrabold text-[#0052CC]">
                   {i + 1}
@@ -57,10 +57,10 @@ export default function HowWeHelpProjectStagePage() {
             ))}
           </nav>
           <a
-            href="/platform"
+            href="/how-we-help"
             className="rounded-md bg-brand-orange px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-brand-orange-soft"
           >
-            All modules
+            How we help
           </a>
         </div>
       </PageHero>
@@ -69,7 +69,7 @@ export default function HowWeHelpProjectStagePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.4 })} className="mb-12 flex flex-col gap-4 lg:mb-14 lg:flex-row lg:items-end lg:gap-20">
             <div>
-              <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#172B4D] sm:text-4xl">
+              <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
                 From bid to <span className="text-[#0052CC]">closeout</span> - how ZedOps maps to the job.
               </h2>
             </div>
@@ -102,7 +102,7 @@ export default function HowWeHelpProjectStagePage() {
                           {stage.title}
                         </span>
                       </div>
-                      <h3 className="text-xl font-extrabold leading-snug text-[#172B4D] sm:text-2xl lg:text-[1.65rem]">{stage.tagline}</h3>
+                      <h3 className="text-xl font-extrabold leading-snug text-brand-navy sm:text-2xl lg:text-[1.65rem]">{stage.tagline}</h3>
                       <p className="mt-4 text-base leading-relaxed text-[#42526E]">{stage.body}</p>
                       <ul className="mt-6 space-y-2 border-t border-gray-100 pt-6">
                         {stage.outcomes.map((o) => (
@@ -120,7 +120,7 @@ export default function HowWeHelpProjectStagePage() {
                         <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5" aria-hidden />
                       </a>
                       <p className="mt-6 border-t border-gray-100 pt-6 text-xs leading-relaxed text-[#97A0AF]">
-                        <span className="font-semibold text-[#172B4D]">In product:</span> menus follow the phase you’re in; roles
+                        <span className="font-semibold text-brand-navy">In product:</span> menus follow the phase you’re in; roles
                         and permissions stay the same.
                       </p>
                     </div>
@@ -134,8 +134,8 @@ export default function HowWeHelpProjectStagePage() {
                         {step}
                       </span>
                       <div className="relative z-1 max-w-lg">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#172B4D]/40">Phase snapshot</p>
-                        <p className="mt-3 text-2xl font-extrabold leading-tight text-[#172B4D] sm:text-3xl">{stage.title}</p>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-navy/40">Phase snapshot</p>
+                        <p className="mt-3 text-2xl font-extrabold leading-tight text-brand-navy sm:text-3xl">{stage.title}</p>
                         <p className="mt-4 text-sm leading-relaxed text-[#42526E]">
                           One tenant and role model end to end - field, office, and leadership only see what their access allows,
                           from estimating through turnover.
@@ -143,7 +143,7 @@ export default function HowWeHelpProjectStagePage() {
                       </div>
                       <div className="relative z-1 mt-10 rounded-xl border border-gray-200/90 bg-white/95 px-5 py-4 shadow-sm backdrop-blur-sm sm:px-6 sm:py-5">
                         <p className="text-[11px] font-bold uppercase tracking-wider text-[#97A0AF]">Platform area</p>
-                        <p className="mt-2 text-sm font-extrabold text-[#172B4D]">{stage.platformLabel}</p>
+                        <p className="mt-2 text-sm font-extrabold text-brand-navy">{stage.platformLabel}</p>
                       </div>
                     </div>
                   </div>

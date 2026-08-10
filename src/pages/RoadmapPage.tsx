@@ -113,7 +113,7 @@ export default function RoadmapPage() {
   });
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
       <div className="pt-[100px]">
         {/* Hero  -  same language as home / platform: gradient, blueprint, glow */}
@@ -145,18 +145,18 @@ export default function RoadmapPage() {
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="mb-6 inline-flex items-center gap-2 border border-[#172B4D]/20 bg-white/80 px-4 py-1.5"
+                  className="mb-6 inline-flex items-center gap-2 border border-brand-navy/20 bg-white/80 px-4 py-1.5"
                   style={{ borderRadius: 99 }}
                 >
                   <Map size={12} className="text-brand-orange" aria-hidden />
-                  <span className="text-xs font-bold tracking-[0.12em] text-[#172B4D] uppercase">Product Roadmap</span>
+                  <span className="text-xs font-bold tracking-[0.12em] text-brand-navy uppercase">Product Roadmap</span>
                 </motion.div>
                 <motion.h1
                   id="roadmap-page-title"
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.06 }}
-                  className="text-4xl font-extrabold leading-[1.08] tracking-tight text-[#172B4D] sm:text-5xl lg:text-[52px]"
+                  className="text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-navy sm:text-5xl lg:text-[52px]"
                 >
                   What we&apos;re building and what&apos;s next.
                 </motion.h1>
@@ -175,7 +175,7 @@ export default function RoadmapPage() {
                   transition={{ duration: 0.45, delay: 0.18 }}
                   className="mx-auto mt-8 max-w-xl lg:mx-0"
                 >
-                  <div className="rounded-2xl border border-[#172B4D]/12 bg-white/75 px-5 py-4 shadow-[0_12px_40px_-28px_rgba(23,43,77,0.22)] backdrop-blur-sm">
+                  <div className="rounded-2xl border border-brand-navy/12 bg-white/75 px-5 py-4 shadow-[0_12px_40px_-28px_rgba(23,43,77,0.22)] backdrop-blur-sm">
                     <p className="text-sm leading-relaxed text-[#42526E]">
                       Roadmap updates as we ship.{" "}
                       <a
@@ -204,7 +204,7 @@ export default function RoadmapPage() {
                 />
                 <div className="relative rounded-2xl border border-white/60 bg-white/40 p-6 shadow-[0_20px_60px_-34px_rgba(23,43,77,0.35)] backdrop-blur-md sm:p-8">
                   <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">At a glance</p>
-                  <div className="relative mt-5 space-y-0 border-l-2 border-[#172B4D]/10 pl-6">
+                  <div className="relative mt-5 space-y-0 border-l-2 border-brand-navy/10 pl-6">
                     {columns.map((col) => (
                       <div key={col.label} className="relative pb-6 last:pb-0">
                         <span
@@ -215,7 +215,7 @@ export default function RoadmapPage() {
                           className="rounded-xl border border-gray-200/80 bg-white/95 px-4 py-3 shadow-[0_4px_20px_-12px_rgba(23,43,77,0.2)]"
                           style={{ borderLeftWidth: 3, borderLeftColor: col.accent }}
                         >
-                          <p className="text-sm font-extrabold text-[#172B4D]">{col.label}</p>
+                          <p className="text-sm font-extrabold text-brand-navy">{col.label}</p>
                           <p className="mt-0.5 text-xs text-[#6B778C]">{col.sublabel}</p>
                           <p className="mt-2 text-[11px] font-semibold text-[#0052CC]">{col.items.length} initiatives</p>
                         </div>
@@ -250,7 +250,7 @@ export default function RoadmapPage() {
                   >
                     <span className={`h-2.5 w-2.5 shrink-0 rounded-full ring-4 ${col.dot} ${col.dotRing}`} aria-hidden />
                     <div className="min-w-0">
-                      <p className="text-sm font-extrabold leading-tight text-[#172B4D]">{col.label}</p>
+                      <p className="text-sm font-extrabold leading-tight text-brand-navy">{col.label}</p>
                       <p className="text-[11px] text-[#97A0AF]">{col.sublabel}</p>
                     </div>
                   </div>
@@ -267,10 +267,10 @@ export default function RoadmapPage() {
                             className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#EBF0FF]"
                             style={{ background: col.accentSoft }}
                           >
-                            <item.icon size={16} className="text-[#172B4D]" aria-hidden />
+                            <item.icon size={16} className="text-brand-navy" aria-hidden />
                           </div>
                           <div className="min-w-0">
-                            <p className="text-sm font-bold leading-snug text-[#172B4D]">{item.title}</p>
+                            <p className="text-sm font-bold leading-snug text-brand-navy">{item.title}</p>
                             <p className="mt-1 text-xs leading-relaxed text-[#6B778C]">{item.desc}</p>
                           </div>
                         </div>
@@ -284,7 +284,7 @@ export default function RoadmapPage() {
         </section>
 
         {/* Feature request  -  navy band with subtle blueprint (home FinalCTA family) */}
-        <section className="relative overflow-hidden bg-[#172B4D] py-20 sm:px-6 lg:px-8 lg:py-24">
+        <section className="relative overflow-hidden bg-brand-navy py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="pointer-events-none absolute inset-0 opacity-[0.08]" style={blueprintBg} aria-hidden />
           <div className="relative mx-auto max-w-2xl px-4 text-center">
             <motion.p {...scrollMotionProps(isMobile, { y: 8, duration: 0.38 })} className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-orange">
@@ -316,22 +316,22 @@ export default function RoadmapPage() {
                   name="role"
                   className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white transition-colors focus:border-brand-orange focus:outline-none"
                 >
-                  <option value="" className="text-[#172B4D]">
+                  <option value="" className="text-brand-navy">
                     Select your role
                   </option>
-                  <option value="gc" className="text-[#172B4D]">
+                  <option value="gc" className="text-brand-navy">
                     General Contractor
                   </option>
-                  <option value="owner" className="text-[#172B4D]">
+                  <option value="owner" className="text-brand-navy">
                     Owner / Developer
                   </option>
-                  <option value="pm" className="text-[#172B4D]">
+                  <option value="pm" className="text-brand-navy">
                     Project Manager
                   </option>
-                  <option value="consultant" className="text-[#172B4D]">
+                  <option value="consultant" className="text-brand-navy">
                     Consultant / CM Firm
                   </option>
-                  <option value="other" className="text-[#172B4D]">
+                  <option value="other" className="text-brand-navy">
                     Other
                   </option>
                 </select>

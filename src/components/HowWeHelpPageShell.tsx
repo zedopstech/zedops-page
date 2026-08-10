@@ -13,7 +13,7 @@ export default function HowWeHelpPageShell({
   breadcrumbs?: Crumb[];
 }) {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
       <div className="pt-[100px]">
         {breadcrumbs && breadcrumbs.length > 0 ? (

@@ -33,7 +33,7 @@ export default function AboutPage() {
     description: "ZedOps is building the operating system for construction. Learn about our mission to give every construction team the visibility of a $10B developer.",
   });
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
       <div className="pt-[100px]">
         <PageHero
@@ -49,7 +49,7 @@ export default function AboutPage() {
             <div className="grid lg:grid-cols-2 gap-14 items-center">
               <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })}>
                 <p className="text-xs font-bold text-[#97A0AF] uppercase tracking-widest mb-4">Our mission</p>
-                <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-[#172B4D] mb-5">
+                <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-brand-navy mb-5">
                   Give every construction team the visibility of a $10B developer.
                 </h2>
                 <p className="text-[#42526E] text-base leading-relaxed">
@@ -62,7 +62,7 @@ export default function AboutPage() {
 
               <motion.div
                 {...scrollMotionProps(isMobile, { x: 20, duration: 0.5 })}
-                className="rounded-2xl bg-[#172B4D] p-8 text-white"
+                className="rounded-2xl bg-brand-navy p-8 text-white"
               >
                 <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-4">Founding team note</p>
                 <p className="text-white/80 text-base leading-relaxed">
@@ -86,10 +86,10 @@ export default function AboutPage() {
                   {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: i * 0.08 })}
                   className="bg-[#F8FAFC] border border-gray-100 rounded-xl p-6"
                 >
-                  <div className="w-10 h-10 bg-[#172B4D]/8 rounded-lg flex items-center justify-center mb-4">
-                    <v.icon size={18} className="text-[#172B4D]" />
+                  <div className="w-10 h-10 bg-brand-navy/8 rounded-lg flex items-center justify-center mb-4">
+                    <v.icon size={18} className="text-brand-navy" />
                   </div>
-                  <h3 className="font-extrabold text-[#172B4D] mb-2 text-sm">{v.title}</h3>
+                  <h3 className="font-extrabold text-brand-navy mb-2 text-sm">{v.title}</h3>
                   <p className="text-[#42526E] text-sm leading-relaxed">{v.body}</p>
                 </motion.div>
               ))}

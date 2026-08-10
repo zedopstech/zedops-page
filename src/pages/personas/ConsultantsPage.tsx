@@ -33,7 +33,7 @@ const features: Feature[] = [
   {
     icon: Inbox,
     title: "Requests and correspondence in one rhythm",
-    desc: "Use the correspondence and request dashboard plus lifecycles for material, transfer, purchase, and reserve requests  -  aligned to procurement, POs, and inventory when those clients run supply chain in ZedOps.",
+    desc: "Use the correspondence and request dashboard plus lifecycles for material, transfer, purchase, and reserve requests  -  aligned to procurement, POs, and inventory when those clients run material management in ZedOps.",
     badge: "Requests",
     mockType: "list",
     mockScenario: "consult-requests",

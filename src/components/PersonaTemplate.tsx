@@ -79,7 +79,7 @@ export default function PersonaTemplate({
   const isMobile = useIsMobile();
 
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
 
       {/* Split hero */}
@@ -119,17 +119,17 @@ export default function PersonaTemplate({
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="mb-6 inline-flex border border-[#172B4D]/20 bg-white/80 items-center gap-2 px-4 py-1.5"
+              className="mb-6 inline-flex border border-brand-navy/20 bg-white/80 items-center gap-2 px-4 py-1.5"
               style={{ borderRadius: 99 }}
             >
               <PillIcon size={12} className="text-brand-orange" />
-              <span className="text-[#172B4D] text-xs font-bold tracking-[0.12em] uppercase">{pill}</span>
+              <span className="text-brand-navy text-xs font-bold tracking-[0.12em] uppercase">{pill}</span>
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.06 }}
-              className="text-4xl sm:text-5xl lg:text-[52px] font-extrabold leading-[1.05] tracking-tight text-[#172B4D] mb-5"
+              className="text-4xl sm:text-5xl lg:text-[52px] font-extrabold leading-[1.05] tracking-tight text-brand-navy mb-5"
             >
               {title}
             </motion.h1>
@@ -156,7 +156,7 @@ export default function PersonaTemplate({
               </a>
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 border border-[#172B4D]/30 hover:border-[#172B4D]/60 text-[#172B4D] font-bold text-sm rounded-md transition-all duration-150 bg-white/60 hover:bg-white/80"
+                className="inline-flex items-center gap-2 px-7 py-3.5 border border-brand-navy/30 hover:border-brand-navy/60 text-brand-navy font-bold text-sm rounded-md transition-all duration-150 bg-white/60 hover:bg-white/80"
               >
                 Talk to our team
               </a>
@@ -166,7 +166,7 @@ export default function PersonaTemplate({
       </div>
 
       {/* Pull quote */}
-      <section className="bg-[#172B4D] px-4 sm:px-6 lg:px-8 py-16">
+      <section className="bg-brand-navy px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-3xl mx-auto text-center">
           <div
             className="text-brand-orange leading-none mb-4 font-serif select-none"
@@ -203,7 +203,7 @@ export default function PersonaTemplate({
             <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-widest mb-3">
               Sound familiar?
             </p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#172B4D] tracking-tight mb-5">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight mb-5">
               {challengesHeading}
             </h2>
             <p className="text-[#6B778C] text-base max-w-xl mx-auto leading-relaxed">
@@ -233,7 +233,7 @@ export default function PersonaTemplate({
                   <c.icon size={26} className="text-white" />
                 </div>
                 <div className="relative z-10 flex-1 flex flex-col">
-                  <h3 className="font-extrabold text-[#172B4D] text-xl mb-4 leading-snug">{c.title}</h3>
+                  <h3 className="font-extrabold text-brand-navy text-xl mb-4 leading-snug">{c.title}</h3>
                   <p className="text-[#6B778C] text-base leading-relaxed flex-1">{c.desc}</p>
                 </div>
               </motion.div>
@@ -249,7 +249,7 @@ export default function PersonaTemplate({
             <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-widest mb-3">
               How ZedOps helps
             </p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#172B4D] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
               {featuresHeading}
             </h2>
           </div>
@@ -297,7 +297,7 @@ export default function PersonaTemplate({
                     <span className="inline-block text-[10px] font-black text-[#0052CC] bg-[#EBF2FF] px-3 py-1 rounded-full uppercase tracking-wider">
                       {f.badge}
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-[#172B4D] leading-snug">
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-brand-navy leading-snug">
                       {f.title}
                     </h3>
                     <p className="text-[#42526E] text-base leading-relaxed">
@@ -305,7 +305,7 @@ export default function PersonaTemplate({
                     </p>
                     <a
                       href="/early-access"
-                      className="inline-flex items-center gap-2 text-sm font-bold text-[#172B4D] hover:text-[#0052CC] transition-colors group"
+                      className="inline-flex items-center gap-2 text-sm font-bold text-brand-navy hover:text-[#0052CC] transition-colors group"
                     >
                       See it in action
                       <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />

@@ -52,7 +52,7 @@ const earlyAccessFaqs = [
   },
   {
     q: "Who is a good fit?",
-    a: "Teams with live construction work who want execution data  -  schedules, logs, issues, documents, supply chain  -  in one system, and who are open to feedback as we ship improvements often.",
+    a: "Teams with live construction work who want execution data  -  schedules, logs, issues, documents, material management  -  in one system, and who are open to feedback as we ship improvements often.",
   },
   {
     q: "How does onboarding work?",
@@ -86,7 +86,7 @@ function EarlyAccessFaqItem({
       <button type="button" onClick={() => setOpen(!open)} className="group flex w-full items-center justify-between gap-4 py-4 text-left sm:py-5">
         <span
           className={`text-sm font-bold leading-snug sm:text-base ${
-            open ? "text-brand-orange" : invert ? "text-white" : "text-[#172B4D]"
+            open ? "text-brand-orange" : invert ? "text-white" : "text-brand-navy"
           }`}
         >
           {q}
@@ -101,7 +101,7 @@ function EarlyAccessFaqItem({
           {open ? (
             <Minus size={13} className="text-white" />
           ) : (
-            <Plus size={13} className={invert ? "text-white" : "text-[#172B4D]"} />
+            <Plus size={13} className={invert ? "text-white" : "text-brand-navy"} />
           )}
         </div>
       </button>
@@ -152,7 +152,7 @@ export default function EarlyAccessPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
 
       {/* Full-bleed split section */}
@@ -196,11 +196,11 @@ export default function EarlyAccessPage() {
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="mb-7 inline-flex border border-[#172B4D]/20 bg-white/80 items-center gap-2 px-4 py-1.5"
+              className="mb-7 inline-flex border border-brand-navy/20 bg-white/80 items-center gap-2 px-4 py-1.5"
               style={{ borderRadius: 99 }}
             >
               <Sparkles size={12} className="text-brand-orange" />
-              <span className="text-[#172B4D] text-xs font-bold tracking-[0.12em] uppercase">Early Access · Limited spots</span>
+              <span className="text-brand-navy text-xs font-bold tracking-[0.12em] uppercase">Early Access · Limited spots</span>
             </motion.div>
 
             {/* Headline */}
@@ -208,7 +208,7 @@ export default function EarlyAccessPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.06 }}
-              className="text-4xl sm:text-5xl font-extrabold leading-[1.05] tracking-tight text-[#172B4D] mb-5"
+              className="text-4xl sm:text-5xl font-extrabold leading-[1.05] tracking-tight text-brand-navy mb-5"
             >
               Get early access<br />
               to ZedOps.
@@ -234,11 +234,11 @@ export default function EarlyAccessPage() {
                   transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
                   className="flex items-start gap-4 bg-white/70 border border-white/60 px-4 py-3.5 rounded-xl backdrop-blur-sm"
                 >
-                  <div className="w-9 h-9 bg-[#172B4D] flex items-center justify-center shrink-0 rounded-lg mt-0.5">
+                  <div className="w-9 h-9 bg-brand-navy flex items-center justify-center shrink-0 rounded-lg mt-0.5">
                     <perk.icon size={16} className="text-brand-orange" />
                   </div>
                   <div>
-                    <p className="text-[#172B4D] font-bold text-sm">{perk.title}</p>
+                    <p className="text-brand-navy font-bold text-sm">{perk.title}</p>
                     <p className="text-[#42526E] text-xs mt-0.5 leading-relaxed">{perk.desc}</p>
                   </div>
                 </motion.div>
@@ -257,7 +257,7 @@ export default function EarlyAccessPage() {
               className="text-center max-w-md mx-auto"
             >
               <CheckCircle2 size={52} className="text-green-500 mx-auto mb-5" />
-              <h2 className="text-2xl font-extrabold text-[#172B4D] mb-3">You're on the list.</h2>
+              <h2 className="text-2xl font-extrabold text-brand-navy mb-3">You're on the list.</h2>
               <p className="text-[#6B778C] leading-relaxed mb-6">
                 Thanks for applying. We review every request personally and will reach out within one business day to schedule your onboarding call.
               </p>
@@ -275,57 +275,57 @@ export default function EarlyAccessPage() {
               transition={{ duration: 0.45 }}
               className="max-w-md w-full mx-auto"
             >
-              <h2 className="text-2xl font-extrabold text-[#172B4D] mb-1">Request your spot</h2>
+              <h2 className="text-2xl font-extrabold text-brand-navy mb-1">Request your spot</h2>
               <p className="text-[#6B778C] text-sm mb-7">We'll be in touch within one business day.</p>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-[#172B4D] uppercase tracking-wide mb-1.5">Full name *</label>
+                    <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Full name *</label>
                     <input
                       name="name"
                       required
                       value={form.name}
                       onChange={handleChange}
                       placeholder="Sarah Chen"
-                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-[#172B4D] placeholder:text-[#97A0AF] focus:outline-none focus:border-[#172B4D] transition-colors"
+                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-[#172B4D] uppercase tracking-wide mb-1.5">Company *</label>
+                    <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Company *</label>
                     <input
                       name="company"
                       required
                       value={form.company}
                       onChange={handleChange}
                       placeholder="Meridian Build Group"
-                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-[#172B4D] placeholder:text-[#97A0AF] focus:outline-none focus:border-[#172B4D] transition-colors"
+                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-[#172B4D] uppercase tracking-wide mb-1.5">Your role *</label>
+                    <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Your role *</label>
                     <select
                       name="role"
                       required
                       value={form.role}
                       onChange={handleChange}
-                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-[#172B4D] focus:outline-none focus:border-[#172B4D] transition-colors bg-white"
+                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy focus:outline-none focus:border-brand-navy transition-colors bg-white"
                     >
                       <option value="">Select role</option>
                       {roles.map((r) => <option key={r} value={r}>{r}</option>)}
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-[#172B4D] uppercase tracking-wide mb-1.5">Company size *</label>
+                    <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Company size *</label>
                     <select
                       name="size"
                       required
                       value={form.size}
                       onChange={handleChange}
-                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-[#172B4D] focus:outline-none focus:border-[#172B4D] transition-colors bg-white"
+                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy focus:outline-none focus:border-brand-navy transition-colors bg-white"
                     >
                       <option value="">Select size</option>
                       {sizes.map((s) => <option key={s} value={s}>{s}</option>)}
@@ -334,7 +334,7 @@ export default function EarlyAccessPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#172B4D] uppercase tracking-wide mb-1.5">Work email *</label>
+                  <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Work email *</label>
                   <input
                     name="email"
                     type="email"
@@ -342,19 +342,19 @@ export default function EarlyAccessPage() {
                     value={form.email}
                     onChange={handleChange}
                     placeholder="sarah@meridianbuilds.com"
-                    className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-[#172B4D] placeholder:text-[#97A0AF] focus:outline-none focus:border-[#172B4D] transition-colors"
+                    className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#172B4D] uppercase tracking-wide mb-1.5">Biggest project management challenge?</label>
+                  <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Biggest project management challenge?</label>
                   <textarea
                     name="challenge"
                     value={form.challenge}
                     onChange={handleChange}
                     rows={3}
                     placeholder="e.g. PMs spend too much time on reporting instead of being on site..."
-                    className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-[#172B4D] placeholder:text-[#97A0AF] focus:outline-none focus:border-[#172B4D] transition-colors resize-none"
+                    className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors resize-none"
                   />
                 </div>
 
@@ -377,7 +377,7 @@ export default function EarlyAccessPage() {
 
       {/* FAQ + quick links */}
       <section
-        className="border-t border-white/10 bg-[#172B4D] py-16 sm:py-20"
+        className="border-t border-white/10 bg-brand-navy py-16 sm:py-20"
         aria-labelledby="early-access-faq-heading"
       >
         <div className="mx-auto max-w-3xl px-6 sm:px-8 lg:px-10">
@@ -407,8 +407,8 @@ export default function EarlyAccessPage() {
           </div>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-center text-xs font-semibold text-white/55">
             <span className="text-[10px] font-bold uppercase tracking-widest text-[#B8C9DC]">Explore</span>
-            <a href="/platform" className="text-white/90 hover:text-brand-orange">
-              Platform features
+            <a href="/platform/module/supply-chain" className="text-white/90 hover:text-brand-orange">
+              Material management
             </a>
             <span className="hidden text-white/25 sm:inline">·</span>
             <a href="/solutions" className="text-white/90 hover:text-brand-orange">

@@ -58,7 +58,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
 
       <div className="min-h-screen pt-[100px] grid lg:grid-cols-2">
@@ -98,18 +98,18 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="mb-7 inline-flex border border-[#172B4D]/20 bg-white/80 items-center gap-2 px-4 py-1.5"
+              className="mb-7 inline-flex border border-brand-navy/20 bg-white/80 items-center gap-2 px-4 py-1.5"
               style={{ borderRadius: 99 }}
             >
               <Sparkles size={12} className="text-brand-orange" />
-              <span className="text-[#172B4D] text-xs font-bold tracking-[0.12em] uppercase">Contact</span>
+              <span className="text-brand-navy text-xs font-bold tracking-[0.12em] uppercase">Contact</span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.06 }}
-              className="text-4xl sm:text-5xl font-extrabold leading-[1.05] tracking-tight text-[#172B4D] mb-5"
+              className="text-4xl sm:text-5xl font-extrabold leading-[1.05] tracking-tight text-brand-navy mb-5"
             >
               We'd love to<br />
               hear from you.
@@ -133,11 +133,11 @@ export default function ContactPage() {
                   transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
                   className="flex items-start gap-4 bg-white/70 border border-white/60 px-4 py-3.5 rounded-xl backdrop-blur-sm"
                 >
-                  <div className="w-9 h-9 bg-[#172B4D] flex items-center justify-center shrink-0 rounded-lg mt-0.5">
+                  <div className="w-9 h-9 bg-brand-navy flex items-center justify-center shrink-0 rounded-lg mt-0.5">
                     <perk.icon size={16} className="text-brand-orange" />
                   </div>
                   <div>
-                    <p className="text-[#172B4D] font-bold text-sm">{perk.title}</p>
+                    <p className="text-brand-navy font-bold text-sm">{perk.title}</p>
                     <p className="text-[#42526E] text-xs mt-0.5 leading-relaxed">{perk.desc}</p>
                   </div>
                 </motion.div>
@@ -150,7 +150,7 @@ export default function ContactPage() {
               transition={{ duration: 0.4, delay: 0.5 }}
               className="mt-8 text-sm text-[#42526E] flex items-center gap-2"
             >
-              <Mail size={16} className="text-[#172B4D] shrink-0" />
+              <Mail size={16} className="text-brand-navy shrink-0" />
               <span>Prefer email? We read the same inbox  -  just use the form.</span>
             </motion.p>
           </div>
@@ -166,7 +166,7 @@ export default function ContactPage() {
               className="text-center max-w-md mx-auto"
             >
               <CheckCircle2 size={52} className="text-green-500 mx-auto mb-5" />
-              <h2 className="text-2xl font-extrabold text-[#172B4D] mb-3">Message received.</h2>
+              <h2 className="text-2xl font-extrabold text-brand-navy mb-3">Message received.</h2>
               <p className="text-[#6B778C] leading-relaxed mb-6">
                 Thanks for reaching out. We'll get back to you within one business day.
               </p>
@@ -184,24 +184,24 @@ export default function ContactPage() {
               transition={{ duration: 0.45 }}
               className="max-w-md w-full mx-auto"
             >
-              <h2 className="text-2xl font-extrabold text-[#172B4D] mb-1">Send us a message</h2>
+              <h2 className="text-2xl font-extrabold text-brand-navy mb-1">Send us a message</h2>
               <p className="text-[#6B778C] text-sm mb-7">We typically reply within one business day.</p>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-[#172B4D] uppercase tracking-wide mb-1.5">Name *</label>
+                    <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Name *</label>
                     <input
                       name="name"
                       required
                       value={form.name}
                       onChange={handleChange}
                       placeholder="Your name"
-                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-[#172B4D] placeholder:text-[#97A0AF] focus:outline-none focus:border-[#172B4D] transition-colors"
+                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-[#172B4D] uppercase tracking-wide mb-1.5">Email *</label>
+                    <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Email *</label>
                     <input
                       name="email"
                       type="email"
@@ -209,19 +209,19 @@ export default function ContactPage() {
                       value={form.email}
                       onChange={handleChange}
                       placeholder="you@company.com"
-                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-[#172B4D] placeholder:text-[#97A0AF] focus:outline-none focus:border-[#172B4D] transition-colors"
+                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#172B4D] uppercase tracking-wide mb-1.5">Subject *</label>
+                  <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Subject *</label>
                   <select
                     name="subject"
                     required
                     value={form.subject}
                     onChange={handleChange}
-                    className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-[#172B4D] focus:outline-none focus:border-[#172B4D] transition-colors bg-white"
+                    className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy focus:outline-none focus:border-brand-navy transition-colors bg-white"
                   >
                     <option value="">Select a subject</option>
                     {subjects.map((s) => <option key={s} value={s}>{s}</option>)}
@@ -229,7 +229,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#172B4D] uppercase tracking-wide mb-1.5">Message *</label>
+                  <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Message *</label>
                   <textarea
                     name="message"
                     required
@@ -237,7 +237,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                     rows={5}
                     placeholder="Tell us what's on your mind..."
-                    className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-[#172B4D] placeholder:text-[#97A0AF] focus:outline-none focus:border-[#172B4D] transition-colors resize-none"
+                    className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors resize-none"
                   />
                 </div>
 

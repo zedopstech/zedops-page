@@ -21,7 +21,7 @@ export default function PlatformPage() {
   useSEO({
     title: "Platform features  -  ZedOps",
     description:
-      "Full overview of ZedOps: multi-tenant access, people, library, projects, planning, quality & safety, documents, finance, supply chain, reporting, and settings. Zed AI (in-product copilot) has its own page.",
+      "Full overview of ZedOps: multi-tenant access, people, library, projects, planning, quality & safety, documents, finance, material management, reporting, and settings. Zed AI (in-product copilot) has its own page.",
   });
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function PlatformPage() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
       <div className="pt-[100px]">
         <section className="relative overflow-hidden pt-20 pb-14 lg:pb-20" aria-labelledby="platform-page-title">
@@ -87,18 +87,18 @@ export default function PlatformPage() {
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="mb-6 inline-flex items-center gap-2 border border-[#172B4D]/20 bg-white/80 px-4 py-1.5"
+                  className="mb-6 inline-flex items-center gap-2 border border-brand-navy/20 bg-white/80 px-4 py-1.5"
                   style={{ borderRadius: 99 }}
                 >
                   <LayoutGrid size={12} className="text-brand-orange" />
-                  <span className="text-[#172B4D] text-xs font-bold tracking-[0.12em] uppercase">Product</span>
+                  <span className="text-brand-navy text-xs font-bold tracking-[0.12em] uppercase">Product</span>
                 </motion.div>
                 <motion.h1
                   id="platform-page-title"
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.06 }}
-                  className="text-4xl font-extrabold leading-[1.08] tracking-tight text-[#172B4D] sm:text-5xl lg:text-[52px]"
+                  className="text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-navy sm:text-5xl lg:text-[52px]"
                 >
                   Everything in ZedOps, in one place.
                 </motion.h1>
@@ -108,7 +108,7 @@ export default function PlatformPage() {
                   transition={{ duration: 0.45, delay: 0.12 }}
                   className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-[#42526E] lg:mx-0"
                 >
-                  Full module map from access and core data to projects, finance, supply chain, and settings.
+                  Full module map from access and core data to projects, finance, material management, and settings.
                  
                 </motion.p>
              
@@ -186,13 +186,13 @@ export default function PlatformPage() {
 
         <section className="py-14 px-4 sm:px-6 lg:px-8 border-t border-gray-100 text-center bg-white">
           <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-widest mb-3">See it in context</p>
-          <h2 className="text-xl font-extrabold text-[#172B4D] mb-4">How capabilities map to your workflow</h2>
+          <h2 className="text-xl font-extrabold text-brand-navy mb-4">How capabilities map to your workflow</h2>
           <p className="text-[#6B778C] text-sm max-w-lg mx-auto mb-6">
             The Solutions page groups the big ideas  -  this page is the full module checklist.
           </p>
           <a
             href="/solutions"
-            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#172B4D] text-[#172B4D] hover:bg-[#172B4D] hover:text-white font-bold text-sm rounded-md transition-all duration-150 group"
+            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white font-bold text-sm rounded-md transition-all duration-150 group"
           >
             Platform overview
             <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
@@ -207,7 +207,7 @@ export default function PlatformPage() {
 }
 
 const mockSkeletonClass =
-  "flex-1 rounded-xl bg-white/50 border border-[#172B4D]/10 animate-pulse min-h-[240px] sm:min-h-[280px] lg:min-h-[360px]";
+  "flex-1 rounded-xl bg-white/50 border border-brand-navy/10 animate-pulse min-h-[240px] sm:min-h-[280px] lg:min-h-[360px]";
 
 function DeferredSectionMock({ variant, section }: { variant: MockType; section: PlatformFeatureSection }) {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -297,7 +297,7 @@ function PlatformSectionBlock({
             href={`/platform/module/${section.id}`}
             className="group mb-10 flex items-start justify-between gap-4 border-b border-gray-200 pb-4 transition-colors hover:border-[#0052CC]/35"
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#172B4D] tracking-tight transition-colors group-hover:text-[#0052CC]">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-navy tracking-tight transition-colors group-hover:text-[#0052CC]">
               {section.title}
             </h2>
             <ArrowRight
@@ -309,7 +309,7 @@ function PlatformSectionBlock({
           <ul className="space-y-0 divide-y divide-gray-200/90">
             {visibleItems.map((item) => (
               <li key={item.name} className="py-5 first:pt-0">
-                <h3 className="font-extrabold text-[#172B4D] text-base mb-1.5">{item.name}</h3>
+                <h3 className="font-extrabold text-brand-navy text-base mb-1.5">{item.name}</h3>
                 <p className="text-[#6B778C] text-sm leading-relaxed">{item.summary}</p>
               </li>
             ))}
@@ -319,7 +319,7 @@ function PlatformSectionBlock({
               type="button"
               onClick={onToggleExpand}
               aria-expanded={isExpanded}
-              className="mt-6 inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-[#FAFBFC] px-4 py-2.5 text-left text-[12px] font-bold text-[#172B4D] transition-colors hover:border-[#172B4D]/25 hover:bg-white"
+              className="mt-6 inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-[#FAFBFC] px-4 py-2.5 text-left text-[12px] font-bold text-brand-navy transition-colors hover:border-brand-navy/25 hover:bg-white"
             >
               {isExpanded ? (
                 <>

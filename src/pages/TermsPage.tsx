@@ -61,7 +61,7 @@ ZedOps is not liable for any indirect, incidental, consequential, or punitive da
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
       <div className="pt-[100px]">
         <PageHero
@@ -76,7 +76,7 @@ export default function TermsPage() {
             <div className="flex flex-col gap-10">
               {sections.map((s) => (
                 <div key={s.title}>
-                  <h2 className="text-lg font-extrabold text-[#172B4D] mb-3">{s.title}</h2>
+                  <h2 className="text-lg font-extrabold text-brand-navy mb-3">{s.title}</h2>
                   <div className="text-[#42526E] text-sm leading-relaxed whitespace-pre-line">{s.body}</div>
                 </div>
               ))}

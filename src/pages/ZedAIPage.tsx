@@ -161,7 +161,7 @@ function RoleStoryOverlay({ variant }: { variant: (typeof roleStoryBlocks)[numbe
     return (
       <div className="absolute bottom-4 left-4 right-4 max-w-[min(100%,17rem)] rounded-lg border border-gray-200 bg-white p-3.5 shadow-lg sm:bottom-6 sm:left-6 sm:right-auto sm:p-4">
         <p className="text-[10px] font-bold uppercase tracking-wide text-[#6B778C]">In ZedOps</p>
-        <p className="mt-1 text-sm font-extrabold leading-snug text-[#172B4D]">Writing assist on your daily log</p>
+        <p className="mt-1 text-sm font-extrabold leading-snug text-brand-navy">Writing assist on your daily log</p>
         <button
           type="button"
           tabIndex={-1}
@@ -179,7 +179,7 @@ function RoleStoryOverlay({ variant }: { variant: (typeof roleStoryBlocks)[numbe
         <div className="flex items-start gap-2.5">
           <CheckCircle2 className="h-5 w-5 shrink-0 text-[#00875A]" aria-hidden />
           <div>
-            <p className="text-sm font-extrabold text-[#172B4D] leading-snug">AI-suggested workflow</p>
+            <p className="text-sm font-extrabold text-brand-navy leading-snug">AI-suggested workflow</p>
             <p className="mt-1 text-xs leading-relaxed text-[#6B778C]">Next steps from your schedule & tasks</p>
           </div>
         </div>
@@ -190,7 +190,7 @@ function RoleStoryOverlay({ variant }: { variant: (typeof roleStoryBlocks)[numbe
     return (
       <div className="absolute bottom-4 left-4 right-4 max-w-[min(100%,17rem)] rounded-lg border border-gray-200 bg-white p-3.5 shadow-lg sm:bottom-6 sm:left-6 sm:right-auto sm:p-4">
         <p className="text-[10px] font-bold uppercase tracking-wide text-[#6B778C]">Portfolio view</p>
-        <p className="mt-1 text-sm font-extrabold leading-snug text-[#172B4D]">Executive briefing draft</p>
+        <p className="mt-1 text-sm font-extrabold leading-snug text-brand-navy">Executive briefing draft</p>
         <button
           type="button"
           tabIndex={-1}
@@ -207,7 +207,7 @@ function RoleStoryOverlay({ variant }: { variant: (typeof roleStoryBlocks)[numbe
       <div className="flex items-start gap-2.5">
         <CheckCircle2 className="h-5 w-5 shrink-0 text-[#00875A]" aria-hidden />
         <div>
-          <p className="text-sm font-extrabold text-[#172B4D] leading-snug">Per-client workspace</p>
+          <p className="text-sm font-extrabold text-brand-navy leading-snug">Per-client workspace</p>
           <p className="mt-1 text-xs leading-relaxed text-[#6B778C]">Zed AI stays inside tenant boundaries</p>
         </div>
       </div>
@@ -259,7 +259,7 @@ export default function ZedAIPage() {
   });
 
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
       <div className="pt-[100px]">
         <PageHero
@@ -270,12 +270,12 @@ export default function ZedAIPage() {
         >
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <a
-              href="/platform"
-              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#172B4D] text-[#172B4D] hover:bg-[#172B4D] hover:text-white font-bold text-sm rounded-md transition-all duration-150"
+              href="/solutions"
+              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white font-bold text-sm rounded-md transition-all duration-150"
             >
-              Full platform list
+              Explore solutions
             </a>
-            <a href="/early-access" className="text-sm font-bold text-[#42526E] hover:text-[#172B4D] transition-colors">
+            <a href="/early-access" className="text-sm font-bold text-[#42526E] hover:text-brand-navy transition-colors">
               Request early access
             </a>
           </div>
@@ -285,7 +285,7 @@ export default function ZedAIPage() {
         <section className="border-t border-gray-100 bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.45 })} className="mx-auto mb-8 max-w-3xl text-center md:mb-10">
-              <h2 className="text-2xl font-extrabold leading-snug tracking-tight text-[#172B4D] sm:text-3xl md:text-4xl">
+              <h2 className="text-2xl font-extrabold leading-snug tracking-tight text-brand-navy sm:text-3xl md:text-4xl">
                 AI features that add speed and clarity from preconstruction through closeout
               </h2>
             </motion.div>
@@ -310,8 +310,8 @@ export default function ZedAIPage() {
                       onClick={() => setShowcaseTab(t.id)}
                       className={`flex shrink-0 items-center gap-2 rounded-md px-3.5 py-2.5 text-left text-xs font-semibold transition-all duration-200 sm:px-4 sm:text-sm ${
                         active
-                          ? "bg-[#172B4D] text-white shadow-sm"
-                          : "text-[#42526E] hover:bg-white/70 hover:text-[#172B4D]"
+                          ? "bg-brand-navy text-white shadow-sm"
+                          : "text-[#42526E] hover:bg-white/70 hover:text-brand-navy"
                       }`}
                     >
                       <Icon className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" strokeWidth={active ? 2.35 : 2} aria-hidden />
@@ -370,7 +370,7 @@ export default function ZedAIPage() {
         <section className="border-t border-gray-100 bg-[#F8FAFC] py-16 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl space-y-8 md:space-y-10">
             <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-2xl font-extrabold tracking-tight text-[#172B4D] sm:text-3xl">Zed AI for every role on the job</h2>
+              <h2 className="text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">Zed AI for every role on the job</h2>
               <p className="mt-3 text-[15px] leading-relaxed text-[#6B778C]">
                 Same permissions as today  -  different leverage for the field, the office, the portfolio, and multi-client teams.
               </p>
@@ -390,7 +390,7 @@ export default function ZedAIPage() {
                     <RoleStoryOverlay variant={block.overlay} />
                   </div>
                   <div className={block.imageOnLeft ? "lg:order-2" : "lg:order-1"}>
-                    <h3 className="text-2xl font-extrabold tracking-tight text-[#172B4D] sm:text-3xl">{block.title}</h3>
+                    <h3 className="text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">{block.title}</h3>
                     <p className="mt-4 text-[15px] leading-relaxed text-[#42526E]">{block.desc}</p>
                     <a
                       href={block.href}
@@ -409,7 +409,7 @@ export default function ZedAIPage() {
         {/* Three pillars */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-100">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl font-extrabold text-center text-[#172B4D] mb-10">What Zed AI covers</h2>
+            <h2 className="text-2xl font-extrabold text-center text-brand-navy mb-10">What Zed AI covers</h2>
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
               {capabilities.map((c, i) => (
                 <motion.div
@@ -418,9 +418,9 @@ export default function ZedAIPage() {
                   className="text-center sm:text-left"
                 >
                   <div className="w-11 h-11 rounded-xl bg-[#EBF0FF] flex items-center justify-center mx-auto sm:mx-0 mb-4">
-                    <c.icon size={20} className="text-[#172B4D]" />
+                    <c.icon size={20} className="text-brand-navy" />
                   </div>
-                  <h3 className="font-extrabold text-[#172B4D] mb-2">{c.title}</h3>
+                  <h3 className="font-extrabold text-brand-navy mb-2">{c.title}</h3>
                   <p className="text-[#6B778C] text-sm leading-relaxed">{c.desc}</p>
                 </motion.div>
               ))}

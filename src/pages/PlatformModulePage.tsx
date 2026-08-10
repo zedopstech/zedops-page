@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import type { RouteComponentProps } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
+import { ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
@@ -11,6 +11,9 @@ import FinalCTA from "@/components/FinalCTA";
 import PageHero from "@/components/PageHero";
 import { getModuleNavContext } from "@/data/platformFeatures";
 import { PlatformModuleFeatureMiniMock } from "@/components/PlatformModuleFeatureMiniMock";
+import SupplyChainModuleLanding from "@/components/SupplyChainModuleLanding";
+import PlanningScheduleLanding from "@/components/PlanningScheduleLanding";
+import EstimationLanding from "@/components/EstimationLanding";
 
 function moduleMetaDescription(section: { title: string; items: { name: string; summary: string }[] }): string {
   const preview = section.items
@@ -27,24 +30,33 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
 
   useSEO({
     title: ctx ? `${ctx.section.title}  -  ZedOps platform` : "Platform module  -  ZedOps",
-    description: ctx ? moduleMetaDescription(ctx.section) : "ZedOps platform modules.",
+    description:
+      params.moduleId === "supply-chain"
+        ? "ZedOps Material Management streamlines procurement, inventory, warehouse and material tracking for MEP contractors and construction projects."
+        : params.moduleId === "estimation"
+          ? "ZedOps Estimation & Proposals — BOQ mapping, productivity-based costing, markups, approvals, and client-ready proposals for MEP and construction."
+          : params.moduleId === "planning-execution"
+            ? "ZedOps Planning & Scheduling — import, create, and monitor programmes with baseline vs live views, assignments, and reports for MEP and construction."
+            : ctx
+              ? moduleMetaDescription(ctx.section)
+              : "ZedOps platform modules.",
   });
 
   if (!ctx) {
     return (
-      <div className="min-h-screen bg-white text-[#172B4D]">
+      <div className="min-h-screen bg-white text-brand-navy">
         <Navbar />
         <div className="mx-auto max-w-lg px-6 pt-[120px] pb-24 text-center">
-          <h1 className="text-2xl font-extrabold text-[#172B4D]">Module not found</h1>
+          <h1 className="text-2xl font-extrabold text-brand-navy">Module not found</h1>
           <p className="mt-3 text-sm leading-relaxed text-[#6B778C]">
             That platform area doesn’t exist or the link may be outdated.
           </p>
           <a
-            href="/platform"
+            href="/"
             className="mt-8 inline-flex items-center gap-2 font-bold text-[#0052CC] transition-colors hover:text-[#0747A6]"
           >
             <ChevronLeft className="h-4 w-4" aria-hidden />
-            Back to full platform
+            Back to home
           </a>
         </div>
         <Footer />
@@ -53,6 +65,102 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
   }
 
   const { section, prev, next } = ctx;
+
+  if (section.id === "supply-chain") {
+    return (
+      <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+        <Navbar />
+        <div className="pt-[100px]">
+          <div className="border-b border-gray-100 bg-white">
+            <div className="mx-auto max-w-7xl px-4 pb-3 pt-4 sm:px-6 lg:px-8">
+              <nav className="text-[13px] font-semibold text-[#6B778C]" aria-label="Breadcrumb">
+                <a href="/" className="transition-colors hover:text-brand-orange">
+                  Home
+                </a>
+                <span className="mx-2 text-[#97A0AF]" aria-hidden>
+                  /
+                </span>
+                <span>Platform</span>
+                <span className="mx-2 text-[#97A0AF]" aria-hidden>
+                  /
+                </span>
+                <span className="text-brand-orange">Material Management</span>
+              </nav>
+            </div>
+          </div>
+          <SupplyChainModuleLanding prev={prev} next={next} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (section.id === "estimation") {
+    return (
+      <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+        <Navbar />
+        <div className="pt-[100px]">
+          <div className="border-b border-gray-100 bg-white">
+            <div className="mx-auto max-w-7xl px-4 pb-3 pt-4 sm:px-6 lg:px-8">
+              <nav className="text-[13px] font-semibold text-[#6B778C]" aria-label="Breadcrumb">
+                <a href="/" className="transition-colors hover:text-brand-orange">
+                  Home
+                </a>
+                <span className="mx-2 text-[#97A0AF]" aria-hidden>
+                  /
+                </span>
+                <span>Platform</span>
+                <span className="mx-2 text-[#97A0AF]" aria-hidden>
+                  /
+                </span>
+                <span>Pre-Construction</span>
+                <span className="mx-2 text-[#97A0AF]" aria-hidden>
+                  /
+                </span>
+                <span className="text-brand-orange">Estimation & Proposals</span>
+              </nav>
+            </div>
+          </div>
+          <EstimationLanding prev={prev} next={next} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (section.id === "planning-execution") {
+    return (
+      <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+        <Navbar />
+        <div className="pt-[100px]">
+          <div className="border-b border-gray-100 bg-white">
+            <div className="mx-auto max-w-7xl px-4 pb-3 pt-4 sm:px-6 lg:px-8">
+              <nav className="text-[13px] font-semibold text-[#6B778C]" aria-label="Breadcrumb">
+                <a href="/" className="transition-colors hover:text-brand-orange">
+                  Home
+                </a>
+                <span className="mx-2 text-[#97A0AF]" aria-hidden>
+                  /
+                </span>
+                <span>Platform</span>
+                <span className="mx-2 text-[#97A0AF]" aria-hidden>
+                  /
+                </span>
+                <span>Pre-Construction</span>
+                <span className="mx-2 text-[#97A0AF]" aria-hidden>
+                  /
+                </span>
+                <span className="text-brand-orange">Planning & Scheduling</span>
+              </nav>
+            </div>
+          </div>
+          <PlanningScheduleLanding prev={prev} next={next} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
   const itemCount = section.items.length;
   /** 2 → 2-col; 4 or 7 → 4-col on xl (7 = 4+3 centered); else 3-col with centered last row */
   const forceTwoCol = itemCount === 2;
@@ -70,7 +178,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
     : "p-6 md:p-7";
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
       <div className="pt-[100px]">
         {/* Breadcrumb  -  same width rhythm as home sections */}
@@ -83,27 +191,16 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
               <span className="mx-2 text-[#97A0AF]" aria-hidden>
                 /
               </span>
-              <a href="/platform" className="transition-colors hover:text-[#0052CC]">
-                Platform
-              </a>
+              <span>Platform</span>
               <span className="mx-2 text-[#97A0AF]" aria-hidden>
                 /
               </span>
-              <span className="text-[#42526E]">{section.title}</span>
+              <span className="text-brand-orange">{section.title}</span>
             </nav>
           </div>
         </div>
 
-        <PageHero pill="Platform module" PillIcon={LayoutGrid} title={section.title} subtitle={subtitle}>
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <a
-              href="/platform"
-              className="inline-flex items-center gap-2 rounded-md border-2 border-[#172B4D] px-6 py-3 text-sm font-bold text-[#172B4D] transition-all duration-150 hover:bg-[#172B4D] hover:text-white"
-            >
-              All modules
-            </a>
-          </div>
-        </PageHero>
+        <PageHero pill="Platform module" PillIcon={LayoutGrid} title={section.title} subtitle={subtitle} />
 
         {/* Everything in this module  -  headline, then feature cards with mini mocks */}
         <section className="border-t border-gray-200 bg-white py-20 lg:py-24">
@@ -143,10 +240,10 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
                       useFourColLayout ? "h-9 w-9" : "h-10 w-10"
                     }`}
                   >
-                    <LayoutGrid className={`text-[#172B4D] ${useFourColLayout ? "h-3.5 w-3.5" : "h-4 w-4"}`} aria-hidden />
+                    <LayoutGrid className={`text-brand-navy ${useFourColLayout ? "h-3.5 w-3.5" : "h-4 w-4"}`} aria-hidden />
                   </div>
                   <h3
-                    className={`font-extrabold leading-snug text-[#172B4D] ${
+                    className={`font-extrabold leading-snug text-brand-navy ${
                       useFourColLayout ? "text-base" : "text-lg"
                     }`}
                   >
@@ -183,7 +280,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
                 Other platform areas
               </h2>
               <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-[#6B778C]">
-                Step through adjacent modules or return to the full checklist.
+                Step through adjacent modules from the same platform map.
               </p>
             </motion.div>
 
@@ -202,7 +299,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
                   </div>
                   <div className="min-w-0 text-left">
                     <p className="text-[10px] font-bold uppercase tracking-wider text-[#97A0AF]">Previous module</p>
-                    <p className="truncate text-lg font-extrabold text-[#172B4D] transition-colors group-hover:text-brand-orange">
+                    <p className="truncate text-lg font-extrabold text-brand-navy transition-colors group-hover:text-brand-orange">
                       {prev.title}
                     </p>
                   </div>
@@ -226,15 +323,6 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
               ) : null}
             </div>
 
-            <div className="mt-10 text-center">
-              <a
-                href="/platform"
-                className="group inline-flex items-center gap-2 text-sm font-bold text-brand-orange transition-colors hover:text-brand-navy"
-              >
-                Full platform checklist
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-              </a>
-            </div>
           </div>
         </section>
 

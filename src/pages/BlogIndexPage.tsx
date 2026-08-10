@@ -33,7 +33,7 @@ function PostCoverMedia({ post, className }: { post: BlogPost; className: string
   }
   return (
     <div
-      className={`flex h-full w-full items-center justify-center bg-gradient-to-br from-[#172B4D] via-[#243d64] to-[#172B4D] px-4 text-center ${className}`}
+      className={`flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-navy via-[#243d64] to-brand-navy px-4 text-center ${className}`}
       aria-hidden
     >
       <span className="line-clamp-4 text-sm font-extrabold leading-snug text-white sm:text-base">{post.title}</span>
@@ -75,7 +75,7 @@ export default function BlogIndexPage() {
   });
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
       <div className="pt-[100px]">
         {/* Hero  -  gradient + blueprint (centered; no side panel) */}
@@ -105,18 +105,18 @@ export default function BlogIndexPage() {
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="mb-6 inline-flex items-center gap-2 border border-[#172B4D]/20 bg-white/80 px-4 py-1.5"
+              className="mb-6 inline-flex items-center gap-2 border border-brand-navy/20 bg-white/80 px-4 py-1.5"
               style={{ borderRadius: 99 }}
             >
               <BookOpen size={12} className="text-brand-orange" aria-hidden />
-              <span className="text-xs font-bold tracking-[0.12em] text-[#172B4D] uppercase">Resources</span>
+              <span className="text-xs font-bold tracking-[0.12em] text-brand-navy uppercase">Resources</span>
             </motion.div>
             <motion.h1
               id="blog-page-title"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.06 }}
-              className="text-4xl font-extrabold leading-[1.08] tracking-tight text-[#172B4D] sm:text-5xl lg:text-[52px]"
+              className="text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-navy sm:text-5xl lg:text-[52px]"
             >
               Blog
             </motion.h1>
@@ -136,7 +136,7 @@ export default function BlogIndexPage() {
               transition={{ duration: 0.45, delay: 0.18 }}
               className="mx-auto mt-8 max-w-xl"
             >
-              <div className="rounded-2xl border border-[#172B4D]/12 bg-white/75 px-5 py-4 text-center backdrop-blur-sm">
+              <div className="rounded-2xl border border-brand-navy/12 bg-white/75 px-5 py-4 text-center backdrop-blur-sm">
                 <p className="text-sm leading-relaxed text-[#42526E]">
                   Want the product before these articles describe it?{" "}
                   <a
@@ -182,7 +182,7 @@ export default function BlogIndexPage() {
                           <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                             {formatReadLabel(spotlight)}
                           </p>
-                          <h2 className="mt-3 text-2xl font-extrabold leading-snug tracking-tight text-[#172B4D] transition-colors group-hover:text-[#0052CC] sm:text-[1.75rem] lg:text-3xl lg:leading-tight">
+                          <h2 className="mt-3 text-2xl font-extrabold leading-snug tracking-tight text-brand-navy transition-colors group-hover:text-[#0052CC] sm:text-[1.75rem] lg:text-3xl lg:leading-tight">
                             {spotlight.title}
                           </h2>
                           <AuthorDateRow author={spotlight.author} date={spotlight.date} />
@@ -210,7 +210,7 @@ export default function BlogIndexPage() {
                             <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                               {formatReadLabel(sideFeatured)}
                             </p>
-                            <h2 className="mt-3 text-lg font-extrabold leading-snug text-[#172B4D] transition-colors group-hover:text-[#0052CC] lg:text-xl">
+                            <h2 className="mt-3 text-lg font-extrabold leading-snug text-brand-navy transition-colors group-hover:text-[#0052CC] lg:text-xl">
                               {sideFeatured.title}
                             </h2>
                             <AuthorDateRow author={sideFeatured.author} date={sideFeatured.date} />
@@ -243,7 +243,7 @@ export default function BlogIndexPage() {
                               <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                                 {formatReadLabel(post)}
                               </p>
-                              <h2 className="mt-3 text-lg font-extrabold leading-snug text-[#172B4D] transition-colors group-hover:text-[#0052CC]">
+                              <h2 className="mt-3 text-lg font-extrabold leading-snug text-brand-navy transition-colors group-hover:text-[#0052CC]">
                                 {post.title}
                               </h2>
                               <AuthorDateRow author={post.author} date={post.date} />

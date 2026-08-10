@@ -16,7 +16,7 @@ const challenges = [
   },
   {
     icon: Clock,
-    title: "Supply chain and site are out of sync",
+    title: "Material management and site are out of sync",
     desc: "POs, goods receipt, inventory, and material tracking run on one track; the site runs on another. Chasing what was delivered versus what was installed is a weekly ritual.",
   },
 ];
@@ -60,7 +60,7 @@ export default function GCPage() {
   useSEO({
     title: "ZedOps for General Contractors",
     description:
-      "ZedOps for GCs: projects, equipment, materials, work logs, daily logs, estimation, schedule, tasks, supply chain, finance hooks, inspections, punch list, and the Zed AI copilot  -  with role-based access.",
+      "ZedOps for GCs: projects, equipment, materials, work logs, daily logs, estimation, schedule, tasks, material management, finance hooks, inspections, punch list, and the Zed AI copilot  -  with role-based access.",
   });
 
   return (
@@ -74,7 +74,7 @@ export default function GCPage() {
       quote="We have a tool for POs, another for daily reports, and spreadsheets for everything else. I spend half my week reconciling them instead of building."
       quoteAttribution="What GCs tell us, again and again"
       challengesHeading="The cost of a fragmented job record."
-      challengesIntro="General contractors live in ZedOps across projects, field capture, and supply chain. These are the gaps we hear about when those areas do not share one system."
+      challengesIntro="General contractors live in ZedOps across projects, field capture, and material management. These are the gaps we hear about when those areas do not share one system."
       challenges={challenges}
       featuresHeading="How ZedOps matches how you run work."
       features={features}

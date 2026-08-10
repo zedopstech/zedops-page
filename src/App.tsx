@@ -6,9 +6,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Home from "@/pages/Home";
-import PricingPage from "@/pages/PricingPage";
+// import PricingPage from "@/pages/PricingPage";
 import SolutionsPage from "@/pages/SolutionsPage";
-import PlatformPage from "@/pages/PlatformPage";
 import PlatformModulePage from "@/pages/PlatformModulePage";
 import ZedAIPage from "@/pages/ZedAIPage";
 import SecurityPage from "@/pages/SecurityPage";
@@ -31,6 +30,7 @@ import OwnersPage from "@/pages/personas/OwnersPage";
 import PMPage from "@/pages/personas/PMPage";
 import ConsultantsPage from "@/pages/personas/ConsultantsPage";
 import NotFound from "@/pages/not-found";
+import { HIDE_PRICING } from "@/config/siteFocus";
 
 const queryClient = new QueryClient();
 
@@ -46,11 +46,9 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/pricing" component={PricingPage} />
+      {/* {!HIDE_PRICING ? <Route path="/pricing" component={PricingPage} /> : null} */}
       <Route path="/solutions" component={SolutionsPage} />
       <Route path="/platform/module/:moduleId" component={PlatformModulePage} />
-      <Route path="/platform/:sectionId" component={PlatformPage} />
-      <Route path="/platform" component={PlatformPage} />
       <Route path="/zed-ai" component={ZedAIPage} />
       <Route path="/security" component={SecurityPage} />
       <Route path="/early-access" component={EarlyAccessPage} />

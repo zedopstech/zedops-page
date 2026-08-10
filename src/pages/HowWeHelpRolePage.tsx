@@ -38,14 +38,14 @@ export default function HowWeHelpRolePage() {
       >
         <a
           href="/who-we-serve"
-          className="inline-flex items-center gap-2 rounded-md border-2 border-[#172B4D] px-6 py-3 text-sm font-bold text-[#172B4D] transition-colors hover:bg-[#172B4D] hover:text-white"
+          className="inline-flex items-center gap-2 rounded-md border-2 border-brand-navy px-6 py-3 text-sm font-bold text-brand-navy transition-colors hover:bg-brand-navy hover:text-white"
         >
           Built for you  -  persona stories
           <ArrowRight className="h-4 w-4" aria-hidden />
         </a>
       </PageHero>
 
-      <section className="border-t border-gray-200 bg-[#172B4D] py-16 lg:py-20">
+      <section className="border-t border-gray-200 bg-brand-navy py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.45 })} className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
             <div>
@@ -75,7 +75,7 @@ export default function HowWeHelpRolePage() {
       <section className="border-t border-gray-200 bg-[#F8FAFC] py-20 lg:py-24">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.45 })}>
-            <h2 className="text-3xl font-extrabold tracking-tight text-[#172B4D] sm:text-4xl">
+            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
               Persona pages live under Built for you
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#6B778C] sm:text-base">

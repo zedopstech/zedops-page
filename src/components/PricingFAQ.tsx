@@ -30,7 +30,7 @@ const faqs = [
   },
   {
     q: "How is the AI Copilot different from a basic chatbot?",
-    a: "Zed Copilot is context-aware  -  it reads your actual live project data (schedules, drawings, RFIs, daily logs, risk flags) before answering. It can generate a risk summary for a specific project, draft an RFI response using the relevant drawing markups, or flag upcoming delivery clashes based on your supply chain data. It is not a generic LLM wrapper; it has deep read access to your ZedOps workspace.",
+    a: "Zed Copilot is context-aware  -  it reads your actual live project data (schedules, drawings, RFIs, daily logs, risk flags) before answering. It can generate a risk summary for a specific project, draft an RFI response using the relevant drawing markups, or flag upcoming delivery clashes based on your material management data. It is not a generic LLM wrapper; it has deep read access to your ZedOps workspace.",
   },
   {
     q: "Is there a minimum contract length for Enterprise?",

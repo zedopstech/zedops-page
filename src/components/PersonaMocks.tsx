@@ -21,7 +21,7 @@ export type PersonaMockScenario =
   | "consult-exports";
 
 function Label({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <span className={`text-[10px] font-bold text-[#172B4D] ${className}`}>{children}</span>;
+  return <span className={`text-[10px] font-bold text-brand-navy ${className}`}>{children}</span>;
 }
 
 export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario }) {
@@ -41,7 +41,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
                 { k: "Open issues", v: "5", sub: "2 urgent" },
               ].map((x) => (
                 <div key={x.k} className="bg-[#F8FAFC] border border-gray-100 rounded-xl p-3">
-                  <div className="text-lg font-extrabold text-[#172B4D] leading-none">{x.v}</div>
+                  <div className="text-lg font-extrabold text-brand-navy leading-none">{x.v}</div>
                   <div className="text-[8px] font-semibold text-[#6B778C] mt-1 leading-tight">{x.k}</div>
                   <div className="text-[8px] text-[#97A0AF] mt-0.5">{x.sub}</div>
                 </div>
@@ -72,8 +72,8 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
         <MockWindow bodyClassName="min-h-[280px]">
           <div className="space-y-4 flex-1 flex flex-col">
             <div className="flex flex-wrap items-center gap-2">
-              <div className="flex items-center gap-2 px-3 py-2 bg-[#EBF0FF] border border-[#172B4D]/15 rounded-lg">
-                <span className="text-[9px] font-bold text-[#172B4D]">Project</span>
+              <div className="flex items-center gap-2 px-3 py-2 bg-[#EBF0FF] border border-brand-navy/15 rounded-lg">
+                <span className="text-[9px] font-bold text-brand-navy">Project</span>
                 <span className="text-[9px] text-[#6B778C]">Riverside Tower ▾</span>
               </div>
               <span className="text-[10px] font-black text-brand-orange uppercase tracking-wider">Daily log</span>
@@ -107,7 +107,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
               <button type="button" className="flex-1 h-9 border border-gray-200 rounded-lg text-[9px] font-bold text-[#6B778C]">
                 Save draft
               </button>
-              <button type="button" className="px-4 h-9 bg-[#172B4D] rounded-lg text-[9px] font-bold text-white">
+              <button type="button" className="px-4 h-9 bg-brand-navy rounded-lg text-[9px] font-bold text-white">
                 Submit log
               </button>
             </div>
@@ -123,7 +123,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
               {["Estimate", "Schedule", "Tasks"].map((t, i) => (
                 <span
                   key={t}
-                  className={`text-[10px] font-bold px-2 py-1 rounded-md ${i === 1 ? "bg-[#172B4D] text-white" : "text-[#97A0AF]"}`}
+                  className={`text-[10px] font-bold px-2 py-1 rounded-md ${i === 1 ? "bg-brand-navy text-white" : "text-[#97A0AF]"}`}
                 >
                   {t}
                 </span>
@@ -167,7 +167,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
           <div className="space-y-3 flex-1 flex flex-col">
             <div className="flex gap-3 border-b border-gray-100 pb-2 overflow-x-auto">
               {["Inspections", "Punch", "Incidents"].map((t, i) => (
-                <span key={t} className={`text-[10px] font-bold whitespace-nowrap pb-1 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-[#97A0AF]"}`}>
+                <span key={t} className={`text-[10px] font-bold whitespace-nowrap pb-1 ${i === 0 ? "text-brand-navy border-b-2 border-brand-navy" : "text-[#97A0AF]"}`}>
                   {t}
                 </span>
               ))}
@@ -201,7 +201,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
                 { v: "1", l: "Budget flag" },
               ].map((x) => (
                 <div key={x.l} className="text-center p-3 rounded-xl bg-[#F8FAFC] border border-gray-100">
-                  <div className="text-xl font-extrabold text-[#172B4D]">{x.v}</div>
+                  <div className="text-xl font-extrabold text-brand-navy">{x.v}</div>
                   <div className="text-[8px] text-[#6B778C] font-semibold mt-1">{x.l}</div>
                 </div>
               ))}
@@ -209,9 +209,9 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
             <div className="space-y-2 flex-1">
               {["Riverside Tower", "Harbor logistics hub", "Midtown retrofit"].map((name, i) => (
                 <div key={name} className="flex items-center gap-3 p-2.5 rounded-xl border border-gray-100">
-                  <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${i === 0 ? "bg-green-500" : i === 1 ? "bg-brand-orange" : "bg-[#172B4D]"}`} />
+                  <div className={`w-2.5 h-2.5 rounded-full shrink-0 ${i === 0 ? "bg-green-500" : i === 1 ? "bg-brand-orange" : "bg-brand-navy"}`} />
                   <div className="flex-1 min-w-0">
-                    <div className="text-[10px] font-bold text-[#172B4D] truncate">{name}</div>
+                    <div className="text-[10px] font-bold text-brand-navy truncate">{name}</div>
                     <div className="h-1.5 bg-gray-100 rounded mt-1 w-full max-w-[180px]" />
                   </div>
                   <span className="text-[8px] text-[#97A0AF] shrink-0">Analytics on</span>
@@ -229,7 +229,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
             <div>
               <Label>Budget · Riverside Tower</Label>
               <div className="mt-2 h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full bg-[#172B4D] rounded-full w-[78%]" />
+                <div className="h-full bg-brand-navy rounded-full w-[78%]" />
               </div>
               <div className="flex justify-between text-[8px] text-[#97A0AF] mt-1">
                 <span>Committed 78%</span>
@@ -246,7 +246,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
                 <div key={row.t} className="flex items-center gap-2.5">
                   <div className={`w-2 h-2 rounded-full shrink-0 ${row.dot}`} />
                   <div className="flex-1 min-w-0">
-                    <div className="text-[9px] font-bold text-[#172B4D]">{row.t}</div>
+                    <div className="text-[9px] font-bold text-brand-navy">{row.t}</div>
                     <div className="text-[8px] text-[#97A0AF]">{row.st}</div>
                   </div>
                 </div>
@@ -263,7 +263,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
             <div className="w-[32%] shrink-0 border-r border-gray-100 pr-3 space-y-1">
               <span className="text-[9px] font-black text-[#97A0AF] uppercase">Folders</span>
               {["Drawings", "Contracts", "Reports", "Daily logs"].map((f, i) => (
-                <div key={f} className={`text-[9px] font-semibold py-1.5 px-2 rounded-lg ${i === 2 ? "bg-[#EBF0FF] text-[#172B4D]" : "text-[#6B778C]"}`}>
+                <div key={f} className={`text-[9px] font-semibold py-1.5 px-2 rounded-lg ${i === 2 ? "bg-[#EBF0FF] text-brand-navy" : "text-[#6B778C]"}`}>
                   {f}
                 </div>
               ))}
@@ -298,12 +298,12 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
             <p className="text-[9px] text-[#97A0AF]">Same flags for menus, modules, and Zed AI</p>
             <div className="grid gap-2 flex-1">
               {[
-                { role: "GC project team", access: "Full execution + cost detail", tone: "border-[#172B4D]/20 bg-[#172B4D]/5" },
+                { role: "GC project team", access: "Full execution + cost detail", tone: "border-brand-navy/20 bg-brand-navy/5" },
                 { role: "Owner / developer", access: "Portfolio, budget, CO, payments", tone: "border-blue-200 bg-blue-50/50" },
                 { role: "Investor (read-only)", access: "Status & reports  -  no line POs", tone: "border-gray-200 bg-gray-50" },
               ].map((card) => (
                 <div key={card.role} className={`rounded-xl border p-3 ${card.tone}`}>
-                  <div className="text-[10px] font-extrabold text-[#172B4D]">{card.role}</div>
+                  <div className="text-[10px] font-extrabold text-brand-navy">{card.role}</div>
                   <div className="text-[8px] text-[#6B778C] mt-1 leading-relaxed">{card.access}</div>
                   <div className="flex gap-1 mt-2">
                     <span className="text-[7px] font-bold uppercase text-green-700 bg-green-100 px-1.5 py-0.5 rounded">Menus</span>
@@ -322,7 +322,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
           <div className="space-y-3 flex-1 flex flex-col">
             <div className="flex items-center justify-between">
               <Label>Schedule + tasks</Label>
-              <span className="text-[8px] font-bold bg-[#EBF0FF] text-[#172B4D] px-2 py-0.5 rounded-full">Linked to issues</span>
+              <span className="text-[8px] font-bold bg-[#EBF0FF] text-brand-navy px-2 py-0.5 rounded-full">Linked to issues</span>
             </div>
             <div className="flex ml-14 gap-0 border-b border-gray-100 pb-1">
               {["W1", "W2", "W3", "W4"].map((w) => (
@@ -347,7 +347,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
               <span className="text-[9px] font-bold text-[#6B778C]">Task workflows</span>
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {["Survey sign-off", "Issue #204", "Work log tie-in"].map((x) => (
-                  <span key={x} className="text-[8px] px-2 py-1 bg-white border border-gray-200 rounded-md font-semibold text-[#172B4D]">
+                  <span key={x} className="text-[8px] px-2 py-1 bg-white border border-gray-200 rounded-md font-semibold text-brand-navy">
                     {x}
                   </span>
                 ))}
@@ -363,7 +363,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
           <div className="space-y-3 flex-1 flex flex-col">
             <div className="flex gap-2 flex-wrap border-b border-gray-100 pb-2">
               {["Issues", "Inspections", "Punch", "Incidents"].map((t, i) => (
-                <span key={t} className={`text-[9px] font-bold px-2 py-1 rounded-md ${i === 1 ? "bg-[#172B4D] text-white" : "text-[#97A0AF] bg-gray-50"}`}>
+                <span key={t} className={`text-[9px] font-bold px-2 py-1 rounded-md ${i === 1 ? "bg-brand-navy text-white" : "text-[#97A0AF] bg-gray-50"}`}>
                   {t}
                 </span>
               ))}
@@ -377,7 +377,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
                 { t: "Near-miss report", st: "Safety · closed", color: "bg-gray-100 text-[#42526E]" },
               ].map((row) => (
                 <div key={row.t} className="flex items-center justify-between gap-2 p-2 rounded-xl border border-gray-100">
-                  <span className="text-[9px] font-bold text-[#172B4D] truncate">{row.t}</span>
+                  <span className="text-[9px] font-bold text-brand-navy truncate">{row.t}</span>
                   <span className={`text-[8px] font-bold px-2 py-0.5 rounded-full shrink-0 ${row.color}`}>{row.st}</span>
                 </div>
               ))}
@@ -393,14 +393,14 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
             <div className="w-full sm:w-[30%] shrink-0 space-y-1 border-b sm:border-b-0 sm:border-r border-gray-100 sm:pr-3 pb-3 sm:pb-0">
               <span className="text-[9px] font-black text-[#97A0AF] uppercase">Projects</span>
               {["Riverside", "Harbor", "Midtown"].map((p, i) => (
-                <div key={p} className={`text-[9px] font-semibold py-1.5 px-2 rounded-lg ${i === 0 ? "bg-[#EBF0FF] text-[#172B4D]" : "text-[#97A0AF]"}`}>
+                <div key={p} className={`text-[9px] font-semibold py-1.5 px-2 rounded-lg ${i === 0 ? "bg-[#EBF0FF] text-brand-navy" : "text-[#97A0AF]"}`}>
                   {p}
                 </div>
               ))}
             </div>
             <div className="flex-1 flex flex-col gap-2 min-w-0">
               <div className="flex gap-2 justify-end">
-                <div className="bg-[#172B4D] rounded-2xl rounded-tr-sm px-3 py-2 max-w-[90%]">
+                <div className="bg-brand-navy rounded-2xl rounded-tr-sm px-3 py-2 max-w-[90%]">
                   <p className="text-[9px] text-white/90 leading-relaxed">Open punch items on Level 3?</p>
                 </div>
               </div>
@@ -464,8 +464,8 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
                 { n: "Harbor JV", nproj: "2 projects" },
                 { n: "Metro REIT", nproj: "6 projects" },
               ].map((c, i) => (
-                <div key={c.n} className={`p-2 rounded-xl border ${i === 0 ? "border-[#172B4D]/30 bg-[#EBF0FF]/50" : "border-gray-100"}`}>
-                  <div className="text-[9px] font-extrabold text-[#172B4D]">{c.n}</div>
+                <div key={c.n} className={`p-2 rounded-xl border ${i === 0 ? "border-brand-navy/30 bg-[#EBF0FF]/50" : "border-gray-100"}`}>
+                  <div className="text-[9px] font-extrabold text-brand-navy">{c.n}</div>
                   <div className="text-[8px] text-[#97A0AF]">{c.nproj}</div>
                 </div>
               ))}
@@ -474,7 +474,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
               <Label>Apex Capital · Live data</Label>
               <div className="grid grid-cols-2 gap-2">
                 <div className="p-2 rounded-lg bg-[#F8FAFC] border border-gray-100 text-center">
-                  <div className="text-lg font-extrabold text-[#172B4D]">4</div>
+                  <div className="text-lg font-extrabold text-brand-navy">4</div>
                   <div className="text-[8px] text-[#6B778C]">Active</div>
                 </div>
                 <div className="p-2 rounded-lg bg-[#F8FAFC] border border-gray-100 text-center">
@@ -494,7 +494,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
           <div className="space-y-3 flex-1 flex flex-col">
             <div className="flex items-center justify-between">
               <Label>Request & correspondence</Label>
-              <span className="text-[8px] font-bold text-white bg-[#172B4D] px-2 py-0.5 rounded-md">Dashboard</span>
+              <span className="text-[8px] font-bold text-white bg-brand-navy px-2 py-0.5 rounded-md">Dashboard</span>
             </div>
             <div className="space-y-2 flex-1">
               {[
@@ -505,14 +505,14 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
               ].map((row) => (
                 <div key={row.id} className="flex items-center justify-between p-2.5 rounded-xl border border-gray-100 bg-white">
                   <div>
-                    <div className="text-[9px] font-bold text-[#172B4D]">{row.type}</div>
+                    <div className="text-[9px] font-bold text-brand-navy">{row.type}</div>
                     <div className="text-[8px] text-[#97A0AF]">{row.id}</div>
                   </div>
                   <span className={`text-[8px] font-bold px-2 py-0.5 rounded-full ${row.color}`}>{row.st}</span>
                 </div>
               ))}
             </div>
-            <p className="text-[8px] text-[#97A0AF]">Aligns with POs & inventory when client uses supply chain in ZedOps</p>
+            <p className="text-[8px] text-[#97A0AF]">Aligns with POs & inventory when client uses material management in ZedOps</p>
           </div>
         </MockWindow>
       );
@@ -534,7 +534,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
                   </div>
                 </div>
                 <div className="flex justify-end">
-                  <div className="bg-[#172B4D] text-white text-[9px] px-3 py-2 rounded-xl rounded-tr-sm max-w-[85%]">Use only Apex Capital projects I can access.</div>
+                  <div className="bg-brand-navy text-white text-[9px] px-3 py-2 rounded-xl rounded-tr-sm max-w-[85%]">Use only Apex Capital projects I can access.</div>
                 </div>
               </div>
               <div className="sm:w-[42%] shrink-0 border-t sm:border-t-0 sm:border-l border-gray-100 pt-3 sm:pt-0 sm:pl-3 space-y-2">
@@ -570,13 +570,13 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
                 "Material movement batch.pdf",
               ].map((name) => (
                 <div key={name} className="flex items-center justify-between p-2.5 rounded-xl border border-gray-100 bg-[#FAFBFC]">
-                  <span className="text-[9px] font-semibold text-[#172B4D] truncate pr-2">{name}</span>
+                  <span className="text-[9px] font-semibold text-brand-navy truncate pr-2">{name}</span>
                   <span className="text-[8px] font-bold text-red-600 shrink-0">PDF</span>
                 </div>
               ))}
             </div>
             <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-              <span className="text-[9px] font-bold text-[#172B4D]">Bulk export</span>
+              <span className="text-[9px] font-bold text-brand-navy">Bulk export</span>
               <span className="text-[8px] font-bold bg-[#EBF0FF] text-[#0052CC] px-2 py-1 rounded">CSV · API</span>
             </div>
           </div>

@@ -52,14 +52,14 @@ export default function BentoStats() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4 }}
-            className="min-w-0 bg-[#172B4D] p-6 sm:p-8 flex flex-col justify-between min-h-[240px] sm:min-h-[300px] relative overflow-hidden lg:row-span-2"
+            className="min-w-0 bg-brand-navy p-6 sm:p-8 flex flex-col justify-between min-h-[240px] sm:min-h-[300px] relative overflow-hidden lg:row-span-2"
             style={{ borderRadius: 6 }}
           >
             <div className="absolute inset-0 opacity-10" style={{
               backgroundImage: "repeating-linear-gradient(45deg, white 0px, white 1px, transparent 1px, transparent 20px)",
             }} />
             <div className="relative z-10">
-              <img src="/ICON.jpg" alt="ZedOps" className="w-10 h-10 mb-4 object-cover" style={{ borderRadius: 6 }} />
+              <img src="/logo.png" alt="ZedOps" className="w-10 h-10 mb-4 object-cover bg-white" style={{ borderRadius: 6 }} />
               <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-1">Early Access</p>
               <p className="text-white font-extrabold text-xl leading-snug">MEP &amp;<br />field<br />execution</p>
             </div>
@@ -90,7 +90,7 @@ export default function BentoStats() {
             className="min-w-0 bg-[#161B22] flex flex-col justify-center p-6 sm:p-8 relative overflow-hidden"
             style={{ borderRadius: 6 }}
           >
-            <div className="absolute right-0 bottom-0 w-32 h-32 rounded-full bg-[#172B4D]/20 blur-2xl" />
+            <div className="absolute right-0 bottom-0 w-32 h-32 rounded-full bg-brand-navy/20 blur-2xl" />
             <AnimatedStat target={10} suffix="×" duration={1.2} inView={inView} className="text-white font-black text-4xl leading-none mb-2 sm:text-5xl lg:text-6xl" />
             <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Faster reporting cycles*</p>
           </motion.div>

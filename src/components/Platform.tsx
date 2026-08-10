@@ -280,7 +280,7 @@ function HubIllustration({ inView }: { inView: boolean }) {
         </clipPath>
       </defs>
       <motion.image
-        href="/ICON.jpg"
+        href="/logo.png"
         x={CX - 44} y={CY - 44}
         width={88} height={88}
         clipPath="url(#hub-clip)"
@@ -358,7 +358,7 @@ function CategoryCard({ category, index }: { category: typeof categories[0]; ind
       className="bg-white border border-gray-200 rounded-md p-5 group hover:border-gray-300 transition-all duration-200 relative overflow-hidden"
     >
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-extrabold text-[#172B4D]">{category.label}</h3>
+        <h3 className="text-sm font-extrabold text-brand-navy">{category.label}</h3>
         <ArrowRight size={13} className="text-gray-200 group-hover:text-brand-orange group-hover:translate-x-0.5 transition-all duration-200" />
           </div>
       <p className="text-xs text-[#6B778C] leading-snug mb-4">{category.description}</p>
@@ -385,11 +385,11 @@ export default function Platform() {
         {/* ── Header ── */}
         <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="text-center mb-6">
           <div className="flex items-center justify-center gap-2 mb-5">
-            <div className="w-3 h-3 rounded-sm bg-[#172B4D] rotate-45" />
-            <span className="text-[#172B4D] text-xs font-bold tracking-[0.15em] uppercase">Integrations</span>
+            <div className="w-3 h-3 rounded-sm bg-brand-navy rotate-45" />
+            <span className="text-brand-navy text-xs font-bold tracking-[0.15em] uppercase">Integrations</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#172B4D] leading-tight tracking-tight max-w-3xl mx-auto">
-            Built on the <span className="text-[#172B4D]">ecosystem</span> your<br className="hidden sm:block" />
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-brand-navy leading-tight tracking-tight max-w-3xl mx-auto">
+            Built on the <span className="text-brand-navy">ecosystem</span> your<br className="hidden sm:block" />
             construction business runs on.
           </h2>
           <p className="text-[#6B778C] text-base mt-5 max-w-xl mx-auto leading-relaxed">
@@ -418,7 +418,7 @@ export default function Platform() {
             { value: "SOC 2", label: "Type II certified" },
           ].map((stat) => (
             <div key={stat.label} className="bg-white px-6 py-6 text-center">
-              <div className="text-2xl font-black text-[#172B4D] mb-1">{stat.value}</div>
+              <div className="text-2xl font-black text-brand-navy mb-1">{stat.value}</div>
               <div className="text-xs text-[#97A0AF] font-medium uppercase tracking-wider">{stat.label}</div>
             </div>
           ))}

@@ -74,7 +74,7 @@ export default function PMPage() {
       quote="I am the human API between the site, the owner, and five systems. If one number is wrong, I hear about it in the meeting  -  not in the tool."
       quoteAttribution="What project managers tell us, again and again"
       challengesHeading="The PM job when the system is the bottleneck."
-      challengesIntro="Project managers sit between field, office, and supply chain. These are the coordination costs when nothing shares a single workflow."
+      challengesIntro="Project managers sit between field, office, and material management. These are the coordination costs when nothing shares a single workflow."
       challenges={challenges}
       featuresHeading="Tools that match a PM’s actual week."
       features={features}

@@ -4,6 +4,9 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { ArrowRight, TrendingDown, Zap, Play, Sparkles, X } from "lucide-react";
 import AppMockup from "./DashboardMockup";
 
+/** Set true to restore the hero dashboard mockup + watch-demo overlay. */
+const SHOW_HERO_MOCKUP = false;
+
 /**
  * Hero “platform overview” video  -  swap for your asset or YouTube.
  * If `youtubeId` is set, an embed is used (takes precedence over MP4).
@@ -160,7 +163,7 @@ function PortfolioHealthCard() {
             <div className="flex justify-between text-[9px] mb-0.5">
               <span className="text-[#42526E]">{label}</span>
               <motion.span
-                className="font-bold text-[#172B4D]"
+                className="font-bold text-brand-navy"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay, duration: 0.3 }}
@@ -231,7 +234,7 @@ function AIRiskCard() {
           >
             <span className={`text-[8px] font-bold px-1.5 py-0.5 shrink-0 mt-0.5 rounded ${color}`}>{level}</span>
             <div>
-              <div className="text-[9px] font-bold text-[#172B4D] leading-tight">{site}</div>
+              <div className="text-[9px] font-bold text-brand-navy leading-tight">{site}</div>
               <div className="text-[8px] text-[#6B778C]">{risk}</div>
             </div>
           </motion.div>
@@ -265,7 +268,7 @@ function MilestoneCard() {
   return (
     <div className="bg-white border border-gray-200/90 p-4 w-40" style={{ borderRadius: 8 }}>
       <span className="text-[10px] text-[#97A0AF] font-bold uppercase tracking-wider block mb-1.5">Today's Milestone</span>
-      <div className="text-xl font-black text-[#172B4D] leading-none mb-1">
+      <div className="text-xl font-black text-brand-navy leading-none mb-1">
         <CountUp target={14} delay={0.9} /> inspections
       </div>
       <div className="text-[9px] text-[#6B778C] mb-2">across 6 active sites</div>
@@ -311,8 +314,12 @@ export default function Hero() {
   const closeOverview = useCallback(() => setOverviewOpen(false), []);
 
   return (
-    <section id="hero" className="relative pt-[100px] overflow-hidden" style={{ minHeight: "100vh" }}>
-      <PlatformOverviewModal open={overviewOpen} onClose={closeOverview} />
+    <section
+      id="hero"
+      className="relative overflow-hidden pt-[60px]"
+      style={SHOW_HERO_MOCKUP ? { minHeight: "100vh" } : undefined}
+    >
+      {SHOW_HERO_MOCKUP ? <PlatformOverviewModal open={overviewOpen} onClose={closeOverview} /> : null}
 
       {/* Parallax background  -  no interactives inside, safe to transform */}
       <motion.div
@@ -353,17 +360,17 @@ export default function Hero() {
       />
 
       {/* ── Text block  -  no scroll transform to avoid lag ── */}
-      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center pt-16 pb-0 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center pt-8 pb-0 sm:px-6">
 
         <motion.div
           initial={isMobile ? false : { opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-7 inline-flex max-w-full flex-wrap items-center justify-center gap-2 border border-[#172B4D]/20 bg-white/80 px-3 py-1.5 sm:px-4"
+          className="mb-7 inline-flex max-w-full flex-wrap items-center justify-center gap-2 border border-brand-navy/20 bg-white/80 px-3 py-1.5 sm:px-4"
           style={{ borderRadius: 99 }}
         >
           <Sparkles size={12} className="shrink-0 text-brand-orange" />
-          <span className="max-w-[min(100%,26rem)] text-center text-[10px] font-bold uppercase tracking-[0.08em] text-[#172B4D] sm:max-w-none sm:text-xs sm:tracking-[0.12em]">
+          <span className="max-w-[min(100%,26rem)] text-center text-[10px] font-bold uppercase tracking-[0.08em] text-brand-navy sm:max-w-none sm:text-xs sm:tracking-[0.12em]">
             Powered by Zed AI copilot · Built for MEP
           </span>
         </motion.div>
@@ -372,16 +379,16 @@ export default function Hero() {
           initial={isMobile ? false : { opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.06 }}
-          className="text-4xl font-extrabold leading-[1.08] tracking-tight text-[#172B4D] mb-5 sm:text-5xl md:text-6xl lg:text-[70px] lg:leading-[1.03]"
+          className="text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-navy mb-3 sm:text-5xl md:text-6xl lg:text-[60px] lg:leading-[1.05]"
         >
-          Execution-first operations for MEP trades.
+          AI <span className="text-brand-orange">MEP & Construction </span>Execution Platform
         </motion.h1>
 
         <motion.p
           initial={isMobile ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.48, delay: 0.14 }}
-          className="text-[#42526E] text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-8 text-center text-balance"
+          className="text-[#42526E] text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-5 text-center text-balance"
         >
           Connect the programme to tasks, daily logs to follow-ups, and inspections &amp; punch to closeout with finance and supply on the same thread so supers and PMs see what to do next, not just reports
         </motion.p>
@@ -390,7 +397,7 @@ export default function Hero() {
           initial={isMobile ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.44, delay: 0.22 }}
-          className="mb-12 flex flex-col items-center gap-3 px-1 sm:mb-14"
+          className="mb-7 flex flex-col items-center gap-3 px-1 sm:mb-8"
         >
           <div className="flex w-full max-w-md flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center">
             <a
@@ -404,7 +411,7 @@ export default function Hero() {
             <div className="animated-gradient-border w-full sm:w-auto">
               <a
                 href="/contact?topic=demo"
-                className="inline-flex w-full items-center justify-center gap-2 px-7 py-3.5 text-center text-sm font-semibold text-[#172B4D] transition-all duration-150 bg-white hover:bg-[#F6F8FA] sm:w-auto"
+                className="inline-flex w-full items-center justify-center gap-2 px-7 py-3.5 text-center text-sm font-semibold text-brand-navy transition-all duration-150 bg-white hover:bg-[#F6F8FA] sm:w-auto"
                 style={{ borderRadius: 6 }}
               >
                 Book a demo
@@ -419,6 +426,7 @@ export default function Hero() {
       </div>
 
       {/* ── Mockup  -  no scroll transform, eliminates button lag ── */}
+      {SHOW_HERO_MOCKUP ? (
       <div className="relative z-10 mx-auto max-w-[1160px] min-w-0 px-4 sm:px-6">
         <motion.div
           initial={isMobile ? false : { opacity: 0, y: 44 }}
@@ -452,13 +460,13 @@ export default function Hero() {
                   type="button"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  className="relative flex items-center gap-3 bg-[#172B4D] border border-gray-200 px-5 py-3 text-[#172B4D] font-bold text-sm transition-colors duration-150 hover:bg-[#101A2C]"
+                  className="relative flex items-center gap-3 bg-brand-navy border border-gray-200 px-5 py-3 text-brand-navy font-bold text-sm transition-colors duration-150 hover:bg-[#101A2C]"
                   style={{ borderRadius: 10, cursor: "pointer" }}
                   onClick={() => setOverviewOpen(true)}
                   aria-haspopup="dialog"
                 >
                   <div className="w-9 h-9 bg-white flex items-center justify-center shrink-0" style={{ borderRadius: 8 }}>
-                    <Play size={16} className="text-[#172B4D] ml-0.5" fill="#172B4D" />
+                    <Play size={16} className="text-brand-navy ml-0.5" fill="#172B4D" />
                   </div>
                   <div className="text-left">
                     <div className="text-sm font-bold text-white">Watch demo</div>
@@ -524,15 +532,16 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
+      ) : null}
 
       {/* ── Minimal bar (same rhythm as former trust row; no customer claims) ── */}
-      <div className="relative z-10 mt-10 border-t border-gray-200 bg-white">
+      <div className="relative z-10 mt-5 border-t border-gray-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-center text-xs text-[#97A0AF] sm:text-left">
               <a
                 href="/early-access"
-                className="font-bold text-[#172B4D] underline-offset-2 hover:text-brand-orange hover:underline"
+                className="font-bold text-brand-navy underline-offset-2 hover:text-brand-orange hover:underline"
               >
                 Request access
               </a>

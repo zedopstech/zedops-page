@@ -54,11 +54,11 @@ export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, c
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-6 inline-flex border border-[#172B4D]/20 bg-white/80 items-center gap-2 px-4 py-1.5"
+          className="mb-6 inline-flex border border-brand-navy/20 bg-white/80 items-center gap-2 px-4 py-1.5"
           style={{ borderRadius: 99 }}
         >
           <PillIcon size={12} className="text-brand-orange" />
-          <span className="text-[#172B4D] text-xs font-bold tracking-[0.12em] uppercase">{pill}</span>
+          <span className="text-brand-navy text-xs font-bold tracking-[0.12em] uppercase">{pill}</span>
         </motion.div>
 
         {/* Title */}
@@ -66,7 +66,7 @@ export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, c
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.06 }}
-          className="text-4xl sm:text-5xl lg:text-[58px] font-extrabold leading-[1.05] tracking-tight text-[#172B4D] mb-5"
+          className="text-4xl sm:text-5xl lg:text-[58px] font-extrabold leading-[1.05] tracking-tight text-brand-navy mb-5"
         >
           {title}
         </motion.h1>

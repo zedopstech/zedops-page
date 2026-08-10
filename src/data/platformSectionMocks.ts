@@ -5,6 +5,7 @@ export const platformSectionMockType: Record<string, MockType> = {
   "platform-access": "access",
   core: "people",
   projects: "dashboard",
+  estimation: "finance",
   "planning-execution": "schedule",
   "quality-safety-closeout": "inspection",
   "information-management": "documents",

@@ -47,9 +47,9 @@ export function MockChat() {
       <div className="flex gap-3 h-full flex-1 min-h-0">
         <div className="w-28 shrink-0 space-y-1 border-r border-gray-100 pr-3">
           <div className="h-2 bg-gray-200 rounded w-3/4 mb-3" />
-          <div className="h-7 bg-[#EBF0FF] rounded-lg border border-[#172B4D]/10 flex items-center px-2 gap-1.5">
-            <div className="w-2 h-2 bg-[#172B4D] rounded-full shrink-0" />
-            <div className="h-2 bg-[#172B4D]/40 rounded flex-1" />
+          <div className="h-7 bg-[#EBF0FF] rounded-lg border border-brand-navy/10 flex items-center px-2 gap-1.5">
+            <div className="w-2 h-2 bg-brand-navy rounded-full shrink-0" />
+            <div className="h-2 bg-brand-navy/40 rounded flex-1" />
           </div>
           {["", ""].map((_, i) => (
             <div key={i} className="h-7 rounded-lg flex items-center px-2 gap-1.5">
@@ -74,7 +74,7 @@ export function MockChat() {
             </div>
           </div>
           <div className="flex gap-2 justify-end">
-            <div className="bg-[#172B4D] rounded-2xl rounded-tr-none px-4 py-3 max-w-[75%]">
+            <div className="bg-brand-navy rounded-2xl rounded-tr-none px-4 py-3 max-w-[75%]">
               <div className="h-2 bg-white/40 rounded mb-1.5 w-full" />
               <div className="h-2 bg-white/40 rounded w-3/4" />
             </div>
@@ -124,7 +124,7 @@ export function MockDashboard() {
             <div className="h-2.5 bg-gray-300 rounded w-24" />
             <div className="flex gap-1">
               {["W", "M", "Q"].map((t, i) => (
-                <div key={t} className={`text-[9px] font-bold px-2 py-0.5 rounded ${i === 1 ? "bg-[#172B4D] text-white" : "text-[#97A0AF]"}`}>{t}</div>
+                <div key={t} className={`text-[9px] font-bold px-2 py-0.5 rounded ${i === 1 ? "bg-brand-navy text-white" : "text-[#97A0AF]"}`}>{t}</div>
               ))}
             </div>
           </div>
@@ -167,10 +167,10 @@ export function MockLog() {
       <div className="space-y-4 flex-1">
         <div className="flex items-center justify-between">
           <div>
-            <div className="h-3 bg-[#172B4D]/70 rounded w-28 mb-1.5" />
+            <div className="h-3 bg-brand-navy/70 rounded w-28 mb-1.5" />
             <div className="h-2 bg-gray-200 rounded w-20" />
           </div>
-          <div className="px-3 py-1.5 bg-[#172B4D] rounded-lg">
+          <div className="px-3 py-1.5 bg-brand-navy rounded-lg">
             <div className="h-2 bg-white/60 rounded w-10" />
           </div>
         </div>
@@ -182,7 +182,7 @@ export function MockLog() {
                 <span className="text-[#C7D5F5] text-lg" aria-hidden>🏗</span>
               </div>
             ))}
-            <div className="w-16 h-14 bg-[#EBF0FF] rounded-xl border-2 border-dashed border-[#172B4D]/20 flex items-center justify-center text-[#172B4D]/30 text-2xl font-light">+</div>
+            <div className="w-16 h-14 bg-[#EBF0FF] rounded-xl border-2 border-dashed border-brand-navy/20 flex items-center justify-center text-brand-navy/30 text-2xl font-light">+</div>
           </div>
         </div>
         <div className="space-y-3">
@@ -224,7 +224,7 @@ export function MockAnnotation() {
               <div key={c} className="w-5 h-5 rounded-full border-2 border-white" style={{ background: c }} />
             ))}
           </div>
-          <div className="ml-auto px-2.5 py-1 bg-[#172B4D] rounded-md">
+          <div className="ml-auto px-2.5 py-1 bg-brand-navy rounded-md">
             <div className="h-2 bg-white/60 rounded w-10" />
           </div>
         </div>
@@ -256,8 +256,8 @@ export function MockAnnotation() {
             <div className="h-2 bg-gray-300 rounded w-4" />
             <div className="h-2 bg-gray-200 rounded flex-1" />
           </div>
-          <div className="px-3 h-7 bg-[#EBF0FF] border border-[#172B4D]/10 rounded-lg flex items-center">
-            <div className="h-2 bg-[#172B4D]/40 rounded w-12" />
+          <div className="px-3 h-7 bg-[#EBF0FF] border border-brand-navy/10 rounded-lg flex items-center">
+            <div className="h-2 bg-brand-navy/40 rounded w-12" />
           </div>
         </div>
       </div>
@@ -277,10 +277,10 @@ export function MockList() {
       <div className="space-y-3 flex-1 flex flex-col">
         <div className="flex gap-4 border-b border-gray-100 pb-2 shrink-0">
           {["Tasks", "RFIs", "Submittals"].map((t, i) => (
-            <div key={t} className={`text-[11px] font-bold pb-1 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-[#97A0AF]"}`}>{t}</div>
+            <div key={t} className={`text-[11px] font-bold pb-1 ${i === 0 ? "text-brand-navy border-b-2 border-brand-navy" : "text-[#97A0AF]"}`}>{t}</div>
           ))}
           <div className="ml-auto h-6 px-2 bg-[#EBF0FF] rounded-md flex items-center">
-            <div className="h-2 bg-[#172B4D]/40 rounded w-10" />
+            <div className="h-2 bg-brand-navy/40 rounded w-10" />
           </div>
         </div>
         <div className="space-y-1 flex-1">
@@ -288,7 +288,7 @@ export function MockList() {
             <div key={i} className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50">
               <div
                 className={`w-4 h-4 rounded border-2 shrink-0 flex items-center justify-center ${
-                  t.done ? "bg-[#172B4D] border-[#172B4D]" : "border-gray-300"
+                  t.done ? "bg-brand-navy border-brand-navy" : "border-gray-300"
                 }`}
               >
                 {t.done && <div className="w-2 h-1.5 border-b-2 border-l-2 border-white -rotate-45 -translate-y-px" />}
@@ -304,7 +304,7 @@ export function MockList() {
             <div className="h-2 bg-gray-300 rounded w-8" />
           </div>
           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div className="h-full bg-[#172B4D] rounded-full" style={{ width: "65%" }} />
+            <div className="h-full bg-brand-navy rounded-full" style={{ width: "65%" }} />
           </div>
           <div className="text-[9px] text-[#97A0AF] mt-1 text-right">65% complete</div>
         </div>
@@ -320,9 +320,9 @@ export function MockAccess() {
       <div className="flex gap-4 flex-1 min-h-0">
         <div className="w-[30%] max-w-[120px] shrink-0 space-y-2 border-r border-gray-100 pr-3">
           <div className="h-2 bg-gray-200 rounded w-14" />
-          <div className="h-8 rounded-lg bg-[#EBF0FF] border border-[#172B4D]/15 px-2 flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-[#172B4D] shrink-0" />
-            <div className="h-2 bg-[#172B4D]/35 rounded flex-1 min-w-0" />
+          <div className="h-8 rounded-lg bg-[#EBF0FF] border border-brand-navy/15 px-2 flex items-center gap-1.5">
+            <div className="w-2 h-2 rounded-full bg-brand-navy shrink-0" />
+            <div className="h-2 bg-brand-navy/35 rounded flex-1 min-w-0" />
           </div>
           <div className="h-8 rounded-lg bg-gray-50 border border-gray-100 px-2 flex items-center">
             <div className="h-2 bg-gray-200 rounded flex-1" />
@@ -333,16 +333,16 @@ export function MockAccess() {
         </div>
         <div className="flex-1 flex flex-col justify-center gap-3 py-2 min-w-0">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-[#172B4D] flex items-center justify-center text-white text-sm font-black shrink-0">Z</div>
+            <div className="w-11 h-11 rounded-xl bg-brand-navy flex items-center justify-center text-white text-sm font-black shrink-0">Z</div>
             <div>
-              <div className="h-2.5 bg-[#172B4D]/70 rounded w-28 mb-1" />
+              <div className="h-2.5 bg-brand-navy/70 rounded w-28 mb-1" />
               <div className="h-2 bg-gray-200 rounded w-36" />
             </div>
           </div>
           <div className="space-y-2 pt-2">
             <div className="h-9 bg-gray-50 border border-gray-200 rounded-lg" />
             <div className="h-9 bg-gray-50 border border-gray-200 rounded-lg" />
-            <div className="h-9 bg-[#172B4D] rounded-lg opacity-90" />
+            <div className="h-9 bg-brand-navy rounded-lg opacity-90" />
           </div>
           <div className="flex gap-2 pt-1">
             <div className="h-2 bg-gray-200 rounded w-24" />
@@ -361,11 +361,11 @@ export function MockPeople() {
       <div className="space-y-3 flex-1 flex flex-col min-h-0">
         <div className="flex items-center justify-between shrink-0">
           <div>
-            <div className="h-2.5 bg-[#172B4D]/70 rounded w-32 mb-1" />
+            <div className="h-2.5 bg-brand-navy/70 rounded w-32 mb-1" />
             <div className="h-2 bg-gray-200 rounded w-44" />
           </div>
-          <div className="h-8 px-3 bg-[#EBF0FF] border border-[#172B4D]/15 rounded-lg flex items-center">
-            <div className="h-2 bg-[#172B4D]/40 rounded w-14" />
+          <div className="h-8 px-3 bg-[#EBF0FF] border border-brand-navy/15 rounded-lg flex items-center">
+            <div className="h-2 bg-brand-navy/40 rounded w-14" />
           </div>
         </div>
         <div className="rounded-xl border border-gray-200 overflow-hidden flex-1 min-h-[160px]">
@@ -414,7 +414,7 @@ export function MockDocuments() {
         <div className="flex-1 flex flex-col gap-2 min-w-0">
           <div className="flex gap-2 border-b border-gray-100 pb-2 shrink-0">
             {["Documents", "Daily log"].map((t, i) => (
-              <div key={t} className={`text-[10px] font-bold pb-1 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-[#97A0AF]"}`}>{t}</div>
+              <div key={t} className={`text-[10px] font-bold pb-1 ${i === 0 ? "text-brand-navy border-b-2 border-brand-navy" : "text-[#97A0AF]"}`}>{t}</div>
             ))}
           </div>
           <div className="space-y-2 flex-1">
@@ -445,10 +445,10 @@ export function MockFinance() {
     <MockWindow bodyClassName="min-h-[280px]">
       <div className="space-y-4 flex-1">
         <div className="flex items-center justify-between">
-          <div className="h-2.5 bg-[#172B4D]/70 rounded w-36" />
+          <div className="h-2.5 bg-brand-navy/70 rounded w-36" />
           <div className="flex gap-1">
             {["Budget", "CO", "Pay"].map((t, i) => (
-              <div key={t} className={`text-[9px] font-bold px-2 py-1 rounded-md ${i === 0 ? "bg-[#172B4D] text-white" : "bg-gray-100 text-[#6B778C]"}`}>{t}</div>
+              <div key={t} className={`text-[9px] font-bold px-2 py-1 rounded-md ${i === 0 ? "bg-brand-navy text-white" : "bg-gray-100 text-[#6B778C]"}`}>{t}</div>
             ))}
           </div>
         </div>
@@ -459,7 +459,7 @@ export function MockFinance() {
           ].map((c) => (
             <div key={c.l} className="rounded-xl border border-gray-200 bg-linear-to-br from-white to-gray-50/80 p-3">
               <div className="text-[9px] font-bold text-[#6B778C] uppercase mb-1">{c.l}</div>
-              <div className="text-xl font-extrabold text-[#172B4D] leading-none">{c.v}</div>
+              <div className="text-xl font-extrabold text-brand-navy leading-none">{c.v}</div>
               <div className="text-[9px] text-[#97A0AF] mt-1">{c.sub}</div>
             </div>
           ))}
@@ -482,14 +482,14 @@ export function MockFinance() {
   );
 }
 
-/** Supply chain  -  POs & inventory */
+/** Material management  -  POs & inventory */
 export function MockSupply() {
   return (
     <MockWindow bodyClassName="min-h-[280px]">
       <div className="space-y-3 flex-1 flex flex-col min-h-0">
         <div className="flex gap-3 border-b border-gray-100 pb-2 shrink-0 overflow-x-auto">
           {["POs", "Inventory", "Receipts", "Requests"].map((t, i) => (
-            <div key={t} className={`text-[10px] font-bold whitespace-nowrap pb-1 shrink-0 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-[#97A0AF]"}`}>{t}</div>
+            <div key={t} className={`text-[10px] font-bold whitespace-nowrap pb-1 shrink-0 ${i === 0 ? "text-brand-navy border-b-2 border-brand-navy" : "text-[#97A0AF]"}`}>{t}</div>
           ))}
         </div>
         <div className="rounded-xl border border-gray-200 overflow-hidden flex-1">
@@ -526,9 +526,9 @@ export function MockReports() {
     <MockWindow bodyClassName="min-h-[280px]">
       <div className="space-y-3 flex-1 flex flex-col">
         <div className="flex items-center justify-between shrink-0">
-          <div className="h-2.5 bg-[#172B4D]/70 rounded w-40" />
-          <div className="h-7 px-3 bg-[#EBF0FF] rounded-lg flex items-center border border-[#172B4D]/10">
-            <div className="h-2 bg-[#172B4D]/40 rounded w-16" />
+          <div className="h-2.5 bg-brand-navy/70 rounded w-40" />
+          <div className="h-7 px-3 bg-[#EBF0FF] rounded-lg flex items-center border border-brand-navy/10">
+            <div className="h-2 bg-brand-navy/40 rounded w-16" />
           </div>
         </div>
         <div className="space-y-2 flex-1">
@@ -561,7 +561,7 @@ export function MockInspection() {
       <div className="space-y-3 flex-1 flex flex-col min-h-0">
         <div className="flex gap-3 border-b border-gray-100 pb-2 shrink-0">
           {["Inspections", "Punch", "Incidents"].map((t, i) => (
-            <div key={t} className={`text-[10px] font-bold pb-1 ${i === 0 ? "text-[#172B4D] border-b-2 border-[#172B4D]" : "text-[#97A0AF]"}`}>{t}</div>
+            <div key={t} className={`text-[10px] font-bold pb-1 ${i === 0 ? "text-brand-navy border-b-2 border-brand-navy" : "text-[#97A0AF]"}`}>{t}</div>
           ))}
         </div>
         <div className="rounded-xl border border-amber-200/60 bg-amber-50/40 p-3 space-y-2">
@@ -571,7 +571,7 @@ export function MockInspection() {
           </div>
           {["Structural  -  Level 3", "MEP rough-in", "Envelope"].map((_, i) => (
             <div key={i} className="flex items-start gap-2 py-1.5 border-t border-amber-200/40 first:border-0 first:pt-0">
-              <div className={`w-4 h-4 rounded border-2 shrink-0 mt-0.5 ${i === 1 ? "bg-[#172B4D] border-[#172B4D]" : "border-gray-300"}`} />
+              <div className={`w-4 h-4 rounded border-2 shrink-0 mt-0.5 ${i === 1 ? "bg-brand-navy border-brand-navy" : "border-gray-300"}`} />
               <div className="flex-1 space-y-1">
                 <div className="h-2 bg-gray-300 rounded w-full" />
                 <div className="h-2 bg-gray-200 rounded w-2/3" />
@@ -581,7 +581,7 @@ export function MockInspection() {
         </div>
         <div className="flex gap-2 shrink-0">
           <div className="flex-1 h-8 bg-gray-50 border border-gray-200 rounded-lg" />
-          <div className="h-8 px-4 bg-[#172B4D] rounded-lg flex items-center">
+          <div className="h-8 px-4 bg-brand-navy rounded-lg flex items-center">
             <div className="h-2 bg-white/50 rounded w-16" />
           </div>
         </div>
@@ -595,7 +595,7 @@ export function MockSettings() {
   return (
     <MockWindow bodyClassName="min-h-[280px]">
       <div className="space-y-1 flex-1 flex flex-col">
-        <div className="h-2.5 bg-[#172B4D]/70 rounded w-44 mb-3 shrink-0" />
+        <div className="h-2.5 bg-brand-navy/70 rounded w-44 mb-3 shrink-0" />
         {[
           { on: true },
           { on: true },
@@ -634,10 +634,10 @@ export function MockSchedule() {
     <MockWindow bodyClassName="min-h-[280px]">
       <div className="space-y-3 flex-1 flex flex-col">
         <div className="flex items-center justify-between shrink-0">
-          <div className="h-3 bg-[#172B4D]/70 rounded w-28" />
+          <div className="h-3 bg-brand-navy/70 rounded w-28" />
           <div className="flex gap-1">
             {["Week", "Month", "Quarter"].map((t, i) => (
-              <div key={t} className={`text-[9px] font-bold px-2 py-1 rounded ${i === 1 ? "bg-[#172B4D] text-white" : "text-[#97A0AF] bg-gray-100"}`}>{t}</div>
+              <div key={t} className={`text-[9px] font-bold px-2 py-1 rounded ${i === 1 ? "bg-brand-navy text-white" : "text-[#97A0AF] bg-gray-100"}`}>{t}</div>
             ))}
           </div>
         </div>
@@ -694,10 +694,10 @@ export function MockWritingAssist() {
           <div className="mt-4 pt-3 border-t border-dashed border-gray-200">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-5 h-5 rounded-full bg-brand-orange/20 flex items-center justify-center text-[8px] font-black text-brand-orange">Z</div>
-              <div className="h-2 bg-[#172B4D]/20 rounded w-32" />
+              <div className="h-2 bg-brand-navy/20 rounded w-32" />
             </div>
-            <div className="h-2 bg-[#172B4D]/10 rounded w-full" />
-            <div className="h-2 bg-[#172B4D]/10 rounded w-[84%] mt-1" />
+            <div className="h-2 bg-brand-navy/10 rounded w-full" />
+            <div className="h-2 bg-brand-navy/10 rounded w-[84%] mt-1" />
           </div>
         </div>
       </div>

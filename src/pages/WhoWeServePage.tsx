@@ -12,7 +12,7 @@ const personas = [
   {
     icon: HardHat,
     title: "General Contractors",
-    desc: "Projects, equipment, materials, work logs, daily logs, estimation, schedule, tasks, supply chain, and QHSE  -  one tenant-aware app with permissions for supers, PMs, and the back office.",
+    desc: "Projects, equipment, materials, work logs, daily logs, estimation, schedule, tasks, material management, and QHSE  -  one tenant-aware app with permissions for supers, PMs, and the back office.",
     image: "/Persona/site-supervisor.jpg",
     href: "/who-we-serve/general-contractors",
     accent: "#172B4D",
@@ -55,18 +55,18 @@ export default function WhoWeServePage() {
     description: "ZedOps is built for every role in construction: General Contractors, Owners & Developers, Project Managers, and Consultants & CM Firms.",
   });
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
       <div className="pt-[100px]">
         <PageHero
           pill="Built for you"
           PillIcon={Users}
           title="Built for every role on the project."
-          subtitle="Projects, planning, finance, supply chain, documents, quality, and Zed AI  -  menus and modules respect each person’s role."
+          subtitle="Projects, planning, finance, material management, documents, quality, and Zed AI  -  menus and modules respect each person’s role."
         />
 
         {/* Human intro */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#172B4D]">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-brand-navy">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-start gap-4 mb-8">
               <MessageSquare size={20} className="text-brand-orange shrink-0 mt-1" />
@@ -130,10 +130,10 @@ export default function WhoWeServePage() {
                       >
                         <p.icon size={17} style={{ color: p.accent }} />
                       </div>
-                      <h3 className="text-lg font-extrabold text-[#172B4D]">{p.title}</h3>
+                      <h3 className="text-lg font-extrabold text-brand-navy">{p.title}</h3>
                     </div>
                     <p className="text-[#42526E] text-sm leading-relaxed mb-6 flex-1">{p.desc}</p>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[#172B4D] group-hover:gap-2.5 transition-all duration-150">
+                    <span className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-navy group-hover:gap-2.5 transition-all duration-150">
                       See how ZedOps helps <ArrowRight size={14} />
                     </span>
                   </div>

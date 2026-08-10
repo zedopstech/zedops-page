@@ -1,10 +1,10 @@
-import { SITE_FOCUS_MEP_EXECUTION } from "@/config/siteFocus";
+import { SITE_FOCUS_MEP_EXECUTION, HIDE_PRICING } from "@/config/siteFocus";
 
 /** Full link set always shown; MEP mode only changes the tagline. */
-const footerLinks: Record<string, { label: string; href: string }[]> = {
+const footerLinksBase: Record<string, { label: string; href: string }[]> = {
   Product: [
     { label: "Platform overview", href: "/solutions" },
-    { label: "All features", href: "/platform" },
+    { label: "Material management", href: "/platform/module/supply-chain" },
     { label: "Zed AI", href: "/zed-ai" },
     { label: "Integrations", href: "#" },
     { label: "Pricing", href: "/pricing" },
@@ -27,9 +27,16 @@ const footerLinks: Record<string, { label: string; href: string }[]> = {
   ],
 };
 
+const footerLinks: Record<string, { label: string; href: string }[]> = Object.fromEntries(
+  Object.entries(footerLinksBase).map(([category, links]) => [
+    category,
+    HIDE_PRICING ? links.filter((link) => link.href !== "/pricing") : links,
+  ]),
+);
+
 export default function Footer() {
   const tagline = SITE_FOCUS_MEP_EXECUTION
-    ? "Operations for mechanical, electrical, and plumbing: planning, logs, QA, punch, finance, supply chain, wired for action, with Zed AI on the same permissioned data."
+    ? "Operations for mechanical, electrical, and plumbing: planning, logs, QA, punch, finance, material management, wired for action, with Zed AI on the same permissioned data."
     : "AI-powered construction intelligence platform helping teams plan, track, and deliver projects smarter  -  from preconstruction to closeout.";
 
   return (
@@ -38,7 +45,7 @@ export default function Footer() {
         <div className="py-16 grid grid-cols-1 lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-5">
-              <img src="/ICON.jpg" alt="ZedOps" className="w-8 h-8 rounded-md object-cover" />
+              <img src="/logo.png" alt="ZedOps" className="w-8 h-8 rounded-md object-cover" />
               <span className="text-brand-navy font-black text-lg tracking-tight">Zed<span className="text-brand-orange">Ops</span></span>
             </div>
             <p className="text-[#6B778C] text-sm leading-relaxed max-w-xs mb-6">
@@ -49,7 +56,7 @@ export default function Footer() {
                 <a
                   key={name}
                   href="https://x.com/zedopstech"
-                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-[#172B4D] hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
+                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-brand-navy hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
                 >
                   {name}
                 </a>
@@ -59,7 +66,7 @@ export default function Footer() {
                 <a
                   key={name}
                   href="https://www.linkedin.com/company/zedops"
-                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-[#172B4D] hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
+                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-brand-navy hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
                 >
                   {name}
                 </a>
@@ -69,7 +76,7 @@ export default function Footer() {
                 <a
                   key={name}
                   href="https://github.com/zedops"
-                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-[#172B4D] hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
+                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-brand-navy hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
                 >
                   {name}
                 </a>
@@ -79,7 +86,7 @@ export default function Footer() {
                 <a
                   key={name}
                   href="https://www.youtube.com/@zedopstech"
-                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-[#172B4D] hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
+                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-brand-navy hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
                 >
                   {name}
                 </a>
@@ -92,7 +99,7 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="your@company.com"
-                  className="flex-1 border border-gray-200 px-3 py-2 text-xs text-[#42526E] placeholder:text-[#97A0AF] outline-none focus:border-[#172B4D] bg-white transition-colors rounded-md"
+                  className="flex-1 border border-gray-200 px-3 py-2 text-xs text-[#42526E] placeholder:text-[#97A0AF] outline-none focus:border-brand-navy bg-white transition-colors rounded-md"
                   readOnly
                 />
                 <button className="px-3 py-2 bg-brand-orange hover:bg-brand-orange-soft text-white text-xs font-bold transition-colors shrink-0 rounded-md">
@@ -105,7 +112,7 @@ export default function Footer() {
           <div className="lg:col-span-3 grid grid-cols-2 gap-8 sm:grid-cols-4">
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <h4 className="text-[#172B4D] font-bold text-xs uppercase tracking-widest mb-4">{category}</h4>
+                <h4 className="text-brand-navy font-bold text-xs uppercase tracking-widest mb-4">{category}</h4>
                 <ul className="space-y-2.5">
                   {links.map((link) => (
                     <li key={link.label}>
