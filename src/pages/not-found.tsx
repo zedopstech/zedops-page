@@ -9,7 +9,7 @@ export default function NotFound() {
         </div>
         <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#97A0AF]">404</p>
         <h1 className="text-2xl font-extrabold tracking-tight text-brand-navy">Page not found</h1>
-        <p className="mt-3 text-sm leading-relaxed text-[#6B778C]">
+        <p className="mt-3 text-sm leading-snug text-[#6B778C]">
           That link doesn’t exist or may be outdated. Head back home or explore the platform.
         </p>
         <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">

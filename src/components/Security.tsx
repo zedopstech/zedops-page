@@ -84,10 +84,10 @@ export default function Security() {
                     {pillar.tag}
                   </span>
                   <h3 className="text-xl font-extrabold text-brand-navy leading-snug mb-3">{pillar.title}</h3>
-                  <p className="text-[#6B778C] text-sm leading-relaxed">{pillar.body}</p>
+                  <p className="text-[#6B778C] text-sm leading-snug">{pillar.body}</p>
                 </div>
                 <div className="mt-auto pt-4 border-t border-gray-100">
-                  <p className="text-[11px] font-semibold text-[#42526E]">{pillar.detail}</p>
+                  <p className="text-xs font-semibold text-[#42526E]">{pillar.detail}</p>
                 </div>
               </motion.div>
             ))}
@@ -104,7 +104,7 @@ export default function Security() {
               <h2 className="text-3xl font-extrabold text-brand-navy leading-tight tracking-tight mb-4">
                 What's in place today.
               </h2>
-              <p className="text-[#6B778C] text-sm leading-relaxed">
+              <p className="text-[#6B778C] text-sm leading-snug">
                 We believe in full transparency about what's implemented now and what's on the roadmap. No checkbox we haven't earned.
               </p>
             </div>
@@ -134,7 +134,7 @@ export default function Security() {
                   </span>
                 </div>
               ))}
-              <p className="text-[11px] text-[#97A0AF] mt-1 pl-1">Items marked with a lock icon are planned for a future roadmap stage.</p>
+              <p className="text-xs text-[#97A0AF] mt-1 pl-1">Items marked with a lock icon are planned for a future roadmap stage.</p>
             </div>
           </div>
         </div>
@@ -181,7 +181,7 @@ export default function Security() {
                   </div>
                 </div>
                 <h4 className="text-white font-bold text-sm mb-2">{step.title}</h4>
-                <p className="text-white/40 text-xs leading-relaxed">{step.desc}</p>
+                <p className="text-white/40 text-xs leading-snug">{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -193,7 +193,7 @@ export default function Security() {
         <div className="max-w-2xl mx-auto text-center">
           <ShieldCheck size={32} className="text-brand-navy mx-auto mb-5 opacity-40" />
           <h2 className="text-2xl font-extrabold text-brand-navy mb-3">Have security questions?</h2>
-          <p className="text-[#6B778C] text-sm leading-relaxed mb-7">
+          <p className="text-[#6B778C] text-sm leading-snug mb-7">
             We're happy to walk your IT or security team through our architecture, controls, and roadmap. No sales pitch  -  just a straightforward conversation.
           </p>
           <a

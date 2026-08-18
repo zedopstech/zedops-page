@@ -30,9 +30,9 @@ export const planningHero = {
   subtitle:
     "Import, create, and manage programmes in ZedOps — with live progress, baseline vs updated views, and AI alerts where you enable them.",
   primaryCta: { label: "Book a demo", href: "/early-access" },
-  secondaryCta: { label: "Watch 2-minute demo", href: "/Schedule_ad_video.mp4" },
   imageSrc: "/schedule and planning.png",
   imageAlt: "ZedOps schedule dashboard with baseline timeline and Gantt",
+  videoSrc: "/Shedule_demo1_transparent (2).webm",
 } as const;
 
 export const planningBenefits: { icon: LucideIcon; label: string }[] = [
@@ -120,14 +120,14 @@ export const planningFeatures: {
 ];
 
 export const planningWorkflow: { icon: LucideIcon; title: string; description: string }[] = [
-  { icon: Upload, title: "Import Schedule(P6/MS Project/CSV)", description: "Bring your plans and schedules into the system with ease." },
-  { icon: ListChecks, title: "Define Milestones & WBS", description: "Break down the project and set clear milestones." },
-  { icon: CalendarClock, title: "Create Activities(main & sub)", description: "Build activities with dependencies, durations and resources." },
-  { icon: UserCheck, title: "Assign Activities To Users", description: "Allocate tasks to the right people and teams." },
-  { icon: Workflow, title: "Track & Update Progress", description: "Monitor real-time progress and keep everyone aligned." },
-  { icon: Bell, title: "AI Detect Delays & Critical Path", description: "Identify risks and delays early to stay on track." },
-  { icon: Sparkles, title: "Smart Recommendations & Auto Recovery", description: "Get AI-powered insights to optimize outcomes." },
-  { icon: FileBarChart, title: "Generate Reports & Export", description: "Create detailed reports and share actionable insights." },
+  { icon: Upload, title: "Import Schedule\n(P6 / MS Project / CSV)", description: "Bring your plans and schedules into the system with ease." },
+  { icon: ListChecks, title: "Define Milestones\n& WBS", description: "Break down the project and set clear milestones." },
+  { icon: CalendarClock, title: "Create Activities\n(main & sub)", description: "Build activities with dependencies, durations and resources." },
+  { icon: UserCheck, title: "Assign Activities\nTo Users", description: "Allocate tasks to the right people and teams." },
+  { icon: Workflow, title: "Track & Update\nProgress", description: "Monitor real-time progress and keep everyone aligned." },
+  { icon: Bell, title: "AI Detect Delays\n& Critical Path", description: "Identify risks and delays early to stay on track." },
+  { icon: Sparkles, title: "Smart\nRecommendations\n& Auto Recovery", description: "Get AI-powered insights to optimize outcomes." },
+  { icon: FileBarChart, title: "Generate Reports\n& Export", description: "Create detailed reports and share actionable insights." },
 ];
 
 export const planningWorkflowLoop = {
@@ -154,6 +154,5 @@ export const planningAiSoon: { icon: LucideIcon; title: string; body: string }[]
 export const planningCta = {
   title: "Plan Better. Track Smarter. Deliver On Time.",
   body: "See how ZEDOPS helps you plan, monitor and deliver projects successfully.",
-  primary: { label: "Book a Demo", href: "/early-access", caption: "No Credit Card Required" },
-  secondary: { label: "Start Free Trial", href: "/early-access", caption: "Cancel Anytime" },
+  primary: { label: "Book a Demo", href: "/early-access" },
 } as const;

@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Problems from "@/components/Problems";
 import HowItWorks from "@/components/HowItWorks";
+import ChallengesSolutions from "@/components/ChallengesSolutions";
 import Capabilities from "@/components/Capabilities";
 import Testimonials from "@/components/Testimonials";
 import IndustriesHomeSection from "@/components/IndustriesHomeSection";
@@ -41,8 +42,10 @@ export default function Home() {
           {/* Play / pause control if required */}
         </div>
       </section>
-      <Problems />
+      {/* <Problems /> */}
+      <ChallengesSolutions />
       <HowItWorks />
+      
       <Capabilities />
       <Testimonials />
       <ZedAIHomeSection />

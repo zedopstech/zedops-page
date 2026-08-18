@@ -46,7 +46,7 @@ export default function HowWeHelpCompanyPage() {
                 Pick the profile closest to yours
               </h2>
             </div>
-            <p className="max-w-lg text-base leading-relaxed text-[#42526E] lg:pb-1">
+            <p className="max-w-lg text-base leading-snug text-[#42526E] lg:pb-1">
               Each link opens a deeper story or the exact module list. Underneath, the same security model applies: users only see clients, projects, and cost detail their roles allow.
             </p>
           </motion.div>
@@ -73,7 +73,7 @@ export default function HowWeHelpCompanyPage() {
                   </span>
                 </div>
                 <h3 className="text-lg font-extrabold leading-snug text-brand-navy">{c.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-[#6B778C]">{c.summary}</p>
+                <p className="mt-3 flex-1 text-sm leading-snug text-[#6B778C]">{c.summary}</p>
                 <ul className="mt-5 space-y-2">
                   {c.bullets.map((b) => (
                     <li key={b} className="flex gap-2 text-sm text-[#42526E]">

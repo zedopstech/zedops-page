@@ -65,7 +65,7 @@ export default function Screenshots() {
               See ZedOps in <span className="text-brand-navy">action.</span>
             </h2>
           </div>
-          <p className="text-[#42526E] text-lg leading-relaxed">
+          <p className="text-[#42526E] text-lg leading-snug">
             Explore every module  -  from field-level daily logs to AI-powered risk insights and executive dashboards.
           </p>
         </motion.div>

@@ -151,7 +151,7 @@ export default function SolutionsPage() {
                     <h2 className="text-2xl font-extrabold text-brand-navy leading-snug tracking-tight mb-4">
                       {mod.title}
                     </h2>
-                    <p className="text-[#42526E] text-sm leading-relaxed mb-6">{mod.desc}</p>
+                    <p className="text-[#42526E] text-sm leading-snug mb-6">{mod.desc}</p>
 
                     {/* Feature bullets */}
                     <ul className="flex flex-col gap-2.5 mb-7">
@@ -209,7 +209,7 @@ export default function SolutionsPage() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-widest mb-4">Tailored by role</p>
             <h2 className="text-2xl font-extrabold text-brand-navy mb-4">Not every role needs every tool.</h2>
-            <p className="text-[#6B778C] text-sm leading-relaxed mb-7">
+            <p className="text-[#6B778C] text-sm leading-snug mb-7">
               ZedOps surfaces the right features for each team member. See how we've designed the platform for your specific role.
             </p>
             <a

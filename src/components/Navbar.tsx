@@ -219,7 +219,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<DropdownKey | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     setActiveDropdown(null);
@@ -242,13 +242,44 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const onClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement | null)?.closest("a");
+      if (!anchor || !nav.contains(anchor)) return;
+      if (anchor.target === "_blank" || anchor.hasAttribute("download")) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return;
+
+      let url: URL;
+      try {
+        url = new URL(href, window.location.origin);
+      } catch {
+        return;
+      }
+      if (url.origin !== window.location.origin) return;
+
+      e.preventDefault();
+      setActiveDropdown(null);
+      setMobileOpen(false);
+      setLocation(url.pathname + url.search + url.hash);
+    };
+
+    nav.addEventListener("click", onClick);
+    return () => nav.removeEventListener("click", onClick);
+  }, [setLocation]);
+
   const trailingLinks = HIDE_PRICING ? [] : [{ label: "Pricing", href: "/pricing" }];
 
   return (
     <motion.nav
       ref={navRef}
       initial={false}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`site-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || activeDropdown ? "bg-white border-b border-gray-200" : "border-b border-transparent"
       }`}
       style={scrolled || activeDropdown ? {} : { background: "transparent" }}

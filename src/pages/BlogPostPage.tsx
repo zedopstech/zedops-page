@@ -145,7 +145,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
         <Navbar />
         <div className="mx-auto max-w-lg px-6 pt-[120px] pb-24 text-center">
           <h1 className="text-2xl font-extrabold">Article not found</h1>
-          <p className="mt-3 text-sm leading-relaxed text-[#6B778C]">
+          <p className="mt-3 text-sm leading-snug text-[#6B778C]">
             This URL may be outdated or the post was moved.
           </p>
           <Link
@@ -173,7 +173,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
             <div
               className="pointer-events-none absolute inset-0"
               style={{
-                backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+                backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/new-hero-banner.png')",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
@@ -222,7 +222,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: 0.1 }}
-                className="mt-5 break-words text-base leading-relaxed text-[#42526E] sm:text-lg"
+                className="mt-5 break-words text-base leading-snug text-[#42526E] sm:text-lg"
               >
                 {post.description}
               </motion.p>

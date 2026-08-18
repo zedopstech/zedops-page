@@ -28,7 +28,7 @@ export default function Features() {
               Everything your team <span className="text-brand-navy">needs.</span>
             </h2>
           </div>
-          <p className="text-[#42526E] text-lg leading-relaxed">
+          <p className="text-[#42526E] text-lg leading-snug">
             Purpose-built for construction. Every ZedOps feature solves a real problem your teams face on site every day.
           </p>
         </motion.div>
@@ -47,7 +47,7 @@ export default function Features() {
                 <ArrowRight size={16} className="text-gray-200 group-hover:text-brand-orange group-hover:translate-x-1 transition-all duration-200 mt-1" />
               </div>
               <h3 className="text-brand-navy font-bold text-base mb-2.5 leading-snug">{feature.title}</h3>
-              <p className="text-[#6B778C] text-sm leading-relaxed">{feature.description}</p>
+              <p className="text-[#6B778C] text-sm leading-snug">{feature.description}</p>
             </motion.div>
           ))}
         </div>

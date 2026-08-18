@@ -20,7 +20,7 @@ const proseArticle =
     "prose-blockquote:my-6 prose-blockquote:border-l-4 prose-blockquote:border-brand-orange prose-blockquote:bg-[#F8FAFC] prose-blockquote:py-3 prose-blockquote:pl-4 prose-blockquote:pr-3 prose-blockquote:not-italic prose-blockquote:text-sm prose-blockquote:text-[#42526E] sm:prose-blockquote:pl-5",
     "prose-hr:my-10 prose-hr:border-gray-200",
     "prose-code:rounded-md prose-code:bg-[#F4F5F7] prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:text-[0.8125rem] prose-code:text-brand-navy prose-code:break-words before:prose-code:content-none after:prose-code:content-none",
-    "prose-pre:my-6 prose-pre:max-w-full prose-pre:overflow-x-auto prose-pre:rounded-lg prose-pre:bg-brand-navy prose-pre:px-3 prose-pre:py-3 prose-pre:text-[0.75rem] prose-pre:leading-relaxed prose-pre:text-[#F4F5F7] sm:prose-pre:px-4 sm:prose-pre:text-[0.8125rem]",
+    "prose-pre:my-6 prose-pre:max-w-full prose-pre:overflow-x-auto prose-pre:rounded-lg prose-pre:bg-brand-navy prose-pre:px-3 prose-pre:py-3 prose-pre:text-[0.75rem] prose-pre:leading-snug prose-pre:text-[#F4F5F7] sm:prose-pre:px-4 sm:prose-pre:text-[0.8125rem]",
     "prose-table:my-0 prose-table:w-full prose-table:border-collapse prose-table:text-sm",
     "prose-th:bg-[#F4F5F7] prose-th:px-2 prose-th:py-2 prose-th:text-left prose-th:text-xs prose-th:font-bold prose-th:text-brand-navy sm:prose-th:px-3 sm:prose-th:text-sm",
     "prose-td:border prose-td:border-gray-200 prose-td:px-2 prose-td:py-2 prose-td:text-xs sm:prose-td:px-3 sm:prose-td:text-sm",

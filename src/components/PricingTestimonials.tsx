@@ -92,7 +92,7 @@ export default function PricingTestimonials() {
                   >
                     "
                   </div>
-                  <p className="text-[#172B4D] text-lg leading-relaxed mb-8 font-medium">
+                  <p className="text-[#172B4D] text-lg leading-snug mb-8 font-medium">
                     "{t.quote}"
                   </p>
                 </div>

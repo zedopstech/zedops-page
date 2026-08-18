@@ -83,7 +83,7 @@ export default function BlogIndexPage() {
           <div
             className="pointer-events-none absolute inset-0"
             style={{
-              backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+              backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/new-hero-banner.png')",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
@@ -124,7 +124,7 @@ export default function BlogIndexPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.12 }}
-              className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-[#42526E]"
+              className="mx-auto mt-5 max-w-2xl text-lg leading-snug text-[#42526E]"
             >
               Rollout notes, permissions, field workflows, and how we build AI for construction - updated alongside the
               product, in plain language.
@@ -137,7 +137,7 @@ export default function BlogIndexPage() {
               className="mx-auto mt-8 max-w-xl"
             >
               <div className="rounded-2xl border border-brand-navy/12 bg-white/75 px-5 py-4 text-center backdrop-blur-sm">
-                <p className="text-sm leading-relaxed text-[#42526E]">
+                <p className="text-sm leading-snug text-[#42526E]">
                   Want the product before these articles describe it?{" "}
                   <a
                     href="/early-access"
@@ -179,7 +179,7 @@ export default function BlogIndexPage() {
                           </div>
                         </div>
                         <div className="pt-6 sm:pt-8">
-                          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
+                          <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                             {formatReadLabel(spotlight)}
                           </p>
                           <h2 className="mt-3 text-2xl font-extrabold leading-snug tracking-tight text-brand-navy transition-colors group-hover:text-[#0052CC] sm:text-[1.75rem] lg:text-3xl lg:leading-tight">
@@ -207,7 +207,7 @@ export default function BlogIndexPage() {
                             />
                           </div>
                           <div className="flex flex-1 flex-col pt-6 sm:pt-7">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
+                            <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                               {formatReadLabel(sideFeatured)}
                             </p>
                             <h2 className="mt-3 text-lg font-extrabold leading-snug text-brand-navy transition-colors group-hover:text-[#0052CC] lg:text-xl">
@@ -240,7 +240,7 @@ export default function BlogIndexPage() {
                               />
                             </div>
                             <div className="flex flex-1 flex-col pt-6">
-                              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
+                              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                                 {formatReadLabel(post)}
                               </p>
                               <h2 className="mt-3 text-lg font-extrabold leading-snug text-brand-navy transition-colors group-hover:text-[#0052CC]">

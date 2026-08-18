@@ -99,7 +99,7 @@ export default function PersonaTemplate({
           className="relative flex min-w-0 items-center"
           style={{
             backgroundImage:
-              "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+              "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/new-hero-banner.png')",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
@@ -137,7 +137,7 @@ export default function PersonaTemplate({
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.14 }}
-              className="text-[#42526E] text-lg leading-relaxed max-w-md mb-8"
+              className="text-[#42526E] text-lg leading-snug max-w-md mb-8"
             >
               {subtitle}
             </motion.p>
@@ -175,7 +175,7 @@ export default function PersonaTemplate({
           >
             "
           </div>
-          <blockquote className="text-white text-xl lg:text-2xl font-semibold leading-relaxed mb-6">
+          <blockquote className="text-white text-xl lg:text-2xl font-semibold leading-snug mb-6">
             {quote}
           </blockquote>
           <p className="text-[#97A0AF] text-sm font-medium tracking-wide uppercase">
@@ -206,7 +206,7 @@ export default function PersonaTemplate({
             <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight mb-5">
               {challengesHeading}
             </h2>
-            <p className="text-[#6B778C] text-base max-w-xl mx-auto leading-relaxed">
+            <p className="text-[#6B778C] text-base max-w-xl mx-auto leading-snug">
               {challengesIntro}
             </p>
           </div>
@@ -234,7 +234,7 @@ export default function PersonaTemplate({
                 </div>
                 <div className="relative z-10 flex-1 flex flex-col">
                   <h3 className="font-extrabold text-brand-navy text-xl mb-4 leading-snug">{c.title}</h3>
-                  <p className="text-[#6B778C] text-base leading-relaxed flex-1">{c.desc}</p>
+                  <p className="text-[#6B778C] text-base leading-snug flex-1">{c.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -300,7 +300,7 @@ export default function PersonaTemplate({
                     <h3 className="text-2xl sm:text-3xl font-extrabold text-brand-navy leading-snug">
                       {f.title}
                     </h3>
-                    <p className="text-[#42526E] text-base leading-relaxed">
+                    <p className="text-[#42526E] text-base leading-snug">
                       {f.desc}
                     </p>
                     <a

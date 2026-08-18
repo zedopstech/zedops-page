@@ -52,10 +52,10 @@ export default function AboutPage() {
                 <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-brand-navy mb-5">
                   Give every construction team the visibility of a $10B developer.
                 </h2>
-                <p className="text-[#42526E] text-base leading-relaxed">
+                <p className="text-[#42526E] text-base leading-snug">
                   The biggest property developers in the world have custom dashboards, real-time cost tracking, and AI-assisted project planning. The mid-market GC running 20 concurrent projects has a spreadsheet.
                 </p>
-                <p className="text-[#42526E] text-base leading-relaxed mt-4">
+                <p className="text-[#42526E] text-base leading-snug mt-4">
                   ZedOps closes that gap. We are building the intelligence layer for construction  -  connecting site activity, financials, RFIs, and scheduling into a single operating view.
                 </p>
               </motion.div>
@@ -65,7 +65,7 @@ export default function AboutPage() {
                 className="rounded-2xl bg-brand-navy p-8 text-white"
               >
                 <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-4">Founding team note</p>
-                <p className="text-white/80 text-base leading-relaxed">
+                <p className="text-white/80 text-base leading-snug">
                   "We started ZedOps after watching construction teams spend more time fighting their tools than building. AI changes what's possible  -  but only if it's designed around how construction actually works. That's what we're doing."
                 </p>
                 <p className="text-[#B8C9DC] text-sm font-semibold mt-5"> -  ZedOps founding team</p>
@@ -90,7 +90,7 @@ export default function AboutPage() {
                     <v.icon size={18} className="text-brand-navy" />
                   </div>
                   <h3 className="font-extrabold text-brand-navy mb-2 text-sm">{v.title}</h3>
-                  <p className="text-[#42526E] text-sm leading-relaxed">{v.body}</p>
+                  <p className="text-[#42526E] text-sm leading-snug">{v.body}</p>
                 </motion.div>
               ))}
             </div>
@@ -104,7 +104,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-extrabold text-white mb-4">
               Want to help us build it?
             </h2>
-            <p className="text-white/60 text-base leading-relaxed mb-8 max-w-xl mx-auto">
+            <p className="text-white/60 text-base leading-snug mb-8 max-w-xl mx-auto">
               We're a small team moving fast. If you care about construction, AI, and shipping real software  -  we'd love to talk.
             </p>
             <a

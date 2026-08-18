@@ -1,12 +1,14 @@
 import type { LucideIcon } from "lucide-react";
 import {
   BadgeCheck,
+  BookOpen,
   Calculator,
   ClipboardCheck,
   Coins,
   FileStack,
   FileText,
   GitBranch,
+  Layers,
   Lightbulb,
   ListChecks,
   Percent,
@@ -30,7 +32,6 @@ export const estimationHero = {
   subtitle:
     "Build accurate BOQ-based estimates, apply productivity and markups, and turn them into client-ready proposals — all in one ZedOps workspace.",
   primaryCta: { label: "Book a Demo", href: "/early-access" },
-  secondaryCta: { label: "Watch 2-Minute Video", href: "/early-access" },
   imageSrc: "/estimation dashboard.png",
   imageAlt: "ZedOps estimation dashboard with cost summary, trends, and recent estimates",
 } as const;
@@ -129,12 +130,12 @@ export const estimationWorkflow: { icon: LucideIcon; title: string; description:
   { icon: Send, title: "Submit to Client", description: "Manage Revisions" },
 ];
 
-export const estimationWhy: string[] = [
-  "Library-backed rates so every bid starts from approved data",
-  "BOQ mapping that cuts rework on repeat tenders",
-  "Markups, overheads, and commercial terms in the same estimate",
-  "Revisions you can explain — not a new spreadsheet each round",
-  "One platform from estimate through delivery, not a disconnected tool",
+export const estimationWhy: { icon: LucideIcon; title: string; desc: string }[] = [
+  { icon: BookOpen, title: "Library-backed rates", desc: "Approved data for every bid." },
+  { icon: ScanSearch, title: "BOQ mapping", desc: "Cuts rework on repeat tenders." },
+  { icon: Percent, title: "Markups & commercial terms", desc: "Live in the same estimate." },
+  { icon: GitBranch, title: "Revision history", desc: "Explain every bid round." },
+  { icon: Layers, title: "One platform", desc: "From estimate through delivery." },
 ];
 
 export const estimationAiSoon: { icon: LucideIcon; title: string; body: string }[] = [
@@ -154,6 +155,5 @@ export const estimationCallout = {
 export const estimationCta = {
   title: "Create Accurate Estimates. Win More Projects.",
   body: "Book a personalized demo and see how ZEDOPS helps you estimate faster, control cost, and submit stronger proposals.",
-  primary: { label: "Book a Demo", href: "/early-access", caption: "No Credit Card Required" },
-  secondary: { label: "Start Free Trial", href: "/early-access", caption: "Cancel Anytime" },
+  primary: { label: "Book a Demo", href: "/early-access" },
 } as const;

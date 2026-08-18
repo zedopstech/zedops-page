@@ -52,11 +52,11 @@ export default function HowWeHelpRolePage() {
               <h2 className="text-2xl font-extrabold leading-tight text-white sm:text-3xl">
                 Roles gate menus, records, exports - and the copilot.
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-white/65">
+              <p className="mt-4 text-base leading-snug text-white/65">
                 Administrators map people to roles that unlock specific modules and actions. That model is consistent from preconstruction through closeout, so you aren’t maintaining parallel rule sets for “web app” and “AI.”
               </p>
             </div>
-            <ul className="space-y-4 text-sm leading-relaxed text-white/75">
+            <ul className="space-y-4 text-sm leading-snug text-white/75">
               {[
                 "Tenant isolation keeps each customer’s data in its own boundary.",
                 "Field, office, and leadership views can emphasise different modules without forking the product.",
@@ -78,7 +78,7 @@ export default function HowWeHelpRolePage() {
             <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
               Persona pages live under Built for you
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#6B778C] sm:text-base">
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-snug text-[#6B778C] sm:text-base">
               That hub is where we tell the human story - photos, outcomes, and what day-to-day work looks like for GCs, owners, PMs, and consultants. This page is the access model; that hub is the “why it fits us.”
             </p>
             <a
@@ -88,7 +88,7 @@ export default function HowWeHelpRolePage() {
               Open Built for you
               <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
-            <p className="mt-10 text-sm font-semibold leading-relaxed text-[#0052CC]">
+            <p className="mt-10 text-sm font-semibold leading-snug text-[#0052CC]">
               {personaQuickLinks.map((p, i) => (
                 <span key={p.href}>
                   {i > 0 ? <span className="mx-2 text-[#CBD5E1]" aria-hidden>·</span> : null}

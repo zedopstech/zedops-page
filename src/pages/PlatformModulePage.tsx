@@ -61,7 +61,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
             : params.moduleId === "daily-intelligence"
               ? "ZedOps Daily Execution Intelligence — capture site reality, connect the office instantly, and drive actions from one daily log."
               : params.moduleId === "workforce-intelligence"
-                ? "ZedOps Workforce Intelligence — track attendance, productivity, and labor performance on the same job record."
+                ? "ZedOps Workforce Intelligence — manage people, attendance, tasks, and performance from site to office."
                 : params.moduleId === "punch-list"
                   ? "ZedOps Punch List Management — track, assign, and close punch items efficiently through handover."
                   : ctx

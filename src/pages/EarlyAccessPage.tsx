@@ -116,7 +116,7 @@ function EarlyAccessFaqItem({
             className="overflow-hidden"
           >
             <p
-              className={`pb-4 pr-10 text-sm leading-relaxed sm:pb-5 ${invert ? "text-white/70" : "text-[#42526E]"}`}
+              className={`pb-4 pr-10 text-sm leading-snug sm:pb-5 ${invert ? "text-white/70" : "text-[#42526E]"}`}
             >
               {a}
             </p>
@@ -162,7 +162,7 @@ export default function EarlyAccessPage() {
         <div
           className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-16 lg:py-24 relative overflow-hidden"
           style={{
-            backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+            backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/new-hero-banner.png')",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
@@ -219,7 +219,7 @@ export default function EarlyAccessPage() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.14 }}
-              className="text-[#42526E] text-base leading-relaxed mb-10"
+              className="text-[#42526E] text-base leading-snug mb-10"
             >
               We're onboarding a select group of construction teams. Every applicant gets a personal review  -  and a direct call with the founding team.
             </motion.p>
@@ -239,7 +239,7 @@ export default function EarlyAccessPage() {
                   </div>
                   <div>
                     <p className="text-brand-navy font-bold text-sm">{perk.title}</p>
-                    <p className="text-[#42526E] text-xs mt-0.5 leading-relaxed">{perk.desc}</p>
+                    <p className="text-[#42526E] text-xs mt-0.5 leading-snug">{perk.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -258,7 +258,7 @@ export default function EarlyAccessPage() {
             >
               <CheckCircle2 size={52} className="text-green-500 mx-auto mb-5" />
               <h2 className="text-2xl font-extrabold text-brand-navy mb-3">You're on the list.</h2>
-              <p className="text-[#6B778C] leading-relaxed mb-6">
+              <p className="text-[#6B778C] leading-snug mb-6">
                 Thanks for applying. We review every request personally and will reach out within one business day to schedule your onboarding call.
               </p>
               <a
@@ -366,7 +366,7 @@ export default function EarlyAccessPage() {
                   <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
                 </button>
 
-                <p className="text-[11px] text-[#97A0AF] text-center">
+                <p className="text-xs text-[#97A0AF] text-center">
                   We review every application personally  -  a real person will reach out within one business day.
                 </p>
               </form>
@@ -390,7 +390,7 @@ export default function EarlyAccessPage() {
           >
             Common questions
           </h2>
-          <p className="mx-auto mb-10 max-w-lg text-center text-sm leading-relaxed text-white/65">
+          <p className="mx-auto mb-10 max-w-lg text-center text-sm leading-snug text-white/65">
             Quick answers about timing, fit, and what to expect. Still unsure?{" "}
             <a
               href="/contact"

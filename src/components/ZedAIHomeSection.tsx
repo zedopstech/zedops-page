@@ -127,7 +127,7 @@ function ZedAIChat({ active }: { active: boolean }) {
               </div>
             )}
             <div
-              className={`max-w-[82%] px-3 py-2 text-[11px] leading-relaxed ${
+              className={`max-w-[82%] px-3 py-2 text-xs leading-snug ${
                 msg.role === "user"
                   ? "ml-4 bg-brand-navy text-white/80"
                   : "border border-blue-800/30 bg-[#1A3352] text-white/90"
@@ -191,12 +191,12 @@ export default function ZedAIHomeSection() {
                 <span className="text-xs font-semibold tracking-widest text-white/50 uppercase">Zed AI</span>
               </div>
             </div>
-            <h2 id="zed-ai-home-heading" className="mb-4 text-2xl leading-snug font-extrabold text-white lg:text-3xl">
+            <h2 id="zed-ai-home-heading" className="mb-4 text-3xl leading-snug font-extrabold text-white sm:text-4xl">
               Your construction
               <br />
               intelligence copilot
             </h2>
-            <p className="mb-7 max-w-md text-sm leading-relaxed text-white/55">{aiCap.description}</p>
+            <p className="mb-7 max-w-md text-base leading-snug text-white/55">{aiCap.description}</p>
             <ul className="space-y-2.5">
               {aiCap.features.map((f) => (
                 <li key={f} className="flex items-start gap-2.5 text-sm text-white/75">
@@ -225,7 +225,7 @@ export default function ZedAIHomeSection() {
 
             <div className="mt-5 border-t border-white/5 pt-4">
               <div className="flex items-center gap-2 rounded-lg border border-white/8 bg-brand-navy/60 px-3 py-2">
-                <span className="flex-1 text-[11px] text-white/25">Insights, report prep, or next action…</span>
+                <span className="flex-1 text-xs text-white/25">Insights, report prep, or next action…</span>
                 <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-brand-orange">
                   <Sparkles size={11} className="text-white" aria-hidden />
                 </div>

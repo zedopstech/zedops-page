@@ -17,7 +17,7 @@ export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, c
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+          backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/new-hero-banner.png')",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
@@ -77,7 +77,7 @@ export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, c
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.14 }}
-            className="text-[#42526E] text-lg leading-relaxed max-w-2xl mx-auto mb-8"
+            className="text-[#42526E] text-lg leading-snug max-w-2xl mx-auto mb-8"
           >
             {subtitle}
           </motion.p>

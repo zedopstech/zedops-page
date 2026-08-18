@@ -121,10 +121,9 @@ export default function RoadmapPage() {
           <div
             className="pointer-events-none absolute inset-0"
             style={{
-              backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
+              backgroundImage: "url('/hero-grid.png')",
+              backgroundRepeat: "repeat",
+              backgroundSize: "80px 80px",
             }}
             aria-hidden
           />
@@ -164,7 +163,7 @@ export default function RoadmapPage() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: 0.12 }}
-                  className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-[#42526E] lg:mx-0"
+                  className="mx-auto mt-5 max-w-xl text-lg leading-snug text-[#42526E] lg:mx-0"
                 >
                   We ship every week and update this page as features land. Early access customers influence what comes next.
                 </motion.p>
@@ -176,7 +175,7 @@ export default function RoadmapPage() {
                   className="mx-auto mt-8 max-w-xl lg:mx-0"
                 >
                   <div className="rounded-2xl border border-brand-navy/12 bg-white/75 px-5 py-4 shadow-[0_12px_40px_-28px_rgba(23,43,77,0.22)] backdrop-blur-sm">
-                    <p className="text-sm leading-relaxed text-[#42526E]">
+                    <p className="text-sm leading-snug text-[#42526E]">
                       Roadmap updates as we ship.{" "}
                       <a
                         href="/early-access"
@@ -217,7 +216,7 @@ export default function RoadmapPage() {
                         >
                           <p className="text-sm font-extrabold text-brand-navy">{col.label}</p>
                           <p className="mt-0.5 text-xs text-[#6B778C]">{col.sublabel}</p>
-                          <p className="mt-2 text-[11px] font-semibold text-[#0052CC]">{col.items.length} initiatives</p>
+                          <p className="mt-2 text-xs font-semibold text-[#0052CC]">{col.items.length} initiatives</p>
                         </div>
                       </div>
                     ))}
@@ -232,7 +231,7 @@ export default function RoadmapPage() {
         <section className="relative border-t border-gray-200/90 bg-white py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-linear-to-b from-[#F2F6FF]/90 to-transparent" aria-hidden />
           <div className="relative mx-auto max-w-7xl px-4">
-            <motion.p {...scrollMotionProps(isMobile, { y: 10, duration: 0.4 })} className="mx-auto mb-12 max-w-2xl text-center text-base leading-relaxed text-[#42526E] lg:mb-16">
+            <motion.p {...scrollMotionProps(isMobile, { y: 10, duration: 0.4 })} className="mx-auto mb-12 max-w-2xl text-center text-base leading-snug text-[#42526E] lg:mb-16">
               Four horizons from production to what we&apos;re exploring next  -  each card is something we&apos;re committed to
               shipping or evaluating with customers.
             </motion.p>
@@ -251,7 +250,7 @@ export default function RoadmapPage() {
                     <span className={`h-2.5 w-2.5 shrink-0 rounded-full ring-4 ${col.dot} ${col.dotRing}`} aria-hidden />
                     <div className="min-w-0">
                       <p className="text-sm font-extrabold leading-tight text-brand-navy">{col.label}</p>
-                      <p className="text-[11px] text-[#97A0AF]">{col.sublabel}</p>
+                      <p className="text-xs text-[#97A0AF]">{col.sublabel}</p>
                     </div>
                   </div>
 
@@ -271,7 +270,7 @@ export default function RoadmapPage() {
                           </div>
                           <div className="min-w-0">
                             <p className="text-sm font-bold leading-snug text-brand-navy">{item.title}</p>
-                            <p className="mt-1 text-xs leading-relaxed text-[#6B778C]">{item.desc}</p>
+                            <p className="mt-1 text-xs leading-snug text-[#6B778C]">{item.desc}</p>
                           </div>
                         </div>
                       </motion.div>
@@ -293,7 +292,7 @@ export default function RoadmapPage() {
             <motion.h2 {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.05 })} className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
               Tell us what your team needs.
             </motion.h2>
-            <motion.p {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.08 })} className="mb-10 text-base leading-relaxed text-white/65">
+            <motion.p {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.08 })} className="mb-10 text-base leading-snug text-white/65">
               Every feature on this roadmap came from a real conversation with a construction professional. If something is
               missing, let us know  -  we read every message.
             </motion.p>

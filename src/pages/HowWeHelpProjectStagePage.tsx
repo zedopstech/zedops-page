@@ -49,7 +49,7 @@ export default function HowWeHelpProjectStagePage() {
                 href={`#${s.id}`}
                 className="inline-flex items-center rounded-full border border-gray-200 bg-white/95 px-4 py-2.5 text-left text-xs font-bold text-brand-navy shadow-sm transition-all hover:border-[#C7D5F5] hover:bg-[#EBF0FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0052CC] focus-visible:ring-offset-2"
               >
-                <span className="mr-2 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#EBF0FF] text-[11px] font-extrabold text-[#0052CC]">
+                <span className="mr-2 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#EBF0FF] text-xs font-extrabold text-[#0052CC]">
                   {i + 1}
                 </span>
                 {s.title}
@@ -73,7 +73,7 @@ export default function HowWeHelpProjectStagePage() {
                 From bid to <span className="text-[#0052CC]">closeout</span> - how ZedOps maps to the job.
               </h2>
             </div>
-            <p className="max-w-xl text-base leading-relaxed text-[#42526E] lg:max-w-md lg:pb-1">
+            <p className="max-w-xl text-base leading-snug text-[#42526E] lg:max-w-md lg:pb-1">
               Estimating and planning stay tied to library truth; active jobs feed one project record for site and office; turnover keeps inspections, QHSE, and exports on the same trail you used during build.
             </p>
           </motion.div>
@@ -103,7 +103,7 @@ export default function HowWeHelpProjectStagePage() {
                         </span>
                       </div>
                       <h3 className="text-xl font-extrabold leading-snug text-brand-navy sm:text-2xl lg:text-[1.65rem]">{stage.tagline}</h3>
-                      <p className="mt-4 text-base leading-relaxed text-[#42526E]">{stage.body}</p>
+                      <p className="mt-4 text-base leading-snug text-[#42526E]">{stage.body}</p>
                       <ul className="mt-6 space-y-2 border-t border-gray-100 pt-6">
                         {stage.outcomes.map((o) => (
                           <li key={o} className="flex items-start gap-2.5 text-sm text-[#42526E]">
@@ -119,7 +119,7 @@ export default function HowWeHelpProjectStagePage() {
                         {stage.platformLabel}
                         <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5" aria-hidden />
                       </a>
-                      <p className="mt-6 border-t border-gray-100 pt-6 text-xs leading-relaxed text-[#97A0AF]">
+                      <p className="mt-6 border-t border-gray-100 pt-6 text-xs leading-snug text-[#97A0AF]">
                         <span className="font-semibold text-brand-navy">In product:</span> menus follow the phase you’re in; roles
                         and permissions stay the same.
                       </p>
@@ -136,13 +136,13 @@ export default function HowWeHelpProjectStagePage() {
                       <div className="relative z-1 max-w-lg">
                         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-navy/40">Phase snapshot</p>
                         <p className="mt-3 text-2xl font-extrabold leading-tight text-brand-navy sm:text-3xl">{stage.title}</p>
-                        <p className="mt-4 text-sm leading-relaxed text-[#42526E]">
+                        <p className="mt-4 text-sm leading-snug text-[#42526E]">
                           One tenant and role model end to end - field, office, and leadership only see what their access allows,
                           from estimating through turnover.
                         </p>
                       </div>
                       <div className="relative z-1 mt-10 rounded-xl border border-gray-200/90 bg-white/95 px-5 py-4 shadow-sm backdrop-blur-sm sm:px-6 sm:py-5">
-                        <p className="text-[11px] font-bold uppercase tracking-wider text-[#97A0AF]">Platform area</p>
+                        <p className="text-xs font-bold uppercase tracking-wider text-[#97A0AF]">Platform area</p>
                         <p className="mt-2 text-sm font-extrabold text-brand-navy">{stage.platformLabel}</p>
                       </div>
                     </div>

@@ -3,22 +3,22 @@ import { SITE_FOCUS_MEP_EXECUTION, HIDE_PRICING } from "@/config/siteFocus";
 /** Full link set always shown; MEP mode only changes the tagline. */
 const footerLinksBase: Record<string, { label: string; href: string }[]> = {
   Product: [
-    { label: "Platform overview", href: "/solutions" },
-    { label: "Material management", href: "/platform/module/supply-chain" },
+    { label: "Estimation", href: "/platform/module/estimation" },
+    { label: "Planning & Scheduling", href: "/platform/module/planning-schedule" },
+    { label: "Material Management", href: "/platform/module/supply-chain" },
     { label: "Zed AI", href: "/zed-ai" },
-    { label: "Integrations", href: "#" },
-    { label: "Pricing", href: "/pricing" },
+    
   ],
   Docs: [
     { label: "Getting Started", href: "/blog/getting-started-with-zedops" },
-    { label: "All articles", href: "/blog" },
+    { label: "Blog & Resources", href: "/blog" },
     { label: "Security", href: "/security" },
   ],
   Company: [
-    { label: "About Us", href: "/about" },
-    { label: "Blog", href: "/blog" },
+    { label: "About ZedOps", href: "/about" },
+    { label: "Who We Serve", href: "/who-we-serve" },
     { label: "Careers", href: "mailto:careers@zedops.com" },
-    { label: "Contact", href: "/contact" },
+    { label: "Contact Sales", href: "/contact" },
   ],
   Legal: [
     { label: "Privacy Policy", href: "/privacy" },
@@ -48,7 +48,7 @@ export default function Footer() {
               <img src="/logo.png" alt="ZedOps" className="w-8 h-8 rounded-md object-cover" />
               <span className="text-brand-navy font-black text-lg tracking-tight">Zed<span className="text-brand-orange">Ops</span></span>
             </div>
-            <p className="text-[#6B778C] text-sm leading-relaxed max-w-xs mb-6">
+            <p className="text-[#6B778C] text-sm leading-snug max-w-xs mb-6">
               {tagline}
             </p>
             <div className="flex items-center gap-2 mb-8">
@@ -98,12 +98,12 @@ export default function Footer() {
               <div className="flex gap-2 max-w-sm">
                 <input
                   type="email"
-                  placeholder="your@company.com"
+                  placeholder="work-email@company.com"
                   className="flex-1 border border-gray-200 px-3 py-2 text-xs text-[#42526E] placeholder:text-[#97A0AF] outline-none focus:border-brand-navy bg-white transition-colors rounded-md"
                   readOnly
                 />
                 <button className="px-3 py-2 bg-brand-orange hover:bg-brand-orange-soft text-white text-xs font-bold transition-colors shrink-0 rounded-md">
-                  Subscribe
+                  Get Updates
                 </button>
               </div>
             </div>
@@ -134,10 +134,10 @@ export default function Footer() {
           <div className="flex items-center gap-5 text-xs text-[#97A0AF]">
             <div className="flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-              All systems operational
+              Platform status: operational
             </div>
             <span>·</span>
-            <a href="/security" className="hover:text-[#42526E] transition-colors">Enterprise-grade security</a>
+            <a href="/security" className="hover:text-[#42526E] transition-colors">Secure for enterprise construction teams</a>
           </div>
         </div>
       </div>

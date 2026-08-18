@@ -67,7 +67,7 @@ export default function ContactPage() {
         <div
           className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-16 lg:py-24 relative overflow-hidden"
           style={{
-            backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+            backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/new-hero-banner.png')",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
@@ -119,7 +119,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.14 }}
-              className="text-[#42526E] text-base leading-relaxed mb-10"
+              className="text-[#42526E] text-base leading-snug mb-10"
             >
               Ask us anything  -  product, pricing, partnerships, or security. A real person will get back to you within one business day.
             </motion.p>
@@ -138,7 +138,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-brand-navy font-bold text-sm">{perk.title}</p>
-                    <p className="text-[#42526E] text-xs mt-0.5 leading-relaxed">{perk.desc}</p>
+                    <p className="text-[#42526E] text-xs mt-0.5 leading-snug">{perk.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -167,7 +167,7 @@ export default function ContactPage() {
             >
               <CheckCircle2 size={52} className="text-green-500 mx-auto mb-5" />
               <h2 className="text-2xl font-extrabold text-brand-navy mb-3">Message received.</h2>
-              <p className="text-[#6B778C] leading-relaxed mb-6">
+              <p className="text-[#6B778C] leading-snug mb-6">
                 Thanks for reaching out. We'll get back to you within one business day.
               </p>
               <a
@@ -249,7 +249,7 @@ export default function ContactPage() {
                   <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
                 </button>
 
-                <p className="text-[11px] text-[#97A0AF] text-center">
+                <p className="text-xs text-[#97A0AF] text-center">
                   For early access onboarding, you can also use the dedicated request form  -  it helps us prepare for your call.
                 </p>
                 <a href="/early-access" className="text-center text-xs font-semibold text-[#0052CC] hover:underline">

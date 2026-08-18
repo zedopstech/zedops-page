@@ -7,6 +7,7 @@ export const platformSectionMockType: Record<string, MockType> = {
   projects: "dashboard",
   estimation: "finance",
   "planning-execution": "schedule",
+  "daily-intelligence": "log",
   "quality-safety-closeout": "inspection",
   "information-management": "documents",
   finance: "finance",

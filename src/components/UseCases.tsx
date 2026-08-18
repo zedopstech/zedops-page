@@ -91,7 +91,7 @@ export default function UseCases() {
               Built for every <span className="text-brand-navy">role</span> in construction.
             </h2>
           </div>
-          <p className="text-[#42526E] text-lg leading-relaxed">
+          <p className="text-[#42526E] text-lg leading-snug">
             Whether you're in the field or the boardroom, ZedOps gives you exactly what you need  -  purpose-built for how construction teams actually work.
           </p>
         </motion.div>
@@ -114,7 +114,7 @@ export default function UseCases() {
                 <span className="text-xs font-bold uppercase tracking-[0.15em]" style={{ color: uc.accent }}>{uc.label}</span>
               </div>
               <h3 className="text-3xl font-extrabold text-brand-navy leading-tight mb-4">{uc.title}</h3>
-              <p className="text-[#42526E] text-base leading-relaxed mb-8">{uc.description}</p>
+              <p className="text-[#42526E] text-base leading-snug mb-8">{uc.description}</p>
               <ul className="space-y-2.5 mb-8">
                 {uc.benefits.map((b) => (
                   <li key={b} className="flex items-center gap-2.5 text-sm text-[#6B778C]">

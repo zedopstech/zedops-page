@@ -50,7 +50,7 @@ export default function PlatformPage() {
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+              backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/new-hero-banner.png')",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
@@ -106,7 +106,7 @@ export default function PlatformPage() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: 0.12 }}
-                  className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-[#42526E] lg:mx-0"
+                  className="mx-auto mt-5 max-w-xl text-lg leading-snug text-[#42526E] lg:mx-0"
                 >
                   Full module map from access and core data to projects, finance, material management, and settings.
                  
@@ -153,7 +153,7 @@ export default function PlatformPage() {
                       >
                         Zed AI
                       </h2>
-                      <p className="mb-1 text-sm leading-relaxed text-white/65 sm:text-[15px]">
+                      <p className="mb-1 text-sm leading-snug text-white/65 sm:text-base">
                         Copilot for insights, reports, writing assist, and actions  -  permissioned like every module. More workflows on the roadmap.
                       </p>
                       <a
@@ -310,7 +310,7 @@ function PlatformSectionBlock({
             {visibleItems.map((item) => (
               <li key={item.name} className="py-5 first:pt-0">
                 <h3 className="font-extrabold text-brand-navy text-base mb-1.5">{item.name}</h3>
-                <p className="text-[#6B778C] text-sm leading-relaxed">{item.summary}</p>
+                <p className="text-[#6B778C] text-sm leading-snug">{item.summary}</p>
               </li>
             ))}
           </ul>
@@ -319,7 +319,7 @@ function PlatformSectionBlock({
               type="button"
               onClick={onToggleExpand}
               aria-expanded={isExpanded}
-              className="mt-6 inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-[#FAFBFC] px-4 py-2.5 text-left text-[12px] font-bold text-brand-navy transition-colors hover:border-brand-navy/25 hover:bg-white"
+              className="mt-6 inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-[#FAFBFC] px-4 py-2.5 text-left text-sm font-bold text-brand-navy transition-colors hover:border-brand-navy/25 hover:bg-white"
             >
               {isExpanded ? (
                 <>

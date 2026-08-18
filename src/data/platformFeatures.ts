@@ -179,6 +179,48 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
     ],
   },
   {
+    id: "daily-intelligence",
+    title: "Daily Execution Intelligence",
+    items: [
+      {
+        name: "General details",
+        summary: "Weather, location, shift, and site condition in one header.",
+        detail:
+          "Every daily log starts with the facts that frame the day — area, weather, shift, and photos — so office and site share the same context before they read the work.",
+      },
+      {
+        name: "Work log",
+        summary: "Activities, quantities, and progress against the plan.",
+        detail:
+          "Supervisors record what was done, how far it got, and what still needs attention. Entries roll up to the project record instead of sitting in notebooks or WhatsApp.",
+      },
+      {
+        name: "People on site",
+        summary: "Headcount, trades, hours, and visitors for the day.",
+        detail:
+          "Capture who was on site and for how long so labour, safety, and payroll all start from the same attendance picture.",
+      },
+      {
+        name: "Materials & equipment",
+        summary: "Delivered, consumed, hours used, and downtime — same log.",
+        detail:
+          "Tie daily consumption and plant usage to the job so inventory, cost, and the next day’s plan are not reconstructed after the fact.",
+      },
+      {
+        name: "Issues, inspections & incidents",
+        summary: "Raise, assign, and close from the same daily record.",
+        detail:
+          "Problems, surveys, inspections, and safety events stay linked to the day they happened, with owners and photos, so nothing disappears between site and office.",
+      },
+      {
+        name: "Sign-off & sync",
+        summary: "Supervisor signature, then instant office visibility.",
+        detail:
+          "Digital sign-off locks the log with a timestamp. Real-time sync means PMs and commercial see today’s site reality without waiting for a weekly report.",
+      },
+    ],
+  },
+  {
     id: "quality-safety-closeout",
     title: "Quality, safety, and closeout",
     items: [

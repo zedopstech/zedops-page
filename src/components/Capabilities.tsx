@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import {
+  ArrowRight,
   BookOpen,
   BookUser,
   CalendarClock,
   ClipboardList,
+  Cpu,
   FolderKanban,
   FolderOpen,
   HardHat,
@@ -18,6 +20,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
+import SectionHeader from "@/components/SectionHeader";
 
 type Capability = {
   icon: LucideIcon;
@@ -44,7 +47,7 @@ const preConstruction: Capability[] = [
 const execution: Capability[] = [
   {
     icon: Package,
-    title: "Materials & Procurement",
+    title: "Materials Management",
     desc: "Manage requests, approvals, purchasing and deliveries.",
     href: "/platform/module/supply-chain",
   },
@@ -52,13 +55,13 @@ const execution: Capability[] = [
     icon: FolderOpen,
     title: "Daily Execution Intelligence",
     desc: "Daily logs, site reports, progress and issue tracking.",
-    href: "/platform/module/information-management",
+    href: "/platform/module/daily-intelligence",
   },
   {
     icon: Users,
     title: "Workforce Intelligence",
     desc: "Track attendance, productivity and labor performance.",
-    href: "/platform/module/core",
+    href: "/platform/module/workforce-intelligence",
   },
   {
     icon: ShieldCheck,
@@ -85,7 +88,16 @@ const closeout: Capability[] = [
     icon: ListChecks,
     title: "Punch List Management",
     desc: "Track, assign and close punch items efficiently.",
-    href: "/platform/module/quality-safety-closeout",
+    href: "/platform/module/punch-list",
+  },
+];
+
+const platformCore: Capability[] = [
+  {
+    icon: Layers,
+    title: "Core",
+    desc: "Documents, library, directory, projects, users and admin.",
+    href: "/platform/module/core",
   },
 ];
 
@@ -103,16 +115,20 @@ function CapabilityRow({ item }: { item: Capability }) {
   const Icon = item.icon;
 
   return (
-    <a
-      href={item.href}
-      className="group/item flex h-full min-h-0 flex-col items-center rounded-xl bg-[#F4F6FB] p-4 text-center transition-[transform,box-shadow,background-color] duration-150 hover:-translate-y-0.5 hover:bg-[#EEF2F7] hover:shadow-[0_10px_22px_-16px_rgba(23,43,77,0.28)] motion-reduce:transform-none motion-reduce:transition-none"
-    >
+    <div className="group/item flex h-full min-h-0 flex-col items-center rounded-xl bg-[#F4F6FB] p-4 text-center">
       <div className="mb-3 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#E8EDF4] bg-white shadow-[0_1px_2px_rgba(23,43,77,0.06)]">
         <Icon size={20} className="text-brand-orange" aria-hidden />
       </div>
-      <p className="text-[14px] font-bold leading-snug text-brand-navy">{item.title}</p>
-      <p className="mt-1.5 text-[12px] leading-relaxed text-[#6B778C]">{item.desc}</p>
-    </a>
+      <p className="text-sm font-bold leading-snug text-brand-navy">{item.title}</p>
+      <p className="mt-1.5 text-sm leading-snug text-[#6B778C]">{item.desc}</p>
+      <a
+        href={item.href}
+        className="mt-auto inline-flex items-center justify-center gap-1 pt-3 text-sm font-semibold text-brand-orange transition-[gap] duration-150 hover:gap-1.5"
+      >
+        Explore more
+        <ArrowRight size={13} aria-hidden />
+      </a>
+    </div>
   );
 }
 
@@ -121,25 +137,20 @@ export default function Capabilities() {
 
   return (
     <>
-      <section id="capabilities" className="relative overflow-hidden border-t border-gray-200 bg-[#F8FAFC] py-10 lg:py-12">
+      <section id="capabilities" className="relative overflow-hidden border-t border-gray-200 bg-[#F8FAFC] py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
   
           {/* Section Heading */}
-          <motion.div
-            {...scrollMotionProps(isMobile, {
-              y: 20,
-              duration: 0.45,
-            })}
-            className="mx-auto mb-5 max-w-3xl text-center lg:mb-6"
-          >
-            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
-              The ZedOps Platform for <span className="text-brand-orange">MEP &amp; Construction</span>
-            </h2>
-  
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-[#6B778C] sm:text-base">
-              From pre-construction planning to execution, closeout, and the
-              core systems that keep everything connected.
-            </p>
+          <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.4 })}>
+            <SectionHeader
+              id="connected-flow-heading"
+              title={
+                <>
+                  The ZedOps Platform for <span className="text-brand-orange">MEP &amp; Construction</span>
+                </>
+              }
+              subtitle="From pre-construction planning to execution, closeout, and the core systems that keep everything connected."
+            />
           </motion.div>
   
           {/* Platform Architecture */}
@@ -154,7 +165,7 @@ export default function Capabilities() {
             {/* =======================================================
                 01 — PRE-CONSTRUCTION
             ======================================================== */}
-            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] p-5 md:border-r lg:border-b-0">
+            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] p-5 md:border-r lg:row-span-2 lg:border-b-0">
               <span
                 className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange"
                 aria-hidden
@@ -177,7 +188,7 @@ export default function Capabilities() {
             {/* =======================================================
                 02 — CONSTRUCTION EXECUTION
             ======================================================== */}
-            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] bg-white p-5 md:border-r-0 lg:border-r lg:border-b-0">
+            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] bg-white p-5 md:border-r-0 lg:row-span-2 lg:border-r lg:border-b-0">
               <span
                 className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange"
                 aria-hidden
@@ -210,7 +221,7 @@ export default function Capabilities() {
                 Project Closeout
               </h3>
   
-              <div className="mt-4 grid flex-1 auto-rows-fr content-start gap-2">
+              <div className="mt-4 grid content-start gap-2">
                 {closeout.map((item) => (
                   <CapabilityRow
                     key={item.title}
@@ -233,21 +244,41 @@ export default function Capabilities() {
                 Platform Core
               </h3>
   
-              <a
-                href="/platform/module/core"
-                className="group/item mt-4 flex min-h-0 flex-1 flex-col items-center rounded-xl bg-[#F4F6FB] p-4 text-center transition-[transform,box-shadow,background-color] duration-150 hover:-translate-y-0.5 hover:bg-[#EEF2F7] hover:shadow-[0_10px_22px_-16px_rgba(23,43,77,0.28)] motion-reduce:transform-none motion-reduce:transition-none"
-              >
-                <div className="mb-3 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#E8EDF4] bg-white shadow-[0_1px_2px_rgba(23,43,77,0.06)]">
-                  <Layers size={20} className="text-brand-orange" aria-hidden />
-                </div>
-                <p className="text-[14px] font-bold leading-snug text-brand-navy">Core</p>
-                <p className="mt-1.5 text-[12px] leading-relaxed text-[#6B778C]">
-                  Documents, library, directory, projects, users and admin.
-                </p>
-              </a>
+              <div className="mt-4 grid content-start gap-2">
+                {platformCore.map((item) => (
+                  <CapabilityRow
+                    key={item.title}
+                    item={item}
+                  />
+                ))}
+              </div>
+              
+              
             </article>
+
+            <a
+              href="/zed-ai"
+              className="group/ai flex items-start gap-4 border-t border-[#E5E7EB] bg-white p-5 md:col-span-2 lg:col-span-2 lg:col-start-3"
+            >
+              <div className="flex w-full items-start gap-4 rounded-2xl bg-brand-navy px-4 py-4 transition-[transform,box-shadow] duration-150 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-16px_rgba(23,43,77,0.45)] motion-reduce:transform-none sm:px-5 sm:py-5">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10">
+                  <Cpu size={20} className="text-brand-orange" aria-hidden />
+                </span>
+                <div className="min-w-0 text-left">
+                  <p className="text-base font-extrabold text-white">Zed AI</p>
+                  <p className="mt-1 text-sm leading-snug text-[#B8C4D4] sm:text-sm">
+                    Copilot on live project data — insights, drafts, and actions with your permissions.
+                  </p>
+                  <span className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-brand-orange">
+                    Open
+                    <ArrowRight size={14} className="transition-transform duration-150 group-hover/ai:translate-x-0.5" aria-hidden />
+                  </span>
+                </div>
+              </div>
+            </a>
           </motion.div>
         </div>
       </section>
     </>
-  );}
+  );
+}

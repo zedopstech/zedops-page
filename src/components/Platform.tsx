@@ -392,7 +392,7 @@ export default function Platform() {
             Built on the <span className="text-brand-navy">ecosystem</span> your<br className="hidden sm:block" />
             construction business runs on.
           </h2>
-          <p className="text-[#6B778C] text-base mt-5 max-w-xl mx-auto leading-relaxed">
+          <p className="text-[#6B778C] text-base mt-5 max-w-xl mx-auto leading-snug">
             ZedOps connects seamlessly to the tools your teams already use  -  no disruption, no data silos, full bi-directional sync.
           </p>
         </motion.div>

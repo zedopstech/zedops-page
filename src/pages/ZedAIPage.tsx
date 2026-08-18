@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSEO } from "@/hooks/useSEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
+import SectionHeader from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -180,7 +181,7 @@ function RoleStoryOverlay({ variant }: { variant: (typeof roleStoryBlocks)[numbe
           <CheckCircle2 className="h-5 w-5 shrink-0 text-[#00875A]" aria-hidden />
           <div>
             <p className="text-sm font-extrabold text-brand-navy leading-snug">AI-suggested workflow</p>
-            <p className="mt-1 text-xs leading-relaxed text-[#6B778C]">Next steps from your schedule & tasks</p>
+            <p className="mt-1 text-xs leading-snug text-[#6B778C]">Next steps from your schedule & tasks</p>
           </div>
         </div>
       </div>
@@ -208,7 +209,7 @@ function RoleStoryOverlay({ variant }: { variant: (typeof roleStoryBlocks)[numbe
         <CheckCircle2 className="h-5 w-5 shrink-0 text-[#00875A]" aria-hidden />
         <div>
           <p className="text-sm font-extrabold text-brand-navy leading-snug">Per-client workspace</p>
-          <p className="mt-1 text-xs leading-relaxed text-[#6B778C]">Zed AI stays inside tenant boundaries</p>
+          <p className="mt-1 text-xs leading-snug text-[#6B778C]">Zed AI stays inside tenant boundaries</p>
         </div>
       </div>
     </div>
@@ -284,10 +285,11 @@ export default function ZedAIPage() {
         {/* Tabbed showcase  -  pill tabs, tinted frame, two-column copy + visual (reference layout) */}
         <section className="border-t border-gray-100 bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
-            <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.45 })} className="mx-auto mb-8 max-w-3xl text-center md:mb-10">
-              <h2 className="text-2xl font-extrabold leading-snug tracking-tight text-brand-navy sm:text-3xl md:text-4xl">
-                AI features that add speed and clarity from preconstruction through closeout
-              </h2>
+            <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.45 })}>
+              <SectionHeader
+                title="AI features that add speed and clarity from preconstruction through closeout"
+                subtitle="Scoped intelligence on the same permissioned project data your teams already use."
+              />
             </motion.div>
 
             <div className="mb-8 flex justify-center md:mb-10">
@@ -338,7 +340,7 @@ export default function ZedAIPage() {
                     {(showcaseCopy[showcaseTab] ?? showcaseCopy.copilot).map((block) => (
                       <div key={block.title}>
                         <h3 className="mb-2 text-lg font-bold text-[#0052CC] sm:text-xl">{block.title}</h3>
-                        <p className="text-[15px] leading-relaxed text-[#42526E]">{block.body}</p>
+                        <p className="text-base leading-snug text-[#42526E]">{block.body}</p>
                       </div>
                     ))}
                     <a
@@ -371,7 +373,7 @@ export default function ZedAIPage() {
           <div className="mx-auto max-w-6xl space-y-8 md:space-y-10">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">Zed AI for every role on the job</h2>
-              <p className="mt-3 text-[15px] leading-relaxed text-[#6B778C]">
+              <p className="mt-3 text-base leading-snug text-[#6B778C]">
                 Same permissions as today  -  different leverage for the field, the office, the portfolio, and multi-client teams.
               </p>
             </div>
@@ -391,7 +393,7 @@ export default function ZedAIPage() {
                   </div>
                   <div className={block.imageOnLeft ? "lg:order-2" : "lg:order-1"}>
                     <h3 className="text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">{block.title}</h3>
-                    <p className="mt-4 text-[15px] leading-relaxed text-[#42526E]">{block.desc}</p>
+                    <p className="mt-4 text-base leading-snug text-[#42526E]">{block.desc}</p>
                     <a
                       href={block.href}
                       className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-[#0052CC] hover:text-[#0747A6] transition-colors"
@@ -421,7 +423,7 @@ export default function ZedAIPage() {
                     <c.icon size={20} className="text-brand-navy" />
                   </div>
                   <h3 className="font-extrabold text-brand-navy mb-2">{c.title}</h3>
-                  <p className="text-[#6B778C] text-sm leading-relaxed">{c.desc}</p>
+                  <p className="text-[#6B778C] text-sm leading-snug">{c.desc}</p>
                 </motion.div>
               ))}
             </div>

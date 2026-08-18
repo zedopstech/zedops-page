@@ -1,274 +1,368 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  ClipboardList,
-  ShoppingCart,
-  Users,
-  Package,
-  Warehouse,
-  Truck,
-  FileBarChart,
-  FileText,
-  FileSignature,
-  Timer,
-  SearchCheck,
-  Undo2,
-  Boxes,
-  QrCode,
-  LayoutDashboard,
-  Eye,
-  Shield,
-  Clock,
-  Recycle,
-  PiggyBank,
-  LineChart,
-  Send,
+  AlertTriangle,
   BadgeCheck,
+  Banknote,
+  Bookmark,
+  Boxes,
+  Building2,
+  CircleDollarSign,
+  ClipboardCheck,
+  ClipboardList,
+  Clock,
+  Eye,
+  FileBarChart,
+  FileSignature,
+  FileText,
+  GitCompare,
+  Headphones,
+  LayoutDashboard,
+  Package,
   PackageCheck,
-  CheckCircle2,
+  RefreshCw,
+  ScanSearch,
+  ShieldCheck,
+  ShoppingCart,
+  Smartphone,
+  Sparkles,
+  Timer,
+  Truck,
+  Undo2,
+  User,
+  UserCheck,
+  UserCog,
+  Users,
+  Warehouse,
+  Workflow,
+  Link2,
+  LineChart,
 } from "lucide-react";
 
 export const supplyChainHero = {
-  eyebrow: "Material Management",
-  titleLead: "Right Material. Right Time.",
-  titleAccent: "Right Place.",
+  eyebrow: "Construction",
+  titleLead: "Materials  ",
+  titleAccent: "Management",
+  tagline: "Right material. Right time. Total control.",
   subtitle:
-    "Procurement, inventory, and site delivery in one system for MEP teams.",
+    "From material request to warehouse, PO, delivery, and site receipt — one workflow for MEP and construction teams.",
+  primaryCta: { label: "Book a Demo", href: "/early-access" },
   imageSrc: "/platform/material-management.png",
-  imageAlt: "ZedOps material management overview",
+  imageAlt: "ZedOps materials and procurement dashboard",
 } as const;
 
-export type SupplyChainCapability = {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-};
-
-export type SupplyChainCapabilityGroup = {
-  id: string;
-  label: string;
-  items: SupplyChainCapability[];
-};
-
-export const supplyChainCapabilityGroups: SupplyChainCapabilityGroup[] = [
-  {
-    id: "plan-buy",
-    label: "Plan & buy",
-    items: [
-      {
-        icon: ClipboardList,
-        title: "Material Requests",
-        description: "Create MR, PR, and TR with multi-level approvals.",
-      },
-      {
-        icon: ShoppingCart,
-        title: "Procurement Management",
-        description: "Run RFQ, PO, and purchase workflows in one place.",
-      },
-      {
-        icon: Users,
-        title: "Vendor Management",
-        description: "Track vendors, performance, and purchase history.",
-      },
-    ],
-  },
-  {
-    id: "move-store",
-    label: "Move & store",
-    items: [
-      {
-        icon: Package,
-        title: "Inventory Management",
-        description: "See live stock across projects and warehouses.",
-      },
-      {
-        icon: Warehouse,
-        title: "Warehouse Management",
-        description: "Manage warehouses, locations, and bin levels.",
-      },
-      {
-        icon: Truck,
-        title: "Material Tracking",
-        description: "Follow material movement from PO to site.",
-      },
-    ],
-  },
-  {
-    id: "control",
-    label: "Control",
-    items: [
-      {
-        icon: PackageCheck,
-        title: "Stock Management",
-        description: "Verify physical stock and track consumption.",
-      },
-      {
-        icon: FileBarChart,
-        title: "Reports & Analytics",
-        description: "Get live insights and custom supply reports.",
-      },
-    ],
-  },
+export const supplyChainHeroHighlights: { icon: LucideIcon; label: string }[] = [
+  { icon: Smartphone, label: "Mobile First" },
+  { icon: Workflow, label: "Workflow Driven" },
+  { icon: Eye, label: "Live Inventory" },
+  { icon: Clock, label: "On-Time Delivery" },
 ];
 
-/** Flat list kept for any consumers that still map a single array. */
-export const supplyChainCapabilities: SupplyChainCapability[] =
-  supplyChainCapabilityGroups.flatMap((group) => group.items);
+export type SupplyChainFeatureTone = "blue" | "orange" | "green" | "purple" | "rose" | "teal";
 
-export type SupplyChainWorkflowStep = {
+export const supplyChainModules: {
   icon: LucideIcon;
   title: string;
-  description: string;
-};
-
-export const supplyChainWorkflow: SupplyChainWorkflowStep[] = [
-  { icon: ClipboardList, title: "Material Request", description: "Create MR / PR / TR" },
-  { icon: BadgeCheck, title: "Approval", description: "Multi-level approvals" },
-  { icon: FileSignature, title: "Purchase Order", description: "Raise PO to vendor" },
-  { icon: Send, title: "Vendor Confirmation", description: "Confirm delivery schedule" },
-  { icon: Truck, title: "Delivery to Site", description: "Track shipment & delivery" },
-  { icon: SearchCheck, title: "Goods Receipt (GRN)", description: "Inspect & receive goods" },
-  { icon: Boxes, title: "Inventory Update", description: "Update stock in real-time" },
-];
-
-export type SupplyChainFeaturePreview =
-  | "rfq"
-  | "po"
-  | "workflow"
-  | "returns"
-  | "inventory"
-  | "dashboard";
-
-export type SupplyChainFeature = SupplyChainCapability & {
-  detail: string;
-  usedIn: string;
-  preview: SupplyChainFeaturePreview;
-};
-
-export const supplyChainFeatures: SupplyChainFeature[] = [
+  tone: SupplyChainFeatureTone;
+  bullets: string[];
+}[] = [
   {
-    icon: FileText,
-    title: "RFQ Management",
-    description: "Create, compare and award RFQs.",
-    detail: "Send RFQs, compare vendor quotes side-by-side, and award with a clear audit trail before the PO is raised.",
-    usedIn: "Request → RFQ → PO",
-    preview: "rfq",
+    icon: ClipboardList,
+    title: "Material Requests (MR)",
+    tone: "teal",
+    bullets: ["Raise MR from site or office", "Project and cost-code context", "Multi-level approval path", "Status from draft to issued"],
+  },
+  {
+    icon: Workflow,
+    title: "Workflow Engine",
+    tone: "orange",
+    bullets: ["Configure approval chains", "MR, PR, TR, and PO routes", "Role-aware sign-off", "Full audit trail"],
+  },
+  {
+    icon: RefreshCw,
+    title: "Warehouse Transfers",
+    tone: "blue",
+    bullets: ["Move stock between sites", "Transfer requests with checks", "In-transit visibility", "Receive against transfer"],
+  },
+  {
+    icon: ShoppingCart,
+    title: "Procurement",
+    tone: "purple",
+    bullets: ["RFQ to vendors", "Compare quotes side by side", "Award with a clear trail", "Handoff into PO"],
   },
   {
     icon: FileSignature,
-    title: "PO & Contract Mgmt",
-    description: "Manage POs, contracts and variations.",
-    detail: "Issue purchase orders, track variations, and keep contract terms tied to the project and vendor.",
-    usedIn: "Approval → PO → Delivery",
-    preview: "po",
+    title: "Purchase Orders",
+    tone: "rose",
+    bullets: ["Issue POs from awarded RFQs", "Track variations", "Vendor and project linkage", "Status through delivery"],
   },
   {
-    icon: Timer,
-    title: "Workflows",
-    description: "Route approvals your way.",
-    detail: "Configure multi-level approvals and handoffs so material, purchase, and transfer requests follow your rules.",
-    usedIn: "MR → Approval → Action",
-    preview: "workflow",
+    icon: Banknote,
+    title: "Payment Management",
+    tone: "green",
+    bullets: ["Invoices against POs", "Payment status in one place", "Credit notes and returns", "Commercial visibility"],
   },
   {
-    icon: Undo2,
-    title: "Returns Management",
-    description: "Handle returns and credit notes.",
-    detail: "Process returns, replacements, and credit notes without losing the trail from the original PO.",
-    usedIn: "Receive → Return → Credit",
-    preview: "returns",
+    icon: Truck,
+    title: "Delivery Tracking",
+    tone: "orange",
+    bullets: ["Dispatch from vendor", "ETA and shipment notes", "Site delivery confirmation", "Exception flags"],
   },
   {
     icon: Boxes,
-    title: "Inventory Management",
-    description: "See live stock across projects and warehouses.",
-    detail: "Manage warehouses, locations, and bin levels.",
-    usedIn: "PO → Warehouse → Site",
-    preview: "inventory",
+    title: "Inventory",
+    tone: "teal",
+    bullets: ["Live stock by warehouse", "Bins and locations", "On-hand vs reserved", "Project-level view"],
   },
   {
-    icon: LayoutDashboard,
-    title: "Dashboard & Reports",
-    description: "Live dashboards and reports.",
-    detail: "Monitor open requests, delayed POs, and inventory health with reports you can share with the team.",
-    usedIn: "Ops → Insight → Action",
-    preview: "dashboard",
+    icon: PackageCheck,
+    title: "GRN & Receipt",
+    tone: "blue",
+    bullets: ["Goods receipt against PO", "QC and quantity checks", "Partial receipts", "Stock updates on accept"],
+  },
+  {
+    icon: FileBarChart,
+    title: "Reports & Analytics",
+    tone: "purple",
+    bullets: ["Open requests and aging POs", "Inventory health", "Consumption trends", "Shareable ops reports"],
   },
 ];
 
-export const supplyChainMobile = {
-  title: "Mobile App for Material Management",
-  subtitle:
-    "Keep material work moving from the site — raise requests, clear approvals, and check stock without waiting on a desktop.",
-  body: "ZedOps mobile gives supervisors and field teams the actions they need on site, synced to the same Material Management data your office uses.",
-  phones: [
-    {
-      src: "/platform/phone-material-request1.png",
-      alt: "ZedOps Material Request mobile screen",
-    },
-    {
-      src: "/platform/phone-approvals1.png",
-      alt: "ZedOps Approvals mobile screen",
-    },
-  ],
-  bullets: [
-    {
-      title: "Raise material requests",
-      description: "Create MRs from site with project context and item details.",
-    },
-    {
-      title: "Approve requests",
-      description: "Review and clear pending approvals without leaving the field.",
-    },
-    {
-      title: "Easy multi-level approval",
-      description: "See what’s waiting on you and move work to the next step.",
-    },
-    {
-      title: "Track request status",
-      description: "Follow open vs approved requests in one mobile list.",
-    },
+export type WorkflowStageTone = "teal" | "orange" | "blue" | "purple" | "amber";
 
-    {
-      title: "View inventory levels",
-      description: "Check what’s available before you raise the next request.",
-    },
-  ],
-} as const;
+export type WorkflowNode = {
+  icon: LucideIcon;
+  label: string;
+};
 
-export const supplyChainBenefits: SupplyChainCapability[] = [
+export type SupplyChainWorkflowStage = {
+  n: number;
+  title: string;
+  blurb: string;
+  tone: WorkflowStageTone;
+  kind: "linear" | "split" | "procure" | "stack";
+  steps?: WorkflowNode[];
+  split?: {
+    question: string;
+    yes: WorkflowNode[];
+    no: WorkflowNode[];
+  };
+  procure?: {
+    rfq: WorkflowNode[];
+    award: WorkflowNode;
+    po: WorkflowNode[];
+  };
+};
+
+export const supplyChainWorkflowStages: SupplyChainWorkflowStage[] = [
   {
-    icon: Eye,
-    title: "End-to-End Visibility",
-    description: "Complete visibility from request to site delivery.",
+    n: 1,
+    title: "Material Request",
+    blurb: "Raise a material request with required details.",
+    tone: "teal",
+    kind: "linear",
+    steps: [
+      { icon: Smartphone, label: "Create Material Request (MR)" },
+      { icon: UserCheck, label: "Workflow Approval" },
+    ],
   },
   {
-    icon: Shield,
+    n: 2,
+    title: "After Approval — Split",
+    blurb: "Split request based on availability and need.",
+    tone: "orange",
+    kind: "split",
+    split: {
+      question: "Material Available?",
+      yes: [
+        { icon: Warehouse, label: "Transfer Request (From Stock)" },
+        { icon: Users, label: "Transfer Workflow Approval" },
+        { icon: Truck, label: "Material Moved to Requested Location" },
+      ],
+      no: [
+        { icon: FileText, label: "Purchase Request (PR)" },
+        { icon: UserCheck, label: "PR Workflow Approval" },
+        { icon: ShoppingCart, label: "Procurement" },
+      ],
+    },
+  },
+  {
+    n: 3,
+    title: "Procurement Process",
+    blurb: "Procure materials from approved vendors.",
+    tone: "blue",
+    kind: "procure",
+    procure: {
+      rfq: [
+        { icon: FileBarChart, label: "RFQ (If Required)" },
+        { icon: GitCompare, label: "Vendor Quotes & Comparison" },
+      ],
+      award: { icon: BadgeCheck, label: "Select Best Vendor" },
+      po: [
+        { icon: FileSignature, label: "Create Purchase Order (PO)" },
+        { icon: UserCheck, label: "PO Workflow Approval" },
+      ],
+    },
+  },
+  {
+    n: 4,
+    title: "Payment & Delivery",
+    blurb: "Process payment and track delivery.",
+    tone: "purple",
+    kind: "stack",
+    steps: [
+      { icon: Banknote, label: "Payment Request" },
+      { icon: UserCheck, label: "Workflow Approval" },
+      { icon: BadgeCheck, label: "Payment Settled" },
+      { icon: Truck, label: "Track Delivery & Follow up" },
+    ],
+  },
+  {
+    n: 5,
+    title: "Receipt & Close",
+    blurb: "Receive materials and close the request.",
+    tone: "amber",
+    kind: "stack",
+    steps: [
+      { icon: PackageCheck, label: "Goods Receipt (GRN)" },
+      { icon: Truck, label: "Material Issue to Requested Location" },
+      { icon: ClipboardCheck, label: "Close Material Request (MR)" },
+    ],
+  },
+];
+
+export const supplyChainWorkflowLoop = {
+  title: "One Connected Workflow.",
+  description:
+    "Track every step, maintain transparency, and ensure the right material reaches the right place at the right time.",
+} as const;
+
+export type WorkflowBenefitTone = "orange" | "teal" | "blue" | "purple";
+
+export const supplyChainWorkflowBenefits: {
+  icon: LucideIcon;
+  title: string;
+  blurb: string;
+  tone: WorkflowBenefitTone;
+}[] = [
+  {
+    icon: Link2,
+    title: "One Connected Workflow.",
+    blurb:
+      "Track every step, maintain transparency, and ensure the right material reaches the right place at the right time.",
+    tone: "orange",
+  },
+  {
+    icon: Eye,
+    title: "Full Visibility",
+    blurb: "Track every step in real time.",
+    tone: "teal",
+  },
+  {
+    icon: ShieldCheck,
     title: "Better Control",
-    description: "Better control over materials, costs and suppliers.",
+    blurb: "Maintain accuracy and accountability.",
+    tone: "orange",
   },
   {
     icon: Clock,
-    title: "Timely Delivery",
-    description: "Ensure materials arrive on time, every time.",
-  },
-  {
-    icon: Recycle,
-    title: "Reduced Wastage",
-    description: "Optimize inventory and reduce material wastage.",
-  },
-  {
-    icon: PiggyBank,
-    title: "Cost Savings",
-    description: "Negotiate better and reduce procurement costs.",
+    title: "Faster Decisions",
+    blurb: "Get real-time insights and act quickly.",
+    tone: "blue",
   },
   {
     icon: LineChart,
-    title: "Data-Driven Decisions",
-    description: "Make informed decisions with real-time data.",
+    title: "Smarter Operations",
+    blurb: "Improve efficiency across projects.",
+    tone: "purple",
   },
 ];
 
+export type InventoryChipTone = "green" | "blue" | "purple" | "orange" | "rose" | "gray";
+
+export const supplyChainInsights = {
+  eyebrow: "Insights",
+  titleLead: "Consumption, inventory ",
+  titleAccent: "& reports",
+  subtitle: "See what the site used today, what you hold on hand, and the analytics that follow.",
+} as const;
+
+export const supplyChainConsumptionFlow: { icon: LucideIcon; title: string }[] = [
+  { icon: Building2, title: "Today's Work at Site" },
+  { icon: ClipboardList, title: "Materials Used" },
+  { icon: User, title: "Supervisor Verification" },
+  { icon: UserCog, title: "Authorized Approval" },
+  { icon: ShieldCheck, title: "Inventory Updated" },
+  { icon: FileBarChart, title: "Reports & Intelligence" },
+];
+
+export const supplyChainConsumptionFooter =
+  "Ensures accurate consumption capture, verification and inventory control.";
+
+export const supplyChainInventoryMetric = {
+  title: "Live Inventory",
+  items: "3,248",
+  itemsLabel: "Total Items",
+  value: "SAR 6.25M",
+  valueLabel: "Inventory Value",
+} as const;
+
+export const supplyChainInventorySources: { icon: LucideIcon; label: string; tone: InventoryChipTone }[] = [
+  { icon: Warehouse, label: "Main Warehouse", tone: "green" },
+  { icon: Warehouse, label: "Project Warehouse A", tone: "blue" },
+  { icon: Warehouse, label: "Project Warehouse B", tone: "purple" },
+  { icon: Truck, label: "In Transit", tone: "orange" },
+];
+
+export const supplyChainInventoryStatuses: { icon: LucideIcon; label: string; tone: InventoryChipTone }[] = [
+  { icon: BadgeCheck, label: "Available Stock", tone: "green" },
+  { icon: Bookmark, label: "Reserved Stock", tone: "blue" },
+  { icon: AlertTriangle, label: "Low Stock Items", tone: "rose" },
+  { icon: AlertTriangle, label: "Expired / Obsolete", tone: "gray" },
+];
+
+export const supplyChainReports: { icon: LucideIcon; title: string; soon?: boolean }[] = [
+  { icon: FileText, title: "Inventory Reports", soon: true },
+  { icon: CircleDollarSign, title: "PO Reports & Aging", soon: true },
+  { icon: Headphones, title: "Vendor Performance", soon: true },
+  { icon: Package, title: "Consumption Reports", soon: true },
+  { icon: Truck, title: "Delivery Performance", soon: true },
+  { icon: LayoutDashboard, title: "Custom Dashboards", soon: true },
+];
+
+export const supplyChainTraditional: string[] = [
+  "Requests in WhatsApp and spreadsheets",
+  "No stock check before buying again",
+  "POs disconnected from site receipt",
+  "Inventory nobody trusts",
+  "Chasing vendors for status",
+];
+
+export const supplyChainWithZedops: string[] = [
+  "One MR → approval → buy or transfer path",
+  "Live stock before the next purchase",
+  "PO, GRN, and inventory on the same record",
+  "Warehouses that match the job",
+  "Delivery and payment status in one place",
+];
+
+export const supplyChainWhy: string[] = [
+  "Right material at the right time",
+  "Fewer emergency buys and overstock",
+  "Approvals that match how you actually work",
+  "Site and office on the same quantities",
+  "Cost visibility from request to receipt",
+  "Real-time inventory and consumption visibility",
+];
+
+export const supplyChainAiSoon: { icon: LucideIcon; title: string; body: string }[] = [
+  { icon: Sparkles, title: "Demand forecasting", body: "Flag what the job will need next from live consumption." },
+  { icon: ScanSearch, title: "Price trend cues", body: "Surface unusual vendor rates before you award." },
+  { icon: Timer, title: "Stock-out risk", body: "Warn when critical items will run short against the programme." },
+  { icon: Undo2, title: "Reorder suggestions", body: "Draft the next MR or PR from usage and lead time." },
+];
+
 export const supplyChainCta = {
-  title: "Streamline Material Management. Deliver Projects On Time.",
-  body: "See how ZedOps Material Management can help you optimize procurement, inventory and delivery.",
+  title: "One Platform. Every Material. Total Control.",
+  body: "Book a demo and see how ZedOps runs requests, stock, procurement, and delivery in one system.",
+  primary: { label: "Book a Demo", href: "/early-access" },
 } as const;

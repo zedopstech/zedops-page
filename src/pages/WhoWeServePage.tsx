@@ -72,10 +72,10 @@ export default function WhoWeServePage() {
               <MessageSquare size={20} className="text-brand-orange shrink-0 mt-1" />
               <p className="text-white/70 text-xs font-bold uppercase tracking-widest">Before we built anything</p>
             </div>
-            <p className="text-white text-xl lg:text-2xl font-semibold leading-relaxed mb-6">
+            <p className="text-white text-xl lg:text-2xl font-semibold leading-snug mb-6">
               We sat down with general contractors, project managers, owners, and consultants  -  people running real projects  -  and just listened.
             </p>
-            <p className="text-white/60 text-base leading-relaxed max-w-2xl">
+            <p className="text-white/60 text-base leading-snug max-w-2xl">
               Today the product spans execution, cost, procurement, information management, and AI  -  but the story is the same: one system your whole team can trust, with visibility that matches responsibility.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-12 border-t border-white/10">
@@ -132,7 +132,7 @@ export default function WhoWeServePage() {
                       </div>
                       <h3 className="text-lg font-extrabold text-brand-navy">{p.title}</h3>
                     </div>
-                    <p className="text-[#42526E] text-sm leading-relaxed mb-6 flex-1">{p.desc}</p>
+                    <p className="text-[#42526E] text-sm leading-snug mb-6 flex-1">{p.desc}</p>
                     <span className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-navy group-hover:gap-2.5 transition-all duration-150">
                       See how ZedOps helps <ArrowRight size={14} />
                     </span>

@@ -67,7 +67,7 @@ export default function HowWeHelpHubPage() {
               <h2 className="text-3xl font-extrabold leading-[1.12] tracking-tight text-brand-navy sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
                 Four ways to see how ZedOps fits
               </h2>
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#42526E] lg:mx-0 lg:max-w-xl lg:text-[1.05rem]">
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-snug text-[#42526E] lg:mx-0 lg:max-w-xl lg:text-[1.05rem]">
                 Built for you is still the home for persona stories and photography. These cards are structural lenses - phase,
                 organisation, team, and access - so you can evaluate the product in the language your stakeholders already use.
               </p>
@@ -96,14 +96,14 @@ export default function HowWeHelpHubPage() {
                     >
                       <Icon className="h-6 w-6" style={{ color: item.accent }} strokeWidth={2} aria-hidden />
                     </div>
-                    <span className="font-mono text-[11px] font-bold tabular-nums text-[#97A0AF] transition-colors group-hover:text-[#42526E]">
+                    <span className="font-mono text-xs font-bold tabular-nums text-[#97A0AF] transition-colors group-hover:text-[#42526E]">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
                   <h3 className="mt-6 text-xl font-extrabold leading-snug tracking-tight text-brand-navy transition-colors group-hover:text-[#0052CC] lg:text-[1.35rem]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-[#6B778C]">{item.desc}</p>
+                  <p className="mt-3 flex-1 text-base leading-snug text-[#6B778C]">{item.desc}</p>
                   <div className="mt-8 flex items-center justify-between border-t border-gray-100 pt-6">
                     <span className="text-sm font-bold text-[#0052CC]">Explore</span>
                     <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#EBF0FF] bg-[#F8FAFC] text-[#0052CC] transition-all duration-300 group-hover:border-[#0052CC]/20 group-hover:bg-[#EBF0FF]">
@@ -115,7 +115,7 @@ export default function HowWeHelpHubPage() {
             })}
           </div>
 
-          <motion.p {...scrollMotionProps(isMobile, { fadeOnly: true, duration: 0.4, delay: 0.15 })} className="mx-auto mt-14 max-w-2xl text-center text-sm leading-relaxed text-[#6B778C] lg:mt-16">
+          <motion.p {...scrollMotionProps(isMobile, { fadeOnly: true, duration: 0.4, delay: 0.15 })} className="mx-auto mt-14 max-w-2xl text-center text-sm leading-snug text-[#6B778C] lg:mt-16">
             Every lens ends at the same product graph.{" "}
             <a href="/how-we-help/project-stage" className="font-semibold text-[#0052CC] underline decoration-[#0052CC]/25 underline-offset-[3px] transition-colors hover:text-[#0747A6]">
               See how modules show up by stage

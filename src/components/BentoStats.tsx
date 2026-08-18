@@ -121,7 +121,7 @@ export default function BentoStats() {
                 <AnimatedStat target={52} suffix="" duration={1.5} inView={inView} className="text-white font-black text-4xl leading-none sm:text-5xl" />
                 <span className="text-brand-orange text-2xl font-black mb-0.5 sm:text-3xl">hrs</span>
               </div>
-              <p className="text-white/50 text-xs mt-2 leading-relaxed">Reclaimed from chasing status, re-keying, and rework coordination</p>
+              <p className="text-white/50 text-xs mt-2 leading-snug">Reclaimed from chasing status, re-keying, and rework coordination</p>
             </div>
             <div className="mt-5">
               <p className="text-white/30 text-[9px] font-bold uppercase tracking-widest mb-2">Before vs. After ZedOps</p>
@@ -166,7 +166,7 @@ export default function BentoStats() {
               <p className="text-white font-black text-4xl leading-none sm:text-5xl">
                 $2.4<span className="text-brand-orange text-2xl sm:text-3xl">M</span>
               </p>
-              <p className="text-white/50 text-xs mt-2 leading-relaxed">Projected savings per large commercial project</p>
+              <p className="text-white/50 text-xs mt-2 leading-snug">Projected savings per large commercial project</p>
             </div>
             <div className="mt-5 space-y-2">
               {[
@@ -196,7 +196,7 @@ export default function BentoStats() {
               <AnimatedStat target={3} suffix="×" duration={1.0} inView={inView} className="text-white font-black text-4xl leading-none mb-2 sm:text-5xl lg:text-6xl" />
               <p className="text-white/80 text-xs font-bold uppercase tracking-widest">Faster decisions</p>
             </div>
-            <p className="text-white/70 text-xs mt-4 leading-relaxed">
+            <p className="text-white/70 text-xs mt-4 leading-snug">
               Turn signals into the next task, with AI where you enable it.
             </p>
           </motion.div>

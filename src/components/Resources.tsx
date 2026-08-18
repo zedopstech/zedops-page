@@ -102,7 +102,7 @@ export default function Resources() {
                   <h3 className="mb-3 text-lg font-extrabold leading-snug text-brand-navy transition-colors duration-150 group-hover:text-brand-navy">
                     {article.title}
                   </h3>
-                  <p className="mb-4 flex-1 text-sm leading-relaxed text-[#6B778C]">{article.description}</p>
+                  <p className="mb-4 flex-1 text-sm leading-snug text-[#6B778C]">{article.description}</p>
                   <div className="mt-auto flex items-center gap-2.5">
                     <img src={avatarUrl(name)} alt="" className="h-8 w-8 rounded-full object-cover" />
                     <div>

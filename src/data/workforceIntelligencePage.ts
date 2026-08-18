@@ -95,7 +95,7 @@ export const workforceFeatures: {
   },
   {
     icon: MonitorSmartphone,
-    title: "Mobile & web Access",
+    title: "Mobile & Offline",
     bullets: [
       "Mobile & web access",
       "Works offline",
@@ -127,7 +127,7 @@ export const workforceFeatures: {
 
 export const workforceWorkflow: { icon: LucideIcon; title: string; description: string }[] = [
   { icon: Users, title: "Employee Database", description: "Build one people record for every worker." },
-  { icon: Smartphone, title: "Check-in / Out", description: "Capture attendance on the employee app." },
+  { icon: Smartphone, title: "Check-in / Out (Site Location)", description: "Capture attendance on the employee app." },
   { icon: CalendarCheck, title: "Attendance Recorded", description: "Hours and location land the same day." },
   { icon: ListChecks, title: "Tasks Assigned", description: "Give crews clear work and owners." },
   { icon: FileCheck2, title: "Requests & Approvals", description: "Leave and assets move through one queue." },
@@ -135,80 +135,13 @@ export const workforceWorkflow: { icon: LucideIcon; title: string; description: 
   { icon: Star, title: "Feedback & Improvement", description: "See who needs support next." },
 ];
 
-export type WorkforceSnapshotMock =
-  | "employee-database"
-  | "attendance-leave"
-  | "requests-approvals"
-  | "task-management"
-  | "performance-scorecard"
-  | "productivity-tracking"
-  | "mobile-web-access"
-  | "offline-capability";
-
-export const workforceSnapshots: {
-  icon: LucideIcon;
-  title: string;
-  imageSrc?: string;
-  imageAlt: string;
-  mock?: WorkforceSnapshotMock;
-}[] = [
-  {
-    icon: Users,
-    title: "Complete Employee Database",
-    imageAlt: "Employee database with names, roles, departments, and status",
-    mock: "employee-database",
-  },
-  {
-    icon: CalendarClock,
-    title: "Attendance & Leave Management",
-    imageAlt: "Attendance check-in times, GPS tracking, and leave management",
-    mock: "attendance-leave",
-  },
-  {
-    icon: FileCheck2,
-    title: "Requests & Approvals",
-    imageAlt: "Leave, asset, punch, and overtime requests with approval status",
-    mock: "requests-approvals",
-  },
-  {
-    icon: ListChecks,
-    title: "Task Management",
-    imageAlt: "Assigned, in progress, and completed workforce tasks",
-    mock: "task-management",
-  },
-  {
-    icon: Gauge,
-    title: "Performance Scorecard",
-    imageAlt: "Performance score, rating, and punctuality metrics",
-    mock: "performance-scorecard",
-  },
-  {
-    icon: TrendingUp,
-    title: "Productivity Tracking",
-    imageAlt: "Team productivity for today connected to daily execution",
-    mock: "productivity-tracking",
-  },
-  {
-    icon: MonitorSmartphone,
-    title: "Mobile & Web Access",
-    imageAlt: "Workforce dashboard on laptop and smartphone",
-    mock: "mobile-web-access",
-  },
-  {
-    icon: WifiOff,
-    title: "Offline Capability",
-    imageAlt: "Work offline on mobile and sync when back online",
-    mock: "offline-capability",
-  },
-];
-
 export const workforceWhy: string[] = [
   "Real-time visibility of your workforce",
-  "Better attendance & accountability",
-  "On-time task completion",
   "Higher productivity every day",
-  "Data-driven performance reviews",
-  "Continuous improvement & growth",
+  "Faster approvals, less admin",
+  "Fair, transparent performance",
+  "Site and office on one record",
+  "Better people decisions",
 ];
 
 export const workforceAiSoon: { icon: LucideIcon; title: string; body: string }[] = [
@@ -223,10 +156,10 @@ export const workforceCallout = {
   title: "Right People. Right Work. Right Results.",
   body: "Attendance, tasks, and performance live on the same people record — so site and office decide from one view.",
   points: ["Connected People & Projects",
-    "Live Workforce Intelligence",
-    "Faster, Smarter Decisions",
-    "Improved Team Productivity",
-    "Stronger Project Outcomes"],
+"Live Workforce Intelligence",
+"Faster, Smarter Decisions",
+"Improved Team Productivity",
+"Stronger Project Outcomes"],
 } as const;
 
 export const workforceCta = {

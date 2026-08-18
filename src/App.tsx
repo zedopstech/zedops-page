@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { useEffect, type ReactNode } from "react";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MotionConfig, useReducedMotion } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
@@ -42,13 +42,35 @@ function routerBaseFromVite(): string {
   return trimmed;
 }
 
+function ScrollToTop() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  }, []);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    html.style.scrollBehavior = prev;
+  }, [location]);
+
+  return null;
+}
+
 function Router() {
   return (
-    <Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
       <Route path="/" component={Home} />
       {/* {!HIDE_PRICING ? <Route path="/pricing" component={PricingPage} /> : null} */}
       <Route path="/solutions" component={SolutionsPage} />
-      <Route path="/platform/module/:moduleId" component={PlatformModulePage} />
+      <Route path="/platform/module/:moduleId">
+        {(params) => <PlatformModulePage key={params.moduleId} params={params} />}
+      </Route>
       <Route path="/zed-ai" component={ZedAIPage} />
       <Route path="/security" component={SecurityPage} />
       <Route path="/early-access" component={EarlyAccessPage} />
@@ -71,6 +93,7 @@ function Router() {
       <Route path="/who-we-serve/consultants" component={ConsultantsPage} />
       <Route component={NotFound} />
     </Switch>
+    </>
   );
 }
 
