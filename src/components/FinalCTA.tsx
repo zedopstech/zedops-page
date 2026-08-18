@@ -17,7 +17,7 @@ export type FinalCtaLink = {
 };
 
 export type FinalCTAProps = {
-  variant?: "navy" | "orange";
+  variant?: "brand-navy" | "brand-orange";
   compact?: boolean;
   title?: React.ReactNode;
   body?: string;
@@ -43,7 +43,7 @@ function OrangeFinalCTA({
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.28] mix-blend-multiply"
         style={{
-          backgroundImage: "url('/hero-banner.png')",
+          backgroundImage: "url('/new-hero-banner.png')",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -62,16 +62,12 @@ function OrangeFinalCTA({
         >
           <div>
             <h2
-              className={`font-extrabold leading-tight tracking-tight text-white ${
-                compact ? "text-2xl sm:text-3xl lg:text-[32px]" : "text-3xl sm:text-4xl lg:text-[40px]"
-              }`}
+              className="text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl"
             >
               {title}
             </h2>
             <p
-              className={`max-w-xl leading-relaxed text-white/90 ${
-                compact ? "mt-2 text-sm sm:text-base" : "mt-3 text-base sm:text-lg"
-              }`}
+              className="mt-3 max-w-xl text-base leading-snug text-white/90"
             >
               {body}
             </p>
@@ -85,7 +81,7 @@ function OrangeFinalCTA({
                 {primary.label}
               </a>
               {primary.caption ? (
-                <p className="flex items-center gap-1.5 text-[11px] font-medium text-white">
+                <p className="flex items-center gap-1.5 text-xs font-medium text-white">
                   <CircleCheck size={13} strokeWidth={2.4} aria-hidden />
                   {primary.caption}
                 </p>
@@ -100,7 +96,7 @@ function OrangeFinalCTA({
                   {secondary.label}
                 </a>
                 {secondary.caption ? (
-                  <p className="flex items-center gap-1.5 text-[11px] font-medium text-white">
+                  <p className="flex items-center gap-1.5 text-xs font-medium text-white">
                     <CircleCheck size={13} strokeWidth={2.4} aria-hidden />
                     {secondary.caption}
                   </p>
@@ -115,7 +111,7 @@ function OrangeFinalCTA({
 }
 
 export default function FinalCTA({
-  variant = "navy",
+  variant = "brand-navy",
   compact,
   title,
   body,
@@ -124,13 +120,13 @@ export default function FinalCTA({
 }: FinalCTAProps) {
   const isMobile = useIsMobile();
 
-  if (variant === "orange") {
+  if (variant === "brand-orange") {
     return (
       <OrangeFinalCTA
         compact={compact}
         title={title ?? "Ready to see ZedOps on your jobs?"}
         body={body ?? "Talk to the team about how planning, materials, and field execution stay in one system."}
-        primary={primary ?? { label: "Book a Demo", href: "/early-access", caption: "No Credit Card Required" }}
+        primary={primary ?? { label: "Book a Demo", href: "/early-access" }}
         secondary={secondary}
       />
     );
@@ -143,7 +139,7 @@ export default function FinalCTA({
         <div className="border-b border-white/10 py-10 lg:py-12">
           <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid items-center gap-6 lg:grid-cols-2 lg:gap-12">
             <div>
-              <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-brand-orange sm:text-4xl lg:text-[40px]">
+              <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-brand-orange sm:text-4xl">
                 {title ?? (
                   <>
                     Run <span className="text-brand-orange">MEP jobs</span> with execution in the loop.
@@ -152,7 +148,7 @@ export default function FinalCTA({
               </h2>
             </div>
             <div>
-              <p className="mb-5 text-base leading-relaxed text-white/90">
+              <p className="mb-5 text-base leading-snug text-white/90">
                 {body ??
                   "Give supers and PMs one place where the schedule, daily log, inspections, and punch list all drive assigned work, with AI that fits your permissions, not a generic chatbox."}
               </p>
@@ -198,7 +194,7 @@ export default function FinalCTA({
                 </div>
                 <div>
                   <h4 className="mb-1 text-sm font-bold text-white transition-colors group-hover:text-brand-orange">{card.title}</h4>
-                  <p className="text-[13px] leading-snug text-[#97A0AF]">{card.description}</p>
+                  <p className="text-sm leading-snug text-[#97A0AF]">{card.description}</p>
                 </div>
               </motion.div>
             ))}
