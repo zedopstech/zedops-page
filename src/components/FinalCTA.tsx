@@ -169,11 +169,7 @@ export default function FinalCTA({
                   <a href="/pricing" className="text-white font-semibold text-sm hover:text-brand-orange transition-colors duration-150">
                     View pricing →
                   </a>
-                ) : (
-                  <a href="/contact?topic=demo" className="text-white font-semibold text-sm hover:text-brand-orange transition-colors duration-150">
-                    Book a demo →
-                  </a>
-                )}
+                ) : null}
               </div>
             </div>
           </motion.div>

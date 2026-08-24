@@ -12,7 +12,7 @@ import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import { getModuleNavContext } from "@/data/platformFeatures";
 import { PlatformModuleFeatureMiniMock } from "@/components/PlatformModuleFeatureMiniMock";
-import SupplyChainModuleLanding from "@/components/SupplyChainModuleLanding";
+import MaterialManagementLanding from "@/components/MaterialManagementLanding";
 import PlanningScheduleLanding from "@/components/PlanningScheduleLanding";
 import EstimationLanding from "@/components/EstimationLanding";
 import DailyIntelligenceLanding from "@/components/DailyIntelligenceLanding";
@@ -64,7 +64,9 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
                 ? "ZedOps Workforce Intelligence — manage people, attendance, tasks, and performance from site to office."
                 : params.moduleId === "punch-list"
                   ? "ZedOps Punch List Management — track, assign, and close punch items efficiently through handover."
-                  : ctx
+                  : params.moduleId === "finance"
+                    ? "ZedOps Budget & Cost Control — track budgets, commitments, actuals, revisions and forecasts in real time for MEP and construction projects."
+                    : ctx
                     ? moduleMetaDescription(ctx.section)
                     : "ZedOps platform modules.",
   });
@@ -122,7 +124,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
       <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
         <Navbar />
         <div className="pt-[100px]">
-          <SupplyChainModuleLanding prev={prev} next={next} />
+          <MaterialManagementLanding prev={prev} next={next} />
           <Footer />
         </div>
       </div>

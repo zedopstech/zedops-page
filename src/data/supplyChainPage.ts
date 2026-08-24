@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { DashboardData } from "@/components/dashboards/ProductDashboard";
 import {
   AlertTriangle,
   BadgeCheck,
@@ -366,3 +367,78 @@ export const supplyChainCta = {
   body: "Book a demo and see how ZedOps runs requests, stock, procurement, and delivery in one system.",
   primary: { label: "Book a Demo", href: "/early-access" },
 } as const;
+
+export const supplyChainDashboardData: DashboardData = {
+  projectName: "Dubai Mall",
+  title: "Supply Chain Dashboard",
+  subtitle: "Dubai Mall Expansion",
+
+  accent: "bg-white",
+  activeTab: "Supply Chain",
+
+  floatingCards: {
+    progress: "Supply Progress",
+    insights: "Material Insights",
+    upcoming: "Incoming Deliveries",
+    alerts: "Supply Alerts",
+  },
+
+  kpis: [
+    { label: "TOTAL REQUESTS", value: "1,286", description: "Material requests" },
+    { label: "PENDING APPROVALS", value: "156", description: "Awaiting review" },
+    { label: "IN TRANSIT", value: "84", description: "On the way" },
+    { label: "ON-TIME DELIVERY", value: "92%", description: "Delivery rate" },
+    { label: "STOCK VALUE", value: "$2.1M", description: "Current inventory" },
+  ],
+
+  progress: { value: "78%", planned: "85%", actual: "78%" },
+
+  insights: [
+    { title: "5 materials at risk", description: "Lead time exceeding 14 days." },
+    { title: "Vendor performance", description: "92% on-time delivery this month." },
+  ],
+
+  upcoming: [
+    { title: "Steel Delivery", description: "Structural phase 2", date: "24 Jul" },
+    { title: "HVAC Units", description: "MEP equipment", date: "28 Jul" },
+    { title: "Finishes Materials", description: "Level 2 tiles", date: "02 Aug" },
+  ],
+
+  alerts: [
+    { title: "Stock shortage", description: "Cement below minimum level." },
+    { title: "Price increase", description: "Steel prices up 8% from supplier." },
+    { title: "Delivery delay", description: "Glass panels delayed 5 days." },
+  ],
+
+  mainSections: [
+    {
+      kind: "bars",
+      title: "Material Requests by Status",
+      items: [
+        { label: "Delivered", value: "1046" },
+        { label: "Pending", value: "156" },
+        { label: "In Transit", value: "84" },
+      ],
+    },
+    {
+      kind: "stat-grid",
+      title: "Inventory by Category",
+      columns: 3,
+      items: [
+        { label: "Structural", value: "$820k" },
+        { label: "MEP", value: "$640k" },
+        { label: "Finishes", value: "$410k" },
+        { label: "Consumables", value: "$140k" },
+        { label: "Safety", value: "$90k" },
+        { label: "Total", value: "$2.1M" },
+      ],
+    },
+  ],
+
+  activity: [
+    { text: "Material request raised", action: "created" },
+    { text: "Delivery received", action: "updated" },
+    { text: "Stock level alert", action: "alert" },
+    { text: "PO approved", action: "created" },
+  ],
+};

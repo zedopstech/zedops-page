@@ -1,5 +1,7 @@
 import type { LucideIcon } from "lucide-react";
+import type { DashboardData } from "@/components/dashboards/ProductDashboard";
 import {
+  AlertTriangle,
   BarChart3,
   CalendarCheck,
   CalendarClock,
@@ -14,22 +16,209 @@ import {
   ScanSearch,
   ShieldCheck,
   Smartphone,
+  Sparkles,
   Star,
   TrendingUp,
   Users,
+  Banknote,
   WifiOff,
+  GanttChart,
+  Warehouse,
+  Boxes,
+  Workflow,
 } from "lucide-react";
 
 export const workforceHero = {
-  eyebrow: "Workforce Management",
+  eyebrow: "Workforce Intelligence",
   titleLead: "Manage Your ",
-  titleAccent: "People.",
-  titleRest: " Drive ",
-  titleAccent2: "Performance.",
+  titleAccent: "People. Drive Performance.",
   subtitle:
     "Complete workforce management from employee database to performance insights – connected from site to office.",
   primaryCta: { label: "Book a Demo", href: "/early-access" },
 } as const;
+
+export const workforceFeaturesTitle = {
+  lead: "Everything you need for complete ",
+  accent: "workforce intelligence",
+} as const;
+
+export const workforceWorkflowTitle = {
+  lead: "Workforce ",
+  accent: "workflow",
+} as const;
+
+export const workforceKpis = {
+  title: "Workforce Performance (KPIs)",
+  subtitle: "KPIs for better decision making",
+  cta: { label: "View Full Workforce Dashboard", href: "/early-access" },
+  sampleNote: "* Sample project data",
+  stats: [
+    {
+      icon: Users,
+      color: "orange" as const,
+      label: "Total Workforce",
+      value: "532",
+      sparkPoints: [480, 495, 505, 512, 520, 528, 532],
+    },
+    {
+      icon: TrendingUp,
+      color: "green" as const,
+      label: "Attendance Rate",
+      value: "86%",
+      sparkPoints: [78, 80, 82, 83, 84, 85, 86],
+    },
+    {
+      icon: AlertTriangle,
+      color: "red" as const,
+      label: "Absenteeism",
+      value: "14%",
+      sparkPoints: [10, 11, 12, 12, 13, 13, 14],
+    },
+    {
+      icon: Gauge,
+      color: "purple" as const,
+      label: "Avg Performance",
+      value: "84",
+      sparkPoints: [80, 81, 82, 83, 83, 84, 84],
+    },
+  ],
+} as const;
+
+export const workforceConnected = {
+  titleLead: "One Workforce. Every Site",
+  titleAccent: "Connected.",
+  subtitle: "From Site to Office",
+  hubTitle: "ZEDOPS WORKFORCE INTELLIGENCE",
+  hubTagline: "Manage. Track. Perform. Improve.",
+  footer: "Always in Sync. Always Up-to-Date.",
+  steps: [
+    { icon: Users, label: "Build\nPeople Record" },
+    { icon: Smartphone, label: "Check In\n& Out" },
+    { icon: CalendarCheck, label: "Record\nAttendance" },
+    { icon: ListChecks, label: "Assign\nTasks" },
+    { icon: Gauge, label: "Measure\nPerformance" },
+    { icon: Star, label: "Improve\n& Support" },
+  ],
+} as const;
+
+export const workforceComparison = {
+  title: "Traditional Way vs ZEDOPS",
+  subtitle: "From disconnected workforce processes to one connected people record",
+
+  traditionalTitle: "Traditional Way",
+  zedopsTitle: "With ZEDOPS",
+
+  traditional: [
+    {
+      title: "Spreadsheets & paper logs",
+      description: "Manual attendance and costly errors",
+    },
+    {
+      title: "Delayed / missing data",
+      description: "Decisions on stale numbers",
+    },
+    {
+      title: "Unclear ownership & follow-up",
+      description: "Tasks fall through the cracks",
+    },
+    {
+      title: "Manual approvals & rework",
+      description: "Slow, error-prone admin",
+    },
+    {
+      title: "Decisions after problems occur",
+      description: "Issues identified too late",
+    },
+  ],
+
+  withZedops: [
+    {
+      title: "One connected platform",
+      description: "All people data in one place",
+    },
+    {
+      title: "Real-time attendance visibility",
+      description: "Always up-to-date information",
+    },
+    {
+      title: "Clear assignment & accountability",
+      description: "Right person, right task, always",
+    },
+    {
+      title: "Automated tracking & approvals",
+      description: "Less manual work, more accuracy",
+    },
+    {
+      title: "Early alerts & actionable decisions",
+      description: "Identify issues early, act faster",
+    },
+  ],
+
+  benefits: [
+    {
+      title: "Complete Visibility",
+      description: "Across sites & crews",
+    },
+    {
+      title: "Better Control",
+      description: "Over attendance & output",
+    },
+    {
+      title: "Higher Productivity",
+      description: "For teams & leaders",
+    },
+    {
+      title: "Stronger Accountability",
+      description: "At every level",
+    },
+    {
+      title: "Better Outcomes",
+      description: "On time, every time",
+    },
+  ],
+} as const;
+
+export const workforceAiRoadmap = {
+  icon: Sparkles,
+  title: "What's Coming Next – ZED AI (Roadmap)",
+  items: [
+    {
+      icon: HardHat,
+      title: "AI Team Performance",
+      body: "Analyze team productivity and performance trends.",
+    },
+    {
+      icon: TrendingUp,
+      title: "AI Productivity Look-ahead",
+      body: "Surface crews likely to miss plan before the day ends.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "AI Certification Alerts",
+      body: "Prompt when documents or tickets are about to expire.",
+    },
+    {
+      icon: FileTextIcon,
+      title: "AI Export Reports",
+      body: "Generate intelligent monthly and weekly workforce reports.",
+    },
+  ],
+} as const;
+
+export const workforceSourcesTitle = {
+  lead: "Workforce Intelligence Connects ",
+  accent: "Across ZEDOPS",
+} as const;
+
+export const workforceSources: { icon: LucideIcon; label: string; current?: boolean }[] = [
+  { icon: Users, label: "Employee Database" },
+  { icon: CalendarClock, label: "Attendance & Leave" },
+  { icon: ListChecks, label: "Task Resoultion" },
+  { icon: BarChart3, label: "Workforce Intelligence", current: true },
+  { icon: Gauge, label: "Performance Scorecard" },
+  { icon: FileTextIcon, label: "Reports & Analytics" },
+  { icon: ShieldCheck, label: "Quality & Safety" },
+];
 
 export const workforceHighlights: { icon: LucideIcon; label: string }[] = [
   { icon: Users, label: "One Workforce One Platform" },
@@ -75,7 +264,7 @@ export const workforceFeatures: {
   },
   {
     icon: ListChecks,
-    title: "Task Management",
+    title: "Task Resoultion",
     bullets: [
       "Assign tasks to individuals or teams",
       "Track progress",
@@ -162,8 +351,97 @@ export const workforceCallout = {
 "Stronger Project Outcomes"],
 } as const;
 
+
 export const workforceCta = {
   title: "Right People. Right Work. Right Results.",
   body: "See how ZedOps connects attendance, tasks, and performance from site to office.",
   primary: { label: "Book a Demo", href: "/early-access" },
 } as const;
+
+export const workforceDashboardData: DashboardData = {
+  projectName: "Dubai Mall",
+  title: "Workforce Dashboard",
+  subtitle: "Dubai Mall Expansion",
+
+  accent: "bg-white",
+  activeTab: "Project",
+
+  floatingCards: {
+    progress: "Workforce Progress",
+    insights: "Crew Insights",
+    upcoming: "Upcoming Shifts",
+    alerts: "Workforce Alerts",
+  },
+
+  extraCard: {
+    title: "Employee Delays",
+    value: "19",
+    sub: "Late check-ins today",
+    items: [
+      { title: "Traffic", description: "8 workers delayed by commute" },
+      { title: "Approval", description: "6 pending site access" },
+      { title: "No-show", description: "5 unexcused absences" },
+    ],
+  },
+
+  kpis: [
+    { label: "TOTAL STAFF", value: "532", description: "Registered workers" },
+    { label: "PRESENT TODAY", value: "412", description: "Checked in" },
+    { label: "ON LEAVE", value: "32", description: "Approved leave" },
+    { label: "OFF DUTY", value: "88", description: "Not scheduled" },
+    { label: "ATTENDANCE", value: "86%", description: "Check-in rate" },
+  ],
+
+  progress: { value: "86%", planned: "90%", actual: "86%" },
+
+  insights: [
+    { title: "3 crews understaffed", description: "MEP team at 65% capacity." },
+    { title: "Overtime trending up", description: "12% increase vs last week." },
+  ],
+
+  upcoming: [
+    { title: "Shift Change", description: "Morning to afternoon", date: "12:00" },
+    { title: "Safety Briefing", description: "All crews zone A", date: "06:30" },
+    { title: "Certification Expiry", description: "5 workers this week", date: "26 Jul" },
+  ],
+
+  alerts: [
+    { title: "Certification expiring", description: "3 welder certs expire in 7 days." },
+    { title: "Absenteeism spike", description: "Zone B attendance dropped 15%." },
+    { title: "Safety incident", description: "2 near-misses reported today." },
+  ],
+
+  mainSections: [
+    {
+      kind: "bars",
+      title: "Attendance by Trade",
+      items: [
+        { label: "Masons", value: "94%" },
+        { label: "Helpers", value: "91%" },
+        { label: "Carpenters", value: "88%" },
+        { label: "Electricians", value: "82%" },
+        { label: "Plumbers", value: "79%" },
+      ],
+    },
+    {
+      kind: "stat-grid",
+      title: "Labour Deployment",
+      columns: 3,
+      items: [
+        { label: "Present", value: "412", sub: "Checked in" },
+        { label: "On Leave", value: "32", sub: "Approved" },
+        { label: "Off Duty", value: "88", sub: "Not scheduled" },
+        { label: "Overtime", value: "12%", sub: "vs last week" },
+        { label: "Crews", value: "18", sub: "Active" },
+        { label: "Attendance", value: "86%", sub: "Rate" },
+      ],
+    },
+  ],
+
+  activity: [
+    { text: "Worker checked in", action: "created" },
+    { text: "Certification updated", action: "updated" },
+    { text: "Crew understaffed", action: "alert" },
+    { text: "Shift assigned", action: "created" },
+  ],
+};

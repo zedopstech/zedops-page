@@ -5,6 +5,7 @@ import {
   BarChart3,
   ClipboardCheck,
   ClipboardList,
+  CalendarClock,
   Cog,
   Eye,
   FileCheck2,
@@ -19,18 +20,22 @@ import {
   Sparkles,
   Target,
   TrendingUp,
+  FileTextIcon,
+  Gauge,
   UserCheck,
   Users,
 } from "lucide-react";
 import type { ModulePatternPage } from "@/components/ModulePatternLanding";
+import type { DashboardData } from "@/components/dashboards/ProductDashboard";
 
 export const tasksResolutionHero = {
-  eyebrow: "Task Management",
+  eyebrow: "Tasks Resolution",
   titleLead: "Assign. Track. ",
   titleAccent: "Resolve. Close.",
   tagline: "Manage every task. Ensure accountability. Track to closure.",
   subtitle:
     "Create tasks, assign to the right people, set due dates and priorities, track progress in real-time and ensure nothing falls through the cracks.",
+  primaryCta: { label: "Book a Demo", href: "/early-access" },
 } as const;
 
 export const tasksResolutionHighlights: { icon: LucideIcon; label: string }[] = [
@@ -43,7 +48,7 @@ export const tasksResolutionHighlights: { icon: LucideIcon; label: string }[] = 
 
 export const tasksResolutionFeaturesTitle = {
   lead: "Everything you need for ",
-  accent: "effective task management",
+  accent: "effective task Resoultion",
   subtitle: "From task creation to closure, every action stays connected, trackable, and accountable.",
 } as const;
 
@@ -115,7 +120,7 @@ export const tasksResolutionFeatures: {
 ];
 
 export const tasksResolutionWorkflowTitle = {
-  lead: "Task management ",
+  lead: "Task Resoultion ",
   accent: "workflow",
   subtitle: "Move every task through a clear resolution path, from creation to verified closure.",
 } as const;
@@ -145,7 +150,7 @@ export const tasksResolutionWhy: {
 }[] = [
   {
     icon: ClipboardList,
-    title: "One connected task management",
+    title: "One connected task Resoultion",
     desc: "All tasks from schedules, inspections, daily logs & snags in one place.",
   },
   {
@@ -209,22 +214,154 @@ export const tasksResolutionSourcesTitle = {
   accent: "all connected, all tracked",
 } as const;
 
-export const tasksResolutionSources: { icon: LucideIcon; label: string }[] = [
-  { icon: ClipboardCheck, label: "Schedule Activities" },
-  { icon: ShieldCheck, label: "Inspections & Issues" },
-  { icon: ClipboardList, label: "Daily Execution" },
-  { icon: HardHat, label: "Snags & Punch List" },
-  { icon: FileText, label: "RFI & Submittals" },
-  { icon: Cog, label: "Change Orders" },
-  { icon: Users, label: "Meeting Action Items" },
-  { icon: BadgeCheck, label: "Custom Tasks" },
+export const tasksResolutionSources: { icon: LucideIcon; label: string; current?: boolean }[] = [
+  { icon: Users, label: "Employee Database" },
+  { icon: CalendarClock, label: "Attendance & Leave" },
+  { icon: BarChart3, label: "Workforce Intelligence" },
+  { icon: ListChecks, label: "Task Resolution",current: true },
+  { icon: Gauge, label: "Performance Scorecard" },
+  { icon: FileTextIcon, label: "Reports & Analytics" },
+  { icon: ShieldCheck, label: "Quality & Safety" },
 ];
 
 export const tasksResolutionCta = {
   title: "Better tasks. Better execution.",
   accent: "Better projects.",
-  body: "Assign, track, resolve and close work faster with one connected task management flow.",
+  body: "Assign, track, resolve and close work faster with one connected task Resoultion flow.",
 } as const;
+
+export const tasksKpis = {
+  title: "Task Performance (KPIs)",
+  subtitle: "KPIs for better decision making",
+  cta: { label: "View Full Tasks Dashboard", href: "/early-access" },
+  sampleNote: "* Sample project data",
+  stats: [
+    {
+      icon: TrendingUp,
+      color: "orange" as const,
+      label: "Tasks Completed",
+      value: "96%",
+      sparkPoints: [82, 85, 88, 90, 92, 94, 96],
+    },
+    {
+      icon: BadgeCheck,
+      color: "green" as const,
+      label: "On-time Completion",
+      value: "92%",
+      sparkPoints: [84, 86, 87, 89, 90, 91, 92],
+    },
+    {
+      icon: AlertTriangle,
+      color: "red" as const,
+      label: "Overdue Tasks",
+      value: "4",
+      sparkPoints: [9, 8, 7, 6, 5, 5, 4],
+    },
+    {
+      icon: KanbanSquare,
+      color: "purple" as const,
+      label: "Active Tasks",
+      value: "47",
+      sparkPoints: [38, 41, 43, 45, 44, 46, 47],
+    },
+  ],
+} as const;
+
+export const tasksConnected = {
+  titleLead: "One Task Flow. Every Source",
+  titleAccent: "Connected.",
+  subtitle: "From Creation to Closure",
+  hubTitle: "ZEDOPS TASKS RESOLUTION",
+  hubTagline: "Assign. Track. Resolve. Close.",
+  footer: "Always in Sync. Always Up-to-Date.",
+  steps: [
+    { icon: FolderKanban, label: "Create\nTask" },
+    { icon: UserCheck, label: "Assign\nOwner" },
+    { icon: ClipboardList, label: "Set Priority\n& Due" },
+    { icon: ListChecks, label: "Track\nProgress" },
+    { icon: AlertTriangle, label: "Escalate\nIf Delayed" },
+    { icon: BadgeCheck, label: "Verify\n& Close" },
+  ],
+} as const;
+
+export const tasksComparison = {
+  title: "Traditional Way vs ZEDOPS",
+  subtitle: "From scattered task lists to one connected resolution flow",
+
+  traditionalTitle: "Traditional Way",
+  zedopsTitle: "With ZEDOPS",
+
+  traditional: [
+    {
+      title: "Scattered emails & spreadsheets",
+      description: "No single source of truth",
+    },
+    {
+      title: "Unclear ownership & follow-up",
+      description: "Tasks fall through the cracks",
+    },
+    {
+      title: "Delayed / missing updates",
+      description: "Status known too late",
+    },
+    {
+      title: "Manual reporting & rework",
+      description: "High effort, low accuracy",
+    },
+    {
+      title: "Decisions after problems occur",
+      description: "Issues found too late",
+    },
+  ],
+
+  withZedops: [
+    {
+      title: "One connected task flow",
+      description: "Every task in one place",
+    },
+    {
+      title: "Clear assignment & accountability",
+      description: "Right person, right task, always",
+    },
+    {
+      title: "Real-time progress visibility",
+      description: "Always up-to-date status",
+    },
+    {
+      title: "Automated escalations & alerts",
+      description: "Less manual work, more control",
+    },
+    {
+      title: "Early action & verified closure",
+      description: "Resolve issues before they grow",
+    },
+  ],
+
+  benefits: [
+    {
+      title: "Complete Visibility",
+      description: "Across tasks & sources",
+    },
+    {
+      title: "Better Control",
+      description: "Over work & deadlines",
+    },
+    {
+      title: "Higher Productivity",
+      description: "For teams & leads",
+    },
+    {
+      title: "Stronger Accountability",
+      description: "At every level",
+    },
+    {
+      title: "Better Outcomes",
+      description: "On time, every time",
+    },
+  ],
+} as const;
+
+
 
 export const tasksResolutionPage: ModulePatternPage = {
   hero: tasksResolutionHero,
@@ -242,4 +379,80 @@ export const tasksResolutionPage: ModulePatternPage = {
   aiSoon: tasksResolutionAiSoon,
   callout: tasksResolutionCallout,
   cta: tasksResolutionCta,
+};
+
+export const tasksDashboardData: DashboardData = {
+  projectName: "Dubai Mall",
+  title: "Tasks Dashboard",
+  subtitle: "Dubai Mall Expansion",
+
+  accent: "bg-white",
+  activeTab: "Project",
+
+  floatingCards: {
+    progress: "Task Progress",
+    insights: "Task Insights",
+    upcoming: "Due Soon",
+    alerts: "Task Alerts",
+  },
+
+  kpis: [
+    { label: "LIVE TASKS", value: "47", description: "Active tasks" },
+    { label: "OPEN", value: "12", description: "Not started" },
+    { label: "IN PROGRESS", value: "23", description: "Being worked" },
+    { label: "DONE TODAY", value: "8", description: "Completed" },
+    { label: "OVERDUE", value: "4", description: "Past due date" },
+  ],
+
+  progress: { value: "68%", planned: "75%", actual: "68%" },
+
+  insights: [
+    { title: "4 tasks overdue", description: "2 critical path tasks need immediate attention." },
+    { title: "Team productivity", description: "82% task completion rate this week." },
+  ],
+
+  upcoming: [
+    { title: "MEP Installation", description: "Electrical works", date: "24 Jul" },
+    { title: "Concrete Pour", description: "Level 3 slab", date: "25 Jul" },
+    { title: "Formwork Removal", description: "Phase 2 columns", date: "26 Jul" },
+  ],
+
+  alerts: [
+    { title: "Critical path delay", description: "Foundation task 2 days behind." },
+    { title: "Resource conflict", description: "Crane double-booked Thursday." },
+    { title: "Dependency blocked", description: "MEP waiting on structure completion." },
+  ],
+
+  mainSections: [
+    {
+      kind: "bars",
+      title: "Task Status",
+      items: [
+        { label: "In Progress", value: "23" },
+        { label: "Open", value: "12" },
+        { label: "Done Today", value: "8" },
+        { label: "Overdue", value: "4" },
+      ],
+    },
+    {
+      kind: "stat-grid",
+      title: "By Priority",
+      columns: 3,
+      items: [
+        { label: "Critical", value: "6" },
+        { label: "High", value: "14" },
+        { label: "Medium", value: "19" },
+        { label: "Low", value: "8" },
+        { label: "Blocked", value: "3" },
+        { label: "Unassigned", value: "2" },
+      ],
+    },
+  ],
+
+  activity: [
+    { text: "Task created", action: "created" },
+    { text: "Task status updated", action: "updated" },
+    { text: "Task marked overdue", action: "alert" },
+    { text: "Dependency resolved", action: "updated" },
+  ],
 };

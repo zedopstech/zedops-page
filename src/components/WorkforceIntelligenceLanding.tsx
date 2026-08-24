@@ -1,812 +1,263 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   ArrowRight,
-  BadgeCheck,
-  Bell,
-  BriefcaseBusiness,
+  BarChart3,
   CalendarClock,
   Check,
-  ChevronDown,
-  ChevronLeft,
-  ClipboardCheck,
-  CloudOff,
-  Gauge,
-  MonitorSmartphone,
-  WifiOff,
-  Sparkles,
+  Eye,
+  LineChart,
+  ShieldCheck,
+  Target,
+  Trophy,
   TrendingUp,
   Users,
+  X,
+  Zap,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import WorkforceDashboard from "@/components/dashboards/workforce/WorkforceDashboard";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import FinalCTA from "@/components/FinalCTA";
-import SectionHeader from "@/components/SectionHeader";
 import type { PlatformFeatureSection } from "@/data/platformFeatures";
 import {
-  workforceAiSoon,
-  workforceCallout,
+  workforceAiRoadmap,
+  workforceComparison,
+  workforceConnected,
   workforceCta,
+  workforceDashboardData,
   workforceFeatures,
+  workforceFeaturesTitle,
   workforceHero,
-  workforceHighlights,
-  workforceWhy,
+  workforceKpis,
+  workforceSources,
+  workforceSourcesTitle,
   workforceWorkflow,
+  workforceWorkflowTitle,
 } from "@/data/workforceIntelligencePage";
 
 type NavModule = Pick<PlatformFeatureSection, "id" | "title">;
+
 type WorkforceFeature = (typeof workforceFeatures)[number];
-type WorkforceAppMockCard = {
-  title: string;
-  icon: typeof Users;
-  accent: keyof typeof appCardTone;
-  lines: string[];
-  footer?: string;
-  stat?: string;
-  caption?: string;
-};
-
-const phoneCrew = [
-  { name: "R. Kumar", trade: "Mason", status: "In" },
-  { name: "A. Singh", trade: "Electrician", status: "In" },
-  { name: "M. Patel", trade: "Helper", status: "Out" },
-];
-
-const workforceAppCards: WorkforceAppMockCard[] = [
-  {
-    title: "Complete Employee Database",
-    icon: Users,
-    accent: "blue" as const,
-    lines: ["Mark K. • Active", "Rahul S. • Active", "Dinesh H. • Active"],
-
-  },
-  {
-    title: "Attendance & Leave Management",
-    icon: CalendarClock,
-    accent: "green" as const,
-    lines: ["Check In 07:46 AM", "GPS location tracking", "Leave management"],
-
-  },
-  {
-    title: "Requests & Approvals",
-    icon: ClipboardCheck,
-    accent: "orange" as const,
-    lines: ["Leave request", "Asset request", "Punch correction"],
-
-  },
-  {
-    title: "Task Management",
-    icon: BriefcaseBusiness,
-    accent: "purple" as const,
-    lines: ["Assigned", "In progress", "Completed"],
-
-  },
-  {
-    title: "Performance Scorecard",
-    icon: Gauge,
-    accent: "blue" as const,
-    stat: "84",
-    caption: "/100",
-    lines: ["Punctuality", "Task completion", "Productivity"],
-  },
-  {
-    title: "Productivity Tracking",
-    icon: TrendingUp,
-    accent: "teal" as const,
-    stat: "92%",
-    caption: "Today",
-    lines: ["Team productivity", "Work logs connected from daily execution"],
-  },
-];
-
-const appCardTone = {
-  blue: { wash: "bg-[#EAF2FF]", icon: "text-[#2563EB]" },
-  green: { wash: "bg-[#E8F7ED]", icon: "text-[#16A34A]" },
-  orange: { wash: "bg-[#FFF1E8]", icon: "text-brand-orange" },
-  purple: { wash: "bg-[#F1EAFF]", icon: "text-[#7C3AED]" },
-  teal: { wash: "bg-[#E6FAFB]", icon: "text-[#0891B2]" },
-};
 
 function WorkforceFeatureCard({
   feat,
-  open,
-  onToggle,
 }: {
   feat: WorkforceFeature;
-  open: boolean;
-  onToggle: () => void;
 }) {
   const Icon = feat.icon;
-  const detailsId = `workforce-feature-${feat.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
   return (
-    <article className="rounded-xl border border-white/10 bg-brand-navy shadow-[0_12px_28px_-16px_rgba(23,43,77,0.35)]">
-      <button
-        type="button"
-        onClick={onToggle}
-        aria-expanded={open}
-        aria-controls={detailsId}
-        className="flex w-full items-center justify-between gap-3 p-5 text-left"
-      >
-        <div className="flex min-w-0 items-center gap-2.5">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/30">
-            <Icon size={18} className="text-brand-orange" aria-hidden />
-          </span>
-          <h3 className="min-w-0 text-sm font-extrabold leading-snug text-brand-orange sm:text-[15px]">{feat.title}</h3>
-        </div>
-        <ChevronDown
-          size={20}
-          className={`shrink-0 text-white/70 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-          aria-hidden
-        />
-      </button>
-      {open ? (
-        <div id={detailsId} className="border-t border-white/10 px-5 pt-3 pb-5">
-          <ul className="flex flex-col gap-2">
-            {feat.bullets.map((line) => (
-              <li key={line} className="flex items-start gap-2 text-sm leading-snug text-white/80">
-                <Check size={14} className="mt-0.5 shrink-0 text-brand-orange" strokeWidth={2.4} aria-hidden />
-                {line}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-    </article>
-  );
-}
-
-function WorkforceFeaturesGrid({ isMobile }: { isMobile: boolean }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {workforceFeatures.map((feat, i) => (
-        <motion.div
-          key={feat.title}
-          {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: Math.min(i * 0.04, 0.2) })}
-        >
-          <WorkforceFeatureCard
-            feat={feat}
-            open={openIndex === i}
-            onToggle={() => setOpenIndex((current) => (current === i ? null : i))}
+    <article className="w-full overflow-hidden rounded-2xl border border-white/10 bg-brand-navy shadow-[0_12px_28px_-16px_rgba(23,43,77,0.35)]">
+      {/* Header */}
+      <div className="flex items-center gap-3 px-5 py-5">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white/30">
+          <Icon
+            size={20}
+            className="text-brand-orange"
+            strokeWidth={2}
+            aria-hidden
           />
-        </motion.div>
-      ))}
-    </div>
-  );
-}
+        </span>
 
-function WorkforcePhoneMock() {
-  return (
-    <div className="mx-auto w-full max-w-[220px]">
-      <div className="overflow-hidden rounded-[1.65rem] border-[5px] border-[#1B2433] bg-[#0F1724] shadow-[0_24px_48px_-18px_rgba(23,43,77,0.55)]">
-        <div className="mx-auto mt-1.5 h-1 w-10 rounded-full bg-white/25" />
-        <div className="m-1.5 overflow-hidden rounded-[1.1rem] bg-[#F2F4F7]">
-          <div className="flex items-center justify-between bg-white px-2 py-1.5">
-            <ChevronLeft size={14} className="text-brand-navy" strokeWidth={2.2} aria-hidden />
-            <p className="text-[11px] font-extrabold tracking-tight text-brand-navy">Employee App</p>
-            <span className="relative">
-              <Bell size={12} className="text-brand-navy" aria-hidden />
-              <span className="absolute -top-0.5 -right-0.5 h-1.5 w-1.5 rounded-full bg-[#DE350B]" />
-            </span>
-          </div>
-          <div className="space-y-1 p-1.5">
-            <div className="rounded-lg border border-gray-200 bg-white px-2 py-1.5">
-              <div className="flex items-start justify-between gap-2">
-                <div>
-                  <p className="text-[11px] font-extrabold leading-none text-brand-navy">15 Aug, 2026</p>
-                  <p className="mt-0.5 text-[9px] font-semibold text-[#6B778C]">Tower B • Day shift</p>
-                </div>
-                <span className="rounded-md bg-[#E3FCEF] px-1.5 py-0.5 text-[9px] font-bold text-[#006644]">
-                  Checked In 07:58
-                </span>
-              </div>
-            </div>
-            <ul className="m-0 list-none space-y-0.5 p-0">
-              {phoneCrew.map((person) => (
-                <li key={person.name} className="flex items-center gap-1.5 rounded-md bg-white px-2 py-1 ring-1 ring-gray-100">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-navy text-[8px] font-bold text-white">
-                    {person.name[0]}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[10px] font-bold leading-none text-brand-navy">{person.name}</p>
-                    <p className="mt-0.5 text-[8px] font-medium text-[#6B778C]">{person.trade}</p>
-                  </div>
-                  <span
-                    className={`rounded-full px-1.5 py-0.5 text-[8px] font-bold ${
-                      person.status === "In" ? "bg-[#E3FCEF] text-[#006644]" : "bg-[#FFEBE6] text-[#BF2600]"
-                    }`}
-                  >
-                    {person.status}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <h3 className="text-base font-extrabold leading-snug text-brand-orange sm:text-lg">
+          {feat.title}
+        </h3>
       </div>
-    </div>
-  );
-}
 
-function WorkforceHeroMock() {
-  return (
-    <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:max-w-none">
-      <div
-        className="pointer-events-none absolute -inset-8 rounded-[2rem] opacity-65 blur-2xl"
-        style={{
-          background:
-            "radial-gradient(ellipse at 55% 40%, rgba(254,93,2,0.14) 0%, rgba(23,43,77,0.06) 48%, transparent 72%)",
-        }}
-        aria-hidden
-      />
-      <div className="relative overflow-hidden rounded-2xl border border-brand-navy/8 bg-[#F4F7FB] shadow-[0_20px_48px_-24px_rgba(23,43,77,0.28)] lg:w-[118%]">
-        <div className="flex items-center justify-between border-b border-gray-200/80 bg-white px-4 py-2.5">
-          <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-brand-orange" />
-            <p className="text-[11px] font-extrabold tracking-wide text-brand-navy uppercase">Workforce Dashboard</p>
-          </div>
-          <p className="text-[10px] font-semibold text-[#6B778C]">Tower B · 15 Aug</p>
-        </div>
-        <div className="grid gap-3 p-3 sm:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] sm:p-4">
-          <div className="rounded-xl border border-gray-200 bg-white p-3">
-            <p className="mb-2 text-[10px] font-bold tracking-wide text-[#97A0AF] uppercase">Attendance</p>
-            <div className="flex items-center gap-3">
-              <div
-                className="relative h-16 w-16 shrink-0 rounded-full"
-                style={{ background: "conic-gradient(#22A06B 0 86%, #E6E9EE 86% 100%)" }}
-                aria-hidden
-              >
-                <span className="absolute inset-[6px] flex flex-col items-center justify-center rounded-full bg-white">
-                  <span className="text-[11px] font-black leading-none text-brand-navy">86%</span>
-                  <span className="text-[8px] font-semibold text-[#6B778C]">In</span>
-                </span>
-              </div>
-              <ul className="m-0 min-w-0 flex-1 list-none space-y-1.5 p-0">
-                {[
-                  { label: "Checked in", value: "42", color: "#22A06B" },
-                  { label: "On leave", value: "4", color: "#FE5D02" },
-                  { label: "Not in", value: "3", color: "#0052CC" },
-                ].map((row) => (
-                  <li key={row.label} className="flex items-center justify-between gap-2 text-[10px]">
-                    <span className="flex items-center gap-1.5 font-medium text-[#42526E]">
-                      <span className="h-1.5 w-1.5 rounded-full" style={{ background: row.color }} />
-                      {row.label}
-                    </span>
-                    <span className="font-extrabold text-brand-navy">{row.value}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="rounded-xl border border-gray-200 bg-white p-3">
-            <p className="mb-2 text-[10px] font-bold tracking-wide text-[#97A0AF] uppercase">Daily attendance</p>
-            <div className="flex h-[72px] items-end gap-1.5">
-              {["48%", "62%", "70%", "54%", "86%", "78%", "64%"].map((h, i) => (
-                <span key={i} className="flex-1 rounded-t-sm bg-brand-orange/80" style={{ height: h }} />
-              ))}
-            </div>
-          </div>
-          <div className="rounded-xl border border-gray-200 bg-white p-3 sm:col-span-2">
-            <div className="mb-2 flex items-center justify-between">
-              <p className="text-[10px] font-bold tracking-wide text-[#97A0AF] uppercase">Performance</p>
-              <p className="text-[11px] font-extrabold text-brand-navy">84 / 100</p>
-            </div>
-            <div className="h-1.5 overflow-hidden rounded-full bg-[#E6E9EE]">
-              <div className="h-full w-[84%] rounded-full bg-brand-orange" />
-            </div>
-            <ul className="m-0 mt-2 grid list-none grid-cols-3 gap-2 p-0">
-              {[
-                { label: "Punctuality", value: "92%" },
-                { label: "Task completion", value: "88%" },
-                { label: "Team today", value: "92%" },
-              ].map((row) => (
-                <li key={row.label} className="rounded-md bg-[#F8FAFC] px-2 py-1.5 text-center">
-                  <p className="text-[8px] font-bold tracking-wide text-[#6B778C] uppercase">{row.label}</p>
-                  <p className="text-[12px] font-extrabold text-brand-navy">{row.value}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="absolute -bottom-8 left-2 w-[min(100%,200px)] sm:left-4 sm:w-[210px] lg:-bottom-10 lg:left-0">
-        <WorkforcePhoneMock />
-      </div>
-    </div>
-  );
-}
-
-function WorkforceAppCard({
-  title,
-  icon: Icon,
-  accent,
-  lines,
-  footer,
-  stat,
-  caption,
-}: WorkforceAppMockCard) {
-  const tone = appCardTone[accent];
-
-  const renderCardBody = () => {
-    if (title === "Complete Employee Database") {
-      return (
-        <>
-          <div className="mt-3 flex flex-1 flex-col gap-2">
-            <div className="rounded-2xl bg-[#F8FAFC] p-2.5 ring-1 ring-[#EEF2F7]">
-            <div className="grid grid-cols-[1.4fr_1fr_1fr] gap-2 border-b border-[#E7ECF3] pb-2 text-[10px] font-bold uppercase tracking-wide text-[#97A0AF]">
-              <span>Name</span>
-              <span>Role</span>
-              <span>Status</span>
-            </div>
-            <div className="space-y-2 pt-2.5">
-              {[
-                ["Mark K.", "Tech", "Active"],
-                ["Rahul S.", "Super", "Active"],
-                ["Dinesh H.", "Helper", "Active"],
-              ].map(([name, role, status]) => (
-                <div key={name} className="grid grid-cols-[1.4fr_1fr_1fr] gap-2 text-[12px] text-[#56657A]">
-                  <span className="font-semibold text-brand-navy">{name}</span>
-                  <span>{role}</span>
-                  <span className="font-semibold text-[#16A34A]">{status}</span>
-                </div>
-              ))}
-            </div>
-            </div>
-            <div className="flex-1 rounded-2xl bg-[#F8FAFC] p-2.5 ring-1 ring-[#EEF2F7]">
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-wide text-[#97A0AF]">Workforce mix</p>
-              <div className="flex h-12 items-end gap-1.5">
-                {["84%", "72%", "58%"].map((h, i) => (
-                  <span
-                    key={i}
-                    className={`flex-1 rounded-t-sm ${
-                      i === 0 ? "bg-[#2563EB]" : i === 1 ? "bg-[#16A34A]" : "bg-brand-orange"
-                    }`}
-                    style={{ height: h }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-          {footer ? (
-            <div className="mt-auto pt-3">
-              <div className="inline-flex rounded-xl bg-[#FFF4EC] px-3 py-1.5 text-xs font-bold text-brand-orange ring-1 ring-[#FFE2CE]">
-                {footer}
-              </div>
-            </div>
-          ) : null}
-        </>
-      );
-    }
-
-    if (title === "Attendance & Leave Management") {
-      return (
-        <>
-          <div className="mt-3 flex flex-1 flex-col gap-2">
-            <div className="flex-1 rounded-xl bg-[#F8FAFC] p-2.5 ring-1 ring-[#EEF2F7]">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wide text-[#97A0AF]">Check In</p>
-                  <p className="mt-1 text-[13px] font-extrabold text-brand-navy">07:46 AM</p>
-                </div>
-                <span className="rounded-full bg-[#E8F7ED] px-2 py-1 text-[10px] font-bold text-[#16A34A]">Present</span>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-2 text-[12px] text-[#56657A]">
-              {["Multiple Sites", "GPS Location", "Leave Management", "Attendance Reports"].map((item) => (
-                <div key={item} className="rounded-xl bg-[#F8FAFC] px-2.5 py-1.5 ring-1 ring-[#EEF2F7]">
-                  {item}
-                </div>
-              ))}
-            </div>
-            <div className="rounded-xl bg-[#F8FAFC] p-2.5 ring-1 ring-[#EEF2F7]">
-              <div className="mb-2 flex items-center justify-between">
-                <p className="text-[10px] font-bold uppercase tracking-wide text-[#97A0AF]">Weekly attendance</p>
-                <p className="text-[10px] font-bold text-brand-navy">86%</p>
-              </div>
-              <div className="flex h-12 items-end gap-1.5">
-                {["48%", "66%", "72%", "58%", "86%", "78%", "70%"].map((h, i) => (
-                  <span
-                    key={i}
-                    className={`flex-1 rounded-t-sm ${i === 4 ? "bg-[#16A34A]" : "bg-[#CDE7D5]"}`}
-                    style={{ height: h }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-          {footer ? (
-            <div className="mt-auto pt-3">
-              <div className="inline-flex rounded-xl bg-[#FFF4EC] px-3 py-1.5 text-xs font-bold text-brand-orange ring-1 ring-[#FFE2CE]">
-                {footer}
-              </div>
-            </div>
-          ) : null}
-        </>
-      );
-    }
-
-    if (title === "Requests & Approvals") {
-      return (
-        <>
-          <div className="mt-3 flex flex-1 flex-col gap-2">
-            <div className="space-y-1.5 rounded-2xl bg-[#F8FAFC] p-2.5 ring-1 ring-[#EEF2F7]">
-              {[
-                ["Leave Request", "Pending", "text-brand-orange"],
-                ["Asset Request", "Approved", "text-[#16A34A]"],
-                ["Punch Correction", "Pending", "text-brand-orange"],
-              ].map(([label, status, statusColor]) => (
-                <div key={label} className="flex items-center justify-between gap-2 rounded-xl bg-white px-2.5 py-2 ring-1 ring-[#EEF2F7] text-[12px]">
-                  <span className="font-medium text-brand-navy">{label}</span>
-                  <span
-                    className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
-                      status === "Approved"
-                        ? "bg-[#E8F7ED] text-[#16A34A]"
-                        : "bg-[#FFF4EC] text-brand-orange"
-                    }`}
-                  >
-                    {status}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="flex-1 rounded-2xl bg-[#F8FAFC] p-2.5 ring-1 ring-[#EEF2F7]">
-              <div className="mb-2 flex items-center justify-between">
-                <p className="text-[10px] font-bold uppercase tracking-wide text-[#97A0AF]">Approval mix</p>
-                <p className="text-[10px] font-bold text-brand-navy">8 items</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div
-                  className="relative h-14 w-14 shrink-0 rounded-full"
-                  style={{ background: "conic-gradient(#16A34A 0 40%, #FE5D02 40% 82%, #E6E9EE 82% 100%)" }}
-                  aria-hidden
-                >
-                  <span className="absolute inset-[6px] rounded-full bg-white" />
-                </div>
-                <div className="space-y-1 text-[11px]">
-                  <div className="flex items-center gap-2 text-[#56657A]">
-                    <span className="h-2 w-2 rounded-full bg-[#16A34A]" />
-                    Approved
-                  </div>
-                  <div className="flex items-center gap-2 text-[#56657A]">
-                    <span className="h-2 w-2 rounded-full bg-brand-orange" />
-                    Pending
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {footer ? (
-            <div className="mt-auto pt-3">
-              <div className="inline-flex rounded-xl bg-[#FFF4EC] px-3 py-1.5 text-xs font-bold text-brand-orange ring-1 ring-[#FFE2CE]">
-                {footer}
-              </div>
-            </div>
-          ) : null}
-        </>
-      );
-    }
-
-    if (title === "Task Management") {
-      return (
-        <>
-          <div className="mt-3 flex flex-1 flex-col gap-2">
-            <div className="rounded-2xl bg-[#F8FAFC] p-2.5 ring-1 ring-[#EEF2F7]">
-              <div className="grid grid-cols-3 gap-2 border-b border-[#E7ECF3] pb-2 text-center text-[10px] font-bold uppercase tracking-wide text-[#97A0AF]">
-                <span>Assigned</span>
-                <span>In Progress</span>
-                <span>Completed</span>
-              </div>
-              <div className="space-y-2 pt-2.5 text-[12px]">
-                {[
-                  ["Conduit Installation", "In Progress", "text-[#2563EB]"],
-                  ["Lighting Fixture Wiring", "In Progress", "text-[#2563EB]"],
-                  ["Panel Termination", "Completed", "text-[#16A34A]"],
-                ].map(([label, status, statusColor]) => (
-                  <div key={label} className="flex items-center justify-between gap-2 rounded-xl bg-white px-2.5 py-2 ring-1 ring-[#EEF2F7]">
-                    <span className="font-medium text-brand-navy">{label}</span>
-                    <span
-                      className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${
-                        status === "Completed"
-                          ? "bg-[#E8F7ED] text-[#16A34A]"
-                          : "bg-[#EEF4FF] text-[#2563EB]"
-                      }`}
-                    >
-                      {status}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="flex-1 rounded-2xl bg-[#F8FAFC] p-2.5 ring-1 ring-[#EEF2F7]">
-              <div className="mb-2 flex items-center justify-between">
-                <p className="text-[10px] font-bold uppercase tracking-wide text-[#97A0AF]">Completion trend</p>
-                <p className="text-[10px] font-bold text-brand-navy">74%</p>
-              </div>
-              <div className="h-2 overflow-hidden rounded-full bg-[#E7ECF3]">
-                <div className="h-full w-[74%] rounded-full bg-[#7C3AED]" />
-              </div>
-            </div>
-          </div>
-          {footer ? (
-            <div className="mt-auto pt-3">
-              <div className="inline-flex rounded-xl bg-[#FFF4EC] px-3 py-1.5 text-xs font-bold text-brand-orange ring-1 ring-[#FFE2CE]">
-                {footer}
-              </div>
-            </div>
-          ) : null}
-        </>
-      );
-    }
-
-    if (title === "Performance Scorecard") {
-      return (
-        <>
-          <div className="mt-4 flex flex-1 items-center gap-4 rounded-2xl bg-[#F8FAFC] p-3 ring-1 ring-[#EEF2F7]">
-            <div
-              className="relative h-20 w-20 shrink-0 rounded-full"
-              style={{ background: "conic-gradient(#16A34A 0 84%, #E7ECF3 84% 100%)" }}
-              aria-hidden
+      {/* Details - Always Visible */}
+      <div className="border-t border-white/10 px-5 pb-6 pt-4">
+        <ul className="flex flex-col gap-3">
+          {feat.bullets.map((line) => (
+            <li
+              key={line}
+              className="flex items-start gap-2.5 text-sm leading-snug text-white/80 sm:text-base"
             >
-              <span className="absolute inset-[8px] flex flex-col items-center justify-center rounded-full bg-white">
-                <span className="text-[28px] font-black leading-none text-brand-navy">{stat}</span>
-                <span className="text-[10px] font-bold text-[#6B778C]">{caption}</span>
-              </span>
-            </div>
-            <div className="grid flex-1 gap-2">
-              {[
-                ["Punctuality", "92%"],
-                ["Task completion", "88%"],
-                ["Productivity", "84%"],
-              ].map(([label, value]) => (
-                <div key={label}>
-                  <div className="mb-1 flex items-center justify-between text-[12px]">
-                    <span className="text-[#56657A]">{label}</span>
-                    <span className="font-bold text-brand-navy">{value}</span>
-                  </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-[#E7ECF3]">
-                    <div className="h-full rounded-full bg-[#16A34A]" style={{ width: value }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="mt-3 flex gap-1 text-[#FF9A00]">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <span key={i} className="text-sm">★</span>
-            ))}
-          </div>
-        </>
-      );
-    }
+              <Check
+                size={16}
+                className="mt-0.5 shrink-0 text-brand-orange"
+                strokeWidth={2.4}
+                aria-hidden
+              />
 
-    if (title === "Productivity Tracking") {
-      return (
-        <>
-          <div className="mt-5 flex items-end gap-1.5">
-            <span className="text-[44px] font-black leading-none tracking-tight text-brand-navy">{stat}</span>
-            {caption ? <span className="pb-1.5 text-base font-semibold text-[#6B778C]">{caption}</span> : null}
-          </div>
-          <div className="mt-4 flex flex-1 flex-col rounded-2xl bg-[#F8FAFC] p-3 ring-1 ring-[#EEF2F7]">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="text-[12px] font-medium text-[#6B778C]">Team productivity</p>
-                <p className="mt-1 text-[13px] font-semibold text-brand-navy">Work logs connected from daily execution</p>
-              </div>
-              <div className="flex -space-x-2">
-                {["A", "R", "D"].map((initial, i) => (
-                  <span
-                    key={initial}
-                    className={`flex h-7 w-7 items-center justify-center rounded-full border-2 border-white text-[10px] font-bold text-white ${
-                      i === 0 ? "bg-[#16A34A]" : i === 1 ? "bg-[#2563EB]" : "bg-brand-orange"
-                    }`}
-                  >
-                    {initial}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="mt-3">
-              <div className="mb-2 flex items-center justify-between">
-                <p className="text-[10px] font-bold uppercase tracking-wide text-[#97A0AF]">Output trend</p>
-                <p className="text-[10px] font-bold text-brand-navy">Up 12%</p>
-              </div>
-              <div className="flex h-12 items-end gap-1.5">
-                {["34%", "48%", "46%", "58%", "64%", "78%", "92%"].map((h, i) => (
-                  <span
-                    key={i}
-                    className={`flex-1 rounded-t-sm ${i === 6 ? "bg-[#0891B2]" : "bg-[#CDEFF4]"}`}
-                    style={{ height: h }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </>
-      );
-    }
-
-    return (
-      <>
-        {stat ? (
-          <div className="mt-5 flex items-end gap-1.5">
-            <span className="text-[44px] font-black leading-none tracking-tight text-brand-navy">{stat}</span>
-            {caption ? <span className="pb-1.5 text-base font-semibold text-[#6B778C]">{caption}</span> : null}
-          </div>
-        ) : null}
-        <ul className="m-0 mt-5 list-none space-y-2.5 p-0">
-          {lines.map((line) => (
-            <li key={line} className="flex items-start gap-2.5 text-[15px] leading-snug text-[#56657A]">
-              <span className={`mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full ${tone.wash}`} />
               <span>{line}</span>
             </li>
           ))}
         </ul>
-        {footer ? <p className="mt-auto pt-5 text-sm font-bold text-brand-orange">{footer}</p> : null}
-      </>
-    );
+      </div>
+    </article>
+  );
+}
+
+function KpiSparkline({
+  points,
+  color,
+  id,
+  className,
+}: {
+  points: readonly number[];
+  color: string;
+  id: string;
+  className?: string;
+}) {
+  const width = 64;
+  const height = 28;
+  const padX = 3;
+  const padY = 4;
+  const min = Math.min(...points);
+  const max = Math.max(...points);
+  const range = max - min || 1;
+  const coords = points.map((value, i) => ({
+    x: padX + (i / (points.length - 1)) * (width - padX * 2),
+    y: padY + (1 - (value - min) / range) * (height - padY * 2),
+  }));
+
+  const linePath = coords.reduce((path, point, i) => {
+    if (i === 0) return `M ${point.x} ${point.y}`;
+    const prev = coords[i - 1];
+    const cx = (prev.x + point.x) / 2;
+    return `${path} C ${cx} ${prev.y}, ${cx} ${point.y}, ${point.x} ${point.y}`;
+  }, "");
+
+  const areaPath = `${linePath} L ${coords[coords.length - 1].x} ${height - 1} L ${coords[0].x} ${height - 1} Z`;
+
+  return (
+    <svg
+      className={`h-7 w-[60px] shrink-0 sm:h-8 sm:w-[68px] ${className ?? ""}`}
+      viewBox={`0 0 ${width} ${height}`}
+      fill="none"
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity="0.22" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path d={areaPath} fill={`url(#${id})`} />
+      <path d={linePath} stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      {coords.map((point, i) => (
+        <circle key={i} cx={point.x} cy={point.y} r="2" fill={color} />
+      ))}
+    </svg>
+  );
+}
+
+const kpiTone = {
+  orange: { icon: "bg-brand-orange/15 text-brand-orange", spark: "#FE5D02" },
+  green: { icon: "bg-[#E3FCEF] text-[#00875A]", spark: "#22C55E" },
+  red: { icon: "bg-[#FFEBE6] text-[#DE350B]", spark: "#EF4444" },
+  purple: { icon: "bg-[#EAE6FF] text-[#5243AA]", spark: "#7C3AED" },
+} as const;
+
+function WorkforceKpiCard() {
+  return (
+    <>
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <h3 className="text-base font-extrabold leading-snug text-white sm:text-lg">{workforceKpis.title}</h3>
+          <p className="mt-0.5 text-xs text-white/60 sm:text-sm">{workforceKpis.subtitle}</p>
+        </div>
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/10">
+          <LineChart size={16} className="text-brand-orange" strokeWidth={2} aria-hidden />
+        </span>
+      </div>
+
+      <ul className="mt-3 flex flex-1 flex-col gap-1.5">
+        {workforceKpis.stats.map((stat, i) => {
+          const Icon = stat.icon;
+          const tone = kpiTone[stat.color];
+          return (
+            <li
+              key={stat.label}
+              className="rounded-lg bg-white/[0.04] px-2.5 py-2 ring-1 ring-white/10"
+            >
+              <div className="flex items-start gap-2.5">
+                <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${tone.icon}`}>
+                  <Icon size={14} strokeWidth={2.2} aria-hidden />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-start justify-between gap-1.5">
+                    <p className="min-w-0 text-[11px] leading-snug text-white/65 sm:text-xs">{stat.label}</p>
+                    <KpiSparkline
+                      points={stat.sparkPoints}
+                      color={tone.spark}
+                      id={`workforce-kpi-spark-${i}`}
+                      className="-mt-0.5"
+                    />
+                  </div>
+                  <p className="mt-0.5 text-xl font-black leading-none tracking-tight text-white">
+                    {stat.value}
+                  </p>
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+
+      <a
+        href={workforceKpis.cta.href}
+        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-orange px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
+      >
+        {workforceKpis.cta.label}
+        <ArrowRight size={14} aria-hidden />
+      </a>
+      <p className="mt-1 text-[9px] text-white/45">{workforceKpis.sampleNote}</p>
+    </>
+  );
+}
+
+function WorkforceConnectedCard() {
+  return (
+    <section className="mx-auto flex min-h-[390px] w-full max-w-[557px] flex-col justify-center px-6 py-6">
+      <div className="max-w-md">
+        <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-brand-orange">
+          {workforceHero.eyebrow}
+        </p>
+
+        <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
+          {workforceConnected.titleLead}
+          <span className="text-brand-orange">{workforceConnected.titleAccent}</span>
+        </h2>
+
+        <p className="mt-5 text-sm leading-6 text-[#6B778C] sm:text-base">
+          {workforceHero.subtitle}
+        </p>
+
+        <p className="mt-4 text-sm font-semibold text-brand-navy">
+          {workforceConnected.subtitle}
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function HeroDemoVideo({ src, label }: { src: string; label: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const togglePlay = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) void video.play();
+    else video.pause();
   };
 
   return (
-    <article className="flex h-full flex-col rounded-[18px] border border-[#E9EDF5] bg-white p-3 shadow-[0_8px_20px_-18px_rgba(23,43,77,0.16)]">
-      <div className="flex items-start gap-2.5">
-        <span className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${tone.wash}`}>
-          <Icon size={16} className={tone.icon} aria-hidden />
-        </span>
-        <h3 className="text-[15px] font-extrabold leading-[1.15] tracking-tight text-brand-navy">{title}</h3>
-      </div>
-      <div className="flex flex-1 flex-col">{renderCardBody()}</div>
-    </article>
-  );
-}
-
-function WorkforceImagePlaceholder({
-  title,
-  subtitle,
-  icon: Icon,
-}: {
-  title: string;
-  subtitle: string;
-  icon: typeof MonitorSmartphone;
-}) {
-  return (
-    <article className="relative h-full overflow-hidden rounded-[18px] border border-[#F3DCCB] bg-white p-3 shadow-[0_8px_20px_-18px_rgba(23,43,77,0.16)]">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage: [
-            "linear-gradient(rgba(1,47,176,0.12) 1px, transparent 1px)",
-            "linear-gradient(90deg, rgba(1,47,176,0.12) 1px, transparent 1px)",
-          ].join(", "),
-          backgroundSize: "28px 28px",
-        }}
-        aria-hidden
-      />
-      <div className="relative z-10 flex h-full min-h-[126px] flex-col rounded-2xl bg-[#F8FAFC] px-3 py-3 ring-1 ring-[#EEF2F7]">
-        <div className="flex items-center gap-2.5">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#DFF5FB]">
-            <Icon size={18} className="text-[#0891B2]" aria-hidden />
-          </span>
-          <p className="text-[15px] font-extrabold leading-snug text-brand-navy">{title}</p>
-        </div>
-
-        <div className="relative mt-2 flex flex-1 items-end justify-center">
-          <div className="relative w-full max-w-[220px]">
-            <div className="overflow-hidden rounded-[16px] border-[4px] border-[#111827] bg-white shadow-[0_16px_28px_-18px_rgba(23,43,77,0.35)]">
-              <div className="flex items-center justify-between border-b border-[#E7ECF3] px-2.5 py-1.5">
-                <span className="text-[9px] font-bold tracking-wide text-[#97A0AF] uppercase">Workforce Dashboard</span>
-                <span className="h-2 w-2 rounded-full bg-[#CBD5E1]" />
-              </div>
-              <div className="grid gap-1.5 bg-[#F8FAFC] p-2">
-                <div className="grid grid-cols-4 gap-2">
-                  {[
-                    ["Emp", "532"],
-                    ["Present", "412"],
-                    ["On Leave", "32"],
-                    ["Off Duty", "21"],
-                  ].map(([label, value]) => (
-                    <div key={label} className="rounded-lg bg-white p-1 ring-1 ring-[#EEF2F7]">
-                      <p className="text-[8px] font-bold uppercase tracking-wide text-[#97A0AF]">{label}</p>
-                      <p className="mt-1 text-[11px] font-extrabold text-brand-navy">{value}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="grid grid-cols-[1fr_1fr] gap-2">
-                    <div className="rounded-lg bg-white p-1 ring-1 ring-[#EEF2F7]">
-                    <p className="text-[8px] font-bold uppercase tracking-wide text-[#97A0AF]">Attendance</p>
-                    <div className="mt-2 flex items-center justify-center">
-                      <div
-                        className="relative h-14 w-14 rounded-full"
-                        style={{ background: "conic-gradient(#16A34A 0 78%, #E7ECF3 78% 100%)" }}
-                        aria-hidden
-                      >
-                        <span className="absolute inset-[6px] flex items-center justify-center rounded-full bg-white text-[10px] font-black text-brand-navy">
-                          78%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                    <div className="rounded-lg bg-white p-1 ring-1 ring-[#EEF2F7]">
-                    <p className="text-[8px] font-bold uppercase tracking-wide text-[#97A0AF]">Trend</p>
-                    <div className="mt-2 flex h-14 items-end gap-1">
-                      {["34%", "48%", "44%", "60%", "72%", "66%", "82%"].map((h, i) => (
-                        <span
-                          key={i}
-                          className={`flex-1 rounded-t-sm ${i === 6 ? "bg-[#2563EB]" : "bg-[#CFE0FF]"}`}
-                          style={{ height: h }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute right-[-4px] bottom-[-2px] overflow-hidden rounded-[15px] border-[4px] border-[#111827] bg-white shadow-[0_16px_28px_-18px_rgba(23,43,77,0.35)]">
-              <div className="h-[96px] w-[48px] bg-[#F8FAFC] px-1 py-1.5">
-                <div className="mb-2 rounded-lg bg-[#16A34A] px-1.5 py-2 text-left text-[7px] font-bold text-white">
-                  Checked in
-                  <div className="mt-0.5 text-[8px]">07:58</div>
-                </div>
-                <div className="space-y-1">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <div key={i} className="h-2 rounded-full bg-white ring-1 ring-[#EEF2F7]" />
-                  ))}
-                </div>
-                <div className="mt-2 flex justify-center gap-1">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB]" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#16A34A]" />
-                  <span className="h-1.5 w-1.5 rounded-full bg-brand-orange" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p className="mt-2 text-center text-[11px] leading-snug text-[#6B778C]">{subtitle}</p>
-      </div>
-    </article>
-  );
-}
-
-function WorkforceOfflineCard() {
-  return (
-    <article className="h-full rounded-[18px] border border-[#E9EDF5] bg-white p-3 shadow-[0_8px_20px_-18px_rgba(23,43,77,0.16)]">
-      <div className="flex items-start gap-2.5">
-        <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#EAF2FF]">
-          <CloudOff size={16} className="text-[#2563EB]" aria-hidden />
-        </span>
-        <h3 className="text-[15px] font-extrabold leading-[1.15] tracking-tight text-brand-navy">Offline Capability</h3>
-      </div>
-
-      <div className="mt-4 flex min-h-[148px] flex-1 flex-col justify-center rounded-2xl bg-[#F8FAFC] p-4 text-center ring-1 ring-[#EEF2F7]">
-        <div className="mb-4 flex items-center justify-center gap-3">
-          <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#D9E4FF] bg-white">
-            <WifiOff size={18} className="text-[#2563EB]" aria-hidden />
-          </span>
-          <div className="flex h-12 items-end gap-1.5">
-            {["34%", "56%", "78%"].map((h, i) => (
-              <span
-                key={i}
-                className={`w-2 rounded-t-sm ${i === 2 ? "bg-[#2563EB]" : "bg-[#D9E4FF]"}`}
-                style={{ height: h }}
-              />
-            ))}
-          </div>
-        </div>
-        <ul className="m-0 list-none space-y-2.5 p-0 text-[15px] text-[#56657A]">
-          {["Work offline", "Sync when online", "No lost updates"].map((line) => (
-            <li key={line} className="flex items-center justify-center gap-2.5">
-              <span className="h-2 w-2 rounded-full bg-[#2563EB]" />
-              <span>{line}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </article>
+    <div className="relative w-full lg:w-[135%] lg:max-w-none">
+      <video
+        ref={videoRef}
+        className="h-auto w-full cursor-pointer bg-transparent object-contain object-center mix-blend-screen"
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-label={label}
+        onClick={togglePlay}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+    </div>
   );
 }
 
@@ -815,10 +266,17 @@ export default function WorkforceIntelligenceLanding(_props: {
   next: NavModule | null;
 }) {
   const isMobile = useIsMobile();
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const colCount = Math.min(Math.max(workforceWorkflow.length, 3), 9);
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-gray-100">
+      {/* =========================================================
+          HERO + DASHBOARD SECTION
+      ========================================================= */}
+      <section className="relative mb-6 overflow-visible border-b border-gray-100">
+   
+        {/* Background */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -830,6 +288,8 @@ export default function WorkforceIntelligenceLanding(_props: {
           }}
           aria-hidden
         />
+   
+        {/* Grid */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -839,134 +299,341 @@ export default function WorkforceIntelligenceLanding(_props: {
               "linear-gradient(rgba(1,47,176,0.02) 1px, transparent 1px)",
               "linear-gradient(90deg, rgba(1,47,176,0.02) 1px, transparent 1px)",
             ].join(", "),
-            backgroundSize: "80px 80px, 80px 80px, 20px 20px, 20px 20px",
+            backgroundSize:
+              "80px 80px, 80px 80px, 20px 20px, 20px 20px",
           }}
           aria-hidden
         />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45 }}
-              className="flex flex-col justify-center"
+   
+        {/* Orange Glow */}
+        <div
+          className="pointer-events-none absolute bottom-0 left-1/2 h-[180px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
+          style={{
+            background:
+              "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.10) 0%, transparent 65%)",
+            filter: "blur(35px)",
+          }}
+          aria-hidden
+        />
+   
+        {/* =======================================================
+            HERO CONTENT
+        ======================================================= */}
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-7 sm:px-6 lg:px-8 lg:py-9">
+   
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="flex flex-col items-center text-center"
+          >
+            {/* Eyebrow */}
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-orange">
+              {workforceHero.eyebrow}
+            </p>
+   
+            {/* Title */}
+            <h1 className="max-w-4xl text-3xl font-extrabold leading-[1.08] tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
+              {workforceHero.titleLead}{" "}
+              <span className="text-brand-orange">
+                {workforceHero.titleAccent}
+              </span>
+            </h1>
+   
+            {/* Subtitle */}
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#42526E] sm:text-base">
+              Complete workforce management from employee database to performance
+              insights – connected from site to office.
+            </p>
+   
+            {/* Watch Demo Button */}
+            <div className="mt-5">
+              <button
+                type="button"
+                onClick={() => setIsDemoOpen(true)}
+                className="
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-md
+                  bg-brand-orange
+                  px-7
+                  py-3.5
+                  text-sm
+                  font-bold
+                  text-white
+                  shadow-[0_8px_20px_-8px_rgba(254,93,2,0.45)]
+                  transition-all
+                  hover:-translate-y-0.5
+                  hover:bg-brand-orange-soft
+                "
+              >
+                {workforceHero.primaryCta.label}
+   
+                <ArrowRight
+                  size={16}
+                  aria-hidden
+                />
+              </button>
+            </div>
+          </motion.div>
+   
+   
+          {/* =======================================================
+              DASHBOARD SECTION
+              Floating cards inside ProductDashboard remain scoped
+              to the dashboard.
+          ======================================================= */}
+          <section className="relative z-10 mt-0 overflow-visible border-t border-gray-100 px-2 py-2 sm:px-4 lg:px-6 lg:py-4">
+   
+            <div className="relative mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
+   
+              <WorkforceDashboard
+                data={workforceDashboardData}
+                onWatchDemo={() => setIsDemoOpen(true)}
+              />
+   
+            </div>
+          </section>
+   
+        </div>
+      </section>
+   
+
+      {/* =========================================================
+          VIDEO MODAL
+      ========================================================= */}
+      {isDemoOpen && (
+        <div
+          className="
+            fixed
+            inset-0
+            z-[9999]
+            flex
+            items-center
+            justify-center
+            bg-black/70
+            p-4
+            backdrop-blur-sm
+          "
+          role="dialog"
+          aria-modal="true"
+          aria-label="Workforce dashboard demo"
+          onClick={() => setIsDemoOpen(false)}
+        >
+   
+          <div
+            className="
+              relative
+              w-full
+              max-w-5xl
+              overflow-hidden
+              rounded-2xl
+              bg-black
+              shadow-2xl
+            "
+            onClick={(event) => event.stopPropagation()}
+          >
+   
+            {/* Close Button */}
+            <button
+              type="button"
+              onClick={() => setIsDemoOpen(false)}
+              className="
+                absolute
+                right-3
+                top-3
+                z-10
+                flex
+                h-9
+                w-9
+                items-center
+                justify-center
+                rounded-full
+                bg-black/60
+                text-xl
+                text-white
+                transition
+                hover:bg-black/80
+              "
+              aria-label="Close video"
             >
-              <p className="mb-3 text-xs font-bold tracking-[0.16em] text-brand-orange uppercase">{workforceHero.eyebrow}</p>
-              <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-navy sm:text-5xl">
-                {workforceHero.titleLead}
-                <span className="text-brand-orange">{workforceHero.titleAccent}</span>
-                {workforceHero.titleRest}
-                <span className="text-brand-orange">{workforceHero.titleAccent2}</span>
-              </h1>
-              <p className="mt-3 max-w-md text-base leading-snug text-[#42526E]">{workforceHero.subtitle}</p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <a
-                  href={workforceHero.primaryCta.href}
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-orange px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
-                >
-                  {workforceHero.primaryCta.label}
-                  <ArrowRight size={15} aria-hidden />
-                </a>
-              </div>
-              <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {workforceHighlights.map((b) => {
-                  const Icon = b.icon;
-                  return (
-                    <li key={b.label} className="flex flex-col items-start gap-1.5 sm:items-center sm:text-center">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-md bg-white ring-1 ring-gray-200">
-                        <Icon size={15} className="text-brand-orange" aria-hidden />
-                      </span>
-                      <span className="text-xs font-semibold leading-snug text-brand-navy">{b.label}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.08 }}
-              className="pb-16 sm:pb-12 lg:pb-10"
+              ×
+            </button>
+   
+   
+            {/* Video */}
+            <video
+              className="block aspect-video w-full"
+              controls
+              autoPlay
+              playsInline
             >
-              <WorkforceHeroMock />
-            </motion.div>
+              <source
+                src="/workforce_demo.mp4"
+                type="video/mp4"
+              />
+   
+              Your browser does not support the video tag.
+            </video>
+   
+          </div>
+        </div>
+      )}
+
+      <section className="border-t border-gray-100 bg-[#F3F6FA] py-6 lg:py-8">
+        
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}
+          className="mb-5 text-center"
+        >
+          <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
+            {workforceFeaturesTitle.lead}{" "}
+            <span className="text-brand-orange">
+              {workforceFeaturesTitle.accent}
+            </span>
+            <span className="mx-auto mt-2 block h-[3px] w-16 rounded-full bg-brand-navy" />
+          </h2>
+        </motion.div>
+          <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {workforceFeatures.map((feat, i) => (
+              <motion.div
+                key={feat.title}
+                {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: Math.min(i * 0.04, 0.2) })}
+                className="min-w-0 w-full"
+              >
+                <WorkforceFeatureCard
+                  feat={feat}
+                />
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-gray-100 bg-[#F3F6FA] py-12 lg:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-            <SectionHeader
-              title={
-                <>
-                  Everything You Need in <span className="text-brand-orange">One</span> Place
-                </>
-              }
-              subtitle="People, hours, tasks, and performance — one record from hire to report."
-            />
-          </motion.div>
-          <WorkforceFeaturesGrid isMobile={isMobile} />
+      <section className="relative overflow-visible border-t border-gray-100 bg-white py-12 lg:py-16">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <motion.div
+        {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}
+        className="mb-10 text-center"
+      >
+        {/* Eyebrow */}
+        <div className="mb-3 flex items-center justify-center gap-3">
+          <span className="h-px w-10 bg-brand-orange" />
+
+          <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand-orange">
+            Process
+          </span>
+
+          <span className="h-px w-10 bg-brand-orange" />
         </div>
-      </section>
 
-      <section className="relative overflow-hidden border-t border-gray-100 bg-white py-12 lg:py-16">
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-            <SectionHeader
-              eyebrow="Process"
-              title={
-                <>
-                  How It <span className="text-brand-orange">Works</span>
-                </>
-              }
-              subtitle="From employee record to feedback — one connected workforce loop."
-            />
-          </motion.div>
+        {/* Title */}
+        <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
+          {workforceWorkflowTitle.lead}{" "}
+          <span className="text-brand-orange">
+            {workforceWorkflowTitle.accent}
+          </span>
+        </h2>
+        
+      </motion.div>
 
-          <div className="relative hidden lg:block">
-            <div
-              className="pointer-events-none absolute top-[27px] right-[calc(100%/14)] left-[calc(100%/14)] h-[2px] bg-brand-orange"
-              aria-hidden
-            />
-            <ol className="relative m-0 grid list-none grid-cols-7 gap-2.5 p-0">
-              {workforceWorkflow.map((step, i) => {
-                const Icon = step.icon;
-                return (
-                  <motion.li
-                    key={step.title}
-                    {...scrollMotionProps(isMobile, { y: 12, duration: 0.35, delay: Math.min(i * 0.03, 0.24) })}
-                    className="flex min-w-0 flex-col items-center text-center"
-                  >
-                    <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-brand-orange bg-white shadow-[0_0_18px_rgba(254,93,2,0.28)]">
-                      <Icon size={22} className="text-brand-orange" strokeWidth={2} aria-hidden />
-                    </span>
-                    <div className="-mt-7 flex min-h-[120px] flex-1 flex-col rounded-2xl border border-gray-100 bg-white px-2.5 pb-4 pt-10 shadow-[0_10px_28px_-18px_rgba(23,43,77,0.22)]">
-                      <h3 className="text-sm font-extrabold leading-snug text-brand-navy">{step.title}</h3>
-                      
-                      {/* <p className="mt-2 text-xs leading-snug text-[#6B778C]">{step.description}</p> */}
-                    </div>
-                  </motion.li>
-                );
-              })}
-            </ol>
-          </div>
-
-          <ol className="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 lg:hidden">
+        {/* Desktop Workflow */}
+        <div className="relative hidden lg:block">
+          <ol
+            className="relative m-0 grid list-none gap-2.5 p-0"
+            style={{
+              gridTemplateColumns: `repeat(${colCount}, minmax(0, 1fr))`,
+            }}
+          >
             {workforceWorkflow.map((step, i) => {
               const Icon = step.icon;
+
               return (
                 <motion.li
                   key={step.title}
-                  {...scrollMotionProps(isMobile, { y: 12, duration: 0.35, delay: Math.min(i * 0.03, 0.2) })}
-                  className="flex gap-3 rounded-2xl border border-gray-100 bg-white px-4 py-4 shadow-[0_8px_24px_-18px_rgba(23,43,77,0.18)]"
+                  {...scrollMotionProps(isMobile, {
+                    y: 12,
+                    duration: 0.35,
+                    delay: Math.min(i * 0.03, 0.24),
+                  })}
+                  className="relative flex min-w-0 flex-col items-center text-center"
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-brand-orange bg-white">
-                    <Icon size={18} className="text-brand-orange" strokeWidth={2} aria-hidden />
+                  {/* Arrow Connector */}
+                  {i < workforceWorkflow.length - 1 && (
+                    <div
+                      className="
+                        pointer-events-none
+                        absolute
+                        left-1/2
+                        right-[-5px]
+                        top-[27px]
+                        z-0
+                        flex
+                        items-center
+                      "
+                      aria-hidden
+                    >
+                      {/* Thin Line */}
+                      <div className="h-px flex-1 bg-brand-orange/70" />
+
+                      {/* Arrow Head */}
+                      <svg
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 10"
+                        fill="none"
+                        className="shrink-0 text-brand-orange"
+                      >
+                        <path
+                          d="M1.5 5H8M5.5 2.5L8 5L5.5 7.5"
+                          stroke="currentColor"
+                          strokeWidth="1.4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  )}
+
+                  {/* Icon */}
+                  <span
+                    className="
+                      relative
+                      z-10
+                      flex
+                      h-14
+                      w-14
+                      items-center
+                      justify-center
+                      rounded-full
+                      border-2
+                      border-brand-orange
+                      bg-white
+                      shadow-[0_0_18px_rgba(254,93,2,0.28)]
+                    "
+                  >
+                    <Icon
+                      size={22}
+                      className="text-brand-orange"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
                   </span>
-                  <div className="min-w-0">
-                    <h3 className="text-sm font-extrabold leading-snug text-brand-navy">{step.title}</h3>
-                    {/* <p className="mt-1 text-sm leading-snug text-[#6B778C]">{step.description}</p> */}
+
+                  {/* Vertical Connector */}
+                  <span
+                    className="h-7 w-px bg-brand-orange"
+                    aria-hidden
+                  />
+
+                  {/* Step Title */}
+                  <div className="flex min-h-[72px] items-start justify-center px-2">
+                    <h3 className="text-sm font-extrabold leading-snug text-brand-navy">
+                      {step.title}
+                    </h3>
                   </div>
                 </motion.li>
               );
@@ -974,163 +641,568 @@ export default function WorkforceIntelligenceLanding(_props: {
           </ol>
         </div>
 
-        <div className="mx-auto max-w-7xl px-5 py-6 sm:px-6 lg:px-8">
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {workforceAppCards.map((card, i) => (
-              <motion.div
-                key={card.title}
-                {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: Math.min(i * 0.03, 0.2) })}
+        {/* Mobile Workflow */}
+        <ol className="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 lg:hidden">
+          {workforceWorkflow.map((step, i) => {
+            const Icon = step.icon;
+
+            return (
+              <motion.li
+                key={step.title}
+                {...scrollMotionProps(isMobile, {
+                  y: 12,
+                  duration: 0.35,
+                  delay: Math.min(i * 0.03, 0.2),
+                })}
+                className="
+                  flex
+                  gap-3
+                  rounded-2xl
+                  border
+                  border-gray-100
+                  bg-white
+                  px-4
+                  py-4
+                  shadow-[0_8px_24px_-18px_rgba(23,43,77,0.18)]
+                "
               >
-                <WorkforceAppCard {...card} />
-              </motion.div>
-            ))}
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-brand-orange bg-white">
+                  <Icon
+                    size={18}
+                    className="text-brand-orange"
+                    strokeWidth={2}
+                    aria-hidden
+                  />
+                </span>
 
-            <motion.div {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: 0.18 })}>
-              <WorkforceImagePlaceholder
-                title="Mobile & Web Access"
-                subtitle="Access workforce data on the go with our mobile app and web platform."
-                icon={MonitorSmartphone}
+                <div className="min-w-0">
+                  <h3 className="text-sm font-extrabold leading-snug text-brand-navy">
+                    {step.title}
+                  </h3>
+                </div>
+              </motion.li>
+            );
+          })}
+        </ol>
+      </div>
+        <div className="mx-auto max-w-7xl px-2 py-16 sm:px-4 lg:px-8">
+          <div className="grid items-stretch gap-5 lg:grid-cols-[1.15fr_2.05fr]">
+
+            {/* Left Card */}
+            <motion.article
+              {...scrollMotionProps(isMobile, {
+                y: 14,
+                duration: 0.4,
+              })}
+              className="relative flex flex-col"
+            >
+              <WorkforceConnectedCard />
+            </motion.article>
+
+            {/* Large Image */}
+            <motion.article
+              {...scrollMotionProps(isMobile, {
+                y: 14,
+                duration: 0.4,
+                delay: 0.05,
+              })}
+              className="
+                relative
+                min-h-[360px]
+                overflow-hidden
+                rounded-2xl
+                border
+                border-gray-200
+                bg-gray-100
+                shadow-[0_12px_28px_-16px_rgba(23,43,77,0.22)]
+              "
+            >
+              <img
+                src="/workforce.png"
+                alt="Workforce intelligence overview"
+                className="
+                  absolute
+                  inset-0
+                  h-full
+                  w-full
+                  object-cover
+                "
               />
-            </motion.div>
 
-            <motion.div {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: 0.2 })}>
-              <WorkforceOfflineCard />
-            </motion.div>
+              {/* Optional subtle overlay */}
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent"
+                aria-hidden
+              />
+            </motion.article>
+
           </div>
         </div>
       </section>
 
-      <section className="border-t border-gray-100 bg-[#F8FAFC] py-8 lg:py-14">
-        <div className="mx-auto grid max-w-7xl items-stretch gap-5 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
-          <motion.article
-            {...scrollMotionProps(isMobile, { y: 14, duration: 0.4 })}
-            className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-brand-navy p-6 shadow-[0_12px_28px_-16px_rgba(23,43,77,0.35)]"
-          >
-            <span className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange" aria-hidden />
-            <div className="mb-5 flex items-center gap-3">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-orange/15 ring-1 ring-brand-orange/20">
-                <BadgeCheck size={20} className="text-brand-orange" aria-hidden />
-              </span>
-              <div>
-                <h3 className="text-lg font-extrabold leading-snug text-white sm:text-xl">Why it matters</h3>
-                <p className="mt-1 text-sm font-medium text-brand-orange">One workforce. Clear performance.</p>
-              </div>
-            </div>
-            <ul className="flex flex-1 flex-col gap-2.5">
-              {workforceWhy.map((line) => (
-                <li
-                  key={line}
-                  className="flex items-start gap-3 rounded-xl bg-white/5 px-3.5 py-4.5 text-m leading-snug text-white/80 ring-1 ring-white/10"
-                >
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-orange/15">
-                    <Check size={12} className="text-brand-orange" strokeWidth={2.6} aria-hidden />
-                  </span>
-                  {line}
-                </li>
-              ))}
-            </ul>
-          </motion.article>
+      <section className="border-t border-gray-100 bg-[#F3F6FA] py-6 lg:py-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-          <motion.article
-            {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: 0.05 })}
-            className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-brand-navy p-6 shadow-[0_12px_28px_-16px_rgba(23,43,77,0.35)]"
+          {/* Header */}
+          <motion.div
+            {...scrollMotionProps(isMobile, {
+              y: 16,
+              duration: 0.4,
+            })}
+            className="mx-auto max-w-3xl text-center"
           >
-            <span className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange" aria-hidden />
-            <div className="mb-5 flex items-start justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-orange/15 ring-1 ring-brand-orange/20">
-                  <Sparkles size={20} className="text-brand-orange" aria-hidden />
-                </span>
-                <div>
-                  <h3 className="text-lg font-extrabold leading-snug text-white sm:text-xl">AI-powered workforce intelligence</h3>
-                  <p className="mt-1 text-xs font-medium tracking-[0.12em] text-brand-orange uppercase">Coming soon</p>
+            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
+              Traditional Way{" "}
+              <span className="font-medium text-[#6B778C]">vs</span>{" "}
+              <span className="text-brand-orange">ZEDOPS</span>
+            </h2>
+
+            <span className="mx-auto mt-2 block h-[3px] w-16 rounded-full bg-brand-orange" />
+          </motion.div>
+
+          {/* Comparison Cards */}
+          <motion.div
+            {...scrollMotionProps(isMobile, {
+              y: 16,
+              duration: 0.45,
+              delay: 0.05,
+            })}
+            className="relative mt-6"
+          >
+            <div className="grid gap-5 lg:grid-cols-2 lg:gap-8">
+
+              {/* Traditional */}
+              <article className="overflow-hidden rounded-3xl border border-red-100 bg-[#FFF8F8] shadow-[0_12px_32px_-22px_rgba(23,43,77,0.25)]">
+
+                <div className="px-6 py-3 text-center sm:px-8">
+                  <h3 className="text-xl font-extrabold text-[#C62828] sm:text-2xl">
+                    {workforceComparison.traditionalTitle}
+                  </h3>
                 </div>
+
+                <div className="mx-3 mb-3 overflow-hidden rounded-2xl border border-red-100 bg-white">
+                  {workforceComparison.traditional.map((item) => (
+                    <div
+                      key={item.title}
+                      className="flex items-center gap-3 border-b border-gray-100 px-4 py-3 last:border-b-0 sm:px-5"
+                    >
+                      {/* Icon */}
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FFF5F5] text-[#DE350B] ring-1 ring-red-100">
+                        <BarChart3 size={19} strokeWidth={1.8} />
+                      </span>
+
+                      {/* Text */}
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-[15px]">
+                          {item.title}
+                        </p>
+
+                        <p className="mt-0.5 text-xs leading-snug text-[#6B778C] sm:text-sm">
+                          {item.description}
+                        </p>
+                      </div>
+
+                      {/* X */}
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#EF4444]">
+                        <X
+                          size={13}
+                          className="text-white"
+                          strokeWidth={3}
+                        />
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              {/* ZEDOPS */}
+              <article className="overflow-hidden rounded-3xl border border-emerald-100 bg-[#F5FCF8] shadow-[0_12px_32px_-22px_rgba(23,43,77,0.25)]">
+
+                <div className="px-6 py-3 text-center sm:px-8">
+                  <h3 className="text-xl font-extrabold text-[#00875A] sm:text-2xl">
+                    {workforceComparison.zedopsTitle}
+                  </h3>
+                </div>
+
+                <div className="mx-3 mb-3 overflow-hidden rounded-2xl border border-emerald-100 bg-white">
+                  {workforceComparison.withZedops.map((item) => (
+                    <div
+                      key={item.title}
+                      className="flex items-center gap-3 border-b border-gray-100 px-4 py-3 last:border-b-0 sm:px-5"
+                    >
+                      {/* Icon */}
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F0FFF7] text-[#00875A] ring-1 ring-emerald-100">
+                        <TrendingUp size={19} strokeWidth={1.8} />
+                      </span>
+
+                      {/* Text */}
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-[15px]">
+                          {item.title}
+                        </p>
+
+                        <p className="mt-0.5 text-xs leading-snug text-[#6B778C] sm:text-sm">
+                          {item.description}
+                        </p>
+                      </div>
+
+                      {/* Check */}
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#22A866]">
+                        <Check
+                          size={13}
+                          className="text-white"
+                          strokeWidth={3}
+                        />
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            </div>
+
+            {/* VS Badge */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:block">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-navy text-base font-black text-white shadow-xl ring-8 ring-white">
+                VS
               </div>
             </div>
-            <ul className="flex flex-1 flex-col gap-2.5">
-              {workforceAiSoon.map((item) => {
-                const Icon = item.icon;
+          </motion.div>
+
+          {/* Benefits Strip */}
+          <motion.div
+            {...scrollMotionProps(isMobile, {
+              y: 14,
+              duration: 0.4,
+              delay: 0.1,
+            })}
+            className="mt-4 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_10px_28px_-20px_rgba(23,43,77,0.25)]"
+          >
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5">
+
+              {workforceComparison.benefits.map((benefit, index) => {
+                const icons = [
+                  Eye,
+                  Target,
+                  BarChart3,
+                  ShieldCheck,
+                  Trophy,
+                ];
+
+                const Icon = icons[index];
+
                 return (
-                  <li key={item.title} className="flex gap-3 rounded-xl bg-white/5 p-3 ring-1 ring-white/10">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-orange/15">
-                      <Icon size={16} className="text-brand-orange" aria-hidden />
+                  <div
+                    key={benefit.title}
+                    className={`flex items-center gap-3 px-4 py-3 ${
+                      index < workforceComparison.benefits.length - 1
+                        ? "border-b border-gray-100 lg:border-b-0 lg:border-r"
+                        : ""
+                    }`}
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center text-brand-navy">
+                      <Icon size={24} strokeWidth={1.8} />
                     </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <p className="text-sm font-extrabold text-white">{item.title}</p>
-                        <span className="shrink-0 rounded-full bg-brand-orange/15 px-2 py-0.5 text-[9px] font-bold tracking-wide text-brand-orange uppercase">
-                          Soon
-                        </span>
-                      </div>
-                      <p className="mt-0.5 text-sm leading-snug text-white/70">{item.body}</p>
+
+                    <div className="min-w-0">
+                      <p className="text-sm font-extrabold leading-snug text-brand-navy">
+                        {benefit.title}
+                      </p>
+
+                      <p className="mt-0.5 text-xs leading-snug text-[#6B778C]">
+                        {benefit.description}
+                      </p>
                     </div>
-                  </li>
+                  </div>
                 );
               })}
-            </ul>
-          </motion.article>
 
-          <motion.article
-            {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: 0.1 })}
-            className="relative flex flex-col overflow-hidden rounded-2xl bg-brand-navy p-6 text-white shadow-[0_16px_40px_-20px_rgba(23,43,77,0.45)]"
+            </div>
+          </motion.div>
+
+          {/* Bottom Advantage Banner */}
+          <motion.div
+            {...scrollMotionProps(isMobile, {
+              y: 14,
+              duration: 0.4,
+              delay: 0.14,
+            })}
+            className="mt-3 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_10px_28px_-20px_rgba(23,43,77,0.25)]"
           >
-            <span className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange" aria-hidden />
-            <div
-              className="pointer-events-none absolute inset-0 opacity-40"
-              style={{
-                backgroundImage: [
-                  "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
-                  "linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-                ].join(", "),
-                backgroundSize: "28px 28px",
-              }}
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute -right-10 -bottom-16 h-48 w-48 rounded-full bg-brand-orange/20 blur-3xl"
-              aria-hidden
-            />
-            <div className="relative z-10 flex h-full flex-col">
-              <div className="mb-5 flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-orange/15 ring-1 ring-brand-orange/20">
-                  <Users size={20} className="text-brand-orange" aria-hidden />
+            <div className="grid md:grid-cols-[1fr_auto_1fr] md:items-center">
+
+              {/* Left */}
+              <div className="flex items-center gap-3 px-5 py-3 sm:px-6">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-orange/10">
+                  <Zap
+                    size={21}
+                    className="text-brand-orange"
+                    fill="currentColor"
+                  />
                 </span>
+
                 <div>
-                  <h3 className="text-lg font-extrabold leading-snug text-white sm:text-xl">{workforceCallout.title}</h3>
-                  <p className="mt-1 text-xs font-medium tracking-[0.12em] text-brand-orange uppercase">
-                    {workforceCallout.eyebrow}
+                  <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-base">
+                    From manual & delayed → to automated & real-time.
+                  </p>
+
+                  <p className="mt-0.5 text-sm font-bold text-brand-orange">
+                    That&apos;s the ZEDOPS advantage.
                   </p>
                 </div>
               </div>
-              <p className="text-base leading-snug text-white/70">{workforceCallout.body}</p>
-              <ul className="mt-5 mb-6 flex flex-col gap-2">
-                {workforceCallout.points.map((line) => (
-                  <li key={line} className="flex items-center gap-2 text-base font-medium text-white/85">
-                    <Check size={14} className="shrink-0 text-brand-orange" strokeWidth={2.6} aria-hidden />
-                    {line}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="/early-access"
-                className="mt-auto inline-flex items-center justify-center gap-2 rounded-md bg-brand-orange px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
-              >
-                Book a demo
-                <ArrowRight size={15} aria-hidden />
-              </a>
+
+              {/* Divider */}
+              <div className="hidden h-12 w-px bg-gray-200 md:block" />
+
+              {/* Right */}
+              <div className="flex items-center gap-3 px-5 py-3 sm:px-6">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-orange/10 text-lg font-black text-brand-orange">
+                  Z
+                </span>
+
+                <div>
+                  <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-base">
+                    One Platform. Every Project.
+                  </p>
+
+                  <p className="mt-0.5 text-sm font-bold text-brand-orange">
+                    Manage. Track. Perform. Improve.
+                  </p>
+                </div>
+              </div>
+
             </div>
-          </motion.article>
-      </div>
-    </section>
+          </motion.div>
+
+        </div>
+      </section>
+
+        <section className="border-t border-gray-100 bg-white py-12 lg:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+            {/* Heading */}
+            <motion.div
+              {...scrollMotionProps(isMobile, { y: 12, duration: 0.35 })}
+              className="mb-8 text-center"
+            >
+              <div className="flex items-center justify-center gap-3">
+                <CalendarClock
+                  size={26}
+                  className="shrink-0 text-[#0052CC]"
+                  aria-hidden
+                />
+
+                <h2 className="text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">
+                  From{" "}
+                  <span className="text-brand-orange">
+                    workforce to performance
+                  </span>{" "}
+                  — stay ahead with real-time visibility and control.
+                </h2>
+              </div>
+
+              <span className="mx-auto mt-4 block h-[4px] w-20 rounded-full bg-brand-orange" />
+            </motion.div>
+
+            {/* AI Roadmap */}
+            <motion.div
+              {...scrollMotionProps(isMobile, {
+                y: 14,
+                duration: 0.4,
+                delay: 0.04,
+              })}
+              className="
+                overflow-hidden
+                rounded-2xl
+                border border-[#E1E5EB]
+                bg-white
+                shadow-[0_8px_30px_-18px_rgba(23,43,77,0.25)]
+              "
+            >
+              <div className="flex flex-col lg:flex-row">
+
+                {/* Left Title */}
+                <div
+                  className="
+                    flex
+                    shrink-0
+                    items-center
+                    border-b
+                    border-[#E1E5EB]
+                    bg-[#F4F6F8]
+                    px-7
+                    py-8
+                    lg:w-[235px]
+                    lg:border-b-0
+                    lg:border-r
+                    xl:w-[255px]
+                  "
+                >
+                  <p className="text-lg font-extrabold leading-snug text-brand-navy">
+                    What's Coming Next —
+                    <span className="mt-1 block text-brand-orange">
+                      ZED AI{" "}
+                      <span className="font-semibold text-[#42526E]">
+                        (Roadmap)
+                      </span>
+                    </span>
+                  </p>
+                </div>
+
+                {/* Features */}
+                <ul className="grid flex-1 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {workforceAiRoadmap.items.map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <li
+                        key={item.title}
+                        className="
+                          flex
+                          min-w-0
+                          border-b
+                          border-[#E1E5EB]
+                          px-5
+                          py-7
+                          sm:px-6
+                          lg:border-r
+                          lg:border-b-0
+                          lg:last:border-r-0
+                        "
+                      >
+                        <div className="flex min-w-0 flex-col">
+
+                          {/* Icon */}
+                          <span className="mb-4 flex h-9 w-9 items-center justify-center">
+                            <Icon
+                              size={24}
+                              className="text-brand-orange"
+                              strokeWidth={1.8}
+                              aria-hidden
+                            />
+                          </span>
+
+                          {/* Title */}
+                          <p className="text-sm font-extrabold leading-snug text-brand-navy">
+                            {item.title}
+                          </p>
+
+                          {/* Description */}
+                          <p className="mt-2 flex-1 text-xs leading-relaxed text-[#42526E]">
+                            {item.body}
+                          </p>
+
+                          {/* Coming Soon */}
+                          <span
+                            className="
+                              mt-4
+                              inline-flex
+                              w-fit
+                              rounded-full
+                              bg-[#EEF6FF]
+                              px-3
+                              py-1
+                              text-[10px]
+                              font-bold
+                              leading-none
+                              text-[#2563EB]
+                            "
+                          >
+                            Coming Soon
+                          </span>
+
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+  <div className="mx-auto max-w-7xl px-4 sm:px-6  lg:px-6 py-8">
+
+    <motion.div
+      {...scrollMotionProps(isMobile, { y: 12, duration: 0.4 })}
+    >
+      <h2 className="text-center text-[30px] font-extrabold tracking-tight text-brand-navy">
+        {workforceSourcesTitle.lead}
+        <span className="text-brand-orange">
+          {workforceSourcesTitle.accent}
+        </span>
+      </h2>
+
+      <span className="mx-auto mt-2 block h-[3px] w-15 rounded-full bg-brand-orange" />
+    </motion.div>
+
+    <div className="mt-8 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <ol className="mx-auto flex min-w-max list-none items-center gap-0 p-0 lg:min-w-0 lg:w-full lg:justify-between">
+        {workforceSources.map((source, i) => {
+          const Icon = source.icon;
+
+          return (
+            <li
+              key={source.label}
+              className="flex min-w-0 items-center"
+            >
+              {i > 0 ? (
+                <span
+                  className="mx-3 hidden h-px w-8 shrink-0 border-t border-dashed border-brand-navy sm:block lg:w-10"
+                  aria-hidden
+                />
+              ) : null}
+
+              <div
+                className={`flex flex-col items-center text-center ${
+                  source.current
+                    ? "min-w-[7.5rem] rounded-xl border border-white/10 bg-brand-navy px-3 py-3 shadow-[0_8px_24px_-16px_rgba(23,43,77,0.22)] sm:min-w-[8.5rem]"
+                    : "min-w-[5.5rem] px-1 sm:min-w-[6.5rem]"
+                }`}
+              >
+                <span
+                  className={`flex h-11 w-11 items-center justify-center rounded-lg ${
+                    source.current
+                      ? "bg-white/30 ring-1 ring-[#0052CC]/20"
+                      : "bg-white ring-1 ring-gray-200"
+                  }`}
+                >
+                  <Icon
+                    size={22}
+                    className="text-brand-orange"
+                    strokeWidth={1.8}
+                    aria-hidden
+                  />
+                </span>
+
+                <span
+                  className={`mt-2 max-w-[7rem] text-[10px] font-semibold leading-snug sm:text-xs ${
+                    source.current
+                      ? "text-brand-orange"
+                      : "text-[#42526E]"
+                  }`}
+                >
+                  {source.label}
+                </span>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </div>
 
       <FinalCTA
-        variant="brand-navy"
+        variant="brand-orange"
+        compact
         title={
           <>
-            Right People. <span className="text-white">Right Work.</span> Right Results.
+            {workforceCta.title}
           </>
         }
         body={workforceCta.body}
+        primary={{ label: "Book a Demo", href: "/early-access" }}
       />
     </>
   );

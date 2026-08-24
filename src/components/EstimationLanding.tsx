@@ -1,20 +1,42 @@
-import { useState } from "react";
-import { ArrowRight, Check, ChevronDown, Sparkles } from "lucide-react";
+import { useRef, useState } from "react";
+import {
+  ArrowRight,
+  BarChart3,
+  Check,
+  Eye,
+  Layers,
+  LineChart,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  Trophy,
+  TrendingUp,
+  Users,
+  X,
+  Zap,
+} from "lucide-react";
 import { motion } from "framer-motion";
+import EstimationDashboard from "@/components/dashboards/estimation/EstimationDashboard";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import FinalCTA from "@/components/FinalCTA";
-import SectionHeader from "@/components/SectionHeader";
 import type { PlatformFeatureSection } from "@/data/platformFeatures";
 import {
+  estimationAiEyebrow,
   estimationAiSoon,
   estimationBenefits,
-  estimationCallout,
+  estimationComparison,
+  estimationConnected,
   estimationCta,
+  estimationDashboardData,
   estimationFeatures,
+  estimationFeaturesTitle,
   estimationHero,
-  estimationWhy,
+  estimationSources,
+  estimationSourcesTitle,
   estimationWorkflow,
+  estimationWorkflowTitle,
+  estimationDashboardHero
 } from "@/data/estimationPage";
 
 type NavModule = Pick<PlatformFeatureSection, "id" | "title">;
@@ -23,156 +45,107 @@ type EstimationFeature = (typeof estimationFeatures)[number];
 
 function EstimationFeatureCard({
   feat,
-  open,
-  onToggle,
 }: {
   feat: EstimationFeature;
-  open: boolean;
-  onToggle: () => void;
 }) {
   const Icon = feat.icon;
-  const detailsId = `estimation-feature-${feat.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
+
 
   return (
-    <article className="rounded-xl border border-white/10 bg-brand-navy shadow-[0_12px_28px_-16px_rgba(23,43,77,0.35)]">
-      <button
-        type="button"
-        onClick={onToggle}
-        aria-expanded={open}
-        aria-controls={detailsId}
-        className="flex w-full items-center justify-between gap-3 p-5 text-left"
-      >
-        <div className="flex min-w-0 items-center gap-2.5">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/30">
-            <Icon size={18} className="text-brand-orange" aria-hidden />
-          </span>
-          <h3 className="min-w-0 whitespace-nowrap text-sm font-extrabold leading-snug text-brand-orange/100 sm:text-[15px]">
-            {feat.title}
-          </h3>
-        </div>
+    <article className="w-full overflow-hidden rounded-2xl border border-white/10 bg-brand-navy shadow-[0_12px_28px_-16px_rgba(23,43,77,0.35)]">
+      <div className="flex items-center gap-3 px-5 py-5">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white/30">
+          <Icon
+            size={20}
+            className="text-brand-orange"
+            strokeWidth={2}
+            aria-hidden
+          />
+        </span>
 
-        <ChevronDown
-          size={20}
-          className={`shrink-0 text-white/70 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-          aria-hidden
-        />
-      </button>
+        <h3 className="text-base font-extrabold leading-snug text-brand-orange sm:text-lg">
+          {feat.title}
+        </h3>
+      </div>
 
-      {open ? (
-        <div id={detailsId} className="border-t border-white/10 px-5 pt-3 pb-5">
-          <ul className="flex flex-col gap-2">
-            {feat.bullets.map((line) => (
-              <li key={line} className="flex items-start gap-2 text-sm leading-snug text-white/80">
-                <Check size={14} className="mt-0.5 shrink-0 text-brand-orange" strokeWidth={2.4} aria-hidden />
-                {line}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
+      <div className="border-t border-white/10 px-5 pb-6 pt-4">
+        <ul className="flex flex-col gap-3">
+          {feat.bullets.map((line) => (
+            <li
+              key={line}
+              className="flex items-start gap-2.5 text-sm leading-snug text-white/80 sm:text-base"
+            >
+              <Check
+                size={16}
+                className="mt-0.5 shrink-0 text-brand-orange"
+                strokeWidth={2.4}
+                aria-hidden
+              />
+
+              <span>{line}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </article>
   );
 }
 
-function EstimationFeaturesGrid({ isMobile }: { isMobile: boolean }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
+function DotGrid({ color, className }: { color: "orange" | "green"; className?: string }) {
+  const dotClass = color === "orange" ? "bg-brand-orange/70" : "bg-[#22C55E]/70";
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {estimationFeatures.map((feat, i) => (
-        <motion.div
-          key={feat.title}
-          {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: Math.min(i * 0.04, 0.2) })}
-        >
-          <EstimationFeatureCard
-            feat={feat}
-            open={openIndex === i}
-            onToggle={() => setOpenIndex((current) => (current === i ? null : i))}
-          />
-        </motion.div>
+    <div className={`grid grid-cols-4 gap-[3px] ${className ?? ""}`} aria-hidden>
+      {Array.from({ length: 16 }).map((_, i) => (
+        <span key={i} className={`h-[3px] w-[3px] rounded-full ${dotClass}`} />
       ))}
     </div>
   );
 }
 
-function EstimateBoqMock() {
-  const tabs = ["Estimate", "BOQ", "Rates", "Markup"];
-  const rows = [
-    { name: "HVAC", amt: "$128,400" },
-    { name: "Electrical", amt: "$94,250" },
-    { name: "Plumbing", amt: "$71,800" },
-    { name: "Fire", amt: "$53,200" },
-  ];
-  const legend = [
-    { label: "HVAC", color: "#3B82F6" },
-    { label: "Elec", color: "#FE5D02" },
-    { label: "Plumb", color: "#22C55E" },
-    { label: "Fire", color: "#EAB308" },
-  ];
-
+function EstimationConnectedCard() {
   return (
-    <div className="mt-5 overflow-hidden rounded-lg bg-[#07101C] ring-1 ring-white/12">
-      <div className="grid grid-cols-[3.4rem_minmax(0,1fr)]">
-        <aside className="border-r border-white/10 py-2">
-          {tabs.map((tab) => (
-            <p
-              key={tab}
-              className={`truncate px-1.5 py-1.5 text-center text-[8px] font-bold tracking-wide uppercase ${
-                tab === "BOQ" ? "bg-brand-orange/20 text-brand-orange" : "text-white/40"
-              }`}
-            >
-              {tab}
-            </p>
-          ))}
-        </aside>
-        <div className="min-w-0 p-2.5">
-          <p className="mb-1.5 text-[9px] font-extrabold tracking-[0.08em] text-white/45 uppercase">BOQ Summary</p>
-          <ul className="m-0 flex list-none flex-col gap-1 p-0">
-            {rows.map((row) => (
-              <li key={row.name} className="flex items-center justify-between gap-2 text-[10px]">
-                <span className="font-medium text-white/70">{row.name}</span>
-                <span className="font-extrabold text-white">{row.amt}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-2.5 flex items-center gap-2.5 border-t border-white/10 pt-2.5">
-            <div
-              className="relative h-14 w-14 shrink-0 rounded-full"
-              style={{
-                background:
-                  "conic-gradient(#3B82F6 0 37%, #FE5D02 37% 64%, #22C55E 64% 85%, #EAB308 85% 100%)",
-              }}
-              aria-hidden
-            >
-              <span className="absolute inset-[7px] flex flex-col items-center justify-center rounded-full bg-[#07101C]">
-                <span className="text-[7px] font-bold tracking-wide text-white/45 uppercase">Total</span>
-                <span className="text-[8px] font-extrabold leading-none text-white">$348k</span>
-              </span>
-            </div>
-            <ul className="m-0 grid min-w-0 flex-1 list-none grid-cols-2 gap-x-2 gap-y-1 p-0">
-              {legend.map((item) => (
-                <li key={item.label} className="flex items-center gap-1 text-[8px] font-semibold text-white/65">
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: item.color }} />
-                  {item.label}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+    <section className="mx-auto flex min-h-[390px] w-full max-w-[557px] flex-col justify-center px-6 py-6">
+
+      <div className="max-w-md">
+        <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-brand-orange">
+          {estimationDashboardHero.eyebrow}
+        </p>
+
+        <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
+          {estimationDashboardHero.titleLead}
+          <span className="text-brand-orange">
+            {estimationDashboardHero.titleAccent}
+          </span>
+        </h2>
+
+        <p className="mt-5 text-sm leading-6 text-[#6B778C] sm:text-base">
+          {estimationDashboardHero.subtitle}
+        </p>
+
+        <p className="mt-4 text-sm font-semibold text-brand-navy">
+          {estimationDashboardHero.supportingText}
+        </p>
       </div>
-    </div>
+
+    </section>
   );
 }
-
 export default function EstimationLanding(_props: {
   prev: NavModule | null;
   next: NavModule | null;
 }) {
   const isMobile = useIsMobile();
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const colCount = Math.min(Math.max(estimationWorkflow.length, 3), 9);
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-gray-100">
+      {/* =========================================================
+          HERO + DASHBOARD SECTION
+      ========================================================= */}
+      <section className="relative mb-6 overflow-visible border-b border-gray-100">
+
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -184,6 +157,7 @@ export default function EstimationLanding(_props: {
           }}
           aria-hidden
         />
+
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -193,288 +167,870 @@ export default function EstimationLanding(_props: {
               "linear-gradient(rgba(1,47,176,0.02) 1px, transparent 1px)",
               "linear-gradient(90deg, rgba(1,47,176,0.02) 1px, transparent 1px)",
             ].join(", "),
-            backgroundSize: "80px 80px, 80px 80px, 20px 20px, 20px 20px",
+            backgroundSize:
+              "80px 80px, 80px 80px, 20px 20px, 20px 20px",
           }}
           aria-hidden
         />
+
         <div
-          className="pointer-events-none absolute bottom-0 left-1/2 h-[300px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
+          className="pointer-events-none absolute bottom-0 left-1/2 h-[180px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
           style={{
-            background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.11) 0%, transparent 65%)",
-            filter: "blur(40px)",
+            background:
+              "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.10) 0%, transparent 65%)",
+            filter: "blur(35px)",
           }}
           aria-hidden
         />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-24">
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
-              <p className="mb-3 text-xs font-bold tracking-[0.16em] text-brand-orange uppercase">{estimationHero.eyebrow}</p>
-              <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-navy sm:text-5xl">
-                {estimationHero.titleLead}
-                <span className="text-brand-orange">{estimationHero.titleAccent}</span>
-              </h1>
-              <p className="mt-3 text-lg font-semibold text-brand-navy sm:text-xl">{estimationHero.tagline}</p>
-              <p className="mt-3 max-w-md text-base leading-snug text-[#42526E]">{estimationHero.subtitle}</p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <a
-                  href={estimationHero.primaryCta.href}
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-orange px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
-                >
-                  {estimationHero.primaryCta.label}
-                  <ArrowRight size={15} aria-hidden />
-                </a>
-              </div>
-              <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {estimationBenefits.map((b) => {
-                  const Icon = b.icon;
-                  return (
-                    <li key={b.label} className="flex flex-col items-start gap-1.5 sm:items-center sm:text-center">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-md bg-white ring-1 ring-gray-200">
-                        <Icon size={15} className="text-brand-orange" aria-hidden />
-                      </span>
-                      <span className="text-xs font-semibold leading-snug text-brand-navy">{b.label}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.08 }}
-              className="relative mx-auto w-full max-w-xl lg:mx-0 lg:max-w-none"
-            >
-              <div
-                className="pointer-events-none absolute -inset-8 rounded-[2rem] opacity-65 blur-2xl"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 55% 40%, rgba(254,93,2,0.14) 0%, rgba(23,43,77,0.06) 48%, transparent 72%)",
-                }}
-                aria-hidden
-              />
-              <div className="relative h-[240px] w-full overflow-hidden rounded-2xl border border-brand-navy/8 bg-white shadow-[0_20px_48px_-24px_rgba(23,43,77,0.28)] sm:h-[280px] lg:h-[380px] lg:w-[118%]">
-                <img
-                  src={estimationHero.imageSrc}
-                  alt={estimationHero.imageAlt}
-                  className="block h-full w-full object-cover object-top"
-                  width={1600}
-                  height={1000}
-                  loading="eager"
-                  decoding="async"
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-7 sm:px-6 lg:px-8 lg:py-9">
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="flex flex-col items-center text-center"
+          >
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-orange">
+              {estimationHero.eyebrow}
+            </p>
+
+            <h1 className="max-w-4xl text-3xl font-extrabold leading-[1.08] tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
+              {estimationHero.titleLead}{" "}
+              <span className="text-brand-orange">
+                {estimationHero.titleAccent}
+              </span>
+            </h1>
+
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#42526E] sm:text-base">
+              {estimationHero.subtitle}
+            </p>
+
+            <div className="mt-5">
+              <button
+                type="button"
+                onClick={() => setIsDemoOpen(true)}
+                className="
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-md
+                  bg-brand-orange
+                  px-7
+                  py-3.5
+                  text-sm
+                  font-bold
+                  text-white
+                  shadow-[0_8px_20px_-8px_rgba(254,93,2,0.45)]
+                  transition-all
+                  hover:-translate-y-0.5
+                  hover:bg-brand-orange-soft
+                "
+              >
+                {estimationHero.primaryCta.label}
+
+                <ArrowRight
+                  size={16}
+                  aria-hidden
                 />
-              </div>
-            </motion.div>
-          </div>
+              </button>
+            </div>
+          </motion.div>
+
+          <section className="relative z-10 mt-0 overflow-visible border-t border-gray-100 px-2 py-2 sm:px-4 lg:px-6 lg:py-4">
+            <div className="relative mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
+              <EstimationDashboard
+                data={estimationDashboardData}
+                onWatchDemo={() => setIsDemoOpen(true)}
+              />
+            </div>
+          </section>
+
         </div>
       </section>
 
-      <section className="border-t border-gray-100 bg-[#F3F6FA] py-12 lg:py-16">
+
+      {/* =========================================================
+          VIDEO MODAL
+      ========================================================= */}
+      {isDemoOpen && (
+        <div
+          className="
+            fixed
+            inset-0
+            z-[9999]
+            flex
+            items-center
+            justify-center
+            bg-black/70
+            p-4
+            backdrop-blur-sm
+          "
+          role="dialog"
+          aria-modal="true"
+          aria-label="Estimation demo"
+          onClick={() => setIsDemoOpen(false)}
+        >
+
+          <div
+            className="
+              relative
+              w-full
+              max-w-5xl
+              overflow-hidden
+              rounded-2xl
+              bg-black
+              shadow-2xl
+            "
+            onClick={(event) => event.stopPropagation()}
+          >
+
+            <button
+              type="button"
+              onClick={() => setIsDemoOpen(false)}
+              className="
+                absolute
+                right-3
+                top-3
+                z-10
+                flex
+                h-9
+                w-9
+                items-center
+                justify-center
+                rounded-full
+                bg-black/60
+                text-xl
+                text-white
+                transition
+                hover:bg-black/80
+              "
+              aria-label="Close video"
+            >
+              ×
+            </button>
+
+            <video
+              className="block aspect-video w-full"
+              controls
+              autoPlay
+              playsInline
+            >
+              <source
+                src="/estimation_demo.mp4"
+                type="video/mp4"
+              />
+
+              Your browser does not support the video tag.
+            </video>
+
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================
+          FEATURES SECTION
+      ========================================================= */}
+      <section className="border-t border-gray-100 bg-[#F3F6FA] py-6 lg:py-8">
+        
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-            <SectionHeader
-              title={
-                <>
-                  Everything You Need for Accurate{" "}
-                  <span className="text-brand-orange">Estimation & Winning Proposals</span>
-                </>
-              }
-              subtitle="Build estimates, apply markups, and deliver client-ready proposals from one connected workflow."
-            />
-          </motion.div>
-          <EstimationFeaturesGrid isMobile={isMobile} />
+        <motion.div
+          {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}
+          className="mb-5 text-center"
+        >
+          <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
+            {estimationFeaturesTitle.lead}{" "}
+            <span className="text-brand-orange">
+              {estimationFeaturesTitle.accent}
+            </span>
+            <span className="mx-auto mt-2 block h-[3px] w-16 rounded-full bg-brand-navy" />
+          </h2>
+        </motion.div>
+          <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {estimationFeatures.map((feat, i) => (
+              <motion.div
+                key={feat.title}
+                {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: Math.min(i * 0.04, 0.2) })}
+                className="min-w-0 w-full"
+              >
+                <EstimationFeatureCard
+                  feat={feat}
+                />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-t border-gray-100 bg-white py-12 lg:py-16">
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-            <SectionHeader
-              eyebrow="Process"
-              title={
-                <>
-                  Estimation to Proposal — <span className="text-brand-navy">Seamless Workflow</span>
-                </>
-              }
-              titleClassName="text-brand-orange"
-              subtitle="From client BOQ to submitted proposal — one connected path."
-            />
-          </motion.div>
+      {/* =========================================================
+          WORKFLOW + CONNECTED + IMAGE
+      ========================================================= */}
+      <section className="relative overflow-visible border-t border-gray-100 bg-white py-10 lg:py-10">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <motion.div
+        {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}
+        className="mb-10 text-center"
+      >
+        <div className="mb-3 flex items-center justify-center gap-3">
+          <span className="h-px w-10 bg-brand-orange" />
 
-          <div className="relative hidden lg:block">
-            <div
-              className="pointer-events-none absolute top-[27px] right-[calc(100%/16)] left-[calc(100%/16)] h-[2px] bg-brand-orange"
-              aria-hidden
-            />
-            <ol className="relative m-0 grid list-none grid-cols-8 gap-2.5 p-0 xl:gap-3">
-              {estimationWorkflow.map((step, i) => {
-                const Icon = step.icon;
-                return (
-                  <motion.li
-                    key={step.title}
-                    {...scrollMotionProps(isMobile, { y: 12, duration: 0.35, delay: Math.min(i * 0.03, 0.24) })}
-                    className="flex min-w-0 flex-col items-center text-center"
-                  >
-                    <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-brand-orange bg-white shadow-[0_0_18px_rgba(254,93,2,0.28)]">
-                      <Icon size={22} className="text-brand-orange" strokeWidth={2} aria-hidden />
-                    </span>
-                    <div className="-mt-7 flex min-h-[140px] flex-1 flex-col rounded-2xl border border-gray-100 bg-white px-2.5 pb-4 pt-10 shadow-[0_10px_28px_-18px_rgba(23,43,77,0.22)] xl:px-3">
-                      <h3 className="text-sm font-extrabold leading-snug text-brand-navy">{step.title}</h3>
-                      <p className="mt-2 text-xs leading-snug text-[#6B778C]">{step.description}</p>
-                    </div>
-                  </motion.li>
-                );
-              })}
-            </ol>
-          </div>
+          <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand-orange">
+            Process
+          </span>
 
-          <ol className="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 lg:hidden">
+          <span className="h-px w-10 bg-brand-orange" />
+        </div>
+
+        <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
+          {estimationWorkflowTitle.lead}{" "}
+          <span className="text-brand-orange">
+            {estimationWorkflowTitle.accent}
+          </span>
+        </h2>
+        
+      </motion.div>
+
+        {/* Desktop Workflow */}
+        <div className="relative hidden lg:block">
+          <ol
+            className="relative m-0 grid list-none gap-2.5 p-0"
+            style={{
+              gridTemplateColumns: `repeat(${colCount}, minmax(0, 1fr))`,
+            }}
+          >
             {estimationWorkflow.map((step, i) => {
               const Icon = step.icon;
+
               return (
                 <motion.li
                   key={step.title}
-                  {...scrollMotionProps(isMobile, { y: 12, duration: 0.35, delay: Math.min(i * 0.03, 0.2) })}
-                  className="flex gap-3 rounded-2xl border border-gray-100 bg-white px-4 py-4 shadow-[0_8px_24px_-18px_rgba(23,43,77,0.18)]"
+                  {...scrollMotionProps(isMobile, {
+                    y: 12,
+                    duration: 0.35,
+                    delay: Math.min(i * 0.03, 0.24),
+                  })}
+                  className="relative flex min-w-0 flex-col items-center text-center"
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-brand-orange bg-white">
-                    <Icon size={18} className="text-brand-orange" strokeWidth={2} aria-hidden />
+                  {i < estimationWorkflow.length - 1 && (
+                    <div
+                      className="
+                        pointer-events-none
+                        absolute
+                        left-1/2
+                        right-[-5px]
+                        top-[27px]
+                        z-0
+                        flex
+                        items-center
+                      "
+                      aria-hidden
+                    >
+                      <div className="h-px flex-1 bg-brand-orange/70" />
+
+                      <svg
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 10"
+                        fill="none"
+                        className="shrink-0 text-brand-orange"
+                      >
+                        <path
+                          d="M1.5 5H8M5.5 2.5L8 5L5.5 7.5"
+                          stroke="currentColor"
+                          strokeWidth="1.4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  )}
+
+                  <span
+                    className="
+                      relative
+                      z-10
+                      flex
+                      h-14
+                      w-14
+                      items-center
+                      justify-center
+                      rounded-full
+                      border-2
+                      border-brand-orange
+                      bg-white
+                      shadow-[0_0_18px_rgba(254,93,2,0.28)]
+                    "
+                  >
+                    <Icon
+                      size={22}
+                      className="text-brand-orange"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
                   </span>
-                  <div className="min-w-0">
-                    <h3 className="text-sm font-extrabold leading-snug text-brand-navy">{step.title}</h3>
-                    <p className="mt-1 text-sm leading-snug text-[#6B778C]">{step.description}</p>
+
+                  <span
+                    className="h-7 w-px bg-brand-orange"
+                    aria-hidden
+                  />
+
+                  <div className="flex min-h-[72px] items-start justify-center px-2">
+                    <h3 className="text-sm font-extrabold leading-snug text-brand-navy">
+                      {step.title}
+                    </h3>
                   </div>
                 </motion.li>
               );
             })}
           </ol>
         </div>
-      </section>
 
-      <section className="border-t border-gray-100 bg-white py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })} className="mb-8 max-w-3xl lg:mb-10">
-            <h2 className="text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">
-              Built for estimators:{" "}
-              <span className="font-bold text-[#42526E]">From first takeoff to winning bid.</span>
-            </h2>
-          </motion.div> */}
+        {/* Mobile Workflow */}
+        <ol className="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 lg:hidden">
+          {estimationWorkflow.map((step, i) => {
+            const Icon = step.icon;
 
-          <div className="grid items-stretch gap-5 lg:grid-cols-3">
-            <motion.article
-              {...scrollMotionProps(isMobile, { y: 14, duration: 0.4 })}
-              className="relative flex flex-col overflow-hidden rounded-2xl border border-gray-200/90 bg-brand-navy p-6 shadow-[0_8px_28px_-20px_rgba(23,43,77,0.22)]"
-            >
-              <span className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange" aria-hidden />
-              <h3 className="text-lg font-extrabold leading-snug text-white sm:text-xl">Why estimators choose ZedOps</h3>
-              <p className="mt-1 text-sm leading-snug text-white/70">
-                Library rates, mapping, and revisions on one record.
-              </p>
-              <ul className="mt-4 flex flex-1 flex-col">
-                {estimationWhy.map((item, i) => {
-                  const Icon = item.icon;
-                  return (
-                    <li
-                      key={item.title}
-                      className={`flex items-start gap-3 py-3 ${i > 0 ? "border-t border-gray-100" : ""}`}
-                    >
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white/30">
-                        <Icon size={16} className="text-brand-orange" aria-hidden />
-                      </span>
-                      <Check size={14} className="mt-2 shrink-0 text-brand-orange" strokeWidth={2.6} aria-hidden />
-                      <div className="min-w-0">
-                        <p className="text-sm font-extrabold text-white">{item.title}</p>
-                        <p className="mt-0.5 text-sm leading-snug text-white/70">{item.desc}</p>
-                      </div>
-                    </li>
-                  );
+            return (
+              <motion.li
+                key={step.title}
+                {...scrollMotionProps(isMobile, {
+                  y: 12,
+                  duration: 0.35,
+                  delay: Math.min(i * 0.03, 0.2),
                 })}
-              </ul>
-            </motion.article>
-
-            <motion.article
-              {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: 0.05 })}
-              className="relative flex flex-col overflow-hidden rounded-2xl border border-gray-200/90 bg-brand-navy p-6 shadow-[0_8px_28px_-20px_rgba(23,43,77,0.22)]"
-            >
-              <span className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange" aria-hidden />
-              <div className="mb-1 flex items-center gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/30">
-                  <Sparkles size={18} className="text-brand-orange" aria-hidden />
+                className="
+                  flex
+                  gap-3
+                  rounded-2xl
+                  border
+                  border-gray-100
+                  bg-white
+                  px-4
+                  py-4
+                  shadow-[0_8px_24px_-18px_rgba(23,43,77,0.18)]
+                "
+              >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-brand-orange bg-white">
+                  <Icon
+                    size={18}
+                    className="text-brand-orange"
+                    strokeWidth={2}
+                    aria-hidden
+                  />
                 </span>
-                <div>
-                  <h3 className="text-lg font-extrabold leading-snug text-white sm:text-xl">What’s coming next</h3>
-                  <p className="text-xs font-bold tracking-[0.14em] text-brand-orange uppercase">AI roadmap</p>
+
+                <div className="min-w-0">
+                  <h3 className="text-sm font-extrabold leading-snug text-brand-navy">
+                    {step.title}
+                  </h3>
                 </div>
-              </div>
-              <ul className="mt-3 flex flex-1 flex-col">
-                {estimationAiSoon.map((item, i) => {
-                  const Icon = item.icon;
-                  return (
-                    <li
-                      key={item.title}
-                      className={`flex items-start gap-3 py-3 ${i > 0 ? "border-t border-gray-100" : ""}`}
-                    >
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white/30">
-                        <Icon size={16} className="text-brand-orange" aria-hidden />
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-start justify-between gap-2">
-                          <p className="text-sm font-extrabold text-white">{item.title}</p>
-                          <span className="shrink-0 rounded-full bg-brand-orange/10 px-2 py-0.5 text-[9px] font-bold tracking-wide text-brand-orange uppercase">
-                            Soon
-                          </span>
-                        </div>
-                        <p className="mt-0.5 text-sm leading-snug text-[#6B778C]">{item.body}</p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+              </motion.li>
+            );
+          })}
+        </ol>
+      </div>
+
+        <div className="mx-auto max-w-7xl px-0 py-8 lg:py-2 sm:px-4 lg:px-6">
+          <div className="grid items-stretch gap-5 lg:grid-cols-[1.15fr_2.05fr]">
+
+            {/* Left Blue Card */}
+            <motion.article
+              {...scrollMotionProps(isMobile, {
+                y: 14,
+                duration: 0.4,
+              })}
+              className="relative flex flex-col"
+            >
+              <EstimationConnectedCard />
             </motion.article>
 
+            {/* Large Image */}
             <motion.article
-              {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: 0.1 })}
-              className="relative flex flex-col overflow-hidden rounded-2xl bg-brand-navy p-6 text-white shadow-[0_16px_40px_-20px_rgba(23,43,77,0.45)] sm:p-7"
+              {...scrollMotionProps(isMobile, {
+                y: 14,
+                duration: 0.4,
+                delay: 0.05,
+              })}
+              className="
+                relative
+                min-h-[360px]
+                overflow-hidden
+                rounded-2xl
+                border
+                border-gray-200
+                bg-gray-100
+                shadow-[0_12px_28px_-16px_rgba(23,43,77,0.22)]
+              "
             >
+              <img
+                src="/estimation dashboard.png"
+                alt="Estimation and proposal overview"
+                className="
+                  absolute
+                  inset-0
+                  h-full
+                  w-full
+                  object-cover
+                "
+              />
+
               <div
-                className="pointer-events-none absolute inset-0 opacity-[0.18]"
-                style={{
-                  backgroundImage: "url('/new-hero-banner.png')",
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                }}
+                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent"
                 aria-hidden
               />
-              <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand-navy/70 via-brand-navy/85 to-brand-navy"
-                aria-hidden
-              />
-              <div className="relative z-10 flex h-full flex-col">
-                <p className="mb-2 text-xs font-bold tracking-[0.14em] text-brand-orange uppercase">
-                  {estimationCallout.eyebrow}
-                </p>
-                <h3 className="text-2xl font-extrabold leading-snug text-white">{estimationCallout.title}</h3>
-                <EstimateBoqMock />
-                <div className="mt-auto pt-5">
-                  <a
-                    href="/early-access"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-orange px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
-                  >
-                    Book a demo
-                    <ArrowRight size={15} aria-hidden />
-                  </a>
-                </div>
-              </div>
             </motion.article>
+
           </div>
         </div>
+      </section>
+
+      {/* =========================================================
+          COMPARISON SECTION
+      ========================================================= */}
+      <section className="border-t border-gray-100 bg-[#F3F6FA] py-6 lg:py-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+          <motion.div
+            {...scrollMotionProps(isMobile, {
+              y: 16,
+              duration: 0.4,
+            })}
+            className="mx-auto max-w-3xl text-center"
+          >
+            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
+              Traditional Way{" "}
+              <span className="font-medium text-[#6B778C]">vs</span>{" "}
+              <span className="text-brand-orange">ZEDOPS</span>
+            </h2>
+
+            <span className="mx-auto mt-2 block h-[3px] w-16 rounded-full bg-brand-orange" />
+          </motion.div>
+
+          <motion.div
+            {...scrollMotionProps(isMobile, {
+              y: 16,
+              duration: 0.45,
+              delay: 0.05,
+            })}
+            className="relative mt-6"
+          >
+            <div className="grid gap-5 lg:grid-cols-2 lg:gap-8">
+
+              <article className="overflow-hidden rounded-3xl border border-red-100 bg-[#FFF8F8] shadow-[0_12px_32px_-22px_rgba(23,43,77,0.25)]">
+
+                <div className="px-6 py-3 text-center sm:px-8">
+                  <h3 className="text-xl font-extrabold text-[#C62828] sm:text-2xl">
+                    {estimationComparison.traditionalTitle}
+                  </h3>
+                </div>
+
+                <div className="mx-3 mb-3 overflow-hidden rounded-2xl border border-red-100 bg-white">
+                  {estimationComparison.traditional.map((item) => (
+                    <div
+                      key={item.title}
+                      className="flex items-center gap-3 border-b border-gray-100 px-4 py-3 last:border-b-0 sm:px-5"
+                    >
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FFF5F5] text-[#DE350B] ring-1 ring-red-100">
+                        <BarChart3 size={19} strokeWidth={1.8} />
+                      </span>
+
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-[15px]">
+                          {item.title}
+                        </p>
+
+                        <p className="mt-0.5 text-xs leading-snug text-[#6B778C] sm:text-sm">
+                          {item.description}
+                        </p>
+                      </div>
+
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#EF4444]">
+                        <X
+                          size={13}
+                          className="text-white"
+                          strokeWidth={3}
+                        />
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              <article className="overflow-hidden rounded-3xl border border-emerald-100 bg-[#F5FCF8] shadow-[0_12px_32px_-22px_rgba(23,43,77,0.25)]">
+
+                <div className="px-6 py-3 text-center sm:px-8">
+                  <h3 className="text-xl font-extrabold text-[#00875A] sm:text-2xl">
+                    {estimationComparison.zedopsTitle}
+                  </h3>
+                </div>
+
+                <div className="mx-3 mb-3 overflow-hidden rounded-2xl border border-emerald-100 bg-white">
+                  {estimationComparison.withZedops.map((item) => (
+                    <div
+                      key={item.title}
+                      className="flex items-center gap-3 border-b border-gray-100 px-4 py-3 last:border-b-0 sm:px-5"
+                    >
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F0FFF7] text-[#00875A] ring-1 ring-emerald-100">
+                        <TrendingUp size={19} strokeWidth={1.8} />
+                      </span>
+
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-[15px]">
+                          {item.title}
+                        </p>
+
+                        <p className="mt-0.5 text-xs leading-snug text-[#6B778C] sm:text-sm">
+                          {item.description}
+                        </p>
+                      </div>
+
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#22A866]">
+                        <Check
+                          size={13}
+                          className="text-white"
+                          strokeWidth={3}
+                        />
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            </div>
+
+            <div className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:block">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-navy text-base font-black text-white shadow-xl ring-8 ring-white">
+                VS
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            {...scrollMotionProps(isMobile, {
+              y: 14,
+              duration: 0.4,
+              delay: 0.1,
+            })}
+            className="mt-4 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_10px_28px_-20px_rgba(23,43,77,0.25)]"
+          >
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5">
+
+              {estimationComparison.benefits.map((benefit, index) => {
+                const icons = [
+                  Eye,
+                  Target,
+                  BarChart3,
+                  ShieldCheck,
+                  Trophy,
+                ];
+
+                const Icon = icons[index];
+
+                return (
+                  <div
+                    key={benefit.title}
+                    className={`flex items-center gap-3 px-4 py-3 ${
+                      index < estimationComparison.benefits.length - 1
+                        ? "border-b border-gray-100 lg:border-b-0 lg:border-r"
+                        : ""
+                    }`}
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center text-brand-navy">
+                      <Icon size={24} strokeWidth={1.8} />
+                    </span>
+
+                    <div className="min-w-0">
+                      <p className="text-sm font-extrabold leading-snug text-brand-navy">
+                        {benefit.title}
+                      </p>
+
+                      <p className="mt-0.5 text-xs leading-snug text-[#6B778C]">
+                        {benefit.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+
+            </div>
+          </motion.div>
+
+          <motion.div
+            {...scrollMotionProps(isMobile, {
+              y: 14,
+              duration: 0.4,
+              delay: 0.14,
+            })}
+            className="mt-3 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_10px_28px_-20px_rgba(23,43,77,0.25)]"
+          >
+            <div className="grid md:grid-cols-[1fr_auto_1fr] md:items-center">
+
+              <div className="flex items-center gap-3 px-5 py-3 sm:px-6">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-orange/10">
+                  <Zap
+                    size={21}
+                    className="text-brand-orange"
+                    fill="currentColor"
+                  />
+                </span>
+
+                <div>
+                  <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-base">
+                    From manual & delayed → to automated & real-time.
+                  </p>
+
+                  <p className="mt-0.5 text-sm font-bold text-brand-orange">
+                    That&apos;s the ZEDOPS advantage.
+                  </p>
+                </div>
+              </div>
+
+              <div className="hidden h-12 w-px bg-gray-200 md:block" />
+
+              <div className="flex items-center gap-3 px-5 py-3 sm:px-6">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-orange/10 text-lg font-black text-brand-orange">
+                  Z
+                </span>
+
+                <div>
+                  <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-base">
+                    One Platform. Every Project.
+                  </p>
+
+                  <p className="mt-0.5 text-sm font-bold text-brand-orange">
+                    Estimate. Price. Propose. Win.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* =========================================================
+          AI ROADMAP + SOURCES
+      ========================================================= */}
+      <section className="border-t border-gray-100 bg-white py-12 lg:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+            <motion.div
+              {...scrollMotionProps(isMobile, { y: 12, duration: 0.35 })}
+              className="mb-8 text-center"
+            >
+              <div className="flex items-center justify-center gap-3">
+                <Sparkles
+                  size={26}
+                  className="shrink-0 text-brand-orange"
+                  aria-hidden
+                />
+
+                <h2 className="text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">
+                  From{" "}
+                  <span className="text-brand-orange">
+                    estimation to delivery
+                  </span>{" "}
+                  — stay ahead with smart cost intelligence.
+                </h2>
+              </div>
+
+              <span className="mx-auto mt-4 block h-[4px] w-20 rounded-full bg-brand-orange" />
+            </motion.div>
+
+            <motion.div
+              {...scrollMotionProps(isMobile, {
+                y: 14,
+                duration: 0.4,
+                delay: 0.04,
+              })}
+              className="
+                overflow-hidden
+                rounded-2xl
+                border border-[#E1E5EB]
+                bg-white
+                shadow-[0_8px_30px_-18px_rgba(23,43,77,0.25)]
+              "
+            >
+              <div className="flex flex-col lg:flex-row">
+
+                <div
+                  className="
+                    flex
+                    shrink-0
+                    items-center
+                    border-b
+                    border-[#E1E5EB]
+                    bg-[#F4F6F8]
+                    px-7
+                    py-8
+                    lg:w-[235px]
+                    lg:border-b-0
+                    lg:border-r
+                    xl:w-[255px]
+                  "
+                >
+                  <p className="text-lg font-extrabold leading-snug text-brand-navy">
+                    What's Coming Next —
+                    <span className="mt-1 block text-brand-orange">
+                      ZED AI{" "}
+                      <span className="font-semibold text-[#42526E]">
+                        (Roadmap)
+                      </span>
+                    </span>
+                  </p>
+                </div>
+
+                <ul className="grid flex-1 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {estimationAiSoon.map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <li
+                        key={item.title}
+                        className="
+                          flex
+                          min-w-0
+                          border-b
+                          border-[#E1E5EB]
+                          px-5
+                          py-7
+                          sm:px-6
+                          lg:border-r
+                          lg:border-b-0
+                          lg:last:border-r-0
+                        "
+                      >
+                        <div className="flex min-w-0 flex-col">
+
+                          <span className="mb-4 flex h-9 w-9 items-center justify-center">
+                            <Icon
+                              size={24}
+                              className="text-brand-orange"
+                              strokeWidth={1.8}
+                              aria-hidden
+                            />
+                          </span>
+
+                          <p className="text-sm font-extrabold leading-snug text-brand-navy">
+                            {item.title}
+                          </p>
+
+                          <p className="mt-2 flex-1 text-xs leading-relaxed text-[#42526E]">
+                            {item.body}
+                          </p>
+
+                          <span
+                            className="
+                              mt-4
+                              inline-flex
+                              w-fit
+                              rounded-full
+                              bg-[#EEF6FF]
+                              px-3
+                              py-1
+                              text-[10px]
+                              font-bold
+                              leading-none
+                              text-[#2563EB]
+                            "
+                          >
+                            Coming Soon
+                          </span>
+
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 mt-6 lg:px-8">
+
+            <motion.div
+              {...scrollMotionProps(isMobile, { y: 12, duration: 0.4 })}
+            >
+              <h2 className="text-center text-[30px] font-extrabold tracking-tight text-brand-navy">
+                {estimationSourcesTitle.lead}
+                <span className="text-brand-orange">
+                  {estimationSourcesTitle.accent}
+                </span>
+              </h2>
+
+              <span className="mx-auto mt-2 block h-[3px] w-15 rounded-full bg-brand-orange" />
+            </motion.div>
+
+            <div className="mt-8 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <ol className="mx-auto flex min-w-max list-none items-center gap-0 p-0 lg:min-w-0 lg:w-full lg:justify-between">
+                {estimationSources.map((source, i) => {
+                  const Icon = source.icon;
+
+                  return (
+                    <li
+                      key={source.label}
+                      className="flex min-w-0 items-center"
+                    >
+                      {i > 0 ? (
+                        <span
+                          className="mx-3 hidden h-px w-8 shrink-0 border-t border-dashed border-brand-navy sm:block lg:w-10"
+                          aria-hidden
+                        />
+                      ) : null}
+
+                      <div
+                        className={`flex flex-col items-center text-center ${
+                          source.current
+                            ? "min-w-[7.5rem] rounded-xl border border-white/10 bg-brand-navy px-3 py-3 shadow-[0_8px_24px_-16px_rgba(23,43,77,0.22)] sm:min-w-[8.5rem]"
+                            : "min-w-[5.5rem] px-1 sm:min-w-[6.5rem]"
+                        }`}
+                      >
+                        <span
+                          className={`flex h-11 w-11 items-center justify-center rounded-lg ${
+                            source.current
+                              ? "bg-white/30 ring-1 ring-[#0052CC]/20"
+                              : "bg-white ring-1 ring-gray-200"
+                          }`}
+                        >
+                          <Icon
+                            size={22}
+                            className="text-brand-orange"
+                            strokeWidth={1.8}
+                            aria-hidden
+                          />
+                        </span>
+
+                        <span
+                          className={`mt-2 max-w-[7rem] text-[10px] font-semibold leading-snug sm:text-xs ${
+                            source.current
+                              ? "text-brand-orange"
+                              : "text-[#42526E]"
+                          }`}
+                        >
+                          {source.label}
+                        </span>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+          </div>
+
       </section>
 
       <FinalCTA
         variant="brand-orange"
         compact
-        title={<>Create Accurate Estimates. <span className="text-brand-navy">Win More Projects.</span></>}
+        title={
+          <>
+            {estimationCta.title}
+          </>
+        }
         body={estimationCta.body}
-        primary={estimationCta.primary}
+        primary={{ label: "Book a Demo", href: "/early-access" }}
       />
     </>
   );
