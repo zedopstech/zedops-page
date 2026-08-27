@@ -184,58 +184,40 @@ export default function PersonaTemplate({
         </div>
       </section>
 
-      {/* Challenges  -  modern big cards */}
-      <section className="relative overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
+      {/* Sound familiar  -  unified challenge band */}
+      <section className="relative overflow-hidden border-y border-gray-200 bg-[#F4F6FB] py-20 lg:py-24">
         <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background: "linear-gradient(168deg, #C4D9FF 0%, #E8EFFF 22%, #F6F9FF 48%, #FFFFFF 72%, #FDF8F3 100%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.55]"
+          className="pointer-events-none absolute inset-0 opacity-50"
           style={blueprintBg}
           aria-hidden
         />
-        <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-widest mb-3">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto mb-14 max-w-2xl text-center lg:mb-16">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-orange">
               Sound familiar?
             </p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight mb-5">
+            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
               {challengesHeading}
             </h2>
-            <p className="text-[#6B778C] text-base max-w-xl mx-auto leading-snug">
-              {challengesIntro}
-            </p>
+            <p className="mt-4 text-base leading-snug text-[#6B778C]">{challengesIntro}</p>
           </div>
-          <div className="grid sm:grid-cols-3 gap-0 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-gray-200">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {challenges.map((c, i) => (
               <motion.div
                 key={c.title}
-                {...scrollMotionProps(isMobile, { y: 24, duration: 0.45, delay: i * 0.1 })}
-                className="relative py-10 sm:py-8 lg:py-10 px-6 sm:px-8 lg:px-10 min-h-[320px] sm:min-h-[380px] lg:min-h-[420px] flex flex-col bg-transparent"
+                {...scrollMotionProps(isMobile, { y: 24, duration: 0.45, delay: i * 0.08 })}
+                className="relative flex flex-col rounded-2xl border border-gray-200 bg-white p-7 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-shadow duration-200 hover:shadow-[0_12px_28px_-12px_rgba(23,43,77,0.12)]"
               >
-                <div
-                  className="absolute top-6 right-2 sm:right-6 font-extrabold leading-none select-none text-gray-200/90"
-                  style={{ fontSize: "6.5rem" }}
-                  aria-hidden="true"
-                >
-                  {String(i + 1).padStart(2, "0")}
+                <div className="mb-5 flex items-center gap-3">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-navy">
+                    <c.icon size={22} className="text-white" />
+                  </div>
+                  <span className="text-xs font-black uppercase tracking-widest text-[#97A0AF]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </div>
-                <div
-                  className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl shadow-[0_8px_24px_-8px_rgba(0,82,204,0.35)] ring-1 ring-white/25"
-                  style={{
-                    background: "linear-gradient(142deg, #0052CC 0%, #172B4D 55%, #0f2840 100%)",
-                  }}
-                >
-                  <c.icon size={26} className="text-white" />
-                </div>
-                <div className="relative z-10 flex-1 flex flex-col">
-                  <h3 className="font-extrabold text-brand-navy text-xl mb-4 leading-snug">{c.title}</h3>
-                  <p className="text-[#6B778C] text-base leading-snug flex-1">{c.desc}</p>
-                </div>
+                <h3 className="mb-2 text-lg font-extrabold leading-snug text-brand-navy">{c.title}</h3>
+                <p className="text-sm leading-snug text-[#6B778C]">{c.desc}</p>
               </motion.div>
             ))}
           </div>

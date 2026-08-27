@@ -5,6 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import PageHero from "@/components/PageHero";
 import HowWeHelpPageShell from "@/components/HowWeHelpPageShell";
+import SectionHeader from "@/components/SectionHeader";
 
 const personaQuickLinks = [
   { label: "General contractors", href: "/who-we-serve/general-contractors" },
@@ -75,12 +76,10 @@ export default function HowWeHelpRolePage() {
       <section className="border-t border-gray-200 bg-[#F8FAFC] py-20 lg:py-24">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.45 })}>
-            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
-              Persona pages live under Built for you
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-snug text-[#6B778C] sm:text-base">
-              That hub is where we tell the human story - photos, outcomes, and what day-to-day work looks like for GCs, owners, PMs, and consultants. This page is the access model; that hub is the “why it fits us.”
-            </p>
+            <SectionHeader
+              title="Persona pages live under Built for you"
+              subtitle="That hub is where we tell the human story - photos, outcomes, and what day-to-day work looks like for GCs, owners, PMs, and consultants. This page is the access model; that hub is the “why it fits us.”"
+            />
             <a
               href="/who-we-serve"
               className="mt-8 inline-flex items-center gap-2 rounded-md bg-brand-orange px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
@@ -91,7 +90,7 @@ export default function HowWeHelpRolePage() {
             <p className="mt-10 text-sm font-semibold leading-snug text-[#0052CC]">
               {personaQuickLinks.map((p, i) => (
                 <span key={p.href}>
-                  {i > 0 ? <span className="mx-2 text-[#CBD5E1]" aria-hidden>·</span> : null}
+                  {i > 0 ? <span className="mx-2 text-[#97A0AF]" aria-hidden>·</span> : null}
                   <a href={p.href} className="underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]">
                     {p.label}
                   </a>

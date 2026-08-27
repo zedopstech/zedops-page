@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Brain, FileText, PenLine, BarChart2, ArrowRight, Check, Cpu } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
+import SectionHeader from "@/components/SectionHeader";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
@@ -121,13 +122,13 @@ export default function SolutionsPage() {
         </PageHero>
 
         {/* Capability modules */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] border-t border-gray-100">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-t border-gray-200">
           <div className="max-w-6xl mx-auto flex flex-col gap-8">
             {modules.map((mod, i) => (
               <motion.div
                 key={mod.tag}
                 {...scrollMotionProps(isMobile, { y: 28, duration: 0.5, delay: 0.05 })}
-                className="bg-white border border-gray-100 rounded-2xl p-8 lg:p-10 hover:border-gray-300 transition-all duration-200"
+                className="bg-white border border-gray-200/90 rounded-2xl p-8 lg:p-10 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-all duration-200 hover:shadow-[0_12px_28px_-12px_rgba(23,43,77,0.12)]"
               >
                 <div className={`grid lg:grid-cols-2 gap-10 items-center ${mod.image === "left" ? "lg:flex-row-reverse" : ""}`}>
 
@@ -205,13 +206,13 @@ export default function SolutionsPage() {
         </section>
 
         {/* Built for you callout */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-100">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-widest mb-4">Tailored by role</p>
-            <h2 className="text-2xl font-extrabold text-brand-navy mb-4">Not every role needs every tool.</h2>
-            <p className="text-[#6B778C] text-sm leading-snug mb-7">
-              ZedOps surfaces the right features for each team member. See how we've designed the platform for your specific role.
-            </p>
+        <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+          <div className="max-w-3xl mx-auto">
+            <SectionHeader
+              eyebrow="Tailored by role"
+              title="Not every role needs every tool."
+              subtitle="ZedOps surfaces the right features for each team member. See how we've designed the platform for your specific role."
+            />
             <a
               href="/who-we-serve"
               className="inline-flex items-center gap-2 px-6 py-3 border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white font-bold text-sm rounded-md transition-all duration-150 group"

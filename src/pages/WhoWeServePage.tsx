@@ -95,7 +95,7 @@ export default function WhoWeServePage() {
         </section>
 
         {/* Persona grid */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] border-t border-gray-100">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-t border-gray-200">
           <div className="max-w-6xl mx-auto">
             <div className="grid sm:grid-cols-2 gap-8">
               {personas.map((p, i) => (
@@ -103,7 +103,7 @@ export default function WhoWeServePage() {
                   key={p.title}
                   href={p.href}
                   {...scrollMotionProps(isMobile, { y: 24, duration: 0.45, delay: i * 0.08 })}
-                  className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:border-gray-300 transition-all duration-300 flex flex-col"
+                  className="group bg-white border border-gray-200/90 rounded-2xl overflow-hidden shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-all duration-300 hover:shadow-[0_12px_28px_-12px_rgba(23,43,77,0.12)] flex flex-col"
                 >
                   {/* Image */}
                   <div className="relative h-52 overflow-hidden bg-gray-100">

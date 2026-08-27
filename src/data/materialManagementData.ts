@@ -13,6 +13,7 @@ import {
   FileSignature,
   Gauge,
   Link2,
+  Package,
   PackageCheck,
   ShoppingCart,
   Sparkles,
@@ -346,6 +347,47 @@ export const materialDashboardData: DashboardData = {
     upcoming: "Incoming Deliveries",
     alerts: "Supply Alerts",
   },
+
+  customFloatCards: [
+    {
+      title: "Supply Progress",
+      value: "94%",
+      icon: Package,
+      items: [
+        { label: "Approved", value: "96" },
+        { label: "On Order", value: "78" },
+      ],
+    },
+    {
+      title: "Material Insights",
+      value: "128 Requests",
+      icon: BarChart3,
+      items: [
+        { label: "Approved", value: "96" },
+        { label: "Delivered", value: "52" },
+        { label: "Overdue", value: "9" },
+      ],
+    },
+    {
+      title: "Incoming Deliveries",
+      value: "5 Incoming",
+      icon: Truck,
+      items: [
+        { label: "Zenith Engineering", value: "28 May" },
+        { label: "Al Ghurair FZE", value: "27 May" },
+        { label: "Middle East Wires", value: "20 May" },
+      ],
+    },
+    {
+      title: "Supply Alerts",
+      value: "9 Overdue",
+      icon: AlertTriangle,
+      items: [
+        { label: "Pending Approvals", value: "22" },
+        { label: "On Order", value: "78" },
+      ],
+    },
+  ],
 
   kpis: [
     {

@@ -344,6 +344,47 @@ export const qualityDashboardData: DashboardData = {
     alerts: "Quality Alerts",
   },
 
+  customFloatCards: [
+    {
+      title: "Compliance Progress",
+      value: "78%",
+      icon: ShieldCheck,
+      items: [
+        { label: "Open Inspections", value: "42" },
+        { label: "Deficiencies", value: "37" },
+      ],
+    },
+    {
+      title: "Safety Insights",
+      value: "3 High-Risk",
+      icon: Eye,
+      items: [
+        { label: "Needs owner sign-off", value: "" },
+        { label: "Incidents down", value: "36%" },
+      ],
+    },
+    {
+      title: "Upcoming Inspections",
+      value: "3 Scheduled",
+      icon: ListChecks,
+      items: [
+        { label: "MEP QA/QC Walk", value: "24 Jul" },
+        { label: "Fire Safety Audit", value: "28 Jul" },
+        { label: "Structural Sign-off", value: "02 Aug" },
+      ],
+    },
+    {
+      title: "Quality Alerts",
+      value: "3 Open",
+      icon: AlertTriangle,
+      items: [
+        { label: "High-risk deficiency", value: "" },
+        { label: "Permit expiring", value: "" },
+        { label: "Incident review", value: "" },
+      ],
+    },
+  ],
+
   extraCard: {
     title: "Open Findings",
     value: "23",

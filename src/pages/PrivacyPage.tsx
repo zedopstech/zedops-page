@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
+import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import { Shield } from "lucide-react";
 
@@ -94,6 +95,7 @@ export default function PrivacyPage() {
           </div>
         </section>
 
+        <FinalCTA />
         <Footer />
       </div>
     </div>

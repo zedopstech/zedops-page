@@ -363,6 +363,47 @@ export const scheduleDashboardData: DashboardData = {
     alerts: "Schedule Alerts",
   },
 
+  customFloatCards: [
+    {
+      title: "Schedule Overview",
+      value: "53 Activities",
+      icon: GanttChart,
+      items: [
+        { label: "Window", value: "08 Jul → 18 Oct 2026" },
+        { label: "Status", value: "Updated Schedule" },
+      ],
+    },
+    {
+      title: "Critical Path",
+      value: "103 Days",
+      icon: GitBranch,
+      items: [
+        { label: "Span", value: "Jul → Oct 2026" },
+        { label: "Activities", value: "53" },
+      ],
+    },
+    {
+      title: "Upcoming Schedule",
+      value: "17 Jul – 03 Aug",
+      icon: CalendarClock,
+      items: [
+        { label: "Planned", value: "20 Jul" },
+        { label: "Planned", value: "25 Jul" },
+        { label: "Planned", value: "03 Aug" },
+      ],
+    },
+    {
+      title: "Schedule Alerts",
+      value: "Action Required",
+      icon: AlertTriangle,
+      items: [
+        { label: "Progress", value: "0.00%" },
+        { label: "Progress", value: "0.00%" },
+        { label: "Progress", value: "18.00%" },
+      ],
+    },
+  ],
+
   kpis: [
     {
       label: "SCHEDULE HEALTH",

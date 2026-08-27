@@ -6,6 +6,7 @@ import {
   ClipboardCheck,
   ClipboardList,
   Coins,
+  DollarSign,
   FileStack,
   FileText,
   GanttChart,
@@ -16,6 +17,7 @@ import {
   Percent,
   ScanSearch,
   Send,
+  Shapes,
   ShieldCheck,
   Sparkles,
   Target,
@@ -539,6 +541,49 @@ export const estimationDashboardData: DashboardData = {
     upcoming: "Pending Bids",
     alerts: "Estimation Alerts",
   },
+
+  customFloatCards: [
+    {
+      title: "Status Overview",
+      value: "11 Active",
+      icon: BarChart3,
+      items: [
+        { label: "Draft", value: "9" },
+        { label: "Submitted", value: "1" },
+        { label: "Awarded", value: "1" },
+      ],
+    },
+    {
+      title: "Estimation Trend",
+      value: "6 → 1",
+      icon: TrendingUp,
+      items: [
+        { label: "May", value: "6" },
+        { label: "Jun", value: "2" },
+        { label: "Jul", value: "2" },
+        { label: "Aug", value: "1" },
+      ],
+    },
+    {
+      title: "Scope Type Mix",
+      value: "Full Scope",
+      icon: Shapes,
+      items: [
+        { label: "Estimates", value: "11" },
+        { label: "Full scope", value: "100%" },
+      ],
+    },
+    {
+      title: "Portfolio Costs",
+      value: "$360K",
+      icon: DollarSign,
+      items: [
+        { label: "Labour", value: "$260K" },
+        { label: "Material", value: "$70K" },
+        { label: "Engineering", value: "$30K" },
+      ],
+    },
+  ],
 
   kpis: [
     {

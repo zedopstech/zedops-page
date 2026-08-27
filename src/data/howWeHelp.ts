@@ -31,7 +31,7 @@ export const howWeHelpHubLinks = [
   },
 ] as const;
 
-export type ProjectStageId = "preconstruction" | "construction" | "closeout";
+export type ProjectStageId = "preconstruction" | "construction" | "closeout" | "platform-core";
 
 export type ProjectStageBlock = {
   id: ProjectStageId;
@@ -47,41 +47,54 @@ export const projectStages: ProjectStageBlock[] = [
   {
     id: "preconstruction",
     title: "Preconstruction",
-    tagline: "Estimate, plan, and align before shovels hit the ground.",
-    body: "Library data, structured estimating inputs, and planning artefacts stay in one place so bid teams and operations aren’t reconciling conflicting spreadsheets. When you win the job, the same thread carries into execution without re-keying everything.",
+    tagline: "Estimate and plan with one source of truth before the build starts.",
+    body: "Connect estimates, quantities, and schedules from bid through execution.",
     outcomes: [
-      "Shared library for labour, materials, equipment, and productivity assumptions",
-      "Planning and scheduling context linked to how you’ll run the project",
-      "Cleaner handoff from bid rationale to project setup and procurement",
+      "Takeoffs, BOQs, and cost builds",
+      "Schedules, baselines, and assignments",
     ],
-    platformPath: "/platform/module/planning-execution",
-    platformLabel: "Planning & execution modules",
+    platformPath: "/platform/module/estimation",
+    platformLabel: "Estimation & Proposals",
   },
+
   {
     id: "construction",
     title: "Construction",
-    tagline: "Execution, material management, and information flow in real time.",
-    body: "Projects, daily logs, tasks, RFIs, materials, equipment, and finance hooks share one record. Field teams capture truth on site; the office sees the same numbers and documents without chasing threads across tools.",
+    tagline: "Run the job across six connected modules, not six disconnected tools.",
+    body: "One live project record connects field, office, and commercial teams.",
     outcomes: [
-      "Mobile-first logging tied to the active project context",
-      "Material management and site activity visible next to schedule and cost signals",
-      "Documents, drawings, and correspondence anchored to what’s happening now",
+      "Projects, logs, and tasks",
+      "Materials, workforce, and costs",
+      "Execution intelligence",
     ],
-    platformPath: "/platform/module/projects",
-    platformLabel: "Projects & field execution",
+    platformPath: "/platform/module/supply-chain",
+    platformLabel: "Material management",
   },
+
   {
     id: "closeout",
     title: "Closeout",
-    tagline: "Punch, quality, handover, and exports without losing the trail.",
-    body: "Inspections, punch lists, and safety histories stay attached to the job as you finish. Reporting and PDF exports pull from the same governed data leaders and owners already trusted during construction.",
+    tagline: "One governed trail from inspections to handover.",
+    body: "Keep inspections, punch, safety, and handover connected to the project.",
     outcomes: [
-      "Structured inspections and punch tracked through resolution",
-      "Quality and safety evidence organised for turnover and audits",
-      "Reporting packs assembled from live data, not weekend rewrites",
+      "Inspections and punch",
+      "Safety and handover records",
     ],
-    platformPath: "/platform/module/quality-safety-closeout",
-    platformLabel: "Quality, safety & closeout",
+    platformPath: "/platform/module/punch-list",
+    platformLabel: "Punchlist Management",
+  },
+
+  {
+    id: "platform-core",
+    title: "Platform core",
+    tagline: "The backbone every stage runs on.",
+    body: "One shared foundation for people, access, documents, and project data.",
+    outcomes: [
+      "Shared library and documents",
+      "Consistent roles and access",
+    ],
+    platformPath: "/platform/module/core",
+    platformLabel: "Core",
   },
 ];
 

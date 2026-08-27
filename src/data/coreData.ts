@@ -346,6 +346,45 @@ export const coreDashboardData: DashboardData = {
     alerts: "Alerts",
   },
 
+  customFloatCards: [
+    {
+      title: "People Overview",
+      value: "70 Employees",
+      icon: Users,
+      items: [
+        { label: "Total Users", value: "69" },
+        { label: "Employees managed in the directory", value: "" },
+      ],
+    },
+    {
+      title: "Contractor Network",
+      value: "24",
+      icon: UserCog,
+      items: [
+        { label: "Contractors", value: "" },
+        { label: "External workforce managed in directory", value: "" },
+      ],
+    },
+    {
+      title: "Business Network",
+      value: "29 Vendors",
+      icon: Building2,
+      items: [
+        { label: "29 Clients", value: "" },
+        { label: "Partners & customers in the directory", value: "" },
+      ],
+    },
+    {
+      title: "Directory Users",
+      value: "69",
+      icon: FolderOpen,
+      items: [
+        { label: "Total Users", value: "" },
+        { label: "Managed and organized in the system", value: "" },
+      ],
+    },
+  ],
+
   kpis: [
     {
       label: "DOCUMENTS",

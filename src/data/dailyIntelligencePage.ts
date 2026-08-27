@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import type { DashboardData } from "@/components/dashboards/ProductDashboard";
 
 import {
+  Activity,
   AlertTriangle,
   BarChart3,
   Building2,
@@ -1020,14 +1021,51 @@ export const dailyDashboardData: DashboardData = {
     alerts: "Field Alerts",
   },
 
+  customFloatCards: [
+    {
+      title: "Project Health",
+      value: "82/100",
+      icon: Activity,
+      items: [
+        { label: "Status", value: "Good" },
+        { label: "Updated", value: "today 07:45" },
+      ],
+    },
+    {
+      title: "Productivity Trend",
+      value: "Trending Up",
+      icon: TrendingUp,
+      items: [
+        { label: "3 Months", value: "" },
+        { label: "Productivity performance has improved over 3 months", value: "" },
+      ],
+    },
+    {
+      title: "Daily Target",
+      value: "72%",
+      icon: Target,
+      items: [
+        { label: "22 of 30 work logs on target", value: "" },
+        { label: "Expected / Actual 0 / 0 units", value: "" },
+      ],
+    },
+    {
+      title: "Material Status",
+      value: "2",
+      icon: Package,
+      items: [
+        { label: "Below Stock Threshold", value: "" },
+        { label: "Materials requiring stock attention", value: "" },
+      ],
+    },
+  ],
+
   extraCard: {
-    title: "Field Reports",
-    value: "34",
-    sub: "Submitted by 18 crews today",
+    title: "Daily Logs",
+    value: "0 Approved",
     items: [
-      { title: "On Track", description: "26 reports marked complete" },
-      { title: "Delayed", description: "5 reports flagged for review" },
-      { title: "Missing", description: "3 crews yet to submit" },
+      { title: "19 Submitted" },
+      { title: "3 Drafts Pending" },
     ],
   },
 

@@ -21,7 +21,7 @@ import BlogIndexPage from "@/pages/BlogIndexPage";
 import BlogPostPage from "@/pages/BlogPostPage";
 import WhoWeServePage from "@/pages/WhoWeServePage";
 import HowWeHelpHubPage from "@/pages/HowWeHelpHubPage";
-import HowWeHelpProjectStagePage from "@/pages/HowWeHelpProjectStagePage";
+import ProjectLifecyclePage from "@/pages/ProjectLifecyclePage";
 import HowWeHelpCompanyPage from "@/pages/HowWeHelpCompanyPage";
 import HowWeHelpTeamPage from "@/pages/HowWeHelpTeamPage";
 import HowWeHelpRolePage from "@/pages/HowWeHelpRolePage";
@@ -81,7 +81,7 @@ function Router() {
       <Route path="/roadmap" component={RoadmapPage} />
       <Route path="/blog/:slug" component={BlogPostPage} />
       <Route path="/blog" component={BlogIndexPage} />
-      <Route path="/how-we-help/project-stage" component={HowWeHelpProjectStagePage} />
+      <Route path="/how-we-help/project-stage" component={ProjectLifecyclePage} />
       <Route path="/how-we-help/company" component={HowWeHelpCompanyPage} />
       <Route path="/how-we-help/team" component={HowWeHelpTeamPage} />
       <Route path="/how-we-help/role" component={HowWeHelpRolePage} />

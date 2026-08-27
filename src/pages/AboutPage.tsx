@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { Building2, ArrowRight, Hammer, Users, Zap } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
+import SectionHeader from "@/components/SectionHeader";
+import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
 const values = [
@@ -44,15 +46,15 @@ export default function AboutPage() {
         />
 
         {/* Mission */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] border-t border-gray-100">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-t border-gray-200">
           <div className="max-w-4xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-14 items-center">
               <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })}>
-                <p className="text-xs font-bold text-[#97A0AF] uppercase tracking-widest mb-4">Our mission</p>
-                <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-brand-navy mb-5">
-                  Give every construction team the visibility of a $10B developer.
-                </h2>
-                <p className="text-[#42526E] text-base leading-snug">
+                <SectionHeader
+                  eyebrow="Our mission"
+                  title="Give every construction team the visibility of a $10B developer."
+                />
+                <p className="text-[#42526E] text-base leading-snug mt-6">
                   The biggest property developers in the world have custom dashboards, real-time cost tracking, and AI-assisted project planning. The mid-market GC running 20 concurrent projects has a spreadsheet.
                 </p>
                 <p className="text-[#42526E] text-base leading-snug mt-4">
@@ -84,7 +86,7 @@ export default function AboutPage() {
                 <motion.div
                   key={v.title}
                   {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: i * 0.08 })}
-                  className="bg-[#F8FAFC] border border-gray-100 rounded-xl p-6"
+                  className="bg-white border border-gray-200/90 rounded-2xl p-6 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-shadow duration-200 hover:shadow-[0_12px_28px_-12px_rgba(23,43,77,0.12)]"
                 >
                   <div className="w-10 h-10 bg-brand-navy/8 rounded-lg flex items-center justify-center mb-4">
                     <v.icon size={18} className="text-brand-navy" />
@@ -117,6 +119,7 @@ export default function AboutPage() {
           </div>
         </section>
 
+        
         <Footer />
       </div>
     </div>

@@ -4,6 +4,8 @@ import { Link } from "wouter";
 import { ArrowRight, BookOpen, ChevronDown, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
+import FinalCTA from "@/components/FinalCTA";
 import { useSEO } from "@/hooks/useSEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
@@ -15,16 +17,6 @@ import {
   formatReadLabel,
   postCoverImage,
 } from "@/lib/blogDisplay";
-
-const blueprintBg = {
-  backgroundImage: [
-    "linear-gradient(rgba(1,47,176,0.045) 1px, transparent 1px)",
-    "linear-gradient(90deg, rgba(1,47,176,0.045) 1px, transparent 1px)",
-    "linear-gradient(rgba(1,47,176,0.02) 1px, transparent 1px)",
-    "linear-gradient(90deg, rgba(1,47,176,0.02) 1px, transparent 1px)",
-  ].join(", "),
-  backgroundSize: "80px 80px, 80px 80px, 20px 20px, 20px 20px",
-} as const;
 
 function PostCoverMedia({ post, className }: { post: BlogPost; className: string }) {
   const url = postCoverImage(post);
@@ -75,84 +67,32 @@ export default function BlogIndexPage() {
   });
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
+    <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
       <div className="pt-[100px]">
-        {/* Hero  -  gradient + blueprint (centered; no side panel) */}
-        <section className="relative overflow-hidden pb-16 pt-20 lg:pb-20" aria-labelledby="blog-page-title">
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/new-hero-banner.png')",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-            }}
-            aria-hidden
-          />
-          <div className="pointer-events-none absolute inset-0" style={blueprintBg} aria-hidden />
-          <div
-            className="pointer-events-none absolute bottom-0 left-1/2 h-[280px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
-            style={{
-              background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.11) 0%, transparent 65%)",
-              filter: "blur(40px)",
-            }}
-            aria-hidden
-          />
-
-          <div className="relative z-10 mx-auto min-w-0 max-w-3xl px-4 text-center sm:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="mb-6 inline-flex items-center gap-2 border border-brand-navy/20 bg-white/80 px-4 py-1.5"
-              style={{ borderRadius: 99 }}
-            >
-              <BookOpen size={12} className="text-brand-orange" aria-hidden />
-              <span className="text-xs font-bold tracking-[0.12em] text-brand-navy uppercase">Resources</span>
-            </motion.div>
-            <motion.h1
-              id="blog-page-title"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.06 }}
-              className="text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-navy sm:text-5xl lg:text-[52px]"
-            >
-              Blog
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.12 }}
-              className="mx-auto mt-5 max-w-2xl text-lg leading-snug text-[#42526E]"
-            >
-              Rollout notes, permissions, field workflows, and how we build AI for construction - updated alongside the
-              product, in plain language.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.18 }}
-              className="mx-auto mt-8 max-w-xl"
-            >
-              <div className="rounded-2xl border border-brand-navy/12 bg-white/75 px-5 py-4 text-center backdrop-blur-sm">
-                <p className="text-sm leading-snug text-[#42526E]">
-                  Want the product before these articles describe it?{" "}
-                  <a
-                    href="/early-access"
-                    className="inline-flex items-center gap-1 font-bold text-[#0052CC] underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]"
-                  >
-                    Join early access
-                    <ArrowRight size={14} className="shrink-0" aria-hidden />
-                  </a>
-                </p>
-              </div>
-            </motion.div>
+        <PageHero
+          pill="Resources"
+          PillIcon={BookOpen}
+          title="Blog"
+          subtitle="Rollout notes, permissions, field workflows, and how we build AI for construction - updated alongside the product, in plain language."
+        >
+          <div className="mx-auto mt-2 max-w-xl">
+            <div className="rounded-2xl border border-brand-navy/12 bg-white/75 px-5 py-4 text-center backdrop-blur-sm">
+              <p className="text-sm leading-snug text-[#42526E]">
+                Want the product before these articles describe it?{" "}
+                <a
+                  href="/early-access"
+                  className="inline-flex items-center gap-1 font-bold text-[#0052CC] underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]"
+                >
+                  Join early access
+                  <ArrowRight size={14} className="shrink-0" aria-hidden />
+                </a>
+              </p>
+            </div>
           </div>
-        </section>
+        </PageHero>
 
-        <main className="mx-auto max-w-7xl min-w-0 bg-[#FAFBFC] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <main className="mx-auto max-w-7xl min-w-0 border-t border-gray-200 bg-white px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           {posts.length === 0 ? (
             <p className="py-24 text-center text-[#6B778C]">No posts yet.</p>
           ) : (
@@ -259,7 +199,7 @@ export default function BlogIndexPage() {
                       <button
                         type="button"
                         onClick={() => setGridVisible((n) => n + 3)}
-                        className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50/80 px-6 py-3 text-sm font-bold text-[#0747A6] transition-colors hover:border-sky-300 hover:bg-sky-100"
+                        className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3 text-sm font-bold text-brand-navy transition-colors hover:border-brand-navy/25 hover:bg-gray-50"
                       >
                         View More
                         <ChevronDown className="h-4 w-4" aria-hidden />
@@ -272,6 +212,7 @@ export default function BlogIndexPage() {
           )}
         </main>
 
+        <FinalCTA />
         <Footer />
       </div>
     </div>

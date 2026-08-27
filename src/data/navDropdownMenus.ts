@@ -203,9 +203,30 @@ export const dropdownMenusGeneral = {
       {
         heading: "By Project Stage",
         items: [
-          { icon: ClipboardList, label: "Preconstruction", desc: "Estimation & library", href: "/how-we-help/project-stage#preconstruction" },
-          { icon: HardHat, label: "Construction", desc: "Projects, tasks, work logs", href: "/how-we-help/project-stage#construction" },
-          { icon: Building2, label: "Closeout", desc: "Punch list & inspections", href: "/how-we-help/project-stage#closeout" },
+          {
+            icon: ClipboardList,
+            label: "Preconstruction",
+            desc: "Estimation & library",
+            href: "/how-we-help/project-stage#preconstruction",
+          },
+          {
+            icon: HardHat,
+            label: "Construction",
+            desc: "Projects, tasks, work logs",
+            href: "/how-we-help/project-stage#construction",
+          },
+          {
+            icon: Building2,
+            label: "Closeout",
+            desc: "Punch list & inspections",
+            href: "/how-we-help/project-stage#closeout",
+          },
+          {
+            icon: Layers,
+            label: "Platform Core",
+            desc: "Core & administration",
+            href: "/how-we-help/project-stage#platform-core",
+          },
         ],
       },
     ],
@@ -325,6 +346,12 @@ export const dropdownMenusMep = {
           { icon: ClipboardList, label: "Preconstruction", desc: "Estimation & library", href: "/how-we-help/project-stage#preconstruction" },
           { icon: HardHat, label: "Construction", desc: "Projects, tasks, work logs", href: "/how-we-help/project-stage#construction" },
           { icon: Building2, label: "Closeout", desc: "Punch list & inspections", href: "/how-we-help/project-stage#closeout" },
+          {
+            icon: Layers,
+            label: "Platform Core",
+            desc: "Core & administration",
+            href: "/how-we-help/project-stage#platform-core",
+          },
         ],
       },
     ],

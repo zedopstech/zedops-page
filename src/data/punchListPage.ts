@@ -489,6 +489,50 @@ export const punchDashboardData: DashboardData = {
     alerts: "Punch Alerts",
   },
 
+  customFloatCards: [
+    {
+      title: "Punch Overview",
+      value: "31 Total Items",
+      icon: ListChecks,
+      items: [
+        { label: "Closed", value: "16" },
+        { label: "Open", value: "3" },
+        { label: "Ready for Inspection", value: "2" },
+      ],
+    },
+    {
+      title: "Walkthrough Insights",
+      value: "32 Walkthroughs",
+      icon: Eye,
+      items: [
+        { label: "Total Walkthroughs", value: "" },
+        { label: "Punch list activity across project", value: "" },
+      ],
+    },
+    {
+      title: "Priority Breakdown",
+      value: "65% Medium",
+      icon: BarChart3,
+      items: [
+        { label: "High", value: "29%" },
+        { label: "Medium", value: "65%" },
+        { label: "Low", value: "6%" },
+      ],
+    },
+    {
+      title: "Discipline Issues",
+      icon: ClipboardCheck,
+      items: [
+        { label: "Electrical", value: "7" },
+        { label: "Civil", value: "7" },
+        { label: "Finishing", value: "5" },
+        { label: "Safety", value: "5" },
+        { label: "Architecture", value: "4" },
+        { label: "MEP", value: "3" },
+      ],
+    },
+  ],
+
   kpis: [
 
     { label: "TOTAL PUNCH", value: "254", description: "Total Punches" },

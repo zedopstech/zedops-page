@@ -366,6 +366,48 @@ export const budgetDashboardData: DashboardData = {
     alerts: "Budget Alerts",
   },
 
+  customFloatCards: [
+    {
+      title: "Budget Overview",
+      value: "0",
+      icon: Landmark,
+      items: [
+        { label: "Original Budget", value: "" },
+        { label: "Approved Budget", value: "" },
+        { label: "0.0% of total", value: "" },
+      ],
+    },
+    {
+      title: "Cost Status",
+      value: "0",
+      icon: Receipt,
+      items: [
+        { label: "Committed Cost", value: "" },
+        { label: "Actual Cost", value: "" },
+        { label: "Committed: 0", value: "" },
+        { label: "Actual: 0", value: "" },
+      ],
+    },
+    {
+      title: "Budget Utilization",
+      value: "0.0%",
+      icon: PieChart,
+      items: [
+        { label: "Actual Cost vs Approved Budget", value: "" },
+        { label: "Remaining Budget", value: "0" },
+      ],
+    },
+    {
+      title: "Spending Trend",
+      value: "Monthly Spending",
+      icon: TrendingUp,
+      items: [
+        { label: "Jan → Aug", value: "" },
+        { label: "Track spending patterns over time", value: "" },
+      ],
+    },
+  ],
+
   kpis: [
     { label: "TOTAL BUDGET", value: "$12.4M", description: "Original budget" },
     { label: "COMMITTED", value: "$8.9M", description: "Purchase orders" },

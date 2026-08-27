@@ -148,11 +148,8 @@ export default function FinalCTA({
               </h2>
             </div>
             <div>
-              <p className="mb-5 text-base leading-snug text-white/90">
-                {body ??
-                  "Give supers and PMs one place where the schedule, daily log, inspections, and punch list all drive assigned work, with AI that fits your permissions, not a generic chatbox."}
-              </p>
-              <div className="flex flex-wrap items-center gap-3">
+              
+              <div className="flex flex-wrap items-center gap-3 lg:justify-end">
                 <a
                   href={primary?.href ?? "/early-access"}
                   className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm transition-all duration-150 group"

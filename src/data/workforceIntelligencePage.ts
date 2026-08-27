@@ -373,15 +373,48 @@ export const workforceDashboardData: DashboardData = {
     alerts: "Workforce Alerts",
   },
 
+  customFloatCards: [
+    {
+      title: "Workforce Overview",
+      value: "56 Employees",
+      icon: Users,
+      items: [
+        { label: "Present Today", value: "0" },
+        { label: "On Leave", value: "0" },
+        { label: "Not Checked In", value: "3" },
+      ],
+    },
+    {
+      title: "Attendance Insights",
+      value: "86%",
+      icon: CalendarCheck,
+      items: [{ label: "Attendance Rate", value: "" }],
+    },
+    {
+      title: "Compliance",
+      value: "1.5%",
+      icon: ShieldCheck,
+      items: [
+        { label: "Workforce Productivity", value: "" },
+        { label: "Overall Productivity", value: "33.71%" },
+      ],
+    },
+    {
+      title: "Workforce Performance",
+      value: "11.11%",
+      icon: ListChecks,
+      items: [
+        { label: "Task Completion Rate", value: "" },
+        { label: "Overall workforce performance", value: "" },
+      ],
+    },
+  ],
+
   extraCard: {
-    title: "Employee Delays",
-    value: "19",
-    sub: "Late check-ins today",
-    items: [
-      { title: "Traffic", description: "8 workers delayed by commute" },
-      { title: "Approval", description: "6 pending site access" },
-      { title: "No-show", description: "5 unexcused absences" },
-    ],
+    title: "Workforce Health",
+    value: "15.4",
+    sub: "Overall Health Score",
+    items: [{ title: "Needs Improvement" }],
   },
 
   kpis: [

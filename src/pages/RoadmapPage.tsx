@@ -24,6 +24,7 @@ import {
   Map,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
 import FinalCTA from "@/components/FinalCTA";
 
@@ -116,113 +117,49 @@ export default function RoadmapPage() {
     <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
       <div className="pt-[100px]">
-        {/* Hero  -  same language as home / platform: gradient, blueprint, glow */}
-        <section className="relative overflow-hidden pb-16 pt-20 lg:pb-20" aria-labelledby="roadmap-page-title">
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              backgroundImage: "url('/hero-grid.png')",
-              backgroundRepeat: "repeat",
-              backgroundSize: "80px 80px",
-            }}
-            aria-hidden
-          />
-          <div className="pointer-events-none absolute inset-0" style={blueprintBg} aria-hidden />
-          <div
-            className="pointer-events-none absolute bottom-0 left-1/2 h-[280px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
-            style={{
-              background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.11) 0%, transparent 65%)",
-              filter: "blur(40px)",
-            }}
-            aria-hidden
-          />
+        <PageHero
+          pill="Product Roadmap"
+          PillIcon={Map}
+          title="What we're building and what's next."
+          subtitle="We ship every week and update this page as features land. Early access customers influence what comes next."
+        />
 
-          <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
-              <div className="text-center lg:col-span-7 lg:text-left">
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="mb-6 inline-flex items-center gap-2 border border-brand-navy/20 bg-white/80 px-4 py-1.5"
-                  style={{ borderRadius: 99 }}
-                >
-                  <Map size={12} className="text-brand-orange" aria-hidden />
-                  <span className="text-xs font-bold tracking-[0.12em] text-brand-navy uppercase">Product Roadmap</span>
-                </motion.div>
-                <motion.h1
-                  id="roadmap-page-title"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.06 }}
-                  className="text-4xl font-extrabold leading-[1.08] tracking-tight text-brand-navy sm:text-5xl lg:text-[52px]"
-                >
-                  What we&apos;re building and what&apos;s next.
-                </motion.h1>
-                <motion.p
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: 0.12 }}
-                  className="mx-auto mt-5 max-w-xl text-lg leading-snug text-[#42526E] lg:mx-0"
-                >
-                  We ship every week and update this page as features land. Early access customers influence what comes next.
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: 0.18 }}
-                  className="mx-auto mt-8 max-w-xl lg:mx-0"
-                >
-                  <div className="rounded-2xl border border-brand-navy/12 bg-white/75 px-5 py-4 shadow-[0_12px_40px_-28px_rgba(23,43,77,0.22)] backdrop-blur-sm">
-                    <p className="text-sm leading-snug text-[#42526E]">
-                      Roadmap updates as we ship.{" "}
-                      <a
-                        href="/early-access"
-                        className="inline-flex items-center gap-1 font-bold text-[#0052CC] underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]"
-                      >
-                        Join early access to influence what&apos;s next
-                        <ArrowRight size={14} className="shrink-0" aria-hidden />
-                      </a>
-                    </p>
+        {/* At a glance  -  condensed timeline preview kept from the hero */}
+        <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+          <div className="mx-auto max-w-3xl">
+            <div className="rounded-2xl border border-gray-200/90 bg-white p-6 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] sm:p-8">
+              <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">At a glance</p>
+              <div className="relative mt-5 space-y-0 border-l-2 border-brand-navy/10 pl-6">
+                {columns.map((col) => (
+                  <div key={col.label} className="relative pb-6 last:pb-0">
+                    <span
+                      className={`absolute -left-[25px] top-1.5 flex h-3 w-3 items-center justify-center rounded-full border-2 border-white shadow-sm ring-2 ${col.dotRing} ${col.dot}`}
+                      aria-hidden
+                    />
+                    <div
+                      className="rounded-xl border border-gray-200/80 bg-white px-4 py-3 shadow-[0_4px_20px_-12px_rgba(23,43,77,0.2)]"
+                      style={{ borderLeftWidth: 3, borderLeftColor: col.accent }}
+                    >
+                      <p className="text-sm font-extrabold text-brand-navy">{col.label}</p>
+                      <p className="mt-0.5 text-xs text-[#6B778C]">{col.sublabel}</p>
+                      <p className="mt-2 text-xs font-semibold text-[#0052CC]">{col.items.length} initiatives</p>
+                    </div>
                   </div>
-                </motion.div>
+                ))}
               </div>
 
-              {/* Timeline preview  -  hero-style floating stack */}
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="relative lg:col-span-5"
-              >
-                <div
-                  className="pointer-events-none absolute -right-6 top-1/2 hidden h-72 w-72 -translate-y-1/2 rounded-full opacity-40 blur-3xl lg:block"
-                  style={{ background: "#C4D9FF" }}
-                  aria-hidden
-                />
-                <div className="relative rounded-2xl border border-white/60 bg-white/40 p-6 shadow-[0_20px_60px_-34px_rgba(23,43,77,0.35)] backdrop-blur-md sm:p-8">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">At a glance</p>
-                  <div className="relative mt-5 space-y-0 border-l-2 border-brand-navy/10 pl-6">
-                    {columns.map((col) => (
-                      <div key={col.label} className="relative pb-6 last:pb-0">
-                        <span
-                          className={`absolute -left-[25px] top-1.5 flex h-3 w-3 items-center justify-center rounded-full border-2 border-white shadow-sm ring-2 ${col.dotRing} ${col.dot}`}
-                          aria-hidden
-                        />
-                        <div
-                          className="rounded-xl border border-gray-200/80 bg-white/95 px-4 py-3 shadow-[0_4px_20px_-12px_rgba(23,43,77,0.2)]"
-                          style={{ borderLeftWidth: 3, borderLeftColor: col.accent }}
-                        >
-                          <p className="text-sm font-extrabold text-brand-navy">{col.label}</p>
-                          <p className="mt-0.5 text-xs text-[#6B778C]">{col.sublabel}</p>
-                          <p className="mt-2 text-xs font-semibold text-[#0052CC]">{col.items.length} initiatives</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
+              <div className="mt-6 rounded-2xl border border-brand-navy/12 bg-[#FAFBFC] px-5 py-4">
+                <p className="text-sm leading-snug text-[#42526E]">
+                  Roadmap updates as we ship.{" "}
+                  <a
+                    href="/early-access"
+                    className="inline-flex items-center gap-1 font-bold text-[#0052CC] underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]"
+                  >
+                    Join early access to influence what's next
+                    <ArrowRight size={14} className="shrink-0" aria-hidden />
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -359,6 +296,7 @@ export default function RoadmapPage() {
             </motion.form>
           </div>
         </section>
+        <FinalCTA />
         <Footer />
       </div>
     </div>

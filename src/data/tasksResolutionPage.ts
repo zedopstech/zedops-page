@@ -3,6 +3,7 @@ import {
   AlertTriangle,
   BadgeCheck,
   BarChart3,
+  CheckCircle2,
   ClipboardCheck,
   ClipboardList,
   CalendarClock,
@@ -395,6 +396,46 @@ export const tasksDashboardData: DashboardData = {
     upcoming: "Due Soon",
     alerts: "Task Alerts",
   },
+
+  customFloatCards: [
+    {
+      title: "Task Overview",
+      value: "20 Total Tasks",
+      icon: ListChecks,
+      items: [
+        { label: "Pending", value: "5" },
+        { label: "In Progress", value: "2" },
+        { label: "Completed", value: "13" },
+      ],
+    },
+    {
+      title: "Completion Insights",
+      value: "13 Completed",
+      icon: CheckCircle2,
+      items: [
+        { label: "Completion Rate", value: "65%" },
+        { label: "13 of 20 tasks completed", value: "" },
+      ],
+    },
+    {
+      title: "Task Risk",
+      value: "7 Overdue",
+      icon: AlertTriangle,
+      items: [
+        { label: "35% of Total Tasks", value: "" },
+        { label: "7 tasks past due", value: "" },
+      ],
+    },
+    {
+      title: "Task Status",
+      value: "5 Pending",
+      icon: ClipboardList,
+      items: [
+        { label: "In Progress", value: "2" },
+        { label: "Completed", value: "13" },
+      ],
+    },
+  ],
 
   kpis: [
     { label: "LIVE TASKS", value: "47", description: "Active tasks" },

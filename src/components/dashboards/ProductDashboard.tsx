@@ -1,4 +1,5 @@
-import { CalendarDays, Bell, TrendingUp, ShieldCheck } from "lucide-react";
+import { CalendarDays, Bell, TrendingUp, ShieldCheck, BarChart3, DollarSign, Shapes } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { CalendarDays as CalendarIcon } from "lucide-react";
 import { useRef } from "react";
 
@@ -77,10 +78,19 @@ export type DashboardData = {
     items?: { title: string; description?: string }[];
   };
 
+  /** Optional replacement for the four corner floating cards (max 4, rendered in order). */
+  customFloatCards?: {
+    title: string;
+    value?: string;
+    items?: { label: string; value: string }[];
+    icon: LucideIcon;
+  }[];
+
   kpis: {
     label: string;
     value: string;
-    description: string;
+    description?: string;
+    items?: { label: string; value: string }[];
   }[];
 
   progress: {
@@ -262,7 +272,9 @@ export default function ProductDashboard({
                 FLOATING CARD 1 — PROGRESS
             ===================================================== */}
 
-            <Float duration={3.5} amplitude={4} className="absolute left-[-60px] top-[10px] z-[80] hidden lg:block">
+            {!data.customFloatCards && (
+              <>
+                <Float duration={3.5} amplitude={4} className="absolute left-[-60px] top-[10px] z-[80] hidden lg:block">
               <div
                 className="
                   absolute
@@ -314,10 +326,12 @@ export default function ProductDashboard({
               </div>
             </Float>
 
+            
             {/* =====================================================
                 FLOATING CARD 2 — AI INSIGHTS
             ===================================================== */}
-
+            
+            
             <Float duration={3.5} amplitude={4} className="absolute right-[-70px] top-[-120px] z-[80] hidden lg:block">
               <div
                 className="
@@ -479,6 +493,41 @@ export default function ProductDashboard({
 
               </div>
             </Float>
+              </>
+            )}
+
+            {data.customFloatCards && (
+              <>
+                {data.customFloatCards[0] && (
+                  <CustomFloatCard
+                    card={data.customFloatCards[0]}
+                    className="absolute left-[-60px] top-[10px] z-[80] hidden lg:block"
+                    inner="absolute left-[-70px] top-[-120px] z-[80] hidden w-[235px] rounded-2xl border border-gray-200 bg-white p-4 shadow-[0_18px_45px_-18px_rgba(23,43,77,0.38)] lg:block"
+                  />
+                )}
+                {data.customFloatCards[1] && (
+                  <CustomFloatCard
+                    card={data.customFloatCards[1]}
+                    className="absolute right-[-70px] top-[-120px] z-[80] hidden lg:block"
+                    inner="absolute right-[-70px] top-[-50px] z-[80] hidden w-[235px] rounded-2xl border border-gray-200 bg-white p-4 shadow-[0_18px_45px_-18px_rgba(23,43,77,0.38)] lg:block"
+                  />
+                )}
+                {data.customFloatCards[2] && (
+                  <CustomFloatCard
+                    card={data.customFloatCards[2]}
+                    className="absolute bottom-[20px] left-[-60px] z-[90] hidden lg:block"
+                    inner="absolute bottom-[20px] left-[-70px] z-[90] hidden w-[245px] rounded-2xl border border-gray-200 bg-white p-4 shadow-[0_18px_45px_-18px_rgba(23,43,77,0.38)] lg:block"
+                  />
+                )}
+                {data.customFloatCards[3] && (
+                  <CustomFloatCard
+                    card={data.customFloatCards[3]}
+                    className="absolute bottom-[-22px] right-[-60px] z-[90] hidden lg:block"
+                    inner="absolute bottom-[-22px] right-[-70px] z-[90] hidden w-[245px] rounded-2xl border border-gray-200 bg-white p-4 shadow-[0_18px_45px_-18px_rgba(23,43,77,0.38)] lg:block"
+                  />
+                )}
+              </>
+            )}
 
             {/* =====================================================
                 FLOATING CARD 5 — EXTRA (BOTTOM CENTER, OPTIONAL)
@@ -557,6 +606,52 @@ export default function ProductDashboard({
         </div>
       </div>
     </div>
+  );
+}
+
+/* ============================================================
+   CUSTOM FLOATING CARD (corner, data-driven)
+============================================================ */
+
+function CustomFloatCard({
+  card,
+  className,
+  inner,
+}: {
+  card: NonNullable<DashboardData["customFloatCards"]>[number];
+  className: string;
+  inner: string;
+}) {
+  const Icon = card.icon;
+  return (
+    <Float duration={3.5} amplitude={4} className={className}>
+      <div className={inner}>
+        <div className="flex items-center gap-2">
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-orange/10">
+            <Icon size={15} className="text-brand-orange" />
+          </span>
+          <p className="text-sm font-extrabold text-[#172B4D]">{card.title}</p>
+        </div>
+
+        {card.value && (
+          <p className="mt-3 text-3xl font-black text-[#172B4D]">{card.value}</p>
+        )}
+
+        {card.items && (
+          <div className="mt-3 space-y-1.5">
+            {card.items.map((it) => (
+              <div
+                key={it.label}
+                className="flex items-center justify-between text-[9px]"
+              >
+                <span className="text-[#6B778C]">{it.label}</span>
+                <span className="font-bold text-[#172B4D]">{it.value}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </Float>
   );
 }
 
