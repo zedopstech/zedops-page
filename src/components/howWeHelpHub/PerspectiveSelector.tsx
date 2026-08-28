@@ -124,9 +124,9 @@ export default function PerspectiveSelector() {
   const current = perspectives[active];
 
   return (
-    <section className="bg-white px-4 py-20 lg:py-28">
+    <section className="bg-[#F6F8FC] px-4 py-12 lg:py-16">
       <div className="mx-auto max-w-7xl">
-        <div className="mx-auto mb-12 max-w-2xl text-center">
+        <div className="mx-auto mb-8 max-w-2xl text-center">
           <h2 className="text-3xl font-extrabold tracking-tight text-[#102B57] sm:text-4xl">
             One record. Different perspectives.
           </h2>
