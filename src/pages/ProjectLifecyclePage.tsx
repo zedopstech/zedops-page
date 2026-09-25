@@ -26,9 +26,9 @@ function LifecyclePills() {
         <a
           key={s.id}
           href={`#${s.id}`}
-          className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-4 py-2.5 text-xs font-semibold text-brand-navy backdrop-blur-sm transition-all hover:border-[#2D6BFF]/50 hover:bg-white hover:shadow-[0_0_18px_rgba(45,107,255,0.18)]"
+          className="group inline-flex shrink-0 items-center gap-2 rounded-lg border border-[#DCE3ED] bg-white/80 px-4 py-2.5 text-xs font-semibold text-brand-navy transition-colors hover:border-brand-navy/40 hover:bg-white"
         >
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#2D6BFF] text-[10px] font-extrabold text-white">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-navy text-[10px] font-semibold text-white">
             {String(i + 1).padStart(2, "0")}
           </span>
           {s.title}
@@ -54,12 +54,12 @@ function LifecycleContentCard({
       className="flex h-full min-h-[260px] flex-col rounded-[14px] border border-[#E2E8F0] bg-white p-8 shadow-[0_1px_3px_rgba(16,43,87,0.06)] sm:p-9"
     >
       <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#EEF4FF]">
-        <Icon size={20} className="text-[#102B57]" aria-hidden />
+        <Icon size={20} className="text-brand-navy" aria-hidden />
       </div>
       <p className="mt-5 text-[10px] font-black uppercase tracking-[0.18em] text-[#97A0AF]">
         {num} {stage.title}
       </p>
-      <h3 className="mt-2 text-xl font-extrabold leading-snug text-[#102B57] sm:text-[1.35rem]">
+      <h3 className="mt-2 text-xl font-semibold leading-snug text-brand-navy sm:text-[1.35rem]">
         {stage.tagline}
       </h3>
       <p className="mt-3 text-sm leading-snug text-[#42526E]">{stage.body}</p>
@@ -70,14 +70,14 @@ function LifecycleContentCard({
       >
         {stage.outcomes.map((o) => (
           <li key={o} className="flex items-start gap-2 text-sm text-[#42526E]">
-            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#102B57]" aria-hidden />
+            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-navy" aria-hidden />
             {o}
           </li>
         ))}
       </ul>
       <a
         href={stage.platformPath}
-        className="group/link mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#0052CC] transition-colors hover:text-[#0747A6]"
+        className="group/link mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-navy transition-colors hover:text-brand-orange"
       >
         {stage.platformLabel}
         <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5" aria-hidden />
@@ -100,14 +100,14 @@ function LifecycleSnapshotCard({
       {...scrollMotionProps(false, { y: 22, duration: 0.45 })}
       className="relative h-full min-h-[260px] overflow-hidden rounded-[14px] border border-[#E2E8F0] bg-gradient-to-br from-[#EEF4FF] to-[#F7FAFF] p-8 sm:p-9"
     >
-      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#102B57]/40">Phase snapshot</p>
-      <h3 className="mt-2 text-2xl font-extrabold leading-tight text-[#102B57]">{stage.title}</h3>
+      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-navy/40">Phase snapshot</p>
+      <h3 className="mt-2 text-2xl font-semibold leading-tight text-brand-navy">{stage.title}</h3>
       <p className="mt-3 max-w-[60%] text-sm leading-snug text-[#42526E]">
         One tenant and one role model end to end — field, office, and leadership only see what their access allows.
       </p>
 
       <span
-        className="pointer-events-none absolute select-none text-[9rem] font-black leading-none text-[#102B57]"
+        className="pointer-events-none absolute select-none text-[9rem] font-black leading-none text-brand-navy"
         style={{ color: "rgba(16,43,87,0.07)", right: "12px", top: "8px" }}
         aria-hidden
       >
@@ -118,7 +118,7 @@ function LifecycleSnapshotCard({
 
       <div className="absolute inset-x-5 bottom-5 rounded-xl border border-[#E2E8F0] bg-white/95 px-4 py-3 shadow-sm backdrop-blur-sm">
         <p className="text-[9px] font-bold uppercase tracking-wider text-[#97A0AF]">Platform area</p>
-        <p className="mt-1 text-sm font-extrabold text-[#102B57]">{stage.platformLabel}</p>
+        <p className="mt-1 text-sm font-semibold text-brand-navy">{stage.platformLabel}</p>
       </div>
     </motion.article>
   );
@@ -132,11 +132,11 @@ function PermissionsBar() {
           <span className="hidden h-px flex-1 bg-[#CBD5E1] sm:block" aria-hidden />
           <p className="text-center text-sm text-[#42526E]">
             Curious how menus and AI follow permissions?{" "}
-            <a href="/how-we-help/role" className="font-bold text-[#0052CC] hover:text-[#0747A6]">
+            <a href="/how-we-help/role" className="font-bold text-brand-navy hover:text-brand-orange">
               Roles &amp; permissions →
             </a>{" "}
             <span className="text-[#97A0AF]">·</span>{" "}
-            <a href="/who-we-serve" className="font-bold text-[#0052CC] hover:text-[#0747A6]">
+            <a href="/who-we-serve" className="font-bold text-brand-navy hover:text-brand-orange">
               Built for you →
             </a>
           </p>
@@ -157,7 +157,7 @@ function DemoCTA() {
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FF6500]">
                 <Zap size={18} className="text-white" aria-hidden />
               </span>
-              <h2 className="text-xl font-extrabold leading-tight sm:text-2xl">
+              <h2 className="text-xl font-semibold leading-tight sm:text-2xl">
                 Run MEP jobs with <span className="text-[#FF7A33]">execution</span> in the loop.
               </h2>
             </div>
@@ -188,10 +188,10 @@ export default function ProjectLifecyclePage() {
   });
 
   return (
-    <div className="min-h-screen bg-white text-[#102B57]">
+    <div className="min-h-screen bg-white text-brand-navy">
       <Navbar />
 
-      <main className="pt-[72px]">
+      <main>
         {/* ============ HERO ============ */}
         <PageHero
           pill="Project lifecycle"
@@ -222,7 +222,7 @@ export default function ProjectLifecyclePage() {
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
           {/* intro header */}
           <div className="mb-12 flex justify-center">
-              <h2 className="mx-auto max-w-2xl text-center text-3xl font-extrabold leading-[1.05] tracking-tight text-[#102B57] sm:text-4xl">
+              <h2 className="mx-auto max-w-2xl text-center text-3xl font-semibold leading-[1.05] tracking-tight text-brand-navy sm:text-4xl">
               From bid to <span className="text-[#FF6500]">closeout</span> –
               <br />
               how ZedOps maps to the job.

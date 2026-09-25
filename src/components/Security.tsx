@@ -60,11 +60,11 @@ export default function Security() {
       />
 
       {/* Security pillars */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] border-t border-gray-100">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F8F9FD] border-t border-gray-100">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-[0.15em] mb-3">How we protect you</p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-navy leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-semibold text-brand-navy leading-tight tracking-tight">
               Four layers of protection, built in from day one.
             </h2>
           </div>
@@ -74,16 +74,16 @@ export default function Security() {
               <motion.div
                 key={pillar.title}
                 {...scrollMotionProps(isMobile, { y: 24, duration: 0.45, delay: i * 0.1 })}
-                className="bg-white border border-gray-100 rounded-2xl p-8 flex flex-col gap-5 hover:border-[#C7D5F5] transition-all duration-200"
+                className="bg-white border border-gray-100 rounded-xl p-8 flex flex-col gap-5 hover:border-[#C7D5F5] transition-all duration-200"
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-[#EBF0FF] flex items-center justify-center mb-4">
                     <pillar.icon size={22} className="text-brand-navy" />
                   </div>
-                  <span className="inline-block text-[10px] font-bold text-[#0052CC] bg-[#EBF2FF] px-2.5 py-1 rounded-full uppercase tracking-wider mb-3">
+                  <span className="inline-block text-[10px] font-bold text-brand-navy bg-[#EDF3FA] px-2.5 py-1 rounded-full uppercase tracking-wider mb-3">
                     {pillar.tag}
                   </span>
-                  <h3 className="text-xl font-extrabold text-brand-navy leading-snug mb-3">{pillar.title}</h3>
+                  <h3 className="text-xl font-semibold text-brand-navy leading-snug mb-3">{pillar.title}</h3>
                   <p className="text-[#6B778C] text-sm leading-snug">{pillar.body}</p>
                 </div>
                 <div className="mt-auto pt-4 border-t border-gray-100">
@@ -101,7 +101,7 @@ export default function Security() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
               <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-[0.15em] mb-3">Security checklist</p>
-              <h2 className="text-3xl font-extrabold text-brand-navy leading-tight tracking-tight mb-4">
+              <h2 className="text-3xl font-semibold text-brand-navy leading-tight tracking-tight mb-4">
                 What's in place today.
               </h2>
               <p className="text-[#6B778C] text-sm leading-snug">
@@ -145,7 +145,7 @@ export default function Security() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-[#B8C9DC] text-xs font-bold uppercase tracking-[0.15em] mb-3">Infrastructure</p>
-            <h2 className="text-2xl font-extrabold text-white">How your data flows  -  and where it stays.</h2>
+            <h2 className="text-2xl font-semibold text-white">How your data flows  -  and where it stays.</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -192,7 +192,7 @@ export default function Security() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-100">
         <div className="max-w-2xl mx-auto text-center">
           <ShieldCheck size={32} className="text-brand-navy mx-auto mb-5 opacity-40" />
-          <h2 className="text-2xl font-extrabold text-brand-navy mb-3">Have security questions?</h2>
+          <h2 className="text-2xl font-semibold text-brand-navy mb-3">Have security questions?</h2>
           <p className="text-[#6B778C] text-sm leading-snug mb-7">
             We're happy to walk your IT or security team through our architecture, controls, and roadmap. No sales pitch  -  just a straightforward conversation.
           </p>

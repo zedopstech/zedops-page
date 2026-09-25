@@ -15,10 +15,10 @@ export default function HowWeHelpPageShell({
   return (
     <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
-      <div className="pt-[100px]">
+      <div>
         {breadcrumbs && breadcrumbs.length > 0 ? (
           <div className="border-b border-gray-100 bg-white">
-            <div className="mx-auto max-w-7xl px-4 pb-3 pt-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-[1200px] px-5 pb-3 pt-[112px]">
               <nav className="flex flex-wrap items-center gap-x-2 text-sm font-semibold text-[#6B778C]" aria-label="Breadcrumb">
                 {breadcrumbs.map((c, i) => (
                   <span key={`${c.label}-${i}`} className="flex items-center gap-2">

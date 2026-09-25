@@ -44,10 +44,10 @@ export default function ValueStrip() {
               }`}
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#EEF4FF]">
-                <Icon size={17} className="text-[#102B57]" aria-hidden />
+                <Icon size={17} className="text-brand-navy" aria-hidden />
               </span>
               <div>
-                <p className="text-sm font-extrabold text-[#102B57]">{v.title}</p>
+                <p className="text-sm font-semibold text-brand-navy">{v.title}</p>
                 <p className="mt-1 text-[13px] leading-snug text-[#6B778C]">
                   {v.desc}
                 </p>

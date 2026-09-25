@@ -28,7 +28,7 @@ function PostCoverMedia({ post, className }: { post: BlogPost; className: string
       className={`flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-navy via-[#243d64] to-brand-navy px-4 text-center ${className}`}
       aria-hidden
     >
-      <span className="line-clamp-4 text-sm font-extrabold leading-snug text-white sm:text-base">{post.title}</span>
+      <span className="line-clamp-4 text-sm font-semibold leading-snug text-white sm:text-base">{post.title}</span>
     </div>
   );
 }
@@ -69,7 +69,7 @@ export default function BlogIndexPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
-      <div className="pt-[100px]">
+      <div>
         <PageHero
           pill="Resources"
           PillIcon={BookOpen}
@@ -77,12 +77,12 @@ export default function BlogIndexPage() {
           subtitle="Rollout notes, permissions, field workflows, and how we build AI for construction - updated alongside the product, in plain language."
         >
           <div className="mx-auto mt-2 max-w-xl">
-            <div className="rounded-2xl border border-brand-navy/12 bg-white/75 px-5 py-4 text-center backdrop-blur-sm">
+            <div className="rounded-xl border border-brand-navy/12 bg-white/75 px-5 py-4 text-center backdrop-blur-sm">
               <p className="text-sm leading-snug text-[#42526E]">
                 Want the product before these articles describe it?{" "}
                 <a
                   href="/early-access"
-                  className="inline-flex items-center gap-1 font-bold text-[#0052CC] underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]"
+                  className="inline-flex items-center gap-1 font-bold text-brand-navy underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-brand-orange"
                 >
                   Join early access
                   <ArrowRight size={14} className="shrink-0" aria-hidden />
@@ -122,7 +122,7 @@ export default function BlogIndexPage() {
                           <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                             {formatReadLabel(spotlight)}
                           </p>
-                          <h2 className="mt-3 text-2xl font-extrabold leading-snug tracking-tight text-brand-navy transition-colors group-hover:text-[#0052CC] sm:text-[1.75rem] lg:text-3xl lg:leading-tight">
+                          <h2 className="mt-3 text-2xl font-semibold leading-snug tracking-tight text-brand-navy transition-colors group-hover:text-brand-navy sm:text-[1.75rem] lg:text-3xl lg:leading-tight">
                             {spotlight.title}
                           </h2>
                           <AuthorDateRow author={spotlight.author} date={spotlight.date} />
@@ -150,7 +150,7 @@ export default function BlogIndexPage() {
                             <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                               {formatReadLabel(sideFeatured)}
                             </p>
-                            <h2 className="mt-3 text-lg font-extrabold leading-snug text-brand-navy transition-colors group-hover:text-[#0052CC] lg:text-xl">
+                            <h2 className="mt-3 text-lg font-semibold leading-snug text-brand-navy transition-colors group-hover:text-brand-navy lg:text-xl">
                               {sideFeatured.title}
                             </h2>
                             <AuthorDateRow author={sideFeatured.author} date={sideFeatured.date} />
@@ -183,7 +183,7 @@ export default function BlogIndexPage() {
                               <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                                 {formatReadLabel(post)}
                               </p>
-                              <h2 className="mt-3 text-lg font-extrabold leading-snug text-brand-navy transition-colors group-hover:text-[#0052CC]">
+                              <h2 className="mt-3 text-lg font-semibold leading-snug text-brand-navy transition-colors group-hover:text-brand-navy">
                                 {post.title}
                               </h2>
                               <AuthorDateRow author={post.author} date={post.date} />

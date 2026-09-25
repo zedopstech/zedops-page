@@ -1,13 +1,14 @@
-import { SITE_FOCUS_MEP_EXECUTION, HIDE_PRICING } from "@/config/siteFocus";
+import { ArrowUpRight } from "lucide-react";
 
-/** Full link set always shown; MEP mode only changes the tagline. */
-const footerLinksBase: Record<string, { label: string; href: string }[]> = {
+const footerLinks: Record<string, { label: string; href: string }[]> = {
   Product: [
     { label: "Estimation", href: "/platform/module/estimation" },
-    { label: "Planning & Scheduling", href: "/platform/module/planning-schedule" },
+    {
+      label: "Planning & Scheduling",
+      href: "/platform/module/planning-execution",
+    },
     { label: "Material Management", href: "/platform/module/supply-chain" },
     { label: "Zed AI", href: "/zed-ai" },
-    
   ],
   Docs: [
     { label: "Getting Started", href: "/blog/getting-started-with-zedops" },
@@ -27,96 +28,48 @@ const footerLinksBase: Record<string, { label: string; href: string }[]> = {
   ],
 };
 
-const footerLinks: Record<string, { label: string; href: string }[]> = Object.fromEntries(
-  Object.entries(footerLinksBase).map(([category, links]) => [
-    category,
-    HIDE_PRICING ? links.filter((link) => link.href !== "/pricing") : links,
-  ]),
-);
+const socials = [
+  { label: "X", href: "https://x.com/zedopstech" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/zedops" },
+  { label: "GitHub", href: "https://github.com/zedops" },
+  { label: "YouTube", href: "https://www.youtube.com/@zedopstech" },
+];
 
+/** hexalog footer: big logo lockup, dense navy link columns, hairline bottom bar, giant faint wordmark. */
 export default function Footer() {
-  const tagline = SITE_FOCUS_MEP_EXECUTION
-    ? "Operations for mechanical, electrical, and plumbing: planning, logs, QA, punch, finance, material management, wired for action, with Zed AI on the same permissioned data."
-    : "AI-powered construction intelligence platform helping teams plan, track, and deliver projects smarter  -  from preconstruction to closeout.";
-
   return (
-    <footer className="bg-white border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-16 grid grid-cols-1 lg:grid-cols-5 gap-12">
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-2.5 mb-5">
-              <img src="/logo.png" alt="ZedOps" className="w-8 h-8 rounded-md object-cover" />
-              <span className="text-brand-navy font-black text-lg tracking-tight">Zed<span className="text-brand-orange">Ops</span></span>
-            </div>
-            <p className="text-[#6B778C] text-sm leading-snug max-w-xs mb-6">
-              {tagline}
-            </p>
-            <div className="flex items-center gap-2 mb-8">
-              {["𝕏"].map((name) => (
-                <a
-                  key={name}
-                  href="https://x.com/zedopstech"
-                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-brand-navy hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
-                >
-                  {name}
-                </a>
-              ))}
+    <footer className="relative overflow-hidden border-t border-[#E3E8F0] bg-white">
+      <div className="mx-auto max-w-[1200px] px-5">
+        <div className="flex items-center gap-3 pt-14">
+          <img
+            src="/logo.png"
+            alt=""
+            className="h-12 w-12 rounded-lg object-cover"
+          />
+          <p className="text-[30px] font-extrabold leading-none tracking-tight text-brand-navy">
+            Zed<span className="text-brand-orange">Ops</span>
+          </p>
+        </div>
 
-              {["LinkedIn"].map((name) => (
-                <a
-                  key={name}
-                  href="https://www.linkedin.com/company/zedops"
-                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-brand-navy hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
-                >
-                  {name}
-                </a>
-              ))}
-
-              {["GitHub"].map((name) => (
-                <a
-                  key={name}
-                  href="https://github.com/zedops"
-                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-brand-navy hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
-                >
-                  {name}
-                </a>
-              ))}
-
-              {["YouTube"].map((name) => (
-                <a
-                  key={name}
-                  href="https://www.youtube.com/@zedopstech"
-                  className="px-3 py-1.5 border border-gray-200 text-[#6B778C] hover:text-brand-navy hover:border-gray-300 transition-all duration-150 text-xs font-medium rounded-md"
-                >
-                  {name}
-                </a>
-              ))}
-
-            </div>
-            <div>
-              <p className="text-[#6B778C] text-xs mb-3 font-semibold uppercase tracking-wide">Subscribe to product updates</p>
-              <div className="flex gap-2 max-w-sm">
-                <input
-                  type="email"
-                  placeholder="work-email@company.com"
-                  className="flex-1 border border-gray-200 px-3 py-2 text-xs text-[#42526E] placeholder:text-[#97A0AF] outline-none focus:border-brand-navy bg-white transition-colors rounded-md"
-                  readOnly
-                />
-                <button className="px-3 py-2 bg-brand-orange hover:bg-brand-orange-soft text-white text-xs font-bold transition-colors shrink-0 rounded-md">
-                  Get Updates
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-3 grid grid-cols-2 gap-8 sm:grid-cols-4">
+        <div className="grid grid-cols-1 gap-10 py-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,2fr)]">
+          <p className="max-w-sm text-[14px] leading-[1.7] text-brand-navy/75">
+            Operations for mechanical, electrical, and plumbing: planning, logs,
+            QA, punch, finance, material management, wired for action, with Zed
+            AI on the same permissioned data.
+          </p>
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <h4 className="text-brand-navy font-bold text-xs uppercase tracking-widest mb-4">{category}</h4>
-                <ul className="space-y-2.5">
+                <h4 className="mb-5 text-[14px] font-semibold text-brand-navy">
+                  {category}
+                </h4>
+                <ul className="space-y-3.5">
                   {links.map((link) => (
                     <li key={link.label}>
-                      <a href={link.href} className="text-[#6B778C] hover:text-[#42526E] text-sm transition-colors duration-150 leading-snug">
+                      <a
+                        href={link.href}
+                        className="text-[14px] text-[#5E6C84] transition-colors hover:text-brand-orange"
+                      >
                         {link.label}
                       </a>
                     </li>
@@ -127,20 +80,30 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="py-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[#97A0AF] text-xs">
-            © 2026 ZedOps, Inc. All rights reserved.
-          </p>
-          <div className="flex items-center gap-5 text-xs text-[#97A0AF]">
-            <div className="flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-              Platform status: operational
-            </div>
-            <span>·</span>
-            <a href="/security" className="hover:text-[#42526E] transition-colors">Secure for enterprise construction teams</a>
+        <div className="flex flex-col gap-4 border-t border-[#E3E8F0] py-6 text-[13px] text-[#6B778C] sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 ZedOps, Inc. All rights reserved.</p>
+          <div className="flex flex-wrap items-center gap-5">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                className="inline-flex items-center gap-1 font-medium text-brand-navy/80 hover:text-brand-orange"
+              >
+                {s.label}
+                <ArrowUpRight size={12} aria-hidden />
+              </a>
+            ))}
           </div>
         </div>
       </div>
+
+      {/* giant outlined wordmark */}
+      <p
+        aria-hidden
+        className="pointer-events-none mx-auto -mb-[0.2em] max-w-[1200px] select-none px-5 text-center text-[22vw] font-extrabold leading-[0.9] tracking-[-0.04em] text-transparent [-webkit-text-stroke:1.5px_#E3E8F0] lg:text-[250px]"
+      >
+        ZEDOPS
+      </p>
     </footer>
   );
 }

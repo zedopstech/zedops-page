@@ -60,7 +60,7 @@ export default function HowWeHelpCompanyPage() {
                     {c.tag}
                   </span>
                 </div>
-                <h3 className="text-lg font-extrabold leading-snug text-brand-navy">{c.title}</h3>
+                <h3 className="text-lg font-semibold leading-snug text-brand-navy">{c.title}</h3>
                 <p className="mt-3 flex-1 text-sm leading-snug text-[#6B778C]">{c.summary}</p>
                 <ul className="mt-5 space-y-2">
                   {c.bullets.map((b) => (

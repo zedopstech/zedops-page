@@ -98,7 +98,7 @@ function Stat({ m }: { m: Metric }) {
       <p className="text-[12px] font-semibold uppercase tracking-wide text-[#97A0AF]">
         {m.label}
       </p>
-      <p className="mt-2 text-2xl font-extrabold text-[#102B57]">
+      <p className="mt-2 text-2xl font-semibold text-brand-navy">
         {m.prefix}
         {display}
         {m.suffix}
@@ -107,7 +107,7 @@ function Stat({ m }: { m: Metric }) {
       {typeof m.progress === "number" ? (
         <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-[#E3E8F0]">
           <motion.div
-            className="h-full rounded-full bg-[#FF6200]"
+            className="h-full rounded-full bg-[#FE5D02]"
             initial={{ width: 0 }}
             animate={{ width: `${m.progress}%` }}
             transition={{ duration: 0.7, ease: "easeOut" }}
@@ -124,10 +124,10 @@ export default function PerspectiveSelector() {
   const current = perspectives[active];
 
   return (
-    <section className="bg-[#F6F8FC] px-4 py-12 lg:py-16">
+    <section className="bg-[#F8F9FD] px-4 py-12 lg:py-16">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto mb-8 max-w-2xl text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight text-[#102B57] sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-brand-navy sm:text-4xl">
             One record. Different perspectives.
           </h2>
         </div>
@@ -145,7 +145,7 @@ export default function PerspectiveSelector() {
                   onClick={() => setActive(i)}
                   className={`flex w-full shrink-0 items-center gap-3 rounded-xl border px-4 py-3 text-left transition-all duration-200 ${
                     isActive
-                      ? "border-[#102B57] bg-[#102B57] text-white shadow-[0_10px_24px_-12px_rgba(16,43,87,0.5)]"
+                      ? "border-[#102B57] bg-brand-navy text-white shadow-[0_10px_24px_-12px_rgba(16,43,87,0.5)]"
                       : "border-[#E3E8F0] bg-white text-[#42526E] hover:border-[#102B57]/30"
                   }`}
                 >
@@ -161,7 +161,7 @@ export default function PerspectiveSelector() {
           </div>
 
           {/* View panel */}
-          <div className="rounded-2xl border border-[#E3E8F0] bg-[#F6F8FC] p-6 sm:p-8">
+          <div className="rounded-xl border border-[#E3E8F0] bg-[#F8F9FD] p-6 sm:p-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.key}
@@ -172,10 +172,10 @@ export default function PerspectiveSelector() {
               >
                 <div className="mb-6 flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#EEF4FF]">
-                    <current.Icon size={19} className="text-[#102B57]" aria-hidden />
+                    <current.Icon size={19} className="text-brand-navy" aria-hidden />
                   </span>
                   <div>
-                    <p className="text-sm font-extrabold text-[#102B57]">
+                    <p className="text-sm font-semibold text-brand-navy">
                       {current.label} view
                     </p>
                     <p className="text-[12px] text-[#6B778C]">

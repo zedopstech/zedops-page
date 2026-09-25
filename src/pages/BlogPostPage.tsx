@@ -77,7 +77,7 @@ function ArticleSidebar({ toc, shareUrl, title }: { toc: TocItem[]; shareUrl: st
             </>
           ) : null}
         </div>
-        {copied ? <p className="mt-2 text-xs font-medium text-[#0052CC]">Link copied</p> : null}
+        {copied ? <p className="mt-2 text-xs font-medium text-brand-navy">Link copied</p> : null}
       </div>
 
       {toc.length > 0 ? (
@@ -88,7 +88,7 @@ function ArticleSidebar({ toc, shareUrl, title }: { toc: TocItem[]; shareUrl: st
             className="flex w-full items-center justify-between gap-2 text-left"
             aria-expanded={tocOpen}
           >
-            <span className="text-sm font-extrabold text-brand-navy">Table of contents</span>
+            <span className="text-sm font-semibold text-brand-navy">Table of contents</span>
             <ChevronDown
               className={`h-4 w-4 shrink-0 text-[#6B778C] transition-transform ${tocOpen ? "rotate-180" : ""}`}
               aria-hidden
@@ -101,7 +101,7 @@ function ArticleSidebar({ toc, shareUrl, title }: { toc: TocItem[]; shareUrl: st
                   <li key={item.id} className={item.depth === 3 ? "pl-4" : ""}>
                     <a
                       href={`#${item.id}`}
-                      className="leading-snug text-[#6B778C] transition-colors hover:text-[#0052CC]"
+                      className="leading-snug text-[#6B778C] transition-colors hover:text-brand-navy"
                     >
                       {item.text}
                     </a>
@@ -136,13 +136,13 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
       <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
         <Navbar />
         <div className="mx-auto max-w-lg px-6 pt-[120px] pb-24 text-center">
-          <h1 className="text-2xl font-extrabold">Article not found</h1>
+          <h1 className="text-2xl font-semibold">Article not found</h1>
           <p className="mt-3 text-sm leading-snug text-[#6B778C]">
             This URL may be outdated or the post was moved.
           </p>
           <Link
             href="/blog"
-            className="mt-8 inline-flex items-center gap-2 font-bold text-[#0052CC] transition-colors hover:text-[#0747A6]"
+            className="mt-8 inline-flex items-center gap-2 font-bold text-brand-navy transition-colors hover:text-brand-orange"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
             Back to blog
@@ -160,7 +160,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
   return (
     <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
-      <div className="pt-[100px]">
+      <div>
         <PageHero
           pill="Blog"
           PillIcon={BookOpen}
@@ -190,11 +190,11 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
                 className="flex flex-wrap items-center justify-center gap-1 text-sm text-[#6B778C]"
                 aria-label="Breadcrumb"
               >
-                <Link href="/" className="font-medium text-[#42526E] transition-colors hover:text-[#0052CC]">
+                <Link href="/" className="font-medium text-[#42526E] transition-colors hover:text-brand-navy">
                   Home
                 </Link>
                 <ChevronRight className="h-3.5 w-3.5 shrink-0 text-[#97A0AF]" aria-hidden />
-                <Link href="/blog" className="font-medium text-[#42526E] transition-colors hover:text-[#0052CC]">
+                <Link href="/blog" className="font-medium text-[#42526E] transition-colors hover:text-brand-navy">
                   Blog
                 </Link>
                 <ChevronRight className="h-3.5 w-3.5 shrink-0 text-[#97A0AF]" aria-hidden />
@@ -224,7 +224,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
                   <div className="mt-20 border-t border-gray-200 pt-12">
                     <Link
                       href="/blog"
-                      className="inline-flex items-center gap-2 text-sm font-bold text-[#0052CC] transition-colors hover:text-[#0747A6]"
+                      className="inline-flex items-center gap-2 text-sm font-bold text-brand-navy transition-colors hover:text-brand-orange"
                     >
                       <ArrowLeft className="h-4 w-4" aria-hidden />
                       More articles

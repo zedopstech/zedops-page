@@ -32,6 +32,7 @@ export default function HowWeHelpRolePage() {
       ]}
     >
       <PageHero
+        compact
         pill="Roles & access"
         PillIcon={UserCog}
         title="Your title shouldn’t dictate how much friction you face."
@@ -50,7 +51,7 @@ export default function HowWeHelpRolePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.45 })} className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
             <div>
-              <h2 className="text-2xl font-extrabold leading-tight text-white sm:text-3xl">
+              <h2 className="text-2xl font-semibold leading-tight text-white sm:text-3xl">
                 Roles gate menus, records, exports - and the copilot.
               </h2>
               <p className="mt-4 text-base leading-snug text-white/65">
@@ -73,7 +74,7 @@ export default function HowWeHelpRolePage() {
         </div>
       </section>
 
-      <section className="border-t border-gray-200 bg-[#F8FAFC] py-20 lg:py-24">
+      <section className="border-t border-gray-200 bg-[#F8F9FD] py-20 lg:py-24">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.45 })}>
             <SectionHeader
@@ -87,11 +88,11 @@ export default function HowWeHelpRolePage() {
               Open Built for you
               <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
-            <p className="mt-10 text-sm font-semibold leading-snug text-[#0052CC]">
+            <p className="mt-10 text-sm font-semibold leading-snug text-brand-navy">
               {personaQuickLinks.map((p, i) => (
                 <span key={p.href}>
                   {i > 0 ? <span className="mx-2 text-[#97A0AF]" aria-hidden>·</span> : null}
-                  <a href={p.href} className="underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]">
+                  <a href={p.href} className="underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-brand-orange">
                     {p.label}
                   </a>
                 </span>

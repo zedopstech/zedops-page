@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SectionLabel } from "@/components/design-preview/primitives";
 
 type SectionHeaderProps = {
   id?: string;
@@ -20,31 +21,27 @@ export default function SectionHeader({
   subtitleClassName = "",
 }: SectionHeaderProps) {
   return (
-    <div className={`mb-8 lg:mb-10 ${className}`}>
+    <div className={`mb-10 lg:mb-14 ${className}`}>
       {eyebrow ? (
-        <div className="mb-3 flex items-center gap-3">
-          <span className="h-px w-8 bg-brand-orange/50" aria-hidden />
-          <p className="text-xs font-bold tracking-[0.16em] text-brand-orange uppercase">{eyebrow}</p>
-          <span className="h-px w-8 bg-brand-orange/50" aria-hidden />
-        </div>
+        <SectionLabel>{eyebrow}</SectionLabel>
       ) : null}
 
       <div
         className={
           subtitle
-            ? "flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-10 lg:gap-y-4 xl:gap-x-14"
+            ? "flex flex-col gap-5 lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start lg:gap-x-16"
             : ""
         }
       >
         <h2
           id={id}
-          className={`max-w-2xl text-left text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:max-w-none ${titleClassName}`}
+          className={`max-w-2xl text-left text-[30px] font-semibold leading-[1.12] tracking-[-0.035em] text-brand-navy sm:text-[36px] lg:max-w-none lg:text-[40px] ${titleClassName}`}
         >
           {title}
         </h2>
         {subtitle ? (
           <p
-            className={`max-w-2xl text-left text-base leading-snug text-[#42526E] lg:max-w-none lg:pt-1 ${subtitleClassName}`}
+            className={`max-w-2xl text-left text-base leading-[1.6] text-[#3D4F6E] lg:max-w-none lg:pt-3 ${subtitleClassName}`}
           >
             {subtitle}
           </p>

@@ -1,13 +1,10 @@
 import { useIsMobile } from "@/hooks/use-mobile";
 
-/**
- * Viewport options tuned to reduce IntersectionObserver thrash on mobile (flicker when
- * elements sit near the threshold).
- */
+/** Reveal each element once, shortly after it enters the viewport. */
 export const scrollRevealViewport = {
   once: true as const,
-  amount: 0.12 as const,
-  margin: "0px 0px -8% 0px" as const,
+  amount: 0.15 as const,
+  margin: "0px 0px -6% 0px" as const,
 };
 
 type FadeUpOpts = {
@@ -20,13 +17,16 @@ type FadeUpOpts = {
   ease?: readonly [number, number, number, number];
 };
 
-/** Core logic: no scroll-driven animation on mobile (stable paint). */
+/** Shared scroll entrance for page sections and cards. */
 export function scrollMotionProps(isMobile: boolean, opts: FadeUpOpts = {}) {
   const delay = opts.delay ?? 0;
-  const duration = opts.duration ?? 0.36;
-  const ease = opts.ease ?? ([0.25, 0.1, 0.25, 1] as const);
+  const duration = Math.max(opts.duration ?? 0.55, isMobile ? 0.48 : 0.6);
+  const ease = opts.ease ?? ([0.22, 1, 0.36, 1] as const);
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (isMobile) {
+  if (prefersReducedMotion) {
     return { initial: false as const };
   }
 
@@ -41,14 +41,16 @@ export function scrollMotionProps(isMobile: boolean, opts: FadeUpOpts = {}) {
 
   if (opts.x !== undefined) {
     return {
-      initial: { opacity: 0, x: opts.x },
+      initial: { opacity: 0, x: isMobile ? opts.x * 0.6 : opts.x },
       whileInView: { opacity: 1, x: 0 },
       viewport: scrollRevealViewport,
       transition: { duration, delay, ease },
     };
   }
 
-  const y = opts.y ?? 18;
+  const y = isMobile
+    ? Math.max(12, (opts.y ?? 18) * 0.75)
+    : Math.max(28, opts.y ?? 18);
   return {
     initial: { opacity: 0, y },
     whileInView: { opacity: 1, y: 0 },

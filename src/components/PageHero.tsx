@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import type { ReactNode, ComponentType } from "react";
+import { Container, DotGrid, Eyebrow } from "@/components/design-preview/primitives";
 
 interface PageHeroProps {
   pill: string;
@@ -8,92 +9,42 @@ interface PageHeroProps {
   title: ReactNode;
   subtitle?: string;
   children?: ReactNode;
+  compact?: boolean;
 }
 
-export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, children }: PageHeroProps) {
+/** Shared editorial hero for marketing, resource, and information pages. */
+export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, children, compact = false }: PageHeroProps) {
+  const reduceMotion = useReducedMotion();
+  const enter = (delay: number) => ({
+    initial: reduceMotion ? false : { opacity: 0, y: 16 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.55, delay },
+  });
+
   return (
-    <section className="relative overflow-hidden pt-20 pb-16">
-      {/* Background gradient  -  identical to home hero */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/new-hero-banner.png')",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-        }}
-      />
-
-      {/* Blueprint grid overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: [
-            "linear-gradient(rgba(1,47,176,0.045) 1px, transparent 1px)",
-            "linear-gradient(90deg, rgba(1,47,176,0.045) 1px, transparent 1px)",
-            "linear-gradient(rgba(1,47,176,0.02) 1px, transparent 1px)",
-            "linear-gradient(90deg, rgba(1,47,176,0.02) 1px, transparent 1px)",
-          ].join(", "),
-          backgroundSize: "80px 80px, 80px 80px, 20px 20px, 20px 20px",
-        }}
-      />
-
-      {/* Warm glow at bottom */}
-      <div
-        className="pointer-events-none absolute bottom-0 left-1/2 h-[260px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
-        style={{
-          background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.11) 0%, transparent 65%)",
-          filter: "blur(40px)",
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
-        {/* Pill */}
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="mb-6 inline-flex border border-brand-navy/20 bg-white/80 items-center gap-2 px-4 py-1.5"
-          style={{ borderRadius: 99 }}
-        >
-          <PillIcon size={12} className="text-brand-orange" />
-          <span className="text-brand-navy text-xs font-bold tracking-[0.12em] uppercase">{pill}</span>
+    <section className={`relative overflow-hidden bg-[linear-gradient(180deg,#FFF4EC_0%,#F7F4F2_48%,#EEF3F9_100%)] pb-16 sm:pb-20 lg:pb-24 ${compact ? "pt-14 lg:pt-16" : "pt-[156px] lg:pt-[174px]"}`}>
+      <DotGrid className="[mask-image:linear-gradient(to_bottom,black_5%,transparent_82%)]" />
+      <Container className="relative z-10">
+        <motion.div {...enter(0)}>
+          <Eyebrow tag="ZedOps"><span className="inline-flex items-center gap-1.5"><PillIcon size={13} className="text-brand-orange" />{pill}</span></Eyebrow>
         </motion.div>
-
-        {/* Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.06 }}
-          className="text-4xl sm:text-5xl lg:text-[58px] font-extrabold leading-[1.05] tracking-tight text-brand-navy mb-5"
-        >
-          {title}
-        </motion.h1>
-
-        {/* Subtitle */}
-        {subtitle && (
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.14 }}
-            className="text-[#42526E] text-lg leading-snug max-w-2xl mx-auto mb-8"
-          >
-            {subtitle}
-          </motion.p>
-        )}
-
-        {/* Optional children (CTAs etc.) */}
-        {children && (
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.22 }}
-          >
-            {children}
-          </motion.div>
-        )}
-      </div>
+        <div className="mt-9 grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
+          <motion.h1 {...enter(0.07)} className="max-w-[800px] text-[40px] font-semibold leading-[1.06] tracking-[-0.045em] text-brand-navy sm:text-[54px] lg:text-[64px]">
+            {title}
+          </motion.h1>
+          {(subtitle || children) && (
+            <motion.div {...enter(0.14)} className="lg:border-l lg:border-[#D9E1EC] lg:pb-1 lg:pl-8">
+              {subtitle && <p className="max-w-md text-[16px] font-medium leading-[1.6] text-[#3D4F6E] sm:text-[17px]">{subtitle}</p>}
+              {children && <div className={subtitle ? "mt-7" : ""}>{children}</div>}
+            </motion.div>
+          )}
+        </div>
+        <div className="mt-14 flex items-center gap-3 border-t border-[#D9E1EC] pt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8C97AB]" aria-hidden>
+          <span className="h-[6px] w-[6px] bg-brand-orange" />
+          <span>{pill}</span>
+          <span className="ml-auto">ZedOps</span>
+        </div>
+      </Container>
     </section>
   );
 }

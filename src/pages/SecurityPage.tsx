@@ -1,7 +1,6 @@
 import { useSEO } from "@/hooks/useSEO";
 import Navbar from "@/components/Navbar";
 import Security from "@/components/Security";
-import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
 export default function SecurityPage() {
@@ -12,9 +11,8 @@ export default function SecurityPage() {
   return (
     <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
-      <div className="pt-[100px]">
+      <div>
         <Security />
-        <FinalCTA />
         <Footer />
       </div>
     </div>

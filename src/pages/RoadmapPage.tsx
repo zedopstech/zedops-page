@@ -26,7 +26,6 @@ import {
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
-import FinalCTA from "@/components/FinalCTA";
 
 const blueprintBg = {
   backgroundImage: [
@@ -116,53 +115,13 @@ export default function RoadmapPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
-      <div className="pt-[100px]">
+      <div>
         <PageHero
           pill="Product Roadmap"
           PillIcon={Map}
           title="What we're building and what's next."
           subtitle="We ship every week and update this page as features land. Early access customers influence what comes next."
         />
-
-        {/* At a glance  -  condensed timeline preview kept from the hero */}
-        <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
-          <div className="mx-auto max-w-3xl">
-            <div className="rounded-2xl border border-gray-200/90 bg-white p-6 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] sm:p-8">
-              <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">At a glance</p>
-              <div className="relative mt-5 space-y-0 border-l-2 border-brand-navy/10 pl-6">
-                {columns.map((col) => (
-                  <div key={col.label} className="relative pb-6 last:pb-0">
-                    <span
-                      className={`absolute -left-[25px] top-1.5 flex h-3 w-3 items-center justify-center rounded-full border-2 border-white shadow-sm ring-2 ${col.dotRing} ${col.dot}`}
-                      aria-hidden
-                    />
-                    <div
-                      className="rounded-xl border border-gray-200/80 bg-white px-4 py-3 shadow-[0_4px_20px_-12px_rgba(23,43,77,0.2)]"
-                      style={{ borderLeftWidth: 3, borderLeftColor: col.accent }}
-                    >
-                      <p className="text-sm font-extrabold text-brand-navy">{col.label}</p>
-                      <p className="mt-0.5 text-xs text-[#6B778C]">{col.sublabel}</p>
-                      <p className="mt-2 text-xs font-semibold text-[#0052CC]">{col.items.length} initiatives</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 rounded-2xl border border-brand-navy/12 bg-[#FAFBFC] px-5 py-4">
-                <p className="text-sm leading-snug text-[#42526E]">
-                  Roadmap updates as we ship.{" "}
-                  <a
-                    href="/early-access"
-                    className="inline-flex items-center gap-1 font-bold text-[#0052CC] underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]"
-                  >
-                    Join early access to influence what's next
-                    <ArrowRight size={14} className="shrink-0" aria-hidden />
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Swimlanes */}
         <section className="relative border-t border-gray-200/90 bg-white py-16 sm:px-6 lg:px-8 lg:py-24">
@@ -181,12 +140,12 @@ export default function RoadmapPage() {
                   className="group flex flex-col"
                 >
                   <div
-                    className={`mb-4 flex items-center gap-3 rounded-2xl border bg-white px-4 py-3.5 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-shadow duration-300 group-hover:shadow-[0_16px_36px_-16px_rgba(23,43,77,0.14)] ${col.border}`}
+                    className={`mb-4 flex items-center gap-3 rounded-xl border bg-white px-4 py-3.5 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-shadow duration-300 group-hover:shadow-[0_16px_36px_-16px_rgba(23,43,77,0.14)] ${col.border}`}
                     style={{ borderLeftWidth: 4, borderLeftColor: col.accent }}
                   >
                     <span className={`h-2.5 w-2.5 shrink-0 rounded-full ring-4 ${col.dot} ${col.dotRing}`} aria-hidden />
                     <div className="min-w-0">
-                      <p className="text-sm font-extrabold leading-tight text-brand-navy">{col.label}</p>
+                      <p className="text-sm font-semibold leading-tight text-brand-navy">{col.label}</p>
                       <p className="text-xs text-[#97A0AF]">{col.sublabel}</p>
                     </div>
                   </div>
@@ -196,7 +155,7 @@ export default function RoadmapPage() {
                       <motion.div
                         key={item.title}
                         {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: Math.min(ci * 0.05 + ii * 0.04, 0.25) })}
-                        className="rounded-2xl border border-gray-200/90 bg-linear-to-br from-white to-[#FAFBFC] px-4 py-4 shadow-[0_1px_3px_rgba(23,43,77,0.06)] ring-1 ring-[#172B4D]/5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C7D5F5] hover:shadow-[0_14px_32px_-18px_rgba(23,43,77,0.15)]"
+                        className="rounded-xl border border-gray-200/90 bg-linear-to-br from-white to-[#FAFBFC] px-4 py-4 shadow-[0_1px_3px_rgba(23,43,77,0.06)] ring-1 ring-[#172B4D]/5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C7D5F5] hover:shadow-[0_14px_32px_-18px_rgba(23,43,77,0.15)]"
                       >
                         <div className="flex items-start gap-3">
                           <div
@@ -226,7 +185,7 @@ export default function RoadmapPage() {
             <motion.p {...scrollMotionProps(isMobile, { y: 8, duration: 0.38 })} className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-orange">
               Your voice, on the roadmap
             </motion.p>
-            <motion.h2 {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.05 })} className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <motion.h2 {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.05 })} className="mb-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
               Tell us what your team needs.
             </motion.h2>
             <motion.p {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.08 })} className="mb-10 text-base leading-snug text-white/65">
@@ -296,7 +255,6 @@ export default function RoadmapPage() {
             </motion.form>
           </div>
         </section>
-        <FinalCTA />
         <Footer />
       </div>
     </div>

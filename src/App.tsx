@@ -5,7 +5,6 @@ import { MotionConfig, useReducedMotion } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
-import Home from "@/pages/Home";
 // import PricingPage from "@/pages/PricingPage";
 import SolutionsPage from "@/pages/SolutionsPage";
 import PlatformModulePage from "@/pages/PlatformModulePage";
@@ -30,6 +29,8 @@ import OwnersPage from "@/pages/personas/OwnersPage";
 import PMPage from "@/pages/personas/PMPage";
 import ConsultantsPage from "@/pages/personas/ConsultantsPage";
 import NotFound from "@/pages/not-found";
+import HomePreview from "@/pages/design-preview/HomePreview";
+import ModulePreview from "@/pages/design-preview/ModulePreview";
 import { HIDE_PRICING } from "@/config/siteFocus";
 
 const queryClient = new QueryClient();
@@ -65,7 +66,7 @@ function Router() {
     <>
       <ScrollToTop />
       <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" component={HomePreview} />
       {/* {!HIDE_PRICING ? <Route path="/pricing" component={PricingPage} /> : null} */}
       <Route path="/solutions" component={SolutionsPage} />
       <Route path="/platform/module/:moduleId">
@@ -91,6 +92,9 @@ function Router() {
       <Route path="/who-we-serve/owners" component={OwnersPage} />
       <Route path="/who-we-serve/project-managers" component={PMPage} />
       <Route path="/who-we-serve/consultants" component={ConsultantsPage} />
+      {/* Keep preview URLs available for existing links. */}
+      <Route path="/design-preview/module" component={ModulePreview} />
+      <Route path="/design-preview" component={HomePreview} />
       <Route component={NotFound} />
     </Switch>
     </>

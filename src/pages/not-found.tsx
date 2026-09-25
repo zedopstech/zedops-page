@@ -8,7 +8,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
-      <div className="pt-[100px]">
+      <div>
         <PageHero
           pill="404"
           PillIcon={AlertCircle}

@@ -5,7 +5,6 @@ import { ArrowRight, CheckCircle2, Clock, MessageCircle, Shield, Mail } from "lu
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
-import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
 const subjects = [
@@ -63,7 +62,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
-      <div className="pt-[100px]">
+      <div>
         <PageHero
           pill="Contact"
           PillIcon={Mail}
@@ -71,8 +70,8 @@ export default function ContactPage() {
           subtitle="Ask us anything  -  product, pricing, partnerships, or security. A real person will get back to you within one business day."
         />
 
-        <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <section className="border-t border-[#E3E8F0] bg-[#F8F9FD] px-5 py-20 lg:py-[100px]">
+          <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-20">
             {/* Left  -  why reach out */}
             <div>
               <SectionHeader
@@ -88,10 +87,10 @@ export default function ContactPage() {
                     initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
-                    className="flex items-start gap-4 bg-white border border-gray-200/90 px-4 py-3.5 rounded-xl"
+                    className="flex items-start gap-4 rounded-lg border border-[#E3E8F0] bg-white px-4 py-3.5"
                   >
                     <div className="w-9 h-9 bg-brand-navy flex items-center justify-center shrink-0 rounded-lg mt-0.5">
-                      <perk.icon size={16} className="text-brand-orange" />
+                      <perk.icon size={16} className="text-white" />
                     </div>
                     <div>
                       <p className="text-brand-navy font-bold text-sm">{perk.title}</p>
@@ -113,7 +112,7 @@ export default function ContactPage() {
             </div>
 
             {/* Right  -  form */}
-            <div className="bg-white border border-gray-200/90 rounded-2xl p-6 sm:p-8 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)]">
+            <div className="rounded-xl border border-[#DCE3ED] bg-white p-6 shadow-[0_24px_48px_-32px_rgba(23,43,77,0.3)] sm:p-8 lg:p-10">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -122,7 +121,7 @@ export default function ContactPage() {
                   className="text-center max-w-md mx-auto"
                 >
                   <CheckCircle2 size={52} className="text-green-500 mx-auto mb-5" />
-                  <h2 className="text-2xl font-extrabold text-brand-navy mb-3">Message received.</h2>
+                  <h2 className="text-2xl font-semibold text-brand-navy mb-3">Message received.</h2>
                   <p className="text-[#6B778C] leading-snug mb-6">
                     Thanks for reaching out. We'll get back to you within one business day.
                   </p>
@@ -140,7 +139,7 @@ export default function ContactPage() {
                   transition={{ duration: 0.45 }}
                   className="max-w-md w-full mx-auto"
                 >
-                  <h2 className="text-2xl font-extrabold text-brand-navy mb-1">Send us a message</h2>
+                  <h2 className="text-2xl font-semibold text-brand-navy mb-1">Send us a message</h2>
                   <p className="text-[#6B778C] text-sm mb-7">We typically reply within one business day.</p>
 
                   <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -208,7 +207,7 @@ export default function ContactPage() {
                     <p className="text-xs text-[#97A0AF] text-center">
                       For early access onboarding, you can also use the dedicated request form  -  it helps us prepare for your call.
                     </p>
-                    <a href="/early-access" className="text-center text-xs font-semibold text-[#0052CC] hover:underline">
+                    <a href="/early-access" className="text-center text-xs font-semibold text-brand-navy hover:underline">
                       Request early access instead
                     </a>
                   </form>
@@ -218,7 +217,6 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <FinalCTA />
         <Footer />
       </div>
     </div>

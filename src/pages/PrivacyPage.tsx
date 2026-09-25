@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
-import FinalCTA from "@/components/FinalCTA";
+import LegalContent from "@/components/LegalContent";
 import Footer from "@/components/Footer";
 import { Shield } from "lucide-react";
 
@@ -70,7 +70,7 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
-      <div className="pt-[100px]">
+      <div>
         <PageHero
           pill="Legal"
           PillIcon={Shield}
@@ -78,24 +78,7 @@ export default function PrivacyPage() {
           subtitle="Last updated: April 2026"
         />
 
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <div className="flex flex-col gap-10">
-              {sections.map((s) => (
-                <div key={s.title}>
-                  <h2 className="text-lg font-extrabold text-brand-navy mb-3">{s.title}</h2>
-                  <div className="text-[#42526E] text-sm leading-snug whitespace-pre-line">{s.body}</div>
-                </div>
-              ))}
-
-              <div className="border-t border-gray-100 pt-8 text-sm text-[#6B778C]">
-                <p>Questions? Email us at <a href="mailto:privacy@zedops.com" className="text-[#0052CC] font-medium hover:underline">privacy@zedops.com</a></p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <FinalCTA />
+        <LegalContent sections={sections} email="privacy@zedops.com" />
         <Footer />
       </div>
     </div>

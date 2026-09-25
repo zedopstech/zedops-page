@@ -156,17 +156,11 @@ export default function EarlyAccessPage() {
       <Navbar />
 
       {/* Full-bleed split section */}
-      <div className="min-h-screen pt-[100px] grid lg:grid-cols-2">
+      <div className="grid min-h-screen bg-[linear-gradient(180deg,#FFF4EC_0%,#F7F4F2_45%,#EEF3F9_100%)] pt-[148px] lg:grid-cols-2 lg:pt-[164px]">
 
         {/* ── Left panel  -  content ── */}
         <div
-          className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-16 lg:py-24 relative overflow-hidden"
-          style={{
-            backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/new-hero-banner.png')",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-          }}
+          className="relative flex flex-col justify-center overflow-hidden px-8 py-12 sm:px-12 lg:px-16 lg:py-16"
         >
           {/* Blueprint grid */}
           <div
@@ -196,11 +190,10 @@ export default function EarlyAccessPage() {
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="mb-7 inline-flex border border-brand-navy/20 bg-white/80 items-center gap-2 px-4 py-1.5"
-              style={{ borderRadius: 99 }}
+              className="mb-7 inline-flex items-center gap-2 rounded-md border border-[#E3E8F0] bg-white px-3 py-1.5 shadow-sm"
             >
               <Sparkles size={12} className="text-brand-orange" />
-              <span className="text-brand-navy text-xs font-bold tracking-[0.12em] uppercase">Early Access · Limited spots</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-navy">Early access</span>
             </motion.div>
 
             {/* Headline */}
@@ -208,7 +201,7 @@ export default function EarlyAccessPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.06 }}
-              className="text-4xl sm:text-5xl font-extrabold leading-[1.05] tracking-tight text-brand-navy mb-5"
+              className="mb-5 text-[40px] font-semibold leading-[1.06] tracking-[-0.045em] text-brand-navy sm:text-[54px] lg:text-[64px]"
             >
               Get early access<br />
               to ZedOps.
@@ -219,7 +212,7 @@ export default function EarlyAccessPage() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.14 }}
-              className="text-[#42526E] text-base leading-snug mb-10"
+              className="mb-10 max-w-md text-[16px] leading-[1.65] text-[#3D4F6E]"
             >
               We're onboarding a select group of construction teams. Every applicant gets a personal review  -  and a direct call with the founding team.
             </motion.p>
@@ -232,10 +225,10 @@ export default function EarlyAccessPage() {
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
-                  className="flex items-start gap-4 bg-white/70 border border-white/60 px-4 py-3.5 rounded-xl backdrop-blur-sm"
+                  className="flex items-start gap-4 rounded-lg border border-[#E3E8F0] bg-white/85 px-4 py-3.5"
                 >
                   <div className="w-9 h-9 bg-brand-navy flex items-center justify-center shrink-0 rounded-lg mt-0.5">
-                    <perk.icon size={16} className="text-brand-orange" />
+                    <perk.icon size={16} className="text-white" />
                   </div>
                   <div>
                     <p className="text-brand-navy font-bold text-sm">{perk.title}</p>
@@ -248,7 +241,7 @@ export default function EarlyAccessPage() {
         </div>
 
         {/* ── Right panel  -  form ── */}
-        <div className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-16 lg:py-24 bg-white">
+        <div className="m-5 flex flex-col justify-center rounded-xl border border-[#DCE3ED] bg-white px-6 py-10 shadow-[0_28px_60px_-38px_rgba(23,43,77,0.35)] sm:m-8 sm:px-10 lg:mx-8 lg:my-10 lg:px-12 lg:py-14">
           {submitted ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -257,7 +250,7 @@ export default function EarlyAccessPage() {
               className="text-center max-w-md mx-auto"
             >
               <CheckCircle2 size={52} className="text-green-500 mx-auto mb-5" />
-              <h2 className="text-2xl font-extrabold text-brand-navy mb-3">You're on the list.</h2>
+              <h2 className="text-2xl font-semibold text-brand-navy mb-3">You're on the list.</h2>
               <p className="text-[#6B778C] leading-snug mb-6">
                 Thanks for applying. We review every request personally and will reach out within one business day to schedule your onboarding call.
               </p>
@@ -275,7 +268,7 @@ export default function EarlyAccessPage() {
               transition={{ duration: 0.45 }}
               className="max-w-md w-full mx-auto"
             >
-              <h2 className="text-2xl font-extrabold text-brand-navy mb-1">Request your spot</h2>
+              <h2 className="mb-1 text-[28px] font-semibold tracking-[-0.03em] text-brand-navy">Request a walkthrough</h2>
               <p className="text-[#6B778C] text-sm mb-7">We'll be in touch within one business day.</p>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -360,7 +353,7 @@ export default function EarlyAccessPage() {
 
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all duration-150 group mt-1"
+                  className="group mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-brand-navy px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-150 hover:bg-[#1E3760]"
                 >
                   Request early access
                   <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
@@ -386,7 +379,7 @@ export default function EarlyAccessPage() {
           </p>
           <h2
             id="early-access-faq-heading"
-            className="mb-3 text-center text-2xl font-extrabold tracking-tight text-white sm:text-3xl"
+            className="mb-3 text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl"
           >
             Common questions
           </h2>
@@ -400,7 +393,7 @@ export default function EarlyAccessPage() {
             </a>
             .
           </p>
-          <div className="rounded-2xl border border-white/12 bg-[#0f1c33]/90 px-4 backdrop-blur-sm sm:px-6">
+          <div className="rounded-xl border border-white/12 bg-[#0f1c33]/90 px-4 backdrop-blur-sm sm:px-6">
             {earlyAccessFaqs.map((item, i) => (
               <EarlyAccessFaqItem key={item.q} q={item.q} a={item.a} index={i} invert />
             ))}

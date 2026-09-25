@@ -171,7 +171,7 @@ function RoleStoryOverlay({ variant }: { variant: (typeof roleStoryBlocks)[numbe
     return (
       <div className="absolute bottom-4 left-4 right-4 max-w-[min(100%,17rem)] rounded-lg border border-gray-200 bg-white p-3.5 shadow-lg sm:bottom-6 sm:left-6 sm:right-auto sm:p-4">
         <p className="text-[10px] font-bold uppercase tracking-wide text-[#6B778C]">In ZedOps</p>
-        <p className="mt-1 text-sm font-extrabold leading-snug text-brand-navy">Writing assist on your daily log</p>
+        <p className="mt-1 text-sm font-semibold leading-snug text-brand-navy">Writing assist on your daily log</p>
         <button
           type="button"
           tabIndex={-1}
@@ -189,7 +189,7 @@ function RoleStoryOverlay({ variant }: { variant: (typeof roleStoryBlocks)[numbe
         <div className="flex items-start gap-2.5">
           <CheckCircle2 className="h-5 w-5 shrink-0 text-[#00875A]" aria-hidden />
           <div>
-            <p className="text-sm font-extrabold text-brand-navy leading-snug">AI-suggested workflow</p>
+            <p className="text-sm font-semibold text-brand-navy leading-snug">AI-suggested workflow</p>
             <p className="mt-1 text-xs leading-snug text-[#6B778C]">Next steps from your schedule & tasks</p>
           </div>
         </div>
@@ -200,7 +200,7 @@ function RoleStoryOverlay({ variant }: { variant: (typeof roleStoryBlocks)[numbe
     return (
       <div className="absolute bottom-4 left-4 right-4 max-w-[min(100%,17rem)] rounded-lg border border-gray-200 bg-white p-3.5 shadow-lg sm:bottom-6 sm:left-6 sm:right-auto sm:p-4">
         <p className="text-[10px] font-bold uppercase tracking-wide text-[#6B778C]">Portfolio view</p>
-        <p className="mt-1 text-sm font-extrabold leading-snug text-brand-navy">Executive briefing draft</p>
+        <p className="mt-1 text-sm font-semibold leading-snug text-brand-navy">Executive briefing draft</p>
         <button
           type="button"
           tabIndex={-1}
@@ -217,7 +217,7 @@ function RoleStoryOverlay({ variant }: { variant: (typeof roleStoryBlocks)[numbe
       <div className="flex items-start gap-2.5">
         <CheckCircle2 className="h-5 w-5 shrink-0 text-[#00875A]" aria-hidden />
         <div>
-          <p className="text-sm font-extrabold text-brand-navy leading-snug">Per-client workspace</p>
+          <p className="text-sm font-semibold text-brand-navy leading-snug">Per-client workspace</p>
           <p className="mt-1 text-xs leading-snug text-[#6B778C]">Zed AI stays inside tenant boundaries</p>
         </div>
       </div>
@@ -337,7 +337,7 @@ export default function ZedAIPage() {
     <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
 
-      <main className="pt-[72px]">
+      <main>
         {/* =====================================================
             HERO
         ====================================================== */}
@@ -358,7 +358,7 @@ export default function ZedAIPage() {
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <a
               href="/early-access"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-orange px-6 py-3.5 text-sm font-extrabold text-white shadow-lg shadow-orange-200 transition-all hover:-translate-y-0.5 hover:bg-[#E85F00]"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-orange px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-200 transition-all hover:-translate-y-0.5 hover:bg-[#E85F00]"
             >
               Explore Zed AI
               <ArrowRight className="h-4 w-4" />
@@ -366,7 +366,7 @@ export default function ZedAIPage() {
 
             <a
               href="#how-it-works"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#CBD5E5] bg-white px-6 py-3.5 text-sm font-bold text-brand-navy transition-all hover:border-brand-navy hover:bg-[#F8FAFC]"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#CBD5E5] bg-white px-6 py-3.5 text-sm font-bold text-brand-navy transition-all hover:border-brand-navy hover:bg-[#F8F9FD]"
             >
               <span className="flex h-5 w-5 items-center justify-center rounded-full border border-brand-navy">
                 <span className="ml-0.5 text-[8px]">▶</span>
@@ -450,7 +450,7 @@ export default function ZedAIPage() {
 
                 <a
                   href="/early-access"
-                  className="mt-8 inline-flex items-center gap-2 text-sm font-extrabold text-[#1677FF]"
+                  className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#1677FF]"
                 >
                   See Copilot in action
                   <ArrowRight className="h-4 w-4" />
@@ -467,7 +467,7 @@ export default function ZedAIPage() {
                 <div className="absolute inset-0 rounded-3xl bg-[#E4ECFF]" />
 
                 <div className="relative p-5 sm:p-8">
-                  <div className="rounded-2xl border border-[#DCE5F5] bg-white p-5 shadow-xl sm:p-7">
+                  <div className="rounded-xl border border-[#DCE5F5] bg-white p-5 shadow-xl sm:p-7">
                     <div className="rounded-lg bg-[#EEF4FF] px-4 py-3 text-xs font-bold text-brand-navy">
                       Show me activities at risk this week.
                     </div>
@@ -524,7 +524,7 @@ export default function ZedAIPage() {
         {/* =====================================================
             AI FOR EVERY ROLE
         ====================================================== */}
-        <section className="bg-[#F8FAFC] px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+        <section className="bg-[#F8F9FD] px-4 py-16 sm:px-6 md:py-24 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-3xl font-black leading-tight text-brand-navy sm:text-4xl">
@@ -545,7 +545,7 @@ export default function ZedAIPage() {
                     duration: 0.45,
                     delay: i * 0.05,
                   })}
-                  className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-all hover:-translate-y-1 hover:shadow-[0_12px_28px_-12px_rgba(23,43,77,0.12)]"
+                  className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-all hover:-translate-y-1 hover:shadow-[0_12px_28px_-12px_rgba(23,43,77,0.12)]"
                 >
                   <div className="relative aspect-[1.25] overflow-hidden">
                     <img
@@ -571,7 +571,7 @@ export default function ZedAIPage() {
 
                     <a
                       href={role.href}
-                      className="mt-5 inline-flex items-center gap-1 text-sm font-extrabold text-[#0052CC]"
+                      className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-navy"
                     >
                       Learn more
                       <ArrowRight className="h-3.5 w-3.5" />
@@ -588,7 +588,7 @@ export default function ZedAIPage() {
         ====================================================== */}
         <section
           id="how-it-works"
-          className="relative overflow-hidden bg-[#102B57] px-4 py-16 sm:px-6 md:py-20 lg:px-8"
+          className="relative overflow-hidden bg-brand-navy px-4 py-16 sm:px-6 md:py-20 lg:px-8"
         >
           <div className="pointer-events-none absolute inset-0 opacity-20">
             <div className="absolute left-0 top-1/2 h-px w-full bg-[#5A8DEE]" />
@@ -710,7 +710,7 @@ export default function ZedAIPage() {
         {/* =====================================================
             MODULES
         ====================================================== */}
-        <section className="bg-[#F8FAFC] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
+        <section className="bg-[#F8F9FD] px-4 py-16 sm:px-6 md:py-20 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-3xl font-black leading-tight text-brand-navy sm:text-4xl">
@@ -761,7 +761,7 @@ export default function ZedAIPage() {
 
     {/* HEADER */}
     <div className="mx-auto max-w-3xl text-center">
-      <p className="mb-1.5 text-xs font-extrabold uppercase tracking-widest text-brand-orange">
+      <p className="mb-1.5 text-xs font-semibold uppercase tracking-widest text-brand-orange">
         Intelligent Automation
       </p>
 
@@ -797,7 +797,7 @@ export default function ZedAIPage() {
 
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
-                  <h3 className="text-sm font-extrabold text-brand-navy">
+                  <h3 className="text-sm font-semibold text-brand-navy">
                     Daily Logs
                   </h3>
 
@@ -825,7 +825,7 @@ export default function ZedAIPage() {
 
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
-                  <h3 className="text-sm font-extrabold text-brand-navy">
+                  <h3 className="text-sm font-semibold text-brand-navy">
                     Budget & Cost
                   </h3>
 
@@ -853,7 +853,7 @@ export default function ZedAIPage() {
 
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
-                  <h3 className="text-sm font-extrabold text-brand-navy">
+                  <h3 className="text-sm font-semibold text-brand-navy">
                     Quality & Safety
                   </h3>
 
@@ -913,7 +913,7 @@ export default function ZedAIPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-extrabold text-brand-navy">
+                <h3 className="text-sm font-semibold text-brand-navy">
                   AI-Structured Reports
                 </h3>
 
@@ -939,7 +939,7 @@ export default function ZedAIPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-extrabold text-brand-navy">
+                <h3 className="text-sm font-semibold text-brand-navy">
                   Explained Cost Variances
                 </h3>
 
@@ -965,7 +965,7 @@ export default function ZedAIPage() {
               </div>
 
               <div>
-                <h3 className="text-sm font-extrabold text-brand-navy">
+                <h3 className="text-sm font-semibold text-brand-navy">
                   Prioritized Safety Items
                 </h3>
 
@@ -1001,9 +1001,9 @@ export default function ZedAIPage() {
         {/* =====================================================
             FINAL CTA
         ====================================================== */}
-        <section className="relative overflow-hidden bg-[#102B57] px-4 py-14 sm:px-6 md:py-16 lg:px-8">
+        <section className="relative overflow-hidden bg-brand-navy px-4 py-14 sm:px-6 md:py-16 lg:px-8">
           <div className="absolute right-0 top-0 h-full w-1/2 opacity-20">
-            <div className="absolute right-10 top-10 h-32 w-32 rounded-2xl border border-blue-300" />
+            <div className="absolute right-10 top-10 h-32 w-32 rounded-xl border border-blue-300" />
             <div className="absolute right-32 top-32 h-20 w-20 rounded-xl border border-blue-300" />
             <div className="absolute bottom-10 right-16 h-24 w-24 rounded-xl border border-blue-300" />
           </div>
@@ -1035,8 +1035,8 @@ export default function ZedAIPage() {
             </div>
 
             {/* RIGHT DECORATIVE CARD */}
-            <div className="hidden h-40 w-64 items-center justify-center rounded-2xl border border-blue-300/30 bg-white/5 lg:flex">
-              <div className="relative flex h-24 w-24 rotate-45 items-center justify-center rounded-2xl border border-blue-300/40 bg-[#163968] shadow-2xl">
+            <div className="hidden h-40 w-64 items-center justify-center rounded-xl border border-blue-300/30 bg-white/5 lg:flex">
+              <div className="relative flex h-24 w-24 rotate-45 items-center justify-center rounded-xl border border-blue-300/40 bg-[#163968] shadow-2xl">
                 <Sparkles className="h-10 w-10 -rotate-45 text-[#5A9BFF]" />
               </div>
             </div>

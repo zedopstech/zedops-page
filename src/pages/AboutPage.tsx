@@ -37,7 +37,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
-      <div className="pt-[100px]">
+      <div>
         <PageHero
           pill="About ZedOps"
           PillIcon={Building2}
@@ -64,7 +64,7 @@ export default function AboutPage() {
 
               <motion.div
                 {...scrollMotionProps(isMobile, { x: 20, duration: 0.5 })}
-                className="rounded-2xl bg-brand-navy p-8 text-white"
+                className="rounded-xl bg-brand-navy p-8 text-white"
               >
                 <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-4">Founding team note</p>
                 <p className="text-white/80 text-base leading-snug">
@@ -80,18 +80,18 @@ export default function AboutPage() {
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
             <p className="text-xs font-bold text-[#97A0AF] uppercase tracking-widest mb-4 text-center">How we work</p>
-            <h2 className="text-3xl font-extrabold tracking-tight text-center mb-12">What we believe in</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-center mb-12">What we believe in</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {values.map((v, i) => (
                 <motion.div
                   key={v.title}
                   {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: i * 0.08 })}
-                  className="bg-white border border-gray-200/90 rounded-2xl p-6 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-shadow duration-200 hover:shadow-[0_12px_28px_-12px_rgba(23,43,77,0.12)]"
+                  className="bg-white border border-gray-200/90 rounded-xl p-6 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-shadow duration-200 hover:shadow-[0_12px_28px_-12px_rgba(23,43,77,0.12)]"
                 >
                   <div className="w-10 h-10 bg-brand-navy/8 rounded-lg flex items-center justify-center mb-4">
                     <v.icon size={18} className="text-brand-navy" />
                   </div>
-                  <h3 className="font-extrabold text-brand-navy mb-2 text-sm">{v.title}</h3>
+                  <h3 className="font-semibold text-brand-navy mb-2 text-sm">{v.title}</h3>
                   <p className="text-[#42526E] text-sm leading-snug">{v.body}</p>
                 </motion.div>
               ))}
@@ -103,7 +103,7 @@ export default function AboutPage() {
         <section className="bg-brand-navy px-4 py-16 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-4">We're hiring</p>
-            <h2 className="text-3xl font-extrabold text-white mb-4">
+            <h2 className="text-3xl font-semibold text-white mb-4">
               Want to help us build it?
             </h2>
             <p className="text-white/60 text-base leading-snug mb-8 max-w-xl mx-auto">

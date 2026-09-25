@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ZedOps favicon — the interlocking mark from the brand SVG, on the brand tile.
+  Paint mirrors the design-system tokens (light theme): tile #ffffff,
+  navy #122649 (--brand 219 60% 18%), orange #ff5c00 (--primary 22 100% 50%).
+  Mark geometry/viewBox match resources/js/components/shared/ZedOpsSymbol.tsx —
+  regenerate from there if the mark changes.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 660" width="660" height="660">
+  <rect width="660" height="660" rx="145" fill="#ffffff"/>
+  <svg x="120.00" y="162.69" width="420" height="334.62" viewBox="254 84 487 388" stroke-linejoin="round" stroke-width="2">
+    <path d="m340 279-73-76c-12-12-11-27 0-39l77-73q5-5 13-4h278c22 0 37 15 37 38 0 21-15 40-36 40h-181z" fill="#122649" stroke="#122649"/>
+    <path d="m340 280h147q11 0 11 9 0 4-5 10l-91 91q-3 4-8 3h-119q-13 1-16-11-6-13 3-24z" fill="#122649" stroke="#122649"/>
+    <path d="m563 269 63-59q7-7 18-7h76q12 0 16 11 4 10-5 19l-53 51q-5 6-13 6l-102-2q-13 0 0-19z" fill="#ff5c00" stroke="#ff5c00"/>
+    <path d="m668 291 61 64q8 8 8 18 0 13-10 23l-72 69q-5 5-13 5h-204c-21 0-34-14-34-34-1-22 14-41 36-41l121-2z" fill="#ff5c00" stroke="#ff5c00"/>
+  </svg>
+</svg>

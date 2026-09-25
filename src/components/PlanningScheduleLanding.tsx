@@ -1,1235 +1,153 @@
-import { useRef, useState } from "react";
-import {
-  ArrowRight,
-  BarChart3,
-  CalendarClock,
-  Check,
-  Eye,
-  LineChart,
-  ShieldCheck,
-  Sparkles,
-  Target,
-  Trophy,
-  TrendingUp,
-  Users,
-  X,
-  Zap,
-  ChevronDown,
-} from "lucide-react";
-import { motion } from "framer-motion";
-import PlanningDashboard from "@/components/dashboards/planning/PlanningDashboard";
+import { Lock } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
-import FinalCTA from "@/components/FinalCTA";
-import SectionHeader from "@/components/SectionHeader";
 import type { PlatformFeatureSection } from "@/data/platformFeatures";
+import { planningAiRoadmap, planningFeatures, planningSources } from "@/data/planningScheduleData";
+import { ModuleCapabilities, ModuleClosingCta, ModuleComparison, ModuleConnected, ModuleHero, ModuleWorkflowTabs } from "@/components/module/ModuleSections";
 import {
-  planningAiEyebrow,
-  planningAiRoadmap,
-  planningBenefits,
-  planningComparison,
-  planningConnected,
-  planningCta,
-  planningFeatures,
-  planningFeaturesTitle,
-  planningHero,
-  planningKpis,
-  planningSimple,
-  planningSources,
-  planningSourcesTitle,
-  planningWorkflow,
-  planningWorkflowTitle,
-  scheduleDashboardData,
-} from "@/data/planningScheduleData";
+  CornerTicks,
+  Highlight,
+} from "@/components/design-preview/primitives";
 
 type NavModule = Pick<PlatformFeatureSection, "id" | "title">;
 
-type PlanningFeature = (typeof planningFeatures)[number];
+const phases = [
+  {
+    label: "Build the plan",
+    title: "Give every activity a place in the programme.",
+    body: "Organise the work by WBS, sequence the activities, and account for calendars and constraints before teams start on site.",
+    steps: ["Set the WBS", "Add activities", "Link dependencies"],
+  },
+  {
+    label: "Set the baseline",
+    title: "Agree on the plan the team will measure against.",
+    body: "Keep a baseline alongside the working schedule so planned and actual dates remain easy to compare.",
+    steps: ["Review dates", "Set the baseline", "Share the programme"],
+  },
+  {
+    label: "Coordinate work",
+    title: "Put the next activities in the right hands.",
+    body: "Assign work to people and teams, bring resources into view, and make upcoming activities clear to the field.",
+    steps: ["Assign ownership", "Check resources", "Plan the lookahead"],
+  },
+  {
+    label: "Track & respond",
+    title: "See what moved and decide what happens next.",
+    body: "Record progress from site, compare it with the baseline, and review delays before they affect the next trade.",
+    steps: ["Capture progress", "Review variance", "Update the plan"],
+  },
+] as const;
 
-function PlanningFeatureCard({
-  feat,
-  open,
-  onToggle,
-}: {
-  feat: PlanningFeature;
-  open: boolean;
-  onToggle: () => void;
-}) {
-  const Icon = feat.icon;
-  const detailsId = `planning-feature-${feat.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
-
-  return (
-    <article className="w-full overflow-hidden rounded-2xl border border-white/10 bg-brand-navy shadow-[0_12px_28px_-16px_rgba(23,43,77,0.35)]">
-      {/* Header */}
-      <div className="flex items-center gap-3 px-5 py-5">
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-white/30">
-          <Icon
-            size={20}
-            className="text-brand-orange"
-            strokeWidth={2}
-            aria-hidden
-          />
-        </span>
-
-        <h3 className="text-base font-extrabold leading-snug text-brand-orange sm:text-lg">
-          {feat.title}
-        </h3>
-      </div>
-
-      {/* Details - Always Visible */}
-      <div className="border-t border-white/10 px-5 pb-6 pt-4">
-        <ul className="flex flex-col gap-3">
-          {feat.bullets.map((line) => (
-            <li
-              key={line}
-              className="flex items-start gap-2.5 text-sm leading-snug text-white/80 sm:text-base"
-            >
-              <Check
-                size={16}
-                className="mt-0.5 shrink-0 text-brand-orange"
-                strokeWidth={2.4}
-                aria-hidden
-              />
-
-              <span>{line}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </article>
-  );
-}
-
-function KpiSparkline({
-  points,
-  color,
-  id,
-  className,
-}: {
-  points: readonly number[];
-  color: string;
-  id: string;
-  className?: string;
-}) {
-  const width = 64;
-  const height = 28;
-  const padX = 3;
-  const padY = 4;
-  const min = Math.min(...points);
-  const max = Math.max(...points);
-  const range = max - min || 1;
-  const coords = points.map((value, i) => ({
-    x: padX + (i / (points.length - 1)) * (width - padX * 2),
-    y: padY + (1 - (value - min) / range) * (height - padY * 2),
-  }));
-
-  const linePath = coords.reduce((path, point, i) => {
-    if (i === 0) return `M ${point.x} ${point.y}`;
-    const prev = coords[i - 1];
-    const cx = (prev.x + point.x) / 2;
-    return `${path} C ${cx} ${prev.y}, ${cx} ${point.y}, ${point.x} ${point.y}`;
-  }, "");
-
-  const areaPath = `${linePath} L ${coords[coords.length - 1].x} ${height - 1} L ${coords[0].x} ${height - 1} Z`;
-
-  return (
-    <svg
-      className={`h-7 w-[60px] shrink-0 sm:h-8 sm:w-[68px] ${className ?? ""}`}
-      viewBox={`0 0 ${width} ${height}`}
-      fill="none"
-      aria-hidden
-    >
-      <defs>
-        <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity="0.22" />
-          <stop offset="100%" stopColor={color} stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <path d={areaPath} fill={`url(#${id})`} />
-      <path d={linePath} stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      {coords.map((point, i) => (
-        <circle key={i} cx={point.x} cy={point.y} r="2" fill={color} />
-      ))}
-    </svg>
-  );
-}
-
-const kpiTone = {
-  orange: { icon: "bg-brand-orange/15 text-brand-orange", spark: "#FE5D02" },
-  green: { icon: "bg-[#E3FCEF] text-[#00875A]", spark: "#22C55E" },
-  red: { icon: "bg-[#FFEBE6] text-[#DE350B]", spark: "#EF4444" },
-  purple: { icon: "bg-[#EAE6FF] text-[#5243AA]", spark: "#7C3AED" },
-} as const;
-
-function PlanningScheduleKpiCard() {
-  return (
-    <>
-      <div className="flex items-start justify-between gap-2">
-        <div className="min-w-0">
-          <h3 className="text-base font-extrabold leading-snug text-white sm:text-lg">{planningKpis.title}</h3>
-          <p className="mt-0.5 text-xs text-white/60 sm:text-sm">{planningKpis.subtitle}</p>
+function ScheduleVisual({ index }: { index: number }) {
+  if (index === 0 || index === 3) {
+    const rows = [
+      { name: "Engineering", start: "8%", width: "38%", color: "bg-brand-navy" },
+      { name: "Procurement", start: "28%", width: "42%", color: "bg-brand-orange" },
+      { name: "Installation", start: "53%", width: "36%", color: "bg-[#6685B2]" },
+    ];
+    return (
+      <div className="overflow-hidden rounded-lg border border-[#DCE3ED] bg-white text-[11px] shadow-[0_10px_24px_-18px_rgba(23,43,77,0.35)]">
+        <div className="flex items-center justify-between border-b border-[#E3E8F0] px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-[#8C97AB]">
+          <span>{index === 0 ? "Project programme" : "Baseline / current"}</span><span>Wk 01 — 08</span>
         </div>
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/10">
-          <LineChart size={16} className="text-brand-orange" strokeWidth={2} aria-hidden />
-        </span>
+        {rows.map((row) => (
+          <div key={row.name} className="grid grid-cols-[90px_1fr] border-b border-[#EDF0F5] last:border-b-0">
+            <span className="truncate border-r border-[#EDF0F5] px-3 py-2 text-[#3D4F6E]">{row.name}</span>
+            <div className="relative my-2.5 h-2.5 bg-[linear-gradient(90deg,transparent_24%,#E3E8F0_24%,#E3E8F0_25%,transparent_25%,transparent_49%,#E3E8F0_49%,#E3E8F0_50%,transparent_50%,transparent_74%,#E3E8F0_74%,#E3E8F0_75%,transparent_75%)]">
+              <span className={`absolute top-0 h-full rounded-sm ${row.color}`} style={{ left: row.start, width: row.width }} />
+            </div>
+          </div>
+        ))}
       </div>
-
-      <ul className="mt-3 flex flex-1 flex-col gap-1.5">
-        {planningKpis.stats.map((stat, i) => {
-          const Icon = stat.icon;
-          const tone = kpiTone[stat.color];
-          return (
-            <li
-              key={stat.label}
-              className="rounded-lg bg-white/[0.04] px-2.5 py-2 ring-1 ring-white/10"
-            >
-              <div className="flex items-start gap-2.5">
-                <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${tone.icon}`}>
-                  <Icon size={14} strokeWidth={2.2} aria-hidden />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-start justify-between gap-1.5">
-                    <p className="min-w-0 text-[11px] leading-snug text-white/65 sm:text-xs">{stat.label}</p>
-                    <KpiSparkline
-                      points={stat.sparkPoints}
-                      color={tone.spark}
-                      id={`planning-kpi-spark-${i}`}
-                      className="-mt-0.5"
-                    />
-                  </div>
-                  <p className="mt-0.5 text-xl font-black leading-none tracking-tight text-white">
-                    {stat.value}
-                  </p>
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-
-      <a
-        href={planningKpis.cta.href}
-        className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-orange px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
-      >
-        {planningKpis.cta.label}
-        <ArrowRight size={14} aria-hidden />
-      </a>
-      <p className="mt-1 text-[9px] text-white/45">{planningKpis.sampleNote}</p>
-    </>
-  );
-}
-
-const simpleToneClass = {
-  blue: "bg-[#DEEBFF] text-[#0052CC]",
-  green: "bg-[#E3FCEF] text-[#006644]",
-  orange: "bg-brand-orange/12 text-brand-orange",
-} as const;
-
-function PlanningConnectedCard() {
-  return (
-    <section className="mx-auto flex min-h-[390px] w-full max-w-[557px] flex-col justify-center px-6 py-6">
-      <div className="max-w-md">
-        <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-brand-orange">
-          {planningHero.eyebrow}
-        </p>
-
-        <h2 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-4xl">
-          {planningConnected.titleLead}
-          <span className="text-brand-orange">{planningConnected.titleAccent}</span>
-        </h2>
-
-        <p className="mt-5 text-sm leading-6 text-[#6B778C] sm:text-base">
-          {planningHero.subtitle}
-        </p>
-
-        <p className="mt-4 text-sm font-semibold text-brand-navy">
-          {planningConnected.subtitle}
-        </p>
+    );
+  }
+  if (index === 1 || index === 4) {
+    const rows = index === 1 ? [["Ductwork install", "MEP team A"], ["Electrical rough-in", "Electrical"], ["Pressure testing", "QA team"]] : [["Mechanical", "78%"], ["Electrical", "62%"], ["Plumbing", "84%"]];
+    return (
+      <div className="rounded-lg border border-[#DCE3ED] bg-white p-3 shadow-[0_10px_24px_-18px_rgba(23,43,77,0.35)]">
+        <div className="mb-3 flex justify-between font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-[#8C97AB]"><span>{index === 1 ? "Activity owners" : "Resource load"}</span><span>03 / 03</span></div>
+        {rows.map(([name, value], row) => (
+          <div key={name} className="flex items-center justify-between gap-3 border-t border-[#EDF0F5] py-2 text-[12px] text-brand-navy">
+            <span className="truncate">{name}</span><span className={`shrink-0 rounded px-2 py-0.5 font-mono text-[10px] ${row === 1 ? "bg-[#FFF1E8] text-brand-orange" : "bg-[#EDF3FA] text-brand-navy"}`}>{value}</span>
+          </div>
+        ))}
       </div>
-    </section>
-  );
-}
-
-function HeroDemoVideo({ src, label }: { src: string; label: string }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const togglePlay = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (video.paused) void video.play();
-    else video.pause();
-  };
-
+    );
+  }
+  const bars = index === 2 ? [42, 57, 63, 69, 77, 82] : [28, 40, 54, 61, 74, 86];
   return (
-    <div className="relative w-full lg:w-[135%] lg:max-w-none">
-      <video
-        ref={videoRef}
-        className="h-auto w-full cursor-pointer bg-transparent object-contain object-center mix-blend-screen"
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-label={label}
-        onClick={togglePlay}
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+    <div className="rounded-lg border border-[#DCE3ED] bg-white p-4 shadow-[0_10px_24px_-18px_rgba(23,43,77,0.35)]">
+      <div className="flex justify-between font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-[#8C97AB]"><span>{index === 2 ? "Planned / actual" : "Progress trend"}</span><span>6 weeks</span></div>
+      <div className="mt-4 flex h-[94px] items-end justify-between gap-3 border-b border-[#A8B8CC] px-2">
+        {bars.map((height, i) => <div key={i} className="flex h-full flex-1 items-end"><div className="w-full rounded-t-sm bg-[#DCE7F5]" style={{ height: `${height}%` }}><div className="ml-auto h-full w-1/2 rounded-t-sm bg-brand-navy" style={{ height: `${Math.max(height - (i % 2 ? 13 : 7), 20)}%` }} /></div></div>)}
+      </div>
     </div>
   );
 }
 
-export default function PlanningScheduleLanding(_props: {
-  prev: NavModule | null;
-  next: NavModule | null;
-}) {
+function Capabilities({ isMobile }: { isMobile: boolean }) {
+  return <ModuleCapabilities
+    isMobile={isMobile}
+    heading={{ id: "planning-capabilities", label: "Built for project teams", title: <>Make the schedule a <Highlight>working plan.</Highlight></>, body: "Keep sequence, ownership, resources, and progress in one place so the next decision has the right context." }}
+    features={planningFeatures}
+    renderVisual={(index) => <ScheduleVisual index={index} />}
+    note="Illustrative schedule data"
+  />;
+}
+
+function Workflow({ isMobile }: { isMobile: boolean }) {
+  return <ModuleWorkflowTabs
+    isMobile={isMobile}
+    heading={{ id: "planning-workflow-title", label: "Planning workflow", title: <>From the first programme to the <Highlight>next site update.</Highlight></>, body: "Four connected phases keep the baseline, assignments, and field progress in the same conversation." }}
+    tabs={phases}
+  />;
+}
+
+const before = ["Separate spreadsheets for each trade", "Updates arrive after the plan has changed", "Unclear ownership of upcoming activities", "Baseline and current dates drift apart"];
+const after = ["One schedule across the project", "Progress recorded against activities", "Named owners and visible lookaheads", "Baseline and current dates viewed together"];
+
+function Comparison({ isMobile }: { isMobile: boolean }) {
+  return <ModuleComparison
+    isMobile={isMobile}
+    heading={{ id: "planning-comparison-title", label: "Before and after", title: <>A plan the field can <Highlight>actually work from.</Highlight></>, body: "Give the team a clear programme and a reliable way to see what changed." }}
+    before={before.map((title) => ({ title }))}
+    after={after.map((title) => ({ title }))}
+    beforeLabel="Fragmented planning"
+    beforeStamp="Old process"
+    afterStamp="Current plan"
+    afterTone="dark"
+  />;
+}
+
+function Connected({ isMobile }: { isMobile: boolean }) {
+  const modules = planningSources.filter((source) => !source.current).slice(0, 6);
+  return <ModuleConnected
+    isMobile={isMobile}
+    heading={{ id: "planning-connected-title", label: "Connected across ZedOps", title: <>The schedule gives every team <Highlight>a shared sequence.</Highlight></>, body: "Link the plan with estimates, materials, daily updates, tasks, and costs so project decisions keep their context." }}
+    sourceTitle="Project schedule"
+    sourceBody="Activities, owners, baseline dates, and site progress in one working plan."
+    sourceRows={[{ label: "Work breakdown structure", status: "defined" }, { label: "Baseline and current dates", status: "visible" }, { label: "Activity ownership", status: "assigned" }]}
+    modules={modules}
+    roadmapLabel="Zed AI for planning"
+    roadmapBody="Ideas on the roadmap for spotting delays, understanding progress, and planning recovery."
+    roadmapItems={planningAiRoadmap.items}
+  />;
+}
+
+function PlanningProductView() {
+  return <div className="relative mx-auto max-w-[1110px] pt-9">
+    <div className="absolute inset-x-0 top-0 flex h-5 items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8C97AB]" aria-hidden><span className="h-px flex-1 bg-[#A8B8CC]" /><span>Schedule workspace · project timeline</span><span className="h-px flex-1 bg-[#A8B8CC]" /></div>
+    <div className="relative rounded-[10px] border border-[#CFD9E6] bg-white p-2.5 shadow-[0_40px_80px_-40px_rgba(23,43,77,0.45)] sm:p-3.5"><CornerTicks /><div className="overflow-hidden rounded-md border border-[#E3E8F0] bg-white"><div className="flex h-10 items-center gap-3 border-b border-[#E3E8F0] bg-[#F8F9FD] px-4 sm:h-12"><span className="flex gap-1.5" aria-hidden>{[0, 1, 2].map((i) => <span key={i} className="h-2.5 w-2.5 rounded-full border border-[#D5DCE7] bg-[#EDF0F5]" />)}</span><span className="mx-auto flex h-7 items-center gap-2 rounded-md border border-[#E3E8F0] bg-white px-4 text-[11px] font-medium text-brand-navy"><Lock size={11} className="text-[#8C97AB]" aria-hidden />ZedOps / Schedule dashboard</span></div><div className="h-[240px] overflow-hidden bg-[#F4F6FA] sm:h-[400px] lg:h-[510px]"><img src="/schedule and planning.png" alt="ZedOps schedule dashboard showing activities alongside a baseline timeline" className="h-full w-full object-cover object-left-top" /></div></div><div className="absolute bottom-2.5 right-2.5 flex border border-brand-navy bg-white font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-navy sm:bottom-3.5 sm:right-3.5"><span className="bg-brand-navy px-2.5 py-2 text-white">P-01</span><span className="hidden px-2.5 py-2 sm:block">Schedule workspace</span></div></div>
+  </div>;
+}
+
+export default function PlanningScheduleLanding(_props: { prev: NavModule | null; next: NavModule | null }) {
   const isMobile = useIsMobile();
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [isDemoOpen, setIsDemoOpen] = useState(false);
-  const colCount = Math.min(Math.max(planningWorkflow.length, 3), 9);
-
-  return (
-    <>
-      {/* =========================================================
-          HERO + DASHBOARD SECTION
-      ========================================================= */}
-      <section className="relative mb-6 overflow-visible border-b border-gray-100">
-  
-        {/* Background */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(155deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.82) 35%, rgba(255,255,255,0.76) 62%, rgba(255,255,255,0.86) 100%), url('/new-hero-banner.png')",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
-          aria-hidden
-        />
-  
-        {/* Grid */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage: [
-              "linear-gradient(rgba(1,47,176,0.045) 1px, transparent 1px)",
-              "linear-gradient(90deg, rgba(1,47,176,0.045) 1px, transparent 1px)",
-              "linear-gradient(rgba(1,47,176,0.02) 1px, transparent 1px)",
-              "linear-gradient(90deg, rgba(1,47,176,0.02) 1px, transparent 1px)",
-            ].join(", "),
-            backgroundSize:
-              "80px 80px, 80px 80px, 20px 20px, 20px 20px",
-          }}
-          aria-hidden
-        />
-  
-        {/* Orange Glow */}
-        <div
-          className="pointer-events-none absolute bottom-0 left-1/2 h-[180px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
-          style={{
-            background:
-              "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.10) 0%, transparent 65%)",
-            filter: "blur(35px)",
-          }}
-          aria-hidden
-        />
-  
-        {/* =======================================================
-            HERO CONTENT
-        ======================================================= */}
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-7 sm:px-6 lg:px-8 lg:py-9">
-  
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="flex flex-col items-center text-center"
-          >
-            {/* Eyebrow */}
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-orange">
-              {planningHero.eyebrow}
-            </p>
-  
-            {/* Title */}
-            <h1 className="max-w-4xl text-3xl font-extrabold leading-[1.08] tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
-              {planningHero.titleLead}{" "}
-              <span className="text-brand-orange">
-                {planningHero.titleAccent}
-              </span>
-            </h1>
-  
-            {/* Subtitle */}
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#42526E] sm:text-base">
-              Assign activities, track progress in real-time, and keep your
-              schedule up-to-date.
-            </p>
-  
-            {/* Watch Demo Button */}
-            <div className="mt-5">
-              <button
-                type="button"
-                onClick={() => setIsDemoOpen(true)}
-                className="
-                  inline-flex
-                  items-center
-                  justify-center
-                  gap-2
-                  rounded-md
-                  bg-brand-orange
-                  px-7
-                  py-3.5
-                  text-sm
-                  font-bold
-                  text-white
-                  shadow-[0_8px_20px_-8px_rgba(254,93,2,0.45)]
-                  transition-all
-                  hover:-translate-y-0.5
-                  hover:bg-brand-orange-soft
-                "
-              >
-                {planningHero.primaryCta.label}
-  
-                <ArrowRight
-                  size={16}
-                  aria-hidden
-                />
-              </button>
-            </div>
-          </motion.div>
-  
-  
-          {/* =======================================================
-              DASHBOARD SECTION
-              Floating cards inside ProductDashboard remain scoped
-              to the dashboard.
-          ======================================================= */}
-          <section className="relative z-10 mt-0 overflow-visible border-t border-gray-100 px-2 py-2 sm:px-4 lg:px-6 lg:py-4">
-  
-            <div className="relative mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
-  
-              <PlanningDashboard
-                data={scheduleDashboardData}
-                onWatchDemo={() => setIsDemoOpen(true)}
-              />
-  
-            </div>
-          </section>
-  
-        </div>
-      </section>
-  
-  
-      {/* =========================================================
-          VIDEO MODAL
-      ========================================================= */}
-      {isDemoOpen && (
-        <div
-          className="
-            fixed
-            inset-0
-            z-[9999]
-            flex
-            items-center
-            justify-center
-            bg-black/70
-            p-4
-            backdrop-blur-sm
-          "
-          role="dialog"
-          aria-modal="true"
-          aria-label="Schedule planning demo"
-          onClick={() => setIsDemoOpen(false)}
-        >
-  
-          <div
-            className="
-              relative
-              w-full
-              max-w-5xl
-              overflow-hidden
-              rounded-2xl
-              bg-black
-              shadow-2xl
-            "
-            onClick={(event) => event.stopPropagation()}
-          >
-  
-            {/* Close Button */}
-            <button
-              type="button"
-              onClick={() => setIsDemoOpen(false)}
-              className="
-                absolute
-                right-3
-                top-3
-                z-10
-                flex
-                h-9
-                w-9
-                items-center
-                justify-center
-                rounded-full
-                bg-black/60
-                text-xl
-                text-white
-                transition
-                hover:bg-black/80
-              "
-              aria-label="Close video"
-            >
-              ×
-            </button>
-  
-  
-            {/* Video */}
-            <video
-              className="block aspect-video w-full"
-              controls
-              autoPlay
-              playsInline
-            >
-              <source
-                src="/Schedule_ad_video.mp4"
-                type="video/mp4"
-              />
-  
-              Your browser does not support the video tag.
-            </video>
-  
-          </div>
-        </div>
-      )}
-
-      <section className="border-t border-gray-100 bg-[#F3F6FA] py-6 lg:py-8">
-        
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}
-          className="mb-5 text-center"
-        >
-          <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
-            {planningFeaturesTitle.lead}{" "}
-            <span className="text-brand-orange">
-              {planningFeaturesTitle.accent}
-            </span>
-            <span className="mx-auto mt-2 block h-[3px] w-16 rounded-full bg-brand-navy" />
-          </h2>
-        </motion.div>
-          <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {planningFeatures.map((feat, i) => (
-              <motion.div
-                key={feat.title}
-                {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: Math.min(i * 0.04, 0.2) })}
-                className="min-w-0 w-full"
-              >
-                <PlanningFeatureCard
-                  feat={feat}
-                  open={openIndex === i}
-                  onToggle={() => setOpenIndex((current) => (current === i ? null : i))}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-visible border-t border-gray-100 bg-white py-12 lg:py-16">
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <motion.div
-        {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}
-        className="mb-10 text-center"
-      >
-        {/* Eyebrow */}
-        <div className="mb-3 flex items-center justify-center gap-3">
-          <span className="h-px w-10 bg-brand-orange" />
-
-          <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand-orange">
-            Process
-          </span>
-
-          <span className="h-px w-10 bg-brand-orange" />
-        </div>
-
-        {/* Title */}
-        <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
-          {planningWorkflowTitle.lead}{" "}
-          <span className="text-brand-orange">
-            {planningWorkflowTitle.accent}
-          </span>
-        </h2>
-        
-      </motion.div>
-
-        {/* Desktop Workflow */}
-        <div className="relative hidden lg:block">
-          <ol
-            className="relative m-0 grid list-none gap-2.5 p-0"
-            style={{
-              gridTemplateColumns: `repeat(${colCount}, minmax(0, 1fr))`,
-            }}
-          >
-            {planningWorkflow.map((step, i) => {
-              const Icon = step.icon;
-
-              return (
-                <motion.li
-                  key={step.title}
-                  {...scrollMotionProps(isMobile, {
-                    y: 12,
-                    duration: 0.35,
-                    delay: Math.min(i * 0.03, 0.24),
-                  })}
-                  className="relative flex min-w-0 flex-col items-center text-center"
-                >
-                  {/* Arrow Connector */}
-                  {i < planningWorkflow.length - 1 && (
-                    <div
-                      className="
-                        pointer-events-none
-                        absolute
-                        left-1/2
-                        right-[-5px]
-                        top-[27px]
-                        z-0
-                        flex
-                        items-center
-                      "
-                      aria-hidden
-                    >
-                      {/* Thin Line */}
-                      <div className="h-px flex-1 bg-brand-orange/70" />
-
-                      {/* Arrow Head */}
-                      <svg
-                        width="10"
-                        height="10"
-                        viewBox="0 0 10 10"
-                        fill="none"
-                        className="shrink-0 text-brand-orange"
-                      >
-                        <path
-                          d="M1.5 5H8M5.5 2.5L8 5L5.5 7.5"
-                          stroke="currentColor"
-                          strokeWidth="1.4"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                  )}
-
-                  {/* Icon */}
-                  <span
-                    className="
-                      relative
-                      z-10
-                      flex
-                      h-14
-                      w-14
-                      items-center
-                      justify-center
-                      rounded-full
-                      border-2
-                      border-brand-orange
-                      bg-white
-                      shadow-[0_0_18px_rgba(254,93,2,0.28)]
-                    "
-                  >
-                    <Icon
-                      size={22}
-                      className="text-brand-orange"
-                      strokeWidth={2}
-                      aria-hidden
-                    />
-                  </span>
-
-                  {/* Vertical Connector */}
-                  <span
-                    className="h-7 w-px bg-brand-orange"
-                    aria-hidden
-                  />
-
-                  {/* Step Title */}
-                  <div className="flex min-h-[72px] items-start justify-center px-2">
-                    <h3 className="text-sm font-extrabold leading-snug text-brand-navy">
-                      {step.title}
-                    </h3>
-                  </div>
-                </motion.li>
-              );
-            })}
-          </ol>
-        </div>
-
-        {/* Mobile Workflow */}
-        <ol className="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 lg:hidden">
-          {planningWorkflow.map((step, i) => {
-            const Icon = step.icon;
-
-            return (
-              <motion.li
-                key={step.title}
-                {...scrollMotionProps(isMobile, {
-                  y: 12,
-                  duration: 0.35,
-                  delay: Math.min(i * 0.03, 0.2),
-                })}
-                className="
-                  flex
-                  gap-3
-                  rounded-2xl
-                  border
-                  border-gray-100
-                  bg-white
-                  px-4
-                  py-4
-                  shadow-[0_8px_24px_-18px_rgba(23,43,77,0.18)]
-                "
-              >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-brand-orange bg-white">
-                  <Icon
-                    size={18}
-                    className="text-brand-orange"
-                    strokeWidth={2}
-                    aria-hidden
-                  />
-                </span>
-
-                <div className="min-w-0">
-                  <h3 className="text-sm font-extrabold leading-snug text-brand-navy">
-                    {step.title}
-                  </h3>
-                </div>
-              </motion.li>
-            );
-          })}
-        </ol>
-      </div>
-      {/* </section>
-
-      <section className="border-t border-gray-100 bg-[#F3F6FA] py-12 lg:py-16"> */}
-        <div className="mx-auto max-w-7xl px-2 py-16 sm:px-4 lg:px-8">
-          <div className="grid items-stretch gap-5 lg:grid-cols-[1.15fr_2.05fr]">
-
-            {/* Left Card */}
-            <motion.article
-              {...scrollMotionProps(isMobile, {
-                y: 14,
-                duration: 0.4,
-              })}
-              className="relative flex flex-col"
-            >
-              <PlanningConnectedCard />
-            </motion.article>
-
-            {/* Large Image */}
-            <motion.article
-              {...scrollMotionProps(isMobile, {
-                y: 14,
-                duration: 0.4,
-                delay: 0.05,
-              })}
-              className="
-                relative
-                min-h-[360px]
-                overflow-hidden
-                rounded-2xl
-                border
-                border-gray-200
-                bg-gray-100
-                shadow-[0_12px_28px_-16px_rgba(23,43,77,0.22)]
-              "
-            >
-              <img
-                src="/schedule dashboard1.png"
-                alt="Planning and schedule overview"
-                className="
-                  absolute
-                  inset-0
-                  h-full
-                  w-full
-                  object-cover
-                "
-              />
-
-              {/* Optional subtle overlay */}
-              <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent"
-                aria-hidden
-              />
-            </motion.article>
-
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-gray-100 bg-[#F3F6FA] py-6 lg:py-8">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-          {/* Header */}
-          <motion.div
-            {...scrollMotionProps(isMobile, {
-              y: 16,
-              duration: 0.4,
-            })}
-            className="mx-auto max-w-3xl text-center"
-          >
-            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
-              Traditional Way{" "}
-              <span className="font-medium text-[#6B778C]">vs</span>{" "}
-              <span className="text-brand-orange">ZEDOPS</span>
-            </h2>
-
-            <span className="mx-auto mt-2 block h-[3px] w-16 rounded-full bg-brand-orange" />
-          </motion.div>
-
-          {/* Comparison Cards */}
-          <motion.div
-            {...scrollMotionProps(isMobile, {
-              y: 16,
-              duration: 0.45,
-              delay: 0.05,
-            })}
-            className="relative mt-6"
-          >
-            <div className="grid gap-5 lg:grid-cols-2 lg:gap-8">
-
-              {/* Traditional */}
-              <article className="overflow-hidden rounded-3xl border border-red-100 bg-[#FFF8F8] shadow-[0_12px_32px_-22px_rgba(23,43,77,0.25)]">
-
-                <div className="px-6 py-3 text-center sm:px-8">
-                  <h3 className="text-xl font-extrabold text-[#C62828] sm:text-2xl">
-                    {planningComparison.traditionalTitle}
-                  </h3>
-                </div>
-
-                <div className="mx-3 mb-3 overflow-hidden rounded-2xl border border-red-100 bg-white">
-                  {planningComparison.traditional.map((item) => (
-                    <div
-                      key={item.title}
-                      className="flex items-center gap-3 border-b border-gray-100 px-4 py-3 last:border-b-0 sm:px-5"
-                    >
-                      {/* Icon */}
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FFF5F5] text-[#DE350B] ring-1 ring-red-100">
-                        <BarChart3 size={19} strokeWidth={1.8} />
-                      </span>
-
-                      {/* Text */}
-                      <div className="min-w-0 flex-1">
-                        <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-[15px]">
-                          {item.title}
-                        </p>
-
-                        <p className="mt-0.5 text-xs leading-snug text-[#6B778C] sm:text-sm">
-                          {item.description}
-                        </p>
-                      </div>
-
-                      {/* X */}
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#EF4444]">
-                        <X
-                          size={13}
-                          className="text-white"
-                          strokeWidth={3}
-                        />
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </article>
-
-              {/* ZEDOPS */}
-              <article className="overflow-hidden rounded-3xl border border-emerald-100 bg-[#F5FCF8] shadow-[0_12px_32px_-22px_rgba(23,43,77,0.25)]">
-
-                <div className="px-6 py-3 text-center sm:px-8">
-                  <h3 className="text-xl font-extrabold text-[#00875A] sm:text-2xl">
-                    {planningComparison.zedopsTitle}
-                  </h3>
-                </div>
-
-                <div className="mx-3 mb-3 overflow-hidden rounded-2xl border border-emerald-100 bg-white">
-                  {planningComparison.withZedops.map((item) => (
-                    <div
-                      key={item.title}
-                      className="flex items-center gap-3 border-b border-gray-100 px-4 py-3 last:border-b-0 sm:px-5"
-                    >
-                      {/* Icon */}
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F0FFF7] text-[#00875A] ring-1 ring-emerald-100">
-                        <TrendingUp size={19} strokeWidth={1.8} />
-                      </span>
-
-                      {/* Text */}
-                      <div className="min-w-0 flex-1">
-                        <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-[15px]">
-                          {item.title}
-                        </p>
-
-                        <p className="mt-0.5 text-xs leading-snug text-[#6B778C] sm:text-sm">
-                          {item.description}
-                        </p>
-                      </div>
-
-                      {/* Check */}
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#22A866]">
-                        <Check
-                          size={13}
-                          className="text-white"
-                          strokeWidth={3}
-                        />
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </article>
-            </div>
-
-            {/* VS Badge */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:block">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-navy text-base font-black text-white shadow-xl ring-8 ring-white">
-                VS
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Benefits Strip */}
-          <motion.div
-            {...scrollMotionProps(isMobile, {
-              y: 14,
-              duration: 0.4,
-              delay: 0.1,
-            })}
-            className="mt-4 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_10px_28px_-20px_rgba(23,43,77,0.25)]"
-          >
-            <div className="grid sm:grid-cols-2 lg:grid-cols-5">
-
-              {planningComparison.benefits.map((benefit, index) => {
-                const icons = [
-                  Eye,
-                  Target,
-                  BarChart3,
-                  ShieldCheck,
-                  Trophy,
-                ];
-
-                const Icon = icons[index];
-
-                return (
-                  <div
-                    key={benefit.title}
-                    className={`flex items-center gap-3 px-4 py-3 ${
-                      index < planningComparison.benefits.length - 1
-                        ? "border-b border-gray-100 lg:border-b-0 lg:border-r"
-                        : ""
-                    }`}
-                  >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center text-brand-navy">
-                      <Icon size={24} strokeWidth={1.8} />
-                    </span>
-
-                    <div className="min-w-0">
-                      <p className="text-sm font-extrabold leading-snug text-brand-navy">
-                        {benefit.title}
-                      </p>
-
-                      <p className="mt-0.5 text-xs leading-snug text-[#6B778C]">
-                        {benefit.description}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-
-            </div>
-          </motion.div>
-
-          {/* Bottom Advantage Banner */}
-          <motion.div
-            {...scrollMotionProps(isMobile, {
-              y: 14,
-              duration: 0.4,
-              delay: 0.14,
-            })}
-            className="mt-3 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_10px_28px_-20px_rgba(23,43,77,0.25)]"
-          >
-            <div className="grid md:grid-cols-[1fr_auto_1fr] md:items-center">
-
-              {/* Left */}
-              <div className="flex items-center gap-3 px-5 py-3 sm:px-6">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-orange/10">
-                  <Zap
-                    size={21}
-                    className="text-brand-orange"
-                    fill="currentColor"
-                  />
-                </span>
-
-                <div>
-                  <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-base">
-                    From manual & delayed → to automated & real-time.
-                  </p>
-
-                  <p className="mt-0.5 text-sm font-bold text-brand-orange">
-                    That&apos;s the ZEDOPS advantage.
-                  </p>
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div className="hidden h-12 w-px bg-gray-200 md:block" />
-
-              {/* Right */}
-              <div className="flex items-center gap-3 px-5 py-3 sm:px-6">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-orange/10 text-lg font-black text-brand-orange">
-                  Z
-                </span>
-
-                <div>
-                  <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-base">
-                    One Platform. Every Project.
-                  </p>
-
-                  <p className="mt-0.5 text-sm font-bold text-brand-orange">
-                    Plan. Assign. Track. Resolve. Close.
-                  </p>
-                </div>
-              </div>
-
-            </div>
-          </motion.div>
-
-        </div>
-      </section>
-
-        <section className="border-t border-gray-100 bg-white py-12 lg:py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-            {/* Heading */}
-            <motion.div
-              {...scrollMotionProps(isMobile, { y: 12, duration: 0.35 })}
-              className="mb-8 text-center"
-            >
-              <div className="flex items-center justify-center gap-3">
-                <CalendarClock
-                  size={26}
-                  className="shrink-0 text-[#0052CC]"
-                  aria-hidden
-                />
-
-                <h2 className="text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">
-                  From{" "}
-                  <span className="text-brand-orange">
-                    planning to delivery
-                  </span>{" "}
-                  — stay ahead with real-time visibility and control.
-                </h2>
-              </div>
-
-              <span className="mx-auto mt-4 block h-[4px] w-20 rounded-full bg-brand-orange" />
-            </motion.div>
-
-            {/* AI Roadmap */}
-            <motion.div
-              {...scrollMotionProps(isMobile, {
-                y: 14,
-                duration: 0.4,
-                delay: 0.04,
-              })}
-              className="
-                overflow-hidden
-                rounded-2xl
-                border border-[#E1E5EB]
-                bg-white
-                shadow-[0_8px_30px_-18px_rgba(23,43,77,0.25)]
-              "
-            >
-              <div className="flex flex-col lg:flex-row">
-
-                {/* Left Title */}
-                <div
-                  className="
-                    flex
-                    shrink-0
-                    items-center
-                    border-b
-                    border-[#E1E5EB]
-                    bg-[#F4F6F8]
-                    px-7
-                    py-8
-                    lg:w-[235px]
-                    lg:border-b-0
-                    lg:border-r
-                    xl:w-[255px]
-                  "
-                >
-                  <p className="text-lg font-extrabold leading-snug text-brand-navy">
-                    What's Coming Next —
-                    <span className="mt-1 block text-brand-orange">
-                      ZED AI{" "}
-                      <span className="font-semibold text-[#42526E]">
-                        (Roadmap)
-                      </span>
-                    </span>
-                  </p>
-                </div>
-
-                {/* Features */}
-                <ul className="grid flex-1 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {planningAiRoadmap.items.map((item) => {
-                    const Icon = item.icon;
-
-                    return (
-                      <li
-                        key={item.title}
-                        className="
-                          flex
-                          min-w-0
-                          border-b
-                          border-[#E1E5EB]
-                          px-5
-                          py-7
-                          sm:px-6
-                          lg:border-r
-                          lg:border-b-0
-                          lg:last:border-r-0
-                        "
-                      >
-                        <div className="flex min-w-0 flex-col">
-
-                          {/* Icon */}
-                          <span className="mb-4 flex h-9 w-9 items-center justify-center">
-                            <Icon
-                              size={24}
-                              className="text-brand-orange"
-                              strokeWidth={1.8}
-                              aria-hidden
-                            />
-                          </span>
-
-                          {/* Title */}
-                          <p className="text-sm font-extrabold leading-snug text-brand-navy">
-                            {item.title}
-                          </p>
-
-                          {/* Description */}
-                          <p className="mt-2 flex-1 text-xs leading-relaxed text-[#42526E]">
-                            {item.body}
-                          </p>
-
-                          {/* Coming Soon */}
-                          <span
-                            className="
-                              mt-4
-                              inline-flex
-                              w-fit
-                              rounded-full
-                              bg-[#EEF6FF]
-                              px-3
-                              py-1
-                              text-[10px]
-                              font-bold
-                              leading-none
-                              text-[#2563EB]
-                            "
-                          >
-                            Coming Soon
-                          </span>
-
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-
-              </div>
-            </motion.div>
-          </div>
-        {/* </section>
-
-      <section className="border-t border-gray-100 bg-white py-10 lg:py-12"> */}
-  <div className="mx-auto max-w-7xl px-4 sm:px-6 mt-6 lg:px-8">
-
-    <motion.div
-      {...scrollMotionProps(isMobile, { y: 12, duration: 0.4 })}
-    >
-      <h2 className="text-center text-[30px] font-extrabold tracking-tight text-brand-navy">
-        {planningSourcesTitle.lead}
-        <span className="text-brand-orange">
-          {planningSourcesTitle.accent}
-        </span>
-      </h2>
-
-      <span className="mx-auto mt-2 block h-[3px] w-15 rounded-full bg-brand-orange" />
-    </motion.div>
-
-    <div className="mt-8 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      <ol className="mx-auto flex min-w-max list-none items-center gap-0 p-0 lg:min-w-0 lg:w-full lg:justify-between">
-        {planningSources.map((source, i) => {
-          const Icon = source.icon;
-
-          return (
-            <li
-              key={source.label}
-              className="flex min-w-0 items-center"
-            >
-              {i > 0 ? (
-                <span
-                  className="mx-3 hidden h-px w-8 shrink-0 border-t border-dashed border-brand-navy sm:block lg:w-10"
-                  aria-hidden
-                />
-              ) : null}
-
-              <div
-                className={`flex flex-col items-center text-center ${
-                  source.current
-                    ? "min-w-[7.5rem] rounded-xl border border-white/10 bg-brand-navy px-3 py-3 shadow-[0_8px_24px_-16px_rgba(23,43,77,0.22)] sm:min-w-[8.5rem]"
-                    : "min-w-[5.5rem] px-1 sm:min-w-[6.5rem]"
-                }`}
-              >
-                <span
-                  className={`flex h-11 w-11 items-center justify-center rounded-lg ${
-                    source.current
-                      ? "bg-white/30 ring-1 ring-[#0052CC]/20"
-                      : "bg-white ring-1 ring-gray-200"
-                  }`}
-                >
-                  <Icon
-                    size={22}
-                    className="text-brand-orange"
-                    strokeWidth={1.8}
-                    aria-hidden
-                  />
-                </span>
-
-                <span
-                  className={`mt-2 max-w-[7rem] text-[10px] font-semibold leading-snug sm:text-xs ${
-                    source.current
-                      ? "text-brand-orange"
-                      : "text-[#42526E]"
-                  }`}
-                >
-                  {source.label}
-                </span>
-              </div>
-            </li>
-          );
-        })}
-      </ol>
-    </div>
-  </div>
-
-      </section>
-
-      <FinalCTA
-        variant="brand-orange"
-        compact
-        title={
-          <>
-            {planningCta.title} <span className="text-brand-navy">{planningCta.accent}</span>
-          </>
-        }
-        body={planningCta.body}
-        primary={{ label: "Book a Demo", href: "/early-access" }}
-      />
-    </>
-  );
+  return <>
+    <ModuleHero isMobile={isMobile} eyebrow="Planning & scheduling" title={<>Make the plan clear.<span className="block text-brand-navy/65">Keep the work moving.</span></>} body="Build the programme, assign activities, and compare field progress with the baseline in one connected scheduling workflow." product={<PlanningProductView />} capabilitiesId="planning-capabilities" />
+    <Capabilities isMobile={isMobile} />
+    <Workflow isMobile={isMobile} />
+    <Comparison isMobile={isMobile} />
+    <Connected isMobile={isMobile} />
+    <ModuleClosingCta isMobile={isMobile} id="planning-cta-title" label="See it with your own project" title={<>Plan the work. <Highlight>See what changes.</Highlight></>} body="Walk through your programme, trade assignments, progress updates, and baseline reviews with our team." />
+  </>;
 }

@@ -21,7 +21,7 @@ const lenses: Lens[] = [
     num: "01",
     label: "By project stage",
     Icon: Layers,
-    accent: "#2D6BFF",
+    accent: "#172B4D",
     href: "/how-we-help/project-stage",
     timeline: true,
     visual: ["Preconstruction", "Active Construction", "Closeout"],
@@ -31,7 +31,7 @@ const lenses: Lens[] = [
     num: "02",
     label: "By company type",
     Icon: Building2,
-    accent: "#102B57",
+    accent: "#172B4D",
     href: "/how-we-help/company",
     visual: ["Owner", "General Contractor", "Consultant"],
     desc: "Designed to fit the way owners, contractors and consultants work.",
@@ -40,7 +40,7 @@ const lenses: Lens[] = [
     num: "03",
     label: "By team",
     Icon: Users2,
-    accent: "#00875A",
+    accent: "#172B4D",
     href: "/how-we-help/team",
     visual: ["Project Manager", "Site Team", "Commercial", "QA / QC"],
     desc: "Give every team the right tools inside the same platform.",
@@ -49,7 +49,7 @@ const lenses: Lens[] = [
     num: "04",
     label: "By role & access",
     Icon: ShieldCheck,
-    accent: "#6554C0",
+    accent: "#172B4D",
     href: "/how-we-help/role",
     visual: ["Admin", "Manager", "Engineer", "Field User"],
     desc: "Role based access, permissions and workflows.",
@@ -91,7 +91,7 @@ function Visual({ lens }: { lens: Lens }) {
       {lens.visual.map((item) => (
         <span
           key={item}
-          className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold text-[#102B57]"
+          className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold text-brand-navy"
           style={{
             borderColor: `${lens.accent}33`,
             backgroundColor: `${lens.accent}0D`,
@@ -113,24 +113,24 @@ export default function LensGrid() {
   const isMobile = useIsMobile();
 
   return (
-    <section className="relative overflow-hidden bg-[#F6F8FC] px-4 py-14 lg:py-20">
+    <section className="relative overflow-hidden bg-[#F8F9FD] px-4 py-14 lg:py-20">
       {/* Soft decorative blobs */}
       <div
-        className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-[#2D6BFF]/[0.06] blur-3xl"
+        className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-brand-navy/[0.04] blur-3xl"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-[#FF6200]/[0.06] blur-3xl"
+        className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-[#FE5D02]/[0.06] blur-3xl"
         aria-hidden
       />
 
       <div className="relative mx-auto max-w-7xl">
         {/* Heading */}
         <div className="mx-auto mb-10 max-w-2xl text-center lg:mb-12">
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#FF6200]">
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#FE5D02]">
             Explore ZedOps
           </p>
-          <h2 className="text-3xl font-extrabold tracking-tight text-[#102B57] sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-brand-navy sm:text-4xl">
             One platform. Four lenses.
           </h2>
         </div>
@@ -144,7 +144,7 @@ export default function LensGrid() {
                 key={lens.href}
                 href={lens.href}
                 {...scrollMotionProps(isMobile, { y: 24, duration: 0.42, delay: i * 0.06 })}
-                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#E3E8F0] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_-20px_rgba(23,43,77,0.22)]"
+                className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-[#E3E8F0] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_-20px_rgba(23,43,77,0.22)]"
               >
                 {/* Top accent bar (reveals on hover) */}
                 <span
