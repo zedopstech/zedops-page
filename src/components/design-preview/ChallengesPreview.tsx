@@ -7,7 +7,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import {
   Container,
-  darkBand,
   h2Class,
   Highlight,
 } from "./primitives";
@@ -201,7 +200,7 @@ export default function ChallengesPreview() {
     </section>
 
     <section
-      className={`relative overflow-hidden rounded-t-[28px] py-20 lg:py-28 ${darkBand}`}
+      className="relative overflow-hidden bg-brand-navy py-20 lg:py-28"
       aria-labelledby="dp-solutions"
     >
       <Container className="relative">

@@ -46,28 +46,21 @@ export default function HeroPreview() {
       >
         <DotGrid className="[mask-image:linear-gradient(to_bottom,black_30%,transparent)]" />
         <Container className="relative z-10">
-          <motion.div {...fade(0)} className="mb-7">
-            <a href="/zed-ai">
-              <Eyebrow tag="New">
-                Zed AI
-                <span className="hidden sm:inline">
-                  , your project intelligence copilot
-                </span>
-              </Eyebrow>
-            </a>
+          <motion.div {...fade(0)} className="mb-4">
+            <Eyebrow tag="AI-powered">MEP project execution</Eyebrow>
           </motion.div>
 
-          {/* Split hero: headline left, copy + CTAs right, anchored to a shared baseline */}
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.9fr)] lg:items-end lg:gap-14">
+          {/* Split hero: headline left, copy and CTAs right */}
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.9fr)] lg:items-center lg:gap-14">
             <motion.h1
               {...fade(0.06, 18)}
-              className="text-[36px] font-semibold leading-[1.04] tracking-[-0.045em] text-brand-navy sm:text-[50px] lg:text-[64px]"
+              className="text-[36px] font-bold leading-[1.04] tracking-[-0.045em] text-brand-navy sm:text-[50px] lg:text-[64px]"
             >
               <span className="block">
-                MEP work, <Highlight>in sync.</Highlight>
+                See the <Highlight>whole job.</Highlight>
               </span>
               <span className="block text-brand-navy/70">
-                From plan to closeout.
+                Move it forward.
               </span>
             </motion.h1>
 
@@ -76,8 +69,9 @@ export default function HeroPreview() {
               className="lg:border-l lg:border-[#E3E8F0] lg:pb-2 lg:pl-8"
             >
               <p className="max-w-md text-base font-medium leading-[1.55] text-[#3D4F6E] sm:text-[17px]">
-                Connect schedules, crews, materials, costs, and closeout in one
-                place. Zed AI helps turn project updates into clear next steps.
+                Bring schedules, field work, materials, costs, and quality into
+                one project view. Zed AI helps teams spot what needs attention
+                and decide what to do next.
               </p>
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <TicketButton href="/early-access">
