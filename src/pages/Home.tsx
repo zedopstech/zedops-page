@@ -32,8 +32,10 @@ export default function Home() {
             muted
             loop
             playsInline
+            preload="auto"
+            poster="/hero/hero-reel-poster.jpg"
           >
-            <source src="/web video.mp4" type="video/mp4" />
+            <source src="/hero/hero-reel.mp4" type="video/mp4" />
           </video>
 
           {/* Optional subtle overlay */}

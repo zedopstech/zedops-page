@@ -86,7 +86,7 @@ export default function HeroPreview() {
         </Container>
       </section>
 
-      {/* Full-bleed hero video */}
+      {/* Full-bleed hero video: the five construction scenes combined into one reel */}
       <section className="relative w-full overflow-hidden">
         <div className="relative h-[420px] sm:h-[500px] md:h-[600px] lg:h-[680px]">
           <video
@@ -95,12 +95,21 @@ export default function HeroPreview() {
             muted
             loop
             playsInline
+            preload="auto"
+            poster="/hero/hero-reel-poster.jpg"
           >
-            <source src="/web video.mp4" type="video/mp4" />
+            <source src="/hero/hero-reel.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/10" />
-          {/* Fade the video into the product scope cards. */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-white" />
+          {/* Sink the footage into the product scope cards: a navy floor rather than a white
+              wash, which was greying out the bottom third of the frame. */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-44"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(11,26,49,0) 0%, rgba(11,26,49,0.55) 52%, rgba(11,26,49,0.92) 100%)",
+            }}
+          />
         </div>
       </section>
 

@@ -176,7 +176,7 @@ export default function ThreeWaysPreview() {
                     else return;
                     event.preventDefault();
                   }}
-                  className="group relative flex min-h-[76px] flex-col items-start justify-between gap-2 pb-4 pl-0 pr-2 pt-4 text-left outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange sm:min-h-[92px] sm:flex-row sm:items-center sm:gap-4 sm:pr-6 sm:pt-5"
+                  className="group relative flex min-h-[76px] flex-col items-start justify-between gap-2 pb-4 pl-0 pr-2 pt-4 text-left outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange sm:min-h-[92px] sm:flex-row sm:gap-4 sm:pr-6 sm:pt-5"
                 >
                   {/* Stage tick on the rail */}
                   <span
@@ -244,7 +244,8 @@ export default function ThreeWaysPreview() {
                 </h3>
                 <p className="mt-5 max-w-md text-[16px] leading-[1.65] text-white/70">{w.lead}</p>
 
-                <div className="mt-10 border-t border-white/15 pt-5 lg:mt-auto">
+                <div aria-hidden className="h-10 lg:h-auto lg:min-h-10 lg:flex-1" />
+                <div className="border-t border-white/15 pt-5">
                   <div className="flex items-center gap-4">
                     <span className="shrink-0 whitespace-nowrap font-mono text-[13px] font-semibold text-white">
                       {pad(active + 1)} <span className="text-white/40">/ {pad(ways.length)}</span>
