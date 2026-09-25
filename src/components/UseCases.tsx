@@ -84,14 +84,14 @@ export default function UseCases() {
         <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-end">
           <div>
             <div className="flex items-center gap-2 mb-5">
-              <div className="w-3 h-3 rounded-sm bg-[#172B4D] rotate-45" />
-              <span className="text-[#172B4D] text-xs font-bold tracking-[0.15em] uppercase">Built for you</span>
+              <div className="w-3 h-3 rounded-sm bg-brand-navy rotate-45" />
+              <span className="text-brand-navy text-xs font-bold tracking-[0.15em] uppercase">Built for you</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
-              Built for every <span className="text-[#172B4D]">role</span> in construction.
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-brand-navy leading-tight tracking-tight">
+              Built for every <span className="text-brand-navy">role</span> in construction.
             </h2>
           </div>
-          <p className="text-[#42526E] text-lg leading-relaxed">
+          <p className="text-[#42526E] text-lg leading-snug">
             Whether you're in the field or the boardroom, ZedOps gives you exactly what you need  -  purpose-built for how construction teams actually work.
           </p>
         </motion.div>
@@ -113,8 +113,8 @@ export default function UseCases() {
                 </div>
                 <span className="text-xs font-bold uppercase tracking-[0.15em]" style={{ color: uc.accent }}>{uc.label}</span>
               </div>
-              <h3 className="text-3xl font-extrabold text-[#172B4D] leading-tight mb-4">{uc.title}</h3>
-              <p className="text-[#42526E] text-base leading-relaxed mb-8">{uc.description}</p>
+              <h3 className="text-3xl font-extrabold text-brand-navy leading-tight mb-4">{uc.title}</h3>
+              <p className="text-[#42526E] text-base leading-snug mb-8">{uc.description}</p>
               <ul className="space-y-2.5 mb-8">
                 {uc.benefits.map((b) => (
                   <li key={b} className="flex items-center gap-2.5 text-sm text-[#6B778C]">

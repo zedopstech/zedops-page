@@ -52,7 +52,7 @@ export default function Resources() {
         <div className="mb-10 flex items-end justify-between">
           <div>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-[#97A0AF]">Resources</p>
-            <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-[#172B4D] sm:text-5xl">
+            <h2 className="text-4xl font-extrabold leading-tight tracking-tight text-brand-navy sm:text-5xl">
               Insights to help you
               <br />
               build smarter.
@@ -60,7 +60,7 @@ export default function Resources() {
           </div>
           <a
             href="/blog"
-            className="hidden items-center gap-2 border border-gray-200 px-5 py-2.5 text-sm font-semibold text-[#42526E] transition-colors duration-150 hover:border-[#172B4D] hover:text-[#172B4D] sm:inline-flex"
+            className="hidden items-center gap-2 border border-gray-200 px-5 py-2.5 text-sm font-semibold text-[#42526E] transition-colors duration-150 hover:border-brand-navy hover:text-brand-navy sm:inline-flex"
             style={{ borderRadius: 6 }}
           >
             See all articles <ArrowRight size={14} />
@@ -84,7 +84,7 @@ export default function Resources() {
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#172B4D] to-[#2d4a7c] px-4 text-center">
+                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-navy to-[#2d4a7c] px-4 text-center">
                         <span className="line-clamp-3 text-sm font-extrabold text-white">{article.title}</span>
                       </div>
                     )}
@@ -99,14 +99,14 @@ export default function Resources() {
                     </div>
                   </div>
                   <p className="mb-2 text-xs text-[#97A0AF]">{format(parseISO(article.date), "MMMM d, yyyy")}</p>
-                  <h3 className="mb-3 text-lg font-extrabold leading-snug text-[#172B4D] transition-colors duration-150 group-hover:text-[#172B4D]">
+                  <h3 className="mb-3 text-lg font-extrabold leading-snug text-brand-navy transition-colors duration-150 group-hover:text-brand-navy">
                     {article.title}
                   </h3>
-                  <p className="mb-4 flex-1 text-sm leading-relaxed text-[#6B778C]">{article.description}</p>
+                  <p className="mb-4 flex-1 text-sm leading-snug text-[#6B778C]">{article.description}</p>
                   <div className="mt-auto flex items-center gap-2.5">
                     <img src={avatarUrl(name)} alt="" className="h-8 w-8 rounded-full object-cover" />
                     <div>
-                      <p className="text-xs font-semibold text-[#172B4D]">{name}</p>
+                      <p className="text-xs font-semibold text-brand-navy">{name}</p>
                       <p className="text-xs text-[#97A0AF]">{role}</p>
                     </div>
                   </div>
@@ -131,19 +131,19 @@ export default function Resources() {
                         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-[#172B4D] text-[10px] font-bold text-white">
+                      <div className="flex h-full w-full items-center justify-center bg-brand-navy text-[10px] font-bold text-white">
                         ···
                       </div>
                     )}
                   </div>
-                  <p className="text-sm font-medium leading-snug text-[#42526E] transition-colors duration-150 group-hover:text-[#172B4D]">
+                  <p className="text-sm font-medium leading-snug text-[#42526E] transition-colors duration-150 group-hover:text-brand-navy">
                     {item.title}
                   </p>
                 </a>
               ))}
               <a
                 href="/blog"
-                className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#172B4D] transition-colors duration-150 hover:text-brand-orange"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand-navy transition-colors duration-150 hover:text-brand-orange"
               >
                 See all articles <ArrowRight size={13} />
               </a>
@@ -153,7 +153,7 @@ export default function Resources() {
 
         <a
           href="/blog"
-          className="mt-10 inline-flex items-center gap-2 border border-gray-200 px-5 py-2.5 text-sm font-semibold text-[#42526E] transition-colors hover:border-[#172B4D] hover:text-[#172B4D] sm:hidden"
+          className="mt-10 inline-flex items-center gap-2 border border-gray-200 px-5 py-2.5 text-sm font-semibold text-[#42526E] transition-colors hover:border-brand-navy hover:text-brand-navy sm:hidden"
           style={{ borderRadius: 6 }}
         >
           See all articles <ArrowRight size={14} />

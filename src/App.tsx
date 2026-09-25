@@ -1,14 +1,13 @@
-import type { ReactNode } from "react";
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { useEffect, type ReactNode } from "react";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MotionConfig, useReducedMotion } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Home from "@/pages/Home";
-import PricingPage from "@/pages/PricingPage";
+// import PricingPage from "@/pages/PricingPage";
 import SolutionsPage from "@/pages/SolutionsPage";
-import PlatformPage from "@/pages/PlatformPage";
 import PlatformModulePage from "@/pages/PlatformModulePage";
 import ZedAIPage from "@/pages/ZedAIPage";
 import SecurityPage from "@/pages/SecurityPage";
@@ -22,7 +21,7 @@ import BlogIndexPage from "@/pages/BlogIndexPage";
 import BlogPostPage from "@/pages/BlogPostPage";
 import WhoWeServePage from "@/pages/WhoWeServePage";
 import HowWeHelpHubPage from "@/pages/HowWeHelpHubPage";
-import HowWeHelpProjectStagePage from "@/pages/HowWeHelpProjectStagePage";
+import ProjectLifecyclePage from "@/pages/ProjectLifecyclePage";
 import HowWeHelpCompanyPage from "@/pages/HowWeHelpCompanyPage";
 import HowWeHelpTeamPage from "@/pages/HowWeHelpTeamPage";
 import HowWeHelpRolePage from "@/pages/HowWeHelpRolePage";
@@ -31,6 +30,7 @@ import OwnersPage from "@/pages/personas/OwnersPage";
 import PMPage from "@/pages/personas/PMPage";
 import ConsultantsPage from "@/pages/personas/ConsultantsPage";
 import NotFound from "@/pages/not-found";
+import { HIDE_PRICING } from "@/config/siteFocus";
 
 const queryClient = new QueryClient();
 
@@ -42,15 +42,35 @@ function routerBaseFromVite(): string {
   return trimmed;
 }
 
+function ScrollToTop() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  }, []);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    html.style.scrollBehavior = prev;
+  }, [location]);
+
+  return null;
+}
+
 function Router() {
   return (
-    <Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
       <Route path="/" component={Home} />
-      <Route path="/pricing" component={PricingPage} />
+      {/* {!HIDE_PRICING ? <Route path="/pricing" component={PricingPage} /> : null} */}
       <Route path="/solutions" component={SolutionsPage} />
-      <Route path="/platform/module/:moduleId" component={PlatformModulePage} />
-      <Route path="/platform/:sectionId" component={PlatformPage} />
-      <Route path="/platform" component={PlatformPage} />
+      <Route path="/platform/module/:moduleId">
+        {(params) => <PlatformModulePage key={params.moduleId} params={params} />}
+      </Route>
       <Route path="/zed-ai" component={ZedAIPage} />
       <Route path="/security" component={SecurityPage} />
       <Route path="/early-access" component={EarlyAccessPage} />
@@ -61,7 +81,7 @@ function Router() {
       <Route path="/roadmap" component={RoadmapPage} />
       <Route path="/blog/:slug" component={BlogPostPage} />
       <Route path="/blog" component={BlogIndexPage} />
-      <Route path="/how-we-help/project-stage" component={HowWeHelpProjectStagePage} />
+      <Route path="/how-we-help/project-stage" component={ProjectLifecyclePage} />
       <Route path="/how-we-help/company" component={HowWeHelpCompanyPage} />
       <Route path="/how-we-help/team" component={HowWeHelpTeamPage} />
       <Route path="/how-we-help/role" component={HowWeHelpRolePage} />
@@ -73,6 +93,7 @@ function Router() {
       <Route path="/who-we-serve/consultants" component={ConsultantsPage} />
       <Route component={NotFound} />
     </Switch>
+    </>
   );
 }
 

@@ -5,6 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import PageHero from "@/components/PageHero";
 import HowWeHelpPageShell from "@/components/HowWeHelpPageShell";
+import SectionHeader from "@/components/SectionHeader";
 
 const personaQuickLinks = [
   { label: "General contractors", href: "/who-we-serve/general-contractors" },
@@ -38,25 +39,25 @@ export default function HowWeHelpRolePage() {
       >
         <a
           href="/who-we-serve"
-          className="inline-flex items-center gap-2 rounded-md border-2 border-[#172B4D] px-6 py-3 text-sm font-bold text-[#172B4D] transition-colors hover:bg-[#172B4D] hover:text-white"
+          className="inline-flex items-center gap-2 rounded-md border-2 border-brand-navy px-6 py-3 text-sm font-bold text-brand-navy transition-colors hover:bg-brand-navy hover:text-white"
         >
           Built for you  -  persona stories
           <ArrowRight className="h-4 w-4" aria-hidden />
         </a>
       </PageHero>
 
-      <section className="border-t border-gray-200 bg-[#172B4D] py-16 lg:py-20">
+      <section className="border-t border-gray-200 bg-brand-navy py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.45 })} className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
             <div>
               <h2 className="text-2xl font-extrabold leading-tight text-white sm:text-3xl">
                 Roles gate menus, records, exports - and the copilot.
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-white/65">
+              <p className="mt-4 text-base leading-snug text-white/65">
                 Administrators map people to roles that unlock specific modules and actions. That model is consistent from preconstruction through closeout, so you aren’t maintaining parallel rule sets for “web app” and “AI.”
               </p>
             </div>
-            <ul className="space-y-4 text-sm leading-relaxed text-white/75">
+            <ul className="space-y-4 text-sm leading-snug text-white/75">
               {[
                 "Tenant isolation keeps each customer’s data in its own boundary.",
                 "Field, office, and leadership views can emphasise different modules without forking the product.",
@@ -75,12 +76,10 @@ export default function HowWeHelpRolePage() {
       <section className="border-t border-gray-200 bg-[#F8FAFC] py-20 lg:py-24">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.45 })}>
-            <h2 className="text-3xl font-extrabold tracking-tight text-[#172B4D] sm:text-4xl">
-              Persona pages live under Built for you
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[#6B778C] sm:text-base">
-              That hub is where we tell the human story - photos, outcomes, and what day-to-day work looks like for GCs, owners, PMs, and consultants. This page is the access model; that hub is the “why it fits us.”
-            </p>
+            <SectionHeader
+              title="Persona pages live under Built for you"
+              subtitle="That hub is where we tell the human story - photos, outcomes, and what day-to-day work looks like for GCs, owners, PMs, and consultants. This page is the access model; that hub is the “why it fits us.”"
+            />
             <a
               href="/who-we-serve"
               className="mt-8 inline-flex items-center gap-2 rounded-md bg-brand-orange px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
@@ -88,10 +87,10 @@ export default function HowWeHelpRolePage() {
               Open Built for you
               <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
-            <p className="mt-10 text-sm font-semibold leading-relaxed text-[#0052CC]">
+            <p className="mt-10 text-sm font-semibold leading-snug text-[#0052CC]">
               {personaQuickLinks.map((p, i) => (
                 <span key={p.href}>
-                  {i > 0 ? <span className="mx-2 text-[#CBD5E1]" aria-hidden>·</span> : null}
+                  {i > 0 ? <span className="mx-2 text-[#97A0AF]" aria-hidden>·</span> : null}
                   <a href={p.href} className="underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]">
                     {p.label}
                   </a>

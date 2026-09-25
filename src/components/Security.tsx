@@ -51,7 +51,7 @@ export default function Security() {
   const isMobile = useIsMobile();
 
   return (
-    <div className="min-h-screen bg-white text-[#172B4D]">
+    <div className="min-h-screen bg-white text-brand-navy">
       <PageHero
         pill="Security"
         PillIcon={ShieldCheck}
@@ -64,7 +64,7 @@ export default function Security() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-[0.15em] mb-3">How we protect you</p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-navy leading-tight tracking-tight">
               Four layers of protection, built in from day one.
             </h2>
           </div>
@@ -78,16 +78,16 @@ export default function Security() {
               >
                 <div>
                   <div className="w-12 h-12 rounded-xl bg-[#EBF0FF] flex items-center justify-center mb-4">
-                    <pillar.icon size={22} className="text-[#172B4D]" />
+                    <pillar.icon size={22} className="text-brand-navy" />
                   </div>
                   <span className="inline-block text-[10px] font-bold text-[#0052CC] bg-[#EBF2FF] px-2.5 py-1 rounded-full uppercase tracking-wider mb-3">
                     {pillar.tag}
                   </span>
-                  <h3 className="text-xl font-extrabold text-[#172B4D] leading-snug mb-3">{pillar.title}</h3>
-                  <p className="text-[#6B778C] text-sm leading-relaxed">{pillar.body}</p>
+                  <h3 className="text-xl font-extrabold text-brand-navy leading-snug mb-3">{pillar.title}</h3>
+                  <p className="text-[#6B778C] text-sm leading-snug">{pillar.body}</p>
                 </div>
                 <div className="mt-auto pt-4 border-t border-gray-100">
-                  <p className="text-[11px] font-semibold text-[#42526E]">{pillar.detail}</p>
+                  <p className="text-xs font-semibold text-[#42526E]">{pillar.detail}</p>
                 </div>
               </motion.div>
             ))}
@@ -101,10 +101,10 @@ export default function Security() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
               <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-[0.15em] mb-3">Security checklist</p>
-              <h2 className="text-3xl font-extrabold text-[#172B4D] leading-tight tracking-tight mb-4">
+              <h2 className="text-3xl font-extrabold text-brand-navy leading-tight tracking-tight mb-4">
                 What's in place today.
               </h2>
-              <p className="text-[#6B778C] text-sm leading-relaxed">
+              <p className="text-[#6B778C] text-sm leading-snug">
                 We believe in full transparency about what's implemented now and what's on the roadmap. No checkbox we haven't earned.
               </p>
             </div>
@@ -128,13 +128,13 @@ export default function Security() {
                     }
                   </div>
                   <span className={`text-sm font-medium ${
-                    item.done ? "text-[#172B4D]" : "text-[#97A0AF]"
+                    item.done ? "text-brand-navy" : "text-[#97A0AF]"
                   }`}>
                     {item.label}
                   </span>
                 </div>
               ))}
-              <p className="text-[11px] text-[#97A0AF] mt-1 pl-1">Items marked with a lock icon are planned for a future roadmap stage.</p>
+              <p className="text-xs text-[#97A0AF] mt-1 pl-1">Items marked with a lock icon are planned for a future roadmap stage.</p>
             </div>
           </div>
         </div>
@@ -181,7 +181,7 @@ export default function Security() {
                   </div>
                 </div>
                 <h4 className="text-white font-bold text-sm mb-2">{step.title}</h4>
-                <p className="text-white/40 text-xs leading-relaxed">{step.desc}</p>
+                <p className="text-white/40 text-xs leading-snug">{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -191,9 +191,9 @@ export default function Security() {
       {/* CTA */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-100">
         <div className="max-w-2xl mx-auto text-center">
-          <ShieldCheck size={32} className="text-[#172B4D] mx-auto mb-5 opacity-40" />
-          <h2 className="text-2xl font-extrabold text-[#172B4D] mb-3">Have security questions?</h2>
-          <p className="text-[#6B778C] text-sm leading-relaxed mb-7">
+          <ShieldCheck size={32} className="text-brand-navy mx-auto mb-5 opacity-40" />
+          <h2 className="text-2xl font-extrabold text-brand-navy mb-3">Have security questions?</h2>
+          <p className="text-[#6B778C] text-sm leading-snug mb-7">
             We're happy to walk your IT or security team through our architecture, controls, and roadmap. No sales pitch  -  just a straightforward conversation.
           </p>
           <a

@@ -171,7 +171,7 @@ export default function Pricing() {
               </div>
               <div className="min-w-0 flex-1">
                 <div className="mb-0.5 text-sm font-bold leading-snug" style={{ color: NAVY }}>{label}</div>
-                <div className="text-xs leading-relaxed text-[#6B778C]">{desc}</div>
+                <div className="text-xs leading-snug text-[#6B778C]">{desc}</div>
               </div>
             </div>
           ))}
@@ -200,7 +200,7 @@ export default function Pricing() {
                 <h3 className={`font-extrabold text-xl ${plan.isPro ? "text-white" : "text-[#172B4D]"}`}>{plan.name}</h3>
               </div>
 
-              <p className={`text-sm leading-relaxed mb-6 ${plan.isPro ? "text-[#B8C9DC]" : "text-[#6B778C]"}`}>{plan.description}</p>
+              <p className={`text-sm leading-snug mb-6 ${plan.isPro ? "text-[#B8C9DC]" : "text-[#6B778C]"}`}>{plan.description}</p>
 
               <div className="mb-8 pb-8 border-b" style={{ borderColor: plan.isPro ? "rgba(255,255,255,0.1)" : "#E5E7EB" }}>
                 {plan.price.monthly ? (
@@ -305,8 +305,7 @@ export default function Pricing() {
         </AnimatePresence>
 
         <motion.p {...scrollMotionProps(isMobile, { fadeOnly: true, duration: 0.45 })} className="text-center text-[#6B778C] text-sm">
-          All plans include a <strong className="text-[#172B4D]">14-day free trial</strong> with no credit card required.{" "}
-          <a href="#" className="text-[#172B4D] hover:underline font-semibold">Contact sales</a> for volume discounts.
+          <a href="/contact" className="text-[#172B4D] hover:underline font-semibold">Contact sales</a> for volume discounts.
         </motion.p>
       </div>
     </section>

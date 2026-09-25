@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
+import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import { Shield } from "lucide-react";
 
@@ -67,7 +68,7 @@ To exercise any of these rights, email privacy@zedops.com and we will respond wi
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
       <div className="pt-[100px]">
         <PageHero
@@ -82,8 +83,8 @@ export default function PrivacyPage() {
             <div className="flex flex-col gap-10">
               {sections.map((s) => (
                 <div key={s.title}>
-                  <h2 className="text-lg font-extrabold text-[#172B4D] mb-3">{s.title}</h2>
-                  <div className="text-[#42526E] text-sm leading-relaxed whitespace-pre-line">{s.body}</div>
+                  <h2 className="text-lg font-extrabold text-brand-navy mb-3">{s.title}</h2>
+                  <div className="text-[#42526E] text-sm leading-snug whitespace-pre-line">{s.body}</div>
                 </div>
               ))}
 
@@ -94,6 +95,7 @@ export default function PrivacyPage() {
           </div>
         </section>
 
+        <FinalCTA />
         <Footer />
       </div>
     </div>

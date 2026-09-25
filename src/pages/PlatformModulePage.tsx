@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import type { RouteComponentProps } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
+import { ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
@@ -9,8 +9,19 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FinalCTA from "@/components/FinalCTA";
 import PageHero from "@/components/PageHero";
+import SectionHeader from "@/components/SectionHeader";
 import { getModuleNavContext } from "@/data/platformFeatures";
 import { PlatformModuleFeatureMiniMock } from "@/components/PlatformModuleFeatureMiniMock";
+import MaterialManagementLanding from "@/components/MaterialManagementLanding";
+import PlanningScheduleLanding from "@/components/PlanningScheduleLanding";
+import EstimationLanding from "@/components/EstimationLanding";
+import DailyIntelligenceLanding from "@/components/DailyIntelligenceLanding";
+import CoreLanding from "@/components/CoreLanding";
+import WorkforceIntelligenceLanding from "@/components/WorkforceIntelligenceLanding";
+import TasksResolutionLanding from "@/components/TasksResolutionLanding";
+import QualitySafetyLanding from "@/components/QualitySafetyLanding";
+import PunchListLanding from "@/components/PunchListLanding";
+import BudgetCostControlLanding from "@/components/BudgetCostControlLanding";
 
 function moduleMetaDescription(section: { title: string; items: { name: string; summary: string }[] }): string {
   const preview = section.items
@@ -25,26 +36,80 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
   const ctx = useMemo(() => getModuleNavContext(params.moduleId), [params.moduleId]);
   const isMobile = useIsMobile();
 
+  const seoTitles: Record<string, string> = {
+    "workforce-intelligence": "Workforce Intelligence",
+    "punch-list": "Punch List Management",
+    projects: "Tasks Resolution",
+    finance: "Budget & Cost Control",
+    "quality-safety-closeout": "Quality & Safety",
+    core: "Core",
+  };
+
   useSEO({
-    title: ctx ? `${ctx.section.title}  -  ZedOps platform` : "Platform module  -  ZedOps",
-    description: ctx ? moduleMetaDescription(ctx.section) : "ZedOps platform modules.",
+    title: seoTitles[params.moduleId]
+      ? `${seoTitles[params.moduleId]}  -  ZedOps platform`
+      : ctx
+        ? `${ctx.section.title}  -  ZedOps platform`
+        : "Platform module  -  ZedOps",
+    description:
+      params.moduleId === "supply-chain"
+        ? "ZedOps Material Management streamlines procurement, inventory, warehouse and material tracking for MEP contractors and construction projects."
+        : params.moduleId === "estimation"
+          ? "ZedOps Estimation & Proposals — BOQ mapping, productivity-based costing, markups, approvals, and client-ready proposals for MEP and construction."
+          : params.moduleId === "planning-execution"
+            ? "ZedOps Planning & Scheduling — import, create, and monitor programmes with baseline vs live views, assignments, and reports for MEP and construction."
+            : params.moduleId === "daily-intelligence"
+              ? "ZedOps Daily Execution Intelligence — capture site reality, connect the office instantly, and drive actions from one daily log."
+              : params.moduleId === "workforce-intelligence"
+                ? "ZedOps Workforce Intelligence — manage people, attendance, tasks, and performance from site to office."
+                : params.moduleId === "punch-list"
+                  ? "ZedOps Punch List Management — track, assign, and close punch items efficiently through handover."
+                  : params.moduleId === "finance"
+                    ? "ZedOps Budget & Cost Control — track budgets, commitments, actuals, revisions and forecasts in real time for MEP and construction projects."
+                    : ctx
+                    ? moduleMetaDescription(ctx.section)
+                    : "ZedOps platform modules.",
   });
+
+  const namedLandings: Record<
+    string,
+    typeof CoreLanding
+  > = {
+    core: CoreLanding,
+    "workforce-intelligence": WorkforceIntelligenceLanding,
+    projects: TasksResolutionLanding,
+    "quality-safety-closeout": QualitySafetyLanding,
+    "punch-list": PunchListLanding,
+    finance: BudgetCostControlLanding,
+  };
+  const NamedLanding = namedLandings[params.moduleId];
+  if (NamedLanding) {
+    return (
+      <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+        <Navbar />
+        <div className="pt-[100px]">
+          <NamedLanding prev={ctx?.prev ?? null} next={ctx?.next ?? null} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
 
   if (!ctx) {
     return (
-      <div className="min-h-screen bg-white text-[#172B4D]">
+      <div className="min-h-screen bg-white text-brand-navy">
         <Navbar />
         <div className="mx-auto max-w-lg px-6 pt-[120px] pb-24 text-center">
-          <h1 className="text-2xl font-extrabold text-[#172B4D]">Module not found</h1>
-          <p className="mt-3 text-sm leading-relaxed text-[#6B778C]">
+          <h1 className="text-2xl font-extrabold text-brand-navy">Module not found</h1>
+          <p className="mt-3 text-sm leading-snug text-[#6B778C]">
             That platform area doesn’t exist or the link may be outdated.
           </p>
           <a
-            href="/platform"
+            href="/"
             className="mt-8 inline-flex items-center gap-2 font-bold text-[#0052CC] transition-colors hover:text-[#0747A6]"
           >
             <ChevronLeft className="h-4 w-4" aria-hidden />
-            Back to full platform
+            Back to home
           </a>
         </div>
         <Footer />
@@ -53,6 +118,55 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
   }
 
   const { section, prev, next } = ctx;
+
+  if (section.id === "supply-chain") {
+    return (
+      <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+        <Navbar />
+        <div className="pt-[100px]">
+          <MaterialManagementLanding prev={prev} next={next} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (section.id === "estimation") {
+    return (
+      <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+        <Navbar />
+        <div className="pt-[100px]">
+          <EstimationLanding prev={prev} next={next} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (section.id === "planning-execution") {
+    return (
+      <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+        <Navbar />
+        <div className="pt-[100px]">
+          <PlanningScheduleLanding prev={prev} next={next} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (section.id === "daily-intelligence") {
+    return (
+      <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+        <Navbar />
+        <div className="pt-[100px]">
+          <DailyIntelligenceLanding prev={prev} next={next} />
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
   const itemCount = section.items.length;
   /** 2 → 2-col; 4 or 7 → 4-col on xl (7 = 4+3 centered); else 3-col with centered last row */
   const forceTwoCol = itemCount === 2;
@@ -70,40 +184,10 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
     : "p-6 md:p-7";
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
       <div className="pt-[100px]">
-        {/* Breadcrumb  -  same width rhythm as home sections */}
-        <div className="border-b border-gray-100 bg-white">
-          <div className="mx-auto max-w-7xl px-4 pb-3 pt-4 sm:px-6 lg:px-8">
-            <nav className="text-[13px] font-semibold text-[#6B778C]" aria-label="Breadcrumb">
-              <a href="/" className="transition-colors hover:text-[#0052CC]">
-                Home
-              </a>
-              <span className="mx-2 text-[#97A0AF]" aria-hidden>
-                /
-              </span>
-              <a href="/platform" className="transition-colors hover:text-[#0052CC]">
-                Platform
-              </a>
-              <span className="mx-2 text-[#97A0AF]" aria-hidden>
-                /
-              </span>
-              <span className="text-[#42526E]">{section.title}</span>
-            </nav>
-          </div>
-        </div>
-
-        <PageHero pill="Platform module" PillIcon={LayoutGrid} title={section.title} subtitle={subtitle}>
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <a
-              href="/platform"
-              className="inline-flex items-center gap-2 rounded-md border-2 border-[#172B4D] px-6 py-3 text-sm font-bold text-[#172B4D] transition-all duration-150 hover:bg-[#172B4D] hover:text-white"
-            >
-              All modules
-            </a>
-          </div>
-        </PageHero>
+        <PageHero pill="Platform module" PillIcon={LayoutGrid} title={section.title} subtitle={subtitle} />
 
         {/* Everything in this module  -  headline, then feature cards with mini mocks */}
         <section className="border-t border-gray-200 bg-white py-20 lg:py-24">
@@ -116,7 +200,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
               <h2 className="text-3xl font-extrabold leading-[1.12] tracking-tight text-brand-navy sm:text-4xl lg:text-[2.65rem]">
                 Everything in <span className="text-brand-orange">{section.title}</span>
               </h2>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-[#42526E] sm:text-xl">
+              <p className="mt-5 max-w-xl text-lg leading-snug text-[#42526E] sm:text-xl">
                 {itemCount}{" "}
                 {itemCount === 1 ? "capability" : "capabilities"} in this area - each explained below.
                 Access follows your organisation&apos;s roles.
@@ -143,10 +227,10 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
                       useFourColLayout ? "h-9 w-9" : "h-10 w-10"
                     }`}
                   >
-                    <LayoutGrid className={`text-[#172B4D] ${useFourColLayout ? "h-3.5 w-3.5" : "h-4 w-4"}`} aria-hidden />
+                    <LayoutGrid className={`text-brand-navy ${useFourColLayout ? "h-3.5 w-3.5" : "h-4 w-4"}`} aria-hidden />
                   </div>
                   <h3
-                    className={`font-extrabold leading-snug text-[#172B4D] ${
+                    className={`font-extrabold leading-snug text-brand-navy ${
                       useFourColLayout ? "text-base" : "text-lg"
                     }`}
                   >
@@ -160,7 +244,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
                     {item.summary}
                   </p>
                   <p
-                    className={`mt-3 flex-1 leading-relaxed text-[#6B778C] ${
+                    className={`mt-3 flex-1 leading-snug text-[#6B778C] ${
                       useFourColLayout ? "text-xs" : "text-sm"
                     }`}
                   >
@@ -178,13 +262,11 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
         {/* Continue exploring  -  structured like a home sub-footer band */}
         <section className="border-t border-gray-200 bg-white py-14 lg:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })} className="mb-8 text-center">
-              <h2 className="mx-auto max-w-xl text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">
-                Other platform areas
-              </h2>
-              <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-[#6B778C]">
-                Step through adjacent modules or return to the full checklist.
-              </p>
+            <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
+              <SectionHeader
+                title="Other platform areas"
+                subtitle="Step through adjacent modules from the same platform map."
+              />
             </motion.div>
 
             <div
@@ -202,7 +284,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
                   </div>
                   <div className="min-w-0 text-left">
                     <p className="text-[10px] font-bold uppercase tracking-wider text-[#97A0AF]">Previous module</p>
-                    <p className="truncate text-lg font-extrabold text-[#172B4D] transition-colors group-hover:text-brand-orange">
+                    <p className="truncate text-lg font-extrabold text-brand-navy transition-colors group-hover:text-brand-orange">
                       {prev.title}
                     </p>
                   </div>
@@ -226,15 +308,6 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
               ) : null}
             </div>
 
-            <div className="mt-10 text-center">
-              <a
-                href="/platform"
-                className="group inline-flex items-center gap-2 text-sm font-bold text-brand-orange transition-colors hover:text-brand-navy"
-              >
-                Full platform checklist
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-              </a>
-            </div>
           </div>
         </section>
 

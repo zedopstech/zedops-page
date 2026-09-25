@@ -58,14 +58,14 @@ export default function Screenshots() {
         <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-end mb-12">
           <div>
             <div className="flex items-center gap-2 mb-5">
-              <div className="w-3 h-3 rounded-sm bg-[#172B4D] rotate-45" />
-              <span className="text-[#172B4D] text-xs font-bold tracking-[0.15em] uppercase">Product Tour</span>
+              <div className="w-3 h-3 rounded-sm bg-brand-navy rotate-45" />
+              <span className="text-brand-navy text-xs font-bold tracking-[0.15em] uppercase">Product Tour</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
-              See ZedOps in <span className="text-[#172B4D]">action.</span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-brand-navy leading-tight tracking-tight">
+              See ZedOps in <span className="text-brand-navy">action.</span>
             </h2>
           </div>
-          <p className="text-[#42526E] text-lg leading-relaxed">
+          <p className="text-[#42526E] text-lg leading-snug">
             Explore every module  -  from field-level daily logs to AI-powered risk insights and executive dashboards.
           </p>
         </motion.div>
@@ -79,7 +79,7 @@ export default function Screenshots() {
                 onClick={() => setActiveTab(t.id)}
                 className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold whitespace-nowrap transition-all duration-150 border-b-2 flex-shrink-0 ${
                   activeTab === t.id
-                    ? "bg-white text-[#172B4D] border-brand-orange"
+                    ? "bg-white text-brand-navy border-brand-orange"
                     : "text-white/50 border-transparent hover:text-white/80 hover:bg-white/5"
                 }`}
               >
@@ -106,7 +106,7 @@ export default function Screenshots() {
                     <tab.icon size={15} style={{ color: content.color }} />
                   </div>
                   <div>
-                    <p className="text-[#172B4D] font-bold text-sm leading-tight">{content.title}</p>
+                    <p className="text-brand-navy font-bold text-sm leading-tight">{content.title}</p>
                     <p className="text-[#6B778C] text-xs mt-0.5">{content.description}</p>
                   </div>
                 </div>
@@ -134,7 +134,7 @@ export default function Screenshots() {
                       <Play size={20} className="text-white ml-1" fill="white" />
                     </div>
                   </motion.div>
-                  <p className="text-[#172B4D] font-bold text-base mb-1.5">{tab.label}  -  video coming soon</p>
+                  <p className="text-brand-navy font-bold text-base mb-1.5">{tab.label}  -  video coming soon</p>
                   <p className="text-[#97A0AF] text-sm">
                     We're recording walkthroughs for each module.<br />
                     <span className="text-brand-orange font-semibold">Request early access</span> for a live demo instead.

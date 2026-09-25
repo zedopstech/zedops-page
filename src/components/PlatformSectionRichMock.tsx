@@ -44,7 +44,7 @@ function PanelShell({
     <div className="flex h-full min-h-[280px] flex-1 flex-col overflow-hidden rounded-2xl border border-gray-200/90 bg-white shadow-[0_16px_48px_-28px_rgba(23,43,77,0.22)]">
       <header className="shrink-0 border-b border-gray-100 bg-linear-to-b from-[#FAFBFC] to-white px-4 py-3 sm:px-5 sm:py-3.5">
         <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">Overview</p>
-        <h3 className="mt-0.5 text-sm font-extrabold leading-tight text-[#172B4D] sm:text-base">{section.title}</h3>
+        <h3 className="mt-0.5 text-sm font-extrabold leading-tight text-brand-navy sm:text-base">{section.title}</h3>
       </header>
       <div className="min-h-0 flex-1 overflow-auto p-4 sm:p-5">{children}</div>
     </div>
@@ -66,7 +66,7 @@ function RichAccess({ section }: { section: PlatformFeatureSection }) {
               <div className="flex min-w-0 gap-2.5">
                 <Lock size={14} className="mt-0.5 shrink-0 text-[#0052CC]" aria-hidden />
                 <div className="min-w-0">
-                  <p className="text-[11px] font-bold leading-snug text-[#172B4D] sm:text-xs">{item.name}</p>
+                  <p className="text-[11px] font-bold leading-snug text-brand-navy sm:text-xs">{item.name}</p>
                   <p className="mt-0.5 text-[10px] leading-relaxed text-[#42526E] sm:text-[11px]">
                     {clampText(item.summary, 120)}
                   </p>
@@ -97,11 +97,11 @@ function RichPeople({ section }: { section: PlatformFeatureSection }) {
             key={item.name}
             className="flex items-center gap-3 rounded-xl border border-gray-100 bg-white px-3 py-2 shadow-[0_1px_0_rgba(23,43,77,0.04)]"
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EBF0FF] text-[10px] font-black text-[#172B4D]">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EBF0FF] text-[10px] font-black text-brand-navy">
               {initials(item.name)}
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-[11px] font-bold text-[#172B4D] sm:text-xs">{item.name}</p>
+              <p className="text-[11px] font-bold text-brand-navy sm:text-xs">{item.name}</p>
               <p className="text-[10px] leading-relaxed text-[#6B778C] sm:text-[11px]">{clampText(item.summary, 100)}</p>
             </div>
             <Users size={14} className="shrink-0 text-gray-300" aria-hidden />
@@ -120,7 +120,7 @@ function RichDashboard({ section }: { section: PlatformFeatureSection }) {
       <div className="mb-4 grid grid-cols-2 gap-2">
         {items.slice(0, 2).map((item, i) => (
           <div key={item.name} className="rounded-xl border border-gray-100 bg-[#F8FAFC] px-3 py-2.5">
-            <div className="text-lg font-black tabular-nums leading-none text-[#172B4D]">
+            <div className="text-lg font-black tabular-nums leading-none text-brand-navy">
               {48 + seed(item.name, i) % 47}
               {i === 0 ? "%" : ""}
             </div>
@@ -159,7 +159,7 @@ function RichSchedule({ section }: { section: PlatformFeatureSection }) {
   return (
     <PanelShell section={section}>
       <div className="mb-4 flex items-center gap-2 text-[10px] font-bold text-[#97A0AF]">
-        <CalendarDays size={13} className="text-[#172B4D]" aria-hidden />
+        <CalendarDays size={13} className="text-brand-navy" aria-hidden />
         <span>Working plan</span>
       </div>
       <div className="mb-4 flex gap-1">
@@ -170,7 +170,7 @@ function RichSchedule({ section }: { section: PlatformFeatureSection }) {
               {i === busy ? (
                 <>
                   <div className="h-2 rounded-sm bg-brand-orange" />
-                  <div className="h-1.5 rounded-sm bg-[#172B4D]/25" />
+                  <div className="h-1.5 rounded-sm bg-brand-navy/25" />
                 </>
               ) : null}
             </div>
@@ -181,7 +181,7 @@ function RichSchedule({ section }: { section: PlatformFeatureSection }) {
         {items.map((item, i) => (
           <div key={item.name} className="rounded-lg border-l-2 border-[#0052CC] bg-[#F8FAFC]/80 py-2 pl-3 pr-2">
             <p className="text-[10px] font-bold text-[#0052CC]">Milestone {i + 1}</p>
-            <p className="text-[11px] font-extrabold text-[#172B4D]">{item.name}</p>
+            <p className="text-[11px] font-extrabold text-brand-navy">{item.name}</p>
             <p className="mt-0.5 text-[10px] leading-relaxed text-[#42526E]">{clampText(item.summary, 110)}</p>
           </div>
         ))}
@@ -207,7 +207,7 @@ function RichInspection({ section }: { section: PlatformFeatureSection }) {
               <div className="min-w-0">
                 <p
                   className={`text-[11px] font-bold leading-snug sm:text-xs ${
-                    done ? "text-[#6B778C] line-through decoration-gray-300" : "text-[#172B4D]"
+                    done ? "text-[#6B778C] line-through decoration-gray-300" : "text-brand-navy"
                   }`}
                 >
                   {item.name}
@@ -237,7 +237,7 @@ function RichDocuments({ section }: { section: PlatformFeatureSection }) {
           >
             <FileText size={15} className="mt-0.5 shrink-0 text-[#0747A6]" aria-hidden />
             <div className="min-w-0 flex-1">
-              <p className="text-[11px] font-extrabold text-[#172B4D] sm:text-xs">{item.name}</p>
+              <p className="text-[11px] font-extrabold text-brand-navy sm:text-xs">{item.name}</p>
               <p className="mt-1 text-[10px] leading-relaxed text-[#42526E] sm:text-[11px]">{clampText(item.summary, 95)}</p>
             </div>
             <span className="shrink-0 rounded border border-gray-200 bg-white px-1.5 py-0.5 text-[8px] font-bold text-[#6B778C]">
@@ -255,7 +255,7 @@ function RichFinance({ section }: { section: PlatformFeatureSection }) {
   const headline = items[0];
   return (
     <PanelShell section={section}>
-      <div className="mb-4 rounded-xl bg-[#172B4D] px-4 py-3 text-white">
+      <div className="mb-4 rounded-xl bg-brand-navy px-4 py-3 text-white">
         <div className="flex items-center gap-2 text-[9px] font-bold uppercase tracking-wide text-white/50">
           <Wallet size={12} className="text-brand-orange" aria-hidden />
           <span>Commercial snapshot</span>
@@ -274,7 +274,7 @@ function RichFinance({ section }: { section: PlatformFeatureSection }) {
             className="flex items-baseline justify-between gap-2 border-b border-gray-100 pb-2 text-[11px] last:border-0"
           >
             <span className="min-w-0 font-semibold text-[#42526E]">{clampText(item.name, 26)}</span>
-            <span className="shrink-0 font-bold tabular-nums text-[#172B4D]">{12 + seed(item.name, 0) % 38}%</span>
+            <span className="shrink-0 font-bold tabular-nums text-brand-navy">{12 + seed(item.name, 0) % 38}%</span>
           </li>
         ))}
       </ul>
@@ -294,12 +294,12 @@ function RichSupply({ section }: { section: PlatformFeatureSection }) {
               <div className="flex items-center gap-2">
                 <Package size={14} className="shrink-0 text-brand-orange" aria-hidden />
                 <div className="min-w-0 flex-1">
-                  <p className="text-[11px] font-extrabold text-[#172B4D] sm:text-xs">{item.name}</p>
+                  <p className="text-[11px] font-extrabold text-brand-navy sm:text-xs">{item.name}</p>
                   <p className="mt-1 text-[10px] leading-relaxed text-[#42526E] sm:text-[11px]">
                     {clampText(item.summary, 108)}
                   </p>
                 </div>
-                <span className="shrink-0 text-[10px] font-black text-[#172B4D]">{pct}%</span>
+                <span className="shrink-0 text-[10px] font-black text-brand-navy">{pct}%</span>
               </div>
               <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-gray-100">
                 <div className="h-full rounded-full bg-brand-orange" style={{ width: `${pct}%` }} />
@@ -335,7 +335,7 @@ function RichReports({ section }: { section: PlatformFeatureSection }) {
                 style={{ background: ["#172B4D", "#FE5D02", "#0052CC", "#97A0AF"][i % 4] }}
               />
               <div className="min-w-0">
-                <p className="text-[11px] font-bold text-[#172B4D] sm:text-xs">{item.name}</p>
+                <p className="text-[11px] font-bold text-brand-navy sm:text-xs">{item.name}</p>
                 <p className="text-[10px] leading-relaxed text-[#42526E] sm:text-[11px]">{clampText(item.summary, 88)}</p>
               </div>
             </div>
@@ -360,11 +360,11 @@ function RichSettings({ section }: { section: PlatformFeatureSection }) {
               className="flex items-center justify-between gap-3 rounded-xl border border-gray-100 bg-[#F8FAFC] px-3 py-2.5"
             >
               <div className="min-w-0">
-                <p className="text-[11px] font-bold text-[#172B4D] sm:text-xs">{item.name}</p>
+                <p className="text-[11px] font-bold text-brand-navy sm:text-xs">{item.name}</p>
                 <p className="mt-0.5 text-[10px] leading-relaxed text-[#42526E] sm:text-[11px]">{clampText(item.summary, 95)}</p>
               </div>
               <div
-                className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${on ? "bg-[#172B4D]" : "bg-gray-200"}`}
+                className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${on ? "bg-brand-navy" : "bg-gray-200"}`}
                 aria-hidden
               >
                 <div
@@ -395,7 +395,7 @@ function RichList({ section }: { section: PlatformFeatureSection }) {
             className="rounded-xl border border-gray-200/80 bg-linear-to-br from-white to-[#F8FAFC] px-3 py-2.5 shadow-[0_1px_0_rgba(23,43,77,0.06)]"
           >
             <span className="text-[9px] font-bold uppercase tracking-wide text-[#0052CC]">Capability {i + 1}</span>
-            <p className="mt-1 text-[11px] font-extrabold text-[#172B4D] sm:text-xs">{item.name}</p>
+            <p className="mt-1 text-[11px] font-extrabold text-brand-navy sm:text-xs">{item.name}</p>
             <p className="mt-1 text-[10px] leading-relaxed text-[#42526E] sm:text-[11px]">{item.summary}</p>
           </div>
         ))}
@@ -422,7 +422,7 @@ function RichChat({ section }: { section: PlatformFeatureSection }) {
         </div>
         {items.slice(1).map((item) => (
           <div key={item.name} className="flex justify-end">
-            <div className="max-w-[90%] rounded-2xl rounded-tr-md bg-[#172B4D] px-3 py-2">
+            <div className="max-w-[90%] rounded-2xl rounded-tr-md bg-brand-navy px-3 py-2">
               <p className="text-[11px] font-semibold leading-relaxed text-white/95">{clampText(item.summary, 130)}</p>
             </div>
           </div>

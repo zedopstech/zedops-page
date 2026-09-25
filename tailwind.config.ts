@@ -15,8 +15,8 @@ const config = {
             soft: "#F15F22",
           },
           navy: {
-            DEFAULT: "#041129",
-            soft: "#0C162A",
+            DEFAULT: "#172B4D",
+            soft: "#172B4D",
           },
         },
         // Semantic aliases for buttons

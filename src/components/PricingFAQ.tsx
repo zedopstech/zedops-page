@@ -10,7 +10,7 @@ const ORANGE = "#FE5D02";
 const faqs = [
   {
     q: "How does early access work?",
-    a: "Early access is invite-based. Once you apply, a member of the founding team reviews your application and reaches out within one business day to schedule a personal onboarding call. We walk you through the platform together  -  no self-serve trial, no automated drip emails. You get direct access to the people building ZedOps.",
+    a: "Early access is invite-based. Once you apply, a member of the founding team reviews your application and reaches out within one business day to schedule a personal onboarding call. We walk you through the platform together — no automated drip emails. You get direct access to the people building ZedOps.",
   },
   {
     q: "Can I change plans mid-contract?",
@@ -30,7 +30,7 @@ const faqs = [
   },
   {
     q: "How is the AI Copilot different from a basic chatbot?",
-    a: "Zed Copilot is context-aware  -  it reads your actual live project data (schedules, drawings, RFIs, daily logs, risk flags) before answering. It can generate a risk summary for a specific project, draft an RFI response using the relevant drawing markups, or flag upcoming delivery clashes based on your supply chain data. It is not a generic LLM wrapper; it has deep read access to your ZedOps workspace.",
+    a: "Zed Copilot is context-aware  -  it reads your actual live project data (schedules, drawings, RFIs, daily logs, risk flags) before answering. It can generate a risk summary for a specific project, draft an RFI response using the relevant drawing markups, or flag upcoming delivery clashes based on your material management data. It is not a generic LLM wrapper; it has deep read access to your ZedOps workspace.",
   },
   {
     q: "Is there a minimum contract length for Enterprise?",
@@ -81,7 +81,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 pr-10 text-[#42526E] text-sm leading-relaxed">
+            <p className="pb-5 pr-10 text-[#42526E] text-sm leading-snug">
               {a}
             </p>
           </motion.div>
@@ -110,7 +110,7 @@ export default function PricingFAQ() {
                 Got questions? We're here to{" "}
                 <span className="text-[#172B4D]">help.</span>
               </h2>
-              <p className="text-[#42526E] text-base leading-relaxed mb-8">
+              <p className="text-[#42526E] text-base leading-snug mb-8">
                 Whether you're exploring or ready to get started, our team is here to guide you every step of the way.
               </p>
               <a

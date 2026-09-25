@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Brain, FileText, PenLine, BarChart2, ArrowRight, Check, Cpu } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
+import SectionHeader from "@/components/SectionHeader";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
@@ -22,8 +23,8 @@ const modules = [
     ],
     tiers: [
       { label: "Essentials", plan: "Starter", color: "bg-[#F0F4FF] text-[#6B778C]" },
-      { label: "Full access", plan: "Professional", color: "bg-[#EBF0FF] text-[#172B4D]" },
-      { label: "Full + BYOK", plan: "Enterprise", color: "bg-[#172B4D] text-white" },
+      { label: "Full access", plan: "Professional", color: "bg-[#EBF0FF] text-brand-navy" },
+      { label: "Full + BYOK", plan: "Enterprise", color: "bg-brand-navy text-white" },
     ],
     image: "right",
     accent: "#172B4D",
@@ -58,8 +59,8 @@ const modules = [
     ],
     tiers: [
       { label: "View only", plan: "Starter", color: "bg-[#F0F4FF] text-[#6B778C]" },
-      { label: "Full annotation", plan: "Professional", color: "bg-[#EBF0FF] text-[#172B4D]" },
-      { label: "BIM + custom", plan: "Enterprise", color: "bg-[#172B4D] text-white" },
+      { label: "Full annotation", plan: "Professional", color: "bg-[#EBF0FF] text-brand-navy" },
+      { label: "BIM + custom", plan: "Enterprise", color: "bg-brand-navy text-white" },
     ],
     image: "right",
     accent: "#0052CC",
@@ -77,8 +78,8 @@ const modules = [
     ],
     tiers: [
       { label: "Basic dashboard", plan: "Starter", color: "bg-[#F0F4FF] text-[#6B778C]" },
-      { label: "Full intelligence", plan: "Professional", color: "bg-[#EBF0FF] text-[#172B4D]" },
-      { label: "Portfolio + custom", plan: "Enterprise", color: "bg-[#172B4D] text-white" },
+      { label: "Full intelligence", plan: "Professional", color: "bg-[#EBF0FF] text-brand-navy" },
+      { label: "Portfolio + custom", plan: "Enterprise", color: "bg-brand-navy text-white" },
     ],
     image: "left",
     accent: "#FE5D02",
@@ -91,29 +92,29 @@ export default function SolutionsPage() {
   useSEO({
     title: "Platform  -  ZedOps",
     description:
-      "How ZedOps groups AI copilot, field operations, drawings, and reporting. See the complete product module list  -  projects, finance, supply chain, quality, Zed AI  -  on the platform features page.",
+      "How ZedOps groups AI copilot, field operations, drawings, and reporting — projects, finance, material management, quality, and Zed AI in one connected platform.",
   });
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
       <div className="pt-[100px]">
         <PageHero
           pill="Platform"
           PillIcon={Cpu}
           title="Every tool your project needs, connected by AI."
-          subtitle="Projects, planning, finance, supply chain, quality and safety, documents, reporting, and Zed AI  -  multi-tenant, role-based. Below is how we group the ideas; the full checklist is on the platform features page."
+          subtitle="Projects, planning, finance, material management, quality and safety, documents, reporting, and Zed AI  -  multi-tenant, role-based. Below is how we group the ideas."
         >
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <a
-              href="/platform"
+              href="/platform/module/supply-chain"
               className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all duration-150 group"
             >
-              Full feature list
+              Material management
               <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
             </a>
             <a
               href="/early-access"
-              className="text-sm font-bold text-[#42526E] hover:text-[#172B4D] transition-colors"
+              className="text-sm font-bold text-[#42526E] hover:text-brand-navy transition-colors"
             >
               Request early access
             </a>
@@ -121,13 +122,13 @@ export default function SolutionsPage() {
         </PageHero>
 
         {/* Capability modules */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] border-t border-gray-100">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-t border-gray-200">
           <div className="max-w-6xl mx-auto flex flex-col gap-8">
             {modules.map((mod, i) => (
               <motion.div
                 key={mod.tag}
                 {...scrollMotionProps(isMobile, { y: 28, duration: 0.5, delay: 0.05 })}
-                className="bg-white border border-gray-100 rounded-2xl p-8 lg:p-10 hover:border-gray-300 transition-all duration-200"
+                className="bg-white border border-gray-200/90 rounded-2xl p-8 lg:p-10 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-all duration-200 hover:shadow-[0_12px_28px_-12px_rgba(23,43,77,0.12)]"
               >
                 <div className={`grid lg:grid-cols-2 gap-10 items-center ${mod.image === "left" ? "lg:flex-row-reverse" : ""}`}>
 
@@ -148,15 +149,15 @@ export default function SolutionsPage() {
                       </span>
                     </div>
 
-                    <h2 className="text-2xl font-extrabold text-[#172B4D] leading-snug tracking-tight mb-4">
+                    <h2 className="text-2xl font-extrabold text-brand-navy leading-snug tracking-tight mb-4">
                       {mod.title}
                     </h2>
-                    <p className="text-[#42526E] text-sm leading-relaxed mb-6">{mod.desc}</p>
+                    <p className="text-[#42526E] text-sm leading-snug mb-6">{mod.desc}</p>
 
                     {/* Feature bullets */}
                     <ul className="flex flex-col gap-2.5 mb-7">
                       {mod.features.map((feat) => (
-                        <li key={feat} className="flex items-start gap-2.5 text-sm text-[#172B4D]">
+                        <li key={feat} className="flex items-start gap-2.5 text-sm text-brand-navy">
                           <Check size={14} className="text-brand-orange mt-0.5 shrink-0" strokeWidth={3} />
                           {feat}
                         </li>
@@ -174,7 +175,7 @@ export default function SolutionsPage() {
 
                     <a
                       href="/early-access"
-                      className="inline-flex items-center gap-1.5 text-sm font-bold text-[#172B4D] hover:gap-2.5 transition-all duration-150 group"
+                      className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-navy hover:gap-2.5 transition-all duration-150 group"
                     >
                       Get early access <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                     </a>
@@ -205,16 +206,16 @@ export default function SolutionsPage() {
         </section>
 
         {/* Built for you callout */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-100">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-widest mb-4">Tailored by role</p>
-            <h2 className="text-2xl font-extrabold text-[#172B4D] mb-4">Not every role needs every tool.</h2>
-            <p className="text-[#6B778C] text-sm leading-relaxed mb-7">
-              ZedOps surfaces the right features for each team member. See how we've designed the platform for your specific role.
-            </p>
+        <section className="py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+          <div className="max-w-3xl mx-auto">
+            <SectionHeader
+              eyebrow="Tailored by role"
+              title="Not every role needs every tool."
+              subtitle="ZedOps surfaces the right features for each team member. See how we've designed the platform for your specific role."
+            />
             <a
               href="/who-we-serve"
-              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#172B4D] text-[#172B4D] hover:bg-[#172B4D] hover:text-white font-bold text-sm rounded-md transition-all duration-150 group"
+              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white font-bold text-sm rounded-md transition-all duration-150 group"
             >
               Built for you <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
             </a>

@@ -16,30 +16,171 @@ import {
   Briefcase,
   BookOpen,
   Map,
-  LayoutGrid,
   ScrollText,
   CalendarClock,
   FolderOpen,
   ShieldCheck,
   FolderKanban,
+  Layers,
+  Landmark,
+  Package,
+  Info,
+  Shield,
+  Mail,
+  Sparkles,
+  Users,
+  Compass,
+  ListChecks,
 } from "lucide-react";
-import { SITE_FOCUS_MEP_EXECUTION } from "@/config/siteFocus";
+import { SITE_FOCUS_MEP_EXECUTION, HIDE_PRICING } from "@/config/siteFocus";
+
+/** Shared Platform mega-menu (lifecycle groups → module pages). No hub `/platform` page. */
+const platformMenu = {
+  sections: [
+    {
+      heading: "Pre-construction",
+      items: [
+        {
+          icon: ClipboardList,
+          label: "Estimation & proposals",
+          desc: "Accurate takeoffs, BOQ, proposals & cost estimation.",
+          href: "/platform/module/estimation",
+        },
+        {
+          icon: CalendarClock,
+          label: "Planning & scheduling",
+          desc: "Create realistic schedules, track progress in real-time.",
+          href: "/platform/module/planning-execution",
+        },
+      ],
+    },
+    {
+      heading: "Construction execution",
+      items: [
+        {
+          icon: Package,
+          label: "Materials Management",
+          desc: "Manage requests, approvals, purchasing & deliveries.",
+          href: "/platform/module/supply-chain",
+        },
+        {
+          icon: FolderOpen,
+          label: "Daily execution intelligence",
+          desc: "Daily logs, site reports, progress & issue tracking.",
+          href: "/platform/module/daily-intelligence",
+        },
+        {
+          icon: Users,
+          label: "Workforce intelligence",
+          desc: "Track attendance, productivity & labor performance.",
+          href: "/platform/module/workforce-intelligence",
+        },
+        {
+          icon: ShieldCheck,
+          label: "Quality & safety",
+          desc: "Inspections, checklists, incidents & compliance.",
+          href: "/platform/module/quality-safety-closeout",
+        },
+        {
+          icon: FolderKanban,
+          label: "Tasks resolution",
+          desc: "Assign, track & close tasks faster across teams.",
+          href: "/platform/module/projects",
+        },
+        {
+          icon: Landmark,
+          label: "Budget & cost control",
+          desc: "Track budgets, actuals, commitments & cash flow.",
+          href: "/platform/module/finance",
+        },
+      ],
+    },
+    {
+      heading: "Project closeout",
+      items: [
+        {
+          icon: ListChecks,
+          label: "Punch list management",
+          desc: "Track, assign & close punch items efficiently.",
+          href: "/platform/module/punch-list",
+        },
+      ],
+    },
+    {
+      heading: "Platform core",
+      items: [
+        {
+          icon: Layers,
+          label: "Core",
+          desc: "Documents, library, workflow, directory, company, projects, users & admin.",
+          href: "/platform/module/core",
+        },
+      ],
+    },
+  ],
+  cta: { label: "Explore modules", href: "/platform/module/core" },
+  footerCard: {
+    icon: Cpu,
+    label: "Zed AI",
+    desc: "Copilot on live project data — insights, drafts, and actions with your permissions.",
+    href: "/zed-ai",
+  },
+} as const;
+
+/** Shared Company mega-menu. */
+const companyMenu = {
+  sections: [
+    {
+      heading: "About ZedOps",
+      items: [
+        {
+          icon: Info,
+          label: "About Us",
+          desc: "Mission, values, and why we built ZedOps",
+          href: "/about",
+        },
+        {
+          icon: Shield,
+          label: "Security",
+          desc: "How we protect tenant data and access",
+          href: "/security",
+        },
+        {
+          icon: Mail,
+          label: "Contact",
+          desc: "Talk to the founding team",
+          href: "/contact",
+        },
+      ],
+    },
+    {
+      heading: "Connect",
+      items: [
+        {
+          icon: Users,
+          label: "Who we serve",
+          desc: "GCs, owners, PMs, and consultants",
+          href: "/who-we-serve",
+        },
+        {
+          icon: Sparkles,
+          label: "Early access",
+          desc: "Request a walkthrough with the founders",
+          href: "/early-access",
+        },
+      ],
+    },
+  ],
+  cta: { label: "Contact us", href: "/contact" },
+} as const;
 
 export const dropdownMenusGeneral = {
+  Platform: platformMenu,
   Solutions: {
     sections: [
       {
-        heading: "Platform",
+        heading: "Highlights",
         items: [
-          {
-            icon: LayoutGrid,
-            label: "All platform features",
-            desc: "Full module list from the product",
-            subtitle:
-              "Planning, execution, finance, documents, quality, and closeout - every module in one place, with permissions that match how your teams actually work.",
-            href: "/platform",
-            highlight: true,
-          },
           {
             icon: Cpu,
             label: "Zed AI",
@@ -48,14 +189,44 @@ export const dropdownMenusGeneral = {
             href: "/zed-ai",
             highlight: true,
           },
+          {
+            icon: Compass,
+            label: "How we help",
+            desc: "By stage, role & team",
+            subtitle:
+              "See how ZedOps fits preconstruction through closeout — and which modules matter for each team.",
+            href: "/how-we-help",
+            highlight: true,
+          },
         ],
       },
       {
         heading: "By Project Stage",
         items: [
-          { icon: ClipboardList, label: "Preconstruction", desc: "Estimation & library", href: "/how-we-help/project-stage#preconstruction" },
-          { icon: HardHat, label: "Construction", desc: "Projects, tasks, work logs", href: "/how-we-help/project-stage#construction" },
-          { icon: Building2, label: "Closeout", desc: "Punch list & inspections", href: "/how-we-help/project-stage#closeout" },
+          {
+            icon: ClipboardList,
+            label: "Preconstruction",
+            desc: "Estimation & library",
+            href: "/how-we-help/project-stage#preconstruction",
+          },
+          {
+            icon: HardHat,
+            label: "Construction",
+            desc: "Projects, tasks, work logs",
+            href: "/how-we-help/project-stage#construction",
+          },
+          {
+            icon: Building2,
+            label: "Closeout",
+            desc: "Punch list & inspections",
+            href: "/how-we-help/project-stage#closeout",
+          },
+          {
+            icon: Layers,
+            label: "Platform Core",
+            desc: "Core & administration",
+            href: "/how-we-help/project-stage#platform-core",
+          },
         ],
       },
     ],
@@ -126,27 +297,6 @@ export const dropdownMenusGeneral = {
             href: "/blog",
             tag: "New posts weekly",
           },
-          // {
-          //   icon: Video,
-          //   label: "Webinars",
-          //   desc: "Live and on-demand expert sessions",
-          //   href: "#",
-          //   tag: "Live every month",
-          // },
-          // {
-          //   icon: FileQuestion,
-          //   label: "Case Studies",
-          //   desc: "Real results from construction teams",
-          //   href: "#",
-          //   tag: "12 stories",
-          // },
-          // {
-          //   icon: Users,
-          //   label: "Community",
-          //   desc: "Connect with peers and share best practices",
-          //   href: "#",
-          //   tag: "2,400+ members",
-          // },
           {
             icon: Map,
             label: "Product Roadmap",
@@ -158,34 +308,18 @@ export const dropdownMenusGeneral = {
       },
     ],
     cta: { label: "See all resources", href: "#" },
-    // featured: {
-    //   tag: "Case Study",
-    //   title: "How a mid-size GC cut RFI response time by 60% with ZedOps",
-    //   readTime: "4 min read",
-    //   date: "April 3, 2026",
-    //   href: "#",
-    //   image:
-    //     "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=480&h=320&q=80",
-    // },
   },
+  Company: companyMenu,
 } as const;
 
 /** MEP-focused: same routes; copy highlights actions, modules, and Zed AI. */
 export const dropdownMenusMep = {
+  Platform: platformMenu,
   Solutions: {
     sections: [
       {
-        heading: "Platform & AI",
+        heading: "Highlights",
         items: [
-          {
-            icon: LayoutGrid,
-            label: "All platform features",
-            desc: "Full module checklist",
-            subtitle:
-              "Every module your MEP teams execute on, from planning through supply, with permissions that match real roles.",
-            href: "/platform",
-            highlight: true,
-          },
           {
             icon: Cpu,
             label: "Zed AI",
@@ -195,40 +329,28 @@ export const dropdownMenusMep = {
             href: "/zed-ai",
             highlight: true,
           },
+          {
+            icon: Compass,
+            label: "How we help",
+            desc: "By stage, role & team",
+            subtitle:
+              "MEP execution from programme to punch — pick the path that matches how your teams work.",
+            href: "/how-we-help",
+            highlight: true,
+          },
         ],
       },
       {
-        heading: "Key modules",
+        heading: "By Project Stage",
         items: [
+          { icon: ClipboardList, label: "Preconstruction", desc: "Estimation & library", href: "/how-we-help/project-stage#preconstruction" },
+          { icon: HardHat, label: "Construction", desc: "Projects, tasks, work logs", href: "/how-we-help/project-stage#construction" },
+          { icon: Building2, label: "Closeout", desc: "Punch list & inspections", href: "/how-we-help/project-stage#closeout" },
           {
-            icon: CalendarClock,
-            label: "Planning & execution",
-            desc: "Schedule, tasks & estimates",
-            href: "/platform/module/planning-execution",
-          },
-          {
-            icon: FolderOpen,
-            label: "Information management",
-            desc: "Daily logs & document control",
-            href: "/platform/module/information-management",
-          },
-          {
-            icon: ShieldCheck,
-            label: "Quality, safety & closeout",
-            desc: "Inspections, punch & incidents",
-            href: "/platform/module/quality-safety-closeout",
-          },
-          {
-            icon: FolderKanban,
-            label: "Projects",
-            desc: "Equipment, materials & work logs",
-            href: "/platform/module/projects",
-          },
-          {
-            icon: LayoutGrid,
-            label: "All modules",
-            desc: "Finance, supply chain & full checklist",
-            href: "/platform",
+            icon: Layers,
+            label: "Platform Core",
+            desc: "Core & administration",
+            href: "/how-we-help/project-stage#platform-core",
           },
         ],
       },
@@ -291,6 +413,7 @@ export const dropdownMenusMep = {
         "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=480&h=320&q=80",
     },
   },
+  Company: companyMenu,
 } as const;
 
 export type DropdownMenus = typeof dropdownMenusGeneral;
@@ -303,28 +426,38 @@ export const dropdownMenus: DropdownMenus = (
 
 /** Mobile drawer links: general (full) list preserved for when `SITE_FOCUS_MEP_EXECUTION` is false. */
 export const mobileNavLinksGeneral = [
+  { label: "Estimation & proposals", href: "/platform/module/estimation" },
+  { label: "Materials & procurement", href: "/platform/module/supply-chain" },
+  { label: "Core", href: "/platform/module/core" },
   { label: "Solutions", href: "/solutions" },
-  { label: "All features", href: "/platform" },
   { label: "How we help", href: "/how-we-help" },
   { label: "Zed AI", href: "/zed-ai" },
   { label: "ZedDocs", href: "https://docs.zedops.com/", external: true as const },
   { label: "Built for you", href: "/who-we-serve" },
   { label: "Roadmap", href: "/roadmap" },
+  { label: "About Us", href: "/about" },
+  { label: "Who we serve", href: "/who-we-serve" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
-/** MEP mode: same destinations; order highlights AI & platform first. */
+/** MEP mode: same destinations; order highlights platform first. */
 export const mobileNavLinksMep = [
-  { label: "Zed AI", href: "/zed-ai" },
-  { label: "Platform", href: "/platform" },
+  { label: "Estimation & proposals", href: "/platform/module/estimation" },
+  { label: "Materials & procurement", href: "/platform/module/supply-chain" },
+  { label: "Core", href: "/platform/module/core" },
   { label: "Solutions", href: "/solutions" },
+  { label: "Zed AI", href: "/zed-ai" },
   { label: "How we help", href: "/how-we-help" },
   { label: "Built for you (MEP & roles)", href: "/who-we-serve" },
   { label: "ZedDocs", href: "https://docs.zedops.com/", external: true as const },
   { label: "Roadmap", href: "/roadmap" },
+  { label: "About Us", href: "/about" },
+  { label: "Who we serve", href: "/who-we-serve" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
-export const mobileNavLinks = SITE_FOCUS_MEP_EXECUTION ? mobileNavLinksMep : mobileNavLinksGeneral;
+export const mobileNavLinks = (
+  SITE_FOCUS_MEP_EXECUTION ? mobileNavLinksMep : mobileNavLinksGeneral
+).filter((link) => !(HIDE_PRICING && link.href === "/pricing"));

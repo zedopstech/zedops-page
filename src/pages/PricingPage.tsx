@@ -14,7 +14,7 @@ export default function PricingPage() {
     description: "Simple, transparent pricing for construction teams. Starter, Professional, and Enterprise plans. All plans include early access onboarding with the ZedOps team.",
   });
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
       <div className="pt-[100px]">
         <PageHero

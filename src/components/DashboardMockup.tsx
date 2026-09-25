@@ -28,7 +28,7 @@ const recentActivities = [
 ];
 
 const statCards = [
-  { label: "ACTIVE PROJECTS", val: "8", sub: "In progress", iconBg: "bg-[#172B4D]", icon: "🏗" },
+  { label: "ACTIVE PROJECTS", val: "8", sub: "In progress", iconBg: "bg-brand-navy", icon: "🏗" },
   { label: "ON TRACK", val: "5", sub: "Projects", iconBg: "bg-teal-500", icon: "✓" },
   { label: "SAFETY INCIDENTS", val: "2", sub: "Needs attention", iconBg: "bg-amber-400", icon: "⚠" },
   { label: "ISSUES", val: "2", sub: "Open", iconBg: "bg-red-400", icon: "△" },
@@ -47,13 +47,13 @@ const barChart = [
 export default function DashboardMockup() {
   return (
     <div
-      className="min-h-[min(480px,72vh)] h-[min(62vh,580px)] min-w-0 max-w-full overflow-hidden rounded-[10px] bg-[#F8FAFC] font-sans text-[#172B4D] shadow-[0_24px_48px_-28px_rgba(23,43,77,0.2)] ring-1 ring-[#172B4D]/10 md:h-[640px] md:min-h-[640px] md:rounded-md md:shadow-none md:ring-0"
+      className="min-h-[min(480px,72vh)] h-[min(62vh,580px)] min-w-0 max-w-full overflow-hidden rounded-[10px] bg-[#F8FAFC] font-sans text-brand-navy shadow-[0_24px_48px_-28px_rgba(23,43,77,0.2)] ring-1 ring-[#172B4D]/10 md:h-[640px] md:min-h-[640px] md:rounded-md md:shadow-none md:ring-0"
     >
 
       {/* Top navbar */}
       <div className="flex min-h-10 min-w-0 items-center overflow-hidden bg-[#111827] px-2.5 py-0 sm:min-h-[40px] sm:px-3">
         <div className="mr-2 flex shrink-0 items-center gap-2 sm:mr-4">
-          <img src="/ICON.jpg" alt="ZedOps" className="h-6 w-6 shrink-0 object-cover sm:h-7 sm:w-7" style={{ borderRadius: 6 }} />
+          <img src="/logo.png" alt="ZedOps" className="h-6 w-6 shrink-0 object-cover sm:h-7 sm:w-7" style={{ borderRadius: 6 }} />
         </div>
         {/* Project selector */}
         <div className="mr-2 flex min-w-0 shrink cursor-pointer items-center gap-1 bg-white/10 px-2 py-1 hover:bg-white/15 sm:mr-4 sm:shrink-0 sm:px-2.5" style={{ borderRadius: 6 }}>
@@ -63,7 +63,7 @@ export default function DashboardMockup() {
         {/* Nav tabs: desktop row; mobile peek */}
         <div className="ml-auto flex max-md:mr-2 md:mx-0 md:min-w-0 md:flex-1 md:items-center md:gap-0">
           <div className="hidden min-w-0 flex-1 items-center gap-0 overflow-x-auto md:flex [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {["Core", "Project", "Finance", "Supply Chain", "Daily Logs"].map((nav, i) => (
+            {["Core", "Project", "Finance", "Materials", "Daily Logs"].map((nav, i) => (
               <div key={nav} className={`flex shrink-0 cursor-pointer items-center gap-1 px-3 py-2.5 text-[11px] font-medium whitespace-nowrap transition-colors ${i === 0 ? "border-b border-white text-white" : "text-white/50 hover:text-white/75"}`}>
                 {nav}
                 {i < 4 && <ChevronDown size={9} className="text-white/40" />}
@@ -103,7 +103,7 @@ export default function DashboardMockup() {
               >
                 View all projects
               </button>
-              <button className="flex items-center gap-1 rounded-md bg-[#172B4D] px-2.5 py-1 text-[9px] font-bold text-white sm:text-[10px]" style={{ borderRadius: 6 }} type="button">
+              <button className="flex items-center gap-1 rounded-md bg-brand-navy px-2.5 py-1 text-[9px] font-bold text-white sm:text-[10px]" style={{ borderRadius: 6 }} type="button">
                 <Plus size={10} />
                 New
               </button>
@@ -224,7 +224,7 @@ export default function DashboardMockup() {
                 <div className="flex min-w-0 flex-col gap-1.5 sm:gap-2">
                   <div>
                     <div className="flex items-center gap-1">
-                      <div className="w-2 h-2 rounded-sm bg-[#172B4D]" />
+                      <div className="w-2 h-2 rounded-sm bg-brand-navy" />
                       <span className="text-[9px] text-[#42526E] font-medium">Open 67%</span>
                     </div>
                   </div>
@@ -256,7 +256,7 @@ export default function DashboardMockup() {
             {/* Insights / Action tabs */}
             <div>
               <div className="flex border-b border-gray-100 mb-2">
-                <button className="text-[9px] font-bold text-[#172B4D] pb-1.5 border-b-2 border-[#172B4D] pr-3">Insights</button>
+                <button className="text-[9px] font-bold text-brand-navy pb-1.5 border-b-2 border-brand-navy pr-3">Insights</button>
                 <button className="text-[9px] text-[#97A0AF] pb-1.5 pl-3">Action</button>
               </div>
               <div className="space-y-1.5">
@@ -281,7 +281,7 @@ export default function DashboardMockup() {
                 placeholder="What would you like to do?"
                 className="flex-1 bg-transparent text-[9px] text-[#6B778C] placeholder-gray-400 outline-none min-w-0"
               />
-              <button className="w-5 h-5 bg-[#172B4D] flex items-center justify-center flex-shrink-0" style={{ borderRadius: 6 }}>
+              <button className="w-5 h-5 bg-brand-navy flex items-center justify-center flex-shrink-0" style={{ borderRadius: 6 }}>
                 <Send size={9} className="text-white" />
               </button>
             </div>

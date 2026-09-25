@@ -1,190 +1,160 @@
 import { motion } from "framer-motion";
-import { ClipboardList, Eye, Split, TrendingDown, ListTodo } from "lucide-react";
-import { useScrollSectionMotion, useVariantScrollReveal } from "@/hooks/useScrollSectionMotion";
+import {
+  Calculator,
+  CalendarClock,
+  Clock,
+  Package,
+  RotateCcw,
+  TrendingDown,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
+import SectionHeader from "@/components/SectionHeader";
 
-const PRIMARY = "#172B4D";
-const ORANGE = "#FE5D02";
-
-const problems = [
+const problems: { icon: LucideIcon; title: string; desc: string }[] = [
   {
-    num: "01",
-    icon: Split,
-    tag: "Coordination",
-    title: "Trades out of sync",
-    description:
-      "Mechanical, electrical, and plumbing crews juggle different tools and threads. When the schedule moves, field reality rarely updates in one place everyone trusts.",
-    stat: "3+",
-    statDetail: "systems MEP teams often use to track one job",
+    icon: Calculator,
+    title: "Poor Estimation",
+    desc: "Inaccurate takeoffs lead to wrong quotations.",
   },
   {
-    num: "02",
-    icon: ClipboardList,
-    tag: "Reporting",
-    title: "Logs that don’t become work",
-    description:
-      "Daily logs capture what happened, but follow-ups live in email, texts, or nowhere. Promised actions slip because they aren’t tied to tasks and owners.",
-    stat: "12+ hrs",
-    statDetail: "wasted per PM every week on manual data entry",
+    icon: CalendarClock,
+    title: "Unrealistic Planning",
+    desc: "Schedules don't align with site realities.",
   },
   {
-    num: "03",
-    icon: Eye,
-    tag: "Visibility",
-    title: "Dashboards without a next step",
-    description:
-      "Charts show red flags, but the crew still asks “what do I do now?” Without schedule → task and inspection → task links, insight rarely turns into execution.",
-    stat: "8%",
-    statDetail: "of construction projects finish on time and on budget",
+    icon: Clock,
+    title: "Procurement Delays",
+    desc: "Late approvals and supplier bottlenecks.",
   },
   {
-    num: "04",
+    icon: Package,
+    title: "Material Shortages",
+    desc: "Right materials aren't available at the right time.",
+  },
+  {
     icon: TrendingDown,
-    tag: "Budget",
-    title: "Cost drift from late fixes",
-    description:
-      "Rework and punch drag when deficiencies aren’t assigned and closed in a loop. Small misses across trades compound into margin and schedule pain.",
-    stat: "$280B",
-    statDetail: "lost annually to cost overruns in the US alone",
+    title: "Productivity Loss",
+    desc: "Labor inefficiencies reduce performance.",
   },
   {
-    num: "05",
-    icon: ListTodo,
-    tag: "Execution",
-    title: "Punch & QA stuck in limbo",
-    description:
-      "Walkthroughs and inspections generate lists, but items float without clear owners, due dates, and verification. Closeout stretches when punch isn’t operational.",
-    stat: "48–72 hrs",
-    statDetail: "typical lag before a punch item gets a real owner",
+    icon: RotateCcw,
+    title: "Quality Rework",
+    desc: "Poor quality creates additional work.",
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.45,
-      delay: i * 0.08,
-      ease: [0.16, 1, 0.3, 1] as const,
-    },
-  }),
-};
+const impacts = [
+  { value: "20%", label: "Time lost" },
+  { value: "15%", label: "Budget impact" },
+  { value: "30%", label: "Productivity lost" },
+] as const;
 
 export default function Problems() {
-  const headerReveal = useScrollSectionMotion({ y: 20, duration: 0.5 });
-  const calloutReveal = useScrollSectionMotion({ y: 16, delay: 0.08, duration: 0.45 });
-  const cardScroll = useVariantScrollReveal(cardVariants);
+  const isMobile = useIsMobile();
 
   return (
-    <section className="bg-[#F4F6FB] border-t border-blue-100 py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="w-full py-12 lg:py-16">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          {...scrollMotionProps(isMobile, {
+            y: 20,
+            duration: 0.4,
+          })}
+        >
+          <SectionHeader
+            title={
+              <>
+                Why MEP & Construction<span className="text-brand-orange"> Projects Struggle</span>.
+              </>
+            }
+            subtitle="MEP & Construction projects face unique challenges that can lead to delays, cost overruns, and quality issues."
+          />
+        </motion.div>
 
-        {/* ── Header ── */}
-        <motion.div {...headerReveal} className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-24 mb-14">
-          <div className="shrink-0">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
-              Where MEP execution<br />
-              breaks <span className="text-[#172B4D]">down.</span>
-            </h2>
+        {/* Problems */}
+        <motion.ul
+          {...scrollMotionProps(isMobile, {
+            y: 16,
+            duration: 0.4,
+          })}
+          className="m-0 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5"
+        >
+          {problems.map((problem) => {
+            const Icon = problem.icon;
+
+            return (
+              <li key={problem.title} className="min-w-0">
+                <article className="flex h-full min-h-[165px] flex-col rounded-lg bg-brand-navy p-5 transition-[box-shadow,transform] duration-150 hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-16px_rgba(23,43,77,0.45)] motion-reduce:transform-none motion-reduce:transition-none">
+                  {/* Icon */}
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-white/10">
+                    <Icon
+                      size={18}
+                      strokeWidth={2}
+                      className="text-brand-orange"
+                      aria-hidden
+                    />
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-base font-semibold leading-snug text-brand-orange sm:text-lg">
+                    {problem.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="mt-2 text-sm leading-snug text-white sm:text-sm">
+                    {problem.desc}
+                  </p>
+                </article>
+              </li>
+            );
+          })}
+        </motion.ul>
+
+        {/* Impact */}
+        <motion.div
+          {...scrollMotionProps(isMobile, {
+            y: 12,
+            duration: 0.35,
+            delay: 0.05,
+          })}
+          className="mt-10 flex flex-col gap-5 border-t border-[#D0D7E2] pt-6 sm:mt-11 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
+        >
+          {/* Impact heading */}
+          <div className="min-w-0 sm:max-w-[280px]">
+            <h3 className="text-lg font-extrabold tracking-tight text-brand-navy sm:text-xl">
+              Small gaps. Compounding impact.
+            </h3>
+
+            <p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-[#97A0AF] sm:text-xs">
+              Average project impact
+            </p>
           </div>
-          <p className="text-[#42526E] text-base leading-relaxed max-w-md lg:pb-1">
-            Coordination across mechanical, electrical, and plumbing needs the same thing: clear handoffs from plan to task, from site to follow-up, and from punch to done. ZedOps is built around that loop.
-          </p>
-        </motion.div>
 
-        {/* ── Top 2  -  wide cards ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
-          {problems.slice(0, 2).map((p, i) => {
-            const Icon = p.icon;
-            return (
-              <motion.div
-                key={p.num}
-                {...cardScroll(i)}
-                className="relative bg-white border border-gray-200 rounded-md p-8 flex flex-col overflow-hidden group hover:border-gray-300 transition-all duration-200"
+          {/* Impact stats */}
+          <ul className="grid min-w-0 flex-1 grid-cols-3">
+            {impacts.map((item, i) => (
+              <li
+                key={item.label}
+                className={`px-2 text-center sm:px-4 ${
+                  i > 0 ? "border-l border-[#D0D7E2]" : ""
+                }`}
               >
-                {/* Faded number watermark */}
-                <span className="absolute top-4 right-6 text-[80px] font-black text-gray-100 leading-none select-none pointer-events-none" style={{ color: "#E8EDF5" }}>
-                  {p.num}
-                </span>
+                <p className="text-2xl font-black tracking-tight text-brand-orange sm:text-3xl">
+                  {item.value}
+                </p>
 
-                {/* Icon + tag */}
-                <div className="flex items-center gap-3 mb-6 relative z-10">
-                  <div className="w-11 h-11 bg-[#172B4D] flex items-center justify-center rounded-md shrink-0">
-                    <Icon size={18} className="text-white" />
-                  </div>
-                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">{p.tag}</span>
-                </div>
-
-                <h3 className="text-xl font-extrabold text-[#172B4D] mb-3 leading-snug relative z-10">{p.title}</h3>
-                <p className="text-[#42526E] text-sm leading-relaxed flex-1 mb-8 relative z-10">{p.description}</p>
-
-                {/* Stat */}
-                <div className="border-t border-gray-100 pt-5 relative z-10">
-                  <div className="text-3xl font-black leading-none mb-1.5" style={{ color: ORANGE }}>{p.stat}</div>
-                  <p className="text-xs text-[#97A0AF] leading-snug">{p.statDetail}</p>
-                </div>
-
-                {/* Hover accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-orange scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-b-md" />
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* ── Bottom 3 ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {problems.slice(2).map((p, i) => {
-            const Icon = p.icon;
-            return (
-              <motion.div
-                key={p.num}
-                {...cardScroll(i + 2)}
-                className="relative bg-white border border-gray-200 rounded-md p-7 flex flex-col overflow-hidden group hover:border-gray-300 transition-all duration-200"
-              >
-                {/* Faded number watermark */}
-                <span className="absolute top-3 right-5 text-[64px] font-black leading-none select-none pointer-events-none" style={{ color: "#E8EDF5" }}>
-                  {p.num}
-                </span>
-
-                {/* Icon + tag */}
-                <div className="flex items-center gap-3 mb-5 relative z-10">
-                  <div className="w-10 h-10 bg-[#172B4D] flex items-center justify-center rounded-md shrink-0">
-                    <Icon size={16} className="text-white" />
-                  </div>
-                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">{p.tag}</span>
-                </div>
-
-                <h3 className="text-lg font-extrabold text-[#172B4D] mb-2.5 leading-snug relative z-10">{p.title}</h3>
-                <p className="text-[#42526E] text-sm leading-relaxed flex-1 mb-7 relative z-10">{p.description}</p>
-
-                {/* Stat */}
-                <div className="border-t border-gray-100 pt-4 relative z-10">
-                  <div className="text-2xl font-black leading-none mb-1.5" style={{ color: ORANGE }}>{p.stat}</div>
-                  <p className="text-xs text-[#97A0AF] leading-snug">{p.statDetail}</p>
-                </div>
-
-                {/* Hover accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-orange scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-b-md" />
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* ── Bottom callout ── */}
-        <motion.div {...calloutReveal} className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-5 bg-[#172B4D] rounded-md px-8 py-6">
-          <p className="text-white text-sm font-semibold leading-relaxed max-w-lg">
-            <span className="text-white font-extrabold">ZedOps addresses every one of these</span> - with a single platform built specifically for construction teams.
-          </p>
-          <a
-            href="#capabilities"
-            className="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-soft text-white text-sm font-bold px-6 py-3 rounded-md transition-colors whitespace-nowrap shrink-0"
-          >
-            See how we fix it →
-          </a>
+                <p className="mt-1 text-xs font-bold uppercase tracking-[0.12em] text-[#6B778C] sm:text-xs">
+                  {item.label}
+                </p>
+              </li>
+            ))}
+          </ul>
         </motion.div>
-
       </div>
     </section>
   );
 }
+

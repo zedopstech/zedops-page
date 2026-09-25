@@ -57,7 +57,7 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
           "Beyond high-level tenant security, this area links individuals to the roles that unlock specific modules and actions. Administrators can align job functions in the field and office with what each person is allowed to change in ZedOps.",
       },
       {
-        name: "Time cards",
+        name: "workforce management",
         summary: "Capture and review hours for payroll and job costing inputs.",
         detail:
           "Workers and supervisors record time in a structured way so hours can be reviewed, adjusted where policy allows, and fed into downstream processes. Templates in settings help standardise how time is presented on exports and documents.",
@@ -119,15 +119,51 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
     ],
   },
   {
-    id: "planning-execution",
-    title: "Planning & execution",
+    id: "estimation",
+    title: "Estimation & Proposals",
     items: [
       {
-        name: "Estimation",
-        summary: "Build estimates from library-backed cost structures.",
+        name: "Smart BOQ mapping",
+        summary: "Import client BOQs and map lines to the organisation library.",
         detail:
-          "Pull rates, assemblies, and assumptions from the library hub so bids and budgets start from approved data. As scope shifts, revisions stay traceable against the same cost breakdown structure the organisation uses everywhere.",
+          "Bring tender BOQs into ZedOps, align items to approved rates and cost codes, and flag anything that still needs a human decision. Mappings carry forward so the next bid starts closer to done.",
       },
+      {
+        name: "Productivity-based estimation",
+        summary: "Labour and duration from norms — not a guessed lump sum.",
+        detail:
+          "Apply library productivity, crew mix, and output rates so hours follow quantities. Estimators stay consistent with how the company prices work, and commercial can see what sits behind the total.",
+      },
+      {
+        name: "Cost management",
+        summary: "Material, labour, equipment, overheads, and markups in one estimate.",
+        detail:
+          "Split cost the way you report it, apply markups by package or type, and watch live totals as the BOQ changes. Cost codes stay aligned with finance so the bid is not a second chart of accounts.",
+      },
+      {
+        name: "Commercial proposal builder",
+        summary: "Turn the estimate into a client-ready proposal.",
+        detail:
+          "Scope, exclusions, assumptions, and branded output come from the same numbers. Export a PDF for submission without rebuilding the commercial story in Word.",
+      },
+      {
+        name: "Workflow & approvals",
+        summary: "Review and sign-off before a bid leaves the building.",
+        detail:
+          "Move estimates from draft to approved with role-aware steps. Status and history stay visible so commercial and leadership know what is safe to issue.",
+      },
+      {
+        name: "Revision management",
+        summary: "Version every bid round without losing the trail.",
+        detail:
+          "Compare revisions, lock approved versions, and explain what changed in client meetings. The estimate remains a controlled record, not a folder of conflicting files.",
+      },
+    ],
+  },
+  {
+    id: "planning-execution",
+    title: "Planning & Scheduling",
+    items: [
       {
         name: "Schedule",
         summary: "Plan phases, milestones, and dependencies in one timeline.",
@@ -139,6 +175,48 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
         summary: "Assign work, track status, and export or hand off where supported.",
         detail:
           "A task dashboard and lists connect people to concrete deliverables with owners and due dates. Workflow hooks and exports (where present) let teams push status into adjacent processes without duplicating the same task in three tools.",
+      },
+    ],
+  },
+  {
+    id: "daily-intelligence",
+    title: "Daily Execution Intelligence",
+    items: [
+      {
+        name: "General details",
+        summary: "Weather, location, shift, and site condition in one header.",
+        detail:
+          "Every daily log starts with the facts that frame the day — area, weather, shift, and photos — so office and site share the same context before they read the work.",
+      },
+      {
+        name: "Work log",
+        summary: "Activities, quantities, and progress against the plan.",
+        detail:
+          "Supervisors record what was done, how far it got, and what still needs attention. Entries roll up to the project record instead of sitting in notebooks or WhatsApp.",
+      },
+      {
+        name: "People on site",
+        summary: "Headcount, trades, hours, and visitors for the day.",
+        detail:
+          "Capture who was on site and for how long so labour, safety, and payroll all start from the same attendance picture.",
+      },
+      {
+        name: "Materials & equipment",
+        summary: "Delivered, consumed, hours used, and downtime — same log.",
+        detail:
+          "Tie daily consumption and plant usage to the job so inventory, cost, and the next day’s plan are not reconstructed after the fact.",
+      },
+      {
+        name: "Issues, inspections & incidents",
+        summary: "Raise, assign, and close from the same daily record.",
+        detail:
+          "Problems, surveys, inspections, and safety events stay linked to the day they happened, with owners and photos, so nothing disappears between site and office.",
+      },
+      {
+        name: "Sign-off & sync",
+        summary: "Supervisor signature, then instant office visibility.",
+        detail:
+          "Digital sign-off locks the log with a timestamp. Real-time sync means PMs and commercial see today’s site reality without waiting for a weekly report.",
       },
     ],
   },
@@ -228,7 +306,7 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
   },
   {
     id: "supply-chain",
-    title: "Supply chain",
+    title: "Material management",
     items: [
       {
         name: "Workflows",
@@ -294,7 +372,7 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
         name: "PDF / document reports",
         summary: "Print-ready outputs for inspections, POs, incidents, materials, and more.",
         detail:
-          "Generate consistent PDFs from live data so what leaves the building matches what is in ZedOps. Coverage spans projects, quality, safety, supply chain, and request types so teams spend less time reformatting Word templates.",
+          "Generate consistent PDFs from live data so what leaves the building matches what is in ZedOps. Coverage spans projects, quality, safety, material management, and request types so teams spend less time reformatting Word templates.",
       },
       {
         name: "Bulk export",

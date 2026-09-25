@@ -4,6 +4,8 @@ import { Link } from "wouter";
 import { ArrowRight, BookOpen, ChevronDown, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
+import FinalCTA from "@/components/FinalCTA";
 import { useSEO } from "@/hooks/useSEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
@@ -16,16 +18,6 @@ import {
   postCoverImage,
 } from "@/lib/blogDisplay";
 
-const blueprintBg = {
-  backgroundImage: [
-    "linear-gradient(rgba(1,47,176,0.045) 1px, transparent 1px)",
-    "linear-gradient(90deg, rgba(1,47,176,0.045) 1px, transparent 1px)",
-    "linear-gradient(rgba(1,47,176,0.02) 1px, transparent 1px)",
-    "linear-gradient(90deg, rgba(1,47,176,0.02) 1px, transparent 1px)",
-  ].join(", "),
-  backgroundSize: "80px 80px, 80px 80px, 20px 20px, 20px 20px",
-} as const;
-
 function PostCoverMedia({ post, className }: { post: BlogPost; className: string }) {
   const url = postCoverImage(post);
   if (url) {
@@ -33,7 +25,7 @@ function PostCoverMedia({ post, className }: { post: BlogPost; className: string
   }
   return (
     <div
-      className={`flex h-full w-full items-center justify-center bg-gradient-to-br from-[#172B4D] via-[#243d64] to-[#172B4D] px-4 text-center ${className}`}
+      className={`flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-navy via-[#243d64] to-brand-navy px-4 text-center ${className}`}
       aria-hidden
     >
       <span className="line-clamp-4 text-sm font-extrabold leading-snug text-white sm:text-base">{post.title}</span>
@@ -75,84 +67,32 @@ export default function BlogIndexPage() {
   });
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
       <div className="pt-[100px]">
-        {/* Hero  -  gradient + blueprint (centered; no side panel) */}
-        <section className="relative overflow-hidden pb-16 pt-20 lg:pb-20" aria-labelledby="blog-page-title">
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-            }}
-            aria-hidden
-          />
-          <div className="pointer-events-none absolute inset-0" style={blueprintBg} aria-hidden />
-          <div
-            className="pointer-events-none absolute bottom-0 left-1/2 h-[280px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
-            style={{
-              background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.11) 0%, transparent 65%)",
-              filter: "blur(40px)",
-            }}
-            aria-hidden
-          />
-
-          <div className="relative z-10 mx-auto min-w-0 max-w-3xl px-4 text-center sm:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="mb-6 inline-flex items-center gap-2 border border-[#172B4D]/20 bg-white/80 px-4 py-1.5"
-              style={{ borderRadius: 99 }}
-            >
-              <BookOpen size={12} className="text-brand-orange" aria-hidden />
-              <span className="text-xs font-bold tracking-[0.12em] text-[#172B4D] uppercase">Resources</span>
-            </motion.div>
-            <motion.h1
-              id="blog-page-title"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.06 }}
-              className="text-4xl font-extrabold leading-[1.08] tracking-tight text-[#172B4D] sm:text-5xl lg:text-[52px]"
-            >
-              Blog
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.12 }}
-              className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-[#42526E]"
-            >
-              Rollout notes, permissions, field workflows, and how we build AI for construction - updated alongside the
-              product, in plain language.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.18 }}
-              className="mx-auto mt-8 max-w-xl"
-            >
-              <div className="rounded-2xl border border-[#172B4D]/12 bg-white/75 px-5 py-4 text-center backdrop-blur-sm">
-                <p className="text-sm leading-relaxed text-[#42526E]">
-                  Want the product before these articles describe it?{" "}
-                  <a
-                    href="/early-access"
-                    className="inline-flex items-center gap-1 font-bold text-[#0052CC] underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]"
-                  >
-                    Join early access
-                    <ArrowRight size={14} className="shrink-0" aria-hidden />
-                  </a>
-                </p>
-              </div>
-            </motion.div>
+        <PageHero
+          pill="Resources"
+          PillIcon={BookOpen}
+          title="Blog"
+          subtitle="Rollout notes, permissions, field workflows, and how we build AI for construction - updated alongside the product, in plain language."
+        >
+          <div className="mx-auto mt-2 max-w-xl">
+            <div className="rounded-2xl border border-brand-navy/12 bg-white/75 px-5 py-4 text-center backdrop-blur-sm">
+              <p className="text-sm leading-snug text-[#42526E]">
+                Want the product before these articles describe it?{" "}
+                <a
+                  href="/early-access"
+                  className="inline-flex items-center gap-1 font-bold text-[#0052CC] underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]"
+                >
+                  Join early access
+                  <ArrowRight size={14} className="shrink-0" aria-hidden />
+                </a>
+              </p>
+            </div>
           </div>
-        </section>
+        </PageHero>
 
-        <main className="mx-auto max-w-7xl min-w-0 bg-[#FAFBFC] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <main className="mx-auto max-w-7xl min-w-0 border-t border-gray-200 bg-white px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           {posts.length === 0 ? (
             <p className="py-24 text-center text-[#6B778C]">No posts yet.</p>
           ) : (
@@ -179,10 +119,10 @@ export default function BlogIndexPage() {
                           </div>
                         </div>
                         <div className="pt-6 sm:pt-8">
-                          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
+                          <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                             {formatReadLabel(spotlight)}
                           </p>
-                          <h2 className="mt-3 text-2xl font-extrabold leading-snug tracking-tight text-[#172B4D] transition-colors group-hover:text-[#0052CC] sm:text-[1.75rem] lg:text-3xl lg:leading-tight">
+                          <h2 className="mt-3 text-2xl font-extrabold leading-snug tracking-tight text-brand-navy transition-colors group-hover:text-[#0052CC] sm:text-[1.75rem] lg:text-3xl lg:leading-tight">
                             {spotlight.title}
                           </h2>
                           <AuthorDateRow author={spotlight.author} date={spotlight.date} />
@@ -207,10 +147,10 @@ export default function BlogIndexPage() {
                             />
                           </div>
                           <div className="flex flex-1 flex-col pt-6 sm:pt-7">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
+                            <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                               {formatReadLabel(sideFeatured)}
                             </p>
-                            <h2 className="mt-3 text-lg font-extrabold leading-snug text-[#172B4D] transition-colors group-hover:text-[#0052CC] lg:text-xl">
+                            <h2 className="mt-3 text-lg font-extrabold leading-snug text-brand-navy transition-colors group-hover:text-[#0052CC] lg:text-xl">
                               {sideFeatured.title}
                             </h2>
                             <AuthorDateRow author={sideFeatured.author} date={sideFeatured.date} />
@@ -240,10 +180,10 @@ export default function BlogIndexPage() {
                               />
                             </div>
                             <div className="flex flex-1 flex-col pt-6">
-                              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
+                              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
                                 {formatReadLabel(post)}
                               </p>
-                              <h2 className="mt-3 text-lg font-extrabold leading-snug text-[#172B4D] transition-colors group-hover:text-[#0052CC]">
+                              <h2 className="mt-3 text-lg font-extrabold leading-snug text-brand-navy transition-colors group-hover:text-[#0052CC]">
                                 {post.title}
                               </h2>
                               <AuthorDateRow author={post.author} date={post.date} />
@@ -259,7 +199,7 @@ export default function BlogIndexPage() {
                       <button
                         type="button"
                         onClick={() => setGridVisible((n) => n + 3)}
-                        className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50/80 px-6 py-3 text-sm font-bold text-[#0747A6] transition-colors hover:border-sky-300 hover:bg-sky-100"
+                        className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3 text-sm font-bold text-brand-navy transition-colors hover:border-brand-navy/25 hover:bg-gray-50"
                       >
                         View More
                         <ChevronDown className="h-4 w-4" aria-hidden />
@@ -272,6 +212,7 @@ export default function BlogIndexPage() {
           )}
         </main>
 
+        <FinalCTA />
         <Footer />
       </div>
     </div>

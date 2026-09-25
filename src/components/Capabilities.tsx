@@ -1,440 +1,284 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  BookOpen,
+  BookUser,
+  CalendarClock,
+  ClipboardList,
+  Cpu,
+  FolderKanban,
+  FolderOpen,
+  HardHat,
+  Landmark,
+  Layers,
+  ListChecks,
+  Package,
+  ShieldCheck,
+  UserCog,
+  Users,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
-import {
-  Sparkles,
-  CheckCircle2,
-  Layers,
-  FolderKanban,
-  CalendarClock,
-  ShieldCheck,
-  FolderOpen,
-  Landmark,
-} from "lucide-react";
+import SectionHeader from "@/components/SectionHeader";
 
-const aiCap = {
-  description:
-    "Zed AI is the intelligence layer on every module below: same tenants, same permissions. Draft from a daily log, tighten an inspection note, prep a pay-app narrative, or ask what’s still open on punch, without exporting to a generic LLM.",
-  features: [
-    "Scoped to projects and records you can already open",
-    "Task- and log-aware summaries and drafts",
-    "Suggested next steps where your org enables actions",
-    "No answers from data you wouldn’t see in the app",
-  ],
-  stat: "3×",
-  statLabel: "faster follow-through on open items",
+type Capability = {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  href: string;
 };
 
-const aiRibbonChips = [
-  "Permission-aware",
-  "Action-ready",
-  "Across every module",
-] as const;
-
-const CHAT_MSGS = [
-  { id: 0, role: "user", text: "Where do we stand on Harbor Bridge  -  budget and schedule?" },
+const preConstruction: Capability[] = [
   {
-    id: 1,
-    role: "ai",
-    text: "Foundation slip risk (Issues #441–443); structure trending +8% vs plan. Want a one-pager or variance bullets for your report?",
+    icon: ClipboardList,
+    title: "Estimation & Proposals",
+    desc: "Accurate takeoffs, BOQs, proposals and cost estimation.",
+    href: "/platform/module/estimation",
   },
-  { id: 2, role: "user", text: "Start the follow-up from that." },
   {
-    id: 3,
-    role: "ai",
-    text: "Draft opened in ZedOps  -  linked to Harbor. Review and submit when your workflow allows.",
+    icon: CalendarClock,
+    title: "Planning & Scheduling",
+    desc: "Create realistic schedules and track progress in real time.",
+    href: "/platform/module/planning-execution",
   },
 ];
 
-const MSG_DELAYS = [500, 1800, 2200, 1800];
-const TYPING_DURATION = 1100;
-const RESET_DELAY = 3800;
-
-function TypingDots() {
-  const isMobile = useIsMobile();
-  if (isMobile) {
-    return (
-      <div className="flex items-center gap-1 px-3 py-2.5" style={{ borderRadius: 6 }}>
-        {[0, 1, 2].map((i) => (
-          <span key={i} className="block h-1.5 w-1.5 rounded-full bg-[#0052CC]/50" />
-        ))}
-      </div>
-    );
-  }
-  return (
-    <div className="flex gap-1 items-center px-3 py-2.5" style={{ borderRadius: 6 }}>
-      {[0, 1, 2].map((i) => (
-        <motion.span
-          key={i}
-          className="block w-1.5 h-1.5 rounded-full bg-[#0052CC]/50"
-          animate={{ y: [0, -5, 0] }}
-          transition={{ duration: 0.55, delay: i * 0.15, repeat: Infinity, ease: "easeInOut" }}
-        />
-      ))}
-    </div>
-  );
-}
-
-function ZedAIChat({ active }: { active: boolean }) {
-  const [visibleIds, setVisibleIds] = useState<number[]>([]);
-  const [typing, setTyping] = useState(false);
-  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
-
-  const clearAll = () => {
-    timeoutsRef.current.forEach(clearTimeout);
-    timeoutsRef.current = [];
-  };
-
-  const runSequence = () => {
-    clearAll();
-    setVisibleIds([]);
-    setTyping(false);
-
-    let elapsed = 0;
-    CHAT_MSGS.forEach((msg, i) => {
-      elapsed += MSG_DELAYS[i];
-      if (msg.role === "ai") {
-        const t1 = setTimeout(() => setTyping(true), elapsed - TYPING_DURATION);
-        const t2 = setTimeout(() => {
-          setTyping(false);
-          setVisibleIds((prev) => [...prev, msg.id]);
-        }, elapsed);
-        timeoutsRef.current.push(t1, t2);
-      } else {
-        const t = setTimeout(() => {
-          setVisibleIds((prev) => [...prev, msg.id]);
-        }, elapsed);
-        timeoutsRef.current.push(t);
-      }
-    });
-
-    const tReset = setTimeout(() => runSequence(), elapsed + RESET_DELAY);
-    timeoutsRef.current.push(tReset);
-  };
-
-  useEffect(() => {
-    if (active) {
-      runSequence();
-    } else {
-      clearAll();
-      setVisibleIds([]);
-      setTyping(false);
-    }
-    return clearAll;
-  }, [active]);
-
-  return (
-    <div className="flex flex-col gap-2.5 overflow-hidden" style={{ minHeight: 200 }}>
-      <AnimatePresence>
-        {CHAT_MSGS.filter((m) => visibleIds.includes(m.id)).map((msg) => (
-          <motion.div
-            key={msg.id}
-            initial={{ opacity: 0, y: 8, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.28, ease: "easeOut" }}
-            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-          >
-            {msg.role === "ai" && (
-              <div className="w-5 h-5 rounded-full bg-brand-orange/20 flex items-center justify-center mr-1.5 flex-shrink-0 mt-0.5">
-                <Sparkles size={9} className="text-brand-orange" />
-              </div>
-            )}
-            <div
-              className={`max-w-[82%] px-3 py-2 text-[11px] leading-relaxed ${
-                msg.role === "user"
-                  ? "bg-[#172B4D] text-white/80 ml-4"
-                  : "bg-[#1A3352] text-white/90 border border-blue-800/30"
-              }`}
-              style={{ borderRadius: 8, ...(msg.role === "user" ? { borderBottomRightRadius: 2 } : { borderBottomLeftRadius: 2 }) }}
-            >
-              {msg.text}
-            </div>
-          </motion.div>
-        ))}
-        {typing && (
-          <motion.div
-            key="typing"
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="flex justify-start items-center"
-          >
-            <div className="w-5 h-5 rounded-full bg-brand-orange/20 flex items-center justify-center mr-1.5 flex-shrink-0">
-              <Sparkles size={9} className="text-brand-orange" />
-            </div>
-            <div className="bg-[#1A3352] border border-blue-800/30" style={{ borderRadius: 8, borderBottomLeftRadius: 2 }}>
-              <TypingDots />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
-
-/**
- * Six flagship areas aligned with `platformFeatureSections` in @/data/platformFeatures.
- * Order emphasises execution: schedule → log → QA/punch → job context → org spine → cost.
- */
-const corePlatformModules = [
+const execution: Capability[] = [
   {
-    moduleId: "planning-execution",
-    icon: CalendarClock,
-    title: "Planning & execution",
-    description:
-      "The programme becomes a queue of work: estimates and library rates feed plans; schedules and dependencies roll into tasks with owners, so MEP supers assign the next trade action, not just stare at a Gantt.",
-    features: [
-      "Build estimates from library-backed cost structures.",
-      "Plan phases, milestones, and dependencies in one timeline.",
-      "Assign work, track status, and export or hand off where supported.",
-    ],
-    stat: "3",
-    statLabel: "capabilities in Planning",
+    icon: Package,
+    title: "Materials Management",
+    desc: "Manage requests, approvals, purchasing and deliveries.",
+    href: "/platform/module/supply-chain",
   },
   {
-    moduleId: "quality-safety-closeout",
-    icon: ShieldCheck,
-    title: "Quality, safety, and closeout",
-    description:
-      "Inspections and punch are operational: template-based walks, defects with owners, and incidents with follow-up, so QA and closeout are lists of work to finish, not PDFs in a folder.",
-    features: [
-      "Run inspections from templates; link to daily logs and corrective actions.",
-      "Track defects from walkthrough to sign-off.",
-      "Document safety and other incidents with follow-up and reporting.",
-    ],
-    stat: "4",
-    statLabel: "capabilities in QSC",
-  },
-  {
-    moduleId: "projects",
-    icon: FolderKanban,
-    title: "Projects",
-    description:
-      "One active job context for MEP: equipment, materials, issues, surveys, and work logs roll up under the project you’re executing, so field and office aren’t reconciling three spreadsheets.",
-    features: [
-      "Browse every job or open one project for day-to-day execution.",
-      "Charts and views that summarise how a single project is performing.",
-      "Structured work log entries connected to real project activity.",
-    ],
-    stat: "7",
-    statLabel: "capabilities in Projects",
-  },
-  {
-    moduleId: "information-management",
     icon: FolderOpen,
-    title: "Information management",
-    description:
-      "Daily logs and documents stay on the job. Open the log from anywhere, pick the project once, and feed what happened on site into tasks and follow-ups; the paper trail stays tied to execution.",
-    features: [
-      "Folders and files organised per project  -  your controlled repository.",
-      "Top-bar access to the daily log with a project picker when none is active.",
-      "Structured work logs that connect to reporting and AI context.",
-    ],
-    stat: "2",
-    statLabel: "capabilities in IM",
+    title: "Daily Execution Intelligence",
+    desc: "Daily logs, site reports, progress and issue tracking.",
+    href: "/platform/module/daily-intelligence",
   },
   {
-    moduleId: "core",
+    icon: Users,
+    title: "Workforce Intelligence",
+    desc: "Track attendance, productivity and labor performance.",
+    href: "/platform/module/workforce-intelligence",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Quality & Safety",
+    desc: "Inspections, checklists, incidents and compliance.",
+    href: "/platform/module/quality-safety-closeout",
+  },
+  {
+    icon: FolderKanban,
+    title: "Tasks Resolution",
+    desc: "Assign, track and close tasks faster across teams.",
+    href: "/platform/module/projects",
+  },
+  {
+    icon: Landmark,
+    title: "Budget & Cost Control",
+    desc: "Track budgets, actual commitments and cash flow.",
+    href: "/platform/module/finance",
+  },
+];
+
+const closeout: Capability[] = [
+  {
+    icon: ListChecks,
+    title: "Punch List Management",
+    desc: "Track, assign and close punch items efficiently.",
+    href: "/platform/module/punch-list",
+  },
+];
+
+const platformCore: Capability[] = [
+  {
     icon: Layers,
     title: "Core",
-    description:
-      "People, roles, time, and the shared library hub: one backbone for estimating and operations so MEP teams price and run work from the same masters.",
-    features: [
-      "Single place for people and contacts tied to your organisation.",
-      "Capture and review hours for payroll and job costing inputs.",
-      "Shared reference data for estimating and operations  -  one structured library.",
-    ],
-    stat: "4",
-    statLabel: "capabilities in Core",
-  },
-  {
-    moduleId: "finance",
-    icon: Landmark,
-    title: "Finance",
-    description:
-      "Budget, change, and pay apps stay aligned to what happened on site, so when execution shifts scope, the money thread matches the task thread.",
-    features: [
-      "Project budgets anchored to cost codes from settings.",
-      "Financial change orders from scope shifts through approval.",
-      "Request, review, and track payments against contract and progress.",
-    ],
-    stat: "5",
-    statLabel: "capabilities in Finance",
+    desc: "Documents, library, directory, projects, users and admin.",
+    href: "/platform/module/core",
   },
 ];
+
+const coreModules = [
+  { icon: Users, label: "People" },
+  { icon: FolderOpen, label: "Documents" },
+  { icon: BookOpen, label: "Library" },
+  { icon: FolderKanban, label: "Projects" },
+  { icon: HardHat, label: "Workforce" },
+  { icon: BookUser, label: "Directory" },
+  { icon: UserCog, label: "Users & Admin" },
+] as const;
+
+function CapabilityRow({ item }: { item: Capability }) {
+  const Icon = item.icon;
+
+  return (
+    <div className="group/item flex h-full min-h-0 flex-col items-center rounded-xl bg-[#F4F6FB] p-4 text-center">
+      <div className="mb-3 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-[#E8EDF4] bg-white shadow-[0_1px_2px_rgba(23,43,77,0.06)]">
+        <Icon size={20} className="text-brand-orange" aria-hidden />
+      </div>
+      <p className="text-sm font-bold leading-snug text-brand-navy">{item.title}</p>
+      <p className="mt-1.5 text-sm leading-snug text-[#6B778C]">{item.desc}</p>
+      <a
+        href={item.href}
+        className="mt-auto inline-flex items-center justify-center gap-1 pt-3 text-sm font-semibold text-brand-orange transition-[gap] duration-150 hover:gap-1.5"
+      >
+        Explore more
+        <ArrowRight size={13} aria-hidden />
+      </a>
+    </div>
+  );
+}
 
 export default function Capabilities() {
   const isMobile = useIsMobile();
-  const aiCardRef = useRef<HTMLDivElement>(null);
-  const aiCardInView = useInView(aiCardRef, {
-    once: true,
-    ...(isMobile ? { margin: "0px" as const } : { margin: "-100px 0px" as const }),
-  });
 
   return (
-    <section id="capabilities" className="bg-white border-t border-gray-200 py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section heading */}
-        <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-end mb-14">
-          <div>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
-              Built for <span className="text-[#172B4D]">MEP execution</span>, not just views.
-            </h2>
-          </div>
-          <p className="text-[#42526E] text-base sm:text-lg leading-relaxed">
-            Planning through supply, built for action, not just dashboards.{" "}
-            <span className="font-semibold text-[#172B4D]">Zed AI</span> uses the same permissioned data.{" "}
-            <a href="/platform" className="font-semibold text-brand-navy hover:text-brand-orange">
-              Full platform
-            </a>{" "}
-            for reporting, access, and settings.
-          </p>
-        </motion.div>
-
-        {/* AI ribbon - compact layer across the platform map */}
-        <motion.div
-          {...scrollMotionProps(isMobile, { y: 24, duration: 0.5, delay: 0.1 })}
-          ref={aiCardRef}
-          className="mb-10 overflow-hidden rounded-2xl border border-[#172B4D]/10 bg-linear-to-r from-[#0C162A] via-[#13213A] to-[#172B4D] shadow-[0_24px_64px_-36px_rgba(23,43,77,0.35)]"
-        >
-          <div className="grid min-w-0 gap-0 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="min-w-0 p-6 sm:p-7 lg:p-8">
-              <div className="mb-4 flex flex-wrap items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center bg-brand-orange shrink-0" style={{ borderRadius: 8 }}>
-                  <Sparkles size={18} className="text-white" />
-                </div>
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-white/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white/75">Zed AI</span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-orange">Across the platform</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="min-w-0 max-w-2xl">
-                <h3 className="text-xl flex-shrink-0 font-extrabold leading-tight text-white sm:text-2xl">
-                  One AI layer across tasks, logs, reporting, cost, and follow-through.
-                </h3>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/68">
-                  {aiCap.description}
-                </p>
-              </div>
-
-              <div className="mt-5 flex flex-wrap items-center gap-2.5">
-                {aiRibbonChips.map((chip) => (
-                  <span
-                    key={chip}
-                    className="inline-flex items-center rounded-full border border-white/10 bg-white/7 px-3 py-1.5 text-[11px] font-semibold text-white/78"
-                  >
-                    {chip}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-5 flex flex-wrap items-center gap-3">
-                <a
-                  href="/zed-ai"
-                  className="inline-flex items-center gap-2 bg-brand-orange px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
-                  style={{ borderRadius: 6 }}
-                >
-                  Learn more
-                  <span aria-hidden>→</span>
-                </a>
-                <a
-                  href="/platform"
-                  className="text-sm font-semibold text-white/72 transition-colors hover:text-white"
-                >
-                  Explore full platform
-                </a>
-                <div className="ml-auto flex items-end gap-2">
-                  <span className="text-4xl font-black leading-none text-brand-orange">{aiCap.stat}</span>
-                  <span className="pb-1 text-xs text-white/45">{aiCap.statLabel}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="border-t border-white/6 bg-[#0B1528]/78 p-5 lg:border-l lg:border-t-0 lg:p-6">
-              <div className="mb-4 flex items-center gap-2">
-                <div className="h-2 w-2 rounded-full bg-brand-orange animate-pulse" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">Live · Zed AI Copilot</span>
-              </div>
-              <div className="min-h-[188px]">
-                <ZedAIChat active={aiCardInView} />
-              </div>
-              <div className="mt-4 border-t border-white/6 pt-4">
-                <div className="flex items-center gap-2 border border-white/8 bg-white/4 px-3 py-2" style={{ borderRadius: 8 }}>
-                  <span className="flex-1 text-[11px] text-white/25">Insights, report prep, or next action…</span>
-                  <div className="flex h-6 w-6 items-center justify-center bg-brand-orange shrink-0" style={{ borderRadius: 4 }}>
-                    <Sparkles size={11} className="text-white" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Platform modules - platform map first, AI as the layer above */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {corePlatformModules.map((cap, i) => (
-            <motion.article
-              key={cap.moduleId}
-              {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: Math.min(i * 0.05, 0.25) })}
-              className="group flex h-full flex-col rounded-2xl border border-gray-200/90 bg-white p-7 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C7D5F5] hover:bg-[#FAFBFC] hover:shadow-[0_18px_38px_-24px_rgba(23,43,77,0.18)]"
-            >
-              <div className="mb-5 flex items-start justify-between gap-3">
-                <div className="flex h-11 w-11 items-center justify-center shrink-0 rounded-lg bg-[#172B4D]/8">
-                  <cap.icon size={20} style={{ color: "#172B4D" }} aria-hidden />
-                </div>
-                <span className="rounded-full bg-[#F8FAFC] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#97A0AF]">
-                  {cap.statLabel}
-                </span>
-              </div>
-              <h3 className="text-base font-extrabold text-[#172B4D] mb-2 leading-tight">{cap.title}</h3>
-              <p className="text-[#42526E] text-sm leading-relaxed mb-5 flex-1">{cap.description}</p>
-              <ul className="space-y-2 mb-5">
-                {cap.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-xs text-[#42526E]">
-                    <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-orange" />
-                    <span className="leading-snug">{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-auto flex flex-col gap-3 border-t border-gray-100 pt-4 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                  <div className="text-2xl font-black leading-none text-[#172B4D]">{cap.stat}</div>
-                  <div className="mt-0.5 text-xs text-[#97A0AF]">flagship areas</div>
-                </div>
-                <a
-                  href={`/platform/module/${cap.moduleId}`}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-brand-orange transition-colors hover:text-brand-navy/90"
-                >
-                  View module
-                  <span aria-hidden>→</span>
-                </a>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-
-        <motion.div
-          {...scrollMotionProps(isMobile, { y: 16, duration: 0.38, delay: 0.12 })}
-          className="mt-8 flex flex-col items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-[#F8FAFC] px-5 py-4 text-center sm:flex-row sm:text-left"
-        >
-          <p className="text-sm text-[#42526E]">
-            Access, reporting, and settings are part of the same platform map, with role-aware navigation and exports.
-          </p>
-          <a
-            href="/platform"
-            className="inline-flex items-center gap-2 text-sm font-bold text-brand-orange transition-colors hover:text-brand-navy"
+    <>
+      <section id="capabilities" className="relative overflow-hidden border-t border-gray-200 bg-[#F8FAFC] py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  
+          {/* Section Heading */}
+          <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.4 })}>
+            <SectionHeader
+              id="connected-flow-heading"
+              title={
+                <>
+                  The ZedOps Platform for <span className="text-brand-orange">MEP &amp; Construction</span>
+                </>
+              }
+              subtitle="From pre-construction planning to execution, closeout, and the core systems that keep everything connected."
+            />
+          </motion.div>
+  
+          {/* Platform Architecture */}
+          <motion.div
+            {...scrollMotionProps(isMobile, {
+              y: 16,
+              duration: 0.4,
+              delay: 0.05,
+            })}
+            className="grid items-stretch overflow-hidden rounded-md border border-[#E5E7EB] bg-white md:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)_minmax(0,1fr)_minmax(0,1fr)]"
           >
-            Explore full platform
-            <span aria-hidden>→</span>
-          </a>
-        </motion.div>
-      </div>
-    </section>
+            {/* =======================================================
+                01 — PRE-CONSTRUCTION
+            ======================================================== */}
+            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] p-5 md:border-r lg:row-span-2 lg:border-b-0">
+              <span
+                className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange"
+                aria-hidden
+              />
+  
+              <h3 className="text-[15px] font-extrabold tracking-tight text-brand-navy">
+                Pre-Construction
+              </h3>
+  
+              <div className="mt-4 grid flex-1 auto-rows-fr content-start gap-2">
+                {preConstruction.map((item) => (
+                  <CapabilityRow
+                    key={item.title}
+                    item={item}
+                  />
+                ))}
+              </div>
+            </article>
+  
+            {/* =======================================================
+                02 — CONSTRUCTION EXECUTION
+            ======================================================== */}
+            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] bg-white p-5 md:border-r-0 lg:row-span-2 lg:border-r lg:border-b-0">
+              <span
+                className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange"
+                aria-hidden
+              />
+  
+              <h3 className="text-[15px] font-extrabold tracking-tight text-brand-navy">
+                Construction Execution
+              </h3>
+  
+              <div className="mt-4 grid flex-1 auto-rows-fr grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {execution.map((item) => (
+                  <CapabilityRow
+                    key={item.title}
+                    item={item}
+                  />
+                ))}
+              </div>
+            </article>
+  
+            {/* =======================================================
+                03 — PROJECT CLOSEOUT
+            ======================================================== */}
+            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] p-5 md:border-r lg:border-b-0">
+              <span
+                className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange"
+                aria-hidden
+              />
+  
+              <h3 className="text-[15px] font-extrabold tracking-tight text-brand-navy">
+                Project Closeout
+              </h3>
+  
+              <div className="mt-4 grid content-start gap-2">
+                {closeout.map((item) => (
+                  <CapabilityRow
+                    key={item.title}
+                    item={item}
+                  />
+                ))}
+              </div>
+            </article>
+  
+            {/* =======================================================
+                04 — PLATFORM CORE
+            ======================================================== */}
+            <article className="group/zone relative flex h-full min-h-0 flex-col p-5">
+              <span
+                className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange"
+                aria-hidden
+              />
+  
+              <h3 className="text-[15px] font-extrabold tracking-tight text-brand-navy">
+                Platform Core
+              </h3>
+  
+              <div className="mt-4 grid content-start gap-2">
+                {platformCore.map((item) => (
+                  <CapabilityRow
+                    key={item.title}
+                    item={item}
+                  />
+                ))}
+              </div>
+              
+              
+            </article>
+
+            <a
+              href="/zed-ai"
+              className="group/ai flex items-start gap-4 border-t border-[#E5E7EB] bg-white p-5 md:col-span-2 lg:col-span-2 lg:col-start-3"
+            >
+              <div className="flex w-full items-start gap-4 rounded-2xl bg-brand-navy px-4 py-4 transition-[transform,box-shadow] duration-150 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-16px_rgba(23,43,77,0.45)] motion-reduce:transform-none sm:px-5 sm:py-5">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10">
+                  <Cpu size={20} className="text-brand-orange" aria-hidden />
+                </span>
+                <div className="min-w-0 text-left">
+                  <p className="text-base font-extrabold text-white">Zed AI</p>
+                  <p className="mt-1 text-sm leading-snug text-[#B8C4D4] sm:text-sm">
+                    Copilot on live project data — insights, drafts, and actions with your permissions.
+                  </p>
+                  <span className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-brand-orange">
+                    Open
+                    <ArrowRight size={14} className="transition-transform duration-150 group-hover/ai:translate-x-0.5" aria-hidden />
+                  </span>
+                </div>
+              </div>
+            </a>
+          </motion.div>
+        </div>
+      </section>
+    </>
   );
 }

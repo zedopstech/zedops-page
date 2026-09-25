@@ -1,7 +1,7 @@
 /**
  * Marketing focus: MEP (mechanical, electrical, plumbing) and **action**; not only
  * schedule/logs/inspections/punch → tasks, but any module where teams execute (finance,
- * supply chain, projects, etc.), plus **Zed AI** on the same data.
+ * material management, projects, etc.), plus **Zed AI** on the same data.
  *
  * Implementation:
  * - `src/data/navDropdownMenus.ts` keeps **both** `dropdownMenusGeneral` and `dropdownMenusMep`.
@@ -14,3 +14,6 @@ export const SITE_FOCUS_MEP_EXECUTION = true;
 
 /** Hide the blog/resources strip on the home page (pages under /blog etc. stay live). */
 export const HIDE_HOME_RESOURCES_SECTION = true;
+
+/** Hide Pricing nav/footer/CTA links and the `/pricing` route (page files stay in the repo). */
+export const HIDE_PRICING = true;

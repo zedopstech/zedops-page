@@ -5,6 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import PageHero from "@/components/PageHero";
 import HowWeHelpPageShell from "@/components/HowWeHelpPageShell";
+import SectionHeader from "@/components/SectionHeader";
 import { companyArchetypes } from "@/data/howWeHelp";
 
 export default function HowWeHelpCompanyPage() {
@@ -18,11 +19,7 @@ export default function HowWeHelpCompanyPage() {
 
   return (
     <HowWeHelpPageShell
-      breadcrumbs={[
-        { label: "Home", href: "/" },
-        { label: "How we help", href: "/how-we-help" },
-        { label: "By company type" },
-      ]}
+      
     >
       <PageHero
         pill="Organisations"
@@ -30,25 +27,16 @@ export default function HowWeHelpCompanyPage() {
         title="Built for how your company delivers work."
         subtitle="ZedOps isn’t one generic “construction ERP.” Tenant boundaries, menus, and AI stay aligned to whether you’re carrying risk as a GC, deploying capital as an owner, advising as a CM, or commercialising estimates before award."
       >
-        <a
-          href="/how-we-help/team"
-          className="inline-flex items-center gap-2 text-sm font-bold text-[#42526E] transition-colors hover:text-[#172B4D]"
-        >
-          Next: how internal teams use ZedOps →
-        </a>
+
       </PageHero>
 
       <section className="border-t border-gray-200 bg-white py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.45 })} className="mb-14 grid items-end gap-8 lg:grid-cols-2 lg:gap-20">
-            <div>
-              <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-[#172B4D] sm:text-4xl">
-                Pick the profile closest to yours
-              </h2>
-            </div>
-            <p className="max-w-lg text-base leading-relaxed text-[#42526E] lg:pb-1">
-              Each link opens a deeper story or the exact module list. Underneath, the same security model applies: users only see clients, projects, and cost detail their roles allow.
-            </p>
+          <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.45 })} className="mb-14">
+            <SectionHeader
+              title="Pick the profile closest to yours"
+              subtitle="Each link opens a deeper story or the exact module list. Underneath, the same security model applies: users only see clients, projects, and cost detail their roles allow."
+            />
           </motion.div>
 
           <div className="grid gap-px overflow-hidden rounded-lg border border-gray-200 bg-gray-200 sm:grid-cols-2">
@@ -72,8 +60,8 @@ export default function HowWeHelpCompanyPage() {
                     {c.tag}
                   </span>
                 </div>
-                <h3 className="text-lg font-extrabold leading-snug text-[#172B4D]">{c.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-[#6B778C]">{c.summary}</p>
+                <h3 className="text-lg font-extrabold leading-snug text-brand-navy">{c.title}</h3>
+                <p className="mt-3 flex-1 text-sm leading-snug text-[#6B778C]">{c.summary}</p>
                 <ul className="mt-5 space-y-2">
                   {c.bullets.map((b) => (
                     <li key={b} className="flex gap-2 text-sm text-[#42526E]">
@@ -84,7 +72,7 @@ export default function HowWeHelpCompanyPage() {
                 </ul>
                 <a
                   href={c.href}
-                  className="group/link mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#0052CC] transition-colors hover:text-[#0747A6]"
+                  className="group/link mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-navy transition-colors hover:text-brand-navy/75"
                 >
                   Learn more
                   <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5" aria-hidden />

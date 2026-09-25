@@ -21,14 +21,14 @@ export default function Features() {
         <motion.div {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className="grid lg:grid-cols-2 gap-10 lg:gap-24 items-end mb-14">
           <div>
             <div className="flex items-center gap-2 mb-5">
-              <div className="w-3 h-3 rounded-sm bg-[#172B4D] rotate-45" />
-              <span className="text-[#172B4D] text-xs font-bold tracking-[0.15em] uppercase">Key Features</span>
+              <div className="w-3 h-3 rounded-sm bg-brand-navy rotate-45" />
+              <span className="text-brand-navy text-xs font-bold tracking-[0.15em] uppercase">Key Features</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#172B4D] leading-tight tracking-tight">
-              Everything your team <span className="text-[#172B4D]">needs.</span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-brand-navy leading-tight tracking-tight">
+              Everything your team <span className="text-brand-navy">needs.</span>
             </h2>
           </div>
-          <p className="text-[#42526E] text-lg leading-relaxed">
+          <p className="text-[#42526E] text-lg leading-snug">
             Purpose-built for construction. Every ZedOps feature solves a real problem your teams face on site every day.
           </p>
         </motion.div>
@@ -38,16 +38,16 @@ export default function Features() {
             <motion.div
               key={feature.title}
               {...scrollMotionProps(isMobile, { y: 20, duration: 0.4, delay: i * 0.07 })}
-              className="bg-white border border-blue-100 p-7 group hover:border-[#172B4D]/30 transition-all duration-200 cursor-pointer rounded-md"
+              className="bg-white border border-blue-100 p-7 group hover:border-brand-navy/30 transition-all duration-200 cursor-pointer rounded-md"
             >
               <div className="flex items-start justify-between mb-5">
-                <div className="w-11 h-11 bg-[#EBF0FF] flex items-center justify-center group-hover:bg-[#172B4D] transition-colors duration-200 rounded-md">
-                  <feature.icon size={18} className="text-[#172B4D] group-hover:text-white transition-colors" />
+                <div className="w-11 h-11 bg-[#EBF0FF] flex items-center justify-center group-hover:bg-brand-navy transition-colors duration-200 rounded-md">
+                  <feature.icon size={18} className="text-brand-navy group-hover:text-white transition-colors" />
                 </div>
                 <ArrowRight size={16} className="text-gray-200 group-hover:text-brand-orange group-hover:translate-x-1 transition-all duration-200 mt-1" />
               </div>
-              <h3 className="text-[#172B4D] font-bold text-base mb-2.5 leading-snug">{feature.title}</h3>
-              <p className="text-[#6B778C] text-sm leading-relaxed">{feature.description}</p>
+              <h3 className="text-brand-navy font-bold text-base mb-2.5 leading-snug">{feature.title}</h3>
+              <p className="text-[#6B778C] text-sm leading-snug">{feature.description}</p>
             </motion.div>
           ))}
         </div>

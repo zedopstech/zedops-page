@@ -17,7 +17,7 @@ export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, c
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
+          backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/new-hero-banner.png')",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
@@ -54,11 +54,11 @@ export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, c
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-6 inline-flex border border-[#172B4D]/20 bg-white/80 items-center gap-2 px-4 py-1.5"
+          className="mb-6 inline-flex border border-brand-navy/20 bg-white/80 items-center gap-2 px-4 py-1.5"
           style={{ borderRadius: 99 }}
         >
           <PillIcon size={12} className="text-brand-orange" />
-          <span className="text-[#172B4D] text-xs font-bold tracking-[0.12em] uppercase">{pill}</span>
+          <span className="text-brand-navy text-xs font-bold tracking-[0.12em] uppercase">{pill}</span>
         </motion.div>
 
         {/* Title */}
@@ -66,7 +66,7 @@ export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, c
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.06 }}
-          className="text-4xl sm:text-5xl lg:text-[58px] font-extrabold leading-[1.05] tracking-tight text-[#172B4D] mb-5"
+          className="text-4xl sm:text-5xl lg:text-[58px] font-extrabold leading-[1.05] tracking-tight text-brand-navy mb-5"
         >
           {title}
         </motion.h1>
@@ -77,7 +77,7 @@ export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, c
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.14 }}
-            className="text-[#42526E] text-lg leading-relaxed max-w-2xl mx-auto mb-8"
+            className="text-[#42526E] text-lg leading-snug max-w-2xl mx-auto mb-8"
           >
             {subtitle}
           </motion.p>

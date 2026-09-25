@@ -45,7 +45,7 @@ export function inferFeatureMiniUiKind(name: string, summary: string, detail: st
   if (/\b(inspection|punch list|punch\b|checklist|audit|qhse|closeout|near-miss|incident)\b/.test(t)) return "taskList";
   if (/\b(schedule|calendar|gantt|timeline|planning|milestone)\b/.test(t)) return "schedule";
   if (/\b(budget|cost|finance|payment|invoice|ledger|variance|payable|commercial)\b/.test(t)) return "finance";
-  if (/\b(material|equipment|warehouse|inventory|procurement|supply chain|delivery)\b/.test(t)) return "inventory";
+  if (/\b(material|equipment|warehouse|inventory|procurement|material management|delivery)\b/.test(t)) return "inventory";
   if (/\b(document|pdf|drawing|bim|information management)\b/.test(t)) return "documents";
   if (/\b(directory|people|contact|employees|person)\b/.test(t)) return "directory";
   if (/\b(time card|hours|payroll|timesheet)\b/.test(t)) return "form";
@@ -246,7 +246,7 @@ function FloatingAi({ c }: { c: FeatureMockContent }) {
           </div>
         </div>
         <div className="flex justify-end">
-          <div className="max-w-[85%] rounded-2xl rounded-tr-md bg-[#172B4D] px-3 py-2">
+          <div className="max-w-[85%] rounded-2xl rounded-tr-md bg-brand-navy px-3 py-2">
             <p className="text-[8px] font-semibold leading-snug text-white/90">{userLine}</p>
           </div>
         </div>
@@ -265,7 +265,7 @@ function FloatingSecurity({ c }: { c: FeatureMockContent }) {
         {rows.map((row) => (
           <div key={row.label} className="flex items-center justify-between gap-2">
             <div className="flex min-w-0 items-center gap-2">
-              <Lock size={12} className="shrink-0 text-[#172B4D]/60" />
+              <Lock size={12} className="shrink-0 text-brand-navy/60" />
               <span className="truncate text-[9px] font-semibold text-[#42526E]">{row.label}</span>
             </div>
             <span
@@ -294,7 +294,7 @@ function FloatingPermissions({ c }: { c: FeatureMockContent }) {
             <span className="min-w-0 truncate text-[9px] font-semibold text-[#42526E]">{row.label}</span>
             <span
               className={`shrink-0 rounded px-1.5 py-0.5 text-[8px] font-bold ${
-                row.tone === "full" ? "bg-[#172B4D] text-white" : "border border-gray-200 bg-white text-[#6B778C]"
+                row.tone === "full" ? "bg-brand-navy text-white" : "border border-gray-200 bg-white text-[#6B778C]"
               }`}
             >
               {row.tone === "full" ? "Full" : "Scoped"}
@@ -312,11 +312,11 @@ function FloatingAnalytics({ c }: { c: FeatureMockContent }) {
       <Eyebrow>{c.eyebrow}</Eyebrow>
       <div className="mb-3 grid grid-cols-2 gap-2">
         <div className="rounded-lg border border-gray-100 bg-[#F8FAFC] px-2 py-2">
-          <div className="text-lg font-black leading-none text-[#172B4D]">{c.pctA}%</div>
+          <div className="text-lg font-black leading-none text-brand-navy">{c.pctA}%</div>
           <div className="mt-0.5 text-[8px] font-semibold text-[#6B778C]">{clampStr(c.lines[0], 28)}</div>
         </div>
         <div className="rounded-lg border border-gray-100 bg-[#F8FAFC] px-2 py-2">
-          <div className="text-lg font-black leading-none text-[#172B4D]">{c.pctB}%</div>
+          <div className="text-lg font-black leading-none text-brand-navy">{c.pctB}%</div>
           <div className="mt-0.5 text-[8px] font-semibold text-[#6B778C]">{clampStr(c.lines[1], 28)}</div>
         </div>
       </div>
@@ -394,7 +394,7 @@ function FloatingTaskList({ c }: { c: FeatureMockContent }) {
             />
             <div className="min-w-0 flex-1">
               <div
-                className={`text-[9px] font-semibold leading-tight ${done[i] ? "text-[#6B778C] line-through decoration-gray-300" : "text-[#172B4D]"}`}
+                className={`text-[9px] font-semibold leading-tight ${done[i] ? "text-[#6B778C] line-through decoration-gray-300" : "text-brand-navy"}`}
               >
                 {t}
               </div>
@@ -419,7 +419,7 @@ function FloatingInbox({ c }: { c: FeatureMockContent }) {
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5">
                 {isNew[i] && <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#0052CC]" />}
-                <span className="truncate text-[9px] font-bold text-[#172B4D]">{title}</span>
+                <span className="truncate text-[9px] font-bold text-brand-navy">{title}</span>
               </div>
               <div className="mt-1 flex gap-0.5">
                 <div className="h-1 flex-1 rounded-full bg-gray-200/80" />
@@ -440,7 +440,7 @@ function FloatingSchedule({ c }: { c: FeatureMockContent }) {
     <FloatSurface>
       <Eyebrow>{c.eyebrow}</Eyebrow>
       <div className="mb-2 flex items-center gap-1 text-[8px] font-bold uppercase tracking-wide text-[#97A0AF]">
-        <CalendarDays size={11} className="text-[#172B4D]" />
+        <CalendarDays size={11} className="text-brand-navy" />
         <span>{weekHint}</span>
       </div>
       <div className="flex gap-1">
@@ -451,7 +451,7 @@ function FloatingSchedule({ c }: { c: FeatureMockContent }) {
               {i === busyIdx && (
                 <>
                   <div className="h-2 rounded-sm bg-brand-orange" />
-                  <div className="h-1.5 rounded-sm bg-[#172B4D]/25" />
+                  <div className="h-1.5 rounded-sm bg-brand-navy/25" />
                 </>
               )}
               {i === (busyIdx + 2) % 5 && <div className="h-2.5 rounded-sm bg-[#0052CC]/35" />}
@@ -469,7 +469,7 @@ function FloatingFinance({ c }: { c: FeatureMockContent }) {
   return (
     <FloatSurface>
       <Eyebrow>{c.eyebrow}</Eyebrow>
-      <div className="text-2xl font-black leading-none tracking-tight text-[#172B4D]">{c.financeMain}</div>
+      <div className="text-2xl font-black leading-none tracking-tight text-brand-navy">{c.financeMain}</div>
       <div className="mt-1 text-[9px] font-semibold text-[#6B778C]">{c.financeSub}</div>
       <div
         className={`mt-3 flex items-center gap-2 rounded-lg px-2 py-1.5 ${
@@ -500,11 +500,11 @@ function FloatingInventory({ c }: { c: FeatureMockContent }) {
       <div className="space-y-2">
         {c.lines.map((sku, i) => (
           <div key={`${sku}-${i}`} className="flex items-center gap-2">
-            <Package size={12} className="shrink-0 text-[#172B4D]/70" />
+            <Package size={12} className="shrink-0 text-brand-navy/70" />
             <div className="min-w-0 flex-1">
               <div className="flex justify-between gap-1">
                 <span className="truncate text-[9px] font-semibold text-[#42526E]">{sku}</span>
-                <span className="shrink-0 text-[8px] font-bold text-[#172B4D]">{pcts[i]}%</span>
+                <span className="shrink-0 text-[8px] font-bold text-brand-navy">{pcts[i]}%</span>
               </div>
               <div className="mt-0.5 h-1 overflow-hidden rounded-full bg-gray-100">
                 <div className="h-1 rounded-full bg-[#0052CC]" style={{ width: `${pcts[i]}%` }} />
@@ -526,7 +526,7 @@ function FloatingDocuments({ c }: { c: FeatureMockContent }) {
           <div key={`${fileName}-${i}`} className="flex items-center gap-2">
             <FileText size={14} className="shrink-0 text-[#0747A6]" />
             <div className="min-w-0 flex-1">
-              <div className="truncate text-[9px] font-bold text-[#172B4D]">{fileName}</div>
+              <div className="truncate text-[9px] font-bold text-brand-navy">{fileName}</div>
             </div>
             <span className="shrink-0 rounded border border-gray-200 bg-white px-1 py-0.5 text-[7px] font-bold text-[#6B778C]">
               {c.docTags[i % 3]}
@@ -547,11 +547,11 @@ function FloatingDirectory({ c }: { c: FeatureMockContent }) {
       <div className="space-y-2">
         {c.lines.map((line, i) => (
           <div key={`${line}-${i}`} className="flex items-center gap-2">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#EBF0FF] text-[9px] font-black text-[#172B4D]">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#EBF0FF] text-[9px] font-black text-brand-navy">
               {initialsFromLine(line)}
             </div>
             <div className="min-w-0 flex-1">
-              <div className="truncate text-[9px] font-bold text-[#172B4D]">{clampStr(line, 36)}</div>
+              <div className="truncate text-[9px] font-bold text-brand-navy">{clampStr(line, 36)}</div>
               <div className="text-[8px] font-semibold text-[#97A0AF]">
                 {ROLE_HINTS[Math.abs(hashCode(`${c.seed}:role:${i}`)) % ROLE_HINTS.length]}
               </div>
@@ -636,7 +636,7 @@ function FloatingFieldLog({ c }: { c: FeatureMockContent }) {
 }
 
 function FloatingHeatmap({ c }: { c: FeatureMockContent }) {
-  const tone = ["bg-[#E8F0FE]", "bg-[#172B4D]/15", "bg-brand-orange/35"];
+  const tone = ["bg-[#E8F0FE]", "bg-brand-navy/15", "bg-brand-orange/35"];
   const n = 20;
   return (
     <FloatSurface>

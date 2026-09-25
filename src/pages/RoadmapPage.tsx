@@ -24,6 +24,7 @@ import {
   Map,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
 import FinalCTA from "@/components/FinalCTA";
 
@@ -113,117 +114,52 @@ export default function RoadmapPage() {
   });
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-[#172B4D]">
+    <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />
       <div className="pt-[100px]">
-        {/* Hero  -  same language as home / platform: gradient, blueprint, glow */}
-        <section className="relative overflow-hidden pb-16 pt-20 lg:pb-20" aria-labelledby="roadmap-page-title">
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              backgroundImage: "linear-gradient(155deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.76) 60%, rgba(255,255,255,0.84) 100%), url('/hero-banner.png')",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-            }}
-            aria-hidden
-          />
-          <div className="pointer-events-none absolute inset-0" style={blueprintBg} aria-hidden />
-          <div
-            className="pointer-events-none absolute bottom-0 left-1/2 h-[280px] w-[min(100vw,900px)] max-w-full -translate-x-1/2"
-            style={{
-              background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.11) 0%, transparent 65%)",
-              filter: "blur(40px)",
-            }}
-            aria-hidden
-          />
+        <PageHero
+          pill="Product Roadmap"
+          PillIcon={Map}
+          title="What we're building and what's next."
+          subtitle="We ship every week and update this page as features land. Early access customers influence what comes next."
+        />
 
-          <div className="relative z-10 mx-auto max-w-6xl px-6">
-            <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
-              <div className="text-center lg:col-span-7 lg:text-left">
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="mb-6 inline-flex items-center gap-2 border border-[#172B4D]/20 bg-white/80 px-4 py-1.5"
-                  style={{ borderRadius: 99 }}
-                >
-                  <Map size={12} className="text-brand-orange" aria-hidden />
-                  <span className="text-xs font-bold tracking-[0.12em] text-[#172B4D] uppercase">Product Roadmap</span>
-                </motion.div>
-                <motion.h1
-                  id="roadmap-page-title"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.06 }}
-                  className="text-4xl font-extrabold leading-[1.08] tracking-tight text-[#172B4D] sm:text-5xl lg:text-[52px]"
-                >
-                  What we&apos;re building and what&apos;s next.
-                </motion.h1>
-                <motion.p
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: 0.12 }}
-                  className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-[#42526E] lg:mx-0"
-                >
-                  We ship every week and update this page as features land. Early access customers influence what comes next.
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: 0.18 }}
-                  className="mx-auto mt-8 max-w-xl lg:mx-0"
-                >
-                  <div className="rounded-2xl border border-[#172B4D]/12 bg-white/75 px-5 py-4 shadow-[0_12px_40px_-28px_rgba(23,43,77,0.22)] backdrop-blur-sm">
-                    <p className="text-sm leading-relaxed text-[#42526E]">
-                      Roadmap updates as we ship.{" "}
-                      <a
-                        href="/early-access"
-                        className="inline-flex items-center gap-1 font-bold text-[#0052CC] underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]"
-                      >
-                        Join early access to influence what&apos;s next
-                        <ArrowRight size={14} className="shrink-0" aria-hidden />
-                      </a>
-                    </p>
+        {/* At a glance  -  condensed timeline preview kept from the hero */}
+        <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+          <div className="mx-auto max-w-3xl">
+            <div className="rounded-2xl border border-gray-200/90 bg-white p-6 shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] sm:p-8">
+              <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">At a glance</p>
+              <div className="relative mt-5 space-y-0 border-l-2 border-brand-navy/10 pl-6">
+                {columns.map((col) => (
+                  <div key={col.label} className="relative pb-6 last:pb-0">
+                    <span
+                      className={`absolute -left-[25px] top-1.5 flex h-3 w-3 items-center justify-center rounded-full border-2 border-white shadow-sm ring-2 ${col.dotRing} ${col.dot}`}
+                      aria-hidden
+                    />
+                    <div
+                      className="rounded-xl border border-gray-200/80 bg-white px-4 py-3 shadow-[0_4px_20px_-12px_rgba(23,43,77,0.2)]"
+                      style={{ borderLeftWidth: 3, borderLeftColor: col.accent }}
+                    >
+                      <p className="text-sm font-extrabold text-brand-navy">{col.label}</p>
+                      <p className="mt-0.5 text-xs text-[#6B778C]">{col.sublabel}</p>
+                      <p className="mt-2 text-xs font-semibold text-[#0052CC]">{col.items.length} initiatives</p>
+                    </div>
                   </div>
-                </motion.div>
+                ))}
               </div>
 
-              {/* Timeline preview  -  hero-style floating stack */}
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="relative lg:col-span-5"
-              >
-                <div
-                  className="pointer-events-none absolute -right-6 top-1/2 hidden h-72 w-72 -translate-y-1/2 rounded-full opacity-40 blur-3xl lg:block"
-                  style={{ background: "#C4D9FF" }}
-                  aria-hidden
-                />
-                <div className="relative rounded-2xl border border-white/60 bg-white/40 p-6 shadow-[0_20px_60px_-34px_rgba(23,43,77,0.35)] backdrop-blur-md sm:p-8">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#97A0AF]">At a glance</p>
-                  <div className="relative mt-5 space-y-0 border-l-2 border-[#172B4D]/10 pl-6">
-                    {columns.map((col) => (
-                      <div key={col.label} className="relative pb-6 last:pb-0">
-                        <span
-                          className={`absolute -left-[25px] top-1.5 flex h-3 w-3 items-center justify-center rounded-full border-2 border-white shadow-sm ring-2 ${col.dotRing} ${col.dot}`}
-                          aria-hidden
-                        />
-                        <div
-                          className="rounded-xl border border-gray-200/80 bg-white/95 px-4 py-3 shadow-[0_4px_20px_-12px_rgba(23,43,77,0.2)]"
-                          style={{ borderLeftWidth: 3, borderLeftColor: col.accent }}
-                        >
-                          <p className="text-sm font-extrabold text-[#172B4D]">{col.label}</p>
-                          <p className="mt-0.5 text-xs text-[#6B778C]">{col.sublabel}</p>
-                          <p className="mt-2 text-[11px] font-semibold text-[#0052CC]">{col.items.length} initiatives</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
+              <div className="mt-6 rounded-2xl border border-brand-navy/12 bg-[#FAFBFC] px-5 py-4">
+                <p className="text-sm leading-snug text-[#42526E]">
+                  Roadmap updates as we ship.{" "}
+                  <a
+                    href="/early-access"
+                    className="inline-flex items-center gap-1 font-bold text-[#0052CC] underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-[#0747A6]"
+                  >
+                    Join early access to influence what's next
+                    <ArrowRight size={14} className="shrink-0" aria-hidden />
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -232,7 +168,7 @@ export default function RoadmapPage() {
         <section className="relative border-t border-gray-200/90 bg-white py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-linear-to-b from-[#F2F6FF]/90 to-transparent" aria-hidden />
           <div className="relative mx-auto max-w-7xl px-4">
-            <motion.p {...scrollMotionProps(isMobile, { y: 10, duration: 0.4 })} className="mx-auto mb-12 max-w-2xl text-center text-base leading-relaxed text-[#42526E] lg:mb-16">
+            <motion.p {...scrollMotionProps(isMobile, { y: 10, duration: 0.4 })} className="mx-auto mb-12 max-w-2xl text-center text-base leading-snug text-[#42526E] lg:mb-16">
               Four horizons from production to what we&apos;re exploring next  -  each card is something we&apos;re committed to
               shipping or evaluating with customers.
             </motion.p>
@@ -250,8 +186,8 @@ export default function RoadmapPage() {
                   >
                     <span className={`h-2.5 w-2.5 shrink-0 rounded-full ring-4 ${col.dot} ${col.dotRing}`} aria-hidden />
                     <div className="min-w-0">
-                      <p className="text-sm font-extrabold leading-tight text-[#172B4D]">{col.label}</p>
-                      <p className="text-[11px] text-[#97A0AF]">{col.sublabel}</p>
+                      <p className="text-sm font-extrabold leading-tight text-brand-navy">{col.label}</p>
+                      <p className="text-xs text-[#97A0AF]">{col.sublabel}</p>
                     </div>
                   </div>
 
@@ -267,11 +203,11 @@ export default function RoadmapPage() {
                             className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#EBF0FF]"
                             style={{ background: col.accentSoft }}
                           >
-                            <item.icon size={16} className="text-[#172B4D]" aria-hidden />
+                            <item.icon size={16} className="text-brand-navy" aria-hidden />
                           </div>
                           <div className="min-w-0">
-                            <p className="text-sm font-bold leading-snug text-[#172B4D]">{item.title}</p>
-                            <p className="mt-1 text-xs leading-relaxed text-[#6B778C]">{item.desc}</p>
+                            <p className="text-sm font-bold leading-snug text-brand-navy">{item.title}</p>
+                            <p className="mt-1 text-xs leading-snug text-[#6B778C]">{item.desc}</p>
                           </div>
                         </div>
                       </motion.div>
@@ -284,7 +220,7 @@ export default function RoadmapPage() {
         </section>
 
         {/* Feature request  -  navy band with subtle blueprint (home FinalCTA family) */}
-        <section className="relative overflow-hidden bg-[#172B4D] py-20 sm:px-6 lg:px-8 lg:py-24">
+        <section className="relative overflow-hidden bg-brand-navy py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="pointer-events-none absolute inset-0 opacity-[0.08]" style={blueprintBg} aria-hidden />
           <div className="relative mx-auto max-w-2xl px-4 text-center">
             <motion.p {...scrollMotionProps(isMobile, { y: 8, duration: 0.38 })} className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-orange">
@@ -293,7 +229,7 @@ export default function RoadmapPage() {
             <motion.h2 {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.05 })} className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
               Tell us what your team needs.
             </motion.h2>
-            <motion.p {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.08 })} className="mb-10 text-base leading-relaxed text-white/65">
+            <motion.p {...scrollMotionProps(isMobile, { y: 12, duration: 0.45, delay: 0.08 })} className="mb-10 text-base leading-snug text-white/65">
               Every feature on this roadmap came from a real conversation with a construction professional. If something is
               missing, let us know  -  we read every message.
             </motion.p>
@@ -316,22 +252,22 @@ export default function RoadmapPage() {
                   name="role"
                   className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white transition-colors focus:border-brand-orange focus:outline-none"
                 >
-                  <option value="" className="text-[#172B4D]">
+                  <option value="" className="text-brand-navy">
                     Select your role
                   </option>
-                  <option value="gc" className="text-[#172B4D]">
+                  <option value="gc" className="text-brand-navy">
                     General Contractor
                   </option>
-                  <option value="owner" className="text-[#172B4D]">
+                  <option value="owner" className="text-brand-navy">
                     Owner / Developer
                   </option>
-                  <option value="pm" className="text-[#172B4D]">
+                  <option value="pm" className="text-brand-navy">
                     Project Manager
                   </option>
-                  <option value="consultant" className="text-[#172B4D]">
+                  <option value="consultant" className="text-brand-navy">
                     Consultant / CM Firm
                   </option>
-                  <option value="other" className="text-[#172B4D]">
+                  <option value="other" className="text-brand-navy">
                     Other
                   </option>
                 </select>
@@ -360,6 +296,7 @@ export default function RoadmapPage() {
             </motion.form>
           </div>
         </section>
+        <FinalCTA />
         <Footer />
       </div>
     </div>

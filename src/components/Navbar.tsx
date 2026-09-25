@@ -3,7 +3,7 @@ import type React from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, ArrowRight, Lightbulb, LayoutGrid } from "lucide-react";
-import { SITE_FOCUS_MEP_EXECUTION } from "@/config/siteFocus";
+import { SITE_FOCUS_MEP_EXECUTION, HIDE_PRICING } from "@/config/siteFocus";
 import { dropdownMenus, mobileNavLinks } from "@/data/navDropdownMenus";
 
 type DropdownKey = keyof typeof dropdownMenus;
@@ -46,7 +46,7 @@ function SolutionsNavMockUI() {
         {["Tasks", "Daily log", "Punch"].map((t, i) => (
           <span
             key={t}
-            className={`rounded px-2 py-0.5 text-[7.5px] font-bold ${i === 0 ? "bg-white text-[#172B4D] shadow-sm" : "text-[#6B778C]"}`}
+            className={`rounded px-2 py-0.5 text-[7.5px] font-bold ${i === 0 ? "bg-white text-brand-navy shadow-sm" : "text-[#6B778C]"}`}
           >
             {t}
           </span>
@@ -128,6 +128,41 @@ function SolutionsFeaturedPanel({
   );
 }
 
+function MegaMenuSectionItems({
+  items,
+  onNavigate,
+  twoCol,
+}: {
+  items: AnyItem[];
+  onNavigate: () => void;
+  twoCol?: boolean;
+}) {
+  return (
+    <div className={twoCol ? "grid grid-cols-2 gap-x-2 gap-y-0.5" : "flex flex-col gap-0.5"}>
+      {items.map((item) => (
+        <a
+          key={item.label}
+          href={item.href}
+          onClick={onNavigate}
+          className={`group flex items-start gap-3 rounded-lg py-2.5 transition-colors duration-100 hover:bg-white/90 ${
+            twoCol ? "px-2" : "-mx-3 px-3"
+          }`}
+        >
+          <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white transition-colors group-hover:bg-brand-orange">
+            <item.icon size={14} className="text-brand-orange transition-colors group-hover:text-white" />
+          </div>
+          <div>
+            <p className="text-[13px] font-semibold leading-tight text-brand-navy transition-colors group-hover:text-brand-orange">
+              {item.label}
+            </p>
+            <p className="mt-0.5 text-[12px] leading-snug text-[#6B778C]">{item.desc}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 function ResourcesFeaturedArticleCard({
   featured,
   onNavigate,
@@ -155,7 +190,7 @@ function ResourcesFeaturedArticleCard({
           {featured.tag}
         </span>
         <p className="mb-2 mt-2 text-[10.5px] font-medium text-[#6B778C]">{dateLine}</p>
-        <p className="text-[15px] font-bold leading-snug tracking-tight text-[#172B4D]">{featured.title}</p>
+        <p className="text-[15px] font-bold leading-snug tracking-tight text-brand-navy">{featured.title}</p>
         <div className="mt-4 flex items-center gap-1 text-[12px] font-semibold text-[#E04F16] transition-colors group-hover:text-[#c2410c]">
           Read more
           <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
@@ -184,7 +219,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<DropdownKey | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     setActiveDropdown(null);
@@ -207,19 +242,50 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  const simpleLinks = [{ label: "Pricing", href: "/pricing" }];
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const onClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement | null)?.closest("a");
+      if (!anchor || !nav.contains(anchor)) return;
+      if (anchor.target === "_blank" || anchor.hasAttribute("download")) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return;
+
+      let url: URL;
+      try {
+        url = new URL(href, window.location.origin);
+      } catch {
+        return;
+      }
+      if (url.origin !== window.location.origin) return;
+
+      e.preventDefault();
+      setActiveDropdown(null);
+      setMobileOpen(false);
+      setLocation(url.pathname + url.search + url.hash);
+    };
+
+    nav.addEventListener("click", onClick);
+    return () => nav.removeEventListener("click", onClick);
+  }, [setLocation]);
+
+  const trailingLinks = HIDE_PRICING ? [] : [{ label: "Pricing", href: "/pricing" }];
 
   return (
     <motion.nav
       ref={navRef}
       initial={false}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`site-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || activeDropdown ? "bg-white border-b border-gray-200" : "border-b border-transparent"
       }`}
       style={scrolled || activeDropdown ? {} : { background: "transparent" }}
     >
       {/* Announcement banner */}
-      <div className="bg-[#172B4D] flex items-center justify-center gap-2.5 h-10 px-4 border-b border-white/10">
+      <div className="bg-brand-navy flex items-center justify-center gap-2.5 h-10 px-4 border-b border-white/10">
         {SITE_FOCUS_MEP_EXECUTION ? (
           <>
             <span className="text-white/80 text-[11px] sm:text-xs text-center max-w-[min(100%,44rem)] leading-snug">
@@ -260,7 +326,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-[60px]">
           <div className="flex items-center gap-8">
             <a href="/" className="flex items-center gap-2.5 shrink-0">
-              <img src="/ICON.jpg" alt="ZedOps" className="w-8 h-8 rounded-md object-cover" />
+              <img src="/logo2.png" alt="ZedOps" className="w-8 h-8 rounded-md object-cover" />
               <span className="font-extrabold text-lg tracking-tight text-brand-navy">Zed<span className="text-brand-orange">Ops</span></span>
             </a>
 
@@ -272,18 +338,18 @@ export default function Navbar() {
                   onMouseLeave={() => setActiveDropdown(null)}
                   onClick={() => setActiveDropdown(activeDropdown === key ? null : key)}
                   className={`flex items-center gap-1 text-sm font-semibold px-3 py-2   transition-colors duration-150 ${
-                    activeDropdown === key ? "text-[#172B4D] bg-[#EBF0FF]" : "text-[#42526E] hover:text-[#172B4D] hover:bg-gray-100"
+                    activeDropdown === key ? "text-brand-orange bg-brand-orange/10" : "text-[#42526E] hover:text-brand-orange hover:bg-brand-orange/10"
                   }`}
                 >
                   {key}
-                  <ChevronDown size={13} className={`transition-transform duration-200 ${activeDropdown === key ? "rotate-180 text-[#172B4D]" : "text-[#97A0AF]"}`} />
+                  <ChevronDown size={13} className={`transition-transform duration-200 ${activeDropdown === key ? "rotate-180 text-brand-orange" : "text-[#97A0AF]"}`} />
                 </button>
               ))}
-              {simpleLinks.map((link) => (
+              {trailingLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-sm text-[#42526E] hover:text-[#172B4D] font-semibold px-3 py-2   hover:bg-gray-100 transition-colors duration-150"
+                  className="text-sm text-[#42526E] hover:text-brand-orange font-semibold px-3 py-2 hover:bg-brand-orange/10 transition-colors duration-150"
                 >
                   {link.label}
                 </a>
@@ -292,7 +358,7 @@ export default function Navbar() {
           </div>
 
           <div className="hidden lg:flex items-center gap-3">
-            <a href="#" className="text-sm text-[#42526E] hover:text-[#172B4D] font-semibold px-3 py-2 transition-colors">
+            <a href="#" className="text-sm text-[#42526E] hover:text-brand-orange font-semibold px-3 py-2 transition-colors">
               Log in
             </a>
             <a href="/early-access" className="text-sm font-bold text-white bg-brand-orange hover:bg-brand-orange-soft transition-all duration-150 px-5 py-2.5" style={{ borderRadius: 6 }}>
@@ -312,7 +378,7 @@ export default function Navbar() {
         const isBuiltForYouMenu = key === "Built for you";
         const isResources = key === "Resources";
         const isSolutions = key === "Solutions";
-        const allItems: AnyItem[] = menu.sections.flatMap((s) => s.items as AnyItem[]);
+        const allItems: AnyItem[] = menu.sections.flatMap((s) => s.items as unknown as AnyItem[]);
         const featured = (menu as typeof menu & { featured?: FeaturedPayload }).featured;
 
         return (
@@ -333,7 +399,7 @@ export default function Navbar() {
                     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <div>
                         <p className="text-[10px] font-bold text-[#97A0AF] uppercase tracking-[0.16em] mb-0.5">Built for you</p>
-                        <p className="text-sm font-semibold text-[#172B4D]">
+                        <p className="text-sm font-semibold text-brand-navy">
                           {SITE_FOCUS_MEP_EXECUTION
                             ? "MEP trades & field leadership"
                             : "Built for every role on the project"}
@@ -343,17 +409,9 @@ export default function Navbar() {
                         <a
                           href="/how-we-help/role"
                           onClick={() => setActiveDropdown(null)}
-                          className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#0052CC] hover:text-[#0747A6] transition-colors group"
+                          className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-brand-orange hover:text-brand-orange-soft transition-colors group"
                         >
                           How roles &amp; AI access work
-                          <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
-                        </a>
-                        <a
-                          href={menu.cta.href}
-                          onClick={() => setActiveDropdown(null)}
-                          className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#42526E] hover:text-[#0052CC] transition-colors group"
-                        >
-                          {menu.cta.label}
                           <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
                         </a>
                       </div>
@@ -366,7 +424,7 @@ export default function Navbar() {
                             key={item.label}
                             href={item.href}
                             onClick={() => setActiveDropdown(null)}
-                            className="group rounded-lg overflow-hidden border border-gray-100 hover:border-[#BDD0F5] transition-all duration-200 bg-white"
+                            className="group rounded-lg overflow-hidden border border-gray-100 hover:border-brand-orange/40 transition-all duration-200 bg-white"
                           >
                             {/* Photo */}
                             <div className="relative h-[200px] overflow-hidden bg-[#EBF0FF]">
@@ -382,17 +440,17 @@ export default function Navbar() {
                               {/* Role chip */}
                               <div className="absolute top-3 left-3">
                                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm border border-white/60">
-                                  <item.icon size={11} className="text-[#172B4D]" />
+                                  <item.icon size={11} className="text-brand-navy" />
                                 </div>
                               </div>
                             </div>
                             {/* Text */}
                             <div className="px-4 py-4">
-                              <p className="text-[13.5px] font-bold text-[#172B4D] group-hover:text-[#0052CC] transition-colors leading-tight mb-1.5">
+                              <p className="text-[13.5px] font-bold text-brand-navy group-hover:text-brand-orange transition-colors leading-tight mb-1.5">
                                 {item.label}
                               </p>
                               <p className="text-[12px] text-[#6B778C] leading-relaxed">{item.desc}</p>
-                              <div className="mt-3 flex items-center gap-1 text-[11.5px] font-semibold text-[#0052CC] opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                              <div className="mt-3 flex items-center gap-1 text-[11.5px] font-semibold text-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                                 Learn more <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
                               </div>
                             </div>
@@ -409,12 +467,12 @@ export default function Navbar() {
                         <div className="mb-5 flex items-center justify-between">
                           <div>
                             <p className="text-[10px] font-bold text-[#97A0AF] uppercase tracking-[0.16em] mb-0.5">Resources</p>
-                            <p className="text-sm font-semibold text-[#172B4D]">Everything you need to level up</p>
+                            <p className="text-sm font-semibold text-brand-navy">Everything you need to level up</p>
                           </div>
                           <a
                             href={menu.cta.href}
                             onClick={() => setActiveDropdown(null)}
-                            className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#42526E] hover:text-[#0052CC] transition-colors group"
+                            className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#42526E] hover:text-brand-orange transition-colors group"
                           >
                             {menu.cta.label}
                             <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
@@ -429,11 +487,11 @@ export default function Navbar() {
                               onClick={() => setActiveDropdown(null)}
                               className="group flex items-start gap-3.5 rounded-xl bg-white/80 p-4 transition-all duration-150 hover:bg-white"
                             >
-                              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white transition-colors duration-150 group-hover:bg-[#172B4D]">
-                                <item.icon size={16} className="text-[#0052CC] transition-colors duration-150 group-hover:text-white" />
+                              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white transition-colors duration-150 group-hover:bg-brand-orange">
+                                <item.icon size={16} className="text-brand-orange transition-colors duration-150 group-hover:text-white" />
                               </div>
                               <div className="min-w-0">
-                                <p className="mb-0.5 text-[13px] font-semibold leading-tight text-[#172B4D] transition-colors group-hover:text-[#0052CC]">{item.label}</p>
+                                <p className="mb-0.5 text-[13px] font-semibold leading-tight text-brand-navy transition-colors group-hover:text-brand-orange">{item.label}</p>
                                 <p className="text-[11.5px] leading-snug text-[#6B778C]">{item.desc}</p>
                                 {item.tag && (
                                   <span className="mt-2 inline-block rounded-full bg-blue-100/70 px-2 py-0.5 text-[10.5px] font-semibold text-[#42526E]">{item.tag}</span>
@@ -464,16 +522,16 @@ export default function Navbar() {
                         <div className="mb-5 flex items-center justify-between">
                           <div>
                             <p className="text-[10px] font-bold text-[#97A0AF] uppercase tracking-[0.16em] mb-0.5">Solutions</p>
-                                                       <p className="text-sm font-semibold text-[#172B4D]">
+                                                       <p className="text-sm font-semibold text-brand-navy">
                               {SITE_FOCUS_MEP_EXECUTION
-                                ? "Platform, AI & modules for field execution"
-                                : "Platform highlights and project stage"}
+                                ? "AI & how we help for field execution"
+                                : "AI and how we help"}
                             </p>
                           </div>
                           <a
                             href={menu.cta.href}
                             onClick={() => setActiveDropdown(null)}
-                            className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#42526E] hover:text-[#0052CC] transition-colors group"
+                            className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#42526E] hover:text-brand-orange transition-colors group"
                           >
                             {menu.cta.label}
                             <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
@@ -482,7 +540,7 @@ export default function Navbar() {
                         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-0">
                           {(() => {
                             const capabilitySection = menu.sections[0];
-                            const capRaw = (capabilitySection?.items ?? []) as AnyItem[];
+                            const capRaw = (capabilitySection?.items ?? []) as unknown as AnyItem[];
                             const highlights = capRaw.filter((i) => i.highlight);
                             const extraSections = menu.sections.slice(1);
 
@@ -496,14 +554,14 @@ export default function Navbar() {
                                 }`}
                               >
                                 <div
-                                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white transition-colors group-hover:bg-[#172B4D] ${
+                                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white transition-colors group-hover:bg-brand-orange ${
                                     item.desc ? "mt-0.5" : "mt-px"
                                   }`}
                                 >
-                                  <item.icon size={14} className="text-[#0052CC] transition-colors group-hover:text-white" />
+                                  <item.icon size={14} className="text-brand-orange transition-colors group-hover:text-white" />
                                 </div>
                                 <div>
-                                  <p className="text-[13px] font-semibold leading-tight text-[#172B4D] transition-colors group-hover:text-[#0052CC]">{item.label}</p>
+                                  <p className="text-[13px] font-semibold leading-tight text-brand-navy transition-colors group-hover:text-brand-orange">{item.label}</p>
                                   {item.desc ? (
                                     <p className="mt-0.5 text-[12px] leading-snug text-[#6B778C]">{item.desc}</p>
                                   ) : null}
@@ -533,14 +591,14 @@ export default function Navbar() {
                                                 compactHighlights ? "min-h-[196px]" : "min-h-[236px]"
                                               }`}
                                             >
-                                              <div className="mb-3.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EBF0FF] transition-colors group-hover:bg-[#172B4D] sm:h-14 sm:w-14">
-                                                <item.icon size={24} className="text-[#172B4D] transition-colors group-hover:text-white" />
+                                              <div className="mb-3.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EBF0FF] transition-colors group-hover:bg-brand-orange sm:h-14 sm:w-14">
+                                                <item.icon size={24} className="text-brand-navy transition-colors group-hover:text-white" />
                                               </div>
-                                              <p className="text-[15px] font-extrabold leading-snug tracking-tight text-[#172B4D] transition-colors group-hover:text-[#0052CC] sm:text-[16px]">
+                                              <p className="text-[15px] font-extrabold leading-snug tracking-tight text-brand-navy transition-colors group-hover:text-brand-orange sm:text-[16px]">
                                                 {item.label}
                                               </p>
                                               <p className="mt-2 flex-1 text-[12px] leading-relaxed text-[#6B778C] sm:text-[12.5px]">{sub}</p>
-                                              <div className="mt-4 flex items-center gap-1 text-[11.5px] font-semibold text-[#0052CC] opacity-90 transition-opacity group-hover:opacity-100">
+                                              <div className="mt-4 flex items-center gap-1 text-[11.5px] font-semibold text-brand-orange opacity-90 transition-opacity group-hover:opacity-100">
                                                 Open <ArrowRight size={11} className="transition-transform group-hover:translate-x-0.5" />
                                               </div>
                                             </a>
@@ -557,7 +615,7 @@ export default function Navbar() {
                                       {extraSections.map((sec) => (
                                         <div key={sec.heading} className="min-w-0">
                                           <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.16em] text-[#97A0AF]">{sec.heading}</p>
-                                          <div className="flex flex-col gap-0.5">{(sec.items as AnyItem[]).map(compactLink)}</div>
+                                          <div className="flex flex-col gap-0.5">{(sec.items as unknown as AnyItem[]).map(compactLink)}</div>
                                         </div>
                                       ))}
                                     </div>
@@ -570,7 +628,7 @@ export default function Navbar() {
                       </div>
                     </div>
                     <div
-                      className={`flex h-full min-h-0 shrink-0 flex-col border-l border-white/10 bg-[#172B4D] pl-8 pr-10 pt-8 ${SOLUTIONS_FEATURED_RAIL_CLASS}`}
+                      className={`flex h-full min-h-0 shrink-0 flex-col border-l border-white/10 bg-brand-navy pl-8 pr-10 pt-8 ${SOLUTIONS_FEATURED_RAIL_CLASS}`}
                     >
                       <SolutionsFeaturedPanel
                         featured={featured}
@@ -580,40 +638,108 @@ export default function Navbar() {
                     </div>
                   </div>
                 ) : (
-                  /* ── Fallback: section columns only ── */
+                  /* ── Fallback: Platform, Company, and other section columns ── */
                   <div className="max-w-7xl mx-auto px-8 py-7">
-                    <div className="flex gap-0">
-                      {menu.sections.map((section, si) => (
-                        <div
-                          key={section.heading}
-                          className={`flex-1 ${si > 0 ? "border-l border-gray-200/80 pl-8 ml-8" : ""}`}
+                    <div className="mb-5 flex items-center justify-between">
+                      <div>
+                        <p className="text-[10px] font-bold text-[#97A0AF] uppercase tracking-[0.16em] mb-0.5">{key}</p>
+                        <p className="text-sm font-semibold text-brand-navy">
+                          {key === "Platform"
+                            ? "From preconstruction through closeout"
+                            : key === "Company"
+                              ? "About ZedOps and how we work"
+                              : menu.cta.label}
+                        </p>
+                      </div>
+                      {key !== "Company" && key !== "Platform" ? (
+                        <a
+                          href={menu.cta.href}
+                          onClick={() => setActiveDropdown(null)}
+                          className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#42526E] hover:text-brand-orange transition-colors group"
                         >
-                          <p className="text-[10px] font-bold text-[#97A0AF] uppercase tracking-[0.16em] mb-4">
-                            {section.heading}
-                          </p>
-                          <div className="flex flex-col gap-0.5">
-                            {section.items.map((item) => (
-                              <a
-                                key={item.label}
-                                href={item.href}
-                                onClick={() => setActiveDropdown(null)}
-                                className="group flex items-start gap-3 px-3 py-2.5 -mx-3 rounded-lg hover:bg-white/90 transition-colors duration-100"
+                          {menu.cta.label}
+                          <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
+                        </a>
+                      ) : null}
+                    </div>
+                    {key === "Platform" ? (
+                      <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,2.1fr)_minmax(0,2fr)] gap-0">
+                        {menu.sections.slice(0, 2).map((section, si) => (
+                          <div
+                            key={section.heading}
+                            className={`min-w-0 ${si > 0 ? "ml-8 border-l border-gray-200/80 pl-8" : ""}`}
+                          >
+                            <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.16em] text-[#97A0AF]">
+                              {section.heading}
+                            </p>
+                            <MegaMenuSectionItems
+                              items={section.items as unknown as AnyItem[]}
+                              onNavigate={() => setActiveDropdown(null)}
+                              twoCol={section.heading === "Construction execution"}
+                            />
+                          </div>
+                        ))}
+                        <div className="ml-8 flex min-w-0 flex-col border-l border-gray-200/80 pl-8">
+                          <div className="grid min-w-0 grid-cols-2 gap-0">
+                            {menu.sections.slice(2).map((section, i) => (
+                              <div
+                                key={section.heading}
+                                className={`min-w-0 ${i > 0 ? "ml-8 border-l border-gray-200/80 pl-8" : ""}`}
                               >
-                                <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white transition-colors group-hover:bg-[#172B4D]">
-                                  <item.icon size={14} className="text-[#0052CC] transition-colors group-hover:text-white" />
-                                </div>
-                                <div>
-                                  <p className="text-[13px] font-semibold text-[#172B4D] group-hover:text-[#0052CC] transition-colors leading-tight">
-                                    {item.label}
-                                  </p>
-                                  <p className="text-[12px] text-[#6B778C] leading-snug mt-0.5">{item.desc}</p>
-                                </div>
-                              </a>
+                                <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.16em] text-[#97A0AF]">
+                                  {section.heading}
+                                </p>
+                                <MegaMenuSectionItems
+                                  items={section.items as unknown as AnyItem[]}
+                                  onNavigate={() => setActiveDropdown(null)}
+                                />
+                              </div>
                             ))}
                           </div>
+                          {"footerCard" in menu && menu.footerCard ? (
+                            <a
+                              href={menu.footerCard.href}
+                              onClick={() => setActiveDropdown(null)}
+                              className="group mt-5 flex items-start gap-3 rounded-xl bg-brand-navy p-4 transition-colors hover:bg-[#101A2C]"
+                            >
+                              <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/10 transition-colors group-hover:bg-brand-orange">
+                                <menu.footerCard.icon
+                                  size={18}
+                                  className="text-brand-orange transition-colors group-hover:text-white"
+                                />
+                              </div>
+                              <div className="min-w-0">
+                                <p className="text-[13px] font-extrabold leading-tight text-white">
+                                  {menu.footerCard.label}
+                                </p>
+                                <p className="mt-1 text-[12px] leading-snug text-white/70">{menu.footerCard.desc}</p>
+                                <span className="mt-2 inline-flex items-center gap-1 text-[11.5px] font-semibold text-brand-orange">
+                                  Open
+                                  <ArrowRight size={11} className="transition-transform group-hover:translate-x-0.5" />
+                                </span>
+                              </div>
+                            </a>
+                          ) : null}
                         </div>
-                      ))}
-                    </div>
+                      </div>
+                    ) : (
+                      <div className="flex gap-0">
+                        {menu.sections.map((section, si) => (
+                          <div
+                            key={section.heading}
+                            className={`flex-1 ${si > 0 ? "ml-8 border-l border-gray-200/80 pl-8" : ""}`}
+                          >
+                            <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.16em] text-[#97A0AF]">
+                              {section.heading}
+                            </p>
+                            <MegaMenuSectionItems
+                              items={section.items as unknown as AnyItem[]}
+                              onNavigate={() => setActiveDropdown(null)}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -638,14 +764,14 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   {...("external" in link && link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="text-sm text-[#42526E] hover:text-[#172B4D] transition-colors py-2.5 px-2 font-semibold"
+                  className="text-sm text-[#42526E] hover:text-brand-orange transition-colors py-2.5 px-2 font-semibold"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
               <div className="pt-3 border-t border-gray-100 mt-1 flex flex-col gap-2">
-                <a href="#" className="block w-full text-center text-sm font-bold text-[#172B4D] border border-[#172B4D] py-2.5 rounded-md">Log in</a>
+                <a href="#" className="block w-full text-center text-sm font-bold text-brand-navy border border-brand-navy py-2.5 rounded-md">Log in</a>
                 <a href="/early-access" className="block w-full text-center text-sm font-bold text-white bg-brand-orange hover:bg-brand-orange-soft transition-all duration-150 py-3 rounded-md">
                   Request a demo
                 </a>

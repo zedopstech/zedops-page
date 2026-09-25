@@ -12,7 +12,7 @@ const personas = [
   {
     icon: HardHat,
     title: "General Contractors",
-    desc: "Projects, equipment, materials, work logs, daily logs, estimation, schedule, tasks, supply chain, and QHSE  -  one tenant-aware app with permissions for supers, PMs, and the back office.",
+    desc: "Projects, equipment, materials, work logs, daily logs, estimation, schedule, tasks, material management, and QHSE  -  one tenant-aware app with permissions for supers, PMs, and the back office.",
     image: "/Persona/site-supervisor.jpg",
     href: "/who-we-serve/general-contractors",
     accent: "#172B4D",
@@ -55,27 +55,27 @@ export default function WhoWeServePage() {
     description: "ZedOps is built for every role in construction: General Contractors, Owners & Developers, Project Managers, and Consultants & CM Firms.",
   });
   return (
-    <div className="min-h-screen bg-white text-[#172B4D] overflow-x-hidden">
+    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
       <div className="pt-[100px]">
         <PageHero
           pill="Built for you"
           PillIcon={Users}
           title="Built for every role on the project."
-          subtitle="Projects, planning, finance, supply chain, documents, quality, and Zed AI  -  menus and modules respect each person’s role."
+          subtitle="Projects, planning, finance, material management, documents, quality, and Zed AI  -  menus and modules respect each person’s role."
         />
 
         {/* Human intro */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#172B4D]">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-brand-navy">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-start gap-4 mb-8">
               <MessageSquare size={20} className="text-brand-orange shrink-0 mt-1" />
               <p className="text-white/70 text-xs font-bold uppercase tracking-widest">Before we built anything</p>
             </div>
-            <p className="text-white text-xl lg:text-2xl font-semibold leading-relaxed mb-6">
+            <p className="text-white text-xl lg:text-2xl font-semibold leading-snug mb-6">
               We sat down with general contractors, project managers, owners, and consultants  -  people running real projects  -  and just listened.
             </p>
-            <p className="text-white/60 text-base leading-relaxed max-w-2xl">
+            <p className="text-white/60 text-base leading-snug max-w-2xl">
               Today the product spans execution, cost, procurement, information management, and AI  -  but the story is the same: one system your whole team can trust, with visibility that matches responsibility.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-12 border-t border-white/10">
@@ -95,7 +95,7 @@ export default function WhoWeServePage() {
         </section>
 
         {/* Persona grid */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] border-t border-gray-100">
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white border-t border-gray-200">
           <div className="max-w-6xl mx-auto">
             <div className="grid sm:grid-cols-2 gap-8">
               {personas.map((p, i) => (
@@ -103,7 +103,7 @@ export default function WhoWeServePage() {
                   key={p.title}
                   href={p.href}
                   {...scrollMotionProps(isMobile, { y: 24, duration: 0.45, delay: i * 0.08 })}
-                  className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:border-gray-300 transition-all duration-300 flex flex-col"
+                  className="group bg-white border border-gray-200/90 rounded-2xl overflow-hidden shadow-[0_2px_12px_-4px_rgba(23,43,77,0.08)] transition-all duration-300 hover:shadow-[0_12px_28px_-12px_rgba(23,43,77,0.12)] flex flex-col"
                 >
                   {/* Image */}
                   <div className="relative h-52 overflow-hidden bg-gray-100">
@@ -130,10 +130,10 @@ export default function WhoWeServePage() {
                       >
                         <p.icon size={17} style={{ color: p.accent }} />
                       </div>
-                      <h3 className="text-lg font-extrabold text-[#172B4D]">{p.title}</h3>
+                      <h3 className="text-lg font-extrabold text-brand-navy">{p.title}</h3>
                     </div>
-                    <p className="text-[#42526E] text-sm leading-relaxed mb-6 flex-1">{p.desc}</p>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[#172B4D] group-hover:gap-2.5 transition-all duration-150">
+                    <p className="text-[#42526E] text-sm leading-snug mb-6 flex-1">{p.desc}</p>
+                    <span className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-navy group-hover:gap-2.5 transition-all duration-150">
                       See how ZedOps helps <ArrowRight size={14} />
                     </span>
                   </div>
