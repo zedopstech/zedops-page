@@ -9,6 +9,10 @@
   /* Brand palette */
   --color-brand-orange: #FE5D02;
   --color-brand-orange-soft: #F15F22;
+  /* Accessible orange for small text on white. #FE5D02 is 3.1:1 against white and
+     fails WCAG AA (4.5:1) below 18pt; this is the same hue at 4.65:1. Keep
+     brand-orange for fills, borders and large text. */
+  --color-brand-orange-ink: #CB4A02;
   --color-brand-navy: #172B4D;
   --color-brand-navy-soft: #172B4D;
   --color-button: #FE5D02;

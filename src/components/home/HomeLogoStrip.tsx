@@ -53,7 +53,10 @@ export default function LogoStripPreview() {
     >
       <motion.p {...scrollMotionProps(isMobile, { y: 20 })} className="mb-6 px-5 text-center text-[14px] font-medium text-brand-navy/80">
         One Platform. Every Industry.{" "}
-        <span className="text-brand-orange">
+        {/* brand-orange-ink, not brand-orange: #FE5D02 on white is 3.1:1 and
+            fails WCAG AA (4.5:1) for text this size. #CB4A02 is the same hue,
+            darkened to 4.65:1. */}
+        <span className="text-brand-orange-ink">
           Every Contractor. Every Project.
         </span>
       </motion.p>

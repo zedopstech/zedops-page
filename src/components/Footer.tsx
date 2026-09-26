@@ -60,9 +60,12 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
-                <h4 className="mb-5 text-[14px] font-semibold text-brand-navy">
+                {/* h2 for the same reason as the section headings above: an h4
+                    here skipped two levels on a page whose last heading was an
+                    h1 or h2. */}
+                <h2 className="mb-5 text-[14px] font-semibold text-brand-navy">
                   {category}
-                </h4>
+                </h2>
                 <ul className="space-y-3.5">
                   {links.map((link) => (
                     <li key={link.label}>

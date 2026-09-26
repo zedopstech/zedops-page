@@ -74,7 +74,7 @@ export default function HowWeHelpCompanyPage() {
                   href={c.href}
                   className="group/link mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-navy transition-colors hover:text-brand-navy/75"
                 >
-                  Learn more
+                  See how we help companies
                   <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5" aria-hidden />
                 </a>
               </motion.article>

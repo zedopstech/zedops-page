@@ -24,15 +24,20 @@ export default function Home() {
   return (
     <div className="min-h-screen overflow-x-clip bg-white text-brand-navy antialiased">
       <Navbar />
-      <HomeHero />
-      <HomeLogoStrip />
-      <HomeChallenges />
-      <HomeStages />
-      <HomeFeatureGrid />
-      <HomeThreeWays />
-      <HomeZedAI />
-      <HomeIndustries />
-      <HomeCTA />
+      {/* One main landmark for the page. Lighthouse's SEO audit flags a document
+          with no <main>, and it gives screen-reader users a single skip target
+          past the navigation. */}
+      <main id="main">
+        <HomeHero />
+        <HomeLogoStrip />
+        <HomeChallenges />
+        <HomeStages />
+        <HomeFeatureGrid />
+        <HomeThreeWays />
+        <HomeZedAI />
+        <HomeIndustries />
+        <HomeCTA />
+      </main>
       <Footer />
     </div>
   );

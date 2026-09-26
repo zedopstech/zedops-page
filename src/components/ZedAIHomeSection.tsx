@@ -210,7 +210,7 @@ export default function ZedAIHomeSection() {
                 href="/zed-ai"
                 className="inline-flex items-center gap-2 rounded-md bg-brand-orange px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
               >
-                Learn more →
+                Explore Zed AI →
               </a>
             </div>
           </div>

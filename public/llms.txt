@@ -1,0 +1,56 @@
+# ZedOps
+
+> ZedOps is an AI platform for mechanical, electrical, and plumbing (MEP)
+> construction execution. It connects schedule, field work, materials, cost
+> control, and quality in one project record, so teams can see what needs
+> attention and decide what to do next.
+
+ZedOps is aimed at MEP contractors, general contractors, owners and developers,
+project managers, and consultants running live construction work. Early access is
+by application.
+
+## Platform
+
+- [Platform overview](https://zedops.com/solutions): scheduling, site execution, materials, quality and closeout in one place
+- [Zed AI](https://zedops.com/zed-ai): AI over the same project record your crews use
+
+## Modules
+
+- [Core](https://zedops.com/platform/module/core)
+- [Projects](https://zedops.com/platform/module/projects)
+- [Estimation and proposals](https://zedops.com/platform/module/estimation)
+- [Planning and scheduling](https://zedops.com/platform/module/planning-execution)
+- [Daily execution intelligence](https://zedops.com/platform/module/daily-intelligence)
+- [Quality, safety and closeout](https://zedops.com/platform/module/quality-safety-closeout)
+- [Information management](https://zedops.com/platform/module/information-management)
+- [Finance](https://zedops.com/platform/module/finance)
+- [Material management](https://zedops.com/platform/module/supply-chain)
+- [Reporting and exports](https://zedops.com/platform/module/reporting-exports)
+- [Settings and configuration](https://zedops.com/platform/module/settings)
+
+## Who we serve
+
+- [General contractors](https://zedops.com/who-we-serve/general-contractors)
+- [Owners and developers](https://zedops.com/who-we-serve/owners)
+- [Project managers](https://zedops.com/who-we-serve/project-managers)
+- [Consultants and CM firms](https://zedops.com/who-we-serve/consultants)
+
+## Learn
+
+- [How we help](https://zedops.com/how-we-help)
+- [Project stages](https://zedops.com/how-we-help/project-stage)
+- [Blog](https://zedops.com/blog)
+- [Security](https://zedops.com/security)
+- [Roadmap](https://zedops.com/roadmap)
+- [About](https://zedops.com/about)
+
+## Contact
+
+- [Request early access](https://zedops.com/early-access)
+- [Contact](https://zedops.com/contact)
+- [Privacy policy](https://zedops.com/privacy)
+- [Terms of use](https://zedops.com/terms)
+
+## Optional
+
+- [Industries served](https://zedops.com/who-we-serve)

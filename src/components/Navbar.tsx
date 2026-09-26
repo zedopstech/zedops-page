@@ -70,7 +70,10 @@ export default function Navbar() {
               className="h-7 w-7 rounded-md object-cover"
             />
             <span className="text-[17px] font-extrabold tracking-tight text-brand-navy">
-              Zed<span className="text-brand-orange">Ops</span>
+              {/* brand-orange-ink: the wordmark's "Ops" is 17px bold on white,
+                  where #FE5D02 gives 3.09:1 against the 4.5:1 AA threshold.
+                  Visually near-identical to the brand orange. */}
+              Zed<span className="text-brand-orange-ink">Ops</span>
             </span>
           </a>
 

@@ -69,7 +69,9 @@ export function Eyebrow({
       }`}
     >
       {tag ? (
-        <span className="rounded-[4px] bg-brand-orange px-2 py-1 text-[11px] font-bold uppercase leading-none tracking-[0.08em] text-white">
+        // brand-orange-ink: white on #FE5D02 is 3.1:1, below the 4.5:1 AA
+        // threshold for text this small. Same hue, darkened.
+        <span className="rounded-[4px] bg-brand-orange-ink px-2 py-1 text-[11px] font-bold uppercase leading-none tracking-[0.08em] text-white">
           {tag}
         </span>
       ) : null}

@@ -573,7 +573,7 @@ export default function ZedAIPage() {
                       href={role.href}
                       className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-navy"
                     >
-                      Learn more
+                      Explore Zed AI
                       <ArrowRight className="h-3.5 w-3.5" />
                     </a>
                   </div>

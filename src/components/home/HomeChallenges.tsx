@@ -245,9 +245,12 @@ export default function ChallengesPreview() {
                     aria-hidden
                   />
                   <div className="relative mt-auto pt-10">
-                    <h4 className="text-[17px] font-semibold tracking-tight text-brand-navy sm:text-[18px]">
+                    {/* h3, not h4: this card sits directly under the section's h2.
+                        An h4 here skipped a level, which Lighthouse flags and
+                        screen readers use to build the page outline. */}
+                    <h3 className="text-[17px] font-semibold tracking-tight text-brand-navy sm:text-[18px]">
                       {item.title}
-                    </h4>
+                    </h3>
                     <p className="mt-2 text-[14px] leading-[1.55] text-[#5E6C84] sm:text-[15px]">
                       {item.description}
                     </p>

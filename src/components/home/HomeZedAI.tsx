@@ -159,8 +159,11 @@ export default function ZedAIPreview() {
               ))}
             </ul>
             <div className="mt-9">
+              {/* Named for its destination, not "Learn more" - a screen reader
+                  user scanning links gets "Zed AI" instead of an uninformative
+                  label repeated across the page. */}
               <TicketButton href="/zed-ai" variant="orange">
-                Learn more
+                Explore Zed AI
               </TicketButton>
             </div>
           </motion.div>
