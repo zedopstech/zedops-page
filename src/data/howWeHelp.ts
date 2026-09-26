@@ -80,7 +80,7 @@ export const projectStages: ProjectStageBlock[] = [
       "Inspections and punch",
       "Safety and handover records",
     ],
-    platformPath: "/platform/module/punch-list",
+    platformPath: "/platform/module/quality-safety-closeout",
     platformLabel: "Punchlist Management",
   },
 

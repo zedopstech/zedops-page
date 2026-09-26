@@ -74,7 +74,7 @@ const platformMenu = {
           icon: Users,
           label: "Workforce intelligence",
           desc: "Track attendance, productivity & labor performance.",
-          href: "/platform/module/workforce-intelligence",
+          href: "/platform/module/projects",
         },
         {
           icon: ShieldCheck,
@@ -103,7 +103,7 @@ const platformMenu = {
           icon: ListChecks,
           label: "Punch list management",
           desc: "Track, assign & close punch items efficiently.",
-          href: "/platform/module/punch-list",
+          href: "/platform/module/quality-safety-closeout",
         },
       ],
     },
