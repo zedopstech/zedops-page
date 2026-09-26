@@ -3,7 +3,7 @@
 # ── Stage 1: build the static site ────────────────────────────────────────────
 # `npm run build` also runs the prebuild hook, which regenerates sitemap.xml from
 # the route table, so the sitemap can never drift from the router again.
-FROM node:20-alpine AS builder
+FROM node:24-alpine AS builder
 
 WORKDIR /app
 

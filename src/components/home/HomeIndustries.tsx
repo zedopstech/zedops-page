@@ -32,7 +32,7 @@ const industries: {
   {
     title: "Infrastructure",
     icon: PiBankFill,
-    image: "/industries/infrastructure.jpg",
+    image: "/industries/infrastructure.webp",
     blurb:
       "Highways, bridges, rail and airports — one programme from site to handover.",
     items: [
@@ -68,7 +68,7 @@ const industries: {
   {
     title: "Commercial",
     icon: PiBuildingsFill,
-    image: "/industries/commercial.jpg",
+    image: "/industries/commercial.webp",
     blurb:
       "Offices, retail and mixed-use — trades coordinated without spreadsheet lag.",
     items: ["Offices", "Retail", "Mixed-use", "Hospitality"],
@@ -112,19 +112,19 @@ const contractors: {
   {
     title: "Subcontractors",
     icon: PiUsersFill,
-    image: "/contractors/subco.png",
+    image: "/contractors/subco.webp",
     desc: "Take assigned packages, report from site, and hand work back without a second system.",
   },
   {
     title: "Specialty Contractors",
     icon: PiGearFill,
-    image: "/contractors/spec.png",
+    image: "/contractors/spec.webp",
     desc: "Execute scoped trades with checklists, QA and documents that roll into the main job.",
   },
   {
     title: "Service Contractors",
     icon: PiWrenchFill,
-    image: "/contractors/service2.png",
+    image: "/contractors/service2.webp",
     desc: "Maintain, install and respond with the same project context used during construction.",
   },
 ];
@@ -181,6 +181,12 @@ function IndustryShowcase() {
             key={current.image}
             src={current.image}
             alt={current.title}
+            // The image sits in a fixed-aspect container, but explicit dimensions
+            // still let the browser reserve space before the file arrives.
+            width={1536}
+            height={1024}
+            loading="lazy"
+            decoding="async"
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
@@ -316,6 +322,10 @@ export default function IndustriesPreview() {
                   <img
                     src={c.image}
                     alt={c.title}
+                    width={1536}
+                    height={1024}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   />
                 </div>

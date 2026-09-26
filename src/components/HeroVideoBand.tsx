@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 /**
  * Full-bleed construction reel that sits between the hero copy and the project
@@ -16,7 +17,15 @@ import { Pause, Play } from "lucide-react";
  *   decoded for a section nobody is looking at.
  */
 
-const SRC = "/hero/hero-reel.mp4";
+/**
+ * Two encodes of the same 43s reel. The 1080p file is 9.5 MB, which is 94% of the
+ * whole page weight - on a phone that is most of a visitor's data before they
+ * scroll. The 854x480 file is 2.2 MB and is served below the 768px breakpoint.
+ * (Not a `<source media=...>` pair: browser support for `media` on `<source>`
+ * inside `<video>` is inconsistent, so the URL is chosen in JS instead.)
+ */
+const DESKTOP_SRC = "/hero/hero-reel.mp4";
+const MOBILE_SRC = "/hero/hero-reel-mobile.mp4";
 const POSTER = "/hero/hero-reel-poster.jpg";
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
@@ -27,12 +36,14 @@ function prefersReducedMotion() {
 }
 
 export default function HeroVideoBand() {
+  const isMobile = useIsMobile();
   const videoRef = useRef<HTMLVideoElement>(null);
   /** Set once the visitor pauses by hand, so we never fight their choice. */
   const pausedByUser = useRef(false);
 
   const [reduceMotion, setReduceMotion] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [ready, setReady] = useState(false);
 
   // Track the OS-level motion preference, including live changes to it.
   useEffect(() => {
@@ -76,12 +87,20 @@ export default function HeroVideoBand() {
     }
   };
 
+  const src = isMobile ? MOBILE_SRC : DESKTOP_SRC;
+
+  // A new source means a fresh load: fall back to the poster until it can play,
+  // so a rotate across the breakpoint does not flash a blank frame.
+  useEffect(() => setReady(false), [src]);
+
   return (
     <section className="relative w-full overflow-hidden">
       <div className="relative h-[420px] sm:h-[500px] md:h-[600px] lg:h-[680px]">
         <video
+          key={src}
           ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out"
+          style={{ opacity: ready ? 1 : 0 }}
           autoPlay={!reduceMotion}
           muted
           loop
@@ -90,10 +109,11 @@ export default function HeroVideoBand() {
           poster={POSTER}
           aria-hidden="true"
           tabIndex={-1}
+          onCanPlay={() => setReady(true)}
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
         >
-          <source src={SRC} type="video/mp4" />
+          <source src={src} type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-black/10" />

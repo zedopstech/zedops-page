@@ -36,7 +36,7 @@ const industries: {
   {
     title: "Infrastructure",
     icon: Landmark,
-    image: "/industries/infrastructure.jpg",
+    image: "/industries/infrastructure.webp",
     blurb: "Highways, bridges, rail and airports — one programme from site to handover.",
     items: ["Highways & roads", "Bridges & tunnels", "Rail & metro", "Airports"],
   },
@@ -64,7 +64,7 @@ const industries: {
   {
     title: "Commercial",
     icon: Building2,
-    image: "/industries/commercial.jpg",
+    image: "/industries/commercial.webp",
     blurb: "Offices, retail and mixed-use — trades coordinated without spreadsheet lag.",
     items: ["Offices", "Retail", "Mixed-use", "Hospitality"],
   },
@@ -105,19 +105,19 @@ const contractors: {
   {
     title: "Subcontractors",
     icon: Users,
-    image: "/contractors/subco.png",
+    image: "/contractors/subco.webp",
     desc: "Take assigned packages, report from site, and hand work back without a second system.",
   },
   {
     title: "Specialty Contractors",
     icon: Settings,
-    image: "/contractors/spec.png",
+    image: "/contractors/spec.webp",
     desc: "Execute scoped trades with checklists, QA and documents that roll into the main job.",
   },
   {
     title: "Service Contractors",
     icon: Wrench,
-    image: "/contractors/service2.png",
+    image: "/contractors/service2.webp",
     desc: "Maintain, install and respond with the same project context used during construction.",
   },
 ];
