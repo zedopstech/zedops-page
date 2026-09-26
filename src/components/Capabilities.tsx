@@ -61,7 +61,7 @@ const execution: Capability[] = [
     icon: Users,
     title: "Workforce Intelligence",
     desc: "Track attendance, productivity and labor performance.",
-    href: "/platform/module/workforce-intelligence",
+    href: "/platform/module/projects",
   },
   {
     icon: ShieldCheck,
@@ -88,7 +88,7 @@ const closeout: Capability[] = [
     icon: ListChecks,
     title: "Punch List Management",
     desc: "Track, assign and close punch items efficiently.",
-    href: "/platform/module/punch-list",
+    href: "/platform/module/quality-safety-closeout",
   },
 ];
 
