@@ -54,15 +54,32 @@
 	# ── Routing ─────────────────────────────────────────────────────────────
 	# Order matters:
 	#   {path}                  -> a real file, e.g. /robots.txt, /og-image.png
-	#   {path}/index.html       -> a prerendered route, e.g. /solutions/index.html
-	#   /index.html             -> SPA shell (today's behaviour)
+	#   {path}/index.html       -> the prerendered route, e.g. /solutions/index.html
+	#   /index.html             -> the SPA shell
 	#
-	# The middle rule is inert until prerendering lands. Once
-	# scripts/prerender.mjs emits per-route directories, swap the final
-	# fallback from /index.html to /404.html and unknown URLs start returning a
-	# real 404 status instead of a soft one.
-	try_files {path} {path}/index.html /index.html
+	# Note there is no /404.html in this list. If it were, try_files would resolve
+	# the path and file_server would answer 200 - exactly the soft-404 we are
+	# removing. Instead we let the lookup fail so Caddy raises a real 404, then
+	# serve the branded page via handle_errors while keeping that status.
+	@root path /
+	handle @root {
+		rewrite * /index.html
+		file_server
+	}
+
+	try_files {path} {path}/index.html
 	file_server
+
+	# Branded 404 that keeps the 404 status. Anything that is not a prerendered
+	# route and not a real file lands here, so /anything-typoed no longer looks
+	# like a valid page to crawlers.
+	handle_errors {
+		@notfound expression {err.status_code} == 404
+		handle @notfound {
+			rewrite * /404.html
+			file_server
+		}
+	}
 
 	# ── Security headers ────────────────────────────────────────────────────
 	header {

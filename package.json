@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite --config vite.config.ts --host 0.0.0.0",
     "sitemap": "node scripts/generate-sitemap.mjs",
+    "prerender": "node scripts/prerender.mjs",
     "prebuild": "npm run sitemap",
-    "build": "vite build --config vite.config.ts",
+    "build": "vite build --config vite.config.ts && npm run prerender",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

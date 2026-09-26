@@ -155,15 +155,13 @@ Deploys are tagged by commit SHA, so a running image is traceable to a commit.
 
 ## Roadmap
 
-- [ ] **Prerender meta at build time.** Generate `dist/public/<route>/index.html`
-      per route so social scrapers get correct titles, canonicals and OG tags
-      without running JS. The Caddyfile already has a
-      `{path}/index.html` rule waiting for it.
-- [ ] **Real 404s.** Currently unknown URLs fall back to the SPA shell with a
-      `200`, so `/anything-typoed` looks like a valid page. Once prerendering
-      lands, change the final `try_files` fallback from `/index.html` to
-      `/404.html`.
-- [ ] Image `width`/`height` (CLS) and `loading="lazy"`.
+- [ ] Page titles and descriptions are declared in two places: the route table
+      used at build time, and each page's `useSEO` call. Have the pages read from
+      the route table so there is one source.
+- [ ] Remaining images: add `width`/`height` and `loading="lazy"` sitewide. Done
+      for the industries section, not everywhere.
+- [ ] Hash every asset filename, so replacing an image at a stable path is not
+      masked by Cloudflare's cache for up to 7 days.
 - [ ] Consolidate `react-icons` into `lucide-react`.
 - [ ] Consider a non-root deploy user with restricted sudo, so a leaked CI key
       cannot reach root.
