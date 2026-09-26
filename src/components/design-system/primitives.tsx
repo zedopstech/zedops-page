@@ -1,16 +1,14 @@
 /**
- * Design-preview primitives — ZedOps' own system. Structure and rhythm take cues from hexalog.in
- * (1200px column, medium-weight headlines, alternating light/navy bands, 12px cards), but the
- * signature details are deliberately ZedOps' own, drawn from construction drawings:
- *   - Blueprint grid texture (fine + major lines) instead of a dot grid.
- *   - Marker-underline highlight instead of a highlighter block.
- *   - Split-block CTA (label block + separate orange arrow block) instead of a notched ticket.
- *   - Numbered section labels ("01 / Challenges") and corner crop-marks on key cards.
- *   - Squared tag eyebrows instead of pill capsules.
+ * ZedOps design system. Calm, product-led SaaS layout (Geist, medium-weight two-tone
+ * headlines, white + one mist surface) expressed in blueprint language:
+ *   - Framed sections: content sits between hairline rails; sections meet on a hairline.
+ *   - Blueprint grid texture reserved for heroes.
+ *   - Split-block CTA (label block + separate orange arrow block).
+ *   - Orange gradient emphasis on a key phrase, used once per headline at most.
  *
  * Tokens (literal arbitrary values so tailwind.config stays untouched):
  *   navy #172B4D · ink #0E1B33 · body #3D4F6E · muted #6B778C · hairline #E3E8F0
- *   mist #F4F6FA · orange #FE5D02 · peach #FFC29E (marker) · peach-soft #FFF1E8
+ *   mist #F7F8FA · orange #FE5D02
  */
 import type { ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
@@ -38,14 +36,70 @@ export function Container({
   );
 }
 
-/** Marker underline behind the lower half of a key phrase (ZedOps' take — not a full block). */
+/**
+ * Emphasis on a key phrase: orange gradient text. Only used at headline sizes, where
+ * WCAG's large-text 3:1 threshold applies (the darker stop is 3.6:1 on white).
+ */
 export function Highlight({ children }: { children: ReactNode }) {
   return (
-    <span className="bg-[linear-gradient(transparent_60%,rgba(254,93,2,0.32)_60%,rgba(254,93,2,0.32)_90%,transparent_90%)] px-[0.06em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
+    <span className="bg-[linear-gradient(95deg,#E24E00_0%,#FE6A12_100%)] bg-clip-text text-transparent [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
       {children}
     </span>
   );
 }
+
+/** Second tone of a two-tone headline (Stripe-style): same line, muted slate. */
+export function Muted({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
+  return <span className={dark ? "text-white/55" : "text-[#7A869A]"}>{children}</span>;
+}
+
+const sectionTones = {
+  white: { bg: "bg-white", line: "border-[#E8ECF2]", dark: false },
+  mist: { bg: "bg-[#F7F8FA]", line: "border-[#E3E8F0]", dark: false },
+  navy: { bg: "bg-[#0E1B33]", line: "border-white/10", dark: true },
+} as const;
+
+/**
+ * Framed section: full-bleed background, a 1200px frame with hairline rails (desktop)
+ * and a top hairline.
+ */
+export function Section({
+  children,
+  tone = "white",
+  className = "",
+  frameClassName = "",
+  id,
+  labelledBy,
+  label,
+  topRule = true,
+}: {
+  children: ReactNode;
+  tone?: keyof typeof sectionTones;
+  className?: string;
+  frameClassName?: string;
+  id?: string;
+  labelledBy?: string;
+  label?: string;
+  topRule?: boolean;
+}) {
+  const t = sectionTones[tone];
+  return (
+    <section
+      id={id}
+      aria-labelledby={labelledBy}
+      aria-label={label}
+      data-nav-theme={t.dark ? "dark" : undefined}
+      className={`relative ${t.bg} ${topRule ? `border-t ${t.line}` : ""} ${className}`}
+    >
+      <div className={`relative mx-auto max-w-[1200px] lg:border-x ${t.line} ${frameClassName}`}>
+        {children}
+      </div>
+    </section>
+  );
+}
+
+/** Horizontal padding inside a Section frame (matches Container's content edge). */
+export const framePad = "px-5 sm:px-8 lg:px-14";
 
 /** Squared tag eyebrow: solid orange tag + label, 6px radius (not a pill). */
 export function Eyebrow({
@@ -136,7 +190,7 @@ export function TicketButton({
   );
 }
 
-/** Secondary: white 8px-radius button with hairline border and a trailing icon. */
+/** Secondary: hairline-bordered button with an optional trailing icon. */
 export function GhostButton({
   href,
   children,
@@ -153,8 +207,8 @@ export function GhostButton({
       href={href}
       className={`inline-flex h-10 items-center gap-2 rounded-lg border px-4 text-[15px] font-medium transition-colors ${
         tone === "dark"
-          ? "border-white/25 text-white hover:bg-white/10"
-          : "border-[#CDD5E3] bg-white/80 text-brand-navy hover:border-brand-navy/40 hover:bg-white"
+          ? "border-white/30 text-white hover:border-white/60 hover:bg-white/5"
+          : "border-[#C9D2DF] bg-white text-brand-navy hover:border-brand-navy"
       }`}
     >
       {children}
@@ -236,20 +290,19 @@ export function DemoPlaceholder({ title }: { title: string }) {
   );
 }
 
-/** hexalog h2: medium weight, tight tracking, 40px desktop. */
+/** Section headline: medium weight, tight tracking. */
 export const h2Class =
-  "text-[30px] font-semibold leading-[1.12] tracking-[-0.035em] sm:text-[36px] lg:text-[40px]";
+  "text-[32px] font-medium leading-[1.08] tracking-[-0.04em] [text-wrap:balance] sm:text-[40px] lg:text-[48px]";
 
 /**
- * hexalog's split section header: headline + ticket CTA on the left,
- * short paragraph + a row of small outline icons on the right.
+ * Split section header: label + headline (+ optional CTA) left, a short paragraph right,
+ * bottom-aligned. `icons` is accepted for older call sites but no longer drawn.
  */
 export function SplitHeader({
   label,
   title,
   body,
   cta,
-  icons = [],
   tone = "light",
   id,
 }: {
@@ -263,32 +316,23 @@ export function SplitHeader({
 }) {
   const dark = tone === "dark";
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start lg:gap-16">
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:items-end lg:gap-16">
       <div>
         {label ? <SectionLabel tone={tone}>{label}</SectionLabel> : null}
         <h2
           id={id}
-          className={`${h2Class} ${dark ? "text-white" : "text-brand-navy"}`}
+          className={`${h2Class} max-w-[20ch] ${dark ? "text-white" : "text-brand-navy"}`}
         >
           {title}
         </h2>
-        {cta ? <div className="mt-7">{cta}</div> : null}
       </div>
-      <div className="lg:pt-3">
+      <div className="lg:pb-2">
         <p
-          className={`max-w-md text-base leading-[1.6] ${dark ? "text-white/70" : "text-[#3D4F6E]"}`}
+          className={`max-w-md text-[16px] leading-[1.6] sm:text-[17px] ${dark ? "text-white/65" : "text-[#5E6C84]"}`}
         >
           {body}
         </p>
-        {icons.length ? (
-          <div
-            className={`mt-5 flex gap-5 ${dark ? "text-white/40" : "text-[#8C97AB]"}`}
-          >
-            {icons.map((I, i) => (
-              <I key={i} size={20} strokeWidth={1.5} aria-hidden />
-            ))}
-          </div>
-        ) : null}
+        {cta ? <div className="mt-6">{cta}</div> : null}
       </div>
     </div>
   );
@@ -312,7 +356,7 @@ export function CenterHeader({
 }) {
   const dark = tone === "dark";
   return (
-    <div className={`mx-auto max-w-3xl text-center ${className}`}>
+    <div className={`mx-auto max-w-[760px] text-center ${className}`}>
       {label ? (
         <div className="flex justify-center">
           <SectionLabel tone={tone}>{label}</SectionLabel>
@@ -326,7 +370,7 @@ export function CenterHeader({
       </h2>
       {body ? (
         <p
-          className={`mx-auto mt-5 max-w-2xl text-base leading-[1.6] sm:text-[17px] ${dark ? "text-white/70" : "text-[#5E6C84]"}`}
+          className={`mx-auto mt-5 max-w-[56ch] text-[16px] leading-[1.6] sm:text-[17px] ${dark ? "text-white/65" : "text-[#5E6C84]"}`}
         >
           {body}
         </p>
@@ -358,26 +402,9 @@ export function DotGrid({
   );
 }
 
-/** Soft blurred colour glow. */
-export function Glow({
-  className = "",
-  color = "orange",
-}: {
-  className?: string;
-  color?: "orange" | "navy" | "white";
-}) {
-  const c = {
-    orange: "rgba(254,93,2,0.22)",
-    navy: "rgba(40,80,150,0.35)",
-    white: "rgba(255,255,255,0.12)",
-  }[color];
-  return (
-    <div
-      aria-hidden
-      className={`pointer-events-none absolute rounded-full blur-3xl ${className}`}
-      style={{ background: `radial-gradient(closest-side, ${c}, transparent)` }}
-    />
-  );
+/** Retired: blurred colour glows read as decoration. Kept as a no-op for call sites. */
+export function Glow(_props: { className?: string; color?: "orange" | "navy" | "white" }) {
+  return null;
 }
 
 /** Corner crop-marks (blueprint registration ticks) — absolute, place inside a relative parent. */
@@ -421,24 +448,12 @@ export function GradientCard({
   );
 }
 
-/** Numbered section label: "01 / Challenges" with an orange square marker. */
-export function SectionLabel({
-  children,
-  tone = "light",
-}: {
-  children: ReactNode;
-  tone?: "light" | "dark";
-}) {
-  return (
-    <p
-      className={`mb-5 inline-flex items-center gap-2.5 font-mono text-[12px] font-semibold uppercase tracking-[0.14em] ${
-        tone === "dark" ? "text-white/60" : "text-[#6B778C]"
-      }`}
-    >
-      <span className="h-2 w-2 bg-brand-orange" aria-hidden />
-      {children}
-    </p>
-  );
+/**
+ * Retired: small eyebrow labels above headlines ("01 / Challenges", "Platform"). Headlines
+ * now carry the section on their own. Kept as a no-op so existing call sites compile.
+ */
+export function SectionLabel(_props: { children: ReactNode; tone?: "light" | "dark" }) {
+  return null;
 }
 
 /** Construction hazard tape in navy/orange. */
@@ -457,4 +472,4 @@ export function HazardTape({ className = "" }: { className?: string }) {
 
 /** Dark navy band gradient. */
 export const darkBand =
-  "bg-[linear-gradient(120deg,#23406F_0%,#172B4D_45%,#0E1B33_100%)]";
+  "bg-[#0E1B33]";

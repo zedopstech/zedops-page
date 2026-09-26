@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import type { ReactNode, ComponentType } from "react";
-import { Container, DotGrid, Eyebrow } from "@/components/design-system/primitives";
+import { Eyebrow } from "@/components/design-system/primitives";
 
 interface PageHeroProps {
   pill: string;
@@ -22,29 +22,37 @@ export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, c
   });
 
   return (
-    <section className={`relative overflow-hidden bg-[linear-gradient(180deg,#FFF4EC_0%,#F7F4F2_48%,#EEF3F9_100%)] pb-16 sm:pb-20 lg:pb-24 ${compact ? "pt-14 lg:pt-16" : "pt-[156px] lg:pt-[174px]"}`}>
-      <DotGrid className="[mask-image:linear-gradient(to_bottom,black_5%,transparent_82%)]" />
-      <Container className="relative z-10">
-        <motion.div {...enter(0)}>
-          <Eyebrow tag="ZedOps"><span className="inline-flex items-center gap-1.5"><PillIcon size={13} className="text-brand-orange" />{pill}</span></Eyebrow>
-        </motion.div>
-        <div className="mt-9 grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-16">
-          <motion.h1 {...enter(0.07)} className="max-w-[800px] text-[40px] font-semibold leading-[1.06] tracking-[-0.045em] text-brand-navy sm:text-[54px] lg:text-[64px]">
-            {title}
-          </motion.h1>
+    <section className="relative overflow-hidden bg-white">
+      <div
+        className={`relative z-10 mx-auto max-w-[1200px] px-5 sm:px-8 lg:border-x lg:border-[#E8ECF2] lg:px-14 ${
+          compact ? "pt-14 pb-14 lg:pt-16" : "pt-[140px] pb-16 sm:pt-[152px] lg:pb-20"
+        }`}
+      >
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-14">
+          <div>
+            <motion.div {...enter(0)} className="mb-6">
+              <Eyebrow tag="ZedOps">
+                <span className="inline-flex items-center gap-1.5">
+                  <PillIcon size={13} className="text-brand-orange" />
+                  {pill}
+                </span>
+              </Eyebrow>
+            </motion.div>
+            <motion.h1
+              {...enter(0.07)}
+              className="max-w-[800px] text-[40px] font-medium leading-[1.02] tracking-[-0.045em] text-brand-navy [text-wrap:balance] sm:text-[52px] lg:text-[60px]"
+            >
+              {title}
+            </motion.h1>
+          </div>
           {(subtitle || children) && (
-            <motion.div {...enter(0.14)} className="lg:border-l lg:border-[#D9E1EC] lg:pb-1 lg:pl-8">
-              {subtitle && <p className="max-w-md text-[16px] font-medium leading-[1.6] text-[#3D4F6E] sm:text-[17px]">{subtitle}</p>}
-              {children && <div className={subtitle ? "mt-7" : ""}>{children}</div>}
+            <motion.div {...enter(0.14)} className="lg:pb-1.5">
+              {subtitle && <p className="max-w-md text-[16px] leading-[1.6] text-[#4D5E77] sm:text-[17px]">{subtitle}</p>}
+              {children && <div className={subtitle ? "mt-6" : ""}>{children}</div>}
             </motion.div>
           )}
         </div>
-        <div className="mt-14 flex items-center gap-3 border-t border-[#D9E1EC] pt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8C97AB]" aria-hidden>
-          <span className="h-[6px] w-[6px] bg-brand-orange" />
-          <span>{pill}</span>
-          <span className="ml-auto">ZedOps</span>
-        </div>
-      </Container>
+      </div>
     </section>
   );
 }

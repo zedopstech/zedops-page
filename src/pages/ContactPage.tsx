@@ -1,224 +1,144 @@
-import { useSEO } from "@/hooks/useSEO";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Clock, MessageCircle, Shield, Mail } from "lucide-react";
+import { ArrowRight, CheckCircle2, Clock, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
-import SectionHeader from "@/components/SectionHeader";
 import Footer from "@/components/Footer";
+import { framePad, Muted, Section } from "@/components/design-system/primitives";
+import { contact, offices } from "@/data/contact";
 
-const subjects = [
-  "General enquiry",
-  "Early access / demo",
-  "Pricing & plans",
-  "Technical question",
-  "Partnership",
-  "Press enquiry",
-  "Other",
-];
+const topics = ["Book a demo", "Pricing", "Security & IT", "Partnership", "Support", "Something else"];
+const topicFromQuery: Record<string, string> = { demo: "Book a demo", security: "Security & IT", pricing: "Pricing" };
 
-const perks = [
-  {
-    icon: Clock,
-    title: "Reply within one business day",
-    desc: "We read every message. No auto-replies pretending a human wrote them.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Talk to the people building it",
-    desc: "Product, security, or partnership questions go straight to the team  -  not a call centre script.",
-  },
-  {
-    icon: Shield,
-    title: "IT & security welcome",
-    desc: "Need architecture details, data flow, or BYOK? We're happy to go deep with your team.",
-  },
-];
+const field =
+  "mt-1.5 h-11 w-full rounded-md border border-[#DCE3ED] bg-white px-3.5 text-[15px] text-brand-navy placeholder:text-[#A5AEBF] outline-none transition-colors focus:border-brand-navy";
 
 export default function ContactPage() {
   useSEO({
     title: "Contact  -  ZedOps",
-    description: "Get in touch with the ZedOps team. Product questions, pricing, partnerships, or security enquiries  -  a real person responds within one business day.",
+    description: "Talk to the ZedOps team about a demo, pricing, security or partnerships. We reply within one business day.",
   });
+
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", company: "", phone: "", topic: "", message: "" });
 
   useEffect(() => {
     const topic = new URLSearchParams(window.location.search).get("topic");
-    if (topic === "demo") {
-      setForm((prev) => ({ ...prev, subject: "Early access / demo" }));
-    }
+    if (topic && topicFromQuery[topic]) setForm((prev) => ({ ...prev, topic: topicFromQuery[topic]! }));
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
   };
 
+  const ways = [
+    { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}` },
+    { icon: Phone, label: "Phone", value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, "")}` },
+    { icon: ShieldCheck, label: "Security", value: contact.securityEmail, href: `mailto:${contact.securityEmail}` },
+    { icon: Clock, label: "Hours", value: contact.hours },
+  ];
+
   return (
-    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
+    <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
-      <div>
+      <main id="main">
         <PageHero
           pill="Contact"
           PillIcon={Mail}
-          title={<>We'd love to<br />hear from you.</>}
-          subtitle="Ask us anything  -  product, pricing, partnerships, or security. A real person will get back to you within one business day."
+          title={<>Talk to the team. <Muted>Real people, one business day.</Muted></>}
+          subtitle="Demos, pricing, security reviews or partnerships. Your message goes straight to the people building ZedOps."
         />
 
-        <section className="border-t border-[#E3E8F0] bg-[#F8F9FD] px-5 py-20 lg:py-[100px]">
-          <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-20">
-            {/* Left  -  why reach out */}
-            <div>
-              <SectionHeader
-                eyebrow="Why reach out"
-                title="Talk to a real person."
-                subtitle="No auto-replies. Your message goes straight to the team building ZedOps."
-              />
-
-              <div className="flex flex-col gap-4">
-                {perks.map((perk, i) => (
-                  <motion.div
-                    key={perk.title}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
-                    className="flex items-start gap-4 rounded-lg border border-[#E3E8F0] bg-white px-4 py-3.5"
-                  >
-                    <div className="w-9 h-9 bg-brand-navy flex items-center justify-center shrink-0 rounded-lg mt-0.5">
-                      <perk.icon size={16} className="text-white" />
+        <Section tone="mist" labelledBy="contact-form-title">
+          <div className="grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+            <div className={`py-12 lg:py-16 ${framePad}`}>
+              <h2 className="text-[22px] font-medium tracking-[-0.025em] text-brand-navy">Other ways to reach us</h2>
+              <ul className="mt-6 divide-y divide-[#E3E8F0] border-y border-[#E3E8F0]">
+                {ways.map((w) => (
+                  <li key={w.label} className="flex items-start gap-3 py-4">
+                    <w.icon size={17} className="mt-0.5 shrink-0 text-brand-orange" aria-hidden />
+                    <div className="min-w-0">
+                      <p className="text-[12.5px] text-[#8C97AB]">{w.label}</p>
+                      {w.href ? (
+                        <a href={w.href} className="text-[15px] text-brand-navy hover:underline">{w.value}</a>
+                      ) : (
+                        <p className="text-[15px] text-brand-navy">{w.value}</p>
+                      )}
                     </div>
-                    <div>
-                      <p className="text-brand-navy font-bold text-sm">{perk.title}</p>
-                      <p className="text-[#42526E] text-xs mt-0.5 leading-snug">{perk.desc}</p>
-                    </div>
-                  </motion.div>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                {offices.map((o) => (
+                  <address key={o.name} className="text-[14px] not-italic leading-[1.6] text-[#5E6C84]">
+                    <span className="flex items-center gap-2 text-[15px] font-medium text-brand-navy">
+                      <MapPin size={15} className="text-brand-orange" aria-hidden />
+                      {o.name}
+                    </span>
+                    <span className="mb-1 block text-[12.5px] text-[#8C97AB]">{o.role}</span>
+                    {o.address.map((line) => <span key={line} className="block">{line}</span>)}
+                  </address>
                 ))}
               </div>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.5 }}
-                className="mt-8 text-sm text-[#42526E] flex items-center gap-2"
-              >
-                <Mail size={16} className="text-brand-navy shrink-0" />
-                <span>Prefer email? We read the same inbox  -  just use the form.</span>
-              </motion.p>
+              <p className="mt-8 text-[14px] leading-[1.6] text-[#6B778C]">
+                Ready to try it on a live job?{" "}
+                <a href="/early-access" className="font-medium text-brand-navy underline underline-offset-4 hover:text-brand-orange">Request early access</a>.
+              </p>
             </div>
 
-            {/* Right  -  form */}
-            <div className="rounded-xl border border-[#DCE3ED] bg-white p-6 shadow-[0_24px_48px_-32px_rgba(23,43,77,0.3)] sm:p-8 lg:p-10">
+            <div className="border-t border-[#E3E8F0] bg-white px-5 py-12 sm:px-8 lg:border-t-0 lg:border-l lg:px-14 lg:py-16">
               {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-center max-w-md mx-auto"
-                >
-                  <CheckCircle2 size={52} className="text-green-500 mx-auto mb-5" />
-                  <h2 className="text-2xl font-semibold text-brand-navy mb-3">Message received.</h2>
-                  <p className="text-[#6B778C] leading-snug mb-6">
-                    Thanks for reaching out. We'll get back to you within one business day.
-                  </p>
-                  <a
-                    href="/"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all"
-                  >
-                    Back to home <ArrowRight size={14} />
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex min-h-[420px] flex-col items-start justify-center">
+                  <CheckCircle2 size={36} className="text-[#1D9A5B]" aria-hidden />
+                  <h2 className="mt-5 text-[28px] font-medium tracking-[-0.03em] text-brand-navy">Message received.</h2>
+                  <p className="mt-2 max-w-sm text-[16px] leading-[1.6] text-[#5E6C84]">Thanks, {form.name.split(" ")[0] || "there"}. We’ll reply to {form.email || "you"} within one business day.</p>
+                  <a href="/" className="mt-8 inline-flex items-center gap-1.5 text-[15px] font-medium text-brand-navy">
+                    Back to home <ArrowRight size={15} aria-hidden />
                   </a>
                 </motion.div>
               ) : (
-                <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45 }}
-                  className="max-w-md w-full mx-auto"
-                >
-                  <h2 className="text-2xl font-semibold text-brand-navy mb-1">Send us a message</h2>
-                  <p className="text-[#6B778C] text-sm mb-7">We typically reply within one business day.</p>
-
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Name *</label>
-                        <input
-                          name="name"
-                          required
-                          value={form.name}
-                          onChange={handleChange}
-                          placeholder="Your name"
-                          className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Email *</label>
-                        <input
-                          name="email"
-                          type="email"
-                          required
-                          value={form.email}
-                          onChange={handleChange}
-                          placeholder="you@company.com"
-                          className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Subject *</label>
-                      <select
-                        name="subject"
-                        required
-                        value={form.subject}
-                        onChange={handleChange}
-                        className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy focus:outline-none focus:border-brand-navy transition-colors bg-white"
-                      >
-                        <option value="">Select a subject</option>
-                        {subjects.map((s) => <option key={s} value={s}>{s}</option>)}
+                <form onSubmit={onSubmit} aria-labelledby="contact-form-title">
+                  <h2 id="contact-form-title" className="text-[22px] font-medium tracking-[-0.025em] text-brand-navy">Send us a message</h2>
+                  <div className="mt-6 grid gap-5 sm:grid-cols-2">
+                    <label className="text-[13px] text-[#5E6C84]">Full name
+                      <input name="name" required value={form.name} onChange={onChange} placeholder="Your name" className={field} autoComplete="name" />
+                    </label>
+                    <label className="text-[13px] text-[#5E6C84]">Work email
+                      <input name="email" type="email" required value={form.email} onChange={onChange} placeholder="you@company.com" className={field} autoComplete="email" />
+                    </label>
+                    <label className="text-[13px] text-[#5E6C84]">Company
+                      <input name="company" value={form.company} onChange={onChange} placeholder="Company name" className={field} autoComplete="organization" />
+                    </label>
+                    <label className="text-[13px] text-[#5E6C84]">Phone <span className="text-[#A5AEBF]">(optional)</span>
+                      <input name="phone" type="tel" value={form.phone} onChange={onChange} placeholder="+971 50 000 0000" className={field} autoComplete="tel" />
+                    </label>
+                    <label className="text-[13px] text-[#5E6C84] sm:col-span-2">Topic
+                      <select name="topic" required value={form.topic} onChange={onChange} className={field}>
+                        <option value="">Choose a topic</option>
+                        {topics.map((t) => <option key={t} value={t}>{t}</option>)}
                       </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Message *</label>
-                      <textarea
-                        name="message"
-                        required
-                        value={form.message}
-                        onChange={handleChange}
-                        rows={5}
-                        placeholder="Tell us what's on your mind..."
-                        className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors resize-none"
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all duration-150 group mt-1"
-                    >
-                      Send message
-                      <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
-                    </button>
-
-                    <p className="text-xs text-[#97A0AF] text-center">
-                      For early access onboarding, you can also use the dedicated request form  -  it helps us prepare for your call.
-                    </p>
-                    <a href="/early-access" className="text-center text-xs font-semibold text-brand-navy hover:underline">
-                      Request early access instead
-                    </a>
-                  </form>
-                </motion.div>
+                    </label>
+                    <label className="text-[13px] text-[#5E6C84] sm:col-span-2">Message
+                      <textarea name="message" required value={form.message} onChange={onChange} rows={5} placeholder="Tell us about your projects and what you’d like to see." className={`${field} h-auto py-3`} />
+                    </label>
+                  </div>
+                  <button type="submit" className="mt-6 inline-flex h-11 items-center gap-2 rounded-lg bg-brand-navy px-5 text-[15px] font-medium text-white transition-colors hover:bg-[#1E3760]">
+                    Send message <ArrowRight size={16} aria-hidden />
+                  </button>
+                  <p className="mt-4 text-[13px] text-[#8C97AB]">
+                    We use your details only to reply. See our <a href="/privacy" className="underline underline-offset-2 hover:text-brand-navy">privacy policy</a>.
+                  </p>
+                </form>
               )}
             </div>
           </div>
-        </section>
-
-        <Footer />
-      </div>
+        </Section>
+      </main>
+      <Footer />
     </div>
   );
 }

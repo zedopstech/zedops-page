@@ -44,13 +44,13 @@ const platformMenu = {
         {
           icon: ClipboardList,
           label: "Estimation & proposals",
-          desc: "Accurate takeoffs, BOQ, proposals & cost estimation.",
+          desc: "Takeoffs, BOQs and bids",
           href: "/platform/module/estimation",
         },
         {
           icon: CalendarClock,
           label: "Planning & scheduling",
-          desc: "Create realistic schedules, track progress in real-time.",
+          desc: "Programmes and progress",
           href: "/platform/module/planning-execution",
         },
       ],
@@ -61,37 +61,37 @@ const platformMenu = {
         {
           icon: Package,
           label: "Materials Management",
-          desc: "Manage requests, approvals, purchasing & deliveries.",
+          desc: "Requests to deliveries",
           href: "/platform/module/supply-chain",
         },
         {
           icon: FolderOpen,
           label: "Daily execution intelligence",
-          desc: "Daily logs, site reports, progress & issue tracking.",
+          desc: "Daily logs and site reports",
           href: "/platform/module/daily-intelligence",
         },
         {
           icon: Users,
           label: "Workforce intelligence",
-          desc: "Track attendance, productivity & labor performance.",
-          href: "/platform/module/projects",
+          desc: "Attendance and crews",
+          href: "/platform/module/workforce-intelligence",
         },
         {
           icon: ShieldCheck,
           label: "Quality & safety",
-          desc: "Inspections, checklists, incidents & compliance.",
+          desc: "Inspections and incidents",
           href: "/platform/module/quality-safety-closeout",
         },
         {
           icon: FolderKanban,
           label: "Tasks resolution",
-          desc: "Assign, track & close tasks faster across teams.",
+          desc: "Assign and close tasks",
           href: "/platform/module/projects",
         },
         {
           icon: Landmark,
           label: "Budget & cost control",
-          desc: "Track budgets, actuals, commitments & cash flow.",
+          desc: "Budgets, costs, cash flow",
           href: "/platform/module/finance",
         },
       ],
@@ -102,8 +102,8 @@ const platformMenu = {
         {
           icon: ListChecks,
           label: "Punch list management",
-          desc: "Track, assign & close punch items efficiently.",
-          href: "/platform/module/quality-safety-closeout",
+          desc: "Snags to sign-off",
+          href: "/platform/module/punch-list",
         },
       ],
     },
@@ -113,7 +113,7 @@ const platformMenu = {
         {
           icon: Layers,
           label: "Core",
-          desc: "Documents, library, workflow, directory, company, projects, users & admin.",
+          desc: "Directory, library, admin",
           href: "/platform/module/core",
         },
       ],
@@ -123,7 +123,7 @@ const platformMenu = {
   footerCard: {
     icon: Cpu,
     label: "Zed AI",
-    desc: "Copilot on live project data — insights, drafts, and actions with your permissions.",
+    desc: "Your copilot on live project data",
     href: "/zed-ai",
   },
 } as const;
@@ -137,19 +137,19 @@ const companyMenu = {
         {
           icon: Info,
           label: "About Us",
-          desc: "Mission, values, and why we built ZedOps",
+          desc: "Our story and team",
           href: "/about",
         },
         {
           icon: Shield,
           label: "Security",
-          desc: "How we protect tenant data and access",
+          desc: "How we protect your data",
           href: "/security",
         },
         {
           icon: Mail,
           label: "Contact",
-          desc: "Talk to the founding team",
+          desc: "Talk to our team",
           href: "/contact",
         },
       ],
@@ -160,13 +160,13 @@ const companyMenu = {
         {
           icon: Users,
           label: "Who we serve",
-          desc: "GCs, owners, PMs, and consultants",
+          desc: "Find your role",
           href: "/who-we-serve",
         },
         {
           icon: Sparkles,
           label: "Early access",
-          desc: "Request a walkthrough with the founders",
+          desc: "Get a guided walkthrough",
           href: "/early-access",
         },
       ],
@@ -185,7 +185,7 @@ export const dropdownMenusGeneral = {
           {
             icon: Cpu,
             label: "Zed AI",
-            desc: "In-product copilot",
+            desc: "Your project copilot",
             subtitle: "Insights, report prep, writing assist, and actions  -  live project data and your permissions.",
             href: "/zed-ai",
             highlight: true,
@@ -193,7 +193,7 @@ export const dropdownMenusGeneral = {
           {
             icon: Compass,
             label: "How we help",
-            desc: "By stage, role & team",
+            desc: "By stage, team and role",
             subtitle:
               "See how ZedOps fits preconstruction through closeout — and which modules matter for each team.",
             href: "/how-we-help",
@@ -207,25 +207,25 @@ export const dropdownMenusGeneral = {
           {
             icon: ClipboardList,
             label: "Preconstruction",
-            desc: "Estimation & library",
+            desc: "Estimate and plan",
             href: "/how-we-help/project-stage#preconstruction",
           },
           {
             icon: HardHat,
             label: "Construction",
-            desc: "Projects, tasks, work logs",
+            desc: "Build and track",
             href: "/how-we-help/project-stage#construction",
           },
           {
             icon: Building2,
             label: "Closeout",
-            desc: "Punch list & inspections",
+            desc: "Inspect and hand over",
             href: "/how-we-help/project-stage#closeout",
           },
           {
             icon: Layers,
             label: "Platform Core",
-            desc: "Core & administration",
+            desc: "Setup and admin",
             href: "/how-we-help/project-stage#platform-core",
           },
         ],
@@ -234,7 +234,7 @@ export const dropdownMenusGeneral = {
     cta: { label: "Explore all capabilities", href: "/solutions" },
     featured: {
       tag: "Overview",
-      title: "One platform from preconstruction through closeout - projects, logs, RFIs, and field teams in sync.",
+      title: "One platform from preconstruction to closeout.",
       readTime: "How we help",
       href: "/how-we-help",
       image: "",
@@ -248,30 +248,30 @@ export const dropdownMenusGeneral = {
           {
             icon: HardHat,
             label: "General Contractors",
-            desc: "End-to-end project control from bid to closeout",
+            desc: "Bid to closeout",
             href: "/who-we-serve/general-contractors",
             image: "/personas/site-supervisor.jpg",
           },
           {
             icon: Building2,
             label: "Owners & Developers",
-            desc: "Portfolio-level visibility across every project",
+            desc: "Portfolio visibility",
             href: "/who-we-serve/owners",
             image: "/personas/company-owner.jpg",
           },
           {
             icon: ClipboardList,
             label: "Project Managers",
-            desc: "Unified workspace for every task and team",
+            desc: "One workspace for the job",
             href: "/who-we-serve/project-managers",
             image: "/personas/project-managers.jpg",
           },
           {
             icon: Briefcase,
             label: "Consultants & CM Firms",
-            desc: "Multi-client management from one dashboard",
+            desc: "Many clients, one view",
             href: "/who-we-serve/consultants",
-            image: "/personas/subcontractor.jpg",
+            image: "/contractors/subco.webp",
           },
         ],
       },
@@ -286,7 +286,7 @@ export const dropdownMenusGeneral = {
           {
             icon: ScrollText,
             label: "ZedDocs",
-            desc: "Official guides, modules, and ZedDocs Assistant  -  hosted at docs.zedops.com",
+            desc: "Guides and how-tos",
             href: "https://docs.zedops.com/",
             tag: "Knowledge base",
             external: true,
@@ -294,14 +294,14 @@ export const dropdownMenusGeneral = {
           {
             icon: BookOpen,
             label: "Blog",
-            desc: "Construction tech insights and how-tos",
+            desc: "Notes from the field",
             href: "/blog",
             tag: "New posts weekly",
           },
           {
             icon: Map,
             label: "Product Roadmap",
-            desc: "See what's live, in progress, and coming next",
+            desc: "What’s live and next",
             href: "/roadmap",
             tag: "Updated weekly",
           },
@@ -317,7 +317,7 @@ export const dropdownMenusGeneral = {
     // flipped to false the Resources panel would have thrown on featured.href.
     featured: {
       tag: "Guide",
-      title: "How MEP contractors connect daily logs to follow-up work.",
+      title: "Turning daily logs into follow-up work.",
       readTime: "Read",
       href: "/blog/daily-logs-that-people-actually-use",
       image:
@@ -338,7 +338,7 @@ export const dropdownMenusMep = {
           {
             icon: Cpu,
             label: "Zed AI",
-            desc: "Copilot on live project data",
+            desc: "Your project copilot",
             subtitle:
               "Summaries and drafts from the same tasks, logs, and cost records. No generic chat off your data.",
             href: "/zed-ai",
@@ -347,7 +347,7 @@ export const dropdownMenusMep = {
           {
             icon: Compass,
             label: "How we help",
-            desc: "By stage, role & team",
+            desc: "By stage, team and role",
             subtitle:
               "MEP execution from programme to punch — pick the path that matches how your teams work.",
             href: "/how-we-help",
@@ -358,22 +358,22 @@ export const dropdownMenusMep = {
       {
         heading: "By Project Stage",
         items: [
-          { icon: ClipboardList, label: "Preconstruction", desc: "Estimation & library", href: "/how-we-help/project-stage#preconstruction" },
-          { icon: HardHat, label: "Construction", desc: "Projects, tasks, work logs", href: "/how-we-help/project-stage#construction" },
-          { icon: Building2, label: "Closeout", desc: "Punch list & inspections", href: "/how-we-help/project-stage#closeout" },
+          { icon: ClipboardList, label: "Preconstruction", desc: "Estimate and plan", href: "/how-we-help/project-stage#preconstruction" },
+          { icon: HardHat, label: "Construction", desc: "Build and track", href: "/how-we-help/project-stage#construction" },
+          { icon: Building2, label: "Closeout", desc: "Inspect and hand over", href: "/how-we-help/project-stage#closeout" },
           {
             icon: Layers,
             label: "Platform Core",
-            desc: "Core & administration",
+            desc: "Setup and admin",
             href: "/how-we-help/project-stage#platform-core",
           },
         ],
       },
     ],
-    cta: { label: "Explore MEP-ready capabilities", href: "/solutions" },
+    cta: { label: "All capabilities", href: "/solutions" },
     featured: {
       tag: "MEP",
-      title: "Programme to punch: one thread for mechanical, electrical & plumbing. Zed AI on the same job data.",
+      title: "Programme to punch, on one project record.",
       readTime: "How we help",
       href: "/how-we-help",
       image: "",
@@ -387,28 +387,28 @@ export const dropdownMenusMep = {
           {
             icon: HardHat,
             label: "General contractors",
-            desc: "Coordinate MEP trades with tasks, logs & closeout in one thread",
+            desc: "Trades, logs and closeout",
             href: "/who-we-serve/general-contractors",
             image: "/personas/site-supervisor.jpg",
           },
           {
             icon: ClipboardList,
             label: "Project managers",
-            desc: "Drive schedule → task, field reporting & punch for MEP scopes",
+            desc: "Schedule to punch",
             href: "/who-we-serve/project-managers",
             image: "/personas/project-managers.jpg",
           },
           {
             icon: Briefcase,
             label: "Consultants & CM firms",
-            desc: "Multi-project oversight when mechanical, electrical & plumbing overlap",
+            desc: "Many clients, one view",
             href: "/who-we-serve/consultants",
-            image: "/personas/subcontractor.jpg",
+            image: "/contractors/subco.webp",
           },
           {
             icon: Building2,
             label: "Owners & developers",
-            desc: "Portfolio visibility when execution and trade performance matter",
+            desc: "Portfolio visibility",
             href: "/who-we-serve/owners",
             image: "/personas/company-owner.jpg",
           },
@@ -421,7 +421,7 @@ export const dropdownMenusMep = {
     ...dropdownMenusGeneral.Resources,
     featured: {
       tag: "Product",
-      title: "Zed AI + field execution: how permissions keep copilot answers grounded in real tasks and logs.",
+      title: "How Zed AI stays grounded in your permissions.",
       readTime: "Overview",
       href: "/zed-ai",
       image:
@@ -437,8 +437,8 @@ export const dropdownMenusMep = {
  *
  * The mega-menu data is `as const`, so every string is a literal type. That is
  * what made the two collections incompatible: dropdownMenusMep exists precisely
- * to hold different copy, so `"Copilot on live project data"` is not assignable
- * to `"In-product copilot"`. The original code resolved that with
+ * to hold different copy, so `"Your project copilot"` is not assignable
+ * to `"Your project copilot"`. The original code resolved that with
  * `as unknown as DropdownMenus`, and because the cast silenced the compiler, a
  * real shape difference slipped through - only the MEP collection had
  * `Resources.featured`, while MegaMenu read it unconditionally. Flipping

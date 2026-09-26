@@ -1,18 +1,23 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { dropdownMenus, type DropdownKey } from "@/data/navDropdownMenus";
-import { DotGrid, TicketButton } from "./design-system/primitives";
+import { TicketButton } from "./design-system/primitives";
 import MegaMenu from "./MegaMenu";
+import ZedOpsMark from "./ZedOpsMark";
 
 const topLinks = Object.keys(dropdownMenus) as DropdownKey[];
 
 /**
- * hexalog nav: slim dark announcement strip, then a floating white bar
- * (10px radius, soft shadow) — logo left, links centred, text link + ticket CTA right.
+ * Two-tier header: a slim announcement line, then a flat full-width bar with a hairline
+ * bottom rule. Mega menus drop as an attached full-width panel. Total height stays 100px
+ * (36 + 64) so every page's top padding still clears it.
  */
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<DropdownKey | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [overDark, setOverDark] = useState(false);
+  const [atFooter, setAtFooter] = useState(false);
   const navAreaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,140 +32,186 @@ export default function Navbar() {
         setActiveDropdown(null);
       }
     };
+    // Match the bar to whatever is directly beneath it: black over dark sections, white otherwise.
+    const isDarkBelow = () => {
+      const under = document.elementsFromPoint(window.innerWidth / 2, 101).find((el) => !el.closest("header"));
+      for (let el: Element | null = under ?? null; el && el !== document.documentElement; el = el.parentElement) {
+        if (el.closest("[data-nav-theme='dark']")) return true;
+        const m = getComputedStyle(el).backgroundColor.match(/rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?/);
+        if (!m || (m[4] !== undefined && Number(m[4]) < 0.5)) continue;
+        const [r, g, b] = [m[1], m[2], m[3]].map(Number);
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b < 90;
+      }
+      return false;
+    };
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      setOverDark(isDarkBelow());
+      // Step aside once the footer is on screen: it carries its own logo and links.
+      const footerTop = document.querySelector("footer")?.getBoundingClientRect().top;
+      setAtFooter(footerTop !== undefined && footerTop < window.innerHeight);
+    };
+    onScroll();
     document.addEventListener("keydown", closeOnEscape);
     document.addEventListener("mousedown", closeOnOutsideClick);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       document.removeEventListener("keydown", closeOnEscape);
       document.removeEventListener("mousedown", closeOnOutsideClick);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
+  const panelOpen = activeDropdown !== null;
+  const dark = overDark && !panelOpen && !open;
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <div className="relative flex h-9 items-center justify-center overflow-hidden bg-[linear-gradient(90deg,#0E1B33,#1E3760_50%,#0E1B33)] px-4">
-        <DotGrid dark />
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-transform duration-300 ease-out ${atFooter && !open && !panelOpen ? "-translate-y-full" : ""}`}
+    >
+      <div className="flex h-9 items-center justify-center bg-[#0E1B33] px-4 text-[13px]">
+        <p className="truncate text-white/80">
+          <span className="hidden sm:inline">MEP execution, schedule to punch, tied to real work. </span>
+          <span className="font-semibold text-white">Zed AI</span> works on the same job data.
+        </p>
         <a
-          href="/zed-ai"
-          className="relative flex items-center gap-2 truncate text-[13px] font-medium text-white/90"
+          href="/early-access"
+          className="ml-3 inline-flex shrink-0 items-center gap-1 font-semibold text-white hover:text-[#FFB37F]"
         >
-          <span className="truncate">
-            <span className="hidden sm:inline">
-              MEP execution: schedule, logs, QA, cost &amp; supply, tied to real
-              work.{" "}
-            </span>
-            <span className="font-semibold text-[#C9D7EB]">Zed AI</span> uses
-            the same job data.
-          </span>
-        </a>
-        <a href="/early-access" className="relative ml-3 shrink-0 text-[12px] font-semibold text-white underline-offset-2 hover:underline">
-          Get access
+          Get access <ArrowRight size={13} aria-hidden />
         </a>
       </div>
 
-      <div ref={navAreaRef} className="px-3 pt-3 sm:px-6 lg:px-10" onMouseLeave={() => setActiveDropdown(null)}>
-        <div className="relative mx-auto max-w-[1376px]">
-        <nav className="mx-auto flex h-[52px] max-w-[1376px] items-center justify-between rounded-[10px] bg-white pr-1.5 pl-5 shadow-[0_4px_24px_rgba(23,43,77,0.08),0_0_0_1px_rgba(23,43,77,0.04)]">
-          <a
-            href="/"
-            className="flex shrink-0 items-center gap-2"
-          >
-            <img
-              src="/logo.png"
-              alt=""
-              className="h-7 w-7 rounded-md object-cover"
-            />
-            <span className="text-[19px] font-extrabold tracking-tight text-brand-navy">
-              {/* 19px extrabold, not 17px. WCAG treats text at 18.66px+ bold as
-                  "large", which only needs 3:1 - and the brand orange gives
-                  3.09:1 on white. At 17px it was 0.24px under the threshold and
-                  failed at 4.5:1. So the wordmark keeps the exact brand orange
-                  and still passes, instead of needing a second orange that read
-                  as brown beside the arrows and CTA blocks. The 2px change is
-                  not perceptible in a wordmark. */}
-              Zed<span className="text-brand-orange">Ops</span>
-            </span>
-          </a>
-
-          <div className="hidden items-center gap-4 lg:flex xl:gap-6">
-            {topLinks.map((label) => (
-              <button
-                key={label}
-                type="button"
-                aria-expanded={activeDropdown === label}
-                aria-controls="preview-nav-dropdown"
-                onMouseEnter={() => setActiveDropdown(label)}
-                onClick={() => setActiveDropdown(label)}
-                className={`flex items-center gap-1 text-[14px] font-medium transition-colors ${activeDropdown === label ? "text-brand-orange" : "text-[#2B3A55] hover:text-brand-orange"}`}
-              >
-                {label}
-                <ChevronDown size={13} className={`transition-transform ${activeDropdown === label ? "rotate-180 text-brand-orange" : "text-[#8C97AB]"}`} aria-hidden />
-              </button>
-            ))}
-          </div>
-
-          <div className="hidden items-center gap-6 lg:flex">
-            <a
-              href="#"
-              className="flex items-center gap-1 text-[14px] font-medium text-[#2B3A55] hover:text-brand-navy"
-            >
-              Log in <ArrowUpRight size={13} aria-hidden />
+      <div ref={navAreaRef} className="relative" onMouseLeave={() => setActiveDropdown(null)}>
+        <nav
+          className={`border-b transition-[background-color,border-color,box-shadow] duration-300 ${
+            dark
+              ? "border-white/10 bg-[#0E1B33]"
+              : scrolled || panelOpen || open
+                ? "border-[#E3E8F0] bg-white shadow-[0_8px_24px_-20px_rgba(14,27,51,0.35)]"
+                : "border-transparent bg-transparent"
+          }`}
+        >
+          <div className="mx-auto flex h-16 max-w-[1200px] items-center px-5 lg:px-6">
+            <a href="/" className="flex shrink-0 items-center gap-2" onMouseEnter={() => setActiveDropdown(null)}>
+              <ZedOpsMark tone={dark ? "dark" : "light"} className="h-[22px] w-auto" />
+              {/* 19px extrabold keeps "Ops" in the exact brand orange while passing
+                  WCAG large-text contrast (3:1). */}
+              <span className={`text-[19px] font-extrabold tracking-tight transition-colors ${dark ? "text-white" : "text-brand-navy"}`}>
+                Zed<span className="text-brand-orange">Ops</span>
+              </span>
             </a>
-            <TicketButton href="/early-access" className="!h-10 !text-[14px]">
-              Request a demo
-            </TicketButton>
-          </div>
 
-          <button
-            type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-brand-navy hover:bg-[#F4F6FA] lg:hidden"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
-          >
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
+            <div className="ml-10 hidden h-full items-stretch gap-1 lg:flex xl:ml-12">
+              {topLinks.map((label) => {
+                const on = activeDropdown === label;
+                return (
+                  <button
+                    key={label}
+                    type="button"
+                    aria-expanded={on}
+                    aria-controls="site-nav-panel"
+                    onMouseEnter={() => setActiveDropdown(label)}
+                    onClick={() => setActiveDropdown(on ? null : label)}
+                    className={`relative flex items-center gap-1 px-3 text-[14.5px] font-medium transition-colors ${
+                      dark ? "text-white/80 hover:text-white" : on ? "text-brand-navy" : "text-[#3D4F6E] hover:text-brand-navy"
+                    }`}
+                  >
+                    {label}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${dark ? "text-white/40" : "text-[#8C97AB]"} ${on ? "rotate-180" : ""}`}
+                      aria-hidden
+                    />
+                    <span
+                      aria-hidden
+                      className={`absolute inset-x-3 -bottom-px h-[2px] bg-brand-orange transition-opacity ${on ? "opacity-100" : "opacity-0"}`}
+                    />
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="ml-auto hidden items-center gap-5 lg:flex" onMouseEnter={() => setActiveDropdown(null)}>
+              <a
+                href="#"
+                className={`inline-flex h-10 items-center rounded-lg border px-3.5 text-[14.5px] font-medium transition-colors ${
+                  dark ? "border-white/20 text-white hover:border-white/40" : "border-transparent text-[#3D4F6E] hover:text-brand-navy"
+                }`}
+              >
+                Log in
+              </a>
+              <TicketButton href="/early-access" variant={dark ? "white" : "navy"} className="!text-[14px]">
+                Request a demo
+              </TicketButton>
+            </div>
+
+            <button
+              type="button"
+              className={`ml-auto flex h-10 w-10 items-center justify-center rounded-md lg:hidden ${dark ? "text-white hover:bg-white/10" : "text-brand-navy hover:bg-[#F4F6FA]"}`}
+              onClick={() => setOpen((v) => !v)}
+              aria-label="Toggle menu"
+              aria-expanded={open}
+            >
+              {open ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </nav>
 
-        {activeDropdown ? (
-          <div className="absolute inset-x-0 top-full z-50 pt-2 hidden lg:block" id="preview-nav-dropdown">
-            <div className={`mx-auto overflow-hidden rounded-xl border border-[#E3E8F0] bg-white shadow-[0_18px_45px_rgba(23,43,77,0.16)] ${activeDropdown === "Company" ? "max-w-[700px]" : "w-full"}`}>
+        {panelOpen ? (
+          <div
+            id="site-nav-panel"
+            className="absolute inset-x-0 top-full hidden border-b border-[#E3E8F0] bg-white shadow-[0_32px_64px_-32px_rgba(14,27,51,0.3)] lg:block"
+          >
+            <div className="mx-auto max-w-[1200px] px-6">
               <MegaMenu active={activeDropdown} onNavigate={() => setActiveDropdown(null)} />
             </div>
           </div>
         ) : null}
 
         {open ? (
-          <div className="mx-auto mt-2 max-h-[calc(100vh-116px)] max-w-[1376px] overflow-y-auto rounded-xl bg-white p-3 shadow-[0_16px_40px_-16px_rgba(23,43,77,0.3)] lg:hidden">
+          <div className="max-h-[calc(100vh-100px)] overflow-y-auto border-b border-[#E3E8F0] bg-white px-5 pb-5 lg:hidden">
             {topLinks.map((label) => (
-              <details key={label} className="group border-b border-[#E3E8F0] last:border-b-0">
-                <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-3 text-[15px] font-medium text-brand-navy hover:bg-[#F4F6FA] [&::-webkit-details-marker]:hidden">
-                  {label}<ChevronDown size={16} className="transition-transform group-open:rotate-180" aria-hidden />
+              <details key={label} className="group border-b border-[#EDF0F5]">
+                <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-[16px] font-semibold text-brand-navy [&::-webkit-details-marker]:hidden">
+                  {label}
+                  <ChevronDown size={18} className="text-[#8C97AB] transition-transform group-open:rotate-180" aria-hidden />
                 </summary>
-                <div className="space-y-3 px-3 pb-4">
+                <div className="space-y-4 pb-5">
                   {dropdownMenus[label].sections.map((section) => (
                     <div key={section.heading}>
-                      <p className="mb-1 px-2 text-[11px] font-bold uppercase tracking-wider text-[#6B778C]">{section.heading}</p>
+                      <p className="mb-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6B778C]">
+                        {section.heading}
+                      </p>
                       {section.items.map((item) => (
-                        <a key={item.label} href={item.href} {...("external" in item && item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="block rounded-lg px-2 py-2 text-[14px] text-brand-navy hover:bg-[#FFF4EC]" onClick={() => setOpen(false)}>{item.label}</a>
+                        <a
+                          key={item.label}
+                          href={item.href}
+                          {...("external" in item && item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                          className="block py-2 text-[15px] text-[#2B3A55] hover:text-brand-navy"
+                          onClick={() => setOpen(false)}
+                        >
+                          {item.label}
+                        </a>
                       ))}
                     </div>
                   ))}
                 </div>
               </details>
             ))}
-            <div className="mt-2 flex flex-col gap-2 border-t border-[#E3E8F0] pt-3">
-              <a
-                href="#"
-                className="rounded-lg border border-[#CDD5E3] py-2.5 text-center text-[15px] font-medium text-brand-navy"
-              >
-                Log in
-              </a>
+            <div className="mt-5 grid gap-3">
               <TicketButton href="/early-access" full>
                 Request a demo
               </TicketButton>
+              <a
+                href="#"
+                className="flex h-10 items-center justify-center rounded-lg border border-[#C9D2DF] text-[15px] font-semibold text-brand-navy"
+              >
+                Log in
+              </a>
             </div>
           </div>
         ) : null}
-        </div>
       </div>
     </header>
   );

@@ -1,320 +1,308 @@
-import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import {
-  BarChart3,
-  Check,
-  FileX,
-  Minus,
-  Sparkles,
-  X,
-} from "lucide-react";
-import { PiChartLineUpFill, PiDatabaseFill, PiFileXFill, PiLightningFill, PiShieldCheckFill, PiSparkleFill, PiUsersFill } from "react-icons/pi";
-import type { IconType } from "react-icons";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { FileSpreadsheet, Mail, MessageCircle, Sparkles, StickyNote, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
-import {
-  Container,
-  CornerTicks,
-  darkBand,
-  DotGrid,
-  Highlight,
-  SplitHeader,
-  TicketButton,
-} from "@/components/design-system/primitives";
+import { framePad, Highlight, Section, SplitHeader } from "@/components/design-system/primitives";
+import { Canvas } from "./mocks";
 
 type Tone = "bad" | "good" | "mid";
-type Way = {
-  id: string;
-  tab: string;
-  shortTab: string;
-  icon: IconType;
-  step: string;
-  title: string;
-  lead: string;
-  listTitle: string;
-  points: { tone: Tone; text: string }[];
-};
+type Way = { id: string; title: string; name: string; lead: string; points: { tone: Tone; text: string }[] };
 
 const ways: Way[] = [
   {
     id: "traditional",
-    tab: "Traditional Way",
-    shortTab: "Traditional",
-    icon: PiFileXFill,
-    step: "01 / Traditional",
+    name: "Traditional way",
     title: "When work lives in silos.",
     lead: "Plans, site updates, and decisions travel through separate files and messages, slowing every handoff.",
-    listTitle: "Where work gets stuck",
     points: [
       { tone: "bad", text: "Paper and spreadsheet workflows" },
-      { tone: "bad", text: "Disconnected tools & data silos" },
-      { tone: "bad", text: "Manual reports and delayed visibility" },
-      { tone: "bad", text: "Delays, rework & cost overruns" },
+      { tone: "bad", text: "Manual reports, delayed visibility" },
       { tone: "bad", text: "Unclear ownership and tracking" },
     ],
   },
   {
     id: "digital",
-    tab: "Digital Way",
-    shortTab: "Digital",
-    icon: PiChartLineUpFill,
-    step: "02 / Digital",
+    name: "Digital way",
     title: "More data. Still too many gaps.",
-    lead: "Dashboards improve visibility, but disconnected workflows still leave teams coordinating by hand.",
-    listTitle: "What changes, and what remains",
+    lead: "Dashboards improve visibility, but disconnected tools still leave teams coordinating by hand.",
     points: [
-      { tone: "good", text: "Digital tools and dashboards" },
-      { tone: "good", text: "Centralized data and reports" },
-      { tone: "good", text: "Faster team collaboration" },
-      { tone: "good", text: "Real-time visibility" },
+      { tone: "good", text: "Dashboards and central reports" },
       { tone: "mid", text: "Workflows remain disconnected" },
-      { tone: "mid", text: "Follow-ups still need manual coordination" },
+      { tone: "mid", text: "Follow-ups still chased manually" },
     ],
   },
   {
     id: "zedops",
-    tab: "Intelligent Way with ZedOps",
-    shortTab: "With ZedOps",
-    icon: PiSparkleFill,
-    step: "03 / With ZedOps",
+    name: "Intelligent way, with ZedOps",
     title: "See what matters. Act on it.",
-    lead: "Connect project work and live updates so the next decision has the right context.",
-    listTitle: "What your team gains",
+    lead: "Every team works from one live project record, and Zed AI points to the next decision.",
     points: [
       { tone: "good", text: "Connected workflows across every stage" },
       { tone: "good", text: "Zed AI highlights risks and next steps" },
-      { tone: "good", text: "Approvals and follow-ups in context" },
-      { tone: "good", text: "Live visibility into progress and blockers" },
-      { tone: "good", text: "Decisions tied to project data" },
       { tone: "good", text: "Clear ownership and traceable actions" },
     ],
   },
 ];
 
-const outcomes: { icon: IconType; text: string }[] = [
-  { icon: PiUsersFill, text: "One platform for every team" },
-  { icon: PiDatabaseFill, text: "One source of project truth" },
-  { icon: PiLightningFill, text: "Real-time insights that drive action" },
-  { icon: PiShieldCheckFill, text: "Stronger control. Better outcomes." },
+const DURATION = 6500;
+
+/* ---- Visuals ---------------------------------------------------------- */
+
+const scraps = [
+  { icon: FileSpreadsheet, label: "Programme_v7_FINAL.xlsx", sub: "Last edited 3 weeks ago", x: 24, y: 28, r: -4 },
+  { icon: MessageCircle, label: "Is the chiller on site yet??", sub: "Site WhatsApp · 11:42", x: 266, y: 14, r: 3 },
+  { icon: Mail, label: "RE: RE: RE: Revised BOQ", sub: "14 messages", x: 276, y: 140, r: -2 },
+  { icon: StickyNote, label: "Call supplier re: cable tray", sub: "Sticky note, desk 3", x: 20, y: 168, r: 4 },
+  { icon: FileSpreadsheet, label: "Daily_log_Tue (scan).pdf", sub: "Handwritten", x: 150, y: 266, r: -3 },
 ];
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
-/** Status mark: squared like the rest of the system. Gains are solid orange; gaps are outlined. */
-function Mark({ tone }: { tone: Tone }) {
-  const cfg = {
-    bad: { Icon: X, cls: "border border-white/25 text-white/60" },
-    mid: { Icon: Minus, cls: "border border-dashed border-white/35 text-white/55" },
-    good: { Icon: Check, cls: "bg-brand-orange text-white shadow-[0_6px_14px_-6px_rgba(254,93,2,0.7)]" },
-  }[tone];
+function SiloVisual({ run }: { run: boolean }) {
   return (
-    <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-[5px] ${cfg.cls}`}>
-      <cfg.Icon size={13} strokeWidth={3} aria-hidden />
-    </span>
+    <div className="relative h-[340px]">
+      {scraps.map((s, i) => (
+        <motion.div
+          key={s.label}
+          className="absolute flex w-[230px] items-start gap-3 rounded-lg border border-[#E3E8F0] bg-white p-3 shadow-[0_12px_28px_-16px_rgba(14,27,51,0.3)]"
+          style={{ left: s.x, top: s.y, rotate: s.r }}
+          initial={run ? { opacity: 0, y: 12 } : false}
+          animate={run ? { opacity: 1, y: [0, i % 2 ? 3 : -3, 0] } : { opacity: 1 }}
+          transition={{ opacity: { duration: 0.35, delay: i * 0.12 }, y: { duration: 5 + i, repeat: Infinity, ease: "easeInOut" } }}
+        >
+          <s.icon size={16} className="mt-0.5 shrink-0 text-[#A5AEBF]" />
+          <span className="min-w-0">
+            <span className="block truncate text-[13.5px] text-brand-navy">{s.label}</span>
+            <span className="block text-[11.5px] text-[#8C97AB]">{s.sub}</span>
+          </span>
+        </motion.div>
+      ))}
+    </div>
   );
 }
 
+const apps = [
+  { name: "Schedule tool", rows: 4, x: 10 },
+  { name: "Cost spreadsheet", rows: 5, x: 185 },
+  { name: "Site app", rows: 3, x: 360 },
+];
+
+function DisconnectedVisual({ run }: { run: boolean }) {
+  return (
+    <div className="relative h-[340px]">
+      <svg className="absolute inset-0" width={520} height={340} fill="none">
+        {[160, 335].map((x, i) => (
+          <motion.path
+            key={x}
+            d={`M${x} 150 L${x + 25} 150`}
+            stroke="#B8C2D0"
+            strokeWidth={1.5}
+            strokeDasharray="4 5"
+            initial={run ? { opacity: 0 } : false}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 + i * 0.2 }}
+          />
+        ))}
+      </svg>
+      {[172, 347].map((x, i) => (
+        <motion.span
+          key={x}
+          className="absolute top-[137px] flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full border border-[#F7E1AE] bg-[#FEF4DE] text-[#B7791F]"
+          style={{ left: x }}
+          initial={run ? { opacity: 0, scale: 0.6 } : false}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.9 + i * 0.2 }}
+        >
+          <X size={12} strokeWidth={3} />
+        </motion.span>
+      ))}
+      {apps.map((a, i) => (
+        <motion.div
+          key={a.name}
+          className="absolute top-[70px] w-[150px] overflow-hidden rounded-lg border border-[#E3E8F0] bg-white shadow-[0_12px_28px_-16px_rgba(14,27,51,0.3)]"
+          style={{ left: a.x }}
+          initial={run ? { opacity: 0, y: 10 } : false}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, delay: i * 0.15 }}
+        >
+          <div className="flex items-center gap-1 border-b border-[#EDF0F5] px-2.5 py-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#DCE3ED]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#DCE3ED]" />
+            <span className="ml-1.5 truncate text-[11px] text-[#6B778C]">{a.name}</span>
+          </div>
+          <div className="space-y-2 p-2.5">
+            {Array.from({ length: a.rows }).map((_, k) => (
+              <div key={k} className="h-2 rounded-full bg-[#EEF1F5]" style={{ width: `${55 + ((k * 23 + i * 11) % 40)}%` }} />
+            ))}
+          </div>
+        </motion.div>
+      ))}
+      <motion.p
+        className="absolute inset-x-0 bottom-12 text-center text-[13px] text-[#8C97AB]"
+        initial={run ? { opacity: 0 } : false}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.3 }}
+      >
+        Three tools, three versions of the truth.
+      </motion.p>
+    </div>
+  );
+}
+
+const linked = [
+  { k: "Schedule", v: "6 activities at risk", tone: "text-[#B42B29]" },
+  { k: "Materials", v: "PO-1043 arriving Thu", tone: "text-brand-navy" },
+  { k: "Issues", v: "ISS-441 assigned to Ahmed", tone: "text-brand-navy" },
+  { k: "Cost", v: "Materials +7% vs budget", tone: "text-[#9A6400]" },
+];
+
+function ConnectedVisual({ run }: { run: boolean }) {
+  return (
+    <div className="relative flex h-[340px] items-center justify-center">
+      <motion.div
+        className="w-[380px] overflow-hidden rounded-xl border border-[#E3E8F0] bg-white shadow-[0_24px_48px_-24px_rgba(14,27,51,0.35)]"
+        initial={run ? { opacity: 0, y: 12 } : false}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <div className="flex items-center justify-between border-b border-[#EDF0F5] px-4 py-3">
+          <span className="text-[14px] font-medium text-brand-navy">Marina Heights · Block C</span>
+          <span className="rounded-[5px] bg-[#E8F6EE] px-1.5 py-0.5 text-[11px] text-[#1D7446]">Live</span>
+        </div>
+        {linked.map((l, i) => (
+          <motion.div
+            key={l.k}
+            className="grid grid-cols-[88px_1fr] border-b border-[#F1F3F7] px-4 py-2.5 text-[13px]"
+            initial={run ? { opacity: 0, x: -6 } : false}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.3 + i * 0.15 }}
+          >
+            <span className="text-[#8C97AB]">{l.k}</span>
+            <span className={l.tone}>{l.v}</span>
+          </motion.div>
+        ))}
+        <motion.div
+          className="flex items-start gap-2.5 bg-[#FFF6F0] px-4 py-3 text-[13px] text-brand-navy"
+          initial={run ? { opacity: 0 } : false}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.35, delay: 1.1 }}
+        >
+          <Sparkles size={14} className="mt-0.5 shrink-0 text-brand-orange" />
+          Chiller delay pushes L4 testing. Zed suggests two actions.
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
+const visuals = [SiloVisual, DisconnectedVisual, ConnectedVisual];
+
 /**
- * Three ways: a measured progression rail (01 → 03, orange fill up to the active stage) above a
- * navy drawing sheet. The sheet pairs the stage narrative with a hairline spec table of points.
+ * Three ways of working, Attio-style: an auto-advancing list with a progress line on the left,
+ * and a visual of that way of working on the right (dark section).
  */
 export default function ThreeWaysPreview() {
   const isMobile = useIsMobile();
-  const reduceMotion = useReducedMotion();
-  const [active, setActive] = useState(2);
-  const w = ways[active]!;
-  const odd = w.points.length % 2 === 1;
+  const reduce = !!useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { amount: 0.35 });
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const run = inView && !reduce;
 
-  const focusTab = (next: number) => {
-    setActive(next);
-    document.getElementById(`ways-tab-${next}`)?.focus();
-  };
+  useEffect(() => {
+    if (!run || paused) return;
+    const id = window.setTimeout(() => setActive((a) => (a + 1) % ways.length), DURATION);
+    return () => window.clearTimeout(id);
+  }, [active, run, paused]);
+
+  const Visual = visuals[active]!;
 
   return (
-    <section className="relative bg-white py-20 lg:py-[100px]" aria-labelledby="dp-compare">
-      <Container>
+    <Section tone="mist" labelledBy="dp-compare">
+      <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
         <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
           <SplitHeader
             id="dp-compare"
-            title={
-              <>
-                Three ways of <Highlight>MEP &amp; construction</Highlight> management.
-              </>
-            }
-            body="From transitional processes to digital workflows and AI-powered execution — see how ZedOps changes the way construction teams work."
-            cta={<TicketButton href="#capabilities">Explore ZedOps</TicketButton>}
-            icons={[FileX, BarChart3, Sparkles]}
+            title={<>Three ways to run <Highlight>MEP &amp; construction</Highlight> work.</>}
+            body="From paper processes to digital tools to AI-assisted execution: what changes for the team at each step."
           />
         </motion.div>
+      </div>
 
-        <motion.div {...scrollMotionProps(isMobile, { y: 18, duration: 0.45, delay: 0.05 })} className="mt-14">
-          {/* Progression rail */}
-          <div role="tablist" aria-label="Ways of working" className="relative grid grid-cols-3 border-t border-[#D5DCE7]">
-            <motion.span
-              aria-hidden
-              className="absolute -top-px left-0 h-[3px] bg-brand-orange"
-              initial={false}
-              animate={{ width: `${((active + 1) / ways.length) * 100}%` }}
-              transition={reduceMotion ? { duration: 0 } : { duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            />
-            {ways.map((it, i) => {
-              const on = i === active;
-              const passed = i < active;
-              return (
+      <div ref={ref} className="grid border-t border-[#E3E8F0] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <div
+          role="tablist"
+          aria-label="Ways of working"
+          className="px-6 py-10 sm:px-10 lg:px-14 lg:py-14"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          {ways.map((w, i) => {
+            const on = i === active;
+            return (
+              <div key={w.id} className="border-b border-[#E3E8F0] py-5 first:pt-0 last:border-b-0">
                 <button
-                  key={it.id}
-                  id={`ways-tab-${i}`}
                   type="button"
                   role="tab"
+                  id={`ways-tab-${i}`}
                   aria-selected={on}
                   aria-controls="ways-panel"
-                  tabIndex={on ? 0 : -1}
                   onClick={() => setActive(i)}
-                  onKeyDown={(event) => {
-                    if (event.key === "ArrowRight") focusTab((i + 1) % ways.length);
-                    else if (event.key === "ArrowLeft") focusTab((i + ways.length - 1) % ways.length);
-                    else return;
-                    event.preventDefault();
-                  }}
-                  className="group relative flex min-h-[76px] flex-col items-start justify-between gap-2 pb-4 pl-0 pr-2 pt-4 text-left outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange sm:min-h-[92px] sm:flex-row sm:gap-4 sm:pr-6 sm:pt-5"
+                  className={`text-left text-[18px] font-medium tracking-[-0.02em] transition-colors ${on ? "text-brand-navy" : "text-[#A5AEBF] hover:text-[#5E6C84]"}`}
                 >
-                  {/* Stage tick on the rail */}
-                  <span
-                    aria-hidden
-                    className={`absolute -top-[5px] left-0 h-[9px] w-[9px] rounded-[2px] border-2 transition-colors ${
-                      on || passed ? "border-brand-orange bg-brand-orange" : "border-[#B8C2D0] bg-white"
-                    }`}
-                  />
-                  <span className="flex min-w-0 flex-col gap-1.5 sm:gap-2">
-                    <span
-                      className={`font-mono text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors ${
-                        on ? "text-brand-orange" : "text-[#8C97AB]"
-                      }`}
-                    >
-                      {pad(i + 1)}
-                    </span>
-                    <span
-                      className={`text-[14px] font-semibold leading-tight tracking-[-0.01em] transition-colors sm:text-[17px] lg:text-[19px] ${
-                        on ? "text-brand-navy" : "text-[#7A8799] group-hover:text-brand-navy"
-                      }`}
-                    >
-                      <span className="sm:hidden">{it.shortTab}</span>
-                      <span className="hidden sm:inline">{it.tab}</span>
-                    </span>
-                  </span>
-                  <span
-                    className={`hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition-colors md:flex ${
-                      on
-                        ? "border-brand-navy bg-brand-navy text-white shadow-[0_10px_22px_-12px_rgba(23,43,77,0.7)]"
-                        : "border-[#E3E8F0] bg-white text-[#A5AEBF] group-hover:border-[#CDD5E3] group-hover:text-brand-navy"
-                    }`}
-                  >
-                    <it.icon size={19} aria-hidden />
-                  </span>
+                  {w.name}
                 </button>
-              );
-            })}
-          </div>
-
-          {/* Detail sheet */}
-          <div className={`relative mt-4 overflow-hidden rounded-[20px] sm:mt-6 ${darkBand}`}>
-            <DotGrid dark />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_6%_8%,rgba(86,124,178,0.32),transparent_42%),radial-gradient(circle_at_96%_100%,rgba(254,93,2,0.10),transparent_40%)]"
-            />
-            <CornerTicks />
-            <motion.div
-              key={w.id}
-              id="ways-panel"
-              role="tabpanel"
-              aria-labelledby={`ways-tab-${active}`}
-              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="relative grid gap-9 px-5 py-9 sm:px-10 sm:py-12 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:gap-14 lg:px-14 lg:py-14"
-            >
-              <div className="flex flex-col">
-                <p className="inline-flex items-center gap-2.5 font-mono text-[12px] font-semibold uppercase tracking-[0.14em] text-white/60">
-                  <span className="h-2 w-2 bg-brand-orange" aria-hidden />
-                  {w.step}
-                </p>
-                <h3 className="mt-5 max-w-lg text-[30px] font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-[40px] lg:text-[44px]">
-                  {w.title}
-                </h3>
-                <p className="mt-5 max-w-md text-[16px] leading-[1.65] text-white/70">{w.lead}</p>
-
-                <div aria-hidden className="h-10 lg:h-auto lg:min-h-10 lg:flex-1" />
-                <div className="border-t border-white/15 pt-5">
-                  <div className="flex items-center gap-4">
-                    <span className="shrink-0 whitespace-nowrap font-mono text-[13px] font-semibold text-white">
-                      {pad(active + 1)} <span className="text-white/40">/ {pad(ways.length)}</span>
-                    </span>
-                    <span className="flex flex-1 gap-1" aria-hidden>
-                      {ways.map((it, i) => (
-                        <span key={it.id} className={`h-1 flex-1 rounded-full transition-colors duration-500 ${i <= active ? "bg-brand-orange" : "bg-white/15"}`} />
-                      ))}
-                    </span>
-                  </div>
-                  <p className="mt-3 text-[13px] text-white/50">From fragmented work to connected execution</p>
-                </div>
+                <AnimatePresence initial={false}>
+                  {on ? (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="mt-2 max-w-md text-[15px] leading-[1.55] text-[#6B778C]">{w.lead}</p>
+                      <div className="mt-5 h-[2px] overflow-hidden rounded-full bg-[#E3E8F0]">
+                        <motion.div
+                          key={`${active}-${paused}-${run}`}
+                          className="h-full origin-left bg-brand-orange"
+                          initial={{ scaleX: run && !paused ? 0 : 1 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ duration: run && !paused ? DURATION / 1000 : 0, ease: "linear" }}
+                        />
+                      </div>
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
               </div>
-
-              {/* Spec table of points */}
-              <div className="self-start overflow-hidden rounded-xl border border-white/15 bg-[#0E1B33]/35 backdrop-blur-sm">
-                <div className="flex items-center justify-between gap-4 border-b border-white/15 bg-white/[0.04] px-5 py-3.5">
-                  <p className="text-[14px] font-semibold text-white">{w.listTitle}</p>
-                  <span className="font-mono text-[11px] font-semibold tracking-[0.12em] text-white/45">{pad(w.points.length)} POINTS</span>
-                </div>
-                <ul className="grid sm:grid-cols-2">
-                  {w.points.map((p, index) => {
-                    const last = index === w.points.length - 1;
-                    const spans = last && odd;
-                    const inLastRow = spans || index >= w.points.length - (odd ? 1 : 2);
-                    return (
-                      <motion.li
-                        key={p.text}
-                        initial={reduceMotion ? false : { opacity: 0, y: 6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: 0.08 + index * 0.04 }}
-                        className={`flex items-start gap-3.5 border-white/10 px-5 py-5 ${last ? "" : "border-b"} ${
-                          inLastRow ? "sm:border-b-0" : "sm:border-b"
-                        } ${index % 2 === 0 && !spans ? "sm:border-r" : ""} ${spans ? "sm:col-span-2" : ""}`}
-                      >
-                        <Mark tone={p.tone} />
-                        <p
-                          className={`min-w-0 flex-1 pt-[2px] text-[15px] font-medium leading-snug ${
-                            p.tone === "good" ? "text-white" : "text-white/70"
-                          }`}
-                        >
-                          {p.text}
-                        </p>
-                        <span className="pt-[4px] font-mono text-[11px] text-white/30">{pad(index + 1)}</span>
-                      </motion.li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Outcomes strip */}
-        <div className="mt-5 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[#E3E8F0] bg-[#E3E8F0] sm:grid-cols-2 lg:grid-cols-4">
-          {outcomes.map((o, index) => (
-            <motion.div
-              key={o.text}
-              {...scrollMotionProps(isMobile, { y: 24, delay: index * 0.07 })}
-              className="flex items-center gap-3.5 bg-white px-5 py-5"
-            >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E3E8F0] bg-[#F4F6FA] text-brand-navy">
-                <o.icon size={20} aria-hidden />
-              </span>
-              <p className="text-[14px] font-semibold leading-snug tracking-tight text-brand-navy">{o.text}</p>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
-      </Container>
-    </section>
+
+        <div
+          id="ways-panel"
+          role="tabpanel"
+          aria-labelledby={`ways-tab-${active}`}
+          className="relative flex items-center justify-center overflow-hidden border-t border-[#E3E8F0] bg-white px-6 py-10 sm:px-10 lg:border-t-0 lg:border-l"
+        >
+          <div aria-hidden className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgba(23,43,77,0.1)_1px,transparent_1px)] [background-size:16px_16px]" />
+          <div className="relative w-full max-w-[520px]">
+            <Canvas width={520} height={340}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  initial={reduce ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <Visual run={run} />
+                </motion.div>
+              </AnimatePresence>
+            </Canvas>
+          </div>
+        </div>
+      </div>
+    </Section>
   );
 }

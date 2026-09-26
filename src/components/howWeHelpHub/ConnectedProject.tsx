@@ -10,6 +10,7 @@ import {
   ClipboardList,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { framePad, Muted, Section, SplitHeader } from "@/components/design-system/primitives";
 
 type Node = {
   key: string;
@@ -44,14 +45,14 @@ function curvePath(n: Node) {
 function NodeCard({ node }: { node: Node }) {
   const Icon = node.Icon;
   return (
-    <div className="group/node flex w-[156px] flex-col items-center rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#FE5D02]/40 hover:bg-white/[0.08]">
-      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#FE5D02]/30 to-[#FE5D02]/10 ring-1 ring-[#FE5D02]/30">
-        <Icon size={18} className="text-[#FF8A3D]" aria-hidden />
+    <div className="flex w-[196px] items-center gap-3 rounded-lg border border-[#E3E8F0] bg-white px-3.5 py-3 shadow-[0_10px_24px_-18px_rgba(14,27,51,0.35)]">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-[#E3E8F0] text-brand-orange">
+        <Icon size={16} aria-hidden />
       </span>
-      <p className="mt-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white">
-        {node.title}
-      </p>
-      <p className="mt-0.5 text-[11px] leading-tight text-[#9DB0CC]">{node.desc}</p>
+      <span className="min-w-0 text-left">
+        <span className="block text-[14px] font-medium text-brand-navy">{node.title}</span>
+        <span className="block truncate text-[12px] text-[#8C97AB]">{node.desc}</span>
+      </span>
     </div>
   );
 }
@@ -60,27 +61,18 @@ export default function ConnectedProject() {
   const isMobile = useIsMobile();
 
   return (
-    <section className="bg-white px-4 py-16 lg:py-20">
-      <div className="mx-auto max-w-7xl">
+    <Section tone="mist" labelledBy="hub-connected">
+      <div className={`pt-20 pb-6 lg:pt-28 ${framePad}`}>
+        <SplitHeader
+          id="hub-connected"
+          title={<>One project. <Muted>Every decision connected.</Muted></>}
+          body="Schedule, people, materials, quality, cost and daily logs all hang off the same project record."
+        />
+      </div>
         <motion.div
           {...scrollMotionProps(isMobile, { y: 22, duration: 0.45 })}
-          className="relative overflow-hidden rounded-[28px] bg-brand-navy px-5 py-12 sm:px-10 lg:py-16"
+          className="relative px-5 pb-16 sm:px-10 lg:pb-24"
         >
-          {/* Ambient glow */}
-          <div
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(45,107,255,0.18) 0%, transparent 60%)",
-            }}
-            aria-hidden
-          />
-
-          <div className="relative mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              One project. Every decision connected.
-            </h2>
-          </div>
 
           {/* Desktop diagram */}
           <div className="relative mx-auto mt-12 hidden h-[380px] w-full max-w-4xl lg:block">
@@ -96,7 +88,7 @@ export default function ConnectedProject() {
                   key={n.key}
                   d={curvePath(n)}
                   fill="none"
-                  stroke="rgba(157,176,204,0.28)"
+                  stroke="#C9D2DF"
                   strokeWidth={1}
                   strokeLinecap="round"
                   vectorEffect="non-scaling-stroke"
@@ -106,14 +98,9 @@ export default function ConnectedProject() {
 
             {/* Central record */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="relative flex w-[210px] flex-col items-center rounded-3xl border border-[#FE5D02]/50 bg-gradient-to-b from-[#0E2747] to-[#0B1F3A] px-6 py-6 text-center shadow-[0_0_60px_rgba(255,98,0,0.22)] ring-1 ring-white/5">
-                <span className="absolute -inset-px rounded-3xl bg-[radial-gradient(circle_at_center,rgba(255,98,0,0.15),transparent_70%)] blur-md" aria-hidden />
-                <p className="relative text-[10px] font-bold uppercase tracking-[0.18em] text-[#FF8A3D]">
-                  Project record
-                </p>
-                <p className="relative mt-2 text-xl font-semibold text-white">
-                  Commercial Tower
-                </p>
+              <div className="flex w-[200px] flex-col items-center rounded-xl bg-brand-navy px-6 py-5 text-center shadow-[0_24px_48px_-24px_rgba(14,27,51,0.6)]">
+                <p className="text-[12px] text-white/55">Project record</p>
+                <p className="mt-1 text-[18px] font-medium text-white">Commercial Tower</p>
               </div>
             </div>
 
@@ -132,19 +119,17 @@ export default function ConnectedProject() {
           {/* Mobile vertical diagram */}
           <div className="relative mx-auto mt-12 max-w-sm lg:hidden">
             <div className="flex flex-col items-center">
-              <div className="flex w-full flex-col items-center rounded-3xl border border-[#FE5D02]/50 bg-gradient-to-b from-[#0E2747] to-[#0B1F3A] px-6 py-5 text-center">
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#FF8A3D]">
-                  Project record
-                </p>
-                <p className="mt-2 text-lg font-semibold text-white">Commercial Tower</p>
+              <div className="flex w-full flex-col items-center rounded-xl bg-brand-navy px-6 py-5 text-center">
+                <p className="text-[12px] text-white/55">Project record</p>
+                <p className="mt-1 text-[18px] font-medium text-white">Commercial Tower</p>
               </div>
-              <div className="my-2 h-6 w-px bg-white/20" aria-hidden />
+              <div className="my-2 h-6 w-px bg-[#C9D2DF]" aria-hidden />
               <div className="flex w-full flex-col gap-3">
                 {nodes.map((n) => (
                   <div key={n.key} className="flex flex-col items-center">
                     <NodeCard node={n} />
                     {n.key !== "daily" ? (
-                      <div className="my-2 h-4 w-px bg-white/20" aria-hidden />
+                      <div className="my-2 h-4 w-px bg-[#C9D2DF]" aria-hidden />
                     ) : null}
                   </div>
                 ))}
@@ -152,7 +137,6 @@ export default function ConnectedProject() {
             </div>
           </div>
         </motion.div>
-      </div>
-    </section>
+    </Section>
   );
 }

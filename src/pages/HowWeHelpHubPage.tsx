@@ -16,7 +16,7 @@ export default function HowWeHelpHubPage() {
   });
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-[#102B57]">
+    <div className="min-h-screen overflow-x-clip bg-white text-[#102B57]">
       <Navbar />
       <main>
         <HubHero />

@@ -13,22 +13,22 @@ export default function HowWeHelpPageShell({
   breadcrumbs?: Crumb[];
 }) {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+    <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
       <div>
         {breadcrumbs && breadcrumbs.length > 0 ? (
-          <div className="border-b border-gray-100 bg-white">
-            <div className="mx-auto max-w-[1200px] px-5 pb-3 pt-[112px]">
-              <nav className="flex flex-wrap items-center gap-x-2 text-sm font-semibold text-[#6B778C]" aria-label="Breadcrumb">
+          <div className="bg-white">
+            <div className="mx-auto max-w-[1200px] px-5 pt-[124px] sm:px-8 lg:border-x lg:border-[#E8ECF2] lg:px-14">
+              <nav className="flex flex-wrap items-center gap-x-2 text-[13px] text-[#8C97AB]" aria-label="Breadcrumb">
                 {breadcrumbs.map((c, i) => (
                   <span key={`${c.label}-${i}`} className="flex items-center gap-2">
-                    {i > 0 ? <span className="text-[#97A0AF]">/</span> : null}
+                    {i > 0 ? <span className="text-[#C9D2DF]">/</span> : null}
                     {c.href ? (
-                      <a href={c.href} className="transition-colors hover:text-[#0052CC]">
+                      <a href={c.href} className="transition-colors hover:text-brand-navy">
                         {c.label}
                       </a>
                     ) : (
-                      <span className="text-[#42526E]">{c.label}</span>
+                      <span className="text-brand-navy">{c.label}</span>
                     )}
                   </span>
                 ))}

@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, BookOpen, ChevronDown, Sparkles } from "lucide-react";
+import { BookOpen, ChevronDown } from "lucide-react";
+import { framePad, Muted, Section } from "@/components/design-system/primitives";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -66,155 +67,76 @@ export default function BlogIndexPage() {
       "Product updates and construction ops writing from ZedOps - permissions, field workflows, AI guardrails, and rollout tips.",
   });
 
+  const Card = ({ post, big = false }: { post: BlogPost; big?: boolean }) => (
+    <Link href={`/blog/${post.slug}`} className="group flex h-full flex-col bg-white p-5 transition-colors hover:bg-[#FAFBFC] sm:p-7">
+      <div className={`relative overflow-hidden rounded-lg bg-[#EEF1F5] ${big ? "aspect-[16/9]" : "aspect-[16/10]"}`}>
+        <PostCoverMedia post={post} className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" />
+      </div>
+      <p className="mt-5 text-[13px] text-[#8C97AB]">{formatReadLabel(post)}</p>
+      <h2 className={`mt-2 font-medium tracking-[-0.025em] text-brand-navy [text-wrap:balance] ${big ? "text-[26px] leading-[1.2] sm:text-[30px]" : "text-[18px] leading-snug"}`}>
+        {post.title}
+      </h2>
+      <div className="mt-auto pt-5">
+        <AuthorDateRow author={post.author} date={post.date} />
+      </div>
+    </Link>
+  );
+
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+    <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
-      <div>
+      <main id="main">
         <PageHero
-          pill="Resources"
+          pill="Blog"
           PillIcon={BookOpen}
-          title="Blog"
-          subtitle="Rollout notes, permissions, field workflows, and how we build AI for construction - updated alongside the product, in plain language."
-        >
-          <div className="mx-auto mt-2 max-w-xl">
-            <div className="rounded-xl border border-brand-navy/12 bg-white/75 px-5 py-4 text-center backdrop-blur-sm">
-              <p className="text-sm leading-snug text-[#42526E]">
-                Want the product before these articles describe it?{" "}
-                <a
-                  href="/early-access"
-                  className="inline-flex items-center gap-1 font-bold text-brand-navy underline decoration-[#0052CC]/30 underline-offset-4 transition-colors hover:text-brand-orange"
-                >
-                  Join early access
-                  <ArrowRight size={14} className="shrink-0" aria-hidden />
-                </a>
-              </p>
-            </div>
-          </div>
-        </PageHero>
+          title={<>Notes from the field. <Muted>And from the product.</Muted></>}
+          subtitle="Rollout guides, field workflows and how we build Zed AI, in plain language."
+        />
 
-        <main className="mx-auto max-w-7xl min-w-0 border-t border-gray-200 bg-white px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          {posts.length === 0 ? (
+        {posts.length === 0 ? (
+          <Section label="Posts">
             <p className="py-24 text-center text-[#6B778C]">No posts yet.</p>
-          ) : (
-            <>
-              <p className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-[#97A0AF]">Featured</p>
+          </Section>
+        ) : (
+          <>
+            <Section tone="mist" label="Featured posts">
+              <div className="grid gap-px bg-[#E3E8F0] lg:grid-cols-[1.6fr_1fr]">
+                {spotlight ? <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}><Card post={spotlight} big /></motion.div> : null}
+                {sideFeatured ? <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.06 }}><Card post={sideFeatured} /></motion.div> : null}
+              </div>
+            </Section>
 
-              {spotlight ? (
-                <div className="mb-16 grid gap-8 lg:grid-cols-[1.65fr_1fr] lg:items-start lg:gap-10">
-                  <motion.article
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45 }}
-                  >
-                    <Link href={`/blog/${spotlight.slug}`} className="group block">
-                      <div className="flex flex-col">
-                        <div className="relative aspect-[16/9] overflow-hidden rounded-xl lg:aspect-[21/10]">
-                          <PostCoverMedia
-                            post={spotlight}
-                            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                          />
-                          <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-rose-100 px-3 py-1.5 text-xs font-bold text-rose-700">
-                            <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                            Spotlight
-                          </div>
-                        </div>
-                        <div className="pt-6 sm:pt-8">
-                          <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
-                            {formatReadLabel(spotlight)}
-                          </p>
-                          <h2 className="mt-3 text-2xl font-semibold leading-snug tracking-tight text-brand-navy transition-colors group-hover:text-brand-navy sm:text-[1.75rem] lg:text-3xl lg:leading-tight">
-                            {spotlight.title}
-                          </h2>
-                          <AuthorDateRow author={spotlight.author} date={spotlight.date} />
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.article>
-
-                  {sideFeatured ? (
-                    <motion.article
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.45, delay: 0.08 }}
-                      className="lg:pt-1"
-                    >
-                      <Link href={`/blog/${sideFeatured.slug}`} className="group block h-full">
-                        <div className="flex h-full flex-col">
-                          <div className="relative aspect-[4/3] shrink-0 overflow-hidden rounded-xl sm:aspect-[16/11] lg:aspect-[4/3]">
-                            <PostCoverMedia
-                              post={sideFeatured}
-                              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                            />
-                          </div>
-                          <div className="flex flex-1 flex-col pt-6 sm:pt-7">
-                            <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
-                              {formatReadLabel(sideFeatured)}
-                            </p>
-                            <h2 className="mt-3 text-lg font-semibold leading-snug text-brand-navy transition-colors group-hover:text-brand-navy lg:text-xl">
-                              {sideFeatured.title}
-                            </h2>
-                            <AuthorDateRow author={sideFeatured.author} date={sideFeatured.date} />
-                          </div>
-                        </div>
-                      </Link>
-                    </motion.article>
-                  ) : null}
+            {gridPosts.length > 0 ? (
+              <Section labelledBy="blog-latest">
+                <div className={`pt-16 pb-10 lg:pt-20 ${framePad}`}>
+                  <h2 id="blog-latest" className="text-[26px] font-medium tracking-[-0.03em] text-brand-navy sm:text-[32px]">Latest</h2>
                 </div>
-              ) : null}
-
-              {gridPosts.length > 0 ? (
-                <section aria-label="More articles">
-                  <p className="mb-8 text-xs font-bold uppercase tracking-[0.18em] text-[#97A0AF]">Latest</p>
-                  <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    {visibleGrid.map((post, i) => (
-                      <motion.article
-                        key={post.slug}
-                        {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: Math.min(i * 0.06, 0.18) })}
-                      >
-                        <Link href={`/blog/${post.slug}`} className="group flex h-full flex-col">
-                          <div className="flex h-full flex-col">
-                            <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
-                              <PostCoverMedia
-                                post={post}
-                                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                              />
-                            </div>
-                            <div className="flex flex-1 flex-col pt-6">
-                              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#97A0AF]">
-                                {formatReadLabel(post)}
-                              </p>
-                              <h2 className="mt-3 text-lg font-semibold leading-snug text-brand-navy transition-colors group-hover:text-brand-navy">
-                                {post.title}
-                              </h2>
-                              <AuthorDateRow author={post.author} date={post.date} />
-                            </div>
-                          </div>
-                        </Link>
-                      </motion.article>
-                    ))}
+                <div className="grid gap-px border-t border-[#E8ECF2] bg-[#E8ECF2] sm:grid-cols-2 lg:grid-cols-3">
+                  {visibleGrid.map((post, i) => (
+                    <motion.div key={post.slug} {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: Math.min(i * 0.05, 0.15) })}>
+                      <Card post={post} />
+                    </motion.div>
+                  ))}
+                </div>
+                {hasMoreGrid ? (
+                  <div className="flex justify-center border-t border-[#E8ECF2] py-8">
+                    <button
+                      type="button"
+                      onClick={() => setGridVisible((n) => n + 3)}
+                      className="inline-flex h-10 items-center gap-2 rounded-lg border border-[#C9D2DF] bg-white px-4 text-[15px] font-medium text-brand-navy transition-colors hover:border-brand-navy"
+                    >
+                      Show more <ChevronDown size={16} aria-hidden />
+                    </button>
                   </div>
-
-                  {hasMoreGrid ? (
-                    <div className="mt-14 flex justify-center">
-                      <button
-                        type="button"
-                        onClick={() => setGridVisible((n) => n + 3)}
-                        className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3 text-sm font-bold text-brand-navy transition-colors hover:border-brand-navy/25 hover:bg-gray-50"
-                      >
-                        View More
-                        <ChevronDown className="h-4 w-4" aria-hidden />
-                      </button>
-                    </div>
-                  ) : null}
-                </section>
-              ) : null}
-            </>
-          )}
-        </main>
+                ) : null}
+              </Section>
+            ) : null}
+          </>
+        )}
 
         <FinalCTA />
-        <Footer />
-      </div>
+      </main>
+      <Footer />
     </div>
   );
 }

@@ -6,9 +6,9 @@ import {
   HardHat,
   PieChart,
   ShieldCheck,
-  ArrowRight,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { framePad, Highlight, Section, SplitHeader } from "@/components/design-system/primitives";
 
 type Metric = {
   label: string;
@@ -94,18 +94,18 @@ function useCountUp(target: number, decimals = 0, duration = 0.8) {
 function Stat({ m }: { m: Metric }) {
   const display = useCountUp(m.value, m.decimals ?? 0);
   return (
-    <div className="rounded-xl border border-[#E3E8F0] bg-white p-5">
-      <p className="text-[12px] font-semibold uppercase tracking-wide text-[#97A0AF]">
+    <div className="bg-white p-6">
+      <p className="text-[13px] text-[#8C97AB]">
         {m.label}
       </p>
-      <p className="mt-2 text-2xl font-semibold text-brand-navy">
+      <p className="mt-2 text-[32px] font-medium leading-none tracking-[-0.03em] text-brand-navy tabular-nums">
         {m.prefix}
         {display}
         {m.suffix}
       </p>
-      <p className="mt-0.5 text-[12px] text-[#6B778C]">{m.sub}</p>
+      <p className="mt-2 text-[13px] text-[#6B778C]">{m.sub}</p>
       {typeof m.progress === "number" ? (
-        <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-[#E3E8F0]">
+        <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-[#EEF1F5]">
           <motion.div
             className="h-full rounded-full bg-[#FE5D02]"
             initial={{ width: 0 }}
@@ -124,17 +124,17 @@ export default function PerspectiveSelector() {
   const current = perspectives[active];
 
   return (
-    <section className="bg-[#F8F9FD] px-4 py-12 lg:py-16">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto mb-8 max-w-2xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-brand-navy sm:text-4xl">
-            One record. Different perspectives.
-          </h2>
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
+    <Section labelledBy="hub-perspectives">
+      <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
+        <SplitHeader
+          id="hub-perspectives"
+          title={<>One record. <Highlight>Different perspectives.</Highlight></>}
+          body="The same job, seen the way each team needs to see it. Figures below are illustrative."
+        />
+      </div>
+        <div className="grid border-t border-[#E8ECF2] lg:grid-cols-[280px_1fr]">
           {/* Team selector */}
-          <div className="flex gap-2 overflow-x-auto pb-1 lg:sticky lg:top-24 lg:flex-col lg:overflow-visible lg:pb-0">
+          <div className="flex gap-2 overflow-x-auto px-5 py-5 lg:flex-col lg:gap-0 lg:overflow-visible lg:px-10 lg:py-10">
             {perspectives.map((p, i) => {
               const Icon = p.Icon;
               const isActive = i === active;
@@ -143,25 +143,23 @@ export default function PerspectiveSelector() {
                   key={p.key}
                   type="button"
                   onClick={() => setActive(i)}
-                  className={`flex w-full shrink-0 items-center gap-3 rounded-xl border px-4 py-3 text-left transition-all duration-200 ${
-                    isActive
-                      ? "border-[#102B57] bg-brand-navy text-white shadow-[0_10px_24px_-12px_rgba(16,43,87,0.5)]"
-                      : "border-[#E3E8F0] bg-white text-[#42526E] hover:border-[#102B57]/30"
+                  className={`relative flex shrink-0 items-center gap-3 rounded-md px-3 py-2.5 text-left transition-colors lg:w-full ${
+                    isActive ? "bg-[#F7F8FA] text-brand-navy" : "text-[#8C97AB] hover:text-brand-navy"
                   }`}
                 >
                   <Icon
                     size={18}
-                    className={isActive ? "text-[#FF8A3D]" : "text-[#97A0AF]"}
+                    className={isActive ? "text-brand-orange" : "text-[#C9D2DF]"}
                     aria-hidden
                   />
-                  <span className="whitespace-nowrap text-sm font-bold">{p.label}</span>
+                  <span className="whitespace-nowrap text-[15px] font-medium">{p.label}</span>
                 </button>
               );
             })}
           </div>
 
           {/* View panel */}
-          <div className="rounded-xl border border-[#E3E8F0] bg-[#F8F9FD] p-6 sm:p-8">
+          <div className="border-t border-[#E8ECF2] bg-[#F7F8FA] p-5 sm:p-8 lg:border-t-0 lg:border-l lg:p-10">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.key}
@@ -170,21 +168,11 @@ export default function PerspectiveSelector() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25 }}
               >
-                <div className="mb-6 flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#EEF4FF]">
-                    <current.Icon size={19} className="text-brand-navy" aria-hidden />
-                  </span>
-                  <div>
-                    <p className="text-sm font-semibold text-brand-navy">
-                      {current.label} view
-                    </p>
-                    <p className="text-[12px] text-[#6B778C]">
-                      Same project record, scoped to this team
-                    </p>
-                  </div>
-                </div>
+                <p className="mb-5 text-[15px] font-medium text-brand-navy">
+                  {current.label} view <span className="font-normal text-[#8C97AB]">· same record, scoped to this team</span>
+                </p>
 
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-px overflow-hidden rounded-lg border border-[#E3E8F0] bg-[#E3E8F0] sm:grid-cols-2">
                   {current.metrics.map((m) => (
                     <Stat key={m.label} m={m} />
                   ))}
@@ -192,13 +180,8 @@ export default function PerspectiveSelector() {
               </motion.div>
             </AnimatePresence>
 
-            <p className="mt-6 flex items-center gap-1.5 text-[13px] font-semibold text-[#97A0AF]">
-              Every number above is read live from the shared project record.
-              <ArrowRight size={14} aria-hidden />
-            </p>
           </div>
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }
