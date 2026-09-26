@@ -34,12 +34,20 @@ RUN npm run build
 # Fail the build rather than shipping an image with no site in it.
 RUN test -f dist/public/index.html || (echo "dist/public/index.html missing" && exit 1)
 
-# If a measurement ID was supplied, prove the tag reached the output. This turns
-# a silent "deployed with no analytics" into a failed build.
+# If a measurement ID was supplied, prove the plumbing reached the output. This
+# turns a silent "deployed with no analytics" into a failed build.
+#
+# Two things are checked, because the loader no longer lives in the HTML:
+#   1. index.html carries the measurement ID in a <meta> tag, so the ID is
+#      available at runtime and is not baked into the JavaScript bundle.
+#   2. the gtag.js URL is in the built JS, so the loader itself shipped. Checking
+#      only the meta tag would pass even if analytics.ts failed to compile in.
 RUN if [ -n "$VITE_GA_ID" ]; then \
-      grep -q "googletagmanager" dist/public/index.html \
-        || (echo "VITE_GA_ID was set but no analytics tag is in dist/public/index.html" && exit 1); \
-      echo "analytics tag present for $VITE_GA_ID"; \
+      grep -q "ga-measurement-id" dist/public/index.html \
+        || (echo "VITE_GA_ID was set but no ga-measurement-id meta tag is in dist/public/index.html" && exit 1); \
+      grep -rq "googletagmanager" dist/public/assets \
+        || (echo "VITE_GA_ID was set but the gtag loader is missing from the JS bundle" && exit 1); \
+      echo "analytics plumbing present for $VITE_GA_ID (loads only after consent)"; \
     else \
       echo "no VITE_GA_ID set - building without analytics (expected for local builds)"; \
     fi

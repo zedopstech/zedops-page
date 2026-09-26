@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
+import { COOKIE_SETTINGS_EVENT } from "@/lib/consent";
 
-const footerLinks: Record<string, { label: string; href: string }[]> = {
+const footerLinks: Record<string, { label: string; href: string | null }[]> = {
   Product: [
     { label: "Estimation", href: "/platform/module/estimation" },
     {
@@ -24,7 +25,10 @@ const footerLinks: Record<string, { label: string; href: string }[]> = {
   Legal: [
     { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
-    { label: "Cookie Policy", href: "#" },
+    // Not a page: this reopens the consent banner so a visitor can change a
+    // choice they already made. `href: null` is what the renderer keys off to
+    // emit a <button> instead of an <a>.
+    { label: "Cookie Settings", href: null },
   ],
 };
 
@@ -69,12 +73,22 @@ export default function Footer() {
                 <ul className="space-y-3.5">
                   {links.map((link) => (
                     <li key={link.label}>
-                      <a
-                        href={link.href}
-                        className="text-[14px] text-[#5E6C84] transition-colors hover:text-brand-orange"
-                      >
-                        {link.label}
-                      </a>
+                      {link.href === null ? (
+                        <button
+                          type="button"
+                          onClick={() => window.dispatchEvent(new Event(COOKIE_SETTINGS_EVENT))}
+                          className="text-left text-[14px] text-[#5E6C84] transition-colors hover:text-brand-orange"
+                        >
+                          {link.label}
+                        </button>
+                      ) : (
+                        <a
+                          href={link.href}
+                          className="text-[14px] text-[#5E6C84] transition-colors hover:text-brand-orange"
+                        >
+                          {link.label}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

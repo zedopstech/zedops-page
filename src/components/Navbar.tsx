@@ -69,11 +69,15 @@ export default function Navbar() {
               alt=""
               className="h-7 w-7 rounded-md object-cover"
             />
-            <span className="text-[17px] font-extrabold tracking-tight text-brand-navy">
-              {/* brand-orange-ink: the wordmark's "Ops" is 17px bold on white,
-                  where #FE5D02 gives 3.09:1 against the 4.5:1 AA threshold.
-                  Visually near-identical to the brand orange. */}
-              Zed<span className="text-brand-orange-ink">Ops</span>
+            <span className="text-[19px] font-extrabold tracking-tight text-brand-navy">
+              {/* 19px extrabold, not 17px. WCAG treats text at 18.66px+ bold as
+                  "large", which only needs 3:1 - and the brand orange gives
+                  3.09:1 on white. At 17px it was 0.24px under the threshold and
+                  failed at 4.5:1. So the wordmark keeps the exact brand orange
+                  and still passes, instead of needing a second orange that read
+                  as brown beside the arrows and CTA blocks. The 2px change is
+                  not perceptible in a wordmark. */}
+              Zed<span className="text-brand-orange">Ops</span>
             </span>
           </a>
 

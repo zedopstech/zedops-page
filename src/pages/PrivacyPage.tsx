@@ -55,7 +55,13 @@ To exercise any of these rights, email privacy@zedops.com and we will respond wi
   },
   {
     title: "7. Cookies",
-    body: `We use essential cookies to operate the website and platform. We use analytics cookies (via privacy-respecting tooling) to understand how visitors use our site. You can disable non-essential cookies via your browser settings or our cookie banner.`,
+    body: `We use essential browser storage to operate the website and platform. We do not set advertising cookies and we do not build advertising profiles.
+
+Analytics: we use Google Analytics to understand which pages are read so we can improve them. Google Analytics stays switched off until you accept it in the cookie banner, and declining means nothing is sent to Google at all - not that data is sent and then discarded. When you do accept, we enable IP anonymisation, disable Google Signals, and redact advertising identifiers, so what Google receives is aggregate visit counts rather than a profile of you.
+
+Changing your mind: use "Cookie Settings" in the footer to reopen the banner at any time. You can also block or delete cookies through your browser settings. Your choice is kept in your browser's local storage rather than in a cookie, and is never transmitted to our servers.
+
+This notice previously referred to "our cookie banner" at a time when no banner existed. One does now.`,
   },
   {
     title: "8. Data retention",

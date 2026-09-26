@@ -1,8 +1,11 @@
-import { Suspense, lazy, useEffect, type ReactNode } from "react";
+import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MotionConfig, useReducedMotion } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
+import CookieConsent from "@/components/CookieConsent";
+import { readConsent, COOKIE_SETTINGS_EVENT } from "@/lib/consent";
+import { loadAnalytics, trackPageView } from "@/lib/analytics";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
 // import PricingPage from "@/pages/PricingPage";
@@ -121,6 +124,39 @@ function Router() {
   );
 }
 
+/**
+ * Loads analytics only when consent has already been granted, and reports
+ * client-side navigation to it.
+ *
+ * The route reporting is not optional. gtag sends one page_view for the document
+ * it loads in, so without this a visitor who reads six pages still registers as
+ * one. The first location is deliberately skipped because `gtag('config', ...)`
+ * already reports it - counting it again here would double the homepage.
+ *
+ * If consent is granted later, mid-session, `loadAnalytics` fires the config
+ * call for whatever page is on screen at that moment, and this component picks up
+ * from the next navigation. So the page a visitor accepts on is counted once, and
+ * not twice.
+ */
+function AnalyticsGate() {
+  const [location] = useLocation();
+  const isFirstLocation = useRef(true);
+
+  useEffect(() => {
+    if (readConsent() === "granted") loadAnalytics();
+  }, []);
+
+  useEffect(() => {
+    if (isFirstLocation.current) {
+      isFirstLocation.current = false;
+      return;
+    }
+    trackPageView(location);
+  }, [location]);
+
+  return null;
+}
+
 function AppMotion({ children }: { children: ReactNode }) {
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
@@ -139,6 +175,17 @@ function AppMotion({ children }: { children: ReactNode }) {
 }
 
 function App() {
+  // 0 means closed. The footer dispatches an event to bump this, which reopens
+  // the banner so a visitor can change a choice they already made - the thing
+  // the privacy policy promises when it refers to "our cookie banner".
+  const [cookieSettingsSignal, setCookieSettingsSignal] = useState(0);
+
+  useEffect(() => {
+    const open = () => setCookieSettingsSignal((n) => n + 1);
+    window.addEventListener(COOKIE_SETTINGS_EVENT, open);
+    return () => window.removeEventListener(COOKIE_SETTINGS_EVENT, open);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -146,6 +193,11 @@ function App() {
           <div className="min-h-screen overflow-x-clip">
             <WouterRouter base={routerBaseFromVite()}>
               <Router />
+              <AnalyticsGate />
+              <CookieConsent
+                openSignal={cookieSettingsSignal}
+                onDismiss={() => setCookieSettingsSignal(0)}
+              />
             </WouterRouter>
           </div>
         </AppMotion>

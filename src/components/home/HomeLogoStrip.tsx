@@ -3,7 +3,7 @@ import { PiBankFill, PiBuildingsFill, PiDatabaseFill, PiFactoryFill, PiGasPumpFi
 import type { IconType } from "react-icons";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
-import { HazardTape } from "@/components/design-system/primitives";
+import { HazardTape, Highlight } from "@/components/design-system/primitives";
 
 /** No client logos yet, so the proof strip marquees the real industry list. */
 const industries: { title: string; icon: IconType }[] = [
@@ -53,12 +53,11 @@ export default function LogoStripPreview() {
     >
       <motion.p {...scrollMotionProps(isMobile, { y: 20 })} className="mb-6 px-5 text-center text-[14px] font-medium text-brand-navy/80">
         One Platform. Every Industry.{" "}
-        {/* brand-orange-ink, not brand-orange: #FE5D02 on white is 3.1:1 and
-            fails WCAG AA (4.5:1) for text this size. #CB4A02 is the same hue,
-            darkened to 4.65:1. */}
-        <span className="text-brand-orange-ink">
-          Every Contractor. Every Project.
-        </span>
+        {/* Highlight, the system's own emphasis treatment, rather than colouring
+            the text orange. Orange on white is 3.1:1 and fails AA at 14px, and
+            darkening it introduced a second orange that read as brown. The
+            marker underline carries the emphasis and the text stays navy. */}
+        <Highlight>Every Contractor. Every Project.</Highlight>
       </motion.p>
       <motion.div {...scrollMotionProps(isMobile, { y: 24, delay: 0.08 })} className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]">
         <motion.div
