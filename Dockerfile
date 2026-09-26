@@ -13,16 +13,36 @@ RUN npm ci
 
 COPY . .
 
-# VITE_SITE_URL is a build arg so staging/preview images never advertise
-# production URLs in canonical tags, OG tags or the sitemap. Defaults to
-# production; override with --build-arg for other environments.
+# Build args so staging/preview images never advertise production URLs in
+# canonical tags, OG tags or the sitemap, and so the analytics tag can be added
+# or omitted per environment.
+#
+# BOTH args must be declared here. Passing --build-arg without a matching ARG
+# leaves the value outside the build environment entirely: the build still
+# succeeds, the vite plugin still sees an empty variable, and the site ships with
+# no tag. That is exactly what happened before this was fixed.
 ARG VITE_SITE_URL=https://zedops.com
 ENV VITE_SITE_URL=$VITE_SITE_URL
+
+# Google Analytics 4 measurement ID. Empty means "ship without a tag", which is
+# what local and preview builds want.
+ARG VITE_GA_ID=
+ENV VITE_GA_ID=$VITE_GA_ID
 
 RUN npm run build
 
 # Fail the build rather than shipping an image with no site in it.
 RUN test -f dist/public/index.html || (echo "dist/public/index.html missing" && exit 1)
+
+# If a measurement ID was supplied, prove the tag reached the output. This turns
+# a silent "deployed with no analytics" into a failed build.
+RUN if [ -n "$VITE_GA_ID" ]; then \
+      grep -q "googletagmanager" dist/public/index.html \
+        || (echo "VITE_GA_ID was set but no analytics tag is in dist/public/index.html" && exit 1); \
+      echo "analytics tag present for $VITE_GA_ID"; \
+    else \
+      echo "no VITE_GA_ID set - building without analytics (expected for local builds)"; \
+    fi
 
 # ── Stage 2: serve the static output ──────────────────────────────────────────
 # Caddy (89 MB) instead of node:alpine + `npm install -g serve` (~180 MB and a

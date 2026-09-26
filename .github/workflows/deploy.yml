@@ -43,6 +43,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # Notes on the build-args block below, since both cost a debugging cycle:
+      #  - No comments inside that block. Every line is passed to docker as an
+      #    argument, so a `#` comment line becomes literal `--build-arg #` pairs.
+      #  - The Dockerfile must declare a matching ARG for each value, otherwise it
+      #    never enters the build environment and the site ships without the tag
+      #    while the build still reports success.
+      #  - `vars` is preferred and `secrets` is the fallback, because GitHub keeps
+      #    the two stores separate and one is ignored by the other.
       - name: Build and push image
         uses: docker/build-push-action@v7
         with:
@@ -56,10 +64,6 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             VITE_SITE_URL=${{ vars.VITE_SITE_URL || 'https://zedops.com' }}
-            # Accepts either store. GitHub keeps Variables and Secrets separate,
-            # and one is silently ignored by the other - so accept both, otherwise
-            # a value saved as a secret would build a site with no analytics and
-            # still report success.
             VITE_GA_ID=${{ vars.VITE_GA_ID || secrets.VITE_GA_ID }}
 
       - name: Deploy to server over SSH
