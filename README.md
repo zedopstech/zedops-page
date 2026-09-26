@@ -23,10 +23,11 @@ npm run dev        # http://localhost:5173
 | Command | What it does |
 |---|---|
 | `npm run dev` | Dev server with HMR |
-| `npm run build` | Production build to `dist/public` (runs `sitemap` first) |
+| `npm run build` | Production build to `dist/public`: `sitemap` → vite → `prerender` → `hash-assets` |
 | `npm run serve` | Serve the production build locally |
 | `npm run sitemap` | Regenerate `public/sitemap.xml` from the route table |
 | `npm run typecheck` | `tsc --noEmit` (TypeScript is a devDependency; this gate was dead until 2026-09-26) |
+| `npm run hash-assets` | Fingerprint media in `dist/public` and rewrite references. Normally run for you by `build`. |
 
 ## How the build fits together
 
@@ -199,6 +200,63 @@ that `ci.yml` must pass before anything reaches `deploy.yml`.
 prerender step that quietly stops emitting files leaves a site that returns 200
 while serving the homepage's title and canonical URL on every route.
 
+## Asset caching
+
+Vite fingerprints its own output, but everything in `public/` is copied to the
+build root under the filename it had in source. Replacing an asset therefore kept
+its URL, and any CDN that already had that path kept serving the old bytes.
+
+That is not hypothetical. Swapping the hero video deployed correctly — the
+container had the new file — and Cloudflare served the old one for the rest of
+its 7-day TTL until it was purged by hand.
+
+`scripts/hash-assets.mjs` runs as the last build step and renames each media file
+to `name.<sha256-prefix><ext>`, then rewrites every reference. The URL changes
+exactly when the bytes change, so a stale copy is unreachable and `immutable` is
+safe.
+
+```
+/hero/hero-reel.67350de94d.mp4
+/photos/at-office.86bf827856.png
+```
+
+**What is not hashed, on purpose:** `/assets/*` (the bundler already fingerprints
+it) and the root-level brand and SEO files — `og-image.png`, `logo.png`, the
+favicons, `apple-touch-icon.png`. The Open Graph tags and the Organization
+JSON-LD reference those by absolute URL, and schema.org wants a stable identity
+for the logo; a content-addressed URL there would change the declared identity
+every time the logo did. They change about once a year, so there is nothing to
+gain.
+
+**Two traps this had to avoid.** Media directories and prerendered route
+directories live in the same tree — `/platform/material-management.png` sits
+beside `/platform/module/core/index.html` — so the script filters by extension
+*and* allowlists media directories, and a route's `index.html` is never a
+candidate. And references are rewritten as exact full paths, never directory
+prefixes: replacing the string `/platform/` would silently corrupt all twelve
+module URLs in `sitemap.xml`, which match a naive search but are page URLs.
+
+If any pre-hash reference survives anywhere in `dist`, the build **fails**. A
+missing image is a 404 that no build log would ever show.
+
+### Cache policy in `deploy/Caddyfile`
+
+| what | policy | why |
+|---|---|---|
+| `/assets/*` and hashed media | `max-age=31536000, immutable` | addressed by content; bytes cannot change under the name |
+| root brand/SEO files | `max-age=604800` | stable URLs by design, so they must revalidate |
+| route HTML, `robots.txt`, `sitemap.xml`, `llms.txt` | `no-cache` | a deploy replaces these in place |
+
+The three matchers are mutually exclusive by construction rather than by
+relying on Caddy applying same-directive `header` rules in a given order — an
+earlier version of this file did depend on that and lost. The content-addressed
+matcher is a single top-level `path_regexp`; a bare `path_regexp` inside a
+`@name { }` block silently matched nothing, which left every hashed file
+uncached. Verified by running the config against a real build and reading the
+headers back, including the pair that matters most:
+`/platform/material-management.<hash>.png` → `immutable`, while
+`/platform/module/core` → `no-cache`.
+
 ## Known dead code
 
 `src/components/*Landing.tsx` contains two generations of page. The live set is
@@ -225,15 +283,15 @@ worth salvaging first.
       the route table so there is one source.
 - [ ] Remaining images: add `width`/`height` and `loading="lazy"` sitewide. Done
       for the industries section, not everywhere.
-- [ ] Hash every asset filename, so replacing an image at a stable path is not
-      masked by Cloudflare's cache for up to 7 days.
 - [ ] Consolidate `react-icons` into `lucide-react`.
 - [ ] Decide what to do with the unreachable `*Landing.tsx` generation (see
       Known dead code). Check for copy worth keeping before deleting.
-- [ ] Cloudflare is caching nothing: responses carry `cache-control: no-cache`
-      and `cf-cache-status: DYNAMIC`, so every visitor and every crawler hits
-      the origin. The immutable `/assets/*` paths are content-hashed and safe to
-      cache; the HTML is not, and is the thing worth revisiting.
+- [x] Hash every asset filename, so replacing an image at a stable path is not
+      masked by Cloudflare's cache. Done — see Asset caching.
+- [ ] Cloudflare still caches no HTML: route responses are `no-cache` and
+      `cf-cache-status: DYNAMIC`, so every crawler hit reaches the origin. The
+      static assets are now immutable and cached for a year, so the remaining
+      question is only about the HTML shell.
 - [ ] Branch protection on `main` is set to require the `Type check and build`
       check. Worth also deciding whether direct pushes to `main` stay allowed for
       solo work, or whether everything goes through a PR.

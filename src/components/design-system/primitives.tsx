@@ -123,10 +123,13 @@ export function Eyebrow({
       }`}
     >
       {tag ? (
-        // Navy label on the brand orange, not white on it. White on #FE5D02 is
-        // 3.1:1 and fails AA at this size; navy on the same orange is 4.55:1, so
-        // the chip keeps the exact brand fill instead of darkening to a brown.
-        <span className="rounded-[4px] bg-brand-orange px-2 py-1 text-[11px] font-bold uppercase leading-none tracking-[0.08em] text-brand-navy">
+        // White on the brand orange, per the design decision. This is a
+        // deliberate WCAG AA exception: white on #FE5D02 is 3.1:1 and needs
+        // 4.5:1 at this size. The alternative that passed - a navy label, or a
+        // darkened orange that read as brown - was rejected, so the orange stays
+        // exactly on-brand and the chip stays consistent with every other
+        // orange-on-white element in the system.
+        <span className="rounded-[4px] bg-brand-orange px-2 py-1 text-[11px] font-bold uppercase leading-none tracking-[0.08em] text-white">
           {tag}
         </span>
       ) : null}
