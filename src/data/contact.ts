@@ -17,6 +17,6 @@ export const contact = {
   email: "hello@zedops.com",
   salesEmail: "sales@zedops.com",
   securityEmail: "security@zedops.com",
-  phone: "+971 4 000 0000",
+  phone: "+91 97878 82297",
   hours: "Monday to Friday, 9:00 to 18:00 GST",
 };

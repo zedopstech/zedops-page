@@ -114,7 +114,7 @@ export default function ContactPage() {
                       <input name="company" value={form.company} onChange={onChange} placeholder="Company name" className={field} autoComplete="organization" />
                     </label>
                     <label className="text-[13px] text-[#5E6C84]">Phone <span className="text-[#A5AEBF]">(optional)</span>
-                      <input name="phone" type="tel" value={form.phone} onChange={onChange} placeholder="+971 50 000 0000" className={field} autoComplete="tel" />
+                      <input name="phone" type="tel" value={form.phone} onChange={onChange} placeholder="+91 97878 82297" className={field} autoComplete="tel" />
                     </label>
                     <label className="text-[13px] text-[#5E6C84] sm:col-span-2">Topic
                       <select name="topic" required value={form.topic} onChange={onChange} className={field}>
