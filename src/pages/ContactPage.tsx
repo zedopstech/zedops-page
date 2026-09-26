@@ -1,6 +1,7 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Clock, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
+import { FormError, Honeypot, SubmitButton, useLeadForm } from "@/components/forms/useLeadForm";
 import { useSEO } from "@/hooks/useSEO";
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
@@ -20,7 +21,7 @@ export default function ContactPage() {
     description: "Talk to the ZedOps team about a demo, pricing, security or partnerships. We reply within one business day.",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const lead = useLeadForm("contact");
   const [form, setForm] = useState({ name: "", email: "", company: "", phone: "", topic: "", message: "" });
 
   useEffect(() => {
@@ -32,7 +33,14 @@ export default function ContactPage() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    void lead.submit({
+      name: form.name,
+      email: form.email,
+      company: form.company,
+      phone: form.phone,
+      topic: form.topic,
+      message: form.message,
+    });
   };
 
   const ways = [
@@ -91,7 +99,7 @@ export default function ContactPage() {
             </div>
 
             <div className="border-t border-[#E3E8F0] bg-white px-5 py-12 sm:px-8 lg:border-t-0 lg:border-l lg:px-14 lg:py-16">
-              {submitted ? (
+              {lead.sent ? (
                 <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex min-h-[420px] flex-col items-start justify-center">
                   <CheckCircle2 size={36} className="text-[#1D9A5B]" aria-hidden />
                   <h2 className="mt-5 text-[28px] font-medium tracking-[-0.03em] text-brand-navy">Message received.</h2>
@@ -101,7 +109,8 @@ export default function ContactPage() {
                   </a>
                 </motion.div>
               ) : (
-                <form onSubmit={onSubmit} aria-labelledby="contact-form-title">
+                <form onSubmit={onSubmit} aria-labelledby="contact-form-title" className="relative">
+                  <Honeypot inputRef={lead.honeypot} />
                   <h2 id="contact-form-title" className="text-[22px] font-medium tracking-[-0.025em] text-brand-navy">Send us a message</h2>
                   <div className="mt-6 grid gap-5 sm:grid-cols-2">
                     <label className="text-[13px] text-[#5E6C84]">Full name
@@ -126,9 +135,8 @@ export default function ContactPage() {
                       <textarea name="message" required value={form.message} onChange={onChange} rows={5} placeholder="Tell us about your projects and what you’d like to see." className={`${field} h-auto py-3`} />
                     </label>
                   </div>
-                  <button type="submit" className="mt-6 inline-flex h-11 items-center gap-2 rounded-lg bg-brand-navy px-5 text-[15px] font-medium text-white transition-colors hover:bg-[#1E3760]">
-                    Send message <ArrowRight size={16} aria-hidden />
-                  </button>
+                  <FormError message={lead.error} />
+                  <SubmitButton sending={lead.sending}>Send message</SubmitButton>
                   <p className="mt-4 text-[13px] text-[#8C97AB]">
                     We use your details only to reply. See our <a href="/privacy" className="underline underline-offset-2 hover:text-brand-navy">privacy policy</a>.
                   </p>

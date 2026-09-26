@@ -1,6 +1,7 @@
-import { useState, type FormEvent } from "react";
+import { type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Map } from "lucide-react";
+import { CheckCircle2, Map } from "lucide-react";
+import { FormError, Honeypot, SubmitButton, useLeadForm } from "@/components/forms/useLeadForm";
 import { useSEO } from "@/hooks/useSEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
@@ -66,7 +67,7 @@ const field =
 
 export default function RoadmapPage() {
   const isMobile = useIsMobile();
-  const [sent, setSent] = useState(false);
+  const lead = useLeadForm("roadmap");
   useSEO({
     title: "Product Roadmap  -  ZedOps",
     description: "What is live on ZedOps, what is in early access, and what is coming next. Updated as features ship.",
@@ -75,9 +76,11 @@ export default function RoadmapPage() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const body = `Role: ${data.get("role") ?? ""}\n\n${data.get("request") ?? ""}`;
-    window.location.href = `mailto:product@zedops.com?subject=${encodeURIComponent("Feature request")}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    void lead.submit({
+      email: String(data.get("email") ?? ""),
+      role: String(data.get("role") ?? ""),
+      message: String(data.get("request") ?? ""),
+    });
   };
 
   return (
@@ -123,8 +126,19 @@ export default function RoadmapPage() {
               </h2>
               <p className="mt-5 max-w-md text-[16px] leading-[1.6] text-[#5E6C84]">Most of this roadmap came from conversations with site and project teams. We read every request.</p>
             </div>
-            <form onSubmit={onSubmit} className="rounded-xl border border-[#E3E8F0] bg-white p-6 sm:p-8">
-              <label className="block text-[13px] text-[#5E6C84]">Your role
+            {lead.sent ? (
+              <div className="flex flex-col justify-center rounded-xl border border-[#E3E8F0] bg-white p-6 sm:p-8">
+                <CheckCircle2 size={32} className="text-[#1D9A5B]" aria-hidden />
+                <p className="mt-4 text-[22px] font-medium tracking-[-0.025em] text-brand-navy">Thanks, request received.</p>
+                <p className="mt-2 text-[15px] leading-[1.6] text-[#5E6C84]">We read every one, and we will reply if we have questions.</p>
+              </div>
+            ) : (
+            <form onSubmit={onSubmit} className="relative rounded-xl border border-[#E3E8F0] bg-white p-6 sm:p-8">
+              <Honeypot inputRef={lead.honeypot} />
+              <label className="block text-[13px] text-[#5E6C84]">Work email
+                <input name="email" type="email" required autoComplete="email" placeholder="you@company.com" className={`${field} h-11`} />
+              </label>
+              <label className="mt-5 block text-[13px] text-[#5E6C84]">Your role
                 <select name="role" className={`${field} h-11`} defaultValue="">
                   <option value="">Select your role</option>
                   <option>Project manager</option>
@@ -138,10 +152,10 @@ export default function RoadmapPage() {
               <label className="mt-5 block text-[13px] text-[#5E6C84]">What would help?
                 <textarea name="request" required rows={4} placeholder="Describe the feature and the problem it solves." className={`${field} py-3`} />
               </label>
-              <button type="submit" className="mt-6 inline-flex h-11 items-center gap-2 rounded-lg bg-brand-navy px-5 text-[15px] font-medium text-white transition-colors hover:bg-[#1E3760]">
-                {sent ? "Opening your email…" : "Send request"} <ArrowRight size={16} aria-hidden />
-              </button>
+              <FormError message={lead.error} />
+              <SubmitButton sending={lead.sending}>Send request</SubmitButton>
             </form>
+            )}
           </div>
         </Section>
       </main>

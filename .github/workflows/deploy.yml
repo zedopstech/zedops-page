@@ -65,6 +65,7 @@ jobs:
           build-args: |
             VITE_SITE_URL=${{ vars.VITE_SITE_URL || 'https://zedops.com' }}
             VITE_GA_ID=${{ vars.VITE_GA_ID || secrets.VITE_GA_ID }}
+            VITE_LEADS_API_URL=${{ vars.VITE_LEADS_API_URL }}
 
       - name: Deploy to server over SSH
         env:

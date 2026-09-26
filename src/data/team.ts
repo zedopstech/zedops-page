@@ -91,11 +91,11 @@ export const cofounders: Cofounder[] = [
 ];
 
 export const foundingTeam: TeamMember[] = [
-  { name: "Deva Praveen", role: "Senior Software Engineer", photo: "/team/member-1.jpg", bio: "Built ZedOps from the ground up. Every module runs on the foundations he laid.", base: "Madurai", linkedin: "https://www.linkedin.com/in/deva-praveen/" },
-  { name: "Anish Fathima", role: "Software Engineer", photo: "/team/member-2.jpg", bio: "Makes the money add up. Every budget line, PO and delivery traced back to where it started.", base: "Madurai", linkedin: "https://www.linkedin.com/in/anish-fathima-74139827b/" },
-  { name: "Raj Kumar", role: "Software Engineer", photo: "/team/member-3.jpg", bio: "Keeps the programme moving, from the Gantt chart in the office to the app in every site engineer’s pocket.", base: "Madurai", linkedin: "https://www.linkedin.com/in/rajkumar0304/" },
-  { name: "Nithya Shree", role: "Researcher & Software Engineer", photo: "/team/member-4.jpg", bio: "Studies how estimators really work, then turns drawings and rates into priced BOQs.", base: "Madurai", linkedin: "https://www.linkedin.com/in/shree0602/" },
-  { name: "Mohammed Arif", role: "Software Engineer", photo: "/team/member-5.jpg", bio: "Knows who is on site, where and on what, so crews get planned instead of guessed.", base: "Madurai", linkedin: "https://www.linkedin.com/in/mohammed-arif-in/" },
+  { name: "Deva Praveen", role: "Senior Software Engineer", photo: "/team/member-1.jpg", bio: "Believes every problem is one good refactor away from solved. Annoyingly, usually right.", base: "Madurai", linkedin: "https://www.linkedin.com/in/deva-praveen/" },
+  { name: "Anish Fathima", role: "Software Engineer", photo: "/team/member-2.jpg", bio: "Writes code that reads like plain English, and tests that catch bugs before they are born.", base: "Madurai", linkedin: "https://www.linkedin.com/in/anish-fathima-74139827b/" },
+  { name: "Raj Kumar", role: "Software Engineer", photo: "/team/member-3.jpg", bio: "Ships fast, breaks nothing, and takes a red build as a personal challenge.", base: "Madurai", linkedin: "https://www.linkedin.com/in/rajkumar0304/" },
+  { name: "Nithya Shree", role: "Researcher & Software Engineer", photo: "/team/member-4.jpg", bio: "Asks “why” five times before writing a single line. The code is always better for it.", base: "Madurai", linkedin: "https://www.linkedin.com/in/shree0602/" },
+  { name: "Mohammed Arif", role: "Software Engineer", photo: "/team/member-5.jpg", bio: "Turns a whiteboard sketch into a working feature before the meeting has ended.", base: "Madurai", linkedin: "https://www.linkedin.com/in/mohammed-arif-in/" },
 ];
 
 export type JourneyMoment = {
