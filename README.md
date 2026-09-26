@@ -157,6 +157,26 @@ Deploys are tagged by commit SHA, so a running image is traceable to a commit.
 | Images, video, fonts | `public, max-age=604800` |
 | HTML | `no-cache` (must revalidate so deploys are picked up) |
 
+## Verifying analytics is actually live
+
+The tag failing to appear is silent by nature: the build succeeds and the site
+deploys with no tag, and nothing reports an error. The build log now prints
+`google analytics: enabled (G-...)` or a DISABLED warning, so check the Actions log
+first. Then confirm on the deployed site:
+
+```bash
+curl -s https://zedops.com/ | grep -c G-YOURID   # expect > 0
+curl -s https://zedops.com/solutions | grep -c G-YOURID  # prerendered routes too
+```
+
+If the count is 0, the ID never reached the build. It is read from
+`vars.VITE_GA_ID || secrets.VITE_GA_ID`; GitHub keeps Variables and Secrets in
+separate stores and one is ignored by the other, so check the **name** matches
+exactly (`VITE_GA_ID`, no spaces) and that the value has no stray whitespace.
+
+Google's "tag wasn't detected" message can also appear for ~10 minutes after a
+deploy, because the check reads a cached copy of the page.
+
 ## Roadmap
 
 - [ ] Page titles and descriptions are declared in two places: the route table
