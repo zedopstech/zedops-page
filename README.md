@@ -26,7 +26,7 @@ npm run dev        # http://localhost:5173
 | `npm run build` | Production build to `dist/public` (runs `sitemap` first) |
 | `npm run serve` | Serve the production build locally |
 | `npm run sitemap` | Regenerate `public/sitemap.xml` from the route table |
-| `npm run typecheck` | `tsc --noEmit` |
+| `npm run typecheck` | `tsc --noEmit` (TypeScript is a devDependency; this gate was dead until 2026-09-26) |
 
 ## How the build fits together
 
@@ -177,6 +177,47 @@ exactly (`VITE_GA_ID`, no spaces) and that the value has no stray whitespace.
 Google's "tag wasn't detected" message can also appear for ~10 minutes after a
 deploy, because the check reads a cached copy of the page.
 
+## CI
+
+Two workflows, deliberately split by trust boundary.
+
+| Workflow | Trigger | Secrets | Does |
+|---|---|---|---|
+| `.github/workflows/ci.yml` | `pull_request` to main | none | typecheck, build, prerender assertions |
+| `.github/workflows/deploy.yml` | push to main, manual | SSH key, registry | Docker build, push to GHCR, deploy over SSH |
+
+The split is a security decision, not an organisational one. `deploy.yml` cannot
+use `pull_request` or `pull_request_target`: on a public repo,
+`pull_request_target` checks out a contributor's code while holding repository
+secrets, which is a remote-code-execution path. So `ci.yml` runs on
+`pull_request` and holds no secrets at all — it only invokes the toolchain, so
+there is nothing to leak and a fork can trigger it safely. `main` is protected so
+that `ci.yml` must pass before anything reaches `deploy.yml`.
+
+`ci.yml` also asserts the prerender step produced at least 30 route files and a
+`404.html`. That guards a failure mode this repo has already had once: a
+prerender step that quietly stops emitting files leaves a site that returns 200
+while serving the homepage's title and canonical URL on every route.
+
+## Known dead code
+
+`src/components/*Landing.tsx` contains two generations of page. The live set is
+`src/components/home/Home*.tsx` plus `ModuleLandingTemplate`; the older
+top-level `*Landing.tsx` files (`CoreLanding`, `MaterialManagementLanding`,
+`TasksResolutionLanding`, `WorkforceIntelligenceLanding`, `PunchListLanding`,
+`DailyIntelligenceLanding`, `BudgetCostControlLanding`, `QualitySafetyLanding`,
+`ModulePatternLanding`, `Hero`, `Platform`, `Testimonials`, `IndustriesHomeSection`)
+are not reachable from `main.tsx`.
+
+Roughly 600 KB across 43 component files. Most of the rest of the unreachable
+set is unused `shadcn/ui` primitives, which are fine to keep as a library — the
+`Landing` files are the ones worth deciding about. They are still type checked,
+which is how a missing colour tone in `MaterialManagementLanding` surfaced: a
+latent crash that never fired only because the component is never rendered.
+
+Deleting them is a separate piece of work, not a drive-by. Some contain copy
+worth salvaging first.
+
 ## Roadmap
 
 - [ ] Page titles and descriptions are declared in two places: the route table
@@ -187,5 +228,14 @@ deploy, because the check reads a cached copy of the page.
 - [ ] Hash every asset filename, so replacing an image at a stable path is not
       masked by Cloudflare's cache for up to 7 days.
 - [ ] Consolidate `react-icons` into `lucide-react`.
+- [ ] Decide what to do with the unreachable `*Landing.tsx` generation (see
+      Known dead code). Check for copy worth keeping before deleting.
+- [ ] Cloudflare is caching nothing: responses carry `cache-control: no-cache`
+      and `cf-cache-status: DYNAMIC`, so every visitor and every crawler hits
+      the origin. The immutable `/assets/*` paths are content-hashed and safe to
+      cache; the HTML is not, and is the thing worth revisiting.
+- [ ] Branch protection on `main` is set to require the `Type check and build`
+      check. Worth also deciding whether direct pushes to `main` stay allowed for
+      solo work, or whether everything goes through a PR.
 - [ ] Consider a non-root deploy user with restricted sudo, so a leaked CI key
       cannot reach root.
