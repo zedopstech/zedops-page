@@ -57,7 +57,7 @@ const MEDIA_EXT = new Set([
 /** Top-level directories under dist/public that hold media, not routes. */
 const MEDIA_DIRS = new Set([
   "backgrounds", "blog", "contractors", "hero", "industries",
-  "personas", "photos", "platform", "screenshots", "video",
+  "personas", "photos", "platform", "screenshots", "team", "video",
 ]);
 
 /** Never hashed, though some of these sit in a media dir. */

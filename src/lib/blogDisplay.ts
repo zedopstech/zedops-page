@@ -25,7 +25,7 @@ export function readingMinutes(post: BlogPost): number {
 }
 
 export function formatReadLabel(post: BlogPost): string {
-  return `${readingMinutes(post)} MIN READ`;
+  return `${readingMinutes(post)} min read`;
 }
 
 /** e.g. 6 Nov 2023 */

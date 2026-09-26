@@ -200,13 +200,31 @@
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://zedops.com/blog/daily-logs-that-people-actually-use</loc>
-    <lastmod>2026-04-05</lastmod>
+    <loc>https://zedops.com/blog/snagging-to-handover</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://zedops.com/blog/material-submittals-on-mep-jobs</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://zedops.com/blog/from-boq-to-budget</loc>
+    <lastmod>2026-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://zedops.com/blog/why-construction-ai-needs-permissions</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://zedops.com/blog/daily-logs-that-people-actually-use</loc>
     <lastmod>2026-04-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>

@@ -1,77 +1,71 @@
 ---
-title: Daily logs that people actually use
-description: Lightweight habits - photos, weather, trade, and a single source of truth - that hold up in claims and handover.
-date: 2026-04-03
-category: blog
-author: ZedOps Team
-image: https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=85&auto=format&fit=crop
+title: Daily logs that site teams actually fill in
+description: Most daily reports are written for the office and ignored by the site. Here is how to make them fast to file and useful months later.
+date: 2026-08-05
+category: Field
+author: ZedOps Field Team
+featured: false
 ---
 
-Daily logs die when they feel like **homework for the home office**. The ones that survive are fast on mobile, honest about rough conditions, and useful when something goes wrong six months later.
+Every contractor agrees daily logs matter. Most admit theirs are incomplete. Reports get written at the end of a long day, copied from yesterday, or skipped entirely when things get busy, which is exactly when they matter most.
 
-## Keep the field workflow boring
+The problem is rarely discipline. It is that the daily log was designed for the office, not for the person filling it in.
 
-- **One tap** to add photos with location context  
-- **Default the project** from where the user usually works  
-- **Trade + work front** in plain language - not accounting codes  
+## Why daily logs matter more than people think
 
-### Weather and delays
+A daily log is not paperwork. It is the only record of what actually happened on site, written on the day it happened. Months later, it is what you rely on when:
 
-A single line on **weather** (or “site open / restricted”) pays off when schedule disputes arise. You do not need a meteorologist - just enough that someone reading the log in December understands **why** Tuesday looked thin on headcount.
+- A client disputes a delay and you need to show what stopped work.
+- A variation claim needs evidence of extra manpower or rework.
+- A defect appears after handover and you need to know who installed it and when.
+- A new PM takes over the project and needs to understand its history.
 
-### Photos: quantity and naming
+If the log is missing or vague on those days, you are arguing from memory.
 
-Encourage **daylight exterior** shots on critical pours or envelope work - even phone camera is fine. Batch names should mean something in six months:
+## Make it take five minutes
 
-```text
-Tip: Name photo batches the way you would explain them to an arbitrator in one sentence.
-```
+The single biggest factor in whether logs get filled in is how long they take. If a site engineer needs twenty minutes at a desk, it will be done late, or not at all.
 
-Bad: `IMG_4491`.  
-Better: `North elevation waterproofing before backfill 14-Apr`.
+A good daily log takes five minutes on a phone:
 
-## Make office consumption passive
+1. **Manpower** by trade or subcontractor, pre-filled from yesterday so only changes need entering.
+2. **Work done** against the day's planned tasks, ticked off rather than typed.
+3. **Photos** taken during the day, already tagged with the time and location.
+4. **Issues** that stopped or slowed work, each with a short note.
+5. **Weather** and site conditions, when they matter.
 
-Roll-ups should answer:
+Everything else is optional. Every extra mandatory field is another reason to skip the report.
 
-1. What happened yesterday on critical path?  
-2. Any safety or quality notes that need a response?  
-3. Is documentation (RFI / submittal) catching up with field reality?  
+## Photos do most of the work
 
-### A 15-minute Friday ritual
+A photo with a timestamp and location is worth a paragraph of text. Encourage site teams to take photos throughout the day rather than at the end:
 
-Assign a rotating **“log reader”** in the office - not to police prose, but to flag:
+- Work in progress before it is covered up: services in ceilings, sleeves in slabs, pipework before insulation.
+- Obstructions and access problems, when they happen.
+- Deliveries on arrival, including damaged items.
 
-- Open **safety** or **QC** items without an owner  
-- Recurring trades **behind** their own stated plan  
-- Logs that are **empty** on high-activity days (often a process signal, not laziness)
+Photos taken in the moment are more honest and more useful than anything written up at 6 pm.
 
-## Handover and disputes
+## Link the log to everything else
 
-When logs are structured and timestamped, **handover packs and claims** cost less to assemble. The goal is not perfect prose - it is a defensible trail.
+A daily log on its own is a diary. A daily log connected to the rest of the project is evidence.
 
-### Link logs to the rest of the story
+When the log links to the programme, you can see which planned tasks moved and why. When it links to material requests, you can see that work stopped because a delivery was late. When it links to quality, a snag raised on Tuesday can be traced back to the work logged on Monday.
 
-Where your platform allows, tie log entries to **drawing revisions**, **RFI numbers**, or **inspection IDs**. Future you will not remember which pour matched which submittal closure.
+This is the difference between a log that is filed and forgotten, and one that answers questions.
 
-## Training supers without guilt trips
+## Make the log useful to the person who writes it
 
-- **Never** frame logs as “proving you worked.” Frame them as **protecting the crew and the job**.  
-- Show one **real claim** or handover example (anonymised) where logs shortened the fight.  
-- Remove **optional** fields until behaviour sticks - then add one field per month if needed.
+Site engineers fill in logs more reliably when they get something back. That can be:
 
-## What to measure
+- A **weekly summary** built from their own logs, ready for the progress meeting.
+- A quick view of **what is planned tomorrow** for their area.
+- **Open issues** they raised that are still waiting on someone else.
 
-Pick **one** metric for the first month:
+If the log only ever flows upwards to the office, it will always feel like homework.
 
-- **Completion rate**  -  % of workdays with at least one site submission on pilot projects.  
-- **Time to first photo** after site start - if it is hours, something in the workflow is wrong.  
-- **Office follow-ups** generated from logs - a healthy number means logs are **useful**, not ignored.
+## A simple rule for managers
 
-## Handover
+If you want better daily logs, read them and respond. When an engineer logs that work stopped because of a missing drawing, and someone in the office resolves it the same day, the next log will be written more carefully.
 
-When the job closes, logs should already live next to **O&M-bound** assets you care about: major pours, envelope details, MEP rough-in photos. If you wait until closeout week, you will miss half the evidence.
-
-Explore ZedOps **field and quality** areas on the [platform page](/platform) - and tell us what your supers would delete from a “required fields” list.
-
-For permissions tied to who can see which logs, see [Roles & permissions in practice](/blog/roles-and-permissions-guide).
+In ZedOps, daily logs are built for the phone, carry photos and link to tasks, materials and quality issues on the same project. See how it fits the rest of the job on the [daily logs module](/platform/module/daily-intelligence), or read about [handing over a project without the last-minute scramble](/blog/snagging-to-handover).

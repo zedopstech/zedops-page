@@ -1,72 +1,75 @@
 ---
-title: Roles & permissions in practice
-description: A practical read on scoping menus, data, exports, and the copilot so field and office stay aligned.
-date: 2026-03-22
-category: blog
-author: ZedOps Team
-image: https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=85&auto=format&fit=crop
+title: Setting up roles for your team, your subcontractors and your client
+description: Who should see cost, who should approve, and who should only see their own work. A practical guide to project roles.
+date: 2026-07-28
+category: Guides
+cover: access
+author: ZedOps Product Team
+featured: false
 ---
 
-Construction software fails when **permissions are an afterthought**. ZedOps treats roles as the spine of navigation, data access, exports - and **Zed AI**.
+On a construction project, different people need different parts of the truth. A site engineer needs the drawings and today's tasks. A subcontractor needs their own scope, not your margins. The client wants progress, not your internal variance report.
 
-## Principles
+Get roles wrong and one of two things happens. Either people see things they shouldn't, or they can't do their job and go back to email. Both are expensive. This guide covers how to set roles up so neither happens.
 
-1. **Least privilege**  -  site teams do not need finance unless their job requires it.  
-2. **Same model for humans and AI**  -  if a user cannot open a record, the copilot does not bypass that.  
-3. **Tenant isolation**  -  customer data stays in the right boundary by default.
+## Start from the job, not the org chart
 
-### Why “same for humans and AI” matters
+The mistake most teams make is copying their company hierarchy into the software. A senior manager gets access to everything, a junior engineer gets access to nothing, and nobody's access matches their work.
 
-Teams notice instantly if the assistant can **summarise a cost line** they cannot open in the UI. That erodes trust faster than a slow page load. A single permission model avoids “two truths” - one for people and one for automation.
+Instead, ask three questions for every person:
 
-## What roles control
+1. **Which projects are they on?** Access starts with the project, not the company.
+2. **What do they need to see?** Drawings, programme, cost, quality, documents.
+3. **What do they need to approve?** Material requests, POs, inspections, variations.
 
-- **Menus**  -  which modules appear in the shell.  
-- **Records**  -  projects, cost layers, and documents scoped by assignment or org rules.  
-- **Exports**  -  who can generate packs for owners or regulators.  
-- **Copilot**  -  which context sets the assistant is allowed to summarise or draft against.
+Two people with the same job title on different projects can, and often should, have different access.
 
-### Exports deserve their own conversation
+## The roles most contractors need
 
-Exports feel boring until **legal** or **the owner** asks who generated a pack containing sensitive numbers. Tie exports to roles early: who can batch, who needs approval, and whether watermarked previews are enough for external sharing.
+You can create as many roles as you like, but most MEP and fit-out contractors end up with a version of these:
 
-## Patterns we see in the field
+| Role | Sees | Approves |
+| --- | --- | --- |
+| Project manager | Everything on their projects, including cost | POs, variations, handover |
+| Site engineer | Drawings, tasks, logs, quality, materials | Daily logs, material requests from their area |
+| QS / cost lead | BOQ, budget, commitments, actuals | Valuations, cost transfers |
+| Procurement | Material requests, suppliers, POs, deliveries | POs within their limit |
+| Storekeeper | Deliveries, stock, issues to site | Goods received |
+| Subcontractor | Their own scope, tasks and snags | Their own daily reports |
+| Client / consultant | Progress, inspections, documents shared with them | Inspections and submittals |
 
-| Scenario | Conservative default | When to loosen |
-|----------|----------------------|----------------|
-| Sub foreman | Project-scoped logs and drawings only | Never give tenant-wide search by accident |
-| Owner rep (read-only) | Named projects + document library | Add correspondence when contract requires |
-| Estimating | No live job cost in pilot phase | Separate role when officially on the team |
+Treat this as a starting point. The important thing is that every role is written down and agreed before people are invited, not fixed afterwards.
 
-Document the **why** next to each pattern - future you (and auditors) will not remember the hallway decision from 2024.
+## Keep cost on a need-to-know basis
 
-## Auditing and breaks
+Cost is the most sensitive data on any project. Rates, margins and supplier prices should be visible to the people who manage them and no one else.
 
-- **Who changed this role?**  -  retention and attribution should be boringly answerable.  
-- **Temporary elevation**  -  if someone needs one-off access, use a **time-bound** grant where your process allows it, not a permanent “superuser for everyone.”  
-- **Offboarding**  -  deactivating a login is step one; step two is **reassigning ownership** of saved views, scheduled exports, and integrations.
+A good rule: **if someone doesn't make decisions about money, they don't see money.** Site engineers can raise a material request without seeing the unit rate. Subcontractors can update progress without seeing what you are paid for that progress.
 
-## Rollout tip
+This isn't about secrecy for its own sake. It lets you invite more people into the project record without worrying about what they might see.
 
-Pilot with **two roles only** (e.g. site vs office), then split finer once usage is real. Over-splitting on day one creates support load and shadow IT.
+## Subcontractors: inside the project, inside their scope
 
-### Signs you are ready to add a third role
+Many contractors keep subcontractors out of their systems entirely, then spend hours chasing them for updates by phone and WhatsApp.
 
-- Repeated **access requests** of the same shape (“I only need drawing X but I see the whole library”).  
-- **Accidental edits** by people who should be read-only.  
-- **Zed AI** answers that are usefully narrow for one group and frustratingly empty for another - often a hint to split context, not loosen everything.
+A better approach is to bring them in with a narrow role. They see their scope, their tasks and the snags assigned to them. They file their own daily reports and close their own snags with photos. They see nothing else.
 
-## How Zed AI uses the same wall
+You get the updates without the chasing, and they get a clear list of what is expected of them.
 
-When a user asks for a summary or a draft:
+## Clients and consultants: share, don't export
 
-- Context is built from **the same project and record scopes** as the UI.  
-- If data is out of scope, the product should **refuse clearly**, not guess from partial memory or unrelated folders.
+Weekly reports that are exported, formatted and emailed are out of date the moment they are sent. Instead, give the client or consultant a view-only role on the project with the information you have agreed to share: progress, inspection results and documents for review.
 
-That behaviour is what lets GCs sleep when pilots expand from one job to ten.
+They can check status whenever they want, and you stop spending Thursday afternoons building reports.
 
-## Related
+## Review access when the team changes
 
-- [How we help  -  roles](/how-we-help/role)  
-- [Platform & access](/platform/module/platform-access)  
-- [Why construction AI needs real permissions](/blog/why-construction-ai-needs-permissions)
+Projects change people constantly. Engineers move between jobs, subcontractors finish their scope, consultants change. Make access review part of your routine:
+
+- **When someone joins a project**, give them a role on that project, not a company-wide one.
+- **When a subcontractor finishes their scope**, remove their access or make it read-only.
+- **Once a month**, the PM checks who has access to the project and removes anyone who no longer needs it.
+
+## Roles and Zed AI
+
+Everything above applies to Zed AI too. It answers each person using only the data their role allows them to see. A site engineer asking about the budget gets told they don't have access, not a number. We wrote more about why in [Construction AI should only know what you know](/blog/why-construction-ai-needs-permissions).

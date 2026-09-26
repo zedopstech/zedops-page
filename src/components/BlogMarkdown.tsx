@@ -4,28 +4,25 @@ import remarkGfm from "remark-gfm";
 import { Link } from "wouter";
 import { extractMarkdownToc } from "@/lib/markdownToc";
 
-const proseArticle =
-  [
-    "prose prose-neutral prose-sm min-w-0 w-full max-w-3xl break-words text-[#253858]",
-    "prose-p:my-4 prose-p:leading-[1.65] prose-p:text-sm",
-    "prose-p:first-of-type:mt-0 prose-p:first-of-type:text-sm prose-p:first-of-type:font-medium prose-p:first-of-type:leading-[1.65] prose-p:first-of-type:text-brand-navy",
-    "prose-headings:scroll-mt-28 prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-brand-navy sm:prose-headings:scroll-mt-32",
-    "prose-h1:mb-6 prose-h1:mt-10 prose-h1:text-2xl prose-h1:sm:text-3xl",
-    "prose-h2:mt-10 prose-h2:mb-3 prose-h2:border-b prose-h2:border-gray-200/90 prose-h2:pb-2 prose-h2:text-lg sm:prose-h2:text-xl",
-    "prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-base sm:prose-h3:text-lg",
-    "prose-a:font-semibold prose-a:text-[#0052CC] prose-a:text-sm prose-a:break-words prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-2",
-    "prose-strong:font-bold prose-strong:text-brand-navy",
-    "prose-ul:my-5 prose-ol:my-5 prose-ul:pl-1 prose-ol:pl-1",
-    "prose-li:my-2 prose-li:leading-[1.65] prose-li:pl-1 prose-li:text-sm",
-    "prose-blockquote:my-6 prose-blockquote:border-l-4 prose-blockquote:border-brand-orange prose-blockquote:bg-[#F8FAFC] prose-blockquote:py-3 prose-blockquote:pl-4 prose-blockquote:pr-3 prose-blockquote:not-italic prose-blockquote:text-sm prose-blockquote:text-[#42526E] sm:prose-blockquote:pl-5",
-    "prose-hr:my-10 prose-hr:border-gray-200",
-    "prose-code:rounded-md prose-code:bg-[#F4F5F7] prose-code:px-1.5 prose-code:py-0.5 prose-code:font-medium prose-code:text-[0.8125rem] prose-code:text-brand-navy prose-code:break-words before:prose-code:content-none after:prose-code:content-none",
-    "prose-pre:my-6 prose-pre:max-w-full prose-pre:overflow-x-auto prose-pre:rounded-lg prose-pre:bg-brand-navy prose-pre:px-3 prose-pre:py-3 prose-pre:text-[0.75rem] prose-pre:leading-snug prose-pre:text-[#F4F5F7] sm:prose-pre:px-4 sm:prose-pre:text-[0.8125rem]",
-    "prose-table:my-0 prose-table:w-full prose-table:border-collapse prose-table:text-sm",
-    "prose-th:bg-[#F4F5F7] prose-th:px-2 prose-th:py-2 prose-th:text-left prose-th:text-xs prose-th:font-bold prose-th:text-brand-navy sm:prose-th:px-3 sm:prose-th:text-sm",
-    "prose-td:border prose-td:border-gray-200 prose-td:px-2 prose-td:py-2 prose-td:text-xs sm:prose-td:px-3 sm:prose-td:text-sm",
-    "prose-img:my-6 prose-img:max-h-[min(70vh,520px)] prose-img:w-full prose-img:max-w-full prose-img:rounded-lg prose-img:object-contain",
-  ].join(" ");
+const proseArticle = [
+  "prose min-w-0 w-full max-w-none break-words text-[17px] leading-[1.75] text-[#34435C]",
+  // Lead paragraph
+  "[&>p:first-child]:text-[19px] [&>p:first-child]:leading-[1.65] [&>p:first-child]:text-brand-navy",
+  "prose-p:my-5",
+  "prose-headings:scroll-mt-28 prose-headings:font-medium prose-headings:text-brand-navy prose-headings:[text-wrap:balance]",
+  "prose-h2:mt-14 prose-h2:mb-4 prose-h2:text-[26px] prose-h2:leading-[1.2] prose-h2:tracking-[-0.03em]",
+  "prose-h3:mt-10 prose-h3:mb-3 prose-h3:text-[20px] prose-h3:tracking-[-0.02em]",
+  "prose-a:font-medium prose-a:text-brand-navy prose-a:underline prose-a:decoration-brand-orange/50 prose-a:underline-offset-[3px] hover:prose-a:decoration-brand-orange",
+  "prose-strong:font-semibold prose-strong:text-brand-navy",
+  "prose-ul:my-5 prose-ol:my-5 prose-li:my-2 prose-li:pl-1 prose-li:marker:text-[#A5AEBF] prose-ol:prose-li:marker:font-mono prose-ol:prose-li:marker:text-[15px]",
+  "prose-blockquote:my-8 prose-blockquote:border-l-2 prose-blockquote:border-brand-orange prose-blockquote:pl-6 prose-blockquote:text-[20px] prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:leading-[1.5] prose-blockquote:tracking-[-0.01em] prose-blockquote:text-brand-navy [&_blockquote_p]:before:content-none [&_blockquote_p]:after:content-none",
+  "prose-hr:my-12 prose-hr:border-[#E8ECF2]",
+  "prose-code:rounded prose-code:bg-[#F1F4F8] prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[0.85em] prose-code:font-normal prose-code:text-brand-navy before:prose-code:content-none after:prose-code:content-none",
+  "prose-pre:my-8 prose-pre:rounded-xl prose-pre:bg-[#0E1B33] prose-pre:text-[14px]",
+  "prose-th:bg-[#F6F8FB] prose-th:px-4 prose-th:py-3 prose-th:text-left prose-th:text-[13px] prose-th:font-medium prose-th:text-brand-navy",
+  "prose-td:border-t prose-td:border-[#E8ECF2] prose-td:px-4 prose-td:py-3 prose-td:align-top prose-td:text-[14.5px] prose-td:leading-[1.5]",
+  "prose-img:my-8 prose-img:rounded-xl prose-img:border prose-img:border-[#E8ECF2]",
+].join(" ");
 
 export function BlogMarkdown({ children }: { children: string }) {
   const toc = useMemo(() => extractMarkdownToc(children), [children]);
@@ -52,26 +49,17 @@ export function BlogMarkdown({ children }: { children: string }) {
       },
       a: ({ href, children: c }: { href?: string; children?: React.ReactNode }) => {
         if (href?.startsWith("/") && !href.startsWith("//")) {
-          return (
-            <Link href={href} className="break-words font-semibold text-[#0052CC] hover:underline">
-              {c}
-            </Link>
-          );
+          return <Link href={href}>{c}</Link>;
         }
         return (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="break-words font-semibold text-[#0052CC] hover:underline"
-          >
+          <a href={href} target="_blank" rel="noopener noreferrer">
             {c}
           </a>
         );
       },
       table: ({ children, ...props }: React.ComponentPropsWithoutRef<"table">) => (
-        <div className="my-6 w-full max-w-full overflow-x-auto rounded-lg border border-gray-200 bg-white [-webkit-overflow-scrolling:touch]">
-          <table className="w-full max-w-none table-auto border-collapse text-sm" {...props}>
+        <div className="my-8 w-full max-w-full overflow-x-auto rounded-xl border border-[#E8ECF2] [-webkit-overflow-scrolling:touch]">
+          <table className="!my-0 w-full min-w-[560px] border-collapse" {...props}>
             {children}
           </table>
         </div>
