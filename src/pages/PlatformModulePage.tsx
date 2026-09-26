@@ -30,5 +30,5 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
       ? <PlanningScheduleLanding prev={context?.prev ?? null} next={context?.next ?? null} />
       : <ModuleLandingTemplate section={section} />;
 
-  return <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy"><Navbar />{landing}<Footer /></div>;
+  return <div className="min-h-screen overflow-x-clip bg-white text-brand-navy"><Navbar />{landing}<Footer /></div>;
 }

@@ -1,42 +1,43 @@
 import { motion } from "framer-motion";
-import { Tag } from "lucide-react";
+import { CalendarDays, Tag } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { HIDE_PRICING } from "@/config/siteFocus";
-import {
-  DotGrid,
-  GhostButton,
-  Glow,
-  Highlight,
-  TicketButton,
-} from "@/components/design-system/primitives";
+import { framePad, GhostButton, Muted, Section, TicketButton } from "@/components/design-system/primitives";
 
-/** hexalog closing CTA: centred, big medium-weight headline, ticket + ghost buttons on a quiet textured field. */
+/** Closing CTA: framed navy band, two-tone headline left, actions right. */
 export default function CTAPreview() {
   const isMobile = useIsMobile();
   return (
-    <section className="relative overflow-hidden bg-white py-24 lg:py-[120px]">
-      <DotGrid className="[mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_65%)]" />
-      <Glow className="top-1/2 left-1/2 h-[380px] w-[760px] max-w-[100vw] -translate-x-1/2 -translate-y-1/2 opacity-80" />
+    <Section tone="navy" frameClassName="overflow-hidden" labelledBy="dp-cta">
       <motion.div
         {...scrollMotionProps(isMobile, { y: 20, duration: 0.5 })}
-        className="relative mx-auto max-w-4xl px-5 text-center"
+        className={`relative grid gap-10 py-20 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] lg:items-end lg:py-28 ${framePad}`}
       >
-        <h2 className="text-[34px] font-semibold leading-[1.1] tracking-[-0.04em] text-brand-navy sm:text-[44px] lg:text-[52px]">
-          Run <Highlight>MEP jobs</Highlight>
-          <br className="hidden sm:block" /> with execution in the loop.
+        <h2 id="dp-cta" className="text-[36px] font-medium leading-[1.02] tracking-[-0.045em] text-white sm:text-[48px] lg:text-[60px]">
+          Run MEP jobs with
+          <br className="hidden sm:block" /> <Muted dark>execution in the loop.</Muted>
         </h2>
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-          <TicketButton href="/early-access">
-            Get a personalised demo
-          </TicketButton>
-          {!HIDE_PRICING ? (
-            <GhostButton href="/pricing" icon={Tag}>
-              View pricing
-            </GhostButton>
-          ) : null}
+        <div className="lg:pb-2">
+          <p className="max-w-sm text-[16px] leading-[1.6] text-white/60">
+            See your own programme, logs and punch list in ZedOps. We will walk you through it with your data.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <TicketButton href="/early-access" variant="white">
+              Get a personalised demo
+            </TicketButton>
+            {HIDE_PRICING ? (
+              <GhostButton href="/contact?topic=demo" icon={CalendarDays} tone="dark">
+                Talk to us
+              </GhostButton>
+            ) : (
+              <GhostButton href="/pricing" icon={Tag} tone="dark">
+                View pricing
+              </GhostButton>
+            )}
+          </div>
         </div>
       </motion.div>
-    </section>
+    </Section>
   );
 }

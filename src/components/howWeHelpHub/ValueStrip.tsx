@@ -1,61 +1,30 @@
 import { Database, Eye, Link2, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { Section } from "@/components/design-system/primitives";
 
-type Value = {
-  title: string;
-  desc: string;
-  Icon: LucideIcon;
-};
-
-const values: Value[] = [
-  {
-    title: "One project record",
-    desc: "Everyone works from the same source of truth.",
-    Icon: Database,
-  },
-  {
-    title: "Real-time visibility",
-    desc: "See what is happening as work happens.",
-    Icon: Eye,
-  },
-  {
-    title: "Connected operations",
-    desc: "Schedule, workforce, materials, QA and cost stay connected.",
-    Icon: Link2,
-  },
-  {
-    title: "AI-powered insights",
-    desc: "Turn project data into actionable decisions.",
-    Icon: Sparkles,
-  },
+const values: { title: string; desc: string; Icon: LucideIcon }[] = [
+  { title: "One project record", desc: "Everyone works from the same source of truth.", Icon: Database },
+  { title: "Live visibility", desc: "See what is happening as the work happens.", Icon: Eye },
+  { title: "Connected operations", desc: "Schedule, workforce, materials, QA and cost stay linked.", Icon: Link2 },
+  { title: "Zed AI insights", desc: "Turn project data into the next decision.", Icon: Sparkles },
 ];
 
+/** Four value statements in hairline cells. */
 export default function ValueStrip() {
   return (
-    <section className="border-y border-[#E3E8F0] bg-white px-4 py-12">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
-        {values.map((v, i) => {
-          const Icon = v.Icon;
-          return (
-            <div
-              key={v.title}
-              className={`flex items-start gap-3 px-0 lg:px-7 ${
-                i !== 0 ? "lg:border-l lg:border-[#E3E8F0]" : ""
-              }`}
-            >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#EEF4FF]">
-                <Icon size={17} className="text-brand-navy" aria-hidden />
-              </span>
-              <div>
-                <p className="text-sm font-semibold text-brand-navy">{v.title}</p>
-                <p className="mt-1 text-[13px] leading-snug text-[#6B778C]">
-                  {v.desc}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </section>
+    <Section label="What you get">
+      <ul className="grid sm:grid-cols-2 lg:grid-cols-4">
+        {values.map((v, i) => (
+          <li
+            key={v.title}
+            className={`border-[#E8ECF2] px-6 py-8 sm:px-8 ${i > 0 ? "border-t sm:border-t-0" : ""} ${i >= 2 ? "sm:border-t lg:border-t-0" : ""} ${i % 2 === 1 ? "sm:border-l" : ""} ${i === 2 ? "lg:border-l" : ""}`}
+          >
+            <v.Icon size={18} className="text-brand-orange" aria-hidden />
+            <p className="mt-4 text-[15px] font-medium text-brand-navy">{v.title}</p>
+            <p className="mt-1 text-[14px] leading-[1.5] text-[#6B778C]">{v.desc}</p>
+          </li>
+        ))}
+      </ul>
+    </Section>
   );
 }

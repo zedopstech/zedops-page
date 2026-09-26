@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { dropdownMenus, type DropdownKey } from "@/data/navDropdownMenus";
@@ -13,152 +14,184 @@ type NavItem = {
   tag?: string;
 };
 
+const intros: Record<DropdownKey, { title: string; body: string }> = {
+  Platform: { title: "Platform", body: "Ten modules. One project record." },
+  Solutions: { title: "Solutions", body: "How ZedOps helps, stage by stage." },
+  "Built for you": { title: "Built for you", body: "A view that fits your role." },
+  Resources: { title: "Resources", body: "Guides, updates and field notes." },
+  Company: { title: "Company", body: "Who we are and how to reach us." },
+};
+
 function ItemLink({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
   return (
     <a
       href={item.href}
       {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       onClick={onNavigate}
-      className="group flex items-start gap-2.5 rounded-lg px-2.5 py-2.5 transition-colors hover:bg-[#F4F6FA]"
+      className="group -mx-2.5 flex items-start gap-3 rounded-lg px-2.5 py-2.5 transition-colors hover:bg-[#F5F7FA]"
     >
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#EEF2F8] text-brand-navy transition-colors group-hover:bg-brand-navy group-hover:text-white">
-        <item.icon size={16} strokeWidth={1.8} aria-hidden />
+      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[#E3E8F0] bg-white text-[#5E6C84] shadow-[0_1px_2px_rgba(14,27,51,0.05)] transition-colors group-hover:border-[#FFCFB0] group-hover:text-brand-orange">
+        <item.icon size={17} strokeWidth={1.7} aria-hidden />
       </span>
-      <span className="min-w-0">
-        <span className="block text-[13px] font-semibold leading-snug text-brand-navy">{item.label}</span>
-        <span className="mt-0.5 block text-[11px] leading-snug text-[#6B778C]">{item.desc}</span>
-        {item.tag ? <span className="mt-1.5 inline-block rounded-full bg-[#EEF2F8] px-2 py-0.5 text-[10px] font-medium text-[#5E6C84]">{item.tag}</span> : null}
+      <span className="min-w-0 pt-px">
+        <span className="flex items-center gap-1 text-[14px] font-medium leading-snug text-brand-navy">
+          {item.label}
+          {item.external ? <ArrowUpRight size={13} className="text-[#8C97AB]" aria-hidden /> : null}
+        </span>
+        <span className="mt-0.5 block text-[12.5px] leading-snug text-[#6B778C]">{item.desc}</span>
       </span>
     </a>
   );
 }
 
-function Section({ heading, items, onNavigate, columns = 1 }: { heading: string; items: readonly NavItem[]; onNavigate: () => void; columns?: 1 | 2 }) {
+function Column({ heading, items, onNavigate, cols = 1 }: { heading: string; items: readonly NavItem[]; onNavigate: () => void; cols?: 1 | 2 }) {
   return (
     <div className="min-w-0">
-      <p className="mb-2 px-2.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#8C97AB]">{heading}</p>
-      <div className={columns === 2 ? "grid grid-cols-2 gap-x-1" : "space-y-0.5"}>
+      <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#8C97AB]">{heading}</p>
+      <div className={cols === 2 ? "grid grid-cols-2 gap-x-8" : ""}>
         {items.map((item) => <ItemLink key={item.label} item={item} onNavigate={onNavigate} />)}
       </div>
     </div>
   );
 }
 
-function MenuHeading({ eyebrow, title, cta, onNavigate }: { eyebrow: string; title: string; cta?: { label: string; href: string }; onNavigate: () => void }) {
+function Frame({ active, cta, onNavigate, children }: { active: DropdownKey; cta?: { label: string; href: string }; onNavigate: () => void; children: ReactNode }) {
+  const intro = intros[active];
   return (
-    <div className="mb-5 flex items-center justify-between gap-6 border-b border-[#E3E8F0] pb-4">
-      <div>
-        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#8C97AB]">{eyebrow}</p>
-        <p className="mt-1 text-[15px] font-semibold text-brand-navy">{title}</p>
+    <div className="grid grid-cols-[240px_minmax(0,1fr)] gap-12 py-9">
+      <div className="flex flex-col border-r border-[#EDF0F5] pr-10">
+        <p className="text-[22px] font-medium tracking-[-0.03em] text-brand-navy">{intro.title}</p>
+        <p className="mt-3 text-[14px] leading-[1.55] text-[#5E6C84]">{intro.body}</p>
+        {cta ? (
+          <a href={cta.href} onClick={onNavigate} className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-semibold text-brand-navy hover:text-brand-orange">
+            {cta.label}
+            <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
+          </a>
+        ) : null}
       </div>
-      {cta ? <a href={cta.href} onClick={onNavigate} className="inline-flex shrink-0 items-center gap-1.5 text-[12px] font-semibold text-brand-navy hover:text-brand-orange">{cta.label}<ArrowRight size={13} aria-hidden /></a> : null}
+      <div className="min-w-0">{children}</div>
     </div>
   );
 }
 
-export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; onNavigate: () => void }) {
-  const menu = dropdownMenus[active];
+function FeatureCard({ href, eyebrow, title, action, image, onNavigate }: { href: string; eyebrow: string; title: string; action: string; image?: string; onNavigate: () => void }) {
+  return (
+    <a href={href} onClick={onNavigate} className="group flex h-full flex-col overflow-hidden rounded-lg border border-[#E3E8F0] bg-[#F7F9FC] transition-colors hover:border-[#C9D2DF]">
+      {image ? (
+        <div className="h-32 overflow-hidden">
+          <img src={image} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+        </div>
+      ) : null}
+      <div className="flex flex-1 flex-col p-5">
+        <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#8C97AB]">{eyebrow}</span>
+        <span className="mt-2 text-[15px] font-semibold leading-snug text-brand-navy">{title}</span>
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[13px] font-semibold text-brand-navy group-hover:text-brand-orange">
+          {action}
+          <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
+        </span>
+      </div>
+    </a>
+  );
+}
 
+export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; onNavigate: () => void }) {
   if (active === "Platform") {
-    const platform = dropdownMenus.Platform;
+    const p = dropdownMenus.Platform;
+    const [pre, exec, closeout, core] = p.sections;
     return (
-      <div className="p-6">
-        <MenuHeading eyebrow="Platform" title="From preconstruction through closeout" onNavigate={onNavigate} />
-        <div className="grid grid-cols-[1fr_2.15fr_1.8fr] gap-5">
-          <Section heading={platform.sections[0].heading} items={platform.sections[0].items} onNavigate={onNavigate} />
-          <div className="border-l border-[#E3E8F0] pl-5"><Section heading={platform.sections[1].heading} items={platform.sections[1].items} columns={2} onNavigate={onNavigate} /></div>
-          <div className="border-l border-[#E3E8F0] pl-5">
-            <div className="grid grid-cols-2 gap-3">
-              {platform.sections.slice(2).map((section) => <Section key={section.heading} heading={section.heading} items={section.items} onNavigate={onNavigate} />)}
-            </div>
-            <a href={platform.footerCard.href} onClick={onNavigate} className="mt-4 flex items-start gap-3 rounded-lg bg-brand-navy p-4 text-white hover:bg-[#243C60]">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white/10"><platform.footerCard.icon size={18} className="text-white" aria-hidden /></span>
-              <span><span className="block text-[13px] font-semibold">{platform.footerCard.label}</span><span className="mt-1 block text-[11px] leading-snug text-white/70">{platform.footerCard.desc}</span><span className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-white/85">Open <ArrowRight size={11} aria-hidden /></span></span>
-            </a>
+      <Frame active={active} cta={p.cta} onNavigate={onNavigate}>
+        <div className="grid grid-cols-[1fr_2fr_1fr] gap-10">
+          <Column heading={pre.heading} items={pre.items} onNavigate={onNavigate} />
+          <Column heading={exec.heading} items={exec.items} cols={2} onNavigate={onNavigate} />
+          <div className="space-y-6">
+            <Column heading={closeout.heading} items={closeout.items} onNavigate={onNavigate} />
+            <Column heading={core.heading} items={core.items} onNavigate={onNavigate} />
           </div>
         </div>
-      </div>
+        <a
+          href={p.footerCard.href}
+          onClick={onNavigate}
+          className="group mt-7 flex items-center justify-between gap-6 rounded-lg bg-brand-navy px-5 py-4 text-white transition-colors hover:bg-[#0E1B33]"
+        >
+          <span className="flex items-center gap-3">
+            <p.footerCard.icon size={18} className="text-[#FFB37F]" aria-hidden />
+            <span className="text-[14.5px] font-semibold">{p.footerCard.label}</span>
+            <span className="text-[13.5px] text-white/70">{p.footerCard.desc}</span>
+          </span>
+          <span className="inline-flex shrink-0 items-center gap-1.5 text-[13px] font-semibold text-white/90">
+            Explore Zed AI <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
+          </span>
+        </a>
+      </Frame>
     );
   }
 
   if (active === "Solutions") {
-    const solutions = dropdownMenus.Solutions;
-    const featured = solutions.featured;
+    const s = dropdownMenus.Solutions;
     return (
-      <div className="grid grid-cols-[minmax(0,1fr)_270px]">
-        <div className="p-6">
-          <MenuHeading eyebrow="Solutions" title="AI & how we help for field execution" cta={solutions.cta} onNavigate={onNavigate} />
-          <div className="grid grid-cols-[1.25fr_0.85fr] gap-5">
-            <div className="grid grid-cols-2 gap-3">
-              {solutions.sections[0].items.map((item) => (
-                <a key={item.label} href={item.href} onClick={onNavigate} className="group flex flex-col rounded-xl border border-[#E3E8F0] bg-[#F8FAFC] p-4 hover:border-[#BFCBDC] hover:bg-white">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#E8EEF7] text-brand-navy"><item.icon size={22} aria-hidden /></span>
-                  <span className="mt-4 text-[15px] font-semibold text-brand-navy">{item.label}</span>
-                  {/* desc, not subtitle. Only the Resources items carry a
-                      subtitle; these module cards have just `desc`, so reading
-                      subtitle rendered an empty span and left a gap under every
-                      card in this panel. The other two card renderers in this
-                      file (lines 29 and 124) already used desc. */}
-                  <span className="mt-2 text-[12px] leading-relaxed text-[#5E6C84]">{item.desc}</span>
-                  <span className="mt-auto inline-flex items-center gap-1 pt-4 text-[11px] font-semibold text-brand-navy">Open <ArrowRight size={11} aria-hidden /></span>
+      <Frame active={active} cta={s.cta} onNavigate={onNavigate}>
+        <div className="grid grid-cols-[1fr_1fr_280px] gap-10">
+          <div>
+            <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#8C97AB]">{s.sections[0].heading}</p>
+            <div className="space-y-2">
+              {s.sections[0].items.map((item) => (
+                <a key={item.label} href={item.href} onClick={onNavigate} className="group -mx-3 block rounded-md px-3 py-3 transition-colors hover:bg-[#F5F7FA]">
+                  <span className="flex items-center gap-2.5 text-[15px] font-semibold text-brand-navy">
+                    <item.icon size={18} strokeWidth={1.7} className="text-[#8C97AB] group-hover:text-brand-orange" aria-hidden />
+                    {item.label}
+                  </span>
+                  <span className="mt-1 block text-[13px] leading-[1.5] text-[#6B778C]">{item.desc}</span>
                 </a>
               ))}
             </div>
-            <div className="border-l border-[#E3E8F0] pl-5"><Section heading={solutions.sections[1].heading} items={solutions.sections[1].items} onNavigate={onNavigate} /></div>
           </div>
+          <Column heading={s.sections[1].heading} items={s.sections[1].items} onNavigate={onNavigate} />
+          <FeatureCard href={s.featured.href} eyebrow={s.featured.tag} title={s.featured.title} action={s.featured.readTime} onNavigate={onNavigate} />
         </div>
-        <a href={featured.href} onClick={onNavigate} className="flex flex-col justify-between bg-brand-navy p-6 text-white hover:bg-[#243C60]">
-          <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/55">{featured.tag}</span>
-          <span className="text-[22px] font-semibold leading-tight tracking-tight">{featured.title}</span>
-          <span className="inline-flex items-center gap-1 text-[12px] font-semibold text-white/75">{featured.readTime} <ArrowUpRight size={13} aria-hidden /></span>
-        </a>
-      </div>
+      </Frame>
     );
   }
 
   if (active === "Built for you") {
-    const built = dropdownMenus["Built for you"];
+    const b = dropdownMenus["Built for you"];
     return (
-      <div className="p-6">
-        <MenuHeading eyebrow="Built for you" title="MEP trades & field leadership" cta={built.cta} onNavigate={onNavigate} />
-        <a href="/how-we-help/role" onClick={onNavigate} className="mb-4 inline-flex items-center gap-1 text-[12px] font-semibold text-brand-navy hover:text-brand-orange">How roles &amp; AI access work <ArrowRight size={12} aria-hidden /></a>
-        <div className="grid grid-cols-4 gap-4">
-          {built.sections[0].items.map((item) => (
-            <a key={item.label} href={item.href} onClick={onNavigate} className="group overflow-hidden rounded-lg border border-[#E3E8F0] bg-white hover:border-[#BFCBDC]">
-              <div className="h-32 overflow-hidden bg-[#EEF2F8]"><img src={item.image} alt="" className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.04]" /></div>
-              <div className="p-3.5"><p className="text-[13px] font-semibold text-brand-navy">{item.label}</p><p className="mt-1.5 text-[11px] leading-relaxed text-[#5E6C84]">{item.desc}</p></div>
+      <Frame active={active} cta={b.cta} onNavigate={onNavigate}>
+        <div className="grid grid-cols-4 gap-5">
+          {b.sections[0].items.map((item) => (
+            <a key={item.label} href={item.href} onClick={onNavigate} className="group block">
+              <div className="aspect-[4/3] overflow-hidden rounded-md bg-[#EEF2F8]">
+                <img src={item.image} alt="" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
+              </div>
+              <p className="mt-3 flex items-center gap-1.5 text-[14.5px] font-semibold text-brand-navy group-hover:text-brand-orange">
+                {item.label}
+                <ArrowRight size={14} className="opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" aria-hidden />
+              </p>
+              <p className="mt-1 text-[13px] leading-snug text-[#6B778C]">{item.desc}</p>
             </a>
           ))}
         </div>
-      </div>
+      </Frame>
     );
   }
 
   if (active === "Resources") {
-    const resources = dropdownMenus.Resources;
-    const featured = resources.featured;
+    const r = dropdownMenus.Resources;
     return (
-      <div className="grid grid-cols-[minmax(0,1fr)_300px]">
-        <div className="p-6">
-          <MenuHeading eyebrow="Resources" title="Guides, updates, and product news" cta={{ label: "Browse the blog", href: "/blog" }} onNavigate={onNavigate} />
-          <Section heading={resources.sections[0].heading} items={resources.sections[0].items} columns={2} onNavigate={onNavigate} />
+      <Frame active={active} cta={{ label: "Browse the blog", href: "/blog" }} onNavigate={onNavigate}>
+        <div className="grid grid-cols-[minmax(0,1fr)_300px] gap-10">
+          <Column heading={r.sections[0].heading} items={r.sections[0].items} cols={2} onNavigate={onNavigate} />
+          <FeatureCard href={r.featured.href} eyebrow={`Featured · ${r.featured.tag}`} title={r.featured.title} action={r.featured.readTime} image={r.featured.image || undefined} onNavigate={onNavigate} />
         </div>
-        <a href={featured.href} onClick={onNavigate} className="flex flex-col bg-[#EEF2F8] p-5 text-brand-navy hover:bg-[#E5EBF4]">
-          <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#6B778C]">Featured · {featured.tag}</span>
-          <span className="mt-5 text-[16px] font-semibold leading-snug">{featured.title}</span>
-          <span className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold">{featured.readTime}<ArrowUpRight size={12} aria-hidden /></span>
-          {featured.image ? <img src={featured.image} alt="" className="mt-auto h-28 w-full rounded-lg object-cover pt-4" /> : null}
-        </a>
-      </div>
+      </Frame>
     );
   }
 
+  const menu = dropdownMenus[active];
   return (
-    <div className="p-6">
-      <MenuHeading eyebrow={active} title="About ZedOps and how we work" cta={menu.cta} onNavigate={onNavigate} />
-      <div className="grid grid-cols-2 gap-5">
-        {menu.sections.map((section) => <Section key={section.heading} heading={section.heading} items={section.items} onNavigate={onNavigate} />)}
+    <Frame active={active} cta={menu.cta} onNavigate={onNavigate}>
+      <div className="grid max-w-[640px] grid-cols-2 gap-10">
+        {menu.sections.map((section) => <Column key={section.heading} heading={section.heading} items={section.items} onNavigate={onNavigate} />)}
       </div>
-    </div>
+    </Frame>
   );
 }

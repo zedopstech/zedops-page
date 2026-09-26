@@ -1,17 +1,16 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import type { ComponentType } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
-import type { ComponentType } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FinalCTA from "@/components/FinalCTA";
 import PageHero from "@/components/PageHero";
 import type { MockType } from "@/components/ProductMocks";
-import { productMockComponents } from "@/components/ProductMocks";
 import type { PersonaMockScenario } from "@/components/PersonaMocks";
-import { PersonaFeatureMock } from "@/components/PersonaMocks";
-import { Container, CornerTicks, DotGrid, GhostButton, Highlight, SectionLabel, SplitHeader, TicketButton } from "@/components/design-system/primitives";
+import { framePad, GhostButton, Highlight, Muted, Section, SplitHeader, TicketButton } from "@/components/design-system/primitives";
+import { GcDailyLog, GcPlanning, OwnersPortfolio, personaScenes, PmScheduleTasks, PmZedAi, QualityMarkup } from "@/components/mocks/scenes";
 
 export type { MockType, PersonaMockScenario };
 
@@ -47,6 +46,29 @@ interface PersonaTemplateProps {
   earlyAccessLabel?: string;
 }
 
+const typeMocks: Partial<Record<string, ComponentType>> = {
+  dashboard: OwnersPortfolio,
+  log: GcDailyLog,
+  schedule: PmScheduleTasks,
+  list: GcPlanning,
+  chat: PmZedAi,
+  annotation: QualityMarkup,
+};
+
+const firstSentence = (s: string) => (s.split(/(?<=[.!?])\s+/)[0] ?? s).replace(/\s+-\s+/g, ", ");
+
+/** Split "Main idea  -  second idea." into a two-tone headline. */
+function twoTone(title: string) {
+  const [head, ...rest] = title.split(/\s+-\s+/);
+  if (!rest.length) return title;
+  const tail = rest.join(" ");
+  return (
+    <>
+      {head.replace(/[.,]?$/, ".")} <Muted>{tail.charAt(0).toUpperCase() + tail.slice(1)}</Muted>
+    </>
+  );
+}
+
 export default function PersonaTemplate({
   heroImage, imageAlt, pill, PillIcon, title, subtitle, quote, quoteAttribution,
   challengesHeading, challengesIntro, challenges, featuresHeading, features,
@@ -55,72 +77,85 @@ export default function PersonaTemplate({
   const isMobile = useIsMobile();
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+    <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
-      <main>
-        <PageHero pill={pill} PillIcon={PillIcon} title={title} subtitle={subtitle}>
+      <main id="main">
+        <PageHero pill={pill} PillIcon={PillIcon} title={twoTone(title)} subtitle={firstSentence(subtitle)}>
           <div className="flex flex-wrap gap-3">
             <TicketButton href="/early-access">{earlyAccessLabel}</TicketButton>
             <GhostButton href="/contact" icon={ArrowRight}>Talk to our team</GhostButton>
           </div>
         </PageHero>
 
-        <div className="relative h-[300px] overflow-hidden bg-[#E3E8F0] sm:h-[430px] lg:h-[560px]">
-          <img src={heroImage} alt={imageAlt} className="h-full w-full object-cover object-center" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-brand-navy/35 to-transparent" />
-          <span className="absolute bottom-6 left-5 border border-white/50 bg-brand-navy/80 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm lg:left-[max(24px,calc((100vw-1200px)/2))]">Built for {pill}</span>
-        </div>
+        <Section tone="mist" label={`${pill} at work`}>
+          <div className="px-5 py-8 sm:px-8 sm:py-10 lg:px-14">
+            <div className="aspect-[16/9] overflow-hidden rounded-xl bg-[#E3E8F0] sm:aspect-[21/9]">
+              <img src={heroImage} alt={imageAlt} className="h-full w-full object-cover object-center" />
+            </div>
+          </div>
+        </Section>
 
-        <section className="relative overflow-hidden bg-brand-navy py-16 lg:py-20">
-          <DotGrid dark className="opacity-40 [mask-image:linear-gradient(to_right,transparent,black)]" />
-          <Container className="relative grid gap-5 lg:grid-cols-[1fr_0.45fr] lg:items-end lg:gap-16">
-            <blockquote className="max-w-4xl text-[25px] font-semibold leading-[1.3] tracking-[-0.025em] text-white sm:text-[31px]">“{quote}”</blockquote>
-            <p className="border-l border-white/30 pl-5 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-white/65">{quoteAttribution}</p>
-          </Container>
-        </section>
+        <Section label="What we hear">
+          <figure className={`py-16 lg:py-24 ${framePad}`}>
+            <blockquote className="max-w-4xl text-[26px] font-medium leading-[1.3] tracking-[-0.03em] text-brand-navy [text-wrap:balance] sm:text-[34px]">
+              “{quote}”
+            </blockquote>
+            <figcaption className="mt-6 text-[15px] text-[#8C97AB]">{quoteAttribution}</figcaption>
+          </figure>
+        </Section>
 
-        <section className="relative overflow-hidden bg-[#F8F9FD] py-20 lg:py-[100px]">
-          <DotGrid className="opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent_80%)]" />
-          <Container className="relative">
+        <Section tone="mist" labelledBy="persona-challenges">
+          <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-              <SplitHeader label="Where teams get stuck" title={challengesHeading} body={challengesIntro} />
+              <SplitHeader id="persona-challenges" title={challengesHeading} body={firstSentence(challengesIntro)} />
             </motion.div>
-            <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {challenges.map((challenge, index) => (
-                <motion.article key={challenge.title} {...scrollMotionProps(isMobile, { y: 20, duration: 0.45, delay: (index % 3) * 0.05 })} className="relative min-h-[230px] rounded-xl border border-[#E3E8F0] bg-white p-6 sm:p-7">
-                  <CornerTicks />
-                  <div className="flex items-start justify-between"><span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#EDF3FA] text-brand-navy"><challenge.icon size={21} /></span><span className="font-mono text-[10px] font-semibold text-[#9AA6B8]">{String(index + 1).padStart(2, "0")}</span></div>
-                  <h3 className="mt-7 text-[19px] font-semibold leading-tight tracking-[-0.02em] text-brand-navy">{challenge.title}</h3>
-                  <p className="mt-2 text-[14px] leading-[1.6] text-[#5E6C84]">{challenge.desc}</p>
-                </motion.article>
-              ))}
-            </div>
-          </Container>
-        </section>
+          </div>
+          <div className="grid gap-px border-t border-[#E3E8F0] bg-[#E3E8F0] sm:grid-cols-2 lg:grid-cols-3">
+            {challenges.map((challenge, index) => (
+              <motion.article
+                key={challenge.title}
+                {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: (index % 3) * 0.05 })}
+                className="bg-[#F7F8FA] p-7 sm:p-8"
+              >
+                <span className="font-mono text-[11px] text-[#A5AEBF]">{String(index + 1).padStart(2, "0")}</span>
+                <h3 className="mt-8 text-[19px] font-medium leading-snug tracking-[-0.02em] text-brand-navy">{challenge.title}</h3>
+                <p className="mt-2 text-[14.5px] leading-[1.55] text-[#6B778C]">{firstSentence(challenge.desc)}</p>
+              </motion.article>
+            ))}
+          </div>
+        </Section>
 
-        <section className="bg-white py-20 lg:py-[100px]">
-          <Container>
-            <SectionLabel>How ZedOps helps</SectionLabel>
-            <h2 className="max-w-3xl text-[32px] font-semibold leading-[1.12] tracking-[-0.035em] text-brand-navy sm:text-[40px]">{featuresHeading}</h2>
-            <div className="mt-14 space-y-16 lg:space-y-24">
-              {features.map((feature, index) => {
-                const MockComponent = productMockComponents[feature.mockType];
-                const mock = feature.mockScenario ? <PersonaFeatureMock scenario={feature.mockScenario} /> : <MockComponent />;
-                return (
-                  <motion.article key={feature.title} {...scrollMotionProps(isMobile, { y: 24, duration: 0.5 })} className={`grid gap-10 border-t border-[#DCE3ED] pt-10 lg:grid-cols-2 lg:items-center lg:gap-16 ${index % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
-                    <div className="relative min-h-[320px] overflow-hidden rounded-xl border border-[#DCE3ED] bg-[#EEF3F9] p-3 shadow-[0_24px_44px_-32px_rgba(23,43,77,0.3)] sm:min-h-[400px] sm:p-5 lg:min-h-[500px]"><div className="h-full min-h-[294px] overflow-hidden rounded-lg border border-[#DCE3ED] bg-white sm:min-h-[360px] lg:min-h-[458px]">{mock}</div></div>
-                    <div>
-                      <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.13em] text-brand-orange">{String(index + 1).padStart(2, "0")} / {feature.badge}</span>
-                      <h3 className="mt-5 max-w-lg text-[30px] font-semibold leading-[1.14] tracking-[-0.03em] text-brand-navy sm:text-[36px]">{feature.title}</h3>
-                      <p className="mt-5 max-w-md text-[16px] leading-[1.65] text-[#3D4F6E]">{feature.desc}</p>
-                      <a href="/early-access" className="mt-7 inline-flex items-center gap-2 border-b border-brand-navy pb-1 text-[15px] font-semibold text-brand-navy transition-colors hover:border-brand-orange hover:text-brand-orange">See it in action <ArrowRight size={16} aria-hidden /></a>
-                    </div>
-                  </motion.article>
-                );
-              })}
-            </div>
-          </Container>
-        </section>
+        <Section labelledBy="persona-features">
+          <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
+            <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
+              <h2 id="persona-features" className="max-w-[20ch] text-[32px] font-medium leading-[1.08] tracking-[-0.04em] text-brand-navy [text-wrap:balance] sm:text-[40px] lg:text-[48px]">
+                {featuresHeading}
+              </h2>
+            </motion.div>
+          </div>
+          {features.map((feature, index) => {
+            const Mock = (feature.mockScenario && personaScenes[feature.mockScenario]) || typeMocks[feature.mockType] || OwnersPortfolio;
+            const flip = index % 2 === 1;
+            return (
+              <motion.article
+                key={feature.title}
+                {...scrollMotionProps(isMobile, { y: 20, duration: 0.5 })}
+                className="grid border-t border-[#E8ECF2] lg:grid-cols-2"
+              >
+                <div className={`flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-14 lg:py-14 ${flip ? "lg:order-2 lg:border-l lg:border-[#E8ECF2]" : ""}`}>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#8C97AB]">{feature.badge}</span>
+                  <h3 className="mt-4 max-w-md text-[24px] font-medium leading-[1.2] tracking-[-0.03em] text-brand-navy [text-wrap:balance] sm:text-[28px]">{feature.title}</h3>
+                  <p className="mt-4 max-w-md text-[15.5px] leading-[1.6] text-[#5E6C84]">{firstSentence(feature.desc)}</p>
+                </div>
+                <div className={`border-t border-[#E8ECF2] bg-[#F7F8FA] px-6 py-10 sm:px-10 lg:border-t-0 lg:px-12 lg:py-12 ${flip ? "lg:order-1" : "lg:border-l"}`}>
+                  <div className="mx-auto max-w-[520px]">
+                    <Mock />
+                  </div>
+                </div>
+              </motion.article>
+            );
+          })}
+        </Section>
 
         <FinalCTA title={<>Make every team’s work <Highlight>easier to see.</Highlight></>} body="Walk through the workflows that matter to your role and see how they connect across a project." />
       </main>

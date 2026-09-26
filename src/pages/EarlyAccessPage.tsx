@@ -1,430 +1,187 @@
+import { useState, type ChangeEvent, type FormEvent } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, CheckCircle2, Minus, Plus, Rocket, Users, Zap } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Sparkles, Zap, Users, Rocket, Plus, Minus } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
+import { framePad, Highlight, Muted, Section } from "@/components/design-system/primitives";
 
-const roles = [
-  "General Contractor",
-  "Owner / Developer",
-  "Project Manager",
-  "Consultant / CM Firm",
-  "Subcontractor",
-  "Other",
-];
-
-const sizes = [
-  "1–10 people",
-  "11–50 people",
-  "51–200 people",
-  "200+ people",
-];
+const roles = ["MEP contractor", "General contractor", "Owner / developer", "Consultant / CM firm", "Subcontractor", "Other"];
+const sizes = ["1–50 people", "51–200 people", "201–1,000 people", "1,000+ people"];
+const countries = ["United Arab Emirates", "Saudi Arabia", "Qatar", "Kuwait", "Bahrain", "Oman", "Other"];
 
 const perks = [
-  {
-    icon: Users,
-    title: "Founder-direct onboarding",
-    desc: "A real person from the founding team walks you through setup. No ticket queues.",
-  },
-  {
-    icon: Zap,
-    title: "Features shipping every week",
-    desc: "We move fast. Early access customers see new capabilities land weekly.",
-  },
-  {
-    icon: Rocket,
-    title: "Early access pricing",
-    desc: "Early members lock in founding-cohort rates before our public launch pricing kicks in.",
-  },
+  { icon: Users, title: "Onboarding with our team", body: "We set up your first project with you, not a help article." },
+  { icon: Zap, title: "New features every week", body: "Early customers see improvements land weekly, often from their own feedback." },
+  { icon: Rocket, title: "Founding-customer pricing", body: "Early teams keep founding rates after public launch." },
 ];
 
-const earlyAccessFaqs = [
-  {
-    q: "What happens after I apply?",
-    a: "We read every submission. You’ll usually hear back within one business day with next steps. If there’s a fit, we’ll suggest a short call to align on your projects and how ZedOps maps to your workflows.",
-  },
-  {
-    q: "Is there a cost to join?",
-    a: "We discuss options on the call. Early cohorts often get terms that reflect where the product is today  -  scoped to your team size and how you plan to use the platform.",
-  },
-  {
-    q: "Who is a good fit?",
-    a: "Teams with live construction work who want execution data  -  schedules, logs, issues, documents, material management  -  in one system, and who are open to feedback as we ship improvements often.",
-  },
-  {
-    q: "How does onboarding work?",
-    a: "We walk you through tenant setup and how to structure projects. You can start with a limited scope or a single job, depending on what your team prefers.",
-  },
-  {
-    q: "Can we review security and data handling?",
-    a: "Yes. Bring your IT or procurement questions to the call  -  we’ll share an overview and next steps so you can complete your review.",
-  },
+const steps = [
+  { title: "Apply", body: "Tell us about your team and projects. It takes two minutes." },
+  { title: "Short call", body: "We walk through your workflows and agree a first project." },
+  { title: "Go live", body: "We set up your workspace and get your first job running." },
 ];
 
-function EarlyAccessFaqItem({
-  q,
-  a,
-  index,
-  invert = false,
-}: {
-  q: string;
-  a: string;
-  index: number;
-  invert?: boolean;
-}) {
+const faqs = [
+  { q: "What happens after I apply?", a: "We read every application and reply within one business day. If there is a fit, we suggest a short call about your projects." },
+  { q: "Is there a cost?", a: "We agree terms on the call, based on your team size and how you plan to use ZedOps. Early teams get founding-customer pricing." },
+  { q: "Who is a good fit?", a: "Contractors with live projects who want estimates, programmes, materials, site logs and cost in one place, and who are happy to share feedback." },
+  { q: "How long does onboarding take?", a: "We agree a first project on the call and set it up with you. You can start with one job and add more when you are ready." },
+  { q: "Can our IT team review security first?", a: "Yes. We share our architecture and controls, and walk your IT or procurement team through them before you start." },
+];
+
+const field =
+  "mt-1.5 h-11 w-full rounded-md border border-[#DCE3ED] bg-white px-3.5 text-[15px] text-brand-navy placeholder:text-[#A5AEBF] outline-none transition-colors focus:border-brand-navy";
+
+function Faq({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
-  const isMobile = useIsMobile();
-
   return (
-    <motion.div
-      {...scrollMotionProps(isMobile, { y: 12, duration: 0.35, delay: index * 0.05 })}
-      className={invert ? "border-b border-white/10 last:border-b-0" : "border-b border-gray-200 last:border-b-0"}
-    >
-      <button type="button" onClick={() => setOpen(!open)} className="group flex w-full items-center justify-between gap-4 py-4 text-left sm:py-5">
-        <span
-          className={`text-sm font-bold leading-snug sm:text-base ${
-            open ? "text-brand-orange" : invert ? "text-white" : "text-brand-navy"
-          }`}
-        >
-          {q}
+    <div className="border-b border-[#E3E8F0]">
+      <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} className="flex w-full items-center justify-between gap-6 py-5 text-left">
+        <span className="text-[17px] font-medium tracking-[-0.01em] text-brand-navy">{q}</span>
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-[#E3E8F0] text-brand-navy">
+          {open ? <Minus size={14} aria-hidden /> : <Plus size={14} aria-hidden />}
         </span>
-        <div
-          className="flex h-7 w-7 shrink-0 items-center justify-center transition-colors duration-150"
-          style={{
-            background: open ? "#FE5D02" : invert ? "rgba(255,255,255,0.12)" : "#F0F4FF",
-            borderRadius: 6,
-          }}
-        >
-          {open ? (
-            <Minus size={13} className="text-white" />
-          ) : (
-            <Plus size={13} className={invert ? "text-white" : "text-brand-navy"} />
-          )}
-        </div>
       </button>
       <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="a"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden"
-          >
-            <p
-              className={`pb-4 pr-10 text-sm leading-snug sm:pb-5 ${invert ? "text-white/70" : "text-[#42526E]"}`}
-            >
-              {a}
-            </p>
+        {open ? (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25 }} className="overflow-hidden">
+            <p className="max-w-2xl pb-5 text-[15.5px] leading-[1.6] text-[#5E6C84]">{a}</p>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
 export default function EarlyAccessPage() {
+  const isMobile = useIsMobile();
   useSEO({
     title: "Request Early Access  -  ZedOps",
-    description: "Apply for early access to ZedOps. Limited spots available for construction teams. Founder-direct onboarding, weekly feature releases, and early access pricing.",
+    description: "Apply for early access to ZedOps. Onboarding with our team, weekly releases and founding-customer pricing for construction and MEP teams.",
     // The visible FAQ answers are mirrored here, so the markup can never drift from the page.
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: earlyAccessFaqs.map((item) => ({
-        "@type": "Question",
-        name: item.q,
-        acceptedAnswer: { "@type": "Answer", text: item.a },
-      })),
+      mainEntity: faqs.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
     },
   });
+
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    company: "",
-    role: "",
-    size: "",
-    email: "",
-    challenge: "",
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const [form, setForm] = useState({ name: "", email: "", company: "", role: "", size: "", country: "", challenge: "" });
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
   };
 
   return (
-    <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
+    <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
+      <main id="main">
+        <PageHero
+          pill="Early access"
+          PillIcon={Rocket}
+          title={<>Run your next project on ZedOps. <Muted>With our team beside you.</Muted></>}
+          subtitle="We are onboarding a small number of contractors. Tell us about your projects and we will be in touch within one business day."
+        />
 
-      {/* Full-bleed split section */}
-      <div className="grid min-h-screen bg-[linear-gradient(180deg,#FFF4EC_0%,#F7F4F2_45%,#EEF3F9_100%)] pt-[148px] lg:grid-cols-2 lg:pt-[164px]">
+        <Section tone="mist" labelledBy="ea-form-title">
+          <div className="grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+            <div className={`py-12 lg:py-16 ${framePad}`}>
+              <h2 className="text-[22px] font-medium tracking-[-0.025em] text-brand-navy">What you get</h2>
+              <ul className="mt-6 space-y-6">
+                {perks.map((p) => (
+                  <li key={p.title} className="flex gap-3.5">
+                    <p.icon size={18} className="mt-0.5 shrink-0 text-brand-orange" aria-hidden />
+                    <div>
+                      <p className="text-[15.5px] font-medium text-brand-navy">{p.title}</p>
+                      <p className="mt-0.5 text-[14.5px] leading-[1.55] text-[#6B778C]">{p.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <h3 className="mt-12 text-[15px] font-medium text-brand-navy">What happens next</h3>
+              <ol className="mt-4 border-l border-[#DCE3ED]">
+                {steps.map((s, i) => (
+                  <li key={s.title} className="relative pb-5 pl-6 last:pb-0">
+                    <span className="absolute top-0 -left-[9px] flex h-[18px] w-[18px] items-center justify-center rounded-full border border-[#DCE3ED] bg-white font-mono text-[10px] text-brand-navy">{i + 1}</span>
+                    <p className="text-[14.5px] font-medium text-brand-navy">{s.title}</p>
+                    <p className="text-[14px] text-[#6B778C]">{s.body}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
 
-        {/* ── Left panel  -  content ── */}
-        <div
-          className="relative flex flex-col justify-center overflow-hidden px-8 py-12 sm:px-12 lg:px-16 lg:py-16"
-        >
-          {/* Blueprint grid */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage: [
-                "linear-gradient(rgba(1,47,176,0.045) 1px, transparent 1px)",
-                "linear-gradient(90deg, rgba(1,47,176,0.045) 1px, transparent 1px)",
-                "linear-gradient(rgba(1,47,176,0.02) 1px, transparent 1px)",
-                "linear-gradient(90deg, rgba(1,47,176,0.02) 1px, transparent 1px)",
-              ].join(", "),
-              backgroundSize: "80px 80px, 80px 80px, 20px 20px, 20px 20px",
-            }}
-          />
-          {/* Warm glow */}
-          <div
-            className="absolute bottom-0 left-0 right-0 h-[300px] pointer-events-none"
-            style={{
-              background: "radial-gradient(ellipse at center bottom, rgba(254,93,2,0.13) 0%, transparent 65%)",
-              filter: "blur(40px)",
-            }}
-          />
-
-          <div className="relative z-10 max-w-md">
-            {/* Pill */}
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="mb-7 inline-flex items-center gap-2 rounded-md border border-[#E3E8F0] bg-white px-3 py-1.5 shadow-sm"
-            >
-              <Sparkles size={12} className="text-brand-orange" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-navy">Early access</span>
-            </motion.div>
-
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.06 }}
-              className="mb-5 text-[40px] font-semibold leading-[1.06] tracking-[-0.045em] text-brand-navy sm:text-[54px] lg:text-[64px]"
-            >
-              Get early access<br />
-              to ZedOps.
-            </motion.h1>
-
-            {/* Sub */}
-            <motion.p
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.14 }}
-              className="mb-10 max-w-md text-[16px] leading-[1.65] text-[#3D4F6E]"
-            >
-              We're onboarding a select group of construction teams. Every applicant gets a personal review  -  and a direct call with the founding team.
-            </motion.p>
-
-            {/* Perks */}
-            <div className="flex flex-col gap-4">
-              {perks.map((perk, i) => (
-                <motion.div
-                  key={perk.title}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
-                  className="flex items-start gap-4 rounded-lg border border-[#E3E8F0] bg-white/85 px-4 py-3.5"
-                >
-                  <div className="w-9 h-9 bg-brand-navy flex items-center justify-center shrink-0 rounded-lg mt-0.5">
-                    <perk.icon size={16} className="text-white" />
-                  </div>
-                  <div>
-                    <p className="text-brand-navy font-bold text-sm">{perk.title}</p>
-                    <p className="text-[#42526E] text-xs mt-0.5 leading-snug">{perk.desc}</p>
-                  </div>
+            <div className="border-t border-[#E3E8F0] bg-white px-5 py-12 sm:px-8 lg:border-t-0 lg:border-l lg:px-14 lg:py-16">
+              {submitted ? (
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex min-h-[460px] flex-col items-start justify-center">
+                  <CheckCircle2 size={36} className="text-[#1D9A5B]" aria-hidden />
+                  <h2 className="mt-5 text-[28px] font-medium tracking-[-0.03em] text-brand-navy">You’re on the list.</h2>
+                  <p className="mt-2 max-w-sm text-[16px] leading-[1.6] text-[#5E6C84]">Thanks, {form.name.split(" ")[0] || "there"}. We’ll email {form.email || "you"} within one business day to arrange a call.</p>
+                  <a href="/" className="mt-8 inline-flex items-center gap-1.5 text-[15px] font-medium text-brand-navy">Back to home <ArrowRight size={15} aria-hidden /></a>
                 </motion.div>
-              ))}
+              ) : (
+                <form onSubmit={onSubmit} aria-labelledby="ea-form-title">
+                  <h2 id="ea-form-title" className="text-[22px] font-medium tracking-[-0.025em] text-brand-navy">Apply for early access</h2>
+                  <div className="mt-6 grid gap-5 sm:grid-cols-2">
+                    <label className="text-[13px] text-[#5E6C84]">Full name
+                      <input name="name" required value={form.name} onChange={onChange} placeholder="Your name" className={field} autoComplete="name" />
+                    </label>
+                    <label className="text-[13px] text-[#5E6C84]">Work email
+                      <input name="email" type="email" required value={form.email} onChange={onChange} placeholder="you@company.com" className={field} autoComplete="email" />
+                    </label>
+                    <label className="text-[13px] text-[#5E6C84]">Company
+                      <input name="company" required value={form.company} onChange={onChange} placeholder="Company name" className={field} autoComplete="organization" />
+                    </label>
+                    <label className="text-[13px] text-[#5E6C84]">Country
+                      <select name="country" required value={form.country} onChange={onChange} className={field}>
+                        <option value="">Select country</option>
+                        {countries.map((c) => <option key={c} value={c}>{c}</option>)}
+                      </select>
+                    </label>
+                    <label className="text-[13px] text-[#5E6C84]">Your company is a
+                      <select name="role" required value={form.role} onChange={onChange} className={field}>
+                        <option value="">Select type</option>
+                        {roles.map((r) => <option key={r} value={r}>{r}</option>)}
+                      </select>
+                    </label>
+                    <label className="text-[13px] text-[#5E6C84]">Company size
+                      <select name="size" required value={form.size} onChange={onChange} className={field}>
+                        <option value="">Select size</option>
+                        {sizes.map((s) => <option key={s} value={s}>{s}</option>)}
+                      </select>
+                    </label>
+                    <label className="text-[13px] text-[#5E6C84] sm:col-span-2">What would you like to fix first? <span className="text-[#A5AEBF]">(optional)</span>
+                      <textarea name="challenge" value={form.challenge} onChange={onChange} rows={4} placeholder="For example: material tracking across sites, daily reporting, cost visibility…" className={`${field} h-auto py-3`} />
+                    </label>
+                  </div>
+                  <button type="submit" className="mt-6 inline-flex h-11 items-center gap-2 rounded-lg bg-brand-navy px-5 text-[15px] font-medium text-white transition-colors hover:bg-[#1E3760]">
+                    Apply for early access <ArrowRight size={16} aria-hidden />
+                  </button>
+                  <p className="mt-4 text-[13px] text-[#8C97AB]">
+                    We use your details only to respond to your application. See our <a href="/privacy" className="underline underline-offset-2 hover:text-brand-navy">privacy policy</a>.
+                  </p>
+                </form>
+              )}
             </div>
           </div>
-        </div>
+        </Section>
 
-        {/* ── Right panel  -  form ── */}
-        <div className="m-5 flex flex-col justify-center rounded-xl border border-[#DCE3ED] bg-white px-6 py-10 shadow-[0_28px_60px_-38px_rgba(23,43,77,0.35)] sm:m-8 sm:px-10 lg:mx-8 lg:my-10 lg:px-12 lg:py-14">
-          {submitted ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4 }}
-              className="text-center max-w-md mx-auto"
-            >
-              <CheckCircle2 size={52} className="text-green-500 mx-auto mb-5" />
-              <h2 className="text-2xl font-semibold text-brand-navy mb-3">You're on the list.</h2>
-              <p className="text-[#6B778C] leading-snug mb-6">
-                Thanks for applying. We review every request personally and will reach out within one business day to schedule your onboarding call.
-              </p>
-              <a
-                href="/"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm rounded-md transition-all"
-              >
-                Back to home <ArrowRight size={14} />
-              </a>
+        <Section labelledBy="ea-faq">
+          <div className={`grid gap-10 py-20 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16 lg:py-28 ${framePad}`}>
+            <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
+              <h2 id="ea-faq" className="text-[30px] font-medium leading-[1.1] tracking-[-0.04em] text-brand-navy sm:text-[40px]">Questions, <Highlight>answered.</Highlight></h2>
             </motion.div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45 }}
-              className="max-w-md w-full mx-auto"
-            >
-              <h2 className="mb-1 text-[28px] font-semibold tracking-[-0.03em] text-brand-navy">Request a walkthrough</h2>
-              <p className="text-[#6B778C] text-sm mb-7">We'll be in touch within one business day.</p>
-
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Full name *</label>
-                    <input
-                      name="name"
-                      required
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="Sarah Chen"
-                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Company *</label>
-                    <input
-                      name="company"
-                      required
-                      value={form.company}
-                      onChange={handleChange}
-                      placeholder="Meridian Build Group"
-                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Your role *</label>
-                    <select
-                      name="role"
-                      required
-                      value={form.role}
-                      onChange={handleChange}
-                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy focus:outline-none focus:border-brand-navy transition-colors bg-white"
-                    >
-                      <option value="">Select role</option>
-                      {roles.map((r) => <option key={r} value={r}>{r}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Company size *</label>
-                    <select
-                      name="size"
-                      required
-                      value={form.size}
-                      onChange={handleChange}
-                      className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy focus:outline-none focus:border-brand-navy transition-colors bg-white"
-                    >
-                      <option value="">Select size</option>
-                      {sizes.map((s) => <option key={s} value={s}>{s}</option>)}
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Work email *</label>
-                  <input
-                    name="email"
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="sarah@meridianbuilds.com"
-                    className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-brand-navy uppercase tracking-wide mb-1.5">Biggest project management challenge?</label>
-                  <textarea
-                    name="challenge"
-                    value={form.challenge}
-                    onChange={handleChange}
-                    rows={3}
-                    placeholder="e.g. PMs spend too much time on reporting instead of being on site..."
-                    className="w-full border border-gray-200 rounded-md px-3.5 py-2.5 text-sm text-brand-navy placeholder:text-[#97A0AF] focus:outline-none focus:border-brand-navy transition-colors resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="group mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-brand-navy px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-150 hover:bg-[#1E3760]"
-                >
-                  Request early access
-                  <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
-                </button>
-
-                <p className="text-xs text-[#97A0AF] text-center">
-                  We review every application personally  -  a real person will reach out within one business day.
-                </p>
-              </form>
-            </motion.div>
-          )}
-        </div>
-      </div>
-
-      {/* FAQ + quick links */}
-      <section
-        className="border-t border-white/10 bg-brand-navy py-16 sm:py-20"
-        aria-labelledby="early-access-faq-heading"
-      >
-        <div className="mx-auto max-w-3xl px-6 sm:px-8 lg:px-10">
-          <p className="mb-2 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-[#B8C9DC]">
-            Before you apply
-          </p>
-          <h2
-            id="early-access-faq-heading"
-            className="mb-3 text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl"
-          >
-            Common questions
-          </h2>
-          <p className="mx-auto mb-10 max-w-lg text-center text-sm leading-snug text-white/65">
-            Quick answers about timing, fit, and what to expect. Still unsure?{" "}
-            <a
-              href="/contact"
-              className="font-semibold text-brand-orange underline-offset-2 hover:text-white hover:underline"
-            >
-              Contact us
-            </a>
-            .
-          </p>
-          <div className="rounded-xl border border-white/12 bg-[#0f1c33]/90 px-4 backdrop-blur-sm sm:px-6">
-            {earlyAccessFaqs.map((item, i) => (
-              <EarlyAccessFaqItem key={item.q} q={item.q} a={item.a} index={i} invert />
-            ))}
+            <div className="border-t border-[#E3E8F0]">
+              {faqs.map((f) => <Faq key={f.q} q={f.q} a={f.a} />)}
+            </div>
           </div>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-center text-xs font-semibold text-white/55">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#B8C9DC]">Explore</span>
-            <a href="/platform/module/supply-chain" className="text-white/90 hover:text-brand-orange">
-              Material management
-            </a>
-            <span className="hidden text-white/25 sm:inline">·</span>
-            <a href="/solutions" className="text-white/90 hover:text-brand-orange">
-              Solutions
-            </a>
-            <span className="hidden text-white/25 sm:inline">·</span>
-            <a href="/zed-ai" className="text-white/90 hover:text-brand-orange">
-              Zed AI
-            </a>
-          </div>
-        </div>
-      </section>
-
+        </Section>
+      </main>
       <Footer />
     </div>
   );

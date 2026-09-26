@@ -2,7 +2,7 @@ import { useSEO } from "@/hooks/useSEO";
 import Navbar from "@/components/Navbar";
 import HomeHero from "@/components/home/HomeHero";
 import HomeLogoStrip from "@/components/home/HomeLogoStrip";
-import HomeChallenges from "@/components/home/HomeChallenges";
+import HomeChallenges, { HomeSolutions } from "@/components/home/HomeChallenges";
 import HomeStages from "@/components/home/HomeStages";
 import HomeFeatureGrid from "@/components/home/HomeFeatureGrid";
 import HomeThreeWays from "@/components/home/HomeThreeWays";
@@ -28,13 +28,16 @@ export default function Home() {
           with no <main>, and it gives screen-reader users a single skip target
           past the navigation. */}
       <main id="main">
+        {/* Light: hero, problem, stages. Dark: answer, ways of working, Zed AI.
+            Light: tools, industries. Dark: contractors, CTA, footer. */}
         <HomeHero />
         <HomeLogoStrip />
         <HomeChallenges />
         <HomeStages />
-        <HomeFeatureGrid />
+        <HomeSolutions />
         <HomeThreeWays />
         <HomeZedAI />
+        <HomeFeatureGrid />
         <HomeIndustries />
         <HomeCTA />
       </main>

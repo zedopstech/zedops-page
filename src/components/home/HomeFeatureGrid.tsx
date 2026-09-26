@@ -7,12 +7,10 @@ import type { IconType } from "react-icons";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import {
-  CenterHeader,
-  Container,
-  darkBand,
-  DotGrid,
-  Glow,
+  framePad,
   Highlight,
+  Section,
+  SplitHeader,
   TicketButton,
 } from "@/components/design-system/primitives";
 
@@ -58,7 +56,7 @@ const caps: Capability[] = [
     icon: PiUsersFill,
     title: "Workforce Intelligence",
     desc: "Track attendance, productivity and labor performance.",
-    href: "/platform/module/projects",
+    href: "/platform/module/workforce-intelligence",
   },
   {
     group: "Execution",
@@ -86,7 +84,7 @@ const caps: Capability[] = [
     icon: PiListChecksFill,
     title: "Punch List Management",
     desc: "Track, assign and close punch items efficiently.",
-    href: "/platform/module/quality-safety-closeout",
+    href: "/platform/module/punch-list",
   },
   {
     group: "Platform Core",
@@ -101,106 +99,65 @@ function Cell({ c }: { c: Capability }) {
   return (
     <a
       href={c.href}
-      className="group relative flex flex-col border-[#EDF0F5] bg-white p-6 sm:min-h-[230px] sm:p-7 transition-colors duration-200 hover:bg-[#FFF8F3] lg:min-h-[250px] lg:p-8"
+      className="group relative flex flex-col bg-white p-6 transition-colors duration-200 hover:bg-[#FAFBFC] sm:min-h-[248px] sm:p-8"
     >
       <div className="flex items-start justify-between gap-3">
-        <c.icon
-          size={30}
-          className="text-brand-navy transition-colors group-hover:text-brand-orange"
-          aria-hidden
-        />
-        <span className="rounded-full bg-[#F4F6FA] px-2.5 py-1 text-[11px] font-semibold text-[#6B778C]">
-          {c.group}
+        <span className="flex h-10 w-10 items-center justify-center rounded-md border border-[#E3E8F0] bg-white text-[#5E6C84] shadow-[0_1px_2px_rgba(14,27,51,0.05)] transition-colors group-hover:border-[#FFCFB0] group-hover:text-brand-orange">
+          <c.icon size={20} aria-hidden />
         </span>
+        <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#A5AEBF]">{c.group}</span>
       </div>
-      <h3 className="pt-6 text-[18px] sm:pt-10 font-semibold tracking-[-0.02em] text-brand-navy">
-        {c.title}
-      </h3>
-      <p className="mt-1.5 text-[14.5px] leading-[1.5] text-[#5E6C84]">
-        {c.desc}
-      </p>
-      <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-[14px] font-medium text-brand-navy opacity-70 transition-opacity group-hover:text-brand-orange group-hover:opacity-100">
-        Explore more{" "}
-        <ArrowRight
-          size={14}
-          className="transition-transform group-hover:translate-x-0.5"
-          aria-hidden
-        />
+      <h3 className="pt-10 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">{c.title}</h3>
+      <p className="mt-1.5 max-w-[36ch] text-[14.5px] leading-[1.55] text-[#6B778C]">{c.desc}</p>
+      <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[14px] font-medium text-brand-navy">
+        Explore
+        <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
       </span>
     </a>
   );
 }
 
-/** hexalog feature grid: centred header, then one bordered 12px card split into hairline cells. */
+/** Ten modules in one hairline grid that runs rail to rail, closed by the Zed AI cell. */
 export default function FeatureGridPreview() {
   const isMobile = useIsMobile();
   return (
-    <section
-      id="capabilities"
-      className="relative bg-white py-20 lg:py-[100px]"
-      aria-labelledby="dp-capabilities"
-    >
-      <Container>
+    <Section id="capabilities" labelledBy="dp-capabilities">
+      <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
         <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-          <CenterHeader
+          <SplitHeader
             id="dp-capabilities"
-            title={
-              <>
-                Purpose-built tools
-                <br />
-                for <Highlight>MEP teams.</Highlight>
-              </>
-            }
+            title={<>Purpose-built tools for <Highlight>MEP teams.</Highlight></>}
             body="Estimators, planners, buyers, site teams, and managers get dedicated tools that work from the same project record."
           />
         </motion.div>
-
-        <motion.div
-          {...scrollMotionProps(isMobile, {
-            y: 18,
-            duration: 0.45,
-            delay: 0.05,
-          })}
-          className="mt-14 overflow-hidden rounded-2xl border border-[#E3E8F0] bg-[#EDF0F5] shadow-[0_24px_48px_-32px_rgba(23,43,77,0.3)]"
-        >
-          {/* 1px gap on a hairline-coloured backdrop = crisp dividers at every breakpoint */}
-          <div className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3">
-            {caps.map((c) => (
-              <Cell key={c.title} c={c} />
-            ))}
-            <div
-              className={`group relative flex min-h-[230px] flex-col overflow-hidden p-7 sm:col-span-2 lg:p-8 ${darkBand}`}
-            >
-              <DotGrid dark />
-              <Glow className="-top-20 -right-10 h-72 w-72" />
-              <div className="relative flex items-start justify-between">
-                <PiCpuFill
-                  size={30}
-                  className="text-white/90"
-                  aria-hidden
-                />
-                <span className="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white/80">
-                  New
-                </span>
-              </div>
-              <div className="relative mt-auto flex flex-col gap-5 pt-8 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                  <h3 className="text-[22px] font-semibold tracking-[-0.02em] text-white">
-                    Zed AI
-                  </h3>
-                  <p className="mt-1.5 max-w-md text-[14.5px] leading-[1.5] text-white/70">
-                    Copilot on live project data — insights, drafts, and actions
-                    with your permissions.
-                  </p>
-                </div>
-                <TicketButton href="/zed-ai" variant="orange">
-                  Open Zed AI
-                </TicketButton>
-              </div>
-            </div>
+      </div>
+      <motion.div
+        {...scrollMotionProps(isMobile, { y: 18, duration: 0.45, delay: 0.05 })}
+        className="grid grid-cols-1 gap-px border-t border-[#E8ECF2] bg-[#E8ECF2] sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {caps.map((c) => (
+          <Cell key={c.title} c={c} />
+        ))}
+        <div className="relative flex min-h-[248px] flex-col overflow-hidden bg-[#0E1B33] p-6 sm:col-span-2 sm:p-8">
+          <div className="relative flex items-start justify-between">
+            <span className="flex h-10 w-10 items-center justify-center rounded-md border border-white/15 bg-white/[0.05] text-[#FFB37F]">
+              <PiCpuFill size={20} aria-hidden />
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-white/45">New</span>
           </div>
-        </motion.div>
-      </Container>
-    </section>
+          <div className="relative mt-auto flex flex-col gap-6 pt-10 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h3 className="text-[22px] font-medium tracking-[-0.03em] text-white">Zed AI</h3>
+              <p className="mt-1.5 max-w-md text-[14.5px] leading-[1.55] text-white/60">
+                Copilot on live project data: insights, drafts, and actions with your permissions.
+              </p>
+            </div>
+            <TicketButton href="/zed-ai" variant="white">
+              Open Zed AI
+            </TicketButton>
+          </div>
+        </div>
+      </motion.div>
+    </Section>
   );
 }

@@ -1,35 +1,12 @@
-import type { ComponentType } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowLeft, UsersRound } from "lucide-react";
+import { ArrowRight, UsersRound } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import PageHero from "@/components/PageHero";
 import HowWeHelpPageShell from "@/components/HowWeHelpPageShell";
-import SectionHeader from "@/components/SectionHeader";
+import { framePad, GhostButton, Highlight, Muted, Section, SplitHeader, TicketButton } from "@/components/design-system/primitives";
 import { teamFocusAreas } from "@/data/howWeHelp";
-
-type IconComp = ComponentType<{ size?: number; className?: string; strokeWidth?: number; "aria-hidden"?: boolean }>;
-
-function StippleIconIllustration({ Icon }: { Icon: IconComp }) {
-  return (
-    <div className="relative mt-auto flex w-full justify-center pt-10 sm:pt-12">
-      <div className="relative flex h-36 w-44 max-w-full items-center justify-center sm:h-40 sm:w-48">
-        <div
-          className="pointer-events-none absolute inset-[-12%] opacity-50"
-          style={{
-            backgroundImage: "radial-gradient(circle, #172B4D 1.1px, transparent 1.1px)",
-            backgroundSize: "5px 5px",
-            maskImage: "radial-gradient(ellipse 72% 65% at 50% 50%, black 15%, transparent 72%)",
-            WebkitMaskImage: "radial-gradient(ellipse 72% 65% at 50% 50%, black 15%, transparent 72%)",
-          }}
-          aria-hidden
-        />
-        <Icon className="relative z-1 h-22 w-22 text-brand-orange sm:h-24 sm:w-24" strokeWidth={1.15} aria-hidden />
-      </div>
-    </div>
-  );
-}
 
 export default function HowWeHelpTeamPage() {
   const isMobile = useIsMobile();
@@ -43,65 +20,48 @@ export default function HowWeHelpTeamPage() {
   return (
     <HowWeHelpPageShell>
       <PageHero
-        pill="Inside your org"
+        pill="By team"
         PillIcon={UsersRound}
-        title="One tenant. Different teams."
-        subtitle="Same facts everywhere - different menus and Zed AI scope by role."
+        title={<>One company. Different teams. <Muted>The same facts.</Muted></>}
+        subtitle="Every team works from one project record, with menus and Zed AI scoped to their role."
       >
-        <div className="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
-          <a
-            href="/how-we-help/company"
-            className="inline-flex items-center gap-2 rounded-md border border-brand-navy/15 bg-white/80 px-6 py-3 text-base font-bold text-brand-navy transition-colors hover:border-brand-navy/25"
-          >
-            <ArrowLeft className="h-4 w-4 opacity-60" aria-hidden />
-            Company type
-          </a>
-          <a
-            href="/how-we-help/role"
-            className="inline-flex items-center gap-2 rounded-md bg-brand-orange px-6 py-3 text-base font-bold text-white transition-colors hover:bg-brand-orange-soft"
-          >
-            Roles &amp; permissions
-            <ArrowRight className="h-4 w-4" aria-hidden />
-          </a>
+        <div className="flex flex-wrap gap-3">
+          <TicketButton href="/how-we-help/role">Roles &amp; permissions</TicketButton>
+          <GhostButton href="/how-we-help/company">By company type</GhostButton>
         </div>
       </PageHero>
 
-      <section className="border-t border-gray-200 bg-white py-14 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10">
-          <motion.div {...scrollMotionProps(isMobile, { y: 8, duration: 0.35 })} className="mb-10 mx-auto max-w-5xl text-center">
-            <SectionHeader title={<>How the work shows up inside <span className="text-brand-orange">ZedOps</span></>} titleClassName="!mx-auto !text-center" />
+      <Section labelledBy="team-areas">
+        <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
+          <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
+            <SplitHeader
+              id="team-areas"
+              title={<>How the work shows up <Highlight>for each team.</Highlight></>}
+              body="Field, office, commercial, quality and leadership each get a view shaped around their part of the job."
+            />
           </motion.div>
-
-          {/* Bento grid: 3 × 260px columns on lg, bottom row two wide cells */}
-          <div className="grid grid-cols-1 border-t border-l border-gray-200 md:grid-cols-2 lg:grid-cols-6">
-            {teamFocusAreas.map((t, i) => {
-              const Icon = t.icon as IconComp;
-              const span =
-                i < 3 ? "md:col-span-1 lg:col-span-2" : "md:col-span-1 lg:col-span-3";
-              return (
-                <motion.a
-                  key={t.title}
-                  href={t.relatedPath}
-                  {...scrollMotionProps(isMobile, { y: 10, duration: 0.3, delay: Math.min(i * 0.05, 0.15) })}
-                  className={`group flex min-h-[280px] flex-col border-r border-b border-gray-200 bg-white px-7 py-9 transition-colors hover:bg-gray-50/70 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#0052CC] sm:min-h-[300px] sm:px-9 sm:py-10 ${span}`}
-                  aria-label={`${t.title}: ${t.relatedLabel}`}
-                >
-                  <h3 className="text-2xl font-bold leading-[1.15] tracking-tight text-brand-navy sm:text-[1.65rem] lg:text-[1.75rem]">
-                    {t.title}
-                  </h3>
-                  <p className="mt-3 max-w-none text-base leading-snug text-[#6B778C] sm:text-lg">{t.summary}</p>
-                  <StippleIconIllustration Icon={Icon} />
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand-navy hover-brand-navy/75">
-                    {t.relatedLabel}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                  </span>
-                </motion.a>
-              );
-            })}
-          </div>
-
         </div>
-      </section>
+        <div className="grid gap-px border-t border-[#E8ECF2] bg-[#E8ECF2] md:grid-cols-2 lg:grid-cols-6">
+          {teamFocusAreas.map((t, i) => (
+            <motion.a
+              key={t.title}
+              href={t.relatedPath}
+              {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: (i % 3) * 0.05 })}
+              className={`group flex min-h-[250px] flex-col bg-white p-7 transition-colors hover:bg-[#FAFBFC] sm:p-8 ${i < 3 ? "lg:col-span-2" : "lg:col-span-3"}`}
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-md border border-[#E3E8F0] text-[#5E6C84] transition-colors group-hover:border-[#FFCFB0] group-hover:text-brand-orange">
+                <t.icon size={19} aria-hidden />
+              </span>
+              <h3 className="mt-10 text-[20px] font-medium tracking-[-0.025em] text-brand-navy">{t.title}</h3>
+              <p className="mt-2 max-w-[40ch] text-[15px] leading-[1.55] text-[#6B778C]">{t.summary}</p>
+              <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[14px] font-medium text-brand-navy">
+                {t.relatedLabel}
+                <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" aria-hidden />
+              </span>
+            </motion.a>
+          ))}
+        </div>
+      </Section>
     </HowWeHelpPageShell>
   );
 }

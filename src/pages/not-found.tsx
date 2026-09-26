@@ -4,6 +4,7 @@ import PageHero from "@/components/PageHero";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
+import { GhostButton, Muted, TicketButton } from "@/components/design-system/primitives";
 
 export default function NotFound() {
   useSEO({
@@ -13,31 +14,18 @@ export default function NotFound() {
   });
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
+    <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
       <div>
         <PageHero
           pill="404"
           PillIcon={AlertCircle}
-          title="Page not found"
-          subtitle="That link doesn't exist or may be outdated. Head back home or explore the platform."
+          title={<>This page doesn’t exist. <Muted>Let’s get you back on site.</Muted></>}
+          subtitle="The link may be outdated or mistyped."
         >
-          <div className="mt-2 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="/"
-              className="inline-flex items-center justify-center gap-2 bg-brand-orange px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
-              style={{ borderRadius: 6 }}
-            >
-              Back to home
-              <ArrowRight size={14} aria-hidden />
-            </a>
-            <a
-              href="/solutions"
-              className="inline-flex items-center justify-center gap-2 border-2 border-brand-navy px-6 py-3 text-sm font-bold text-brand-navy transition-all hover:bg-brand-navy hover:text-white"
-              style={{ borderRadius: 6 }}
-            >
-              Solutions
-            </a>
+          <div className="flex flex-wrap gap-3">
+            <TicketButton href="/">Back to home</TicketButton>
+            <GhostButton href="/solutions" icon={ArrowRight}>Explore the platform</GhostButton>
           </div>
         </PageHero>
 

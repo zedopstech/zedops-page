@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { SectionLabel } from "@/components/design-system/primitives";
+import { h2Class, SectionLabel } from "@/components/design-system/primitives";
 
 type SectionHeaderProps = {
   id?: string;
@@ -29,19 +29,19 @@ export default function SectionHeader({
       <div
         className={
           subtitle
-            ? "flex flex-col gap-5 lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-start lg:gap-x-16"
+            ? "flex flex-col gap-5 lg:grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-end lg:gap-x-16"
             : ""
         }
       >
         <h2
           id={id}
-          className={`max-w-2xl text-left text-[30px] font-semibold leading-[1.12] tracking-[-0.035em] text-brand-navy sm:text-[36px] lg:max-w-none lg:text-[40px] ${titleClassName}`}
+          className={`max-w-2xl text-left ${h2Class} text-brand-navy lg:max-w-none ${titleClassName}`}
         >
           {title}
         </h2>
         {subtitle ? (
           <p
-            className={`max-w-2xl text-left text-base leading-[1.6] text-[#3D4F6E] lg:max-w-none lg:pt-3 ${subtitleClassName}`}
+            className={`max-w-2xl text-left text-[16px] leading-[1.6] text-[#5E6C84] sm:text-[17px] lg:max-w-md lg:pb-2 ${subtitleClassName}`}
           >
             {subtitle}
           </p>

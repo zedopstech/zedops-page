@@ -1,23 +1,13 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { PiBankFill, PiBuildingsFill, PiDatabaseFill, PiFactoryFill, PiGasPumpFill, PiGearFill, PiHardHatFill, PiHospitalFill, PiLightningFill, PiUsersFill, PiWrenchFill } from "react-icons/pi";
 import type { IconType } from "react-icons";
-import {
-  ArrowUpRight,
-  Factory,
-  Landmark,
-  Server,
-  Zap,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import {
-  Container,
-  darkBand,
-  DotGrid,
-  Glow,
-  h2Class,
+  framePad,
   Highlight,
+  Section,
   SplitHeader,
   TicketButton,
 } from "@/components/design-system/primitives";
@@ -129,106 +119,72 @@ const contractors: {
   },
 ];
 
-/** hexalog "Integrated supply chain solutions": tab rail | image | gradient copy card with full-width CTA. */
-function IndustryShowcase() {
-  const [active, setActive] = useState(0);
-  const current = industries[active]!;
+/**
+ * Industry bento: seven photo tiles. The lead tile is large and always shows its sectors;
+ * the rest reveal theirs on hover or focus (and always on touch screens).
+ */
+const tileLayout = [
+  "sm:col-span-2 lg:col-span-2 lg:row-span-2",
+  "",
+  "",
+  "",
+  "",
+  "lg:col-span-2",
+  "lg:col-span-2",
+];
 
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setTimeout(() => {
-      if (!document.hidden) setActive((i) => (i + 1) % industries.length);
-    }, 4500);
-    return () => window.clearTimeout(id);
-  }, [active]);
-
+function IndustryTile({ it, index, isMobile }: { it: (typeof industries)[number]; index: number; isMobile: boolean }) {
+  const lead = index === 0;
   return (
-    <div className="grid gap-6 lg:grid-cols-[240px_minmax(0,1fr)_300px] lg:gap-0">
-      <div
-        role="tablist"
-        aria-label="Industries"
-        className="-mx-5 flex gap-5 overflow-x-auto px-5 [scrollbar-width:none] lg:mx-0 lg:flex-col lg:gap-0 lg:overflow-visible lg:border-r lg:border-[#E3E8F0] lg:px-0 lg:pr-6"
-      >
-        {industries.map((it, i) => {
-          const on = i === active;
-          return (
-            <button
-              key={it.title}
-              type="button"
-              role="tab"
-              aria-selected={on}
-              onClick={() => setActive(i)}
-              className={`flex shrink-0 items-center justify-between gap-3 border-b py-3 text-left text-[16px] font-medium transition-colors lg:py-3.5 ${
-                on
-                  ? "border-brand-navy text-brand-navy"
-                  : "border-[#E3E8F0] text-[#8C97AB] hover:text-brand-navy"
-              }`}
-            >
-              {it.title}
-              <it.icon
-                size={18}
-                className={on ? "text-brand-orange" : "text-[#A5AEBF]"}
-                aria-hidden
-              />
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="relative h-[280px] overflow-hidden rounded-xl bg-[#E9EEF6] sm:h-[360px] lg:mx-4 lg:h-auto lg:min-h-[400px]">
-        <AnimatePresence initial={false}>
-          <motion.img
-            key={current.image}
-            src={current.image}
-            alt={current.title}
-            // The image sits in a fixed-aspect container, but explicit dimensions
-            // still let the browser reserve space before the file arrives.
-            width={1536}
-            height={1024}
-            loading="lazy"
-            decoding="async"
-            initial={{ opacity: 0, scale: 1.03 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </AnimatePresence>
-      </div>
-
-      <motion.div
-        key={current.title}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
-        className="flex flex-col rounded-xl border border-[#E3E8F0] p-5"
-        style={{
-          backgroundImage: "linear-gradient(200deg, #FFE3D2 0%, #fff 45%)",
-        }}
-      >
-        <p className="text-[15px] leading-[1.6] text-brand-navy">
-          {current.blurb}
-        </p>
-        <ul className="mt-5 space-y-2">
-          {current.items.map((line) => (
-            <li
-              key={line}
-              className="flex items-center gap-2 text-[14px] text-[#3D4F6E]"
-            >
-              <span
-                className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-orange"
-                aria-hidden
-              />
-              {line}
-            </li>
-          ))}
-        </ul>
-        <div className="mt-auto pt-8">
-          <TicketButton href="/contact" full>
-            Request Demo
-          </TicketButton>
+    <motion.a
+      href="/who-we-serve"
+      {...scrollMotionProps(isMobile, { y: 16, duration: 0.45, delay: (index % 4) * 0.05 })}
+      className={`group relative isolate flex min-h-[240px] flex-col justify-end overflow-hidden rounded-xl bg-[#0E1B33] p-5 outline-none focus-visible:ring-2 focus-visible:ring-brand-orange sm:p-6 ${lead ? "min-h-[320px] lg:min-h-0" : ""} ${tileLayout[index] ?? ""}`}
+    >
+      <img
+        src={it.image}
+        alt=""
+        width={1536}
+        height={1024}
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+      />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(14,27,51,0)_25%,rgba(14,27,51,0.55)_60%,rgba(14,27,51,0.92)_100%)]" />
+      <div className="flex items-end justify-between gap-4">
+        <div className="min-w-0">
+          <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-white/60">
+            <it.icon size={13} className="text-[#FFB37F]" aria-hidden />
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <h3 className={`mt-2 font-medium tracking-[-0.03em] text-white ${lead ? "text-[28px] sm:text-[32px]" : "text-[20px]"}`}>{it.title}</h3>
+          {lead ? <p className="mt-1.5 max-w-[42ch] text-[15px] leading-[1.5] text-white/75">{it.blurb}</p> : null}
+          <ul
+            className={`flex flex-wrap gap-1.5 overflow-hidden transition-all duration-300 ${
+              lead
+                ? "mt-4 max-h-24 opacity-100"
+                : "max-h-24 opacity-100 [@media(hover:hover)]:mt-0 [@media(hover:hover)]:max-h-0 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:mt-3 [@media(hover:hover)]:group-hover:max-h-24 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:mt-3 [@media(hover:hover)]:group-focus-visible:max-h-24 [@media(hover:hover)]:group-focus-visible:opacity-100 mt-3"
+            }`}
+          >
+            {it.items.map((line) => (
+              <li key={line} className="rounded-[4px] border border-white/20 bg-white/10 px-2 py-0.5 text-[12px] text-white/90 backdrop-blur-sm">
+                {line}
+              </li>
+            ))}
+          </ul>
         </div>
-      </motion.div>
+        <ArrowUpRight size={18} className="mb-1 shrink-0 text-white/50 transition-colors group-hover:text-white" aria-hidden />
+      </div>
+    </motion.a>
+  );
+}
+
+function IndustryShowcase({ isMobile }: { isMobile: boolean }) {
+  return (
+    <div className="grid auto-rows-[240px] gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[260px]">
+      {industries.map((it, i) => (
+        <IndustryTile key={it.title} it={it} index={i} isMobile={isMobile} />
+      ))}
     </div>
   );
 }
@@ -237,129 +193,61 @@ export default function IndustriesPreview() {
   const isMobile = useIsMobile();
   return (
     <>
-      <section
-        id="industries"
-        className="relative bg-white py-20 lg:py-[100px]"
-        aria-labelledby="dp-industries"
-      >
-        <Container>
-          <motion.div
-            {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}
-          >
+      <Section id="industries" labelledBy="dp-industries">
+        <div className={`py-20 lg:py-28 ${framePad}`}>
+          <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
             <SplitHeader
               id="dp-industries"
-              title={
-                <>
-                  Built for every construction <Highlight>industry</Highlight>
-                </>
-              }
-              body="ZedOps empowers teams to plan, execute and deliver projects across a wide range of industries."
-              icons={[Landmark, Zap, Factory, Server]}
+              title={<>Built for every construction <Highlight>industry.</Highlight></>}
+              body="ZedOps helps teams plan, execute and deliver projects across a wide range of industries."
             />
           </motion.div>
-          <motion.div
-            {...scrollMotionProps(isMobile, { y: 14, duration: 0.4 })}
-            className="mt-14"
-          >
-            <IndustryShowcase />
-          </motion.div>
-        </Container>
-      </section>
-
-      {/* hexalog "Discover what's new": dark band, white 16px cards with tag pill + inset image */}
-      <section
-        className={`relative overflow-hidden py-20 lg:py-[100px] ${darkBand}`}
-        aria-labelledby="dp-contractors"
-      >
-        <DotGrid
-          dark
-          className="[mask-image:linear-gradient(to_bottom,black,transparent_70%)]"
-        />
-        <Glow color="navy" className="-top-40 right-0 h-[520px] w-[520px]" />
-        <Container className="relative">
-          <motion.div
-            {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}
-            className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
-          >
-            <div>
-              <h2 id="dp-contractors" className={`${h2Class} text-white`}>
-                For every <Highlight>contractor</Highlight>
-              </h2>
-              <p className="mt-4 max-w-xl text-base leading-[1.6] text-white/70">
-                One platform designed to streamline work, improve collaboration
-                and drive project success for all types of contractors.
-              </p>
-            </div>
-            <TicketButton href="/contact" variant="orange">
-              Request Demo
-            </TicketButton>
-          </motion.div>
-
-          <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
-            {contractors.map((c, i) => (
-              <motion.article
-                key={c.title}
-                {...scrollMotionProps(isMobile, {
-                  y: 14,
-                  duration: 0.35,
-                  delay: i * 0.05,
-                })}
-                className={`group flex flex-col rounded-2xl bg-white p-2.5 ${i < 2 ? "lg:col-span-3" : "lg:col-span-2"}`}
-              >
-                <div className="px-2 pt-1.5 pb-3">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[#E3E8F0] bg-[#F4F6FA] px-2.5 py-0.5 text-[12px] font-semibold text-brand-navy">
-                    <c.icon
-                      size={12}
-                      className="text-brand-orange"
-                      aria-hidden
-                    />
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <div
-                  className={`overflow-hidden rounded-xl ${i < 2 ? "h-56" : "h-44"}`}
-                >
-                  <img
-                    src={c.image}
-                    alt={c.title}
-                    width={1536}
-                    height={1024}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col px-2 pt-4 pb-2">
-                  <h3 className="flex items-center justify-between gap-2 text-[17px] font-semibold tracking-tight text-brand-navy">
-                    {c.title}
-                    <ArrowUpRight
-                      size={16}
-                      className="shrink-0 text-[#A5AEBF] transition-colors group-hover:text-brand-orange"
-                      aria-hidden
-                    />
-                  </h3>
-                  <p className="mt-1.5 text-[14px] leading-[1.5] text-[#5E6C84]">
-                    {c.desc}
-                  </p>
-                </div>
-              </motion.article>
-            ))}
+          <div className="mt-14 lg:mt-16">
+            <IndustryShowcase isMobile={isMobile} />
           </div>
+        </div>
+      </Section>
 
-          <div className="mt-14 grid gap-6 border-t border-white/10 pt-10 lg:grid-cols-2 lg:gap-16">
-            <p className="text-[15px] leading-[1.6] text-white/70">
-              Whether you build, manage, install or maintain — ZedOps connects
-              your people, processes and projects in one unified platform.
-            </p>
-            <p className="text-[20px] font-semibold leading-snug tracking-[-0.02em] text-white">
-              One Platform. Every Industry.{" "}
-              <span className="text-[#C9D7EB]">
-                Every Contractor. Every Project.
-              </span>
-            </p>
-          </div>
-        </Container>
-      </section>
+      <Section tone="mist" labelledBy="dp-contractors">
+        <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
+          <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
+            <SplitHeader
+              id="dp-contractors"
+              title={<>For every <Highlight>contractor.</Highlight></>}
+              body="Whether you build, manage, install or maintain, ZedOps connects your people, processes and projects in one platform."
+              cta={<TicketButton href="/contact">Request a demo</TicketButton>}
+            />
+          </motion.div>
+        </div>
+
+        <div className="grid gap-px border-t border-[#E3E8F0] bg-[#E3E8F0] sm:grid-cols-2 lg:grid-cols-6">
+          {contractors.map((c, i) => (
+            <motion.a
+              key={c.title}
+              href="/who-we-serve"
+              {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: i * 0.05 })}
+              className={`group flex flex-col bg-[#F7F8FA] p-5 transition-colors hover:bg-white sm:p-6 ${i < 2 ? "lg:col-span-3" : "lg:col-span-2"}`}
+            >
+              <div className={`overflow-hidden rounded-lg ${i < 2 ? "h-60" : "h-44"}`}>
+                <img
+                  src={c.image}
+                  alt={c.title}
+                  width={1536}
+                  height={1024}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
+              <h3 className="mt-5 flex items-center justify-between gap-2 text-[17px] font-medium tracking-[-0.02em] text-brand-navy">
+                {c.title}
+                <ArrowUpRight size={16} className="shrink-0 text-[#A5AEBF] transition-colors group-hover:text-brand-orange" aria-hidden />
+              </h3>
+              <p className="mt-1.5 text-[14px] leading-[1.55] text-[#6B778C]">{c.desc}</p>
+            </motion.a>
+          ))}
+        </div>
+      </Section>
     </>
   );
 }
