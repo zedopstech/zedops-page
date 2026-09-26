@@ -53,7 +53,7 @@
 	# block silently failed to match, so nothing here sent a Cache-Control at all
 	# and every hashed file fell through uncached. Verified by running this
 	# config against a real build and reading the headers back.
-	@immutable path_regexp content_addressed ^/assets/|^/(hero|photos|screenshots|backgrounds|personas|industries|contractors|platform|video)/[A-Za-z0-9_-]+\.[0-9a-f]{10}\.(png|jpg|jpeg|webp|svg|mp4|webm|ico|woff2)$
+	@immutable path_regexp content_addressed ^/assets/|^/(hero|photos|screenshots|backgrounds|personas|industries|contractors|platform|team|video)/[A-Za-z0-9_-]+\.[0-9a-f]{10}\.(png|jpg|jpeg|webp|svg|mp4|webm|ico|woff2)$
 	header @immutable Cache-Control "public, max-age=31536000, immutable"
 
 	# ── Unhashed media: cache for a week, then revalidate ────────────────────
@@ -69,7 +69,7 @@
 	# a week.
 	@media {
 		path *.png *.jpg *.jpeg *.svg *.webp *.ico *.woff2 *.mp4 *.webm
-		not path_regexp content_addressed ^/assets/|^/(hero|photos|screenshots|backgrounds|personas|industries|contractors|platform|video)/[A-Za-z0-9_-]+\.[0-9a-f]{10}\.(png|jpg|jpeg|webp|svg|mp4|webm|ico|woff2)$
+		not path_regexp content_addressed ^/assets/|^/(hero|photos|screenshots|backgrounds|personas|industries|contractors|platform|team|video)/[A-Za-z0-9_-]+\.[0-9a-f]{10}\.(png|jpg|jpeg|webp|svg|mp4|webm|ico|woff2)$
 	}
 	header @media Cache-Control "public, max-age=604800"
 
@@ -78,13 +78,20 @@
 	# were cacheable a deploy would leave returning visitors pointing at hashed
 	# assets the new build no longer contains, and they would get a blank page.
 	#
+	# KEEP IN SYNC with MEDIA_DIRS in scripts/hash-assets.mjs. Adding a media
+	# directory there without adding it here fails silently: the files are still
+	# hashed and still serve correctly, they just fall through to the 7-day rule
+	# instead of immutable, so nothing looks broken and nothing complains.
+	# `team` was added to hash-assets.mjs and missed here - caught only by reading
+	# the Cache-Control back off a production response.
+	#
 	# The three matchers above are mutually exclusive by construction - @media
 	# excludes @immutable's regex, @shell excludes both - rather than relying on
 	# Caddy applying same-directive header rules in a particular order. An
 	# earlier version of this file depended on that ordering and lost.
 	@shell {
-		not path_regexp content_addressed ^/assets/|^/(hero|photos|screenshots|backgrounds|personas|industries|contractors|platform|video)/[A-Za-z0-9_-]+\.[0-9a-f]{10}\.(png|jpg|jpeg|webp|svg|mp4|webm|ico|woff2)$
-		not path_regexp content_addressed ^/assets/|^/(hero|photos|screenshots|backgrounds|personas|industries|contractors|platform|video)/[A-Za-z0-9_-]+\.[0-9a-f]{10}\.(png|jpg|jpeg|webp|svg|mp4|webm|ico|woff2)$
+		not path_regexp content_addressed ^/assets/|^/(hero|photos|screenshots|backgrounds|personas|industries|contractors|platform|team|video)/[A-Za-z0-9_-]+\.[0-9a-f]{10}\.(png|jpg|jpeg|webp|svg|mp4|webm|ico|woff2)$
+		not path_regexp content_addressed ^/assets/|^/(hero|photos|screenshots|backgrounds|personas|industries|contractors|platform|team|video)/[A-Za-z0-9_-]+\.[0-9a-f]{10}\.(png|jpg|jpeg|webp|svg|mp4|webm|ico|woff2)$
 		not path *.png *.jpg *.jpeg *.svg *.webp *.ico *.woff2 *.mp4 *.webm
 	}
 	header @shell Cache-Control "no-cache"
