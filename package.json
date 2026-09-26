@@ -8,9 +8,10 @@
     "sitemap": "node scripts/generate-sitemap.mjs",
     "prerender": "node scripts/prerender.mjs",
     "prebuild": "npm run sitemap",
-    "build": "vite build --config vite.config.ts && npm run prerender",
+    "build": "vite build --config vite.config.ts && npm run prerender && npm run hash-assets",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "hash-assets": "node scripts/hash-assets.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
