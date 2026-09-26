@@ -65,7 +65,7 @@ export default function GCPage() {
 
   return (
     <PersonaTemplate
-      heroImage="/Persona/site-supervisor.jpg"
+      heroImage="/personas/site-supervisor.jpg"
       imageAlt="General contractor reviewing site plans"
       pill="General Contractors"
       PillIcon={HardHat}

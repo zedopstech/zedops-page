@@ -40,9 +40,9 @@ export const planningHero = {
   subtitle:
     "Assign activities to the right people, track progress in real-time and keep your schedule always up-to-date. Every update you make, updates the schedule automatically.",
   primaryCta: { label: "Book a Demo", href: "/early-access" },
-  imageSrc: "/schedule and planning.png",
+  imageSrc: "/screenshots/schedule-and-planning.png",
   imageAlt: "ZedOps schedule dashboard with baseline timeline and Gantt",
-  videoSrc: "/Shedule_demo1_transparent (2).webm",
+  videoSrc: "/video/schedule-demo-transparent.webm",
 } as const;
 
 export const planningBenefits: { icon: LucideIcon; label: string }[] = [
@@ -162,7 +162,7 @@ export const planningConnected = {
 
 export const planningSimple = {
   title: "Assign. Track. Update. It's That Simple.",
-  imageSrc: "/on site.png",
+  imageSrc: "/photos/on-site.png",
   imageAlt: "Site engineer reviewing the live schedule on a phone",
   items: [
     { icon: UserCheck, tone: "blue" as const, title: "Assign to the Right People", desc: "Ensure ownership and accountability." },

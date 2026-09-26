@@ -277,7 +277,7 @@ function CompareVisual() {
       ========================================================= */}
       <div className="absolute inset-y-0 right-0 w-1/2 overflow-hidden">
         <img
-          src="/modern.png"
+          src="/photos/modern.png"
           alt="Connected construction"
           className="
             absolute

@@ -65,7 +65,7 @@ export default function PMPage() {
 
   return (
     <PersonaTemplate
-      heroImage="/Persona/project-managers.jpg"
+      heroImage="/personas/project-managers.jpg"
       imageAlt="Project manager reviewing construction schedule"
       pill="Project Managers"
       PillIcon={ClipboardList}

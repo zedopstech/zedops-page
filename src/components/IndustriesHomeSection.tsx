@@ -78,7 +78,7 @@ const industries: {
   {
     title: "Data Centres",
     icon: Server,
-    image: "/data-center.png",
+    image: "/photos/data-center.png",
     blurb: "Hyperscale to edge — MEP packages tracked from install through commissioning.",
     items: ["Hyperscale", "Colocation", "Enterprise", "Edge sites"],
   },

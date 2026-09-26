@@ -50,7 +50,7 @@ export const estimationHero = {
     label: "Watch 2-Minute Video",
     href: "#",
   },
-  imageSrc: "/estimation dashboard.png",
+  imageSrc: "/screenshots/estimation-dashboard.png",
   imageAlt:
     "ZEDOPS Estimation Dashboard showing estimates, cost summary, accuracy, status, and recent activity",
 } as const;

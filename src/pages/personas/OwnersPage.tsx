@@ -65,7 +65,7 @@ export default function OwnersPage() {
 
   return (
     <PersonaTemplate
-      heroImage="/Persona/company-owner.jpg"
+      heroImage="/personas/company-owner.jpg"
       imageAlt="Real estate developer reviewing project portfolio"
       pill="Owners & Developers"
       PillIcon={Building2}

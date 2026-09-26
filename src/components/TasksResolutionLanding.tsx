@@ -35,6 +35,7 @@ import {
   tasksResolutionWorkflowTitle,
   tasksDashboardData,
 } from "@/data/tasksResolutionPage";
+import { DemoPlaceholder, ProductShotPlaceholder } from "@/components/design-system/primitives";
 
 type NavModule = Pick<PlatformFeatureSection, "id" | "title">;
 
@@ -245,18 +246,7 @@ function HeroDemoVideo({ src, label }: { src: string; label: string }) {
 
   return (
     <div className="relative w-full lg:w-[135%] lg:max-w-none">
-      <video
-        ref={videoRef}
-        className="h-auto w-full cursor-pointer bg-transparent object-contain object-center mix-blend-screen"
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-label={label}
-        onClick={togglePlay}
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+      <DemoPlaceholder title="Tasks dashboard demo" />
     </div>
   );
 }
@@ -281,7 +271,7 @@ export default function TasksResolutionLanding(_props: {
           className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(155deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.82) 35%, rgba(255,255,255,0.76) 62%, rgba(255,255,255,0.86) 100%), url('/new-hero-banner.png')",
+              "linear-gradient(155deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.82) 35%, rgba(255,255,255,0.76) 62%, rgba(255,255,255,0.86) 100%), url('/backgrounds/new-hero-banner.png')",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
@@ -394,7 +384,6 @@ export default function TasksResolutionLanding(_props: {
                 data={tasksDashboardData}
                 onWatchDemo={() => setIsDemoOpen(true)}
               />
-   
             </div>
           </section>
    
@@ -465,19 +454,7 @@ export default function TasksResolutionLanding(_props: {
    
    
             {/* Video */}
-            <video
-              className="block aspect-video w-full"
-              controls
-              autoPlay
-              playsInline
-            >
-              <source
-                src="/tasks_demo.mp4"
-                type="video/mp4"
-              />
-   
-              Your browser does not support the video tag.
-            </video>
+            <DemoPlaceholder title="Tasks dashboard demo" />
    
           </div>
         </div>
@@ -714,17 +691,7 @@ export default function TasksResolutionLanding(_props: {
           shadow-[0_12px_28px_-16px_rgba(23,43,77,0.22)]
         "
       >
-        <img
-          src="/taskresolution.png"
-          alt="Task resolution overview"
-          className="
-            absolute
-            inset-0
-            h-full
-            w-full
-            object-cover
-          "
-        />
+        <ProductShotPlaceholder label="Task resolution" />
 
         <div
           className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent"

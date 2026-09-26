@@ -162,6 +162,79 @@ export function GhostButton({
   );
 }
 
+/**
+ * Fills a product-screenshot frame whose capture has not been produced yet.
+ *
+ * Four module landing pages referenced dashboard PNGs (/taskresolution.png,
+ * /workforce.png, /dailyintelligencedash.png, /Punchlistmanagementdash.png)
+ * that were never committed to the repo, so each of those pages was requesting a
+ * file that 404s and rendering a broken-image glyph on top of its own grey
+ * frame. Requesting a missing asset is strictly worse than drawing nothing:
+ * it costs a round trip, shows the browser's placeholder, and lands in the
+ * server logs as an error on a page that is otherwise fine.
+ *
+ * This draws the frame instead of fetching anything, and says what belongs
+ * there rather than leaving a mystery. When the real capture exists, drop it
+ * back in as the <img> this replaced - the surrounding container already has
+ * the border, radius and shadow.
+ */
+export function ProductShotPlaceholder({ label }: { label: string }) {
+  return (
+    <div
+      className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#F4F6FA] px-6 text-center"
+      // The neighbouring overlay div already dims the frame from the left; a
+      // second dark wash here would just make the label harder to read.
+    >
+      <span
+        aria-hidden
+        className="h-8 w-8 rounded-[6px] border border-[#CFD9E6] bg-white"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(45deg,transparent 0 5px,rgba(23,43,77,0.05) 5px 6px)",
+        }}
+      />
+      <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#6B778C]">
+        {label}
+      </p>
+      <p className="max-w-[34ch] text-[14px] leading-[1.5] text-[#8C97AB]">
+        Dashboard capture in production
+      </p>
+    </div>
+  );
+}
+
+/**
+ * Stands in for a product demo video that has not been recorded yet, inside the
+ * "watch demo" modal. Same reasoning as ProductShotPlaceholder: the five
+ * *_demo.mp4 files these pages point at were never committed, so opening the
+ * modal used to load a player with a 404 behind it.
+ */
+export function DemoPlaceholder({ title }: { title: string }) {
+  return (
+    <div className="flex aspect-video w-full flex-col items-center justify-center gap-3 bg-[#0E1B33] px-6 text-center">
+      <span
+        aria-hidden
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white/60"
+      >
+        <ArrowUpRight size={18} strokeWidth={1.6} />
+      </span>
+      <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-white/80">
+        {title}
+      </p>
+      <p className="max-w-[38ch] text-[14px] leading-[1.5] text-white/55">
+        Walkthrough video in production. Request early access and we will show you
+        the live product instead.
+      </p>
+      <a
+        href="/early-access"
+        className="mt-1 rounded-[4px] bg-brand-orange px-4 py-2 text-[13px] font-semibold text-white transition hover:bg-brand-orange-soft"
+      >
+        Request early access
+      </a>
+    </div>
+  );
+}
+
 /** hexalog h2: medium weight, tight tracking, 40px desktop. */
 export const h2Class =
   "text-[30px] font-semibold leading-[1.12] tracking-[-0.035em] sm:text-[36px] lg:text-[40px]";

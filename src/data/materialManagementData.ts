@@ -44,7 +44,6 @@ export const materialHero = {
   primaryCta: { label: "Request a Demo", href: "/early-access" },
   imageSrc: "/platform/material-management.png",
   imageAlt: "ZedOps material management dashboard",
-  videoSrc: "/supply_chain_demo.mp4",
 } as const;
 
 export const materialBenefits: { icon: LucideIcon; label: string }[] = [

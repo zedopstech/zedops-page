@@ -205,7 +205,7 @@ export default function Hero() {
         style={{
           y: parallaxYBg,
           backgroundImage:
-            "linear-gradient(155deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.82) 35%, rgba(255,255,255,0.76) 62%, rgba(255,255,255,0.86) 100%), url('/new-hero-banner.png')",
+            "linear-gradient(155deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.82) 35%, rgba(255,255,255,0.76) 62%, rgba(255,255,255,0.86) 100%), url('/backgrounds/new-hero-banner.png')",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
@@ -217,7 +217,7 @@ export default function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           y: parallaxYGrid,
-          backgroundImage: "url('/hero-grid.png')",
+          backgroundImage: "url('/backgrounds/hero-grid.png')",
           backgroundRepeat: "repeat",
           backgroundSize: "80px 80px",
           top: "-20%",

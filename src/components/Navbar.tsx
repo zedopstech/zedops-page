@@ -65,7 +65,7 @@ export default function Navbar() {
             className="flex shrink-0 items-center gap-2"
           >
             <img
-              src="/logo2.png"
+              src="/logo.png"
               alt=""
               className="h-7 w-7 rounded-md object-cover"
             />

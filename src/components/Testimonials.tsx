@@ -172,7 +172,7 @@ export default function Testimonials() {
           >
             <div className="relative flex flex-1 flex-col overflow-hidden p-4 sm:p-5">
               <img
-                src="/digital.jpg"
+                src="/photos/digital.jpg"
                 alt=""
                 className="pointer-events-none absolute inset-x-0 bottom-0 h-[58%] w-full object-cover object-bottom opacity-60"
               />

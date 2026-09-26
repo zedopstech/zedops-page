@@ -33,6 +33,7 @@ import {
   punchListWorkflowTitle,
   punchDashboardData,
 } from "@/data/punchListPage";
+import { DemoPlaceholder, ProductShotPlaceholder } from "@/components/design-system/primitives";
 
 type NavModule = Pick<PlatformFeatureSection, "id" | "title">;
 
@@ -112,7 +113,7 @@ export default function PunchListLanding(_props: {
           className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(155deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.82) 35%, rgba(255,255,255,0.76) 62%, rgba(255,255,255,0.86) 100%), url('/new-hero-banner.png')",
+              "linear-gradient(155deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.82) 35%, rgba(255,255,255,0.76) 62%, rgba(255,255,255,0.86) 100%), url('/backgrounds/new-hero-banner.png')",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
@@ -223,10 +224,7 @@ export default function PunchListLanding(_props: {
               ×
             </button>
 
-            <video className="block aspect-video w-full" controls autoPlay playsInline>
-              <source src="/punch_demo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <DemoPlaceholder title="Punch list demo" />
           </div>
         </div>
       )}
@@ -351,11 +349,7 @@ export default function PunchListLanding(_props: {
               {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: 0.05 })}
               className="relative min-h-[360px] overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 shadow-[0_12px_28px_-16px_rgba(23,43,77,0.22)]"
             >
-              <img
-                src="/Punchlistmanagementdash.png"
-                alt="Punch list management overview"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
+              <ProductShotPlaceholder label="Punch list" />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent" aria-hidden />
             </motion.article>
           </div>

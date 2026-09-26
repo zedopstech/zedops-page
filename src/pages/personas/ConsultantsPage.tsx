@@ -65,7 +65,7 @@ export default function ConsultantsPage() {
 
   return (
     <PersonaTemplate
-      heroImage="/Persona/subcontractor.jpg"
+      heroImage="/personas/subcontractor.jpg"
       imageAlt="Construction consultant reviewing project with team"
       pill="Consultants & CM Firms"
       PillIcon={Briefcase}

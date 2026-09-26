@@ -32,6 +32,7 @@ import {
   budgetCostControlWorkflowTitle,
   budgetDashboardData,
 } from "@/data/budgetCostControlPage";
+import { DemoPlaceholder } from "@/components/design-system/primitives";
 
 type NavModule = Pick<PlatformFeatureSection, "id" | "title">;
 
@@ -111,7 +112,7 @@ export default function BudgetCostControlLanding(_props: {
           className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(155deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.82) 35%, rgba(255,255,255,0.76) 62%, rgba(255,255,255,0.86) 100%), url('/new-hero-banner.png')",
+              "linear-gradient(155deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.82) 35%, rgba(255,255,255,0.76) 62%, rgba(255,255,255,0.86) 100%), url('/backgrounds/new-hero-banner.png')",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
@@ -222,10 +223,7 @@ export default function BudgetCostControlLanding(_props: {
               ×
             </button>
 
-            <video className="block aspect-video w-full" controls autoPlay playsInline>
-              <source src="/budget_demo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <DemoPlaceholder title="Budget and cost control demo" />
           </div>
         </div>
       )}

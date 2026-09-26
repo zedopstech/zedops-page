@@ -10,10 +10,10 @@ import PageHero from "@/components/PageHero";
 import { Container, DotGrid, Highlight, SplitHeader, TicketButton } from "@/components/design-system/primitives";
 
 const personas = [
-  { icon: HardHat, title: "General Contractors", desc: "Keep field work, project coordination, materials, and quality in the same job record.", image: "/Persona/site-supervisor.jpg", href: "/who-we-serve/general-contractors", tag: "Field and office" },
-  { icon: Building2, title: "Owners & Developers", desc: "Follow portfolio progress, budgets, changes, documents, and the decisions behind them.", image: "/Persona/company-owner.jpg", href: "/who-we-serve/owners", tag: "Portfolio view" },
-  { icon: ClipboardList, title: "Project Managers", desc: "Connect the schedule, daily updates, issues, inspections, and closeout work.", image: "/Persona/project-managers.jpg", href: "/who-we-serve/project-managers", tag: "Project delivery" },
-  { icon: Briefcase, title: "Consultants & CM Firms", desc: "See the right work across clients and projects while keeping each team’s access clear.", image: "/Persona/subcontractor.jpg", href: "/who-we-serve/consultants", tag: "Client oversight" },
+  { icon: HardHat, title: "General Contractors", desc: "Keep field work, project coordination, materials, and quality in the same job record.", image: "/personas/site-supervisor.jpg", href: "/who-we-serve/general-contractors", tag: "Field and office" },
+  { icon: Building2, title: "Owners & Developers", desc: "Follow portfolio progress, budgets, changes, documents, and the decisions behind them.", image: "/personas/company-owner.jpg", href: "/who-we-serve/owners", tag: "Portfolio view" },
+  { icon: ClipboardList, title: "Project Managers", desc: "Connect the schedule, daily updates, issues, inspections, and closeout work.", image: "/personas/project-managers.jpg", href: "/who-we-serve/project-managers", tag: "Project delivery" },
+  { icon: Briefcase, title: "Consultants & CM Firms", desc: "See the right work across clients and projects while keeping each team’s access clear.", image: "/personas/subcontractor.jpg", href: "/who-we-serve/consultants", tag: "Client oversight" },
 ];
 
 export default function WhoWeServePage() {

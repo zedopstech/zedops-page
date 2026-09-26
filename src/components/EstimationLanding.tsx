@@ -100,7 +100,7 @@ function ProductView({ markerRefs }: { markerRefs: [RefObject<HTMLDivElement | n
       <div className="relative h-[245px] overflow-hidden bg-[#F4F6FA] sm:h-[380px] lg:h-[510px]">
         <div className={shotCrop}>
           <img
-            src="/estimation-dashboard-new.png"
+            src="/screenshots/estimation-dashboard-new.png"
             alt="Illustrative Estimation dashboard with pipeline value, awarded and overdue offers, status distribution, and estimations created over time"
             className="block h-auto w-full"
           />

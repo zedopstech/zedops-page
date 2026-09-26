@@ -35,9 +35,8 @@ export const coreHero = {
   subtitle:
     "Documents, library, directory, users and projects — the shared foundation every ZedOps module runs on.",
   primaryCta: { label: "Book a Demo", href: "/early-access" },
-  imageSrc: "/schedule and planning.png",
+  imageSrc: "/screenshots/schedule-and-planning.png",
   imageAlt: "ZedOps platform core dashboard with documents, directory and projects",
-  videoSrc: "/Daily log ad.mp4",
 } as const;
 
 export const coreBenefits: { icon: LucideIcon; label: string }[] = [
@@ -154,7 +153,7 @@ export const coreConnected = {
 
 export const coreSimple = {
   title: "Configure. Connect. Control. It's That Simple.",
-  imageSrc: "/on site.png",
+  imageSrc: "/photos/on-site.png",
   imageAlt: "Admin setting up the workspace and connecting modules",
   items: [
     { icon: Building2, tone: "blue" as const, title: "Set the Foundation", desc: "Company, projects and defaults." },

@@ -33,9 +33,8 @@ export const qualityHero = {
   subtitle:
     "Run inspections, capture observations, log incidents and keep every record audit-ready — all tied to the same job, the same day.",
   primaryCta: { label: "Book a Demo", href: "/early-access" },
-  imageSrc: "/schedule and planning.png",
+  imageSrc: "/screenshots/schedule-and-planning.png",
   imageAlt: "ZedOps quality and safety dashboard with inspections, incidents and compliance",
-  videoSrc: "/Daily log ad.mp4",
 } as const;
 
 export const qualityBenefits: { icon: LucideIcon; label: string }[] = [
@@ -153,7 +152,7 @@ export const qualityConnected = {
 
 export const qualitySimple = {
   title: "Inspect. Record. Resolve. It's That Simple.",
-  imageSrc: "/on site.png",
+  imageSrc: "/photos/on-site.png",
   imageAlt: "Site engineer logging a quality check on a phone",
   items: [
     { icon: ClipboardCheck, tone: "blue" as const, title: "Standard Checklists", desc: "Same criteria on every walk." },

@@ -294,7 +294,7 @@ export const dailyWorkflowSite: {
 } = {
   badge: "Capture From The Site",
 
-  imageSrc: "/on site.png",
+  imageSrc: "/photos/on-site.png",
 
   imageAlt: "Daily execution activity captured from construction site",
 
@@ -335,7 +335,7 @@ export const dailyWorkflowOffice: {
 } = {
   badge: "Live Site Snapshot",
 
-  imageSrc: "/at office.png",
+  imageSrc: "/photos/at-office.png",
 
   imageAlt: "Daily execution dashboard showing live site snapshot",
 
