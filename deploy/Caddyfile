@@ -1,0 +1,68 @@
+# Serves the built static site from /srv.
+#
+# Replaces `serve -s dist/public`, which could not express cache rules and
+# returned HTTP 200 for every unknown URL (so /pricing and /anything-typoed
+# looked like valid pages to crawlers).
+{
+	# No admin API: nothing outside this container needs to reload the config.
+	admin off
+}
+
+:3000 {
+	root * /srv
+
+	# Cloudflare already brotlis at the edge (verified in production:
+	# content-encoding: br), so zstd + gzip is enough here. Encoding twice just
+	# burns CPU for no gain.
+	encode zstd gzip
+
+	# ── Cache policy ────────────────────────────────────────────────────────
+	# Vite emits content-hashed filenames (/assets/index-Ab12Cd.js), so these
+	# bytes can never change under the same name. Previously nothing sent a
+	# Cache-Control at all, so every repeat visit revalidated and re-downloaded
+	# the whole JS bundle.
+	@immutable path /assets/*
+	header @immutable Cache-Control "public, max-age=31536000, immutable"
+
+	# Media and images: cache for a week, then revalidate.
+	# Multiple `path` lines inside one matcher are OR'd together, so this covers
+	# both the asset directories and the loose image extensions.
+	@media {
+		path /hero/* /blog/* /contractors/* /industries/* /Persona/* /application/* /platform/* /resources/*
+		path *.png *.jpg *.jpeg *.svg *.webp *.ico *.woff2
+	}
+	header @media Cache-Control "public, max-age=604800"
+
+	# HTML must always revalidate, otherwise a deploy keeps serving the old
+	# bundle hashes until the TTL expires.
+	@html {
+		path *.html /
+		not path /assets/*
+	}
+	header @html Cache-Control "no-cache"
+
+	# ── Routing ─────────────────────────────────────────────────────────────
+	# Order matters:
+	#   {path}                  -> a real file, e.g. /robots.txt, /og-image.png
+	#   {path}/index.html       -> a prerendered route, e.g. /solutions/index.html
+	#   /index.html             -> SPA shell (today's behaviour)
+	#
+	# The middle rule is inert until prerendering lands. Once
+	# scripts/prerender.mjs emits per-route directories, swap the final
+	# fallback from /index.html to /404.html and unknown URLs start returning a
+	# real 404 status instead of a soft one.
+	try_files {path} {path}/index.html /index.html
+	file_server
+
+	# ── Security headers ────────────────────────────────────────────────────
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		X-Frame-Options SAMEORIGIN
+		-Server
+	}
+
+	# Never let a stray dotfile or source file be served.
+	@hidden path /.env* /.git* /.DS_Store
+	respond @hidden 404
+}

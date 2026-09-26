@@ -1,0 +1,35 @@
+# Single-service compose for the ZedOps marketing site.
+#
+# Only this app belongs in this file. The other services on the host (Strapi KB,
+# Postgres, Redis, Centrifugo, the Laravel stage app) are separate projects with
+# their own directories under /home/zedops/ and are deliberately not included.
+#
+# The service was previously called `nextjs`, which is where the misleading
+# `zedops-page-live-nextjs` image name came from - this is a Vite SPA, not Next.js.
+
+services:
+  web:
+    # Production pulls this from GitHub Container Registry. CI overrides
+    # ZEDOPS_IMAGE with the exact commit SHA it just built, so every deploy is
+    # traceable to a commit. Defaults to :latest for a manual `docker compose up`.
+    image: ${ZEDOPS_IMAGE:-ghcr.io/zedopstech/zedops-page:latest}
+    build:
+      context: .
+      args:
+        # Override for staging so canonical/OG/sitemap URLs match the environment.
+        VITE_SITE_URL: ${VITE_SITE_URL:-https://zedops.com}
+    container_name: zedops-live
+    restart: always
+    environment:
+      - NODE_ENV=production
+    networks:
+      - zedops_site_net
+    # Only reachable inside the Docker network; Caddy publishes 80/443.
+    # Do NOT change the container name: the edge Caddyfile proxies to
+    # zedops-live:3000 by name, and renaming it takes production down.
+    expose:
+      - "3000"
+
+networks:
+  zedops_site_net:
+    external: true
