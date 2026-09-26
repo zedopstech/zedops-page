@@ -56,8 +56,11 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             VITE_SITE_URL=${{ vars.VITE_SITE_URL || 'https://zedops.com' }}
-            # Optional. Without it the site builds with no analytics at all.
-            VITE_GA_ID=${{ vars.VITE_GA_ID }}
+            # Accepts either store. GitHub keeps Variables and Secrets separate,
+            # and one is silently ignored by the other - so accept both, otherwise
+            # a value saved as a secret would build a site with no analytics and
+            # still report success.
+            VITE_GA_ID=${{ vars.VITE_GA_ID || secrets.VITE_GA_ID }}
 
       - name: Deploy to server over SSH
         env:

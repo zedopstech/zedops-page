@@ -29,6 +29,16 @@ function googleAnalytics(): Plugin {
     transformIndexHtml: {
       order: "post",
       handler(html) {
+        // Say so in the build log. Without this, a missing VITE_GA_ID produces a
+        // successful build and a deployed site with no tag, and nothing anywhere
+        // reports a problem - which is exactly how this was missed the first time.
+        if (id) {
+          console.log(`  google analytics: enabled (${id})`);
+        } else {
+          console.warn(
+            "  google analytics: DISABLED - VITE_GA_ID is not set. The site will build and ship without a tag.",
+          );
+        }
         if (!id) return html;
         return {
           html,
