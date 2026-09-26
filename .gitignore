@@ -4,3 +4,10 @@
 
 # macOS
 .DS_Store
+
+# Local environment. .env.example IS tracked - it documents the variables without
+# values. This was missing, so a local .env holding a GA id or a staging leads URL
+# would have been picked up by git add -A and committed.
+.env
+.env.local
+.env.*.local

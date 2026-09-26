@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Minus, Plus, Rocket, Users, Zap } from "lucide-react";
+import { FormError, Honeypot, SubmitButton, useLeadForm } from "@/components/forms/useLeadForm";
 import { useSEO } from "@/hooks/useSEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
@@ -70,12 +71,20 @@ export default function EarlyAccessPage() {
     },
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const lead = useLeadForm("early_access");
   const [form, setForm] = useState({ name: "", email: "", company: "", role: "", size: "", country: "", challenge: "" });
   const onChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    void lead.submit({
+      name: form.name,
+      email: form.email,
+      company: form.company,
+      country: form.country,
+      role: form.role,
+      companySize: form.size,
+      message: form.challenge,
+    });
   };
 
   return (
@@ -117,7 +126,7 @@ export default function EarlyAccessPage() {
             </div>
 
             <div className="border-t border-[#E3E8F0] bg-white px-5 py-12 sm:px-8 lg:border-t-0 lg:border-l lg:px-14 lg:py-16">
-              {submitted ? (
+              {lead.sent ? (
                 <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex min-h-[460px] flex-col items-start justify-center">
                   <CheckCircle2 size={36} className="text-[#1D9A5B]" aria-hidden />
                   <h2 className="mt-5 text-[28px] font-medium tracking-[-0.03em] text-brand-navy">You’re on the list.</h2>
@@ -125,7 +134,8 @@ export default function EarlyAccessPage() {
                   <a href="/" className="mt-8 inline-flex items-center gap-1.5 text-[15px] font-medium text-brand-navy">Back to home <ArrowRight size={15} aria-hidden /></a>
                 </motion.div>
               ) : (
-                <form onSubmit={onSubmit} aria-labelledby="ea-form-title">
+                <form onSubmit={onSubmit} aria-labelledby="ea-form-title" className="relative">
+                  <Honeypot inputRef={lead.honeypot} />
                   <h2 id="ea-form-title" className="text-[22px] font-medium tracking-[-0.025em] text-brand-navy">Apply for early access</h2>
                   <div className="mt-6 grid gap-5 sm:grid-cols-2">
                     <label className="text-[13px] text-[#5E6C84]">Full name
@@ -159,9 +169,8 @@ export default function EarlyAccessPage() {
                       <textarea name="challenge" value={form.challenge} onChange={onChange} rows={4} placeholder="For example: material tracking across sites, daily reporting, cost visibility…" className={`${field} h-auto py-3`} />
                     </label>
                   </div>
-                  <button type="submit" className="mt-6 inline-flex h-11 items-center gap-2 rounded-lg bg-brand-navy px-5 text-[15px] font-medium text-white transition-colors hover:bg-[#1E3760]">
-                    Apply for early access <ArrowRight size={16} aria-hidden />
-                  </button>
+                  <FormError message={lead.error} />
+                  <SubmitButton sending={lead.sending}>Apply for early access</SubmitButton>
                   <p className="mt-4 text-[13px] text-[#8C97AB]">
                     We use your details only to respond to your application. See our <a href="/privacy" className="underline underline-offset-2 hover:text-brand-navy">privacy policy</a>.
                   </p>

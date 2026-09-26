@@ -29,6 +29,11 @@ ENV VITE_SITE_URL=$VITE_SITE_URL
 ARG VITE_GA_ID=
 ENV VITE_GA_ID=$VITE_GA_ID
 
+# Strapi base URL for form leads. Empty falls back to the production default in
+# src/lib/leads.ts, so only staging needs to set it.
+ARG VITE_LEADS_API_URL=
+ENV VITE_LEADS_API_URL=$VITE_LEADS_API_URL
+
 RUN npm run build
 
 # Fail the build rather than shipping an image with no site in it.
