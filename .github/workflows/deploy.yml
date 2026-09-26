@@ -48,7 +48,7 @@ jobs:
         with:
           context: .
           push: true
-          # Tag by commit SHA for traceability, plus latest for the server to pull.
+          # Tag by commit SHA for traceability, plus latest as a fallback.
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
@@ -78,19 +78,35 @@ jobs:
           187.127.169.156 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDyaLck+IpI72AnjITZVwdTGNakhdk0RV8nR4iCHZHhV
           KNOWN_HOSTS
 
-          # Container name is referenced by the edge Caddy config
-          # (reverse_proxy zedops-live:3000) - it must not change.
-          ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" bash -s <<REMOTE
+          trap 'rm -f ~/.ssh/deploy_key' EXIT
+
+          # The server must run the compose file from THIS repo, not a stale copy
+          # left on the host. An earlier version of this workflow ran against the
+          # server's own file, which still defined a service called `nextjs`
+          # while the repo calls it `web` - so `docker compose pull web` failed
+          # and every deploy died *after* the image had already been built.
+          echo "::group::Sync compose file to server"
+          scp -o BatchMode=yes -o StrictHostKeyChecking=yes \
+              -i ~/.ssh/deploy_key docker-compose.yml \
+              "$DEPLOY_USER@$DEPLOY_HOST:/home/zedops/zedops-page-live/docker-compose.yml"
+          echo "::endgroup::"
+
+          echo "::group::Deploy over SSH"
+          ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o StrictHostKeyChecking=yes \
+              "$DEPLOY_USER@$DEPLOY_HOST" bash -s <<REMOTE
           set -euo pipefail
           cd /home/zedops/zedops-page-live
-
-          # Point the compose file at the exact image CI just built.
           export ZEDOPS_IMAGE="${IMAGE}"
+
+          # Stop the previous stack first. The new container claims the name
+          # zedops-live, which the running one is holding, so `up` alone fails
+          # with a name conflict.
+          docker compose down --remove-orphans
           docker compose pull web
           docker compose up -d --remove-orphans
           docker image prune -f
 
-          echo "--- containers ---"
+          echo "--- container ---"
           docker ps --filter name=zedops-live --format '{{.Names}}  {{.Image}}  {{.Status}}'
 
           # Health check runs INSIDE the container: port 3000 is only `expose`d to
@@ -98,7 +114,7 @@ jobs:
           echo "--- health check ---"
           for i in \$(seq 1 20); do
             if docker exec zedops-live wget -qO- http://127.0.0.1:3000/ >/dev/null 2>&1; then
-              echo "site responding 200 after \${i}s"
+              echo "site responding after \${i}s"
               exit 0
             fi
             sleep 1
@@ -107,5 +123,4 @@ jobs:
           docker logs --tail 50 zedops-live || true
           exit 1
           REMOTE
-
-          rm -f ~/.ssh/deploy_key
+          echo "::endgroup::"

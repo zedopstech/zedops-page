@@ -17,6 +17,18 @@
 	encode zstd gzip
 
 	# ── Cache policy ────────────────────────────────────────────────────────
+	# Explicit and order-independent on purpose. An earlier version set an
+	# unconditional `no-cache` default and tried to override it for /assets/*;
+	# in practice the default won and every response - hashed assets included -
+	# got no-cache. A second attempt with `defer` dropped the headers entirely.
+	# Caddy's header-directive ordering is not something to rely on here, so this
+	# states positively which paths are HTML instead.
+	#
+	# Why the default case matters: the SPA shell is served for every route that
+	# has no file of its own (/solutions, /zed-ai, ...). A matcher like
+	# `path *.html` misses all of them. If the shell is cacheable, a deploy deletes
+	# the old hashed assets it points at and returning visitors get a blank page.
+
 	# Vite emits content-hashed filenames (/assets/index-Ab12Cd.js), so these
 	# bytes can never change under the same name. Previously nothing sent a
 	# Cache-Control at all, so every repeat visit revalidated and re-downloaded
@@ -25,21 +37,19 @@
 	header @immutable Cache-Control "public, max-age=31536000, immutable"
 
 	# Media and images: cache for a week, then revalidate.
-	# Multiple `path` lines inside one matcher are OR'd together, so this covers
-	# both the asset directories and the loose image extensions.
 	@media {
 		path /hero/* /blog/* /contractors/* /industries/* /Persona/* /application/* /platform/* /resources/*
 		path *.png *.jpg *.jpeg *.svg *.webp *.ico *.woff2
 	}
 	header @media Cache-Control "public, max-age=604800"
 
-	# HTML must always revalidate, otherwise a deploy keeps serving the old
-	# bundle hashes until the TTL expires.
-	@html {
-		path *.html /
-		not path /assets/*
+	# Everything else is the HTML shell: robots.txt, sitemap.xml and every route
+	# handled by the SPA fallback. Keep this list in sync with @media above.
+	@shell {
+		not path /assets/* /hero/* /blog/* /contractors/* /industries/* /Persona/* /application/* /platform/* /resources/*
+		not path *.png *.jpg *.jpeg *.svg *.webp *.ico *.woff2
 	}
-	header @html Cache-Control "no-cache"
+	header @shell Cache-Control "no-cache"
 
 	# ── Routing ─────────────────────────────────────────────────────────────
 	# Order matters:
@@ -61,8 +71,4 @@
 		X-Frame-Options SAMEORIGIN
 		-Server
 	}
-
-	# Never let a stray dotfile or source file be served.
-	@hidden path /.env* /.git* /.DS_Store
-	respond @hidden 404
 }
