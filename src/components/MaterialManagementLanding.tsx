@@ -128,11 +128,21 @@ function KpiSparkline({
   );
 }
 
+/**
+ * Tone per KPI colour. `blue` was missing while materialKpis.stats already asked
+ * for `color: "blue"`, so `kpiTone[stat.color]` was undefined and the very next
+ * line - `tone.icon` - would have thrown. It never did because
+ * MaterialScheduleKpiCard is never rendered (see the reachability note in
+ * README), so the bug sat latent. Added here rather than changing the data,
+ * because the data is right: four tones read better on that card than three,
+ * and blue is the one the designer picked.
+ */
 const kpiTone = {
   orange: { icon: "bg-brand-orange/15 text-brand-orange", spark: "#FE5D02" },
   green: { icon: "bg-[#E3FCEF] text-[#00875A]", spark: "#22C55E" },
   red: { icon: "bg-[#FFEBE6] text-[#DE350B]", spark: "#EF4444" },
   purple: { icon: "bg-[#EAE6FF] text-[#5243AA]", spark: "#7C3AED" },
+  blue: { icon: "bg-[#E1F0FF] text-[#0B63CE]", spark: "#3B82F6" },
 } as const;
 
 function MaterialScheduleKpiCard() {

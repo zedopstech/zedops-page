@@ -1,0 +1,73 @@
+name: CI
+
+# Pull requests only. This is the check that branch protection on main requires.
+#
+# Kept separate from deploy.yml on purpose. That workflow cannot use
+# `pull_request` or `pull_request_target`: on a public repo, `pull_request_target`
+# checks out a contributor's code while holding repository secrets, which is a
+# remote-code-execution path. This workflow uses `pull_request` and holds no
+# secrets at all - it only runs the toolchain - so there is nothing to leak and
+# a fork can trigger it safely.
+#
+# What it gates: the type check and a full production build. Both used to be
+# decorative. `npm run typecheck` had no local TypeScript, so it fell through to
+# a globally installed tsc old enough to reject this repo's own tsconfig and
+# report 844 errors against unmodified HEAD. Nothing ran type checking at all,
+# which is how a live nav crash and a missing colour tone survived.
+
+on:
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same PR. Without this, pushing five commits in a
+# row queues five full builds to check the same thing.
+concurrency:
+  group: ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Type check and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      # The full build, not just tsc. The prerender step and the Vite config
+      # plugin that publishes the analytics ID are where build-only breakage
+      # shows up, and neither is visible to the type checker.
+      - name: Build
+        run: npm run build
+
+      # Confirms the prerender step produced a file per route. A silent failure
+      # here leaves a site that 200s but serves the homepage's metadata on every
+      # URL, which is exactly the bug this repo already had once.
+      - name: Verify prerender output
+        run: |
+          count=$(find dist/public -name index.html | wc -l)
+          echo "prerendered route files: $count"
+          if [ "$count" -lt 30 ]; then
+            echo "::error::expected at least 30 prerendered routes, found $count"
+            exit 1
+          fi
+          test -f dist/public/404.html || {
+            echo "::error::404.html missing - unknown paths would return a soft 200"
+            exit 1
+          }

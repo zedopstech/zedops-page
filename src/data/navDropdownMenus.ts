@@ -32,6 +32,7 @@ import {
   Compass,
   ListChecks,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { SITE_FOCUS_MEP_EXECUTION, HIDE_PRICING } from "@/config/siteFocus";
 
 /** Shared Platform mega-menu (lifecycle groups → module pages). No hub `/platform` page. */
@@ -308,6 +309,20 @@ export const dropdownMenusGeneral = {
       },
     ],
     cta: { label: "See all resources", href: "#" },
+    // Present on every menu in both collections. It was missing here only, which
+    // meant dropdownMenusMep - which spreads this object and adds its own
+    // featured - was a structural superset, and the `as unknown as DropdownMenus`
+    // cast below existed purely to hide that from the compiler. MegaMenu reads
+    // resources.featured unconditionally, so with SITE_FOCUS_MEP_EXECUTION
+    // flipped to false the Resources panel would have thrown on featured.href.
+    featured: {
+      tag: "Guide",
+      title: "How MEP contractors connect daily logs to follow-up work.",
+      readTime: "Read",
+      href: "/blog/daily-logs-that-people-actually-use",
+      image:
+        "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=480&h=320&q=80",
+    },
   },
   Company: companyMenu,
 } as const;
@@ -416,13 +431,53 @@ export const dropdownMenusMep = {
   Company: companyMenu,
 } as const;
 
-export type DropdownMenus = typeof dropdownMenusGeneral;
+/**
+ * Widen `as const` literal types back to their base types, while leaving icon
+ * components alone.
+ *
+ * The mega-menu data is `as const`, so every string is a literal type. That is
+ * what made the two collections incompatible: dropdownMenusMep exists precisely
+ * to hold different copy, so `"Copilot on live project data"` is not assignable
+ * to `"In-product copilot"`. The original code resolved that with
+ * `as unknown as DropdownMenus`, and because the cast silenced the compiler, a
+ * real shape difference slipped through - only the MEP collection had
+ * `Resources.featured`, while MegaMenu read it unconditionally. Flipping
+ * SITE_FOCUS_MEP_EXECUTION to false would have thrown on `featured.href`.
+ *
+ * The type is derived from the data rather than hand-written so it cannot drift:
+ * a field added to the menus shows up here automatically, and a field *removed*
+ * from the data is a compile error at the point of use.
+ */
+type Widen<T> = T extends string
+  ? string
+  : T extends number
+    ? number
+    : T extends boolean
+      ? boolean
+      : T extends readonly (infer U)[]
+        ? readonly Widen<U>[]
+        : T extends LucideIcon
+          ? T
+          : T extends object
+            ? { readonly [K in keyof T]: Widen<T[K]> }
+            : T;
+
+export type DropdownMenus = Widen<typeof dropdownMenusGeneral>;
 export type DropdownKey = keyof DropdownMenus;
 
-/** Active mega-menus for the current marketing mode (see `siteFocus.ts`). */
-export const dropdownMenus: DropdownMenus = (
-  SITE_FOCUS_MEP_EXECUTION ? dropdownMenusMep : dropdownMenusGeneral
-) as unknown as DropdownMenus;
+/**
+ * Active mega-menus for the current marketing mode (see `siteFocus.ts`).
+ *
+ * No cast here. dropdownMenusMep spreads dropdownMenusGeneral.Resources and
+ * overrides copy, so the two are structurally compatible and the compiler now
+ * proves that on every build. The `as unknown as DropdownMenus` this replaced was
+ * hiding a real divergence: MegaMenu read `resources.featured`, which only the
+ * MEP collection provided, so the component was typed against a shape it did
+ * not have and would have crashed in general mode.
+ */
+export const dropdownMenus: DropdownMenus = SITE_FOCUS_MEP_EXECUTION
+  ? dropdownMenusMep
+  : dropdownMenusGeneral;
 
 /** Mobile drawer links: general (full) list preserved for when `SITE_FOCUS_MEP_EXECUTION` is false. */
 export const mobileNavLinksGeneral = [

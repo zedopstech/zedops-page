@@ -24,20 +24,37 @@ interface SEOProps {
 
 type Attrs = Record<string, string>;
 
-/** Create the tag if it is missing, then set attributes on it. */
-function upsert(selector: string, create: { tag: string; attrs: Attrs }, attrs: Attrs) {
-  let el = document.head.querySelector<HTMLMetaElement>(selector);
+/**
+ * Create the tag if it is missing, then set attributes on it.
+ *
+ * Generic over the element type because it handles both <meta> and <link>.
+ * `document.createElement` is typed to return HTMLElement for an arbitrary tag
+ * name, so without this the assignment was a type error that the old code
+ * papered over with four `!` assertions. The assertions were not free: they
+ * silenced the compiler on exactly the nullability that mattered, which is why
+ * this function went untyped for as long as it did.
+ */
+function upsert<T extends Element>(
+  selector: string,
+  create: { tag: string; attrs: Attrs },
+  attrs: Attrs,
+): T {
+  let el = document.head.querySelector<T>(selector);
   if (!el) {
-    el = document.createElement(create.tag);
-    Object.entries(create.attrs).forEach(([k, v]) => el!.setAttribute(k, v));
-    document.head.appendChild(el);
+    const created = document.createElement(create.tag);
+    for (const [k, v] of Object.entries(create.attrs)) created.setAttribute(k, v);
+    document.head.appendChild(created);
+    // createElement is typed to return HTMLElement for a dynamic tag name, so
+    // this is a genuine widening rather than a mistake: the caller states which
+    // element it needs and the selector above is what actually guarantees it.
+    el = created as unknown as T;
   }
-  Object.entries(attrs).forEach(([k, v]) => el!.setAttribute(k, v));
+  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
   return el;
 }
 
 function setMeta(keyAttr: "name" | "property", key: string, content: string) {
-  upsert(
+  upsert<HTMLMetaElement>(
     `meta[${keyAttr}="${key}"]`,
     { tag: "meta", attrs: { [keyAttr]: key } },
     { content },
@@ -84,8 +101,8 @@ export function useSEO({
     setMeta("name", "description", description);
 
     // Canonical + indexability.
-    upsert("link[rel='canonical']", { tag: "link", attrs: { rel: "canonical" } }, { href: url });
-    upsert(
+    upsert<HTMLLinkElement>("link[rel='canonical']", { tag: "link", attrs: { rel: "canonical" } }, { href: url });
+    upsert<HTMLMetaElement>(
       "meta[name='robots']",
       { tag: "meta", attrs: { name: "robots" } },
       { content: noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large" },

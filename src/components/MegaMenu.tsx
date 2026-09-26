@@ -94,7 +94,12 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
                 <a key={item.label} href={item.href} onClick={onNavigate} className="group flex flex-col rounded-xl border border-[#E3E8F0] bg-[#F8FAFC] p-4 hover:border-[#BFCBDC] hover:bg-white">
                   <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#E8EEF7] text-brand-navy"><item.icon size={22} aria-hidden /></span>
                   <span className="mt-4 text-[15px] font-semibold text-brand-navy">{item.label}</span>
-                  <span className="mt-2 text-[12px] leading-relaxed text-[#5E6C84]">{item.subtitle}</span>
+                  {/* desc, not subtitle. Only the Resources items carry a
+                      subtitle; these module cards have just `desc`, so reading
+                      subtitle rendered an empty span and left a gap under every
+                      card in this panel. The other two card renderers in this
+                      file (lines 29 and 124) already used desc. */}
+                  <span className="mt-2 text-[12px] leading-relaxed text-[#5E6C84]">{item.desc}</span>
                   <span className="mt-auto inline-flex items-center gap-1 pt-4 text-[11px] font-semibold text-brand-navy">Open <ArrowRight size={11} aria-hidden /></span>
                 </a>
               ))}
