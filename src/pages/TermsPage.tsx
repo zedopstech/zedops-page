@@ -3,6 +3,7 @@ import PageHero from "@/components/PageHero";
 import LegalContent from "@/components/LegalContent";
 import Footer from "@/components/Footer";
 import { FileText } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
 const sections = [
   {
@@ -61,6 +62,12 @@ ZedOps is not liable for any indirect, incidental, consequential, or punitive da
 ];
 
 export default function TermsPage() {
+  useSEO({
+    title: "Terms of Use  -  ZedOps",
+    description:
+      "The terms that govern use of the ZedOps website and platform, including accounts, acceptable use, and intellectual property.",
+  });
+
   return (
     <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />

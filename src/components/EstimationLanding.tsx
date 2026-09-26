@@ -18,7 +18,7 @@ import {
   DotGrid,
   Highlight,
   SplitHeader,
-} from "@/components/design-preview/primitives";
+} from "@/components/design-system/primitives";
 
 type NavModule = Pick<PlatformFeatureSection, "id" | "title">;
 

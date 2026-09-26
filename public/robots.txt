@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 
-Disallow: /api/
+# Internal design sandbox - not linked from the site, kept out of the index.
+Disallow: /sandbox/
+Disallow: /design-preview/
 
 Sitemap: https://zedops.com/sitemap.xml

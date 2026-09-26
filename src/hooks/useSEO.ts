@@ -1,24 +1,152 @@
 import { useEffect } from "react";
+import { useLocation } from "wouter";
+import { SITE, absoluteUrl } from "@/config/site";
 
 interface SEOProps {
   title: string;
   description: string;
+  /** Overrides the auto-derived canonical path. Rarely needed. */
+  path?: string;
+  /** Absolute or root-relative share image. Defaults to the site-wide OG image. */
+  image?: string;
+  imageAlt?: string;
+  /** "website" for marketing pages, "article" for blog posts. */
+  type?: "website" | "article";
+  /** Keeps the page out of the index. Use for sandboxes, thin or duplicate pages. */
+  noindex?: boolean;
+  /** ISO date, for article:published_time / article:modified_time. */
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  /** JSON-LD objects injected as application/ld+json. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-export function useSEO({ title, description }: SEOProps) {
+type Attrs = Record<string, string>;
+
+/** Create the tag if it is missing, then set attributes on it. */
+function upsert(selector: string, create: { tag: string; attrs: Attrs }, attrs: Attrs) {
+  let el = document.head.querySelector<HTMLMetaElement>(selector);
+  if (!el) {
+    el = document.createElement(create.tag);
+    Object.entries(create.attrs).forEach(([k, v]) => el!.setAttribute(k, v));
+    document.head.appendChild(el);
+  }
+  Object.entries(attrs).forEach(([k, v]) => el!.setAttribute(k, v));
+  return el;
+}
+
+function setMeta(keyAttr: "name" | "property", key: string, content: string) {
+  upsert(
+    `meta[${keyAttr}="${key}"]`,
+    { tag: "meta", attrs: { [keyAttr]: key } },
+    { content },
+  );
+}
+
+function removeMeta(keyAttr: "name" | "property", key: string) {
+  document.head.querySelector(`meta[${keyAttr}="${key}"]`)?.remove();
+}
+
+/**
+ * Per-route document head management.
+ *
+ * Rewritten to cover the tags the previous version silently skipped. It used to update
+ * only tags that already existed in index.html, which meant canonical, og:url, og:image
+ * and twitter:image stayed pinned to the homepage on every route - so search engines and
+ * social scrapers treated all 25 pages as duplicates of "/".
+ *
+ * The canonical path is derived from the router location, so pages get a correct URL
+ * without each one having to pass it.
+ */
+export function useSEO({
+  title,
+  description,
+  path,
+  image,
+  imageAlt,
+  type = "website",
+  noindex = false,
+  publishedTime,
+  modifiedTime,
+  author,
+  jsonLd,
+}: SEOProps) {
+  const [location] = useLocation();
+
   useEffect(() => {
+    const routePath = path ?? location;
+    const url = absoluteUrl(routePath);
+    const imageUrl = absoluteUrl(image ?? SITE.ogImage);
+    const imageDescription = imageAlt ?? `${SITE.name} — ${SITE.tagline}`;
+
     document.title = title;
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute("content", description);
+    setMeta("name", "description", description);
+
+    // Canonical + indexability.
+    upsert("link[rel='canonical']", { tag: "link", attrs: { rel: "canonical" } }, { href: url });
+    upsert(
+      "meta[name='robots']",
+      { tag: "meta", attrs: { name: "robots" } },
+      { content: noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large" },
+    );
+
+    // Open Graph.
+    setMeta("property", "og:type", type);
+    setMeta("property", "og:url", url);
+    setMeta("property", "og:title", title);
+    setMeta("property", "og:description", description);
+    setMeta("property", "og:image", imageUrl);
+    setMeta("property", "og:image:width", String(SITE.ogImageWidth));
+    setMeta("property", "og:image:height", String(SITE.ogImageHeight));
+    setMeta("property", "og:image:alt", imageDescription);
+    setMeta("property", "og:site_name", SITE.name);
+
+    // Twitter / X.
+    setMeta("name", "twitter:card", "summary_large_image");
+    setMeta("name", "twitter:site", SITE.twitter);
+    setMeta("name", "twitter:title", title);
+    setMeta("name", "twitter:description", description);
+    setMeta("name", "twitter:image", imageUrl);
+    setMeta("name", "twitter:image:alt", imageDescription);
+
+    // Article-only tags; removed on non-article routes so stale values cannot leak.
+    if (type === "article") {
+      if (publishedTime) setMeta("property", "article:published_time", publishedTime);
+      if (modifiedTime) setMeta("property", "article:modified_time", modifiedTime);
+      if (author) setMeta("property", "article:author", author);
+    } else {
+      removeMeta("property", "article:published_time");
+      removeMeta("property", "article:modified_time");
+      removeMeta("property", "article:author");
     }
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", title);
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute("content", description);
-    const twTitle = document.querySelector('meta[name="twitter:title"]');
-    if (twTitle) twTitle.setAttribute("content", title);
-    const twDesc = document.querySelector('meta[name="twitter:description"]');
-    if (twDesc) twDesc.setAttribute("content", description);
-  }, [title, description]);
+
+    // JSON-LD is replaced wholesale per route so one page's schema cannot leak into another.
+    // Only page-managed blocks are cleared; the sitewide block in index.html is marked
+    // data-seo-jsonld="static" and must survive.
+    document.head.querySelectorAll('script[data-seo-jsonld="page"]').forEach((n) => n.remove());
+    if (jsonLd) {
+      const blocks = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+      blocks.filter(Boolean).forEach((block) => {
+        const script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.dataset.seoJsonld = "page";
+        script.textContent = JSON.stringify(block);
+        document.head.appendChild(script);
+      });
+    }
+  }, [
+    title,
+    description,
+    path,
+    image,
+    imageAlt,
+    type,
+    noindex,
+    publishedTime,
+    modifiedTime,
+    author,
+    jsonLd,
+    location,
+  ]);
 }

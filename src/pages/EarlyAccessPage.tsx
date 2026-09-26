@@ -131,6 +131,16 @@ export default function EarlyAccessPage() {
   useSEO({
     title: "Request Early Access  -  ZedOps",
     description: "Apply for early access to ZedOps. Limited spots available for construction teams. Founder-direct onboarding, weekly feature releases, and early access pricing.",
+    // The visible FAQ answers are mirrored here, so the markup can never drift from the page.
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: earlyAccessFaqs.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    },
   });
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({

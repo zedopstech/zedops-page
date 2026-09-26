@@ -6,7 +6,7 @@ import { ModuleCapabilities, ModuleClosingCta, ModuleComparison, ModuleConnected
 import {
   CornerTicks,
   Highlight,
-} from "@/components/design-preview/primitives";
+} from "@/components/design-system/primitives";
 
 type NavModule = Pick<PlatformFeatureSection, "id" | "title">;
 

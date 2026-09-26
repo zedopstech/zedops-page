@@ -3,8 +3,15 @@ import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function NotFound() {
+  useSEO({
+    title: "Page not found  -  ZedOps",
+    description: "That page does not exist. Head back to the ZedOps home page or explore the platform.",
+    noindex: true,
+  });
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-white text-brand-navy">
       <Navbar />

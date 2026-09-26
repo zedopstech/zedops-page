@@ -16,7 +16,7 @@ import {
   SectionLabel,
   SplitHeader,
   TicketButton,
-} from "@/components/design-preview/primitives";
+} from "@/components/design-system/primitives";
 
 const pad = (value: number) => String(value).padStart(2, "0");
 

@@ -11,7 +11,7 @@ import type { MockType } from "@/components/ProductMocks";
 import { productMockComponents } from "@/components/ProductMocks";
 import type { PersonaMockScenario } from "@/components/PersonaMocks";
 import { PersonaFeatureMock } from "@/components/PersonaMocks";
-import { Container, CornerTicks, DotGrid, GhostButton, Highlight, SectionLabel, SplitHeader, TicketButton } from "@/components/design-preview/primitives";
+import { Container, CornerTicks, DotGrid, GhostButton, Highlight, SectionLabel, SplitHeader, TicketButton } from "@/components/design-system/primitives";
 
 export type { MockType, PersonaMockScenario };
 

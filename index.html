@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ZedOps  -  MEP Operations &amp; Field Execution</title>
     <meta name="description" content="ZedOps for mechanical, electrical, and plumbing contractors: schedule to tasks, daily logs to follow-ups, inspections and punch to closeout. Action-first operations with AI where you need it." />
     <meta name="theme-color" content="#172B4D" />
@@ -11,6 +11,11 @@
     <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+
+    <!--
+      Canonical + og:url below are the static defaults for "/". The useSEO hook rewrites
+      them per route, so each page reports its own URL to crawlers and social scrapers.
+    -->
     <link rel="canonical" href="https://zedops.com/" />
 
     <!-- Open Graph -->
@@ -19,7 +24,11 @@
     <meta property="og:title" content="ZedOps  -  MEP Operations &amp; Field Execution" />
     <meta property="og:description" content="Mechanical, electrical, and plumbing execution: tasks, daily logs, inspections, and punch, not just dashboards. AI-assisted where your org enables it." />
     <meta property="og:image" content="https://zedops.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ZedOps — AI MEP &amp; Construction Execution Platform" />
     <meta property="og:site_name" content="ZedOps" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -27,6 +36,57 @@
     <meta name="twitter:title" content="ZedOps  -  MEP Operations &amp; Field Execution" />
     <meta name="twitter:description" content="MEP-focused operations: schedule to tasks, logs to follow-ups, inspections and punch to done. Built for crews and PMs who need the next action." />
     <meta name="twitter:image" content="https://zedops.com/og-image.png" />
+    <meta name="twitter:image:alt" content="ZedOps — AI MEP &amp; Construction Execution Platform" />
+
+    <!--
+      Site-wide structured data. Static so it is present on every route without depending
+      on JavaScript. Per-page schema (BlogPosting, FAQPage, BreadcrumbList) is injected by
+      the useSEO hook, tagged data-seo-jsonld so it is replaced rather than accumulated.
+    -->
+    <script type="application/ld+json" data-seo-jsonld="static">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://zedops.com/#organization",
+            "name": "ZedOps, Inc.",
+            "url": "https://zedops.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://zedops.com/logo.png"
+            },
+            "description": "ZedOps connects schedule, field work, materials, costs, and quality in one project view for mechanical, electrical, and plumbing contractors.",
+            "email": "hello@zedops.com",
+            "sameAs": ["https://twitter.com/zedops"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://zedops.com/#website",
+            "url": "https://zedops.com/",
+            "name": "ZedOps",
+            "publisher": { "@id": "https://zedops.com/#organization" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://zedops.com/#software",
+            "name": "ZedOps",
+            "applicationCategory": "BusinessApplication",
+            "applicationSubCategory": "Construction Operations",
+            "operatingSystem": "Web",
+            "url": "https://zedops.com/",
+            "description": "AI MEP and construction execution platform: schedule, tasks, daily logs, inspections, punch, materials, cost control and quality in one workflow.",
+            "publisher": { "@id": "https://zedops.com/#organization" },
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/PreOrder",
+              "description": "Early access by application."
+            }
+          }
+        ]
+      }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

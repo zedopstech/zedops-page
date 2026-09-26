@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FinalCTA from "@/components/FinalCTA";
 import PageHero from "@/components/PageHero";
-import { Container, DotGrid, Highlight, SplitHeader, TicketButton } from "@/components/design-preview/primitives";
+import { Container, DotGrid, Highlight, SplitHeader, TicketButton } from "@/components/design-system/primitives";
 
 const personas = [
   { icon: HardHat, title: "General Contractors", desc: "Keep field work, project coordination, materials, and quality in the same job record.", image: "/Persona/site-supervisor.jpg", href: "/who-we-serve/general-contractors", tag: "Field and office" },

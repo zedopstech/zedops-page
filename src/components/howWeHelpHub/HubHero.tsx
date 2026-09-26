@@ -1,6 +1,6 @@
 import { ArrowRight, Layers } from "lucide-react";
 import PageHero from "@/components/PageHero";
-import { GhostButton, TicketButton } from "@/components/design-preview/primitives";
+import { GhostButton, TicketButton } from "@/components/design-system/primitives";
 
 export default function HubHero() {
   return (

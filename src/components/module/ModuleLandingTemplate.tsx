@@ -8,7 +8,7 @@ import { platformFeatureSections } from "@/data/platformFeatures";
 import { moduleLandingContent } from "@/data/moduleLandingContent";
 import type { ModuleFeature, ModuleWorkflowTab } from "./ModuleSections";
 import { ModuleCapabilities, ModuleClosingCta, ModuleComparison, ModuleConnected, ModuleHero, ModuleWorkflowTabs } from "./ModuleSections";
-import { CornerTicks, Highlight } from "@/components/design-preview/primitives";
+import { CornerTicks, Highlight } from "@/components/design-system/primitives";
 
 type FeatureItem = PlatformFeatureSection["items"][number];
 

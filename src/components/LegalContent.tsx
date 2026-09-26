@@ -1,4 +1,4 @@
-import { Container, SectionLabel } from "@/components/design-preview/primitives";
+import { Container, SectionLabel } from "@/components/design-system/primitives";
 
 export default function LegalContent({ sections, email }: { sections: readonly { title: string; body: string }[]; email: string }) {
   return (

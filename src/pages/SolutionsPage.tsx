@@ -12,7 +12,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FinalCTA from "@/components/FinalCTA";
 import PageHero from "@/components/PageHero";
-import { Container, Highlight, SplitHeader, TicketButton } from "@/components/design-preview/primitives";
+import { Container, Highlight, SplitHeader, TicketButton } from "@/components/design-system/primitives";
 import { getLandingSection } from "@/components/module/ModuleLandingTemplate";
 import { moduleLandingContent } from "@/data/moduleLandingContent";
 

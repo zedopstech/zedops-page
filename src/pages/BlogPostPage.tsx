@@ -21,6 +21,40 @@ import { getPostBySlug } from "@/lib/blog";
 import { authorFirstName, avatarUrl, formatBlogDate, readingMinutes } from "@/lib/blogDisplay";
 import { extractMarkdownToc } from "@/lib/markdownToc";
 import type { TocItem } from "@/lib/markdownToc";
+import { SITE, SITE_URL, absoluteUrl } from "@/config/site";
+import type { BlogPost } from "@/lib/blog";
+
+/** BlogPosting + BreadcrumbList so posts can earn article rich results and breadcrumb trails. */
+function buildBlogPosting(post: BlogPost) {
+  const url = absoluteUrl(`/blog/${post.slug}`);
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "@id": `${url}#article`,
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      headline: post.title,
+      description: post.description,
+      image: post.image ? [absoluteUrl(post.image)] : [absoluteUrl(SITE.ogImage)],
+      datePublished: new Date(post.date).toISOString(),
+      dateModified: new Date(post.date).toISOString(),
+      author: { "@type": "Person", name: post.author },
+      publisher: { "@id": `${SITE_URL}#organization` },
+      inLanguage: "en",
+      isPartOf: { "@id": `${SITE_URL}#website` },
+      wordCount: post.body.trim().split(/\s+/).filter(Boolean).length,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+        { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog") },
+        { "@type": "ListItem", position: 3, name: post.title, item: url },
+      ],
+    },
+  ];
+}
 
 function ArticleSidebar({ toc, shareUrl, title }: { toc: TocItem[]; shareUrl: string; title: string }) {
   const [tocOpen, setTocOpen] = useState(true);
@@ -129,6 +163,14 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
   useSEO({
     title: post ? `${post.title}  -  ZedOps` : "Post not found  -  ZedOps",
     description: post?.description ?? "The requested article could not be found.",
+    // A missing post is a soft 404: keep it out of the index.
+    noindex: !post,
+    type: post ? "article" : "website",
+    image: post?.image,
+    imageAlt: post ? `${post.title} — ZedOps` : undefined,
+    publishedTime: post ? new Date(post.date).toISOString() : undefined,
+    author: post?.author,
+    jsonLd: post ? buildBlogPosting(post) : undefined,
   });
 
   if (!post) {

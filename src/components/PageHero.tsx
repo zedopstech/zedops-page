@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import type { ReactNode, ComponentType } from "react";
-import { Container, DotGrid, Eyebrow } from "@/components/design-preview/primitives";
+import { Container, DotGrid, Eyebrow } from "@/components/design-system/primitives";
 
 interface PageHeroProps {
   pill: string;

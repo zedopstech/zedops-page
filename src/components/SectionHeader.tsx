@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { SectionLabel } from "@/components/design-preview/primitives";
+import { SectionLabel } from "@/components/design-system/primitives";
 
 type SectionHeaderProps = {
   id?: string;

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { dropdownMenus, type DropdownKey } from "@/data/navDropdownMenus";
-import { DotGrid, TicketButton } from "./design-preview/primitives";
+import { DotGrid, TicketButton } from "./design-system/primitives";
 import MegaMenu from "./MegaMenu";
 
 const topLinks = Object.keys(dropdownMenus) as DropdownKey[];

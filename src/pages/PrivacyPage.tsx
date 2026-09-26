@@ -3,6 +3,7 @@ import PageHero from "@/components/PageHero";
 import LegalContent from "@/components/LegalContent";
 import Footer from "@/components/Footer";
 import { Shield } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
 const sections = [
   {
@@ -67,6 +68,12 @@ To exercise any of these rights, email privacy@zedops.com and we will respond wi
 ];
 
 export default function PrivacyPage() {
+  useSEO({
+    title: "Privacy Policy  -  ZedOps",
+    description:
+      "How ZedOps collects, uses, and protects information when you use our website and platform, including your rights and how to contact us.",
+  });
+
   return (
     <div className="min-h-screen bg-white text-brand-navy overflow-x-hidden">
       <Navbar />
