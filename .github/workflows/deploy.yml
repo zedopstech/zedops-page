@@ -101,11 +101,16 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::Deploy over SSH"
+          # IMAGE is passed through the ssh environment and the heredoc is QUOTED
+          # (<<'REMOTE'). Both matter: an unquoted heredoc makes the runner's shell
+          # expand every $var in the remote script before it is sent, which under
+          # `set -u` aborts on the first remote-only variable and leaves nothing
+          # deployed. That is exactly how this step broke.
           ssh -i ~/.ssh/deploy_key -o BatchMode=yes -o StrictHostKeyChecking=yes \
-              "$DEPLOY_USER@$DEPLOY_HOST" bash -s <<REMOTE
+              "$DEPLOY_USER@$DEPLOY_HOST" "IMAGE=$IMAGE" bash -s <<'REMOTE'
           set -euo pipefail
           cd /home/zedops/zedops-page-live
-          export ZEDOPS_IMAGE="${IMAGE}"
+          export ZEDOPS_IMAGE="$IMAGE"
 
           # Stop the previous stack first. The new container claims the name
           # zedops-live, which the running one is holding, so `up` alone fails
@@ -118,10 +123,18 @@ jobs:
           # images, so every deploy's SHA-tagged image accumulated at ~130 MB each
           # - ~800 MB across 6 images before this was noticed. Docker refuses to
           # remove the image a running container uses, so this is self-protecting.
+          # The file/while form is deliberate. Piping into `while read` makes a
+          # "nothing matched" grep exit 1, which under `set -o pipefail` aborts the
+          # whole script before the health check runs - so the first deploy with
+          # nothing to prune would fail. Write the list to a file first, so
+          # nothing in this section can fail the deploy.
           echo "--- image retention ---"
-          docker images --format '{{.Repository}}:{{.Tag}}' | grep 'zedops-page' | grep -v ':latest$' | while read -r old; do
+          docker images --format '{{.Repository}}:{{.Tag}}' | grep 'zedops-page' | grep -v ':latest$' > /tmp/old-images.txt || true
+          while read -r old; do
+            [ -z "$old" ] && continue
             if docker rmi "$old" >/dev/null 2>&1; then echo "  removed $old"; else echo "  kept $old (in use)"; fi
-          done
+          done < /tmp/old-images.txt
+          rm -f /tmp/old-images.txt
           docker image prune -f >/dev/null 2>&1 || true
           df -h / | tail -1
 
@@ -131,9 +144,9 @@ jobs:
           # Health check runs INSIDE the container: port 3000 is only `expose`d to
           # the Docker network, so it is not reachable from the host.
           echo "--- health check ---"
-          for i in \$(seq 1 20); do
+          for i in $(seq 1 20); do
             if docker exec zedops-live wget -qO- http://127.0.0.1:3000/ >/dev/null 2>&1; then
-              echo "site responding after \${i}s"
+              echo "site responding after ${i}s"
               exit 0
             fi
             sleep 1
