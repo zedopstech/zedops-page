@@ -9,8 +9,11 @@ dist
 .gitignore
 .DS_Store
 
+# `scripts/` MUST stay in the build context: `npm run build` runs the prebuild
+# hook, which calls scripts/generate-sitemap.mjs to regenerate sitemap.xml.
+# Excluding it breaks the image build.
+#
 # Not needed to build or serve the site
-scripts/
 .env
 .env.*
 *.log

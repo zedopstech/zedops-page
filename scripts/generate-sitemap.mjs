@@ -59,6 +59,18 @@ function lastmod(relPath) {
   }
 }
 
+// The Docker build context excludes .git, so lastmod falls back to the build date
+// there. Say so once, so nobody mistakes it for accurate per-page dates.
+let gitAvailable = true;
+try {
+  execFileSync("git", ["rev-parse", "--is-inside-work-tree"], {
+    cwd: root,
+    stdio: ["ignore", "ignore", "ignore"],
+  });
+} catch {
+  gitAvailable = false;
+}
+
 const fallback = new Date().toISOString().slice(0, 10);
 
 /** path, priority, changefreq, source file(s) used to derive lastmod */
@@ -94,6 +106,10 @@ for (const slug of blogSlugs()) {
 }
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+if (!gitAvailable) {
+  console.log("  note: no git history available, lastmod falls back to the build date");
+}
 
 const urls = entries
   .map(([route, priority, freq, src]) => {
