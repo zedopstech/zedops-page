@@ -113,7 +113,17 @@ jobs:
           docker compose down --remove-orphans
           docker compose pull web
           docker compose up -d --remove-orphans
-          docker image prune -f
+
+          # Image retention. `docker image prune -f` only removes *untagged*
+          # images, so every deploy's SHA-tagged image accumulated at ~130 MB each
+          # - ~800 MB across 6 images before this was noticed. Docker refuses to
+          # remove the image a running container uses, so this is self-protecting.
+          echo "--- image retention ---"
+          docker images --format '{{.Repository}}:{{.Tag}}' | grep 'zedops-page' | grep -v ':latest$' | while read -r old; do
+            if docker rmi "$old" >/dev/null 2>&1; then echo "  removed $old"; else echo "  kept $old (in use)"; fi
+          done
+          docker image prune -f >/dev/null 2>&1 || true
+          df -h / | tail -1
 
           echo "--- container ---"
           docker ps --filter name=zedops-live --format '{{.Names}}  {{.Image}}  {{.Status}}'
