@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
@@ -11,9 +11,58 @@ if (Number.isNaN(port) || port <= 0) {
 
 const basePath = process.env.BASE_PATH ?? "/";
 
+/**
+ * Injects Google Analytics (gtag.js) into the built HTML, but only when a
+ * measurement ID is provided. Done here rather than hardcoding the snippet in
+ * index.html so that:
+ *   - the tag is absent from source control, so the ID is not committed
+ *   - local and preview builds can opt out by leaving VITE_GA_ID unset
+ *   - `npm run prerender` picks it up automatically, because it copies the built
+ *     index.html, so every prerendered route reports page views too
+ *
+ * Set with: VITE_GA_ID=G-XXXXXXXXXX npm run build
+ */
+function googleAnalytics(): Plugin {
+  const id = process.env.VITE_GA_ID;
+  return {
+    name: "inject-google-analytics",
+    transformIndexHtml: {
+      order: "post",
+      handler(html) {
+        if (!id) return html;
+        return {
+          html,
+          tags: [
+            {
+              tag: "link",
+              attrs: { rel: "preconnect", href: "https://www.googletagmanager.com" },
+              injectTo: "head-prepend" as const,
+            },
+            {
+              tag: "script",
+              attrs: { async: true, src: `https://www.googletagmanager.com/gtag/js?id=${id}` },
+              injectTo: "head-prepend" as const,
+            },
+            {
+              tag: "script",
+              children: [
+                "window.dataLayer = window.dataLayer || [];",
+                "function gtag(){dataLayer.push(arguments);}",
+                "gtag('js', new Date());",
+                `gtag('config', '${id}');`,
+              ].join("\n"),
+              injectTo: "head-prepend" as const,
+            },
+          ],
+        };
+      },
+    },
+  };
+}
+
 export default defineConfig({
   base: basePath,
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), googleAnalytics()],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "src"),

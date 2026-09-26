@@ -92,6 +92,7 @@ not. Fixing that needs build-time prerendering — see the roadmap below.
 | Variable | Default | Purpose |
 |---|---|---|
 | `VITE_SITE_URL` | `https://zedops.com` | Canonical origin, OG URLs and sitemap host. Set per environment so staging never advertises production URLs. |
+| `VITE_GA_ID` | unset | Google Analytics 4 measurement ID (e.g. `G-XXXXXXXXXX`). Injected by a Vite plugin at build time, so the ID is never committed. **Unset means the site ships with no analytics at all** - verify it is set in the deploy config or GA will silently not fire. |
 
 ## Docker
 
@@ -117,6 +118,9 @@ Deploys are tagged by commit SHA, so a running image is traceable to a commit.
 
 ### One-time setup
 
+0. Set the repository variable `VITE_GA_ID` (Settings -> Secrets and variables ->
+   Actions -> **Variables**, not Secrets). Without it the deployed site has no
+   analytics tag at all.
 1. Create the image package as **public** so the server can pull it anonymously
    (repo → Packages → `zedops-page` → Package settings → Change visibility).
    Until then the deploy fails at the pull step.

@@ -56,6 +56,8 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             VITE_SITE_URL=${{ vars.VITE_SITE_URL || 'https://zedops.com' }}
+            # Optional. Without it the site builds with no analytics at all.
+            VITE_GA_ID=${{ vars.VITE_GA_ID }}
 
       - name: Deploy to server over SSH
         env:
