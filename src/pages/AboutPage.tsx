@@ -344,24 +344,27 @@ export default function AboutPage() {
         </Section>
 
         {/* The build, so far */}
-        <Section tone="mist">
-          {/*
-            Journey headings, all commented out on request. Nothing here renders.
+        {/*
+          The whole journey section, commented out on request. Nothing in this
+          block renders.
 
-            Original:
-              <SplitHeader
-                id="about-journey"
-                title={<>Where we started. <Muted>Where we are going.</Muted></>}
-                body="From the problems we lived on real projects, to the platform we are building now, to the Gulf and then the world."
-              />
+          It held, in order: the section heading, the mood legend and the
+          timeline graphic (MoodLine, with the "today" marker), the six journey
+          cards, and the customer-goals row carrying the draft 50 / 250 / 1,000
+          figures.
 
-            The Section deliberately carries no labelledBy, so nothing depends on
-            an id that is not rendered.
+          The <Section tone="mist"> wrapper went with it: left in place it drew
+          an empty band and a rule across the page.
 
-            To restore a visible heading: delete this wrapper and add a
-            <SplitHeader id="about-journey" ... /> back, plus labelledBy on the
-            Section above.
-          */}
+          Also stranded by this, and commented below: moodChip, MoodLine itself
+          and the `active` hover state it was driven by.
+
+          To restore: delete this wrapper and the three commented helpers, then
+          re-add to the import from "@/data/team":
+            - customerGoals, for the goals row
+            - JourneyMoment, used by moodChip and MoodLine
+          and put labelledBy="about-journey" back on the Section if the heading
+          returns.
           <div className={`pt-20 pb-8 lg:pt-28 ${framePad}`}>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pb-3 text-[12.5px] text-[#6B778C]">
               <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-brand-orange" aria-hidden />Milestone</span>
@@ -400,17 +403,7 @@ export default function AboutPage() {
               );
             })}
           </ol>
-
-          {/*
-            "Our goal" row and the customer-count targets, commented out on
-            request. The 50 / 250 / 1,000 figures were DRAFT numbers, and they
-            are public claims about a company that does not exist yet.
-
-            To restore: delete this wrapper and add `customerGoals` back to the
-            import from "@/data/team" at the top of this file. The data itself is
-            still in src/data/team.ts.
-          */}
-        </Section>
+        */}
 
         <ModuleClosingCta
           isMobile={isMobile}
