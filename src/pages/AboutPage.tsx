@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 import ZedOpsMark from "@/components/ZedOpsMark";
 import { framePad, Muted, Section, SplitHeader } from "@/components/design-system/primitives";
 import { ModuleClosingCta } from "@/components/module/ModuleSections";
-import { cofounders, foundingTeam, journey, type Cofounder, type JourneyMoment, type TeamMember } from "@/data/team";
+import { cofounders, customerGoals, foundingTeam, journey, type Cofounder, type JourneyMoment, type TeamMember } from "@/data/team";
 
 const beliefs = [
   { title: "One record beats ten tools", body: "Estimates, programmes, materials, site logs and cost belong to the same job, so nobody reconciles them by hand." },
@@ -19,10 +19,10 @@ const beliefs = [
 ];
 
 const moodChip: Record<JourneyMoment["mood"], { label: string; cls: string }> = {
-  high: { label: "Good day", cls: "bg-[#FFEADB] text-[#C2410C]" },
-  low: { label: "Hard part", cls: "bg-[#E6EAF1] text-brand-navy" },
-  now: { label: "In progress", cls: "bg-[#E3F5EC] text-[#157347]" },
-  next: { label: "Up next", cls: "border border-dashed border-[#B8C2D1] text-[#5E6C84]" },
+  high: { label: "Milestone", cls: "bg-[#FFEADB] text-[#C2410C]" },
+  low: { label: "Pain point", cls: "bg-[#E6EAF1] text-brand-navy" },
+  now: { label: "Now", cls: "bg-[#E3F5EC] text-[#157347]" },
+  next: { label: "Next", cls: "border border-dashed border-[#B8C2D1] text-[#5E6C84]" },
 };
 
 function initials(name: string) {
@@ -338,18 +338,18 @@ export default function AboutPage() {
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
               <SplitHeader
                 id="about-journey"
-                title={<>The build, so far. <Muted>And what comes next.</Muted></>}
-                body="ZedOps is in active development. These are the hard parts and the good days along the way, and where we are heading."
+                title={<>Where we started. <Muted>Where we are going.</Muted></>}
+                body="From the problems we lived on real projects, to the platform we are building now, to the Gulf and then the world."
               />
             </motion.div>
           </div>
 
           <div className={`pb-8 ${framePad}`}>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pb-3 text-[12.5px] text-[#6B778C]">
-              <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-brand-orange" aria-hidden />Good day</span>
-              <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full border-2 border-brand-navy bg-white" aria-hidden />Hard part</span>
-              <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-[#1D9A5B]" aria-hidden />Where we are now</span>
-              <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full border-2 border-dashed border-[#8C97AB] bg-white" aria-hidden />Up next</span>
+              <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-brand-orange" aria-hidden />Milestone</span>
+              <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full border-2 border-brand-navy bg-white" aria-hidden />Pain point</span>
+              <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-[#1D9A5B]" aria-hidden />Now</span>
+              <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full border-2 border-dashed border-[#8C97AB] bg-white" aria-hidden />Next</span>
             </div>
             <MoodLine active={active} onPick={setActive} />
           </div>
@@ -382,6 +382,20 @@ export default function AboutPage() {
               );
             })}
           </ol>
+
+          <div className="grid border-t border-[#E3E8F0] bg-white lg:grid-cols-[minmax(0,0.8fr)_repeat(3,minmax(0,1fr))]">
+            <div className="flex flex-col justify-center border-b border-[#E3E8F0] p-7 sm:p-8 lg:border-r lg:border-b-0">
+              <p className="text-[13px] font-medium text-brand-orange">Our goal</p>
+              <p className="mt-2 text-[22px] font-medium leading-[1.2] tracking-[-0.025em] text-brand-navy">Contractors running their projects on ZedOps.</p>
+            </div>
+            {customerGoals.map((g, i) => (
+              <div key={g.year} className={`p-7 sm:p-8 ${i < customerGoals.length - 1 ? "border-b border-[#E3E8F0] lg:border-r lg:border-b-0" : ""}`}>
+                <p className="font-mono text-[12px] text-[#8C97AB]">{g.year}</p>
+                <p className="mt-3 text-[48px] font-medium leading-none tracking-[-0.05em] text-brand-navy">{g.value}</p>
+                <p className="mt-3 text-[14.5px] leading-[1.5] text-[#5E6C84]">{g.label}</p>
+              </div>
+            ))}
+          </div>
         </Section>
 
         <ModuleClosingCta

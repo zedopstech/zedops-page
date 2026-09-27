@@ -111,55 +111,46 @@ export const journey: JourneyMoment[] = [
   {
     mood: "low",
     when: "Before ZedOps",
-    title: "A decade of reconciling spreadsheets",
-    body: "On power, desalination and hospital projects, the same scope was described three times: in the estimate, the purchase orders and the site reports. None of them agreed.",
-  },
-  {
-    mood: "high",
-    when: "The idea",
-    title: "Writing down how projects really run",
-    body: "We mapped a real job from BOQ to handover, step by step and role by role. That map became the project record every ZedOps module is built on.",
+    title: "Every job ran on spreadsheets and chat groups",
+    body: "Over a decade of large projects in Saudi Arabia, we watched the estimate, the purchase orders and the site reports drift apart. Each team had its own file. The truth lived in someone’s phone.",
   },
   {
     mood: "low",
-    when: "First version",
-    title: "We threw away our first build",
-    body: "Estimation, procurement and site logs started as separate tools, and nothing connected. We rebuilt the core so every module shares the same record.",
+    when: "What it cost",
+    title: "Problems surfaced a month too late",
+    body: "Overruns appeared in the monthly report. Late materials appeared as idle crews. Handover meant weeks of chasing documents. Every contractor we met told the same story.",
   },
   {
     mood: "high",
-    when: "Designing for site",
-    title: "Designing for a phone at 6 pm",
-    body: "We cut the daily log until it took minutes, not a desk session. If it is slow on a dusty phone, the data never arrives.",
-  },
-  {
-    mood: "low",
-    when: "Zed AI",
-    title: "Making AI safe to trust",
-    body: "An assistant that can see everything is a liability on a live project. Making Zed AI respect every role and cite its sources is taking longer than we planned, and that is fine.",
+    when: "The start",
+    title: "One record, from BOQ to handover",
+    body: "We started ZedOps to put the whole job in one place: estimation, planning, materials, site work, quality and cost, all connected, with Zed AI working on the same data.",
   },
   {
     mood: "now",
     when: "Now",
-    title: "Still building, with early partners",
-    body: "ZedOps is in active development. We are opening early access to a small group of contractors and shaping the product around their projects.",
-  },
-  {
-    mood: "next",
-    when: "Q4 2026",
-    title: "First live jobs with early partners",
-    body: "Moving real projects onto ZedOps with our early-access contractors, from BOQ to handover, and learning from every one.",
-  },
-  {
-    mood: "next",
-    when: "Q4 2026",
-    title: "Zed AI that takes action",
-    body: "Risk alerts, RFI drafts and custom approval workflows, plus an API to connect the tools teams already use.",
+    title: "Building for the office and the site",
+    body: "A web platform for the project office and a mobile app for site teams, built by our engineers in Madurai and shaped week by week with our first contractors.",
   },
   {
     mood: "next",
     when: "2027",
-    title: "Ready for larger teams",
-    body: "Single sign-on, client portals, BIM alongside drawings, ERP links and an independent SOC 2 audit.",
+    title: "Launch across the GCC",
+    body: "Starting with the UAE and Saudi Arabia, then Qatar, Kuwait, Bahrain and Oman: the markets we know best, where fast, multi-site programmes need ZedOps most.",
   },
+  {
+    mood: "next",
+    when: "2028 onwards",
+    title: "Then the world",
+    body: "Every construction site has the same problem. Once ZedOps is proven in the Gulf, we take it to contractors everywhere.",
+  },
+];
+
+/**
+ * Customer goals shown under the journey. DRAFT targets: confirm the numbers before publishing.
+ */
+export const customerGoals = [
+  { year: "2027", value: "50", label: "contractors live across the GCC" },
+  { year: "2028", value: "250", label: "contractors, with the first outside the Gulf" },
+  { year: "2030", value: "1,000", label: "contractors running projects on ZedOps worldwide" },
 ];
