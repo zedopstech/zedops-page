@@ -68,12 +68,12 @@ export default function Footer() {
                   {o.address.map((line) => (
                     <span key={line} className="block">{line}</span>
                   ))}
+                  {o.licence && <span className="mt-1 block">{o.licence}</span>}
                 </address>
               ))}
             </div>
             <div className="mt-5 space-y-1.5 text-[14px]">
               <a href={`mailto:${contact.email}`} className="block text-white/80 transition-colors hover:text-white">{contact.email}</a>
-              <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="block text-white/55 transition-colors hover:text-white">{contact.phone}</a>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">

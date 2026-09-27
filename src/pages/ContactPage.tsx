@@ -1,6 +1,6 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Clock, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, Clock, Mail, MapPin, ShieldCheck } from "lucide-react";
 import { FormError, Honeypot, SubmitButton, useLeadForm } from "@/components/forms/useLeadForm";
 import { useSEO } from "@/hooks/useSEO";
 import Navbar from "@/components/Navbar";
@@ -45,7 +45,6 @@ export default function ContactPage() {
 
   const ways = [
     { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}` },
-    { icon: Phone, label: "Phone", value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, "")}` },
     { icon: ShieldCheck, label: "Security", value: contact.securityEmail, href: `mailto:${contact.securityEmail}` },
     { icon: Clock, label: "Hours", value: contact.hours },
   ];
@@ -89,6 +88,7 @@ export default function ContactPage() {
                     </span>
                     <span className="mb-1 block text-[12.5px] text-[#8C97AB]">{o.role}</span>
                     {o.address.map((line) => <span key={line} className="block">{line}</span>)}
+                    {o.licence && <span className="mt-1 block text-[12.5px] text-[#8C97AB]">{o.licence}</span>}
                   </address>
                 ))}
               </div>
@@ -123,7 +123,7 @@ export default function ContactPage() {
                       <input name="company" value={form.company} onChange={onChange} placeholder="Company name" className={field} autoComplete="organization" />
                     </label>
                     <label className="text-[13px] text-[#5E6C84]">Phone <span className="text-[#A5AEBF]">(optional)</span>
-                      <input name="phone" type="tel" value={form.phone} onChange={onChange} placeholder="+91 97878 82297" className={field} autoComplete="tel" />
+                      <input name="phone" type="tel" value={form.phone} onChange={onChange} placeholder="Include your country code" className={field} autoComplete="tel" />
                     </label>
                     <label className="text-[13px] text-[#5E6C84] sm:col-span-2">Topic
                       <select name="topic" required value={form.topic} onChange={onChange} className={field}>

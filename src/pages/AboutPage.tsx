@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 import ZedOpsMark from "@/components/ZedOpsMark";
 import { framePad, Muted, Section, SplitHeader } from "@/components/design-system/primitives";
 import { ModuleClosingCta } from "@/components/module/ModuleSections";
-import { cofounders, customerGoals, foundingTeam, journey, type Cofounder, type JourneyMoment, type TeamMember } from "@/data/team";
+import { cofounders, foundingTeam, journey, type Cofounder, type JourneyMoment, type TeamMember } from "@/data/team";
 
 const beliefs = [
   { title: "One record beats ten tools", body: "Estimates, programmes, materials, site logs and cost belong to the same job, so nobody reconciles them by hand." },
@@ -250,14 +250,24 @@ export default function AboutPage() {
           subtitle="ZedOps is a project execution platform for contractors, from the first estimate to handover. Built by a small team in Dubai and Madurai, with more than a decade of project delivery behind it."
         />
 
-        {/* Co-founders: one note each, with their experience */}
+        {/*
+            Founder notes and the founding team grid, hidden for now and kept here
+            so they can be brought back unchanged. Nothing below is rendered.
+
+            Originally two sections in this order:
+              1. "From our founder"  - a CofounderNote per co-founder
+              2. "The founding team. Engineering in Madurai." - a grid of
+                 foundingTeam members plus an "Open roles / This could be you" tile
+
+            To restore: delete this comment wrapper. The two label comments
+            that used to head each section (co-founders, team) are written out
+            above and can be re-added, though the sections are self-describing.
         <Section label="From our founder">
           {cofounders.filter((c) => c.show !== false).map((c, ci) => (
             <CofounderNote key={c.photo} person={c} index={ci} isMobile={isMobile} />
           ))}
         </Section>
 
-        {/* Team */}
         <Section tone="mist" labelledBy="about-team">
           <div className={`pt-20 pb-12 lg:pt-28 lg:pb-14 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
@@ -313,6 +323,7 @@ export default function AboutPage() {
             </li>
           </ul>
         </Section>
+        */}
 
         {/* Beliefs */}
         <Section labelledBy="about-beliefs">
@@ -333,18 +344,25 @@ export default function AboutPage() {
         </Section>
 
         {/* The build, so far */}
-        <Section tone="mist" labelledBy="about-journey">
-          <div className={`pt-20 pb-10 lg:pt-28 lg:pb-12 ${framePad}`}>
-            <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
+        <Section tone="mist">
+          {/*
+            Journey headings, all commented out on request. Nothing here renders.
+
+            Original:
               <SplitHeader
                 id="about-journey"
                 title={<>Where we started. <Muted>Where we are going.</Muted></>}
                 body="From the problems we lived on real projects, to the platform we are building now, to the Gulf and then the world."
               />
-            </motion.div>
-          </div>
 
-          <div className={`pb-8 ${framePad}`}>
+            The Section deliberately carries no labelledBy, so nothing depends on
+            an id that is not rendered.
+
+            To restore a visible heading: delete this wrapper and add a
+            <SplitHeader id="about-journey" ... /> back, plus labelledBy on the
+            Section above.
+          */}
+          <div className={`pt-20 pb-8 lg:pt-28 ${framePad}`}>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pb-3 text-[12.5px] text-[#6B778C]">
               <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-brand-orange" aria-hidden />Milestone</span>
               <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full border-2 border-brand-navy bg-white" aria-hidden />Pain point</span>
@@ -383,19 +401,15 @@ export default function AboutPage() {
             })}
           </ol>
 
-          <div className="grid border-t border-[#E3E8F0] bg-white lg:grid-cols-[minmax(0,0.8fr)_repeat(3,minmax(0,1fr))]">
-            <div className="flex flex-col justify-center border-b border-[#E3E8F0] p-7 sm:p-8 lg:border-r lg:border-b-0">
-              <p className="text-[13px] font-medium text-brand-orange">Our goal</p>
-              <p className="mt-2 text-[22px] font-medium leading-[1.2] tracking-[-0.025em] text-brand-navy">Contractors running their projects on ZedOps.</p>
-            </div>
-            {customerGoals.map((g, i) => (
-              <div key={g.year} className={`p-7 sm:p-8 ${i < customerGoals.length - 1 ? "border-b border-[#E3E8F0] lg:border-r lg:border-b-0" : ""}`}>
-                <p className="font-mono text-[12px] text-[#8C97AB]">{g.year}</p>
-                <p className="mt-3 text-[48px] font-medium leading-none tracking-[-0.05em] text-brand-navy">{g.value}</p>
-                <p className="mt-3 text-[14.5px] leading-[1.5] text-[#5E6C84]">{g.label}</p>
-              </div>
-            ))}
-          </div>
+          {/*
+            "Our goal" row and the customer-count targets, commented out on
+            request. The 50 / 250 / 1,000 figures were DRAFT numbers, and they
+            are public claims about a company that does not exist yet.
+
+            To restore: delete this wrapper and add `customerGoals` back to the
+            import from "@/data/team" at the top of this file. The data itself is
+            still in src/data/team.ts.
+          */}
         </Section>
 
         <ModuleClosingCta
