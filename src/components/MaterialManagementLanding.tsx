@@ -211,7 +211,7 @@ function MaterialConnectedCard() {
           <span className="text-brand-orange">{materialConnected.titleAccent}</span>
         </h2>
 
-        <p className="mt-5 text-sm leading-6 text-[#6B778C] sm:text-base">
+        <p className="mt-5 text-sm leading-6 text-[#616D82] sm:text-base">
           {materialHero.subtitle}
         </p>
 
@@ -477,7 +477,7 @@ export default function MaterialManagementLanding(_props: {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })} className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
-              Traditional Way <span className="font-medium text-[#6B778C]">vs</span>{" "}
+              Traditional Way <span className="font-medium text-[#616D82]">vs</span>{" "}
               <span className="text-brand-orange">ZEDOPS</span>
             </h2>
             <span className="mx-auto mt-2 block h-[3px] w-16 rounded-full bg-brand-orange" />
@@ -497,7 +497,7 @@ export default function MaterialManagementLanding(_props: {
                       </span>
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-[15px]">{item.title}</p>
-                        <p className="mt-0.5 text-xs leading-snug text-[#6B778C] sm:text-sm">{item.description}</p>
+                        <p className="mt-0.5 text-xs leading-snug text-[#616D82] sm:text-sm">{item.description}</p>
                       </div>
                       <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#EF4444]">
                         <X size={13} className="text-white" strokeWidth={3} />
@@ -519,7 +519,7 @@ export default function MaterialManagementLanding(_props: {
                       </span>
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-extrabold leading-snug text-brand-navy sm:text-[15px]">{item.title}</p>
-                        <p className="mt-0.5 text-xs leading-snug text-[#6B778C] sm:text-sm">{item.description}</p>
+                        <p className="mt-0.5 text-xs leading-snug text-[#616D82] sm:text-sm">{item.description}</p>
                       </div>
                       <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#22A866]">
                         <Check size={13} className="text-white" strokeWidth={3} />
@@ -557,7 +557,7 @@ export default function MaterialManagementLanding(_props: {
                     </span>
                     <div className="min-w-0">
                       <p className="text-sm font-extrabold leading-snug text-brand-navy">{benefit.title}</p>
-                      <p className="mt-0.5 text-xs leading-snug text-[#6B778C]">{benefit.description}</p>
+                      <p className="mt-0.5 text-xs leading-snug text-[#616D82]">{benefit.description}</p>
                     </div>
                   </div>
                 );

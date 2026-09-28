@@ -13,7 +13,7 @@ const topics = ["Book a demo", "Pricing", "Security & IT", "Partnership", "Suppo
 const topicFromQuery: Record<string, string> = { demo: "Book a demo", security: "Security & IT", pricing: "Pricing" };
 
 const field =
-  "mt-1.5 h-11 w-full rounded-md border border-[#DCE3ED] bg-white px-3.5 text-[15px] text-brand-navy placeholder:text-[#A5AEBF] outline-none transition-colors focus:border-brand-navy";
+  "mt-1.5 h-11 w-full rounded-md border border-[#DCE3ED] bg-white px-3.5 text-[15px] text-brand-navy placeholder:text-[#677388] outline-none transition-colors focus:border-brand-navy";
 
 export default function ContactPage() {
   useSEO({
@@ -69,7 +69,7 @@ export default function ContactPage() {
                   <li key={w.label} className="flex items-start gap-3 py-4">
                     <w.icon size={17} className="mt-0.5 shrink-0 text-brand-orange" aria-hidden />
                     <div className="min-w-0">
-                      <p className="text-[12.5px] text-[#8C97AB]">{w.label}</p>
+                      <p className="text-[12.5px] text-[#5F6B80]">{w.label}</p>
                       {w.href ? (
                         <a href={w.href} className="text-[15px] text-brand-navy hover:underline">{w.value}</a>
                       ) : (
@@ -86,13 +86,13 @@ export default function ContactPage() {
                       <MapPin size={15} className="text-brand-orange" aria-hidden />
                       {o.name}
                     </span>
-                    <span className="mb-1 block text-[12.5px] text-[#8C97AB]">{o.role}</span>
+                    <span className="mb-1 block text-[12.5px] text-[#5F6B80]">{o.role}</span>
                     {o.address.map((line) => <span key={line} className="block">{line}</span>)}
-                    {o.licence && <span className="mt-1 block text-[12.5px] text-[#8C97AB]">{o.licence}</span>}
+                    {o.licence && <span className="mt-1 block text-[12.5px] text-[#5F6B80]">{o.licence}</span>}
                   </address>
                 ))}
               </div>
-              <p className="mt-8 text-[14px] leading-[1.6] text-[#6B778C]">
+              <p className="mt-8 text-[14px] leading-[1.6] text-[#616D82]">
                 Ready to try it on a live job?{" "}
                 <a href="/early-access" className="font-medium text-brand-navy underline underline-offset-4 hover:text-brand-orange">Request early access</a>.
               </p>
@@ -122,7 +122,7 @@ export default function ContactPage() {
                     <label className="text-[13px] text-[#5E6C84]">Company
                       <input name="company" value={form.company} onChange={onChange} placeholder="Company name" className={field} autoComplete="organization" />
                     </label>
-                    <label className="text-[13px] text-[#5E6C84]">Phone <span className="text-[#A5AEBF]">(optional)</span>
+                    <label className="text-[13px] text-[#5E6C84]">Phone <span className="text-[#677388]">(optional)</span>
                       <input name="phone" type="tel" value={form.phone} onChange={onChange} placeholder="Include your country code" className={field} autoComplete="tel" />
                     </label>
                     <label className="text-[13px] text-[#5E6C84] sm:col-span-2">Topic
@@ -137,7 +137,7 @@ export default function ContactPage() {
                   </div>
                   <FormError message={lead.error} />
                   <SubmitButton sending={lead.sending}>Send message</SubmitButton>
-                  <p className="mt-4 text-[13px] text-[#8C97AB]">
+                  <p className="mt-4 text-[13px] text-[#5F6B80]">
                     We use your details only to reply. See our <a href="/privacy" className="underline underline-offset-2 hover:text-brand-navy">privacy policy</a>.
                   </p>
                 </form>

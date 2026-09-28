@@ -377,7 +377,7 @@ export default function ProductDashboard({
                         {item.title}
                       </p>
 
-                      <p className="mt-1 text-[8px] leading-snug text-[#6B778C]">
+                      <p className="mt-1 text-[8px] leading-snug text-[#616D82]">
                         {item.description}
                       </p>
                     </div>
@@ -572,7 +572,7 @@ export default function ProductDashboard({
                   
 
                   {data.extraCard.sub && (
-                    <p className="text-[9px] text-[#6B778C]">
+                    <p className="text-[9px] text-[#616D82]">
                       {data.extraCard.sub}
                     </p>
                   )}
@@ -589,7 +589,7 @@ export default function ProductDashboard({
                           </p>
 
                           {item.description && (
-                            <p className="mt-1 text-[8px] leading-snug text-[#6B778C]">
+                            <p className="mt-1 text-[8px] leading-snug text-[#616D82]">
                               {item.description}
                             </p>
                           )}
@@ -644,7 +644,7 @@ function CustomFloatCard({
                 key={it.label}
                 className="flex items-center justify-between text-[9px]"
               >
-                <span className="text-[#6B778C]">{it.label}</span>
+                <span className="text-[#616D82]">{it.label}</span>
                 <span className="font-bold text-[#172B4D]">{it.value}</span>
               </div>
             ))}
@@ -695,7 +695,7 @@ function DashboardSectionCard({ section }: { section: DashboardSection }) {
                 key={item.label}
                 className="rounded-lg border border-gray-100 bg-[#F8FAFC] p-3"
               >
-                <p className="text-[9px] font-bold tracking-wide text-[#7A869A]">
+                <p className="text-[9px] font-bold tracking-wide text-[#5E6C84]">
                   {item.label}
                 </p>
 
@@ -727,7 +727,7 @@ function DashboardSectionCard({ section }: { section: DashboardSection }) {
                 </p>
 
                 {item.description && (
-                  <p className="mt-1 text-[8px] leading-snug text-[#6B778C]">
+                  <p className="mt-1 text-[8px] leading-snug text-[#616D82]">
                     {item.description}
                   </p>
                 )}
@@ -851,7 +851,7 @@ function UpcomingItem({
           {title}
         </p>
 
-        <p className="text-[8px] text-[#6B778C]">
+        <p className="text-[8px] text-[#616D82]">
           Scheduled activity
         </p>
       </div>
@@ -881,7 +881,7 @@ function AlertItem({
         {title}
       </p>
 
-      <p className="mt-1 text-[8px] leading-snug text-[#6B778C]">
+      <p className="mt-1 text-[8px] leading-snug text-[#616D82]">
         {description}
       </p>
     </div>

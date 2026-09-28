@@ -84,12 +84,12 @@ function ProductView({ markerRefs }: { markerRefs: [RefObject<HTMLDivElement | n
           ))}
         </span>
         <div className="mx-auto flex h-7 min-w-0 max-w-[420px] flex-1 items-center justify-center gap-1.5 rounded-md border border-[#E3E8F0] bg-white px-3 text-[11.5px] shadow-[0_1px_2px_rgba(23,43,77,0.05)] sm:text-[12px]">
-          <Lock size={11} strokeWidth={2.2} className="shrink-0 text-[#8C97AB]" aria-hidden />
+          <Lock size={11} strokeWidth={2.2} className="shrink-0 text-[#5F6B80]" aria-hidden />
           <span className="font-semibold text-brand-navy">ZedOps</span>
           <ChevronRight size={12} className="shrink-0 text-[#B8C2D0]" aria-hidden />
           <span className="truncate font-medium text-[#5E6C84]">Estimation workspace</span>
         </div>
-        <span className="hidden shrink-0 items-center gap-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-[#6B778C] sm:flex">
+        <span className="hidden shrink-0 items-center gap-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-[#616D82] sm:flex">
           <span className="relative flex h-2 w-2" aria-hidden>
             <span className="absolute inset-0 animate-ping rounded-full bg-brand-orange/50 motion-reduce:animate-none" />
             <span className="relative h-2 w-2 rounded-full bg-brand-orange" />
@@ -162,7 +162,7 @@ function HeroSheet() {
   return (
     <div ref={stageRef} className="relative mx-auto max-w-[1110px] pt-9">
       {/* Dimension line */}
-      <div className="absolute inset-x-0 top-0 flex h-5 items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8C97AB]" aria-hidden>
+      <div className="absolute inset-x-0 top-0 flex h-5 items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#5F6B80]" aria-hidden>
         <span className="absolute left-0 top-1 h-3 w-px bg-[#A8B8CC]" />
         <span className="h-px flex-1 bg-[#A8B8CC]" />
         <span className="shrink-0">Estimation workspace · live project view</span>
@@ -199,15 +199,15 @@ function HeroSheet() {
       <div ref={callout1} className="absolute -left-10 top-[58%] z-30 hidden w-[250px] items-start gap-2.5 rounded-xl border border-[#DCE3EE] bg-white p-4 shadow-[0_18px_36px_-18px_rgba(12,31,63,0.45)] lg:flex">
         <span className="rounded-[4px] bg-brand-orange px-1.5 py-1 font-mono text-[11px] font-bold leading-none text-white">01</span>
         <div>
-          <span className="font-mono text-[10px] font-semibold tracking-wider text-[#8C97AB]">ESTIMATE INPUT</span>
+          <span className="font-mono text-[10px] font-semibold tracking-wider text-[#5F6B80]">ESTIMATE INPUT</span>
           <p className="mt-1.5 text-[15px] font-semibold text-brand-navy">Scope, quantities, rates.</p>
-          <p className="mt-1 text-[12px] leading-snug text-[#6B778C]">The detail behind every price stays visible.</p>
+          <p className="mt-1 text-[12px] leading-snug text-[#616D82]">The detail behind every price stays visible.</p>
         </div>
       </div>
       <div ref={callout2} className="absolute -right-10 top-[17%] z-30 hidden w-[230px] items-start gap-2.5 rounded-xl border border-[#DCE3EE] bg-white p-4 shadow-[0_18px_36px_-18px_rgba(12,31,63,0.45)] lg:flex">
         <span className="rounded-[4px] bg-brand-orange px-1.5 py-1 font-mono text-[11px] font-bold leading-none text-white">02</span>
         <div>
-          <span className="font-mono text-[10px] font-semibold tracking-wider text-[#8C97AB]">CONNECTED HANDOVER</span>
+          <span className="font-mono text-[10px] font-semibold tracking-wider text-[#5F6B80]">CONNECTED HANDOVER</span>
           <div className="mt-2 flex items-center gap-2 text-[12.5px] font-medium text-brand-navy"><Check size={14} strokeWidth={2.4} className="text-brand-orange" aria-hidden /> Estimate to execution</div>
           <div className="mt-1.5 flex items-center gap-2 text-[12.5px] font-medium text-brand-navy"><Check size={14} strokeWidth={2.4} className="text-brand-orange" aria-hidden /> One project context</div>
         </div>
@@ -220,7 +220,7 @@ function HeroSheet() {
 /*  C1 · Capability vignettes (illustrative product slices, figures are fake)  */
 /* -------------------------------------------------------------------------- */
 
-const th = "border-b border-[#E3E8F0] bg-[#FBFCFE] px-2.5 py-2 text-left font-mono text-[9.5px] font-semibold uppercase tracking-[0.1em] text-[#8C97AB]";
+const th = "border-b border-[#E3E8F0] bg-[#FBFCFE] px-2.5 py-2 text-left font-mono text-[9.5px] font-semibold uppercase tracking-[0.1em] text-[#5F6B80]";
 const td = "whitespace-nowrap border-b border-[#EDF0F5] px-2.5 py-2 text-[#3D4F6E]";
 
 function VignetteTable({ head, rows, right, total, mobileHidden = [] }: { head: string[]; rows: ReactNode[][]; right: number[]; total?: ReactNode[]; mobileHidden?: number[] }) {
@@ -248,7 +248,7 @@ function VignetteTable({ head, rows, right, total, mobileHidden = [] }: { head: 
   );
 }
 
-const code = (c: string) => <span className="font-mono text-[11px] text-[#6B778C]">{c}</span>;
+const code = (c: string) => <span className="font-mono text-[11px] text-[#616D82]">{c}</span>;
 
 function BoqVignette() {
   return (
@@ -311,7 +311,7 @@ function CostSplitVignette() {
   return (
     <div className="flex h-[130px] flex-col justify-center gap-2.5 rounded-lg border border-[#E3E8F0] bg-white px-4">
       {rows.map((r) => (
-        <div key={r.label} className="grid grid-cols-[78px_1fr_34px] items-center gap-2 text-[11px] text-[#6B778C]">
+        <div key={r.label} className="grid grid-cols-[78px_1fr_34px] items-center gap-2 text-[11px] text-[#616D82]">
           <span>{r.label}</span>
           <span className="h-2 overflow-hidden rounded-sm bg-[#EDF0F5]">
             <span className={`block h-full rounded-sm ${r.color}`} style={{ width: `${Math.round((r.pct / 46) * 100)}%` }} />
@@ -327,7 +327,7 @@ function BidVignette() {
   const states = ["Draft", "Review", "Approved", "Submitted", "Won"];
   return (
     <div className="flex h-[130px] flex-col justify-center rounded-lg border border-[#E3E8F0] bg-white px-4">
-      <p className="font-mono text-[10px] font-semibold tracking-[0.1em] text-[#8C97AB]">BID · TOWER B MEP PACKAGE</p>
+      <p className="font-mono text-[10px] font-semibold tracking-[0.1em] text-[#5F6B80]">BID · TOWER B MEP PACKAGE</p>
       <div className="mt-3 flex flex-wrap gap-1.5">
         {states.map((s) => (
           <span
@@ -337,14 +337,14 @@ function BidVignette() {
                 ? "border-brand-navy bg-brand-navy text-white"
                 : s === "Won"
                   ? "border-[#CDE8D9] bg-[#E8F5EE] text-[#1F7A4D]"
-                  : "border-[#E3E8F0] bg-white text-[#6B778C]"
+                  : "border-[#E3E8F0] bg-white text-[#616D82]"
             }`}
           >
             {s}
           </span>
         ))}
       </div>
-      <p className="mt-3 text-[12px] text-[#6B778C]">Cover letter, bid form, 14 attachments</p>
+      <p className="mt-3 text-[12px] text-[#616D82]">Cover letter, bid form, 14 attachments</p>
     </div>
   );
 }
@@ -429,7 +429,7 @@ function WorkflowRuler({ isMobile }: { isMobile: boolean }) {
                     document.getElementById(`estimation-phase-${next}`)?.focus();
                   }}
                   className={`group relative rounded-lg border px-3 py-2.5 text-left text-[14px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange sm:text-[15px] lg:rounded-none lg:border-0 lg:bg-transparent lg:px-2.5 lg:pb-5 lg:pt-2 lg:text-center ${
-                    selected ? "border-brand-orange/40 bg-white text-brand-orange" : "border-[#E3E8F0] text-[#8C97AB] hover:text-brand-navy"
+                    selected ? "border-brand-orange/40 bg-white text-brand-orange" : "border-[#E3E8F0] text-[#5F6B80] hover:text-brand-navy"
                   }`}
                 >
                   <span className="mr-1.5 font-mono text-[11px]">{pad(index + 1)}</span>
@@ -457,9 +457,9 @@ function WorkflowRuler({ isMobile }: { isMobile: boolean }) {
                       on ? "border-brand-orange bg-brand-orange" : "border-brand-navy bg-[#F8F9FD]"
                     }`}
                   />
-                  <span className="font-mono text-[11px] font-semibold text-[#6B778C]">{pad(index + 1)}</span>
+                  <span className="font-mono text-[11px] font-semibold text-[#616D82]">{pad(index + 1)}</span>
                   <p className="mt-2 text-[15px] font-semibold leading-snug tracking-[-0.01em] text-brand-navy">{step.title}</p>
-                  <p className="mt-0.5 text-[13px] leading-snug text-[#6B778C]">{step.description}</p>
+                  <p className="mt-0.5 text-[13px] leading-snug text-[#616D82]">{step.description}</p>
                 </li>
               );
             })}
@@ -478,7 +478,7 @@ function WorkflowRuler({ isMobile }: { isMobile: boolean }) {
             <h3 className="text-[26px] font-semibold leading-[1.15] tracking-[-0.035em] text-brand-navy sm:text-[30px]">{phase.title}</h3>
             <div>
               <p className="max-w-xl text-[16px] leading-[1.65] text-[#3D4F6E]">{phase.body}</p>
-              <p className="mt-4 font-mono text-[12px] font-semibold uppercase tracking-[0.06em] text-[#6B778C]">{phase.detail}</p>
+              <p className="mt-4 font-mono text-[12px] font-semibold uppercase tracking-[0.06em] text-[#616D82]">{phase.detail}</p>
             </div>
           </motion.div>
         </motion.div>

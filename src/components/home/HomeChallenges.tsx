@@ -49,7 +49,7 @@ export default function ChallengesPreview() {
               {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: (i % 4) * 0.05 })}
               className={`border-[#E8ECF2] px-6 py-7 sm:px-8 sm:py-9 ${i > 0 ? "border-t sm:border-t-0" : ""} ${i >= 2 ? "sm:border-t" : ""} ${i >= 4 ? "lg:border-t" : "lg:border-t-0"} ${i % 2 === 1 ? "sm:border-l" : ""} ${i % 4 !== 0 ? "lg:border-l" : "lg:border-l-0"}`}
             >
-              <span className="font-mono text-[12px] text-[#A5AEBF]">{pad(i + 1)}</span>
+              <span className="font-mono text-[12px] text-[#677388]">{pad(i + 1)}</span>
               <h3 className="mt-6 text-[17px] font-medium tracking-[-0.02em] text-brand-navy">{p.title}</h3>
             </motion.li>
           ))}

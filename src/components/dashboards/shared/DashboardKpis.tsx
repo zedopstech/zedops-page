@@ -32,7 +32,7 @@ export default function DashboardKpis({ kpis }: DashboardKpisProps) {
               : ""}
           `}
         >
-          <p className="text-[9px] font-bold tracking-wide text-[#7A869A]">
+          <p className="text-[9px] font-bold tracking-wide text-[#5E6C84]">
             {kpi.label}
           </p>
 
@@ -53,7 +53,7 @@ export default function DashboardKpis({ kpis }: DashboardKpisProps) {
                   key={it.label}
                   className="flex items-center justify-between text-[9px]"
                 >
-                  <span className="text-[#7A869A]">{it.label}</span>
+                  <span className="text-[#5E6C84]">{it.label}</span>
                   <span className="font-bold text-[#172B4D]">{it.value}</span>
                 </div>
               ))}

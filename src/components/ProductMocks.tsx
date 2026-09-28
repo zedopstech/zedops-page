@@ -115,7 +115,7 @@ export function MockDashboard() {
           ].map((s) => (
             <div key={s.label} className={`${s.bg} border ${s.border} rounded-xl p-3 text-center`}>
               <div className={`text-2xl font-extrabold ${s.color} leading-none mb-1`}>{s.value}</div>
-              <div className="text-[9px] text-[#6B778C] font-semibold">{s.label}</div>
+              <div className="text-[9px] text-[#616D82] font-semibold">{s.label}</div>
             </div>
           ))}
         </div>
@@ -216,7 +216,7 @@ export function MockAnnotation() {
       <div className="space-y-3 flex-1 flex flex-col">
         <div className="flex items-center gap-1.5 pb-3 border-b border-gray-100 shrink-0">
           {["✏️", "T", "□", "→"].map((t) => (
-            <div key={t} className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center text-[11px] text-[#6B778C] font-bold">{t}</div>
+            <div key={t} className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center text-[11px] text-[#616D82] font-bold">{t}</div>
           ))}
           <div className="w-px h-5 bg-gray-200 mx-1" />
           <div className="flex gap-1">
@@ -270,7 +270,7 @@ export function MockList() {
     { done: false, urgency: "bg-red-100 text-red-700", label: "Due today" },
     { done: true, urgency: "bg-green-100 text-green-700", label: "Done" },
     { done: false, urgency: "bg-blue-100 text-blue-700", label: "In review" },
-    { done: false, urgency: "bg-gray-100 text-[#6B778C]", label: "Upcoming" },
+    { done: false, urgency: "bg-gray-100 text-[#616D82]", label: "Upcoming" },
   ];
   return (
     <MockWindow bodyClassName="min-h-[280px]">
@@ -369,7 +369,7 @@ export function MockPeople() {
           </div>
         </div>
         <div className="rounded-xl border border-gray-200 overflow-hidden flex-1 min-h-[160px]">
-          <div className="grid grid-cols-[1fr_1fr_80px] gap-2 px-3 py-2 bg-gray-50 border-b border-gray-100 text-[9px] font-bold text-[#6B778C] uppercase tracking-wide">
+          <div className="grid grid-cols-[1fr_1fr_80px] gap-2 px-3 py-2 bg-gray-50 border-b border-gray-100 text-[9px] font-bold text-[#616D82] uppercase tracking-wide">
             <span>Name</span>
             <span>Role</span>
             <span className="text-right">Status</span>
@@ -448,7 +448,7 @@ export function MockFinance() {
           <div className="h-2.5 bg-brand-navy/70 rounded w-36" />
           <div className="flex gap-1">
             {["Budget", "CO", "Pay"].map((t, i) => (
-              <div key={t} className={`text-[9px] font-bold px-2 py-1 rounded-md ${i === 0 ? "bg-brand-navy text-white" : "bg-gray-100 text-[#6B778C]"}`}>{t}</div>
+              <div key={t} className={`text-[9px] font-bold px-2 py-1 rounded-md ${i === 0 ? "bg-brand-navy text-white" : "bg-gray-100 text-[#616D82]"}`}>{t}</div>
             ))}
           </div>
         </div>
@@ -458,7 +458,7 @@ export function MockFinance() {
             { l: "Forecast", v: "$2.7M", sub: "At completion" },
           ].map((c) => (
             <div key={c.l} className="rounded-xl border border-gray-200 bg-linear-to-br from-white to-gray-50/80 p-3">
-              <div className="text-[9px] font-bold text-[#6B778C] uppercase mb-1">{c.l}</div>
+              <div className="text-[9px] font-bold text-[#616D82] uppercase mb-1">{c.l}</div>
               <div className="text-xl font-extrabold text-brand-navy leading-none">{c.v}</div>
               <div className="text-[9px] text-[#97A0AF] mt-1">{c.sub}</div>
             </div>
@@ -493,7 +493,7 @@ export function MockSupply() {
           ))}
         </div>
         <div className="rounded-xl border border-gray-200 overflow-hidden flex-1">
-          <div className="grid grid-cols-[1fr_72px_72px] gap-2 px-3 py-2 bg-gray-50 border-b border-gray-100 text-[9px] font-bold text-[#6B778C] uppercase">
+          <div className="grid grid-cols-[1fr_72px_72px] gap-2 px-3 py-2 bg-gray-50 border-b border-gray-100 text-[9px] font-bold text-[#616D82] uppercase">
             <span>Order / ref</span>
             <span>Qty</span>
             <span className="text-right">Status</span>
@@ -649,7 +649,7 @@ export function MockSchedule() {
         <div className="space-y-2 flex-1">
           {rows.map((row, i) => (
             <div key={i} className="flex items-center gap-2">
-              <div className="w-16 text-[9px] text-[#6B778C] font-semibold text-right shrink-0">{row.label}</div>
+              <div className="w-16 text-[9px] text-[#616D82] font-semibold text-right shrink-0">{row.label}</div>
               <div className="flex-1 h-6 bg-gray-100 rounded-md relative overflow-hidden">
                 <div
                   className="absolute h-full rounded-md"
@@ -681,7 +681,7 @@ export function MockWritingAssist() {
           {["Improve", "Shorten", "Expand", "Suggest"].map((a, i) => (
             <div
               key={a}
-              className={`text-[10px] font-bold px-2.5 py-1 rounded-md border ${i === 0 ? "bg-brand-orange text-white border-brand-orange" : "bg-white border-gray-200 text-[#6B778C]"}`}
+              className={`text-[10px] font-bold px-2.5 py-1 rounded-md border ${i === 0 ? "bg-brand-orange text-white border-brand-orange" : "bg-white border-gray-200 text-[#616D82]"}`}
             >
               {a}
             </div>

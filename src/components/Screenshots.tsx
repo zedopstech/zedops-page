@@ -107,7 +107,7 @@ export default function Screenshots() {
                   </div>
                   <div>
                     <p className="text-brand-navy font-bold text-sm leading-tight">{content.title}</p>
-                    <p className="text-[#6B778C] text-xs mt-0.5">{content.description}</p>
+                    <p className="text-[#616D82] text-xs mt-0.5">{content.description}</p>
                   </div>
                 </div>
                 <div className="hidden sm:flex items-center gap-1.5">

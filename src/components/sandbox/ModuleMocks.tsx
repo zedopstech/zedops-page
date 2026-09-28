@@ -46,7 +46,7 @@ export function DocumentsMock() {
             <li
               key={f}
               className={`flex items-center gap-2 rounded-lg px-2 py-1.5 text-[11px] font-semibold ${
-                i === 0 ? "bg-[#FFF1E8] text-brand-navy" : "text-[#6B778C]"
+                i === 0 ? "bg-[#FFF1E8] text-brand-navy" : "text-[#616D82]"
               }`}
             >
               {i === 0 ? (
@@ -124,8 +124,8 @@ export function DailyLogMock() {
               key={label}
               className="rounded-xl border border-[#EEF1F5] bg-[#FAFBFC] p-2"
             >
-              <Icon size={13} className="text-[#6B778C]" />
-              <p className="mt-1 text-[10px] font-semibold text-[#6B778C]">
+              <Icon size={13} className="text-[#616D82]" />
+              <p className="mt-1 text-[10px] font-semibold text-[#616D82]">
                 {label}
               </p>
               <span className="mt-1.5 block h-1.5 w-3/4 rounded-full bg-[#E6EAF0]" />

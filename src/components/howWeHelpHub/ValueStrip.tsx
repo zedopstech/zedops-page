@@ -21,7 +21,7 @@ export default function ValueStrip() {
           >
             <v.Icon size={18} className="text-brand-orange" aria-hidden />
             <p className="mt-4 text-[15px] font-medium text-brand-navy">{v.title}</p>
-            <p className="mt-1 text-[14px] leading-[1.5] text-[#6B778C]">{v.desc}</p>
+            <p className="mt-1 text-[14px] leading-[1.5] text-[#616D82]">{v.desc}</p>
           </li>
         ))}
       </ul>

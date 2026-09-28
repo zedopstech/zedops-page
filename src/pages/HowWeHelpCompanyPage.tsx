@@ -50,10 +50,10 @@ export default function HowWeHelpCompanyPage() {
                 <span className="flex h-10 w-10 items-center justify-center rounded-md border border-[#E3E8F0] text-[#5E6C84] transition-colors group-hover:border-[#FFCFB0] group-hover:text-brand-orange">
                   <c.icon size={19} aria-hidden />
                 </span>
-                <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#A5AEBF]">{c.tag}</span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#677388]">{c.tag}</span>
               </div>
               <h3 className="mt-8 text-[22px] font-medium tracking-[-0.025em] text-brand-navy">{c.title}</h3>
-              <p className="mt-2 max-w-[48ch] text-[15px] leading-[1.55] text-[#6B778C]">{firstSentence(c.summary)}</p>
+              <p className="mt-2 max-w-[48ch] text-[15px] leading-[1.55] text-[#616D82]">{firstSentence(c.summary)}</p>
               <ul className="mt-6 space-y-2.5">
                 {c.bullets.map((b) => (
                   <li key={b} className="flex items-start gap-2.5 text-[14.5px] text-[#3D4F6E]">

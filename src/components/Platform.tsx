@@ -17,7 +17,7 @@ const categories = [
       { name: "Primavera P6", color: "#C93B0A", abbr: "P6" },
       { name: "MS Project", color: "#2563EB", abbr: "MP", icon: "microsoftproject" },
       { name: "Oracle CPM", color: "#C74634", abbr: "Or", icon: "oracle" },
-      { name: "Asta Power", color: "#6B778C", abbr: "AP" },
+      { name: "Asta Power", color: "#616D82", abbr: "AP" },
     ],
   },
   {
@@ -254,7 +254,7 @@ function HubIllustration({ inView }: { inView: boolean }) {
               x={x}
               y={y + LOGO_R + 14}
               textAnchor="middle"
-              fill="#6B778C"
+              fill="#616D82"
               className="text-[8px] font-bold"
             >
               {logo.category}
@@ -361,7 +361,7 @@ function CategoryCard({ category, index }: { category: typeof categories[0]; ind
         <h3 className="text-sm font-extrabold text-brand-navy">{category.label}</h3>
         <ArrowRight size={13} className="text-gray-200 group-hover:text-brand-orange group-hover:translate-x-0.5 transition-all duration-200" />
           </div>
-      <p className="text-xs text-[#6B778C] leading-snug mb-4">{category.description}</p>
+      <p className="text-xs text-[#616D82] leading-snug mb-4">{category.description}</p>
       <div className="flex items-center gap-3">
         {category.logos.map((logo) => (
           <LogoTile key={logo.name} logo={logo} />
@@ -392,7 +392,7 @@ export default function Platform() {
             Built on the <span className="text-brand-navy">ecosystem</span> your<br className="hidden sm:block" />
             construction business runs on.
           </h2>
-          <p className="text-[#6B778C] text-base mt-5 max-w-xl mx-auto leading-snug">
+          <p className="text-[#616D82] text-base mt-5 max-w-xl mx-auto leading-snug">
             ZedOps connects seamlessly to the tools your teams already use  -  no disruption, no data silos, full bi-directional sync.
           </p>
         </motion.div>

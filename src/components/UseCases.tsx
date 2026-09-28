@@ -117,7 +117,7 @@ export default function UseCases() {
               <p className="text-[#42526E] text-base leading-snug mb-8">{uc.description}</p>
               <ul className="space-y-2.5 mb-8">
                 {uc.benefits.map((b) => (
-                  <li key={b} className="flex items-center gap-2.5 text-sm text-[#6B778C]">
+                  <li key={b} className="flex items-center gap-2.5 text-sm text-[#616D82]">
                     <Check size={14} className="flex-shrink-0" style={{ color: uc.accent }} />
                     {b}
                   </li>
@@ -126,7 +126,7 @@ export default function UseCases() {
               {/* Stat callout */}
               <div className="border-l-4 pl-5" style={{ borderColor: uc.accent }}>
                 <p className="text-3xl font-extrabold" style={{ color: uc.accent }}>{uc.stat.value}</p>
-                <p className="text-[#6B778C] text-sm mt-1">{uc.stat.label}</p>
+                <p className="text-[#616D82] text-sm mt-1">{uc.stat.label}</p>
               </div>
               <a
                 href="#"

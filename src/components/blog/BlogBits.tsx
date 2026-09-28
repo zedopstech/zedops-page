@@ -36,7 +36,7 @@ export function AuthorBadge({ size = 32, tone = "light" }: { size?: number; tone
 
 export function PostMeta({ post, className = "" }: { post: BlogPost; className?: string }) {
   return (
-    <p className={`flex flex-wrap items-center gap-x-2 text-[13px] text-[#8C97AB] ${className}`}>
+    <p className={`flex flex-wrap items-center gap-x-2 text-[13px] text-[#5F6B80] ${className}`}>
       <span className="font-medium text-brand-orange">{post.category}</span>
       <span aria-hidden>·</span>
       <time dateTime={post.date}>{formatBlogDate(post.date)}</time>

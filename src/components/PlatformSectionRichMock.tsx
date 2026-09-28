@@ -102,7 +102,7 @@ function RichPeople({ section }: { section: PlatformFeatureSection }) {
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-[11px] font-bold text-brand-navy sm:text-xs">{item.name}</p>
-              <p className="text-[10px] leading-relaxed text-[#6B778C] sm:text-[11px]">{clampText(item.summary, 100)}</p>
+              <p className="text-[10px] leading-relaxed text-[#616D82] sm:text-[11px]">{clampText(item.summary, 100)}</p>
             </div>
             <Users size={14} className="shrink-0 text-gray-300" aria-hidden />
           </div>
@@ -145,7 +145,7 @@ function RichDashboard({ section }: { section: PlatformFeatureSection }) {
           />
         ))}
       </div>
-      <div className="mt-3 flex items-center gap-1.5 text-[10px] font-semibold text-[#6B778C]">
+      <div className="mt-3 flex items-center gap-1.5 text-[10px] font-semibold text-[#616D82]">
         <LayoutDashboard size={12} className="text-[#0052CC]" aria-hidden />
         <span>{items[2] ? clampText(items[2].name, 36) : "Signals"}  -  live</span>
       </div>
@@ -165,7 +165,7 @@ function RichSchedule({ section }: { section: PlatformFeatureSection }) {
       <div className="mb-4 flex gap-1">
         {["M", "T", "W", "T", "F"].map((d, i) => (
           <div key={`${d}-${i}`} className="flex-1 text-center">
-            <div className="text-[9px] font-bold text-[#6B778C]">{d}</div>
+            <div className="text-[9px] font-bold text-[#616D82]">{d}</div>
             <div className="mt-1 flex min-h-[36px] flex-col justify-end gap-0.5 rounded-md border border-gray-100/80 bg-[#F8FAFC] p-1">
               {i === busy ? (
                 <>
@@ -207,7 +207,7 @@ function RichInspection({ section }: { section: PlatformFeatureSection }) {
               <div className="min-w-0">
                 <p
                   className={`text-[11px] font-bold leading-snug sm:text-xs ${
-                    done ? "text-[#6B778C] line-through decoration-gray-300" : "text-brand-navy"
+                    done ? "text-[#616D82] line-through decoration-gray-300" : "text-brand-navy"
                   }`}
                 >
                   {item.name}
@@ -240,7 +240,7 @@ function RichDocuments({ section }: { section: PlatformFeatureSection }) {
               <p className="text-[11px] font-extrabold text-brand-navy sm:text-xs">{item.name}</p>
               <p className="mt-1 text-[10px] leading-relaxed text-[#42526E] sm:text-[11px]">{clampText(item.summary, 95)}</p>
             </div>
-            <span className="shrink-0 rounded border border-gray-200 bg-white px-1.5 py-0.5 text-[8px] font-bold text-[#6B778C]">
+            <span className="shrink-0 rounded border border-gray-200 bg-white px-1.5 py-0.5 text-[8px] font-bold text-[#616D82]">
               {tags[seed(item.name, i) % tags.length]}
             </span>
           </div>

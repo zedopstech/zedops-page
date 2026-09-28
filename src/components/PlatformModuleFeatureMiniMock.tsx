@@ -294,7 +294,7 @@ function FloatingPermissions({ c }: { c: FeatureMockContent }) {
             <span className="min-w-0 truncate text-[9px] font-semibold text-[#42526E]">{row.label}</span>
             <span
               className={`shrink-0 rounded px-1.5 py-0.5 text-[8px] font-bold ${
-                row.tone === "full" ? "bg-brand-navy text-white" : "border border-gray-200 bg-white text-[#6B778C]"
+                row.tone === "full" ? "bg-brand-navy text-white" : "border border-gray-200 bg-white text-[#616D82]"
               }`}
             >
               {row.tone === "full" ? "Full" : "Scoped"}
@@ -313,11 +313,11 @@ function FloatingAnalytics({ c }: { c: FeatureMockContent }) {
       <div className="mb-3 grid grid-cols-2 gap-2">
         <div className="rounded-lg border border-gray-100 bg-[#F8FAFC] px-2 py-2">
           <div className="text-lg font-black leading-none text-brand-navy">{c.pctA}%</div>
-          <div className="mt-0.5 text-[8px] font-semibold text-[#6B778C]">{clampStr(c.lines[0], 28)}</div>
+          <div className="mt-0.5 text-[8px] font-semibold text-[#616D82]">{clampStr(c.lines[0], 28)}</div>
         </div>
         <div className="rounded-lg border border-gray-100 bg-[#F8FAFC] px-2 py-2">
           <div className="text-lg font-black leading-none text-brand-navy">{c.pctB}%</div>
-          <div className="mt-0.5 text-[8px] font-semibold text-[#6B778C]">{clampStr(c.lines[1], 28)}</div>
+          <div className="mt-0.5 text-[8px] font-semibold text-[#616D82]">{clampStr(c.lines[1], 28)}</div>
         </div>
       </div>
       <div className="flex h-12 items-end gap-1">
@@ -394,7 +394,7 @@ function FloatingTaskList({ c }: { c: FeatureMockContent }) {
             />
             <div className="min-w-0 flex-1">
               <div
-                className={`text-[9px] font-semibold leading-tight ${done[i] ? "text-[#6B778C] line-through decoration-gray-300" : "text-brand-navy"}`}
+                className={`text-[9px] font-semibold leading-tight ${done[i] ? "text-[#616D82] line-through decoration-gray-300" : "text-brand-navy"}`}
               >
                 {t}
               </div>
@@ -446,7 +446,7 @@ function FloatingSchedule({ c }: { c: FeatureMockContent }) {
       <div className="flex gap-1">
         {["M", "T", "W", "T", "F"].map((d, i) => (
           <div key={`${d}-${i}`} className="flex-1 text-center">
-            <div className="text-[8px] font-bold text-[#6B778C]">{d}</div>
+            <div className="text-[8px] font-bold text-[#616D82]">{d}</div>
             <div className="mt-1 flex min-h-[44px] flex-col justify-end gap-0.5 rounded-md bg-[#F8FAFC] p-1">
               {i === busyIdx && (
                 <>
@@ -470,7 +470,7 @@ function FloatingFinance({ c }: { c: FeatureMockContent }) {
     <FloatSurface>
       <Eyebrow>{c.eyebrow}</Eyebrow>
       <div className="text-2xl font-black leading-none tracking-tight text-brand-navy">{c.financeMain}</div>
-      <div className="mt-1 text-[9px] font-semibold text-[#6B778C]">{c.financeSub}</div>
+      <div className="mt-1 text-[9px] font-semibold text-[#616D82]">{c.financeSub}</div>
       <div
         className={`mt-3 flex items-center gap-2 rounded-lg px-2 py-1.5 ${
           variance.positive ? "bg-amber-50" : "bg-emerald-50"
@@ -528,7 +528,7 @@ function FloatingDocuments({ c }: { c: FeatureMockContent }) {
             <div className="min-w-0 flex-1">
               <div className="truncate text-[9px] font-bold text-brand-navy">{fileName}</div>
             </div>
-            <span className="shrink-0 rounded border border-gray-200 bg-white px-1 py-0.5 text-[7px] font-bold text-[#6B778C]">
+            <span className="shrink-0 rounded border border-gray-200 bg-white px-1 py-0.5 text-[7px] font-bold text-[#616D82]">
               {c.docTags[i % 3]}
             </span>
           </div>
@@ -572,7 +572,7 @@ function FloatingForm({ c }: { c: FeatureMockContent }) {
       <Eyebrow>{c.eyebrow}</Eyebrow>
       <div className="space-y-2">
         <div className="flex min-h-7 items-center rounded-md border border-gray-200 bg-white px-2 py-1">
-          <span className="text-[8px] font-medium text-[#6B778C]">{hint}</span>
+          <span className="text-[8px] font-medium text-[#616D82]">{hint}</span>
         </div>
         <div className="flex min-h-7 items-center rounded-md border border-gray-200 bg-[#F8FAFC] px-2 py-1">
           <span className="text-[8px] font-medium text-[#42526E]">{hint2}</span>

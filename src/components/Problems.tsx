@@ -146,7 +146,7 @@ export default function Problems() {
                   {item.value}
                 </p>
 
-                <p className="mt-1 text-xs font-bold uppercase tracking-[0.12em] text-[#6B778C] sm:text-xs">
+                <p className="mt-1 text-xs font-bold uppercase tracking-[0.12em] text-[#616D82] sm:text-xs">
                   {item.label}
                 </p>
               </li>

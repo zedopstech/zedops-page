@@ -84,7 +84,7 @@ export default function Security() {
                     {pillar.tag}
                   </span>
                   <h3 className="text-xl font-semibold text-brand-navy leading-snug mb-3">{pillar.title}</h3>
-                  <p className="text-[#6B778C] text-sm leading-snug">{pillar.body}</p>
+                  <p className="text-[#616D82] text-sm leading-snug">{pillar.body}</p>
                 </div>
                 <div className="mt-auto pt-4 border-t border-gray-100">
                   <p className="text-xs font-semibold text-[#42526E]">{pillar.detail}</p>
@@ -104,7 +104,7 @@ export default function Security() {
               <h2 className="text-3xl font-semibold text-brand-navy leading-tight tracking-tight mb-4">
                 What's in place today.
               </h2>
-              <p className="text-[#6B778C] text-sm leading-snug">
+              <p className="text-[#616D82] text-sm leading-snug">
                 We believe in full transparency about what's implemented now and what's on the roadmap. No checkbox we haven't earned.
               </p>
             </div>
@@ -193,7 +193,7 @@ export default function Security() {
         <div className="max-w-2xl mx-auto text-center">
           <ShieldCheck size={32} className="text-brand-navy mx-auto mb-5 opacity-40" />
           <h2 className="text-2xl font-semibold text-brand-navy mb-3">Have security questions?</h2>
-          <p className="text-[#6B778C] text-sm leading-snug mb-7">
+          <p className="text-[#616D82] text-sm leading-snug mb-7">
             We're happy to walk your IT or security team through our architecture, controls, and roadmap. No sales pitch  -  just a straightforward conversation.
           </p>
           <a

@@ -23,9 +23,9 @@ const toneDot: Record<Tone, string> = {
   red: "bg-[#E5484D]",
   amber: "bg-[#F5A524]",
   green: "bg-[#1D9A5B]",
-  blue: "bg-[#3E7BFA]",
+  blue: "bg-[#2A62DE]",
   violet: "bg-[#8B5CF6]",
-  slate: "bg-[#A5AEBF]",
+  slate: "bg-[#677388]",
   orange: "bg-brand-orange",
 };
 
@@ -41,7 +41,7 @@ function Head({ title, meta, right }: { title: string; meta?: string; right?: Re
     <div className="flex items-center justify-between gap-3 border-b border-[#EDF0F5] px-4 py-3">
       <span className="min-w-0 truncate text-[14px] font-medium text-brand-navy">
         {title}
-        {meta ? <span className="ml-1.5 font-normal text-[#8C97AB]">· {meta}</span> : null}
+        {meta ? <span className="ml-1.5 font-normal text-[#5F6B80]">· {meta}</span> : null}
       </span>
       {right}
     </div>
@@ -79,9 +79,9 @@ export function BoardMock({ title, meta, columns, move }: { title: string; meta?
           <div className="grid gap-2.5 p-3" style={{ gridTemplateColumns: `repeat(${cols.length}, minmax(0,1fr))` }}>
             {cols.map((col) => (
               <div key={col.name} className="rounded-lg bg-[#F5F7FA] p-2">
-                <p className="mb-2 flex items-center justify-between px-1 text-[11.5px] font-medium text-[#6B778C]">
+                <p className="mb-2 flex items-center justify-between px-1 text-[11.5px] font-medium text-[#616D82]">
                   {col.name}
-                  <span className="text-[#A5AEBF]">{col.cards.length}</span>
+                  <span className="text-[#677388]">{col.cards.length}</span>
                 </p>
                 <div className="space-y-2">
                   <AnimatePresence initial={false}>
@@ -97,7 +97,7 @@ export function BoardMock({ title, meta, columns, move }: { title: string; meta?
                       >
                         <p className="text-[12.5px] leading-snug text-brand-navy">{c.t}</p>
                         <div className="mt-2 flex items-center justify-between gap-2">
-                          <span className="truncate text-[11px] text-[#8C97AB]">{c.meta}</span>
+                          <span className="truncate text-[11px] text-[#5F6B80]">{c.meta}</span>
                           {c.tag ? <Chip tone={c.tone ?? "slate"}>{c.tag}</Chip> : c.tone ? <span className={`h-2 w-2 rounded-full ${toneDot[c.tone]}`} /> : null}
                         </div>
                       </motion.div>
@@ -133,7 +133,7 @@ export function TableMock({
       <Canvas width={W} height={H}>
         <div key={cycle} className={`${cardCls} overflow-hidden`}>
           <Head title={title} meta={meta} />
-          <div className="grid gap-2 bg-[#FAFBFC] px-4 py-2 text-[11.5px] text-[#8C97AB]" style={{ gridTemplateColumns: widths }}>
+          <div className="grid gap-2 bg-[#FAFBFC] px-4 py-2 text-[11.5px] text-[#5F6B80]" style={{ gridTemplateColumns: widths }}>
             {cols.map((c) => <span key={c}>{c}</span>)}
           </div>
           {rows.map((r, i) => (
@@ -144,7 +144,7 @@ export function TableMock({
               style={{ gridTemplateColumns: widths }}
             >
               {r.map((c, k) => (
-                <span key={k} className={`min-w-0 ${k > 0 && typeof c === "string" ? "text-[#6B778C]" : ""}`}>
+                <span key={k} className={`min-w-0 ${k > 0 && typeof c === "string" ? "text-[#616D82]" : ""}`}>
                   {flip && flipped && flip.row === i && flip.col === k ? cell(flip.to) : cell(c)}
                 </span>
               ))}
@@ -173,7 +173,7 @@ export function ChartMock({
             title={title}
             meta={meta}
             right={
-              <span className="flex items-center gap-3 text-[11px] text-[#8C97AB]">
+              <span className="flex items-center gap-3 text-[11px] text-[#5F6B80]">
                 {series.map((s) => (
                   <span key={s.name} className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm" style={{ background: color[s.tone] }} />{s.name}</span>
                 ))}
@@ -236,7 +236,7 @@ export function ChartMock({
                 </div>
               )}
             </div>
-            <div className="mt-2 flex justify-between text-[11px] text-[#8C97AB]">
+            <div className="mt-2 flex justify-between text-[11px] text-[#5F6B80]">
               {labels.map((l) => <span key={l} className="flex-1 text-center">{l}</span>)}
             </div>
             {note ? (
@@ -272,7 +272,7 @@ export function FeedMock({ title, meta, items }: { title: string; meta?: string;
                   <p className="text-[13px] leading-snug text-brand-navy">
                     <span className="font-medium">{it.who}</span> <span className="text-[#5E6C84]">{it.text}</span>
                   </p>
-                  <p className="mt-0.5 flex items-center gap-2 text-[11.5px] text-[#8C97AB]">
+                  <p className="mt-0.5 flex items-center gap-2 text-[11.5px] text-[#5F6B80]">
                     <Clock size={11} />{it.time}{it.tag ? <Chip tone={it.tone}>{it.tag}</Chip> : null}
                   </p>
                 </div>
@@ -294,14 +294,14 @@ export function DrawingMock({ title, sheet, pins }: { title: string; sheet: stri
     <div ref={ref}>
       <Canvas width={W} height={H}>
         <div key={cycle} className={`${cardCls} overflow-hidden`}>
-          <Head title={title} right={<span className="font-mono text-[11px] text-[#8C97AB]">{sheet}</span>} />
+          <Head title={title} right={<span className="font-mono text-[11px] text-[#5F6B80]">{sheet}</span>} />
           <div className="grid grid-cols-[1fr_170px]">
             <div className="relative h-[290px] bg-[#F7F9FC]">
               <svg className="absolute inset-0 h-full w-full" viewBox="0 0 340 290" fill="none" stroke="#B8C4D6" strokeWidth="1.2">
                 <rect x="20" y="20" width="300" height="250" />
                 <path d="M20 110 H170 V20 M170 110 V270 M170 180 H320 M250 180 V270 M90 110 V270" />
                 <path d="M40 60 H150 M40 70 H150" stroke="#FE5D02" strokeDasharray="6 4" strokeWidth="1.6" />
-                <path d="M200 60 H300 V150" stroke="#3E7BFA" strokeWidth="1.6" />
+                <path d="M200 60 H300 V150" stroke="#2A62DE" strokeWidth="1.6" />
                 <circle cx="120" cy="200" r="16" />
                 <path d="M210 220 h24 v24 h-24z M275 220 h24 v24 h-24z" />
               </svg>
@@ -351,17 +351,17 @@ export function ApprovalMock({ title, meta, amount, steps, done }: { title: stri
                   {i < steps.length - 1 ? <span aria-hidden className={`absolute top-7 left-[13px] h-[calc(100%-20px)] w-px ${i < done ? "bg-[#1D9A5B]" : "bg-[#E3E8F0]"}`} /> : null}
                   <span
                     className={`relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${
-                      state === "done" ? "bg-[#1D9A5B] text-white" : state === "active" ? "border-2 border-brand-orange bg-white text-brand-orange" : "border border-[#DCE3ED] bg-white text-[#A5AEBF]"
+                      state === "done" ? "bg-[#1D9A5B] text-white" : state === "active" ? "border-2 border-brand-orange bg-white text-brand-orange" : "border border-[#DCE3ED] bg-white text-[#677388]"
                     }`}
                   >
                     {state === "done" ? <Check size={13} strokeWidth={3} /> : i + 1}
                   </span>
                   <div className="min-w-0 flex-1 pt-0.5">
                     <p className="flex items-center justify-between gap-2 text-[13.5px] text-brand-navy">
-                      <span><span className="font-medium">{s.who}</span> <span className="text-[#8C97AB]">· {s.role}</span></span>
+                      <span><span className="font-medium">{s.who}</span> <span className="text-[#5F6B80]">· {s.role}</span></span>
                       <Chip tone={state === "done" ? "green" : state === "active" ? "orange" : "slate"}>{state === "done" ? "Approved" : state === "active" ? "Waiting" : "Next"}</Chip>
                     </p>
-                    {s.note ? <p className="mt-1 text-[12px] text-[#8C97AB]">{s.note}</p> : null}
+                    {s.note ? <p className="mt-1 text-[12px] text-[#5F6B80]">{s.note}</p> : null}
                   </div>
                 </motion.li>
               );
@@ -382,7 +382,7 @@ export function PhotoLogMock({ title, meta, photos }: { title: string; meta?: st
     <div ref={ref}>
       <Canvas width={W} height={H}>
         <div key={cycle} className={`${cardCls} overflow-hidden`}>
-          <Head title={title} meta={meta} right={<span className="flex items-center gap-1 text-[11.5px] text-[#8C97AB]"><Paperclip size={12} />{photos.length} photos</span>} />
+          <Head title={title} meta={meta} right={<span className="flex items-center gap-1 text-[11.5px] text-[#5F6B80]"><Paperclip size={12} />{photos.length} photos</span>} />
           <div className="grid grid-cols-3 gap-2.5 p-3">
             {photos.slice(0, 3).map((p, i) => (
               <motion.figure key={p.caption} {...fade(animate, 0.15 + i * 0.25)} className="overflow-hidden rounded-lg border border-[#EDF0F5]">
@@ -421,7 +421,7 @@ function KpiTile({ k, cycle, run }: { k: Kpi; cycle: number; run: boolean }) {
   const pts = k.spark.map((s, i) => `${(i / (k.spark.length - 1)) * 100},${30 - (s / max) * 26}`).join(" ");
   return (
     <div className="bg-white p-4">
-      <p className="text-[12px] text-[#8C97AB]">{k.label}</p>
+      <p className="text-[12px] text-[#5F6B80]">{k.label}</p>
       <p className="mt-1.5 text-[26px] font-medium leading-none tracking-[-0.03em] text-brand-navy tabular-nums">
         {k.prefix}{v.toFixed(k.decimals ?? 0)}{k.suffix}
       </p>
@@ -463,19 +463,19 @@ export function AttendanceMock({ title, meta, people, days }: { title: string; m
             title={title}
             meta={meta}
             right={
-              <span className="flex items-center gap-2.5 text-[11px] text-[#8C97AB]">
+              <span className="flex items-center gap-2.5 text-[11px] text-[#5F6B80]">
                 {(["in", "late", "leave"] as const).map((m) => <span key={m} className="flex items-center gap-1"><span className={`h-2 w-2 rounded-sm ${cls[m]}`} />{m === "in" ? "On site" : m === "late" ? "Late" : "Leave"}</span>)}
               </span>
             }
           />
           <div className="px-4 py-3">
-            <div className="grid items-center gap-1.5 pb-2 text-[11px] text-[#8C97AB]" style={{ gridTemplateColumns: `150px repeat(${days.length}, 1fr)` }}>
+            <div className="grid items-center gap-1.5 pb-2 text-[11px] text-[#5F6B80]" style={{ gridTemplateColumns: `150px repeat(${days.length}, 1fr)` }}>
               <span />
               {days.map((d) => <span key={d} className="text-center">{d}</span>)}
             </div>
             {people.map((p, i) => (
               <div key={p.name} className="grid items-center gap-1.5 border-t border-[#F1F3F7] py-2" style={{ gridTemplateColumns: `150px repeat(${days.length}, 1fr)` }}>
-                <span className="min-w-0 truncate text-[12.5px] text-brand-navy">{p.name} <span className="text-[#8C97AB]">· {p.trade}</span></span>
+                <span className="min-w-0 truncate text-[12.5px] text-brand-navy">{p.name} <span className="text-[#5F6B80]">· {p.trade}</span></span>
                 {p.marks.map((m, k) => (
                   <motion.span
                     key={k}
@@ -518,7 +518,7 @@ export function FormMock({ title, meta, fields, submit }: { title: string; meta?
           <div className="grid grid-cols-2 gap-x-3 gap-y-3 p-4">
             {fields.map((f, i) => (
               <label key={f.label} className={f.wide ? "col-span-2" : ""}>
-                <span className="text-[11.5px] text-[#8C97AB]">{f.label}</span>
+                <span className="text-[11.5px] text-[#5F6B80]">{f.label}</span>
                 <span className={`mt-1 flex h-9 items-center rounded-md border px-3 text-[13px] transition-colors duration-300 ${i < filled ? "border-[#DCE3ED] text-brand-navy" : "border-[#EDF0F5] text-transparent"} ${i === filled - 1 ? "border-brand-orange/60" : ""}`}>
                   {f.value}
                 </span>
@@ -526,7 +526,7 @@ export function FormMock({ title, meta, fields, submit }: { title: string; meta?
             ))}
           </div>
           <div className="flex items-center justify-between border-t border-[#EDF0F5] px-4 py-3">
-            <span className="text-[12px] text-[#8C97AB]">{filled > fields.length ? "Submitted · routed for approval" : "Draft"}</span>
+            <span className="text-[12px] text-[#5F6B80]">{filled > fields.length ? "Submitted · routed for approval" : "Draft"}</span>
             <span className={`rounded-md px-3 py-1.5 text-[12.5px] font-medium transition-colors duration-300 ${filled > fields.length ? "bg-[#1D9A5B] text-white" : "bg-brand-navy text-white"}`}>
               {filled > fields.length ? <span className="flex items-center gap-1"><Check size={12} strokeWidth={3} />Sent</span> : submit}
             </span>
@@ -563,7 +563,7 @@ export function AskMock({ question, answer, bullets, cite }: { question: string;
             {question.slice(0, typed)}
             {!done ? <span className="ml-px inline-block h-4 w-px translate-y-[3px] animate-pulse bg-brand-navy" /> : null}
           </span>
-          <span className={`flex h-8 w-8 items-center justify-center rounded-lg ${done ? "bg-brand-orange text-white" : "bg-[#EEF1F5] text-[#A5AEBF]"}`}><ArrowUp size={15} strokeWidth={2.4} /></span>
+          <span className={`flex h-8 w-8 items-center justify-center rounded-lg ${done ? "bg-brand-orange text-white" : "bg-[#EEF1F5] text-[#677388]"}`}><ArrowUp size={15} strokeWidth={2.4} /></span>
         </div>
         {done ? (
           <motion.div key={cycle} initial={animate ? { opacity: 0, y: 8 } : false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.25 }} className={`${cardCls} mt-3 p-4`}>
@@ -578,7 +578,7 @@ export function AskMock({ question, answer, bullets, cite }: { question: string;
                 ))}
               </ul>
             ) : null}
-            {cite ? <p className="mt-3 border-t border-[#F1F3F7] pt-2.5 text-[11.5px] text-[#8C97AB]">Sources: {cite}</p> : null}
+            {cite ? <p className="mt-3 border-t border-[#F1F3F7] pt-2.5 text-[11.5px] text-[#5F6B80]">Sources: {cite}</p> : null}
           </motion.div>
         ) : null}
       </Canvas>
@@ -602,7 +602,7 @@ export function ChecklistMock({ title, meta, items }: { title: string; meta?: st
                   {it.ok === true ? <Check size={12} strokeWidth={3} /> : it.ok === false ? <X size={12} strokeWidth={3} /> : null}
                 </span>
                 <span className="flex-1 text-[13px] text-brand-navy">{it.t}</span>
-                {it.who ? <span className="text-[12px] text-[#8C97AB]">{it.who}</span> : null}
+                {it.who ? <span className="text-[12px] text-[#5F6B80]">{it.who}</span> : null}
               </motion.li>
             ))}
           </ul>

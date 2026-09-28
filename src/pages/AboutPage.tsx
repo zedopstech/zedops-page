@@ -92,7 +92,7 @@ function MoodLine({ active, onPick }: { active: number | null; onPick: (i: numbe
   const nowPt = pts[nowIndex]!;
 
   const colorFor = (mood: JourneyMoment["mood"]) =>
-    mood === "high" ? "#FE6A12" : mood === "now" ? "#1D9A5B" : mood === "next" ? "#8C97AB" : "#172B4D";
+    mood === "high" ? "#FE6A12" : mood === "now" ? "#1D9A5B" : mood === "next" ? "#5F6B80" : "#172B4D";
 
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="h-auto w-full overflow-visible" role="img" aria-label="The highs and lows of building ZedOps so far, and what comes next">
@@ -112,7 +112,7 @@ function MoodLine({ active, onPick }: { active: number | null; onPick: (i: numbe
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
       />
-      <path d={ahead} fill="none" stroke="#8C97AB" strokeWidth={2} strokeDasharray="2 7" strokeLinecap="round" />
+      <path d={ahead} fill="none" stroke="#5F6B80" strokeWidth={2} strokeDasharray="2 7" strokeLinecap="round" />
       {pts.map((p, i) => {
         const on = active === i;
         const color = colorFor(p.mood);
@@ -178,10 +178,10 @@ function CofounderNote({ person, index, isMobile }: { person: Cofounder; index: 
           <figcaption className="mt-4 flex items-start justify-between gap-3">
             <span>
               <span className="block text-[16px] font-medium text-brand-navy">{person.name}</span>
-              <span className="block text-[14px] text-[#6B778C]">{person.role}</span>
+              <span className="block text-[14px] text-[#616D82]">{person.role}</span>
             </span>
             {person.linkedin ? (
-              <a href={person.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${person.name} on LinkedIn`} className="mt-0.5 text-[#8C97AB] hover:text-brand-navy">
+              <a href={person.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${person.name} on LinkedIn`} className="mt-0.5 text-[#5F6B80] hover:text-brand-navy">
                 <Linkedin size={17} aria-hidden />
               </a>
             ) : null}
@@ -213,14 +213,14 @@ function CofounderNote({ person, index, isMobile }: { person: Cofounder; index: 
         <div className="bg-[#F7F8FA] p-7 sm:p-8">
           <p className="text-[56px] font-medium leading-none tracking-[-0.05em] text-brand-navy">
             {exp.years}
-            <span className="ml-1 text-[20px] tracking-[-0.02em] text-[#8C97AB]">years</span>
+            <span className="ml-1 text-[20px] tracking-[-0.02em] text-[#5F6B80]">years</span>
           </p>
           <p className="mt-4 text-[15px] font-medium text-brand-navy">{exp.title}</p>
-          <p className="text-[14px] text-[#6B778C]">{exp.where}</p>
+          <p className="text-[14px] text-[#616D82]">{exp.where}</p>
         </div>
         {exp.groups.map((g) => (
           <div key={g.label} className="bg-[#F7F8FA] p-7 sm:p-8">
-            <p className="text-[13px] font-medium text-[#8C97AB]">{g.label}</p>
+            <p className="text-[13px] font-medium text-[#5F6B80]">{g.label}</p>
             <Chips items={g.items} />
           </div>
         ))}
@@ -288,10 +288,10 @@ export default function AboutPage() {
                 <div className="mt-5 flex items-start justify-between gap-3">
                   <div>
                     <h4 className="text-[17px] font-medium tracking-[-0.015em] text-brand-navy">{m.name}</h4>
-                    <p className="text-[14px] text-[#6B778C]">{m.role}</p>
+                    <p className="text-[14px] text-[#616D82]">{m.role}</p>
                   </div>
                   {m.base ? (
-                    <span className="mt-1 inline-flex shrink-0 items-center gap-1 font-mono text-[11.5px] text-[#8C97AB]">
+                    <span className="mt-1 inline-flex shrink-0 items-center gap-1 font-mono text-[11.5px] text-[#5F6B80]">
                       <MapPin size={12} aria-hidden />
                       {m.base}
                     </span>
@@ -303,7 +303,7 @@ export default function AboutPage() {
                   // "LinkedIn" label was dropped on request; the aria-label
                   // carries the name so the link is not unlabelled for screen
                   // readers, since the icon itself is aria-hidden.
-                  <a href={m.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${m.name} on LinkedIn`} className="mt-3 inline-flex text-[#8C97AB] hover:text-brand-navy">
+                  <a href={m.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${m.name} on LinkedIn`} className="mt-3 inline-flex text-[#5F6B80] hover:text-brand-navy">
                     <Linkedin size={15} aria-hidden />
                   </a>
                 ) : null}
@@ -335,9 +335,9 @@ export default function AboutPage() {
           <div className="grid gap-px border-t border-[#E3E8F0] bg-[#E3E8F0] lg:grid-cols-3">
             {beliefs.map((b, i) => (
               <motion.div key={b.title} {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: i * 0.06 })} className="bg-[#F7F8FA] p-7 sm:p-9">
-                <span className="font-mono text-[11px] text-[#A5AEBF]">{String(i + 1).padStart(2, "0")}</span>
+                <span className="font-mono text-[11px] text-[#677388]">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-8 text-[20px] font-medium tracking-[-0.025em] text-brand-navy">{b.title}</h3>
-                <p className="mt-2 text-[15px] leading-[1.6] text-[#6B778C]">{b.body}</p>
+                <p className="mt-2 text-[15px] leading-[1.6] text-[#616D82]">{b.body}</p>
               </motion.div>
             ))}
           </div>
@@ -366,11 +366,11 @@ export default function AboutPage() {
           and put labelledBy="about-journey" back on the Section if the heading
           returns.
           <div className={`pt-20 pb-8 lg:pt-28 ${framePad}`}>
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pb-3 text-[12.5px] text-[#6B778C]">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pb-3 text-[12.5px] text-[#616D82]">
               <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-brand-orange" aria-hidden />Milestone</span>
               <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full border-2 border-brand-navy bg-white" aria-hidden />Pain point</span>
               <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-[#1D9A5B]" aria-hidden />Now</span>
-              <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full border-2 border-dashed border-[#8C97AB] bg-white" aria-hidden />Next</span>
+              <span className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full border-2 border-dashed border-[#5F6B80] bg-white" aria-hidden />Next</span>
             </div>
             <MoodLine active={active} onPick={setActive} />
           </div>
@@ -395,7 +395,7 @@ export default function AboutPage() {
                       {m.mood === "now" && <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#1D9A5B]" aria-hidden />}
                       {chip.label}
                     </span>
-                    <span className="font-mono text-[11.5px] text-[#8C97AB]">{String(i + 1).padStart(2, "0")} · {m.when}</span>
+                    <span className="font-mono text-[11.5px] text-[#5F6B80]">{String(i + 1).padStart(2, "0")} · {m.when}</span>
                   </div>
                   <h3 className={`mt-6 text-[20px] font-medium leading-[1.25] tracking-[-0.025em] ${upcoming ? "text-[#4D5E77]" : "text-brand-navy"}`}>{m.title}</h3>
                   <p className="mt-2 text-[15px] leading-[1.6] text-[#5E6C84]">{m.body}</p>

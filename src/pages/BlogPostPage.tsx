@@ -123,7 +123,7 @@ function Toc({ toc, active }: { toc: TocItem[]; active?: string }) {
                 <a
                   href={`#${item.id}`}
                   className={`-ml-px block border-l py-1.5 pl-4 text-[13.5px] leading-[1.4] transition-colors ${
-                    on ? "border-brand-orange text-brand-navy" : "border-transparent text-[#8C97AB] hover:text-brand-navy"
+                    on ? "border-brand-orange text-brand-navy" : "border-transparent text-[#5F6B80] hover:text-brand-navy"
                   }`}
                 >
                   {item.text}
@@ -183,7 +183,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
             className={`mx-auto max-w-[1200px] pt-[124px] pb-12 sm:pt-[136px] lg:border-x lg:border-[#E8ECF2] lg:pb-14 ${framePad}`}
           >
             <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[13.5px]">
-              <Link href="/blog" className="text-[#8C97AB] hover:text-brand-navy">Blog</Link>
+              <Link href="/blog" className="text-[#5F6B80] hover:text-brand-navy">Blog</Link>
               <span className="text-[#C9D2DF]" aria-hidden>/</span>
               <Link href={`/blog?category=${encodeURIComponent(post.category.toLowerCase())}`} className="font-medium text-brand-orange hover:underline">
                 {post.category}
@@ -223,7 +223,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
                   <AuthorBadge size={40} />
                   <div>
                     <p className="text-[15px] font-medium text-brand-navy">{post.author}</p>
-                    <p className="text-[13.5px] text-[#8C97AB]">Published {formatBlogDate(post.date)}</p>
+                    <p className="text-[13.5px] text-[#5F6B80]">Published {formatBlogDate(post.date)}</p>
                   </div>
                 </div>
                 <ShareRow title={post.title} />

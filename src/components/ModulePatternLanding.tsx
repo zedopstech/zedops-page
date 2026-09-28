@@ -306,7 +306,7 @@ export default function ModulePatternLanding({
                     </span>
                     <div className="-mt-7 flex min-h-[140px] flex-1 flex-col rounded-2xl border border-gray-100 bg-white px-2.5 pb-4 pt-10 shadow-[0_10px_28px_-18px_rgba(23,43,77,0.22)]">
                       <h3 className="text-sm font-extrabold leading-snug text-brand-navy">{step.title}</h3>
-                      <p className="mt-2 text-xs leading-snug text-[#6B778C]">{step.description}</p>
+                      <p className="mt-2 text-xs leading-snug text-[#616D82]">{step.description}</p>
                     </div>
                   </motion.li>
                 );
@@ -328,7 +328,7 @@ export default function ModulePatternLanding({
                   </span>
                   <div className="min-w-0">
                     <h3 className="text-sm font-extrabold leading-snug text-brand-navy">{step.title}</h3>
-                    <p className="mt-1 text-sm leading-snug text-[#6B778C]">{step.description}</p>
+                    <p className="mt-1 text-sm leading-snug text-[#616D82]">{step.description}</p>
                   </div>
                 </motion.li>
               );

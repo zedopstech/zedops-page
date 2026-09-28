@@ -118,7 +118,7 @@ function AIRiskCard() {
             <span className={`text-[8px] font-bold px-1.5 py-0.5 shrink-0 mt-0.5 rounded ${color}`}>{level}</span>
             <div>
               <div className="text-[9px] font-bold text-brand-navy leading-tight">{site}</div>
-              <div className="text-[8px] text-[#6B778C]">{risk}</div>
+              <div className="text-[8px] text-[#616D82]">{risk}</div>
             </div>
           </motion.div>
         ))}
@@ -154,7 +154,7 @@ function MilestoneCard() {
       <div className="text-xl font-black text-brand-navy leading-none mb-1">
         <CountUp target={14} delay={0.9} /> inspections
       </div>
-      <div className="text-[9px] text-[#6B778C] mb-2">across 6 active sites</div>
+      <div className="text-[9px] text-[#616D82] mb-2">across 6 active sites</div>
       <div className="flex items-center gap-1">
         <motion.div
           animate={{ rotate: [0, 15, -15, 0] }}
@@ -376,7 +376,7 @@ export default function Hero() {
                 Request access
               </a>
               <span className="text-[#C7CDD6]"> · </span>
-              <span className="font-medium text-[#6B778C]">Rolling invites as we expand capacity.</span>
+              <span className="font-medium text-[#616D82]">Rolling invites as we expand capacity.</span>
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6">
               <span className="shrink-0 text-[10px] font-bold uppercase tracking-widest text-[#C7CDD6]">Built for</span>

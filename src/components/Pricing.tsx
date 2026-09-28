@@ -140,7 +140,7 @@ export default function Pricing() {
             <button
               type="button"
               onClick={() => setAnnual(false)}
-              className={`px-4 py-2 text-sm font-semibold transition-all duration-150 sm:px-5 sm:py-2 ${!annual ? "bg-[#172B4D] text-white" : "text-[#6B778C] hover:text-[#42526E]"}`}
+              className={`px-4 py-2 text-sm font-semibold transition-all duration-150 sm:px-5 sm:py-2 ${!annual ? "bg-[#172B4D] text-white" : "text-[#616D82] hover:text-[#42526E]"}`}
               style={{ borderRadius: 6 }}
             >
               Monthly
@@ -148,7 +148,7 @@ export default function Pricing() {
             <button
               type="button"
               onClick={() => setAnnual(true)}
-              className={`inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold transition-all duration-150 sm:gap-2 sm:px-5 sm:py-2 ${annual ? "bg-[#172B4D] text-white" : "text-[#6B778C] hover:text-[#42526E]"}`}
+              className={`inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold transition-all duration-150 sm:gap-2 sm:px-5 sm:py-2 ${annual ? "bg-[#172B4D] text-white" : "text-[#616D82] hover:text-[#42526E]"}`}
               style={{ borderRadius: 6 }}
             >
               Annual
@@ -171,7 +171,7 @@ export default function Pricing() {
               </div>
               <div className="min-w-0 flex-1">
                 <div className="mb-0.5 text-sm font-bold leading-snug" style={{ color: NAVY }}>{label}</div>
-                <div className="text-xs leading-snug text-[#6B778C]">{desc}</div>
+                <div className="text-xs leading-snug text-[#616D82]">{desc}</div>
               </div>
             </div>
           ))}
@@ -200,7 +200,7 @@ export default function Pricing() {
                 <h3 className={`font-extrabold text-xl ${plan.isPro ? "text-white" : "text-[#172B4D]"}`}>{plan.name}</h3>
               </div>
 
-              <p className={`text-sm leading-snug mb-6 ${plan.isPro ? "text-[#B8C9DC]" : "text-[#6B778C]"}`}>{plan.description}</p>
+              <p className={`text-sm leading-snug mb-6 ${plan.isPro ? "text-[#B8C9DC]" : "text-[#616D82]"}`}>{plan.description}</p>
 
               <div className="mb-8 pb-8 border-b" style={{ borderColor: plan.isPro ? "rgba(255,255,255,0.1)" : "#E5E7EB" }}>
                 {plan.price.monthly ? (
@@ -209,7 +209,7 @@ export default function Pricing() {
                       <span className={`text-5xl font-extrabold ${plan.isPro ? "text-white" : "text-[#172B4D]"}`}>
                         ${annual ? plan.price.annual : plan.price.monthly}
                       </span>
-                      <span className={`text-sm ${plan.isPro ? "text-[#97A0AF]" : "text-[#6B778C]"}`}>/mo</span>
+                      <span className={`text-sm ${plan.isPro ? "text-[#97A0AF]" : "text-[#616D82]"}`}>/mo</span>
                     </div>
                     {annual && (
                       <p className={`text-xs mt-1 ${plan.isPro ? "text-[#97A0AF]" : "text-[#97A0AF]"}`}>
@@ -304,7 +304,7 @@ export default function Pricing() {
           )}
         </AnimatePresence>
 
-        <motion.p {...scrollMotionProps(isMobile, { fadeOnly: true, duration: 0.45 })} className="text-center text-[#6B778C] text-sm">
+        <motion.p {...scrollMotionProps(isMobile, { fadeOnly: true, duration: 0.45 })} className="text-center text-[#616D82] text-sm">
           <a href="/contact" className="text-[#172B4D] hover:underline font-semibold">Contact sales</a> for volume discounts.
         </motion.p>
       </div>

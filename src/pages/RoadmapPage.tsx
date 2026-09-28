@@ -40,7 +40,7 @@ const columns: Column[] = [
   {
     label: "Next",
     note: "Q4 2026",
-    dot: "bg-[#3E7BFA]",
+    dot: "bg-[#2A62DE]",
     items: [
       { title: "Zed AI actions", desc: "Risk alerts, RFI drafting and clash checks." },
       { title: "Custom workflows", desc: "Your own approval chains and automations." },
@@ -51,7 +51,7 @@ const columns: Column[] = [
   {
     label: "Later",
     note: "2027",
-    dot: "bg-[#A5AEBF]",
+    dot: "bg-[#677388]",
     items: [
       { title: "BIM viewer", desc: "Models alongside drawings and RFIs." },
       { title: "SSO / SAML", desc: "Single sign-on for enterprise teams." },
@@ -63,7 +63,7 @@ const columns: Column[] = [
 ];
 
 const field =
-  "mt-1.5 w-full rounded-md border border-[#DCE3ED] bg-white px-3.5 text-[15px] text-brand-navy placeholder:text-[#A5AEBF] outline-none transition-colors focus:border-brand-navy";
+  "mt-1.5 w-full rounded-md border border-[#DCE3ED] bg-white px-3.5 text-[15px] text-brand-navy placeholder:text-[#677388] outline-none transition-colors focus:border-brand-navy";
 
 export default function RoadmapPage() {
   const isMobile = useIsMobile();
@@ -103,13 +103,13 @@ export default function RoadmapPage() {
                     <span className={`h-2 w-2 rounded-full ${col.dot}`} aria-hidden />
                     {col.label}
                   </span>
-                  <span className="font-mono text-[11.5px] text-[#8C97AB]">{col.note}</span>
+                  <span className="font-mono text-[11.5px] text-[#5F6B80]">{col.note}</span>
                 </div>
                 <ul className="px-6 py-3">
                   {col.items.map((item) => (
                     <li key={item.title} className="border-b border-[#F1F3F7] py-3.5 last:border-b-0">
                       <p className="text-[15px] font-medium text-brand-navy">{item.title}</p>
-                      <p className="mt-0.5 text-[13.5px] leading-[1.5] text-[#6B778C]">{item.desc}</p>
+                      <p className="mt-0.5 text-[13.5px] leading-[1.5] text-[#616D82]">{item.desc}</p>
                     </li>
                   ))}
                 </ul>

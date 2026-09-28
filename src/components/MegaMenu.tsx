@@ -36,9 +36,9 @@ function ItemLink({ item, onNavigate }: { item: NavItem; onNavigate: () => void 
       <span className="min-w-0 pt-px">
         <span className="flex items-center gap-1 text-[14px] font-medium leading-snug text-brand-navy">
           {item.label}
-          {item.external ? <ArrowUpRight size={13} className="text-[#8C97AB]" aria-hidden /> : null}
+          {item.external ? <ArrowUpRight size={13} className="text-[#5F6B80]" aria-hidden /> : null}
         </span>
-        <span className="mt-0.5 block text-[12.5px] leading-snug text-[#6B778C]">{item.desc}</span>
+        <span className="mt-0.5 block text-[12.5px] leading-snug text-[#616D82]">{item.desc}</span>
       </span>
     </a>
   );
@@ -47,7 +47,7 @@ function ItemLink({ item, onNavigate }: { item: NavItem; onNavigate: () => void 
 function Column({ heading, items, onNavigate, cols = 1 }: { heading: string; items: readonly NavItem[]; onNavigate: () => void; cols?: 1 | 2 }) {
   return (
     <div className="min-w-0">
-      <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#8C97AB]">{heading}</p>
+      <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#5F6B80]">{heading}</p>
       <div className={cols === 2 ? "grid grid-cols-2 gap-x-8" : ""}>
         {items.map((item) => <ItemLink key={item.label} item={item} onNavigate={onNavigate} />)}
       </div>
@@ -83,7 +83,7 @@ function FeatureCard({ href, eyebrow, title, action, image, onNavigate }: { href
         </div>
       ) : null}
       <div className="flex flex-1 flex-col p-5">
-        <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#8C97AB]">{eyebrow}</span>
+        <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#5F6B80]">{eyebrow}</span>
         <span className="mt-2 text-[15px] font-semibold leading-snug text-brand-navy">{title}</span>
         <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[13px] font-semibold text-brand-navy group-hover:text-brand-orange">
           {action}
@@ -132,15 +132,15 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
       <Frame active={active} cta={s.cta} onNavigate={onNavigate}>
         <div className="grid grid-cols-[1fr_1fr_280px] gap-10">
           <div>
-            <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#8C97AB]">{s.sections[0].heading}</p>
+            <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#5F6B80]">{s.sections[0].heading}</p>
             <div className="space-y-2">
               {s.sections[0].items.map((item) => (
                 <a key={item.label} href={item.href} onClick={onNavigate} className="group -mx-3 block rounded-md px-3 py-3 transition-colors hover:bg-[#F5F7FA]">
                   <span className="flex items-center gap-2.5 text-[15px] font-semibold text-brand-navy">
-                    <item.icon size={18} strokeWidth={1.7} className="text-[#8C97AB] group-hover:text-brand-orange" aria-hidden />
+                    <item.icon size={18} strokeWidth={1.7} className="text-[#5F6B80] group-hover:text-brand-orange" aria-hidden />
                     {item.label}
                   </span>
-                  <span className="mt-1 block text-[13px] leading-[1.5] text-[#6B778C]">{item.desc}</span>
+                  <span className="mt-1 block text-[13px] leading-[1.5] text-[#616D82]">{item.desc}</span>
                 </a>
               ))}
             </div>
@@ -166,7 +166,7 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
                 {item.label}
                 <ArrowRight size={14} className="opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" aria-hidden />
               </p>
-              <p className="mt-1 text-[13px] leading-snug text-[#6B778C]">{item.desc}</p>
+              <p className="mt-1 text-[13px] leading-snug text-[#616D82]">{item.desc}</p>
             </a>
           ))}
         </div>

@@ -191,7 +191,7 @@ export default function ModulePreview() {
                     })}
                     className={flip ? "lg:order-1" : ""}
                   >
-                    <p className="mb-5 inline-flex items-center gap-2.5 font-mono text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6B778C]">
+                    <p className="mb-5 inline-flex items-center gap-2.5 font-mono text-[12px] font-semibold uppercase tracking-[0.14em] text-[#616D82]">
                       <span className="h-2 w-2 bg-brand-orange" aria-hidden />
                       {String(i + 1).padStart(2, "0")} /{" "}
                       {String(itemCount).padStart(2, "0")}
@@ -249,7 +249,7 @@ export default function ModulePreview() {
                   <ArrowLeft size={18} aria-hidden />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#8C97AB]">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#5F6B80]">
                     Previous module
                   </p>
                   <p className="mt-1 truncate text-[20px] font-semibold tracking-tight text-brand-navy">
@@ -267,7 +267,7 @@ export default function ModulePreview() {
                   <ArrowRight size={18} aria-hidden />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#8C97AB]">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#5F6B80]">
                     Next module
                   </p>
                   <p className="mt-1 truncate text-[20px] font-semibold tracking-tight text-brand-navy">

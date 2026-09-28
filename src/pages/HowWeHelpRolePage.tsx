@@ -82,7 +82,7 @@ export default function HowWeHelpRolePage() {
           {personas.map((p) => (
             <a key={p.href} href={p.href} className="group flex items-center justify-between bg-white px-6 py-7 transition-colors hover:bg-[#FAFBFC] sm:px-8">
               <span className="text-[16px] font-medium text-brand-navy">{p.label}</span>
-              <ArrowUpRight size={16} className="text-[#A5AEBF] transition-colors group-hover:text-brand-orange" aria-hidden />
+              <ArrowUpRight size={16} className="text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden />
             </a>
           ))}
         </div>

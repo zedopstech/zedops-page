@@ -237,7 +237,7 @@ function QualityConnectedCard() {
           <span className="text-brand-orange">{qualityConnected.titleAccent}</span>
         </h2>
 
-        <p className="mt-5 text-sm leading-6 text-[#6B778C] sm:text-base">
+        <p className="mt-5 text-sm leading-6 text-[#616D82] sm:text-base">
           {qualityHero.subtitle}
         </p>
 
@@ -775,7 +775,7 @@ export default function QualitySafetyLanding(_props: {
           >
             <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl">
               Traditional Way{" "}
-              <span className="font-medium text-[#6B778C]">vs</span>{" "}
+              <span className="font-medium text-[#616D82]">vs</span>{" "}
               <span className="text-brand-orange">ZEDOPS</span>
             </h2>
 
@@ -819,7 +819,7 @@ export default function QualitySafetyLanding(_props: {
                           {item.title}
                         </p>
 
-                        <p className="mt-0.5 text-xs leading-snug text-[#6B778C] sm:text-sm">
+                        <p className="mt-0.5 text-xs leading-snug text-[#616D82] sm:text-sm">
                           {item.description}
                         </p>
                       </div>
@@ -863,7 +863,7 @@ export default function QualitySafetyLanding(_props: {
                           {item.title}
                         </p>
 
-                        <p className="mt-0.5 text-xs leading-snug text-[#6B778C] sm:text-sm">
+                        <p className="mt-0.5 text-xs leading-snug text-[#616D82] sm:text-sm">
                           {item.description}
                         </p>
                       </div>
@@ -930,7 +930,7 @@ export default function QualitySafetyLanding(_props: {
                         {benefit.title}
                       </p>
 
-                      <p className="mt-0.5 text-xs leading-snug text-[#6B778C]">
+                      <p className="mt-0.5 text-xs leading-snug text-[#616D82]">
                         {benefit.description}
                       </p>
                     </div>

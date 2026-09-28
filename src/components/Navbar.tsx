@@ -120,7 +120,7 @@ export default function Navbar() {
                     {label}
                     <ChevronDown
                       size={14}
-                      className={`transition-transform duration-200 ${dark ? "text-white/40" : "text-[#8C97AB]"} ${on ? "rotate-180" : ""}`}
+                      className={`transition-transform duration-200 ${dark ? "text-white/40" : "text-[#5F6B80]"} ${on ? "rotate-180" : ""}`}
                       aria-hidden
                     />
                     <span
@@ -175,12 +175,12 @@ export default function Navbar() {
               <details key={label} className="group border-b border-[#EDF0F5]">
                 <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-[16px] font-semibold text-brand-navy [&::-webkit-details-marker]:hidden">
                   {label}
-                  <ChevronDown size={18} className="text-[#8C97AB] transition-transform group-open:rotate-180" aria-hidden />
+                  <ChevronDown size={18} className="text-[#5F6B80] transition-transform group-open:rotate-180" aria-hidden />
                 </summary>
                 <div className="space-y-4 pb-5">
                   {dropdownMenus[label].sections.map((section) => (
                     <div key={section.heading}>
-                      <p className="mb-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6B778C]">
+                      <p className="mb-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#616D82]">
                         {section.heading}
                       </p>
                       {section.items.map((item) => (

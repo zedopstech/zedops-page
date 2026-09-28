@@ -18,7 +18,7 @@ const industries: { title: string; icon: IconType }[] = [
 function Plate({ title, icon: Icon }: { title: string; icon: IconType }) {
   return (
     <span className="flex shrink-0 items-center gap-2.5 text-[18px] font-semibold tracking-[-0.02em] text-[#5E6C84]">
-      <Icon size={20} className="text-[#A5AEBF]" aria-hidden />
+      <Icon size={20} className="text-[#677388]" aria-hidden />
       {title}
     </span>
   );
@@ -40,7 +40,7 @@ export default function LogoStripPreview() {
   const isMobile = useIsMobile();
   return (
     <section className="relative bg-white pt-16 pb-14 sm:pt-20" aria-label="Industries">
-      <motion.p {...scrollMotionProps(isMobile, { y: 20 })} className="mb-8 px-5 text-center text-[14px] font-medium text-[#6B778C]">
+      <motion.p {...scrollMotionProps(isMobile, { y: 20 })} className="mb-8 px-5 text-center text-[14px] font-medium text-[#616D82]">
         One platform for every contractor, across every industry
       </motion.p>
       <motion.div {...scrollMotionProps(isMobile, { y: 24, delay: 0.08 })} className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">

@@ -80,7 +80,7 @@ export function ModuleHero({
           className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14 lg:border-x lg:border-[#E3E8F0] lg:px-14"
         >
           {product}
-          {productCaption ? <p className="mt-4 text-center text-[12px] text-[#8C97AB]">{productCaption}</p> : null}
+          {productCaption ? <p className="mt-4 text-center text-[12px] text-[#5F6B80]">{productCaption}</p> : null}
         </motion.div>
       </div>
     </section>
@@ -122,14 +122,14 @@ export function ModuleCapabilities({
               {...scrollMotionProps(isMobile, { y: 16, duration: 0.45, delay: (index % 3) * 0.05 })}
               className="flex flex-col bg-white p-6 sm:min-h-[210px] sm:p-8"
             >
-              <span className="font-mono text-[11px] text-[#A5AEBF]">{pad(index + 1)}</span>
+              <span className="font-mono text-[11px] text-[#677388]">{pad(index + 1)}</span>
               <h3 className="mt-8 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">
                 {feature.title}
                 {first.badge ? (
                   <span className="ml-2 rounded-[4px] bg-[#FFF1E8] px-1.5 py-0.5 align-middle text-[11px] font-medium text-[#C2410C]">{first.badge}</span>
                 ) : null}
               </h3>
-              {first.text ? <p className="mt-2 max-w-[38ch] text-[14.5px] leading-[1.55] text-[#6B778C]">{first.text}</p> : null}
+              {first.text ? <p className="mt-2 max-w-[38ch] text-[14.5px] leading-[1.55] text-[#616D82]">{first.text}</p> : null}
             </motion.article>
           );
         })}
@@ -183,8 +183,8 @@ export function ModuleWorkflowTabs({ isMobile, heading, tabs }: { isMobile: bool
               className={`relative border-[#E3E8F0] px-5 py-5 text-left outline-none transition-colors focus-visible:bg-white sm:px-6 ${index % 2 === 1 ? "border-l" : ""} ${index >= 2 ? "border-t lg:border-t-0" : ""} ${index > 0 ? "lg:border-l" : ""} ${on ? "bg-white" : "hover:bg-white/60"}`}
             >
               <span aria-hidden className={`absolute inset-x-0 -top-px h-[2px] ${on ? "bg-brand-orange" : "bg-transparent"}`} />
-              <span className="block font-mono text-[11px] text-[#A5AEBF]">{pad(index + 1)}</span>
-              <span className={`mt-1 block text-[14.5px] font-medium leading-snug tracking-[-0.01em] ${on ? "text-brand-navy" : "text-[#7A869A]"}`}>{item.label}</span>
+              <span className="block font-mono text-[11px] text-[#677388]">{pad(index + 1)}</span>
+              <span className={`mt-1 block text-[14.5px] font-medium leading-snug tracking-[-0.01em] ${on ? "text-brand-navy" : "text-[#5E6C84]"}`}>{item.label}</span>
             </button>
           );
         })}
@@ -253,18 +253,18 @@ export function ModuleComparison({
             {...scrollMotionProps(isMobile, { y: 18, duration: 0.5, delay: side * 0.08 })}
             className={`px-6 py-10 sm:px-10 lg:px-14 lg:py-14 ${side ? "border-t border-[#E8ECF2] lg:border-t-0 lg:border-l" : "bg-[#FAFBFC]"}`}
           >
-            <p className={`text-[15px] font-medium ${side ? "text-brand-navy" : "text-[#8C97AB]"}`}>{side ? afterLabel : beforeLabel}</p>
+            <p className={`text-[15px] font-medium ${side ? "text-brand-navy" : "text-[#5F6B80]"}`}>{side ? afterLabel : beforeLabel}</p>
             <ul className="mt-6 space-y-4">
               {items.map((item) => (
                 <li key={item.title} className="flex items-start gap-3">
                   <span
-                    className={`mt-[3px] flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] ${side ? "bg-brand-orange text-white" : "border border-[#DCE3ED] text-[#A5AEBF]"}`}
+                    className={`mt-[3px] flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] ${side ? "bg-brand-orange text-white" : "border border-[#DCE3ED] text-[#677388]"}`}
                   >
                     {side ? <Check size={12} strokeWidth={3} aria-hidden /> : <X size={12} strokeWidth={3} aria-hidden />}
                   </span>
                   <span>
-                    <span className={`block text-[16px] leading-snug ${side ? "text-brand-navy" : "text-[#7A869A]"}`}>{item.title}</span>
-                    {item.description ? <span className="mt-0.5 block text-[14px] text-[#8C97AB]">{item.description}</span> : null}
+                    <span className={`block text-[16px] leading-snug ${side ? "text-brand-navy" : "text-[#5E6C84]"}`}>{item.title}</span>
+                    {item.description ? <span className="mt-0.5 block text-[14px] text-[#5F6B80]">{item.description}</span> : null}
                   </span>
                 </li>
               ))}
@@ -321,7 +321,7 @@ export function ModuleConnected({
                   <module.icon size={17} strokeWidth={1.8} aria-hidden />
                 </span>
                 <span className="flex-1 text-[15px] font-medium text-brand-navy">{module.label}</span>
-                {module.href ? <ArrowUpRight size={15} className="text-[#A5AEBF] transition-colors group-hover:text-brand-orange" aria-hidden /> : null}
+                {module.href ? <ArrowUpRight size={15} className="text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden /> : null}
               </>
             );
             return module.href ? (
@@ -342,13 +342,13 @@ export function ModuleConnected({
             <h3 className="max-w-xl text-[20px] font-medium leading-[1.35] tracking-[-0.02em] text-brand-navy">
               {roadmapLabel ?? "On the roadmap"}. <Muted>{roadmapBody}</Muted>
             </h3>
-            <span className="rounded-md border border-[#E3E8F0] bg-white px-2.5 py-1 text-[12px] font-medium text-[#6B778C]">Planned</span>
+            <span className="rounded-md border border-[#E3E8F0] bg-white px-2.5 py-1 text-[12px] font-medium text-[#616D82]">Planned</span>
           </div>
           <div className="grid gap-px border-t border-[#E3E8F0] bg-[#E3E8F0] sm:grid-cols-2 lg:grid-cols-4">
             {roadmapItems.map((item) => (
               <div key={item.title} className="bg-[#F7F8FA] px-6 py-7 sm:px-8">
                 <p className="text-[15px] font-medium text-brand-navy">{item.title}</p>
-                <p className="mt-1.5 text-[14px] leading-[1.5] text-[#6B778C]">{item.body}</p>
+                <p className="mt-1.5 text-[14px] leading-[1.5] text-[#616D82]">{item.body}</p>
               </div>
             ))}
           </div>

@@ -69,10 +69,10 @@ function SiloVisual({ run }: { run: boolean }) {
           animate={run ? { opacity: 1, y: [0, i % 2 ? 3 : -3, 0] } : { opacity: 1 }}
           transition={{ opacity: { duration: 0.35, delay: i * 0.12 }, y: { duration: 5 + i, repeat: Infinity, ease: "easeInOut" } }}
         >
-          <s.icon size={16} className="mt-0.5 shrink-0 text-[#A5AEBF]" />
+          <s.icon size={16} className="mt-0.5 shrink-0 text-[#677388]" />
           <span className="min-w-0">
             <span className="block truncate text-[13.5px] text-brand-navy">{s.label}</span>
-            <span className="block text-[11.5px] text-[#8C97AB]">{s.sub}</span>
+            <span className="block text-[11.5px] text-[#5F6B80]">{s.sub}</span>
           </span>
         </motion.div>
       ))}
@@ -127,7 +127,7 @@ function DisconnectedVisual({ run }: { run: boolean }) {
           <div className="flex items-center gap-1 border-b border-[#EDF0F5] px-2.5 py-2">
             <span className="h-1.5 w-1.5 rounded-full bg-[#DCE3ED]" />
             <span className="h-1.5 w-1.5 rounded-full bg-[#DCE3ED]" />
-            <span className="ml-1.5 truncate text-[11px] text-[#6B778C]">{a.name}</span>
+            <span className="ml-1.5 truncate text-[11px] text-[#616D82]">{a.name}</span>
           </div>
           <div className="space-y-2 p-2.5">
             {Array.from({ length: a.rows }).map((_, k) => (
@@ -137,7 +137,7 @@ function DisconnectedVisual({ run }: { run: boolean }) {
         </motion.div>
       ))}
       <motion.p
-        className="absolute inset-x-0 bottom-12 text-center text-[13px] text-[#8C97AB]"
+        className="absolute inset-x-0 bottom-12 text-center text-[13px] text-[#5F6B80]"
         initial={run ? { opacity: 0 } : false}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.3 }}
@@ -176,7 +176,7 @@ function ConnectedVisual({ run }: { run: boolean }) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: 0.3 + i * 0.15 }}
           >
-            <span className="text-[#8C97AB]">{l.k}</span>
+            <span className="text-[#5F6B80]">{l.k}</span>
             <span className={l.tone}>{l.v}</span>
           </motion.div>
         ))}
@@ -248,7 +248,7 @@ export default function ThreeWaysPreview() {
                   aria-selected={on}
                   aria-controls="ways-panel"
                   onClick={() => setActive(i)}
-                  className={`text-left text-[18px] font-medium tracking-[-0.02em] transition-colors ${on ? "text-brand-navy" : "text-[#A5AEBF] hover:text-[#5E6C84]"}`}
+                  className={`text-left text-[18px] font-medium tracking-[-0.02em] transition-colors ${on ? "text-brand-navy" : "text-[#677388] hover:text-[#5E6C84]"}`}
                 >
                   {w.name}
                 </button>
@@ -261,7 +261,7 @@ export default function ThreeWaysPreview() {
                       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="mt-2 max-w-md text-[15px] leading-[1.55] text-[#6B778C]">{w.lead}</p>
+                      <p className="mt-2 max-w-md text-[15px] leading-[1.55] text-[#616D82]">{w.lead}</p>
                       <div className="mt-5 h-[2px] overflow-hidden rounded-full bg-[#E3E8F0]">
                         <motion.div
                           key={`${active}-${paused}-${run}`}

@@ -12,7 +12,7 @@ export default function LegalContent({ sections, email }: { sections: readonly {
               <a
                 key={section.title}
                 href={`#policy-section-${index + 1}`}
-                className="shrink-0 py-1.5 text-[13.5px] text-[#6B778C] transition-colors hover:text-brand-navy lg:shrink"
+                className="shrink-0 py-1.5 text-[13.5px] text-[#616D82] transition-colors hover:text-brand-navy lg:shrink"
               >
                 {section.title.replace(/^\d+\.\s*/, "")}
               </a>
@@ -23,7 +23,7 @@ export default function LegalContent({ sections, email }: { sections: readonly {
           {sections.map((section, index) => (
             <article key={section.title} id={`policy-section-${index + 1}`} className="scroll-mt-[130px] border-t border-[#E8ECF2] py-8 first:border-t-0 first:pt-0">
               <h2 className="text-[22px] font-medium leading-tight tracking-[-0.025em] text-brand-navy">
-                <span className="mr-2 font-mono text-[13px] text-[#A5AEBF]">{String(index + 1).padStart(2, "0")}</span>
+                <span className="mr-2 font-mono text-[13px] text-[#677388]">{String(index + 1).padStart(2, "0")}</span>
                 {section.title.replace(/^\d+\.\s*/, "")}
               </h2>
               <div className="mt-4 max-w-[720px] whitespace-pre-line text-[15.5px] leading-[1.75] text-[#3D4F6E]">{section.body}</div>

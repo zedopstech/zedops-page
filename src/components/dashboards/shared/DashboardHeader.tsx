@@ -14,7 +14,7 @@ export default function DashboardHeader({ title, subtitle }: DashboardHeaderProp
           {title}
         </h2>
 
-        <p className="mt-0.5 text-xs text-[#6B778C]">
+        <p className="mt-0.5 text-xs text-[#616D82]">
           {subtitle}
         </p>
       </div>

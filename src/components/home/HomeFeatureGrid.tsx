@@ -105,10 +105,10 @@ function Cell({ c }: { c: Capability }) {
         <span className="flex h-10 w-10 items-center justify-center rounded-md border border-[#E3E8F0] bg-white text-[#5E6C84] shadow-[0_1px_2px_rgba(14,27,51,0.05)] transition-colors group-hover:border-[#FFCFB0] group-hover:text-brand-orange">
           <c.icon size={20} aria-hidden />
         </span>
-        <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#A5AEBF]">{c.group}</span>
+        <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#677388]">{c.group}</span>
       </div>
       <h3 className="pt-10 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">{c.title}</h3>
-      <p className="mt-1.5 max-w-[36ch] text-[14.5px] leading-[1.55] text-[#6B778C]">{c.desc}</p>
+      <p className="mt-1.5 max-w-[36ch] text-[14.5px] leading-[1.55] text-[#616D82]">{c.desc}</p>
       <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[14px] font-medium text-brand-navy">
         Explore
         <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden />

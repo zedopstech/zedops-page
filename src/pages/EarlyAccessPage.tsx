@@ -35,7 +35,7 @@ const faqs = [
 ];
 
 const field =
-  "mt-1.5 h-11 w-full rounded-md border border-[#DCE3ED] bg-white px-3.5 text-[15px] text-brand-navy placeholder:text-[#A5AEBF] outline-none transition-colors focus:border-brand-navy";
+  "mt-1.5 h-11 w-full rounded-md border border-[#DCE3ED] bg-white px-3.5 text-[15px] text-brand-navy placeholder:text-[#677388] outline-none transition-colors focus:border-brand-navy";
 
 function Faq({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
@@ -108,7 +108,7 @@ export default function EarlyAccessPage() {
                     <p.icon size={18} className="mt-0.5 shrink-0 text-brand-orange" aria-hidden />
                     <div>
                       <p className="text-[15.5px] font-medium text-brand-navy">{p.title}</p>
-                      <p className="mt-0.5 text-[14.5px] leading-[1.55] text-[#6B778C]">{p.body}</p>
+                      <p className="mt-0.5 text-[14.5px] leading-[1.55] text-[#616D82]">{p.body}</p>
                     </div>
                   </li>
                 ))}
@@ -119,7 +119,7 @@ export default function EarlyAccessPage() {
                   <li key={s.title} className="relative pb-5 pl-6 last:pb-0">
                     <span className="absolute top-0 -left-[9px] flex h-[18px] w-[18px] items-center justify-center rounded-full border border-[#DCE3ED] bg-white font-mono text-[10px] text-brand-navy">{i + 1}</span>
                     <p className="text-[14.5px] font-medium text-brand-navy">{s.title}</p>
-                    <p className="text-[14px] text-[#6B778C]">{s.body}</p>
+                    <p className="text-[14px] text-[#616D82]">{s.body}</p>
                   </li>
                 ))}
               </ol>
@@ -165,13 +165,13 @@ export default function EarlyAccessPage() {
                         {sizes.map((s) => <option key={s} value={s}>{s}</option>)}
                       </select>
                     </label>
-                    <label className="text-[13px] text-[#5E6C84] sm:col-span-2">What would you like to fix first? <span className="text-[#A5AEBF]">(optional)</span>
+                    <label className="text-[13px] text-[#5E6C84] sm:col-span-2">What would you like to fix first? <span className="text-[#677388]">(optional)</span>
                       <textarea name="challenge" value={form.challenge} onChange={onChange} rows={4} placeholder="For example: material tracking across sites, daily reporting, cost visibility…" className={`${field} h-auto py-3`} />
                     </label>
                   </div>
                   <FormError message={lead.error} />
                   <SubmitButton sending={lead.sending}>Apply for early access</SubmitButton>
-                  <p className="mt-4 text-[13px] text-[#8C97AB]">
+                  <p className="mt-4 text-[13px] text-[#5F6B80]">
                     We use your details only to respond to your application. See our <a href="/privacy" className="underline underline-offset-2 hover:text-brand-navy">privacy policy</a>.
                   </p>
                 </form>

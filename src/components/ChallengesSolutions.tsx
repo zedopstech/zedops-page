@@ -200,7 +200,7 @@ function ListColumn({
                 <h4 className="text-s font-bold leading-snug text-brand-navy sm:text-lg lg:text-[16px] lg:leading-tight">
                   {item.title}
                 </h4>
-                {/* <p className="mt-0.5 text-[11px] leading-snug text-[#6B778C] sm:text-xs lg:mt-1 lg:text-[11px] lg:leading-[1.35]">
+                {/* <p className="mt-0.5 text-[11px] leading-snug text-[#616D82] sm:text-xs lg:mt-1 lg:text-[11px] lg:leading-[1.35]">
                   {item.description}
                 </p> */}
               </div>

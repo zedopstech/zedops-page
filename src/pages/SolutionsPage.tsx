@@ -85,10 +85,10 @@ export default function SolutionsPage() {
                       <span className="flex h-10 w-10 items-center justify-center rounded-md border border-[#E3E8F0] bg-white text-[#5E6C84] transition-colors group-hover:border-[#FFCFB0] group-hover:text-brand-orange">
                         <Icon size={20} aria-hidden />
                       </span>
-                      <ArrowUpRight size={16} className="text-[#A5AEBF] transition-colors group-hover:text-brand-orange" aria-hidden />
+                      <ArrowUpRight size={16} className="text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden />
                     </div>
                     <h3 className="mt-10 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">{section.title}</h3>
-                    <p className="mt-1.5 max-w-[38ch] text-[14.5px] leading-[1.55] text-[#6B778C]">{content?.intro ?? section.items[0]?.summary}</p>
+                    <p className="mt-1.5 max-w-[38ch] text-[14.5px] leading-[1.55] text-[#616D82]">{content?.intro ?? section.items[0]?.summary}</p>
                   </motion.a>
                 );
               })}

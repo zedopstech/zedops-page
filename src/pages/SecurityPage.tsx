@@ -64,8 +64,8 @@ export default function SecurityPage() {
                   <p.icon size={19} aria-hidden />
                 </span>
                 <h3 className="mt-8 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">{p.title}</h3>
-                <p className="mt-2 text-[14.5px] leading-[1.55] text-[#6B778C]">{p.body}</p>
-                <p className="mt-auto pt-6 font-mono text-[11.5px] text-[#8C97AB]">{p.detail}</p>
+                <p className="mt-2 text-[14.5px] leading-[1.55] text-[#616D82]">{p.body}</p>
+                <p className="mt-auto pt-6 font-mono text-[11.5px] text-[#5F6B80]">{p.detail}</p>
               </motion.div>
             ))}
           </div>
@@ -82,10 +82,10 @@ export default function SecurityPage() {
               <li key={f.title} className={`border-[#E3E8F0] px-7 py-9 sm:px-9 ${i > 0 ? "border-t lg:border-t-0 lg:border-l" : ""}`}>
                 <div className="flex items-center gap-3">
                   <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#DCE3ED] bg-white font-mono text-[12px] text-brand-navy">{String(i + 1).padStart(2, "0")}</span>
-                  <f.icon size={17} className="text-[#8C97AB]" aria-hidden />
+                  <f.icon size={17} className="text-[#5F6B80]" aria-hidden />
                 </div>
                 <h3 className="mt-6 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">{f.title}</h3>
-                <p className="mt-1.5 text-[15px] leading-[1.55] text-[#6B778C]">{f.body}</p>
+                <p className="mt-1.5 text-[15px] leading-[1.55] text-[#616D82]">{f.body}</p>
               </li>
             ))}
           </ol>
@@ -112,10 +112,10 @@ export default function SecurityPage() {
                 ))}
               </ul>
               <ul className="bg-[#FAFBFC] p-6">
-                <p className="mb-4 text-[13px] font-medium text-[#8C97AB]">On the roadmap</p>
+                <p className="mb-4 text-[13px] font-medium text-[#5F6B80]">On the roadmap</p>
                 {planned.map((t) => (
-                  <li key={t} className="flex items-start gap-2.5 py-1.5 text-[14.5px] text-[#7A869A]">
-                    <Lock size={14} className="mt-0.5 shrink-0 text-[#A5AEBF]" aria-hidden />
+                  <li key={t} className="flex items-start gap-2.5 py-1.5 text-[14.5px] text-[#5E6C84]">
+                    <Lock size={14} className="mt-0.5 shrink-0 text-[#677388]" aria-hidden />
                     {t}
                   </li>
                 ))}

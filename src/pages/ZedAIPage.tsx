@@ -133,8 +133,8 @@ function CapabilityShowcase({ isMobile }: { isMobile: boolean }) {
               className={`relative flex items-center gap-2.5 border-[#E8ECF2] px-5 py-5 text-left outline-none transition-colors focus-visible:bg-[#F7F8FA] sm:px-6 ${i > 0 ? "border-l" : ""} ${on ? "bg-[#F7F8FA]" : "hover:bg-[#FAFBFC]"}`}
             >
               <span aria-hidden className={`absolute inset-x-0 -top-px h-[2px] ${on ? "bg-brand-orange" : "bg-transparent"}`} />
-              <item.icon size={17} className={on ? "text-brand-orange" : "text-[#A5AEBF]"} aria-hidden />
-              <span className={`text-[15px] font-medium ${on ? "text-brand-navy" : "text-[#7A869A]"}`}>{item.label}</span>
+              <item.icon size={17} className={on ? "text-brand-orange" : "text-[#677388]"} aria-hidden />
+              <span className={`text-[15px] font-medium ${on ? "text-brand-navy" : "text-[#5E6C84]"}`}>{item.label}</span>
             </button>
           );
         })}
@@ -154,7 +154,7 @@ function CapabilityShowcase({ isMobile }: { isMobile: boolean }) {
             <h3 className="text-[24px] font-medium leading-[1.3] tracking-[-0.025em] text-brand-navy sm:text-[28px]">
               {c.title} <Muted>{c.body}</Muted>
             </h3>
-            <p className="mt-5 max-w-md text-[15px] leading-[1.6] text-[#6B778C]">{c.detail}</p>
+            <p className="mt-5 max-w-md text-[15px] leading-[1.6] text-[#616D82]">{c.detail}</p>
           </div>
           <div className="mx-auto w-full max-w-[520px]">
             <c.Mock />
@@ -221,7 +221,7 @@ export default function ZedAIPage() {
                 {...scrollMotionProps(isMobile, { y: 12, duration: 0.35, delay: (i % 5) * 0.04 })}
                 className="flex flex-col bg-[#F7F8FA] px-6 py-7"
               >
-                <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#8C97AB]">{p.module}</span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#5F6B80]">{p.module}</span>
                 <p className="mt-4 text-[16px] leading-[1.4] font-medium tracking-[-0.01em] text-brand-navy">“{p.prompt}”</p>
               </motion.li>
             ))}
@@ -247,7 +247,7 @@ export default function ZedAIPage() {
               >
                 <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E3E8F0] font-mono text-[12px] text-brand-navy">{pad(i + 1)}</span>
                 <h3 className="mt-8 text-[20px] font-medium tracking-[-0.02em] text-brand-navy">{f.title}</h3>
-                <p className="mt-1.5 text-[14.5px] leading-[1.55] text-[#6B778C]">{f.body}</p>
+                <p className="mt-1.5 text-[14.5px] leading-[1.55] text-[#616D82]">{f.body}</p>
               </motion.li>
             ))}
           </ol>
@@ -271,7 +271,7 @@ export default function ZedAIPage() {
                 className={`grid gap-4 py-7 lg:grid-cols-[200px_minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-10 ${framePad} ${i > 0 ? "border-t border-[#EDF0F5]" : ""}`}
               >
                 <span className="text-[15px] font-medium text-brand-navy">{row.module}</span>
-                <span className="flex items-start gap-2.5 text-[15px] text-[#8C97AB]">
+                <span className="flex items-start gap-2.5 text-[15px] text-[#5F6B80]">
                   <X size={15} strokeWidth={2.6} className="mt-1 shrink-0 text-[#C9D2DF]" aria-hidden />
                   {row.before}
                 </span>
@@ -307,9 +307,9 @@ export default function ZedAIPage() {
                 </div>
                 <h3 className="mt-5 flex items-center justify-between gap-2 text-[17px] font-medium tracking-[-0.02em] text-brand-navy">
                   {r.title}
-                  <ArrowUpRight size={16} className="shrink-0 text-[#A5AEBF] transition-colors group-hover:text-brand-orange" aria-hidden />
+                  <ArrowUpRight size={16} className="shrink-0 text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden />
                 </h3>
-                <p className="mt-1.5 text-[14px] leading-[1.55] text-[#6B778C]">{r.body}</p>
+                <p className="mt-1.5 text-[14px] leading-[1.55] text-[#616D82]">{r.body}</p>
               </motion.a>
             ))}
           </div>
@@ -325,7 +325,7 @@ export default function ZedAIPage() {
                 <li key={t.title}>
                   <t.icon size={20} className="text-brand-orange" aria-hidden />
                   <p className="mt-4 text-[15px] font-medium text-brand-navy">{t.title}</p>
-                  <p className="mt-1 text-[14px] leading-[1.5] text-[#6B778C]">{t.body}</p>
+                  <p className="mt-1 text-[14px] leading-[1.5] text-[#616D82]">{t.body}</p>
                 </li>
               ))}
             </ul>

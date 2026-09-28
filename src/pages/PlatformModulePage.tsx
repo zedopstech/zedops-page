@@ -21,7 +21,7 @@ export default function PlatformModulePage({ params }: RouteComponentProps<{ mod
   });
 
   if (!section) {
-    return <div className="min-h-screen bg-white text-brand-navy"><Navbar /><div className="mx-auto max-w-lg px-6 pb-24 pt-[140px] text-center"><h1 className="text-2xl font-semibold">Module not found</h1><p className="mt-3 text-sm text-[#6B778C]">That platform area doesn’t exist or the link may be outdated.</p><a href="/" className="mt-8 inline-flex items-center gap-2 font-semibold text-brand-navy"><ChevronLeft size={16} aria-hidden />Back to home</a></div><Footer /></div>;
+    return <div className="min-h-screen bg-white text-brand-navy"><Navbar /><div className="mx-auto max-w-lg px-6 pb-24 pt-[140px] text-center"><h1 className="text-2xl font-semibold">Module not found</h1><p className="mt-3 text-sm text-[#616D82]">That platform area doesn’t exist or the link may be outdated.</p><a href="/" className="mt-8 inline-flex items-center gap-2 font-semibold text-brand-navy"><ChevronLeft size={16} aria-hidden />Back to home</a></div><Footer /></div>;
   }
 
   const landing = id === "estimation"

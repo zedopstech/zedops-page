@@ -19,7 +19,7 @@ export default function HowWeHelpPageShell({
         {breadcrumbs && breadcrumbs.length > 0 ? (
           <div className="bg-white">
             <div className="mx-auto max-w-[1200px] px-5 pt-[124px] sm:px-8 lg:border-x lg:border-[#E8ECF2] lg:px-14">
-              <nav className="flex flex-wrap items-center gap-x-2 text-[13px] text-[#8C97AB]" aria-label="Breadcrumb">
+              <nav className="flex flex-wrap items-center gap-x-2 text-[13px] text-[#5F6B80]" aria-label="Breadcrumb">
                 {breadcrumbs.map((c, i) => (
                   <span key={`${c.label}-${i}`} className="flex items-center gap-2">
                     {i > 0 ? <span className="text-[#C9D2DF]">/</span> : null}

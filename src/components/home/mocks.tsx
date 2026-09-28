@@ -60,7 +60,7 @@ const priorities = [
   { dot: "bg-[#E5484D]", title: "Schedule variance", meta: "28 delayed activities vs 50 on track" },
   { dot: "bg-[#F5A524]", title: "Material request approval", meta: "Pending your approval" },
   { dot: "bg-[#F5A524]", title: "Open issues", meta: "8 open across 9 projects" },
-  { dot: "bg-[#3E7BFA]", title: "Your next task", meta: "Approve concrete pour card #7" },
+  { dot: "bg-[#2A62DE]", title: "Your next task", meta: "Approve concrete pour card #7" },
 ];
 
 export function AskZedMock() {
@@ -87,10 +87,10 @@ export function AskZedMock() {
       <Canvas width={460} height={340}>
         <div className={`${cardCls} flex h-[56px] items-center gap-3 pr-2.5 pl-4`}>
           <span className="flex-1 truncate text-[15px] text-brand-navy">
-            {typed === 0 ? <span className="text-[#A5AEBF]">Ask Zed anything…</span> : question.slice(0, typed)}
+            {typed === 0 ? <span className="text-[#677388]">Ask Zed anything…</span> : question.slice(0, typed)}
             {!done ? <span className="ml-px inline-block h-[17px] w-px translate-y-[3px] animate-pulse bg-brand-navy" /> : null}
           </span>
-          <span className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors duration-300 ${done ? "bg-brand-orange text-white" : "bg-[#EEF1F5] text-[#A5AEBF]"}`}>
+          <span className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors duration-300 ${done ? "bg-brand-orange text-white" : "bg-[#EEF1F5] text-[#677388]"}`}>
             <ArrowUp size={16} strokeWidth={2.4} />
           </span>
         </div>
@@ -104,7 +104,7 @@ export function AskZedMock() {
               transition={{ duration: 0.35, delay: 0.25 }}
               className={`${cardCls} mt-3 p-4`}
             >
-              <div className="flex items-center gap-2 text-[13px] text-[#6B778C]">
+              <div className="flex items-center gap-2 text-[13px] text-[#616D82]">
                 <Sparkles size={13} className="text-brand-orange" />
                 <span className="font-medium text-brand-navy">4 priorities today</span>
                 <span className="ml-auto rounded-[5px] bg-[#FDECEC] px-1.5 py-0.5 text-[11px] text-[#C4312F]">1 critical</span>
@@ -121,7 +121,7 @@ export function AskZedMock() {
                   >
                     <span className={`h-2 w-2 shrink-0 translate-y-[-1px] rounded-full ${p.dot}`} />
                     <span className="font-medium text-brand-navy">{p.title}</span>
-                    <span className="truncate text-[#8C97AB]">{p.meta}</span>
+                    <span className="truncate text-[#5F6B80]">{p.meta}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -185,7 +185,7 @@ export function SignalsMock() {
 
 type FlowNode = { id: string; x: number; y: number; title: string; sub: string; icon: typeof Package; tint: string };
 const nodes: FlowNode[] = [
-  { id: "req", x: 16, y: 44, title: "Material request", sub: "Duct fittings, L4", icon: ClipboardList, tint: "bg-[#EEF3FF] text-[#3E7BFA]" },
+  { id: "req", x: 16, y: 44, title: "Material request", sub: "Duct fittings, L4", icon: ClipboardList, tint: "bg-[#EEF3FF] text-[#2A62DE]" },
   { id: "app", x: 248, y: 44, title: "Approval", sub: "Project manager", icon: CheckSquare, tint: "bg-[#FEF4DE] text-[#B7791F]" },
   { id: "po", x: 16, y: 212, title: "Purchase order", sub: "PO #1042 raised", icon: ShoppingCart, tint: "bg-[#F3EEFF] text-[#7C4DDB]" },
   { id: "del", x: 248, y: 212, title: "Delivered to site", sub: "Goods receipt logged", icon: Truck, tint: "bg-[#E8F6EE] text-[#1D7446]" },
@@ -246,7 +246,7 @@ export function WorkflowMock() {
               </span>
               <span className="min-w-0">
                 <span className="block text-[14.5px] font-medium text-brand-navy">{n.title}</span>
-                <span className="mt-0.5 block text-[12.5px] text-[#8C97AB]">{n.sub}</span>
+                <span className="mt-0.5 block text-[12.5px] text-[#5F6B80]">{n.sub}</span>
               </span>
             </motion.div>
           </div>
@@ -295,11 +295,11 @@ export function IssuesDraftMock() {
       <Canvas width={460} height={340}>
         <div className={`${cardCls} absolute inset-y-0 left-0 w-[400px] overflow-hidden`}>
           <div className="flex items-center gap-2 border-b border-[#EDF0F5] px-4 py-3">
-            <MessageSquare size={14} className="text-[#8C97AB]" />
+            <MessageSquare size={14} className="text-[#5F6B80]" />
             <span className="text-[14px] font-medium text-brand-navy">Open issues</span>
-            <span className="text-[12.5px] text-[#8C97AB]">· Marina Heights</span>
+            <span className="text-[12.5px] text-[#5F6B80]">· Marina Heights</span>
           </div>
-          <div className="grid grid-cols-[22px_1fr_64px_72px] gap-2 border-b border-[#EDF0F5] bg-[#FAFBFC] px-4 py-2 text-[11.5px] text-[#8C97AB]">
+          <div className="grid grid-cols-[22px_1fr_64px_72px] gap-2 border-b border-[#EDF0F5] bg-[#FAFBFC] px-4 py-2 text-[11.5px] text-[#5F6B80]">
             <span />
             <span>Issue</span>
             <span>Severity</span>
@@ -314,7 +314,7 @@ export function IssuesDraftMock() {
                 </span>
                 <span className="truncate text-brand-navy">{it.title}</span>
                 <span className={`w-fit rounded-[5px] px-1.5 py-0.5 text-[11px] font-medium ${sevCls[it.sev]}`}>{it.sev}</span>
-                <span className="truncate text-[#6B778C]">{it.owner}</span>
+                <span className="truncate text-[#616D82]">{it.owner}</span>
               </div>
             );
           })}
@@ -329,17 +329,17 @@ export function IssuesDraftMock() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="flex items-center gap-1.5 text-[12px] text-[#8C97AB]">
+              <span className="flex items-center gap-1.5 text-[12px] text-[#5F6B80]">
                 <Sparkles size={12} className="text-brand-orange" /> Zed drafted a follow-up
               </span>
               <p className="mt-2 text-[14.5px] leading-snug font-medium text-brand-navy">Resolve duct clash at L4 before Thursday's pour</p>
               <div className="mt-3 rounded-lg border border-[#EDF0F5] p-3 text-[12.5px] leading-[1.5] text-[#5E6C84]">
-                <span className="text-[#8C97AB]">To</span> <span className="font-medium text-brand-navy">Ahmed R.</span>
+                <span className="text-[#5F6B80]">To</span> <span className="font-medium text-brand-navy">Ahmed R.</span>
                 <p className="mt-2">The L4 duct run clashes with the sprinkler main (ISS-441). Can you confirm the reroute by Wednesday so the pour stays on plan?</p>
               </div>
               <div className="mt-3 flex items-center gap-2">
                 <span className="rounded-md bg-brand-navy px-3 py-1.5 text-[12.5px] font-medium text-white">Send</span>
-                <span className="px-2 text-[12.5px] text-[#8C97AB]">Discard</span>
+                <span className="px-2 text-[12.5px] text-[#5F6B80]">Discard</span>
                 <span className="ml-auto rounded-md border border-[#E3E8F0] px-2.5 py-1.5 text-[12.5px] text-brand-navy">Save draft</span>
               </div>
             </motion.div>

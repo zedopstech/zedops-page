@@ -42,14 +42,14 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
               ].map((x) => (
                 <div key={x.k} className="bg-[#F8FAFC] border border-gray-100 rounded-xl p-3">
                   <div className="text-lg font-extrabold text-brand-navy leading-none">{x.v}</div>
-                  <div className="text-[8px] font-semibold text-[#6B778C] mt-1 leading-tight">{x.k}</div>
+                  <div className="text-[8px] font-semibold text-[#616D82] mt-1 leading-tight">{x.k}</div>
                   <div className="text-[8px] text-[#97A0AF] mt-0.5">{x.sub}</div>
                 </div>
               ))}
             </div>
             <div className="border border-gray-100 rounded-xl p-3 space-y-2 flex-1">
               <div className="flex justify-between items-center">
-                <Label className="text-[9px] uppercase tracking-wide text-[#6B778C]">Surveys & logs</Label>
+                <Label className="text-[9px] uppercase tracking-wide text-[#616D82]">Surveys & logs</Label>
                 <span className="text-[8px] text-green-600 font-bold">Live</span>
               </div>
               <div className="flex items-center gap-2 py-1.5 border-b border-gray-50">
@@ -74,12 +74,12 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
             <div className="flex flex-wrap items-center gap-2">
               <div className="flex items-center gap-2 px-3 py-2 bg-[#EBF0FF] border border-brand-navy/15 rounded-lg">
                 <span className="text-[9px] font-bold text-brand-navy">Project</span>
-                <span className="text-[9px] text-[#6B778C]">Riverside Tower ▾</span>
+                <span className="text-[9px] text-[#616D82]">Riverside Tower ▾</span>
               </div>
               <span className="text-[10px] font-black text-brand-orange uppercase tracking-wider">Daily log</span>
             </div>
             <div>
-              <span className="text-[9px] font-semibold text-[#6B778C] uppercase">Site photos</span>
+              <span className="text-[9px] font-semibold text-[#616D82] uppercase">Site photos</span>
               <div className="flex gap-2 mt-2">
                 {[0, 1, 2].map((i) => (
                   <div key={i} className="w-14 h-12 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center text-sm opacity-60" aria-hidden>
@@ -90,13 +90,13 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
             </div>
             <div className="space-y-2">
               <div>
-                <span className="text-[9px] text-[#6B778C] font-semibold">Crew / labour</span>
+                <span className="text-[9px] text-[#616D82] font-semibold">Crew / labour</span>
                 <div className="h-9 mt-1 bg-gray-50 border border-gray-200 rounded-lg px-3 flex items-center">
                   <div className="h-2 bg-gray-200 rounded w-1/3" />
                 </div>
               </div>
               <div>
-                <span className="text-[9px] text-[#6B778C] font-semibold">Progress & weather</span>
+                <span className="text-[9px] text-[#616D82] font-semibold">Progress & weather</span>
                 <div className="h-14 mt-1 bg-gray-50 border border-gray-200 rounded-lg p-3">
                   <div className="h-2 bg-gray-200 rounded w-full mb-2" />
                   <div className="h-2 bg-gray-200 rounded w-[70%]" />
@@ -104,7 +104,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
               </div>
             </div>
             <div className="flex gap-2 mt-auto pt-2">
-              <button type="button" className="flex-1 h-9 border border-gray-200 rounded-lg text-[9px] font-bold text-[#6B778C]">
+              <button type="button" className="flex-1 h-9 border border-gray-200 rounded-lg text-[9px] font-bold text-[#616D82]">
                 Save draft
               </button>
               <button type="button" className="px-4 h-9 bg-brand-navy rounded-lg text-[9px] font-bold text-white">
@@ -137,7 +137,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
                 { label: "Envelope", w: 24, c: "#3B82F6" },
               ].map((row) => (
                 <div key={row.label} className="flex items-center gap-2">
-                  <span className="w-16 text-[8px] font-semibold text-[#6B778C] text-right shrink-0">{row.label}</span>
+                  <span className="w-16 text-[8px] font-semibold text-[#616D82] text-right shrink-0">{row.label}</span>
                   <div className="flex-1 h-5 bg-gray-100 rounded relative overflow-hidden">
                     <div className="absolute h-full rounded" style={{ width: `${row.w}%`, background: row.c, opacity: 0.85 }} />
                   </div>
@@ -202,7 +202,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
               ].map((x) => (
                 <div key={x.l} className="text-center p-3 rounded-xl bg-[#F8FAFC] border border-gray-100">
                   <div className="text-xl font-extrabold text-brand-navy">{x.v}</div>
-                  <div className="text-[8px] text-[#6B778C] font-semibold mt-1">{x.l}</div>
+                  <div className="text-[8px] text-[#616D82] font-semibold mt-1">{x.l}</div>
                 </div>
               ))}
             </div>
@@ -263,7 +263,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
             <div className="w-[32%] shrink-0 border-r border-gray-100 pr-3 space-y-1">
               <span className="text-[9px] font-black text-[#97A0AF] uppercase">Folders</span>
               {["Drawings", "Contracts", "Reports", "Daily logs"].map((f, i) => (
-                <div key={f} className={`text-[9px] font-semibold py-1.5 px-2 rounded-lg ${i === 2 ? "bg-[#EBF0FF] text-brand-navy" : "text-[#6B778C]"}`}>
+                <div key={f} className={`text-[9px] font-semibold py-1.5 px-2 rounded-lg ${i === 2 ? "bg-[#EBF0FF] text-brand-navy" : "text-[#616D82]"}`}>
                   {f}
                 </div>
               ))}
@@ -304,7 +304,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
               ].map((card) => (
                 <div key={card.role} className={`rounded-xl border p-3 ${card.tone}`}>
                   <div className="text-[10px] font-extrabold text-brand-navy">{card.role}</div>
-                  <div className="text-[8px] text-[#6B778C] mt-1 leading-relaxed">{card.access}</div>
+                  <div className="text-[8px] text-[#616D82] mt-1 leading-relaxed">{card.access}</div>
                   <div className="flex gap-1 mt-2">
                     <span className="text-[7px] font-bold uppercase text-green-700 bg-green-100 px-1.5 py-0.5 rounded">Menus</span>
                     <span className="text-[7px] font-bold uppercase text-green-700 bg-green-100 px-1.5 py-0.5 rounded">AI</span>
@@ -337,14 +337,14 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
               { label: "MEP rough-in", w: 35, c: "#3B82F6" },
             ].map((row) => (
               <div key={row.label} className="flex items-center gap-2">
-                <span className="w-12 text-[8px] font-semibold text-[#6B778C] text-right shrink-0">{row.label}</span>
+                <span className="w-12 text-[8px] font-semibold text-[#616D82] text-right shrink-0">{row.label}</span>
                 <div className="flex-1 h-4 bg-gray-100 rounded overflow-hidden">
                   <div className="h-full rounded" style={{ width: `${row.w}%`, background: row.c, opacity: 0.9 }} />
                 </div>
               </div>
             ))}
             <div className="border border-gray-100 rounded-xl p-3 mt-2 bg-[#F8FAFC]">
-              <span className="text-[9px] font-bold text-[#6B778C]">Task workflows</span>
+              <span className="text-[9px] font-bold text-[#616D82]">Task workflows</span>
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {["Survey sign-off", "Issue #204", "Work log tie-in"].map((x) => (
                   <span key={x} className="text-[8px] px-2 py-1 bg-white border border-gray-200 rounded-md font-semibold text-brand-navy">
@@ -431,7 +431,7 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
             <div className="w-[28%] shrink-0 border-r border-gray-100 pr-2 space-y-1">
               <span className="text-[8px] font-black text-[#97A0AF] uppercase">Files</span>
               {["Specs", "Submittals", "RFIs", "Photos"].map((f) => (
-                <div key={f} className="text-[8px] text-[#6B778C] py-1 truncate">
+                <div key={f} className="text-[8px] text-[#616D82] py-1 truncate">
                   📁 {f}
                 </div>
               ))}
@@ -475,11 +475,11 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
               <div className="grid grid-cols-2 gap-2">
                 <div className="p-2 rounded-lg bg-[#F8FAFC] border border-gray-100 text-center">
                   <div className="text-lg font-extrabold text-brand-navy">4</div>
-                  <div className="text-[8px] text-[#6B778C]">Active</div>
+                  <div className="text-[8px] text-[#616D82]">Active</div>
                 </div>
                 <div className="p-2 rounded-lg bg-[#F8FAFC] border border-gray-100 text-center">
                   <div className="text-lg font-extrabold text-brand-orange">1</div>
-                  <div className="text-[8px] text-[#6B778C]">At risk</div>
+                  <div className="text-[8px] text-[#616D82]">At risk</div>
                 </div>
               </div>
               <p className="text-[8px] text-[#97A0AF] leading-relaxed">Analytics · execution · finance hooks per tenant permissions</p>
@@ -538,13 +538,13 @@ export function PersonaFeatureMock({ scenario }: { scenario: PersonaMockScenario
                 </div>
               </div>
               <div className="sm:w-[42%] shrink-0 border-t sm:border-t-0 sm:border-l border-gray-100 pt-3 sm:pt-0 sm:pl-3 space-y-2">
-                <span className="text-[8px] font-bold text-[#6B778C] uppercase">Writing assist</span>
+                <span className="text-[8px] font-bold text-[#616D82] uppercase">Writing assist</span>
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-2 space-y-2">
                   <div className="h-2 bg-gray-200 rounded w-full" />
                   <div className="h-2 bg-gray-200 rounded w-[80%]" />
                   <div className="flex gap-1 flex-wrap">
                     {["Polish", "Shorter", "Tone"].map((a) => (
-                      <span key={a} className="text-[7px] font-bold bg-white border border-gray-200 px-1.5 py-0.5 rounded text-[#6B778C]">
+                      <span key={a} className="text-[7px] font-bold bg-white border border-gray-200 px-1.5 py-0.5 rounded text-[#616D82]">
                         {a}
                       </span>
                     ))}

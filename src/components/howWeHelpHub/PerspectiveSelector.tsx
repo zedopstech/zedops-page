@@ -95,7 +95,7 @@ function Stat({ m }: { m: Metric }) {
   const display = useCountUp(m.value, m.decimals ?? 0);
   return (
     <div className="bg-white p-6">
-      <p className="text-[13px] text-[#8C97AB]">
+      <p className="text-[13px] text-[#5F6B80]">
         {m.label}
       </p>
       <p className="mt-2 text-[32px] font-medium leading-none tracking-[-0.03em] text-brand-navy tabular-nums">
@@ -103,7 +103,7 @@ function Stat({ m }: { m: Metric }) {
         {display}
         {m.suffix}
       </p>
-      <p className="mt-2 text-[13px] text-[#6B778C]">{m.sub}</p>
+      <p className="mt-2 text-[13px] text-[#616D82]">{m.sub}</p>
       {typeof m.progress === "number" ? (
         <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-[#EEF1F5]">
           <motion.div
@@ -144,7 +144,7 @@ export default function PerspectiveSelector() {
                   type="button"
                   onClick={() => setActive(i)}
                   className={`relative flex shrink-0 items-center gap-3 rounded-md px-3 py-2.5 text-left transition-colors lg:w-full ${
-                    isActive ? "bg-[#F7F8FA] text-brand-navy" : "text-[#8C97AB] hover:text-brand-navy"
+                    isActive ? "bg-[#F7F8FA] text-brand-navy" : "text-[#5F6B80] hover:text-brand-navy"
                   }`}
                 >
                   <Icon
@@ -169,7 +169,7 @@ export default function PerspectiveSelector() {
                 transition={{ duration: 0.25 }}
               >
                 <p className="mb-5 text-[15px] font-medium text-brand-navy">
-                  {current.label} view <span className="font-normal text-[#8C97AB]">· same record, scoped to this team</span>
+                  {current.label} view <span className="font-normal text-[#5F6B80]">· same record, scoped to this team</span>
                 </p>
 
                 <div className="grid gap-px overflow-hidden rounded-lg border border-[#E3E8F0] bg-[#E3E8F0] sm:grid-cols-2">

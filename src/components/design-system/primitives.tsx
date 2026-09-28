@@ -7,7 +7,7 @@
  *   - Orange gradient emphasis on a key phrase, used once per headline at most.
  *
  * Tokens (literal arbitrary values so tailwind.config stays untouched):
- *   navy #172B4D · ink #0E1B33 · body #3D4F6E · muted #6B778C · hairline #E3E8F0
+ *   navy #172B4D · ink #0E1B33 · body #3D4F6E · muted #616D82 · hairline #E3E8F0
  *   mist #F7F8FA · orange #FE5D02
  */
 import type { ReactNode } from "react";
@@ -50,7 +50,7 @@ export function Highlight({ children }: { children: ReactNode }) {
 
 /** Second tone of a two-tone headline (Stripe-style): same line, muted slate. */
 export function Muted({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
-  return <span className={dark ? "text-white/55" : "text-[#7A869A]"}>{children}</span>;
+  return <span className={dark ? "text-white/55" : "text-[#5E6C84]"}>{children}</span>;
 }
 
 const sectionTones = {
@@ -251,10 +251,10 @@ export function ProductShotPlaceholder({ label }: { label: string }) {
             "repeating-linear-gradient(45deg,transparent 0 5px,rgba(23,43,77,0.05) 5px 6px)",
         }}
       />
-      <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#6B778C]">
+      <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#616D82]">
         {label}
       </p>
-      <p className="max-w-[34ch] text-[14px] leading-[1.5] text-[#8C97AB]">
+      <p className="max-w-[34ch] text-[14px] leading-[1.5] text-[#5F6B80]">
         Dashboard capture in production
       </p>
     </div>

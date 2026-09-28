@@ -112,7 +112,7 @@ export default function Testimonials() {
           className="mb-5 hidden items-center justify-center gap-3 sm:flex lg:mb-6 lg:gap-4"
           aria-hidden
         >
-          <span className="flex items-center gap-2 text-xs font-bold tracking-[0.14em] text-[#6B778C] uppercase">
+          <span className="flex items-center gap-2 text-xs font-bold tracking-[0.14em] text-[#616D82] uppercase">
             <FileX size={14} />
             Transitional
           </span>

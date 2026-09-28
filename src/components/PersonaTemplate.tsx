@@ -100,7 +100,7 @@ export default function PersonaTemplate({
             <blockquote className="max-w-4xl text-[26px] font-medium leading-[1.3] tracking-[-0.03em] text-brand-navy [text-wrap:balance] sm:text-[34px]">
               “{quote}”
             </blockquote>
-            <figcaption className="mt-6 text-[15px] text-[#8C97AB]">{quoteAttribution}</figcaption>
+            <figcaption className="mt-6 text-[15px] text-[#5F6B80]">{quoteAttribution}</figcaption>
           </figure>
         </Section>
 
@@ -117,9 +117,9 @@ export default function PersonaTemplate({
                 {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: (index % 3) * 0.05 })}
                 className="bg-[#F7F8FA] p-7 sm:p-8"
               >
-                <span className="font-mono text-[11px] text-[#A5AEBF]">{String(index + 1).padStart(2, "0")}</span>
+                <span className="font-mono text-[11px] text-[#677388]">{String(index + 1).padStart(2, "0")}</span>
                 <h3 className="mt-8 text-[19px] font-medium leading-snug tracking-[-0.02em] text-brand-navy">{challenge.title}</h3>
-                <p className="mt-2 text-[14.5px] leading-[1.55] text-[#6B778C]">{firstSentence(challenge.desc)}</p>
+                <p className="mt-2 text-[14.5px] leading-[1.55] text-[#616D82]">{firstSentence(challenge.desc)}</p>
               </motion.article>
             ))}
           </div>
@@ -143,7 +143,7 @@ export default function PersonaTemplate({
                 className="grid border-t border-[#E8ECF2] lg:grid-cols-2"
               >
                 <div className={`flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-14 lg:py-14 ${flip ? "lg:order-2 lg:border-l lg:border-[#E8ECF2]" : ""}`}>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#8C97AB]">{feature.badge}</span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#5F6B80]">{feature.badge}</span>
                   <h3 className="mt-4 max-w-md text-[24px] font-medium leading-[1.2] tracking-[-0.03em] text-brand-navy [text-wrap:balance] sm:text-[28px]">{feature.title}</h3>
                   <p className="mt-4 max-w-md text-[15.5px] leading-[1.6] text-[#5E6C84]">{firstSentence(feature.desc)}</p>
                 </div>

@@ -53,7 +53,7 @@ export default function HowWeHelpTeamPage() {
                 <t.icon size={19} aria-hidden />
               </span>
               <h3 className="mt-10 text-[20px] font-medium tracking-[-0.025em] text-brand-navy">{t.title}</h3>
-              <p className="mt-2 max-w-[40ch] text-[15px] leading-[1.55] text-[#6B778C]">{t.summary}</p>
+              <p className="mt-2 max-w-[40ch] text-[15px] leading-[1.55] text-[#616D82]">{t.summary}</p>
               <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[14px] font-medium text-brand-navy">
                 {t.relatedLabel}
                 <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" aria-hidden />

@@ -42,21 +42,21 @@ export function EstimateMock() {
         <div key={cycle} className={`${cardCls} overflow-hidden`}>
           <div className="flex items-center justify-between border-b border-[#EDF0F5] px-4 py-3">
             <span className="text-[14px] font-medium text-brand-navy">BOQ · Mechanical package</span>
-            <span className="rounded-[5px] bg-[#EEF3FF] px-1.5 py-0.5 text-[11px] font-medium text-[#3E7BFA]">Rev B</span>
+            <span className="rounded-[5px] bg-[#EEF3FF] px-1.5 py-0.5 text-[11px] font-medium text-[#2A62DE]">Rev B</span>
           </div>
-          <div className="grid grid-cols-[76px_1fr_78px_76px] gap-2 bg-[#FAFBFC] px-4 py-2 text-[11.5px] text-[#8C97AB]">
+          <div className="grid grid-cols-[76px_1fr_78px_76px] gap-2 bg-[#FAFBFC] px-4 py-2 text-[11.5px] text-[#5F6B80]">
             <span>Code</span><span>Item</span><span className="text-right">Qty</span><span className="text-right">AED</span>
           </div>
           {boq.map((r, i) => (
             <motion.div key={r.code} {...fadeIn(animate, 0.15 + i * 0.18, -6, 0)} className="grid grid-cols-[76px_1fr_78px_76px] gap-2 border-t border-[#F1F3F7] px-4 py-2.5 text-[13px] tabular-nums">
-              <span className="font-mono text-[11.5px] text-[#8C97AB]">{r.code}</span>
+              <span className="font-mono text-[11.5px] text-[#5F6B80]">{r.code}</span>
               <span className="truncate text-brand-navy">{r.item}</span>
-              <span className="text-right text-[#6B778C]">{r.qty}</span>
+              <span className="text-right text-[#616D82]">{r.qty}</span>
               <span className="text-right text-brand-navy">{r.amt}</span>
             </motion.div>
           ))}
           <div className="flex items-center justify-between border-t border-[#EDF0F5] bg-[#FFF8F3] px-4 py-3">
-            <span className="text-[13px] text-[#6B778C]">Package total</span>
+            <span className="text-[13px] text-[#616D82]">Package total</span>
             <span className="text-[20px] font-medium tracking-[-0.02em] text-brand-navy tabular-nums">AED {Math.round(total).toLocaleString("en-US")}</span>
           </div>
         </div>
@@ -81,7 +81,7 @@ export function GanttMock() {
         <div key={cycle} className={`${cardCls} overflow-hidden`}>
           <div className="flex items-center justify-between border-b border-[#EDF0F5] px-4 py-3">
             <span className="text-[14px] font-medium text-brand-navy">Programme · Block C</span>
-            <span className="text-[12px] text-[#8C97AB]">Weeks 36–48</span>
+            <span className="text-[12px] text-[#5F6B80]">Weeks 36–48</span>
           </div>
           <div className="relative px-4 pt-3 pb-4">
             <div className="absolute inset-y-0 left-[46%] w-px bg-brand-orange/60" />
@@ -133,7 +133,7 @@ export function ProcurementMock() {
             <motion.div key={p.id} {...fadeIn(animate, i * 0.15)} className={`${cardCls} px-4 py-3.5`}>
               <div className="flex items-baseline justify-between">
                 <span className="text-[14px] font-medium text-brand-navy">{p.what}</span>
-                <span className="font-mono text-[11.5px] text-[#8C97AB]">{p.id}</span>
+                <span className="font-mono text-[11.5px] text-[#5F6B80]">{p.id}</span>
               </div>
               <div className="mt-3 grid grid-cols-3 gap-2">
                 {steps.map((s, k) => {
@@ -148,7 +148,7 @@ export function ProcurementMock() {
                           transition={{ duration: 0.45, delay: 0.3 + i * 0.15 + k * 0.4 }}
                         />
                       </div>
-                      <span className={`mt-1.5 block text-[11.5px] ${on ? "text-brand-navy" : "text-[#A5AEBF]"}`}>{s}</span>
+                      <span className={`mt-1.5 block text-[11.5px] ${on ? "text-brand-navy" : "text-[#677388]"}`}>{s}</span>
                     </div>
                   );
                 })}
@@ -171,7 +171,7 @@ export function DailyLogMock() {
         <div key={cycle} className={`${cardCls} p-4`}>
           <div className="flex items-center justify-between">
             <span className="text-[14px] font-medium text-brand-navy">Daily log · Sat 26 Sep</span>
-            <span className="text-[12px] text-[#8C97AB]">Marina Heights</span>
+            <span className="text-[12px] text-[#5F6B80]">Marina Heights</span>
           </div>
           <div className="mt-3 grid grid-cols-3 gap-2">
             {[
@@ -180,7 +180,7 @@ export function DailyLogMock() {
               { icon: AlertTriangle, k: "Delays", v: "1" },
             ].map((m, i) => (
               <motion.div key={m.k} {...fadeIn(animate, 0.1 + i * 0.1)} className="rounded-lg border border-[#EDF0F5] bg-[#FAFBFC] px-3 py-2.5">
-                <span className="flex items-center gap-1.5 text-[11.5px] text-[#8C97AB]"><m.icon size={12} />{m.k}</span>
+                <span className="flex items-center gap-1.5 text-[11.5px] text-[#5F6B80]"><m.icon size={12} />{m.k}</span>
                 <span className="mt-1 block text-[20px] font-medium tracking-[-0.02em] text-brand-navy">{m.v}</span>
               </motion.div>
             ))}
@@ -221,7 +221,7 @@ export function BudgetMock() {
         <div key={cycle} className={`${cardCls} p-4`}>
           <div className="flex items-center justify-between">
             <span className="text-[14px] font-medium text-brand-navy">Cost vs budget</span>
-            <span className="flex items-center gap-3 text-[11.5px] text-[#8C97AB]">
+            <span className="flex items-center gap-3 text-[11.5px] text-[#5F6B80]">
               <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-[#D5DCE6]" />Budget</span>
               <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-sm bg-brand-navy" />Actual</span>
             </span>
@@ -272,7 +272,7 @@ export function InspectionMock() {
           <div className={`${cardCls} p-4`}>
             <div className="flex items-center justify-between">
               <span className="text-[14px] font-medium text-brand-navy">Inspection · L4 ceiling void</span>
-              <span className="text-[12px] text-[#8C97AB]">QA-118</span>
+              <span className="text-[12px] text-[#5F6B80]">QA-118</span>
             </div>
             <ul className="mt-3 divide-y divide-[#F1F3F7]">
               {checks.map((c, i) => (
@@ -295,7 +295,7 @@ export function InspectionMock() {
             </span>
             <span>
               <span className="block text-[13.5px] font-medium text-brand-navy">Issue ISS-452 created</span>
-              <span className="mt-0.5 block text-[12px] text-[#8C97AB]">Assigned to Omar K. · due Tue</span>
+              <span className="mt-0.5 block text-[12px] text-[#5F6B80]">Assigned to Omar K. · due Tue</span>
             </span>
           </motion.div>
         </div>
@@ -323,7 +323,7 @@ export function CloseoutMock() {
             </svg>
             <span className="absolute text-center">
               <span className="block text-[26px] font-medium tracking-[-0.03em] text-brand-navy tabular-nums">{Math.round(shown)}%</span>
-              <span className="block text-[11px] text-[#8C97AB]">Punch closed</span>
+              <span className="block text-[11px] text-[#5F6B80]">Punch closed</span>
             </span>
           </div>
           <ul className="space-y-2.5">
@@ -338,7 +338,7 @@ export function CloseoutMock() {
                   <Check size={11} strokeWidth={3.5} className="text-white" />
                 </motion.span>
                 <motion.span
-                  className="text-brand-navy decoration-[#A5AEBF]"
+                  className="text-brand-navy decoration-[#677388]"
                   initial={animate ? { opacity: 1 } : false}
                   animate={{ opacity: 0.55 }}
                   transition={{ duration: 0.25, delay: 0.3 + i * 0.5 }}

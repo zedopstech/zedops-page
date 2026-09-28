@@ -187,7 +187,7 @@ export default function PlatformPage() {
         <section className="py-14 px-4 sm:px-6 lg:px-8 border-t border-gray-100 text-center bg-white">
           <p className="text-[#97A0AF] text-xs font-bold uppercase tracking-widest mb-3">See it in context</p>
           <h2 className="text-xl font-extrabold text-brand-navy mb-4">How capabilities map to your workflow</h2>
-          <p className="text-[#6B778C] text-sm max-w-lg mx-auto mb-6">
+          <p className="text-[#616D82] text-sm max-w-lg mx-auto mb-6">
             The Solutions page groups the big ideas  -  this page is the full module checklist.
           </p>
           <a
@@ -310,7 +310,7 @@ function PlatformSectionBlock({
             {visibleItems.map((item) => (
               <li key={item.name} className="py-5 first:pt-0">
                 <h3 className="font-extrabold text-brand-navy text-base mb-1.5">{item.name}</h3>
-                <p className="text-[#6B778C] text-sm leading-snug">{item.summary}</p>
+                <p className="text-[#616D82] text-sm leading-snug">{item.summary}</p>
               </li>
             ))}
           </ul>

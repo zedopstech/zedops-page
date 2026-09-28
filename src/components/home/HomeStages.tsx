@@ -64,7 +64,7 @@ export default function StagesPreview() {
                   <a
                     href={`#stage-${s.id}`}
                     aria-current={on ? "step" : undefined}
-                    className={`relative flex items-baseline gap-3 py-2 text-[15px] transition-colors duration-200 ${on ? "text-brand-navy" : "text-[#A5AEBF] hover:text-[#5E6C84]"}`}
+                    className={`relative flex items-baseline gap-3 py-2 text-[15px] transition-colors duration-200 ${on ? "text-brand-navy" : "text-[#677388] hover:text-[#5E6C84]"}`}
                   >
                     <span aria-hidden className={`absolute top-2 bottom-2 -left-10 w-[2px] transition-colors ${on ? "bg-brand-orange" : "bg-transparent"}`} />
                     <span className="font-mono text-[11px]">{pad(i + 1)}</span>
@@ -88,7 +88,7 @@ export default function StagesPreview() {
               className={`scroll-mt-[120px] ${i > 0 ? "border-t border-[#E3E8F0]" : ""}`}
             >
               <div className="px-6 pt-10 sm:px-10 sm:pt-12 lg:px-14">
-                <span className="font-mono text-[11px] text-[#A5AEBF] lg:hidden">
+                <span className="font-mono text-[11px] text-[#677388] lg:hidden">
                   {pad(i + 1)} · {s.title}
                 </span>
                 <h3 className="mt-2 max-w-[34ch] text-[20px] leading-[1.35] font-medium tracking-[-0.02em] text-brand-navy sm:text-[22px] lg:mt-0">

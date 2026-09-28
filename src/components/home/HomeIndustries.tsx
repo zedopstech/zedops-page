@@ -241,9 +241,9 @@ export default function IndustriesPreview() {
               </div>
               <h3 className="mt-5 flex items-center justify-between gap-2 text-[17px] font-medium tracking-[-0.02em] text-brand-navy">
                 {c.title}
-                <ArrowUpRight size={16} className="shrink-0 text-[#A5AEBF] transition-colors group-hover:text-brand-orange" aria-hidden />
+                <ArrowUpRight size={16} className="shrink-0 text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden />
               </h3>
-              <p className="mt-1.5 text-[14px] leading-[1.55] text-[#6B778C]">{c.desc}</p>
+              <p className="mt-1.5 text-[14px] leading-[1.55] text-[#616D82]">{c.desc}</p>
             </motion.a>
           ))}
         </div>

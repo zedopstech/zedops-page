@@ -93,7 +93,7 @@ export default function DashboardMockup() {
           <div className="flex flex-col gap-2 border-b border-gray-100 px-3 pb-2.5 pt-2.5 sm:flex-row sm:items-start sm:justify-between sm:px-4 sm:pt-3">
             <div className="min-w-0">
               <h2 className="text-[13px] font-bold leading-tight text-[#111827] sm:text-sm">Good morning! 👋</h2>
-              <p className="mt-0.5 text-[9px] leading-snug text-[#6B778C] sm:text-[10px]">Here's what's happening with your projects today.</p>
+              <p className="mt-0.5 text-[9px] leading-snug text-[#616D82] sm:text-[10px]">Here's what's happening with your projects today.</p>
             </div>
             <div className="flex shrink-0 flex-wrap items-center justify-end gap-1.5 sm:justify-start">
               <button
@@ -206,7 +206,7 @@ export default function DashboardMockup() {
                 <div className="text-[8px] text-[#97A0AF]">Copilot · insights & actions</div>
               </div>
             </div>
-            <Maximize2 size={11} className="text-[#C7D5F5] cursor-pointer hover:text-[#6B778C]" />
+            <Maximize2 size={11} className="text-[#C7D5F5] cursor-pointer hover:text-[#616D82]" />
           </div>
 
           {/* Scrollable copilot content */}
@@ -214,7 +214,7 @@ export default function DashboardMockup() {
             {/* Pie chart */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[9px] font-bold text-[#6B778C] uppercase tracking-wide">Snag Status Distribution</span>
+                <span className="text-[9px] font-bold text-[#616D82] uppercase tracking-wide">Snag Status Distribution</span>
                 <Download size={10} className="text-[#C7D5F5]" />
               </div>
               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -279,7 +279,7 @@ export default function DashboardMockup() {
               <input
                 readOnly
                 placeholder="What would you like to do?"
-                className="flex-1 bg-transparent text-[9px] text-[#6B778C] placeholder-gray-400 outline-none min-w-0"
+                className="flex-1 bg-transparent text-[9px] text-[#616D82] placeholder-gray-400 outline-none min-w-0"
               />
               <button className="w-5 h-5 bg-brand-navy flex items-center justify-center flex-shrink-0" style={{ borderRadius: 6 }}>
                 <Send size={9} className="text-white" />

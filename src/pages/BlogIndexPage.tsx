@@ -113,7 +113,7 @@ export default function BlogIndexPage() {
           </div>
 
           {listed.length === 0 ? (
-            <p className="border-t border-[#E8ECF2] py-20 text-center text-[15px] text-[#6B778C]">No articles in this topic yet.</p>
+            <p className="border-t border-[#E8ECF2] py-20 text-center text-[15px] text-[#616D82]">No articles in this topic yet.</p>
           ) : (
             <div className="grid gap-px border-t border-[#E8ECF2] bg-[#E8ECF2] sm:grid-cols-2 lg:grid-cols-3">
               {listed.map((post, i) => (

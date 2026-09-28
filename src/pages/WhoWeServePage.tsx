@@ -56,11 +56,11 @@ export default function WhoWeServePage() {
                 </div>
                 <div className="mt-6 flex items-start justify-between gap-4">
                   <div>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#8C97AB]">{p.tag}</span>
+                    <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#5F6B80]">{p.tag}</span>
                     <h3 className="mt-2 text-[22px] font-medium tracking-[-0.025em] text-brand-navy">{p.title}</h3>
-                    <p className="mt-1.5 max-w-md text-[15px] leading-[1.55] text-[#6B778C]">{p.desc}</p>
+                    <p className="mt-1.5 max-w-md text-[15px] leading-[1.55] text-[#616D82]">{p.desc}</p>
                   </div>
-                  <ArrowUpRight size={18} className="mt-1 shrink-0 text-[#A5AEBF] transition-colors group-hover:text-brand-orange" aria-hidden />
+                  <ArrowUpRight size={18} className="mt-1 shrink-0 text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden />
                 </div>
               </motion.a>
             ))}

@@ -40,7 +40,7 @@ export default function LensGrid() {
               <lens.Icon size={19} aria-hidden />
             </span>
             <h3 className="mt-10 text-[20px] font-medium tracking-[-0.025em] text-brand-navy">{lens.label}</h3>
-            <p className="mt-2 text-[15px] leading-[1.55] text-[#6B778C]">{lens.desc}</p>
+            <p className="mt-2 text-[15px] leading-[1.55] text-[#616D82]">{lens.desc}</p>
             <div className="mt-5 flex flex-wrap gap-1.5">
               {lens.chips.map((c) => (
                 <span key={c} className="rounded-[5px] border border-[#E3E8F0] bg-[#F7F8FA] px-2 py-0.5 text-[12px] text-[#5E6C84]">{c}</span>

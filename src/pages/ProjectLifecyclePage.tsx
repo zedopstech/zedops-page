@@ -84,7 +84,7 @@ export default function ProjectLifecyclePage() {
                       <a
                         href={`#${s.id}`}
                         aria-current={on ? "step" : undefined}
-                        className={`relative flex items-baseline gap-3 py-2 text-[15px] transition-colors ${on ? "text-brand-navy" : "text-[#A5AEBF] hover:text-[#5E6C84]"}`}
+                        className={`relative flex items-baseline gap-3 py-2 text-[15px] transition-colors ${on ? "text-brand-navy" : "text-[#677388] hover:text-[#5E6C84]"}`}
                       >
                         <span aria-hidden className={`absolute top-2 bottom-2 -left-10 w-[2px] ${on ? "bg-brand-orange" : "bg-transparent"}`} />
                         <span className="font-mono text-[11px]">{pad(i + 1)}</span>
@@ -109,7 +109,7 @@ export default function ProjectLifecyclePage() {
                     }}
                     className={`scroll-mt-[120px] px-6 py-10 sm:px-10 sm:py-12 lg:px-14 ${i > 0 ? "border-t border-[#E3E8F0]" : ""}`}
                   >
-                    <span className="font-mono text-[11px] text-[#A5AEBF]">
+                    <span className="font-mono text-[11px] text-[#677388]">
                       {pad(i + 1)} · {stage.title}
                     </span>
                     <h3 className="mt-3 max-w-[36ch] text-[20px] leading-[1.35] font-medium tracking-[-0.02em] text-brand-navy sm:text-[22px]">
@@ -127,7 +127,7 @@ export default function ProjectLifecyclePage() {
                         </ul>
                         <a href={stage.platformPath} className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-brand-navy">
                           {stage.platformLabel}
-                          <ArrowUpRight size={15} className="text-[#A5AEBF] transition-colors group-hover:text-brand-orange" aria-hidden />
+                          <ArrowUpRight size={15} className="text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden />
                         </a>
                       </div>
                       <div className="rounded-xl bg-[#EEF1F5] p-5 sm:p-6">
@@ -150,9 +150,9 @@ export default function ProjectLifecyclePage() {
               <a key={l.href} href={l.href} className="group flex items-center justify-between gap-4 bg-white px-6 py-7 transition-colors hover:bg-[#FAFBFC] sm:px-10">
                 <span>
                   <span className="block text-[16px] font-medium text-brand-navy">{l.label}</span>
-                  <span className="mt-0.5 block text-[14px] text-[#6B778C]">{l.body}</span>
+                  <span className="mt-0.5 block text-[14px] text-[#616D82]">{l.body}</span>
                 </span>
-                <ArrowUpRight size={16} className="shrink-0 text-[#A5AEBF] transition-colors group-hover:text-brand-orange" aria-hidden />
+                <ArrowUpRight size={16} className="shrink-0 text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden />
               </a>
             ))}
           </div>

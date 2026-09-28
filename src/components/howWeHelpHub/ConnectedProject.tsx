@@ -51,7 +51,7 @@ function NodeCard({ node }: { node: Node }) {
       </span>
       <span className="min-w-0 text-left">
         <span className="block text-[14px] font-medium text-brand-navy">{node.title}</span>
-        <span className="block truncate text-[12px] text-[#8C97AB]">{node.desc}</span>
+        <span className="block truncate text-[12px] text-[#5F6B80]">{node.desc}</span>
       </span>
     </div>
   );

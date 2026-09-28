@@ -46,7 +46,7 @@ function ScheduleVisual({ index }: { index: number }) {
     ];
     return (
       <div className="overflow-hidden rounded-lg border border-[#DCE3ED] bg-white text-[11px] shadow-[0_10px_24px_-18px_rgba(23,43,77,0.35)]">
-        <div className="flex items-center justify-between border-b border-[#E3E8F0] px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-[#8C97AB]">
+        <div className="flex items-center justify-between border-b border-[#E3E8F0] px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-[#5F6B80]">
           <span>{index === 0 ? "Project programme" : "Baseline / current"}</span><span>Wk 01 — 08</span>
         </div>
         {rows.map((row) => (
@@ -64,7 +64,7 @@ function ScheduleVisual({ index }: { index: number }) {
     const rows = index === 1 ? [["Ductwork install", "MEP team A"], ["Electrical rough-in", "Electrical"], ["Pressure testing", "QA team"]] : [["Mechanical", "78%"], ["Electrical", "62%"], ["Plumbing", "84%"]];
     return (
       <div className="rounded-lg border border-[#DCE3ED] bg-white p-3 shadow-[0_10px_24px_-18px_rgba(23,43,77,0.35)]">
-        <div className="mb-3 flex justify-between font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-[#8C97AB]"><span>{index === 1 ? "Activity owners" : "Resource load"}</span><span>03 / 03</span></div>
+        <div className="mb-3 flex justify-between font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-[#5F6B80]"><span>{index === 1 ? "Activity owners" : "Resource load"}</span><span>03 / 03</span></div>
         {rows.map(([name, value], row) => (
           <div key={name} className="flex items-center justify-between gap-3 border-t border-[#EDF0F5] py-2 text-[12px] text-brand-navy">
             <span className="truncate">{name}</span><span className={`shrink-0 rounded px-2 py-0.5 font-mono text-[10px] ${row === 1 ? "bg-[#FFF1E8] text-brand-orange" : "bg-[#EDF3FA] text-brand-navy"}`}>{value}</span>
@@ -76,7 +76,7 @@ function ScheduleVisual({ index }: { index: number }) {
   const bars = index === 2 ? [42, 57, 63, 69, 77, 82] : [28, 40, 54, 61, 74, 86];
   return (
     <div className="rounded-lg border border-[#DCE3ED] bg-white p-4 shadow-[0_10px_24px_-18px_rgba(23,43,77,0.35)]">
-      <div className="flex justify-between font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-[#8C97AB]"><span>{index === 2 ? "Planned / actual" : "Progress trend"}</span><span>6 weeks</span></div>
+      <div className="flex justify-between font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-[#5F6B80]"><span>{index === 2 ? "Planned / actual" : "Progress trend"}</span><span>6 weeks</span></div>
       <div className="mt-4 flex h-[94px] items-end justify-between gap-3 border-b border-[#A8B8CC] px-2">
         {bars.map((height, i) => <div key={i} className="flex h-full flex-1 items-end"><div className="w-full rounded-t-sm bg-[#DCE7F5]" style={{ height: `${height}%` }}><div className="ml-auto h-full w-1/2 rounded-t-sm bg-brand-navy" style={{ height: `${Math.max(height - (i % 2 ? 13 : 7), 20)}%` }} /></div></div>)}
       </div>
@@ -135,8 +135,8 @@ function Connected({ isMobile }: { isMobile: boolean }) {
 
 function PlanningProductView() {
   return <div className="relative mx-auto max-w-[1110px] pt-9">
-    <div className="absolute inset-x-0 top-0 flex h-5 items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8C97AB]" aria-hidden><span className="h-px flex-1 bg-[#A8B8CC]" /><span>Schedule workspace · project timeline</span><span className="h-px flex-1 bg-[#A8B8CC]" /></div>
-    <div className="relative rounded-[10px] border border-[#CFD9E6] bg-white p-2.5 shadow-[0_40px_80px_-40px_rgba(23,43,77,0.45)] sm:p-3.5"><CornerTicks /><div className="overflow-hidden rounded-md border border-[#E3E8F0] bg-white"><div className="flex h-10 items-center gap-3 border-b border-[#E3E8F0] bg-[#F8F9FD] px-4 sm:h-12"><span className="flex gap-1.5" aria-hidden>{[0, 1, 2].map((i) => <span key={i} className="h-2.5 w-2.5 rounded-full border border-[#D5DCE7] bg-[#EDF0F5]" />)}</span><span className="mx-auto flex h-7 items-center gap-2 rounded-md border border-[#E3E8F0] bg-white px-4 text-[11px] font-medium text-brand-navy"><Lock size={11} className="text-[#8C97AB]" aria-hidden />ZedOps / Schedule dashboard</span></div><div className="h-[240px] overflow-hidden bg-[#F4F6FA] sm:h-[400px] lg:h-[510px]"><img src="/screenshots/schedule-and-planning.png" alt="ZedOps schedule dashboard showing activities alongside a baseline timeline" className="h-full w-full object-cover object-left-top" /></div></div><div className="absolute bottom-2.5 right-2.5 flex border border-brand-navy bg-white font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-navy sm:bottom-3.5 sm:right-3.5"><span className="bg-brand-navy px-2.5 py-2 text-white">P-01</span><span className="hidden px-2.5 py-2 sm:block">Schedule workspace</span></div></div>
+    <div className="absolute inset-x-0 top-0 flex h-5 items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#5F6B80]" aria-hidden><span className="h-px flex-1 bg-[#A8B8CC]" /><span>Schedule workspace · project timeline</span><span className="h-px flex-1 bg-[#A8B8CC]" /></div>
+    <div className="relative rounded-[10px] border border-[#CFD9E6] bg-white p-2.5 shadow-[0_40px_80px_-40px_rgba(23,43,77,0.45)] sm:p-3.5"><CornerTicks /><div className="overflow-hidden rounded-md border border-[#E3E8F0] bg-white"><div className="flex h-10 items-center gap-3 border-b border-[#E3E8F0] bg-[#F8F9FD] px-4 sm:h-12"><span className="flex gap-1.5" aria-hidden>{[0, 1, 2].map((i) => <span key={i} className="h-2.5 w-2.5 rounded-full border border-[#D5DCE7] bg-[#EDF0F5]" />)}</span><span className="mx-auto flex h-7 items-center gap-2 rounded-md border border-[#E3E8F0] bg-white px-4 text-[11px] font-medium text-brand-navy"><Lock size={11} className="text-[#5F6B80]" aria-hidden />ZedOps / Schedule dashboard</span></div><div className="h-[240px] overflow-hidden bg-[#F4F6FA] sm:h-[400px] lg:h-[510px]"><img src="/screenshots/schedule-and-planning.png" alt="ZedOps schedule dashboard showing activities alongside a baseline timeline" className="h-full w-full object-cover object-left-top" /></div></div><div className="absolute bottom-2.5 right-2.5 flex border border-brand-navy bg-white font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-navy sm:bottom-3.5 sm:right-3.5"><span className="bg-brand-navy px-2.5 py-2 text-white">P-01</span><span className="hidden px-2.5 py-2 sm:block">Schedule workspace</span></div></div>
   </div>;
 }
 
