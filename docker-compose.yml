@@ -22,14 +22,25 @@ services:
     restart: always
     environment:
       - NODE_ENV=production
+    # Renamed 2026-09-29 from zedops_site_net, per deploy/NETWORK-CONVENTION.md
+    # in the zedops repository. Shared with the Caddy router and the Strapi CMS,
+    # both of which name it from their own compose files.
     networks:
-      - zedops_site_net
+      - site-edge
     # Only reachable inside the Docker network; Caddy publishes 80/443.
     # Do NOT change the container name: the edge Caddyfile proxies to
     # zedops-live:3000 by name, and renaming it takes production down.
     expose:
       - "3000"
+    # Bound log growth, 10 MB x 3. Added 2026-09-29: this was the last container
+    # on the host running Docker's default json-file driver, which has no size
+    # limit at all. The other four repos here cap at the same values.
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 networks:
-  zedops_site_net:
+  site-edge:
     external: true
