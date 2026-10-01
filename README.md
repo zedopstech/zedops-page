@@ -66,8 +66,11 @@ src/
   content/blog/       Blog markdown + frontmatter
 scripts/
   generate-sitemap.mjs
+public/
+  _headers            Cloudflare Pages cache + security headers (see Caching)
 deploy/
-  Caddyfile           Static file server config baked into the image
+  Caddyfile           Static file server config baked into the image; used by the
+                      Docker/VPS deployment only, which is now the rollback path
 ```
 
 ## SEO
@@ -94,6 +97,7 @@ not. Fixing that needs build-time prerendering — see the roadmap below.
 |---|---|---|
 | `VITE_SITE_URL` | `https://zedops.com` | Canonical origin, OG URLs and sitemap host. Set per environment so staging never advertises production URLs. |
 | `VITE_GA_ID` | unset | Google Analytics 4 measurement ID (e.g. `G-XXXXXXXXXX`). Injected by a Vite plugin at build time, so the ID is never committed. **Unset means the site ships with no analytics at all** - verify it is set in the deploy config or GA will silently not fire. |
+| `VITE_LEADS_API_URL` | Strapi default in `src/lib/leads.ts` | Base URL of the Strapi CMS (`zedops-kb-api`) that receives the contact, early-access and roadmap forms. Only set it to point a preview at a non-production CMS. |
 
 ## Docker
 
@@ -112,12 +116,55 @@ context. Do **not** add `scripts/` to it — the build needs
 
 ## Deployment
 
-Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds the image,
-pushes it to GitHub Container Registry, then SSHes to the server, runs
+The site is moving from the stage server to **Cloudflare Pages**, which is now the
+primary target. Both deploy paths exist side by side during the move:
+
+| Target | Workflow | What it does |
+|---|---|---|
+| Cloudflare Pages (primary) | `.github/workflows/deploy-pages.yml` | builds on the runner, uploads `dist/public` to the `zedops-page` Pages project |
+| VPS container (rollback) | `.github/workflows/deploy.yml` | builds an image, pushes to GHCR, `docker compose up -d` over SSH on the stage server |
+
+Both trigger on a push to `main`, so the VPS keeps serving the same commit as
+Pages. Reverting to the VPS is therefore a DNS change, not a redeploy. Once the
+Pages site has been trusted for a while, delete `deploy.yml` (and the Docker path
+below) and this becomes a single-target deploy.
+
+### Cloudflare Pages
+
+The project is named `zedops-page`. It is a **direct-upload** project: the site is
+built on the GitHub runner and the static output is pushed with
+`wrangler pages deploy`. No build runs on Cloudflare's side and no Cloudflare
+GitHub app is installed, so the repository stays the single source of both the
+build and its configuration.
+
+It answers on `zedops-page.pages.dev` and on the custom domains `zedops.com` and
+`www.zedops.com`. The zone is already on Cloudflare, so those are the only records
+that point at Pages; `*.zedops.com` (which carries the app, docs, kb-api and pdf
+subdomains) and the mail records are untouched.
+
+One-time setup — repository secrets under **Settings → Secrets and variables →
+Actions**:
+
+| Secret | Value |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` | API token with **Account → Cloudflare Pages → Edit** on the account that owns the project |
+| `CLOUDFLARE_ACCOUNT_ID` | the account id that owns the `zedops-page` project |
+
+The build reads the same `VITE_*` variables as the Docker path, with
+`vars.VITE_GA_ID` taking precedence over `secrets.VITE_GA_ID`.
+
+Cache and security headers for Pages live in `public/_headers` (copied to the
+build root by Vite), not in the Caddyfile — see Caching.
+
+### VPS / Docker (rollback)
+
+Pushes to `main` also trigger `.github/workflows/deploy.yml`, which builds the
+image, pushes it to GitHub Container Registry, then SSHes to the server, runs
 `docker compose pull && docker compose up -d`, and health-checks the result.
 Deploys are tagged by commit SHA, so a running image is traceable to a commit.
+Setup, if this path is ever revived:
 
-### One-time setup
+#### One-time setup
 
 0. Set the repository variable `VITE_GA_ID` (Settings -> Secrets and variables ->
    Actions -> **Variables**, not Secrets). Without it the deployed site has no
@@ -136,27 +183,38 @@ Deploys are tagged by commit SHA, so a running image is traceable to a commit.
 3. The server needs an SSH key in `authorized_keys` for that deploy user. The
    workflow pins the server's host key and refuses to deploy if it changes.
 
-### Server-side notes
+#### Server-side notes
 
 - The container **must** keep the name `zedops-live`. The edge Caddy config
   reverse-proxies to `zedops-live:3000` by name; renaming it takes the site down.
 - Port 3000 is `expose`d to the Docker network only. Caddy publishes 80/443.
 - The edge Caddyfile lives on the host at
-  `/home/zedops/zedops-stage/caddy/Caddyfile` and is bind-mounted. It is
-  deliberately not in this repo because it spans several projects. Nothing runs
-  `caddy reload` automatically after editing it — reload manually or the change
-  is inert.
+  `/home/zedops/zedops-stage/laravel-stage/deploy/caddy/Caddyfile` and is
+  bind-mounted. It is deliberately not in this repo because it spans several
+  projects. Nothing runs `caddy reload` automatically after editing it — reload
+  manually or the change is inert.
 - `deploy.sh` covers the Laravel `stage` and `prelive` services, not this site.
 
 ## Caching
 
-`deploy/Caddyfile` sets the policy the previous `serve -s` setup could not:
+The cache policy is the same on both targets, but it is expressed differently:
+`deploy/Caddyfile` for the Docker/VPS deployment, and `public/_headers` for
+Cloudflare Pages, which reads it from the build root.
 
 | Path | `Cache-Control` |
 |---|---|
-| `/assets/*` (content-hashed) | `public, max-age=31536000, immutable` |
-| Images, video, fonts | `public, max-age=604800` |
-| HTML | `no-cache` (must revalidate so deploys are picked up) |
+| `/assets/*` and hashed media | `public, max-age=31536000, immutable` |
+| Root brand/SEO files (not hashed) | `public, max-age=604800` |
+| HTML shell, `robots.txt`, `sitemap.xml`, `llms.txt` | revalidate on every request |
+
+On Caddy the shell rule is an explicit `no-cache`. On Pages there is deliberately
+no shell rule: Pages' default for anything `_headers` does not match is
+`public, max-age=0, must-revalidate`, which is the same revalidate-every-time
+behaviour. It has to be left to the default, because **Pages `_headers` rules are
+additive, not first-match-wins** — a catch-all `Cache-Control` would be joined onto
+every specific rule and effectively take over. The header comment in
+`public/_headers` spells this out, including why `/platform/*` and `/blog/*` are
+qualified by file extension (they hold route HTML next to media).
 
 ## Verifying analytics is actually live
 
@@ -180,20 +238,21 @@ deploy, because the check reads a cached copy of the page.
 
 ## CI
 
-Two workflows, deliberately split by trust boundary.
+Two deploy workflows plus the CI check. See [Deployment](#deployment) for the
+Cloudflare Pages / VPS split.
 
 | Workflow | Trigger | Secrets | Does |
 |---|---|---|---|
 | `.github/workflows/ci.yml` | `pull_request` to main | none | typecheck, build, prerender assertions |
-| `.github/workflows/deploy.yml` | push to main, manual | SSH key, registry | Docker build, push to GHCR, deploy over SSH |
+| `.github/workflows/deploy-pages.yml` | push to main, manual | Cloudflare API token | build, upload `dist/public` to Cloudflare Pages |
+| `.github/workflows/deploy.yml` | push to main, manual | SSH key, registry | Docker build, push to GHCR, deploy over SSH (rollback path) |
 
-The split is a security decision, not an organisational one. `deploy.yml` cannot
-use `pull_request` or `pull_request_target`: on a public repo,
-`pull_request_target` checks out a contributor's code while holding repository
-secrets, which is a remote-code-execution path. So `ci.yml` runs on
+Neither deploy workflow may use `pull_request` or `pull_request_target`: on a
+public repo, `pull_request_target` checks out a contributor's code while holding
+repository secrets, which is a remote-code-execution path. So `ci.yml` runs on
 `pull_request` and holds no secrets at all — it only invokes the toolchain, so
 there is nothing to leak and a fork can trigger it safely. `main` is protected so
-that `ci.yml` must pass before anything reaches `deploy.yml`.
+that `ci.yml` must pass before anything deploys.
 
 `ci.yml` also asserts the prerender step produced at least 30 route files and a
 `404.html`. That guards a failure mode this repo has already had once: a
@@ -239,7 +298,7 @@ module URLs in `sitemap.xml`, which match a naive search but are page URLs.
 If any pre-hash reference survives anywhere in `dist`, the build **fails**. A
 missing image is a 404 that no build log would ever show.
 
-### Cache policy in `deploy/Caddyfile`
+### Cache policy in `deploy/Caddyfile` (VPS target)
 
 | what | policy | why |
 |---|---|---|
@@ -256,6 +315,12 @@ uncached. Verified by running the config against a real build and reading the
 headers back, including the pair that matters most:
 `/platform/material-management.<hash>.png` → `immutable`, while
 `/platform/module/core` → `no-cache`.
+
+On Cloudflare Pages the same policy lives in `public/_headers`. It cannot use a
+regex, and its rules are additive rather than first-match-wins, so the two
+directory-vs-route cases above are expressed with path placeholders qualified by
+file extension instead. That is the only place the two configs diverge in form;
+see the header comment in `public/_headers`.
 
 ## Known dead code
 
@@ -288,10 +353,10 @@ worth salvaging first.
       Known dead code). Check for copy worth keeping before deleting.
 - [x] Hash every asset filename, so replacing an image at a stable path is not
       masked by Cloudflare's cache. Done — see Asset caching.
-- [ ] Cloudflare still caches no HTML: route responses are `no-cache` and
-      `cf-cache-status: DYNAMIC`, so every crawler hit reaches the origin. The
-      static assets are now immutable and cached for a year, so the remaining
-      question is only about the HTML shell.
+- [x] Cache the HTML at the edge without staling on deploy. Done by moving to
+      Cloudflare Pages: HTML is served with `max-age=0, must-revalidate`, so a
+      deploy is picked up on the next request, and the site is no longer
+      proxied through a VPS origin at all.
 - [ ] Branch protection on `main` is set to require the `Type check and build`
       check. Worth also deciding whether direct pushes to `main` stay allowed for
       solo work, or whether everything goes through a PR.

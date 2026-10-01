@@ -1,0 +1,90 @@
+name: Deploy site to Cloudflare Pages
+
+# Push to main only, plus manual runs.
+#
+# This runs ALONGSIDE .github/workflows/deploy.yml during the migration off the
+# stage server: the Docker workflow still deploys the same commit to the
+# zedops-live container on the VPS, which stays warm as a rollback target until
+# the Pages deployment has been trusted for a while. Once the VPS site is
+# retired, deploy.yml can be deleted and this becomes the only deploy.
+#
+# As in deploy.yml, `pull_request` and `pull_request_target` are deliberately
+# NOT used: this repo is public, and `pull_request_target` checking out a
+# contributor's code while holding the Cloudflare token is a remote-code-
+# execution path. Only a push to main can deploy.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Never let two deploys race to become the live production deployment.
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Build and deploy to Pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Build on the runner, then upload the static output. `npm run build`
+      # chains sitemap -> vite build -> prerender -> hash-assets, so the
+      # artifact contains the per-route HTML, the real 404.html and the
+      # fingerprinted media exactly as the Docker image does.
+      #
+      # These must be real environment variables, not Docker build args: the
+      # site reads them at build time (vite.config.ts, scripts/lib/routes.mjs,
+      # src/lib/leads.ts). VITE_GA_ID comes from a Variable first and a Secret
+      # second, because GitHub keeps those two stores separate and one is
+      # silently ignored by the other - see the README.
+      - name: Build
+        run: npm run build
+        env:
+          VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://zedops.com' }}
+          VITE_GA_ID: ${{ vars.VITE_GA_ID || secrets.VITE_GA_ID }}
+          VITE_LEADS_API_URL: ${{ vars.VITE_LEADS_API_URL }}
+
+      # Guard the same failure mode ci.yml guards, but on the artifact that is
+      # actually about to ship: a silent prerender failure leaves a site that
+      # 200s while serving the homepage metadata on every URL.
+      - name: Verify build output
+        run: |
+          test -f dist/public/index.html || {
+            echo "::error::dist/public/index.html missing"; exit 1; }
+          test -f dist/public/404.html || {
+            echo "::error::404.html missing - unknown paths would soft-200"; exit 1; }
+          test -f dist/public/_headers || {
+            echo "::error::_headers missing from build output"; exit 1; }
+          count=$(find dist/public -name index.html | wc -l)
+          echo "prerendered route files: $count"
+          test "$count" -ge 30 || {
+            echo "::error::expected at least 30 prerendered routes, found $count"; exit 1; }
+
+      # --branch=main targets the production environment of the project (its
+      # configured production branch), so this is a production deployment and
+      # not a preview. The project name must match the Pages project; changing
+      # it here without changing the project silently creates a new one.
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          command: pages deploy dist/public --project-name=zedops-page --branch=main

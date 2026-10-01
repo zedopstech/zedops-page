@@ -1,24 +1,72 @@
 # Cloudflare Pages headers for the ZedOps marketing site.
 #
-# Replaces the caching and security rules in deploy/Caddyfile, which cannot
-# apply once the site is served by Pages. Those rules were:
+# This replaces the caching and security rules in deploy/Caddyfile, which only
+# applied while the site was served by Caddy in a container. The intent is the
+# same policy:
 #
-#   content-hashed assets  -> Cache-Control: public, max-age=31536000, immutable
-#   other media           -> Cache-Control: public, max-age=604800
-#   the HTML shell        -> Cache-Control: no-cache
-#   plus nosniff, referrer-policy, frame-options, HSTS, and -Server
+#   content-hashed assets -> Cache-Control: public, max-age=31536000, immutable
+#   unhashed media        -> Cache-Control: public, max-age=604800
+#   the HTML shell        -> revalidate on every request
 #
-# Losing the immutable rule on hashed assets would be the visible regression, so
-# it is reproduced here exactly. Pages applies _headers to every response, and
-# the first matching pattern wins, so the order below is deliberate: the most
-# specific rule comes first.
+# HOW PAGES MERGES RULES - read this before editing.
+# Unlike Caddy, Pages does NOT stop at the first matching rule. Every rule whose
+# pattern matches is applied, and if the same header is set by two of them the
+# values are joined with a comma. Two consequences, both of which an earlier
+# version of this file got wrong:
+#
+#   1. A catch-all `Cache-Control` is a bug, not a default. A `/*` rule setting
+#      `no-cache` is appended to every other rule, so a hashed asset ends up
+#      with `...immutable, no-cache` and is revalidated anyway - the immutable
+#      rules silently stop working.
+#   2. Directory rules must be mutually exclusive, because `/hero/*` and a
+#      `/*.png` rule would both match `/hero/x.<hash>.png` and join.
+#
+# So `Cache-Control` is only ever set by the specific rules below, and no
+# request matches more than one of them. Everything else falls through to the
+# Pages default, `Cache-Control: public, max-age=0, must-revalidate`, which is
+# exactly the "always revalidate" behaviour the HTML shell needs. That is why
+# there is no rule for the shell here.
 
+# ---------------------------------------------------------------------------
+# Security headers. Every response inherits these, including the rules below
+# (Pages merges header sets, not just values of the same header). No
+# Cache-Control here - see above.
+# ---------------------------------------------------------------------------
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# ---------------------------------------------------------------------------
+# Content-addressed assets. /assets/* is Vite's own output, which carries a
+# content hash in every filename, so the bytes behind a URL cannot change.
+# ---------------------------------------------------------------------------
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Media fingerprinted by scripts/hash-assets.mjs - name.<hash>.<ext>. Same
-# reasoning as /assets: the content cannot change under a given name.
+# ---------------------------------------------------------------------------
+# Media directories that hold ONLY fingerprinted media (see MEDIA_DIRS in
+# scripts/hash-assets.mjs). None of these contains a route's index.html, so a
+# blanket directory rule is safe. Every file underneath is `name.<hash><ext>`.
+#
+# `platform` and `blog` are deliberately absent: those directories hold media
+# AND prerendered routes (hash-assets.mjs's own comment calls this out), so they
+# are handled by the extension-qualified rules further down instead.
+# ---------------------------------------------------------------------------
+/backgrounds/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/contractors/*
+  Cache-Control: public, max-age=31536000, immutable
+
 /hero/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/industries/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/personas/*
   Cache-Control: public, max-age=31536000, immutable
 
 /photos/*
@@ -27,65 +75,110 @@
 /screenshots/*
   Cache-Control: public, max-age=31536000, immutable
 
-/backgrounds/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/personas/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/industries/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/contractors/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/platform/*
-  Cache-Control: public, max-age=31536000, immutable
-
 /team/*
   Cache-Control: public, max-age=31536000, immutable
 
 /video/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Unfingerprinted media: a week, not forever, because the name does not change
-# when the content does.
-/*.png
+# ---------------------------------------------------------------------------
+# Hashed media that sits in a directory which ALSO holds route HTML:
+#   /platform/material-management.<hash>.png   sits beside   /platform/module/core/
+#   /blog/<name>.<hash>.png                    sits beside   /blog/<slug>/
+# A plain `/platform/*` or `/blog/*` would mark those route files immutable,
+# which pins returning visitors to a deploy's HTML permanently.
+#
+# A path placeholder cannot match a forward slash, so `/platform/:file.png`
+# matches only the files directly inside /platform/ whose name ends in `.png`,
+# and never `/platform/module/<id>` or `/blog/<slug>`. Qualifying by extension
+# is what separates a media file from a route whose slug has no extension.
+#
+# Extension list mirrors MEDIA_EXT in scripts/hash-assets.mjs - keep in sync.
+# ---------------------------------------------------------------------------
+/platform/:file.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/platform/:file.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/platform/:file.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/platform/:file.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/platform/:file.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/platform/:file.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+/platform/:file.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/platform/:file.webm
+  Cache-Control: public, max-age=31536000, immutable
+
+/platform/:file.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/:file.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/:file.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/:file.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/:file.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/:file.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/:file.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/:file.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/:file.webm
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/:file.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+# ---------------------------------------------------------------------------
+# Root-level brand and SEO files. These are NOT content-addressed on purpose
+# (see scripts/hash-assets.mjs): the OG tags and the Organization JSON-LD
+# reference them by absolute URL, where a changing URL would change the declared
+# identity. Stable URL, so a week rather than a year - same as deploy/Caddyfile.
+# Listed by exact path because a `/*.png` rule would also match every media file
+# in the directories above and join Cache-Control with theirs.
+# ---------------------------------------------------------------------------
+/og-image.png
   Cache-Control: public, max-age=604800
 
-/*.jpg
+/logo.png
   Cache-Control: public, max-age=604800
 
-/*.jpeg
+/apple-touch-icon.png
   Cache-Control: public, max-age=604800
 
-/*.svg
+/favicon.ico
   Cache-Control: public, max-age=604800
 
-/*.webp
+/favicon.svg
   Cache-Control: public, max-age=604800
 
-/*.ico
+/favicon-16x16.png
   Cache-Control: public, max-age=604800
 
-/*.woff2
+/favicon-32x32.png
   Cache-Control: public, max-age=604800
 
-/*.mp4
-  Cache-Control: public, max-age=604800
-
-/*.webm
-  Cache-Control: public, max-age=604800
-
-# The HTML shell, and therefore every prerendered route. no-cache so a deploy is
-# visible immediately - the same intent as the Caddyfile's @shell rule.
-/*
-  Cache-Control: no-cache
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  X-Frame-Options: SAMEORIGIN
-  Strict-Transport-Security: max-age=31536000; includeSubDomains
-
-# -Server cannot be set from _headers. Cloudflare sets its own server header on
-# Pages responses, and it is not configurable from the project. This is the one
-# rule from the Caddyfile that does not carry over.
+# `-Server` is not reproduced: Pages sends `Server: cloudflare` and it cannot be
+# removed from the project. It is the one Caddy rule with no equivalent here.
+# `Access-Control-Allow-Origin: *` is added by Pages by default and is left as
+# is; Caddy did not send it, but on a static marketing site it is harmless.
