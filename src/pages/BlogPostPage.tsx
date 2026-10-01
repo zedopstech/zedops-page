@@ -14,12 +14,12 @@ import { getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { formatBlogDate, readingMinutes } from "@/lib/blogDisplay";
 import { extractMarkdownToc } from "@/lib/markdownToc";
 import type { TocItem } from "@/lib/markdownToc";
-import { SITE, SITE_URL, absoluteUrl } from "@/config/site";
+import { SITE, SITE_URL, absoluteUrl, pageUrl } from "@/config/site";
 import type { BlogPost } from "@/lib/blog";
 
 /** BlogPosting + BreadcrumbList so posts can earn article rich results and breadcrumb trails. */
 function buildBlogPosting(post: BlogPost) {
-  const url = absoluteUrl(`/blog/${post.slug}`);
+  const url = pageUrl(`/blog/${post.slug}`);
   return [
     {
       "@context": "https://schema.org",
@@ -42,8 +42,8 @@ function buildBlogPosting(post: BlogPost) {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-        { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog") },
+        { "@type": "ListItem", position: 1, name: "Home", item: pageUrl("/") },
+        { "@type": "ListItem", position: 2, name: "Blog", item: pageUrl("/blog") },
         { "@type": "ListItem", position: 3, name: post.title, item: url },
       ],
     },

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
-import { SITE, absoluteUrl } from "@/config/site";
+import { SITE, absoluteUrl, pageUrl } from "@/config/site";
 
 interface SEOProps {
   title: string;
@@ -93,7 +93,7 @@ export function useSEO({
 
   useEffect(() => {
     const routePath = path ?? location;
-    const url = absoluteUrl(routePath);
+    const url = pageUrl(routePath);
     const imageUrl = absoluteUrl(image ?? SITE.ogImage);
     const imageDescription = imageAlt ?? `${SITE.name} — ${SITE.tagline}`;
 

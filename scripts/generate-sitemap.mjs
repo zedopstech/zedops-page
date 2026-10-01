@@ -8,15 +8,15 @@
  * /how-we-help pages, every module page and every blog post.
  *
  * `lastmod` comes from the last git commit that touched each page's source, so it
- * reflects real edits. Inside Docker the build context excludes .git, so it falls
- * back to the build date and says so.
+ * reflects real edits. When git history is unavailable it falls back to the build
+ * date and says so.
  *
  * Run via `npm run sitemap` (wired to prebuild).
  */
 import { writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import path from "node:path";
-import { ROOT, SITE_URL, routes } from "./lib/routes.mjs";
+import { ROOT, pageUrl, routes } from "./lib/routes.mjs";
 
 /** Last commit date (YYYY-MM-DD) for a path, or null outside git. */
 function lastmod(relPath) {
@@ -52,7 +52,7 @@ const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, 
 
 const urls = routes()
   .map((r) => {
-    const loc = r.path === "/" ? `${SITE_URL}/` : `${SITE_URL}${r.path}`;
+    const loc = pageUrl(r.path);
     return [
       "  <url>",
       `    <loc>${esc(loc)}</loc>`,

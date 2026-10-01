@@ -175,7 +175,7 @@ export function routes() {
       jsonLd: {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/blog/${post.slug}` },
+        mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl(`/blog/${post.slug}`) },
         headline: post.title,
         description: post.description,
         image: post.image ? [post.image] : [`${SITE_URL}/og-image.png`],
@@ -194,3 +194,15 @@ export function routes() {
 }
 
 export const absolute = (p) => (/^https?:\/\//i.test(p) ? p : `${SITE_URL}${p === "/" ? "/" : p.replace(/\/+$/, "")}`);
+
+/**
+ * Absolute URL for a page, with the trailing slash the site is served with.
+ * Cloudflare Pages 308-redirects "/solutions" to "/solutions/", so canonical,
+ * og:url and sitemap entries must use the slashed form or they advertise a
+ * redirect. Assets keep using `absolute` - a trailing slash would break them.
+ */
+export const pageUrl = (p) => {
+  if (/^https?:\/\//i.test(p)) return p;
+  const clean = p.startsWith("/") ? p : `/${p}`;
+  return clean === "/" ? `${SITE_URL}/` : `${SITE_URL}${clean.replace(/\/+$/, "")}/`;
+};

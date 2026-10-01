@@ -9,7 +9,6 @@ and blog routes.
 ## Requirements
 
 - **Node 20+** and npm
-- Docker only if you want to run the container locally
 
 ## Local development
 
@@ -38,8 +37,8 @@ hand-written file had drifted out of sync with the router (it advertised a
 commented-out `/pricing` route and omitted the blog entirely).
 
 `lastmod` values come from the last git commit that touched each page's source
-file. Inside Docker the build context excludes `.git`, so it falls back to the
-build date and logs a note.
+file. If git history is unavailable the script notes that and falls back to the
+build date.
 
 > **If you add a route, add it to `scripts/generate-sitemap.mjs` too.** Otherwise
 > the page works but never appears in the sitemap.
@@ -68,9 +67,6 @@ scripts/
   generate-sitemap.mjs
 public/
   _headers            Cloudflare Pages cache + security headers (see Caching)
-deploy/
-  Caddyfile           Static file server config baked into the image; used by the
-                      Docker/VPS deployment only, which is now the rollback path
 ```
 
 ## SEO
@@ -80,6 +76,12 @@ deploy/
 per-page JSON-LD. The canonical URL is derived from the router location, so pages
 do not need to pass it.
 
+Canonical and `og:url` use the **trailing-slash** form (`/solutions/`), built with
+`pageUrl`. Cloudflare Pages serves each prerendered route at `/solutions/` and
+308-redirects `/solutions`, so a no-slash canonical would be a canonical URL that
+itself redirects. The sitemap and `llms.txt` use the same slashed form. Asset URLs
+(images, `og-image.png`) go through `absoluteUrl` and never take a slash.
+
 Optional arguments: `path`, `image`, `imageAlt`, `type` (`"website"` | `"article"`),
 `noindex`, `publishedTime`, `modifiedTime`, `author`, `jsonLd`.
 
@@ -87,9 +89,11 @@ Site-wide `Organization` / `WebSite` / `SoftwareApplication` structured data liv
 in `index.html` and is tagged `data-seo-jsonld="static"`. The hook only clears
 blocks tagged `data-seo-jsonld="page"`, so the static block is never removed.
 
-**Known limitation:** meta tags are injected client-side. Crawlers that execute JS
-see per-route data, but social scrapers (LinkedIn, Slack, WhatsApp, Facebook) do
-not. Fixing that needs build-time prerendering — see the roadmap below.
+Per-route head tags are also baked into the HTML at build time by
+`scripts/prerender.mjs` (one file per route, plus `404.html`), so social scrapers
+which do not run JavaScript still see the correct title, description, canonical,
+Open Graph tags and JSON-LD. The client-side hook keeps the head correct during
+in-app navigation.
 
 ## Environment
 
@@ -99,35 +103,13 @@ not. Fixing that needs build-time prerendering — see the roadmap below.
 | `VITE_GA_ID` | unset | Google Analytics 4 measurement ID (e.g. `G-XXXXXXXXXX`). Injected by a Vite plugin at build time, so the ID is never committed. **Unset means the site ships with no analytics at all** - verify it is set in the deploy config or GA will silently not fire. |
 | `VITE_LEADS_API_URL` | Strapi default in `src/lib/leads.ts` | Base URL of the Strapi CMS (`zedops-kb-api`) that receives the contact, early-access and roadmap forms. Only set it to point a preview at a non-production CMS. |
 
-## Docker
-
-```bash
-docker build -t zedops-page .
-docker run --rm -p 3000:3000 zedops-page
-```
-
-Multi-stage: Node builds the site, then the output is copied into `caddy:2.8-alpine`
-to serve it (~89 MB final image). The build fails if `dist/public/index.html` is
-missing, so a broken build cannot ship.
-
-`.dockerignore` matters: it keeps local `node_modules` and `dist` out of the build
-context. Do **not** add `scripts/` to it — the build needs
-`scripts/generate-sitemap.mjs`.
-
 ## Deployment
 
-The site is moving from the stage server to **Cloudflare Pages**, which is now the
-primary target. Both deploy paths exist side by side during the move:
-
-| Target | Workflow | What it does |
-|---|---|---|
-| Cloudflare Pages (primary) | `.github/workflows/deploy-pages.yml` | builds on the runner, uploads `dist/public` to the `zedops-page` Pages project |
-| VPS container (rollback) | `.github/workflows/deploy.yml` | builds an image, pushes to GHCR, `docker compose up -d` over SSH on the stage server |
-
-Both trigger on a push to `main`, so the VPS keeps serving the same commit as
-Pages. Reverting to the VPS is therefore a DNS change, not a redeploy. Once the
-Pages site has been trusted for a while, delete `deploy.yml` (and the Docker path
-below) and this becomes a single-target deploy.
+The site is deployed to **Cloudflare Pages** by `.github/workflows/deploy-pages.yml`
+on every push to `main`. The old VPS/Docker path — an image in GHCR run by
+`docker compose` on the stage server, fronted by the shared edge Caddy — has been
+retired. It was the rollback target while the move was in progress and is no
+longer needed.
 
 ### Cloudflare Pages
 
@@ -150,56 +132,22 @@ Actions**:
 | `CLOUDFLARE_API_TOKEN` | API token with **Account → Cloudflare Pages → Edit** on the account that owns the project |
 | `CLOUDFLARE_ACCOUNT_ID` | the account id that owns the `zedops-page` project |
 
-The build reads the same `VITE_*` variables as the Docker path, with
+The build reads `VITE_SITE_URL`, `VITE_GA_ID` and `VITE_LEADS_API_URL`, with
 `vars.VITE_GA_ID` taking precedence over `secrets.VITE_GA_ID`.
 
-Cache and security headers for Pages live in `public/_headers` (copied to the
-build root by Vite), not in the Caddyfile — see Caching.
+Cache and security headers live in `public/_headers`, which Vite copies to the
+build root — see Caching.
 
-### VPS / Docker (rollback)
-
-Pushes to `main` also trigger `.github/workflows/deploy.yml`, which builds the
-image, pushes it to GitHub Container Registry, then SSHes to the server, runs
-`docker compose pull && docker compose up -d`, and health-checks the result.
-Deploys are tagged by commit SHA, so a running image is traceable to a commit.
-Setup, if this path is ever revived:
-
-#### One-time setup
-
-0. Set the repository variable `VITE_GA_ID` (Settings -> Secrets and variables ->
-   Actions -> **Variables**, not Secrets). Without it the deployed site has no
-   analytics tag at all.
-1. Create the image package as **public** so the server can pull it anonymously
-   (repo → Packages → `zedops-page` → Package settings → Change visibility).
-   Until then the deploy fails at the pull step.
-2. Add repository secrets under **Settings → Secrets and variables → Actions**:
-
-   | Secret | Value |
-   |---|---|
-   | `SERVER_HOST` | server IP or hostname |
-   | `SERVER_USER` | `root`, or a restricted deploy user |
-   | `SSH_PRIVATE_KEY` | the deploy private key, **without** a `.pub` suffix |
-
-3. The server needs an SSH key in `authorized_keys` for that deploy user. The
-   workflow pins the server's host key and refuses to deploy if it changes.
-
-#### Server-side notes
-
-- The container **must** keep the name `zedops-live`. The edge Caddy config
-  reverse-proxies to `zedops-live:3000` by name; renaming it takes the site down.
-- Port 3000 is `expose`d to the Docker network only. Caddy publishes 80/443.
-- The edge Caddyfile lives on the host at
-  `/home/zedops/zedops-stage/laravel-stage/deploy/caddy/Caddyfile` and is
-  bind-mounted. It is deliberately not in this repo because it spans several
-  projects. Nothing runs `caddy reload` automatically after editing it — reload
-  manually or the change is inert.
-- `deploy.sh` covers the Laravel `stage` and `prelive` services, not this site.
+To rotate `CLOUDFLARE_API_TOKEN`: create a new token with the same permission in
+the Cloudflare dashboard, update the GitHub secret (repository **Settings →
+Secrets and variables → Actions**, or
+`gh secret set CLOUDFLARE_API_TOKEN -R zedopstech/zedops-page`), and delete the old
+token in Cloudflare.
 
 ## Caching
 
-The cache policy is the same on both targets, but it is expressed differently:
-`deploy/Caddyfile` for the Docker/VPS deployment, and `public/_headers` for
-Cloudflare Pages, which reads it from the build root.
+The policy is expressed in `public/_headers`, which Cloudflare Pages reads from
+the build root.
 
 | Path | `Cache-Control` |
 |---|---|
@@ -207,14 +155,14 @@ Cloudflare Pages, which reads it from the build root.
 | Root brand/SEO files (not hashed) | `public, max-age=604800` |
 | HTML shell, `robots.txt`, `sitemap.xml`, `llms.txt` | revalidate on every request |
 
-On Caddy the shell rule is an explicit `no-cache`. On Pages there is deliberately
-no shell rule: Pages' default for anything `_headers` does not match is
-`public, max-age=0, must-revalidate`, which is the same revalidate-every-time
-behaviour. It has to be left to the default, because **Pages `_headers` rules are
-additive, not first-match-wins** — a catch-all `Cache-Control` would be joined onto
-every specific rule and effectively take over. The header comment in
-`public/_headers` spells this out, including why `/platform/*` and `/blog/*` are
-qualified by file extension (they hold route HTML next to media).
+There is deliberately no catch-all rule: Pages' default for anything `_headers`
+does not match is `public, max-age=0, must-revalidate`, the revalidate-every-time
+behaviour the shell needs. It has to be left to the default, because **Pages
+`_headers` rules are additive, not first-match-wins** — a catch-all
+`Cache-Control` would be joined onto every specific rule and effectively take
+over. The header comment in `public/_headers` spells this out, including why
+`/platform/*` and `/blog/*` are qualified by file extension (they hold route HTML
+next to media).
 
 ## Verifying analytics is actually live
 
@@ -238,16 +186,14 @@ deploy, because the check reads a cached copy of the page.
 
 ## CI
 
-Two deploy workflows plus the CI check. See [Deployment](#deployment) for the
-Cloudflare Pages / VPS split.
+Two workflows. See [Deployment](#deployment).
 
 | Workflow | Trigger | Secrets | Does |
 |---|---|---|---|
 | `.github/workflows/ci.yml` | `pull_request` to main | none | typecheck, build, prerender assertions |
 | `.github/workflows/deploy-pages.yml` | push to main, manual | Cloudflare API token | build, upload `dist/public` to Cloudflare Pages |
-| `.github/workflows/deploy.yml` | push to main, manual | SSH key, registry | Docker build, push to GHCR, deploy over SSH (rollback path) |
 
-Neither deploy workflow may use `pull_request` or `pull_request_target`: on a
+`deploy-pages.yml` may not use `pull_request` or `pull_request_target`: on a
 public repo, `pull_request_target` checks out a contributor's code while holding
 repository secrets, which is a remote-code-execution path. So `ci.yml` runs on
 `pull_request` and holds no secrets at all — it only invokes the toolchain, so
@@ -298,29 +244,22 @@ module URLs in `sitemap.xml`, which match a naive search but are page URLs.
 If any pre-hash reference survives anywhere in `dist`, the build **fails**. A
 missing image is a 404 that no build log would ever show.
 
-### Cache policy in `deploy/Caddyfile` (VPS target)
+### Cache policy in `public/_headers`
 
 | what | policy | why |
 |---|---|---|
 | `/assets/*` and hashed media | `max-age=31536000, immutable` | addressed by content; bytes cannot change under the name |
 | root brand/SEO files | `max-age=604800` | stable URLs by design, so they must revalidate |
-| route HTML, `robots.txt`, `sitemap.xml`, `llms.txt` | `no-cache` | a deploy replaces these in place |
+| route HTML, `robots.txt`, `sitemap.xml`, `llms.txt` | revalidate on every request | a deploy replaces these in place |
 
-The three matchers are mutually exclusive by construction rather than by
-relying on Caddy applying same-directive `header` rules in a given order — an
-earlier version of this file did depend on that and lost. The content-addressed
-matcher is a single top-level `path_regexp`; a bare `path_regexp` inside a
-`@name { }` block silently matched nothing, which left every hashed file
-uncached. Verified by running the config against a real build and reading the
-headers back, including the pair that matters most:
+The rules are mutually exclusive by construction, because Pages applies every
+matching `_headers` rule and comma-joins a header that is set twice. The hashed
+media directories that also hold route HTML (`/platform`, `/blog`) are therefore
+matched with path placeholders qualified by file extension — `/platform/:file.png`
+cannot match `/platform/module/core`. Verified against the real deployment,
+including the pair that matters most:
 `/platform/material-management.<hash>.png` → `immutable`, while
-`/platform/module/core` → `no-cache`.
-
-On Cloudflare Pages the same policy lives in `public/_headers`. It cannot use a
-regex, and its rules are additive rather than first-match-wins, so the two
-directory-vs-route cases above are expressed with path placeholders qualified by
-file extension instead. That is the only place the two configs diverge in form;
-see the header comment in `public/_headers`.
+`/platform/module/core` revalidates.
 
 ## Known dead code
 
@@ -360,5 +299,6 @@ worth salvaging first.
 - [ ] Branch protection on `main` is set to require the `Type check and build`
       check. Worth also deciding whether direct pushes to `main` stay allowed for
       solo work, or whether everything goes through a PR.
-- [ ] Consider a non-root deploy user with restricted sudo, so a leaked CI key
-      cannot reach root.
+- [x] No CI key can reach the server as root. Retiring the VPS deployment removed
+      `.github/workflows/deploy.yml`, so no repository secret holds an SSH key for
+      the server any more. Manual SSH still uses a key in root's `authorized_keys`.

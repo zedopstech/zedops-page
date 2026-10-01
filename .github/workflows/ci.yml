@@ -2,7 +2,7 @@ name: CI
 
 # Pull requests only. This is the check that branch protection on main requires.
 #
-# Kept separate from deploy.yml on purpose. That workflow cannot use
+# Kept separate from deploy-pages.yml on purpose. That workflow cannot use
 # `pull_request` or `pull_request_target`: on a public repo, `pull_request_target`
 # checks out a contributor's code while holding repository secrets, which is a
 # remote-code-execution path. This workflow uses `pull_request` and holds no

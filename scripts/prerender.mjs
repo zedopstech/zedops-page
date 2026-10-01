@@ -8,14 +8,14 @@
  * for every link on the site. The SPA still boots and takes over client-side, so
  * this changes nothing for a real visitor.
  *
- * Also emits 404.html, which lets deploy/Caddyfile return a real 404 status for
- * unknown paths instead of a soft 200.
+ * Also emits 404.html, which Cloudflare Pages serves for unknown paths, keeping
+ * a real 404 status instead of a soft 200.
  *
  * Run via `npm run prerender`, wired into the build.
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { ROOT, SITE_URL, absolute, routes } from "./lib/routes.mjs";
+import { ROOT, SITE_URL, absolute, pageUrl, routes } from "./lib/routes.mjs";
 
 const DIST = path.join(ROOT, "dist/public");
 const OG_DEFAULT = `${SITE_URL}/og-image.png`;
@@ -62,7 +62,7 @@ function addJsonLd(html, blocks) {
 }
 
 function render(shell, route) {
-  const url = absolute(route.path);
+  const url = pageUrl(route.path);
   const image = absolute(route.image || OG_DEFAULT);
   const imageAlt = route.imageAlt || `${route.title}`;
 
@@ -119,7 +119,7 @@ writeFileSync(path.join(DIST, "index.html"), render(shell, all.find((r) => r.pat
 // Real 404 page: same shell, marked noindex.
 let notFound = setTitle(shell, "Page not found  -  ZedOps");
 notFound = setMeta(notFound, "name", "description", "That page does not exist. Head back to the ZedOps home page or explore the platform.");
-notFound = setCanonical(notFound, absolute("/"));
+notFound = setCanonical(notFound, pageUrl("/"));
 notFound = setMeta(notFound, "name", "robots", "noindex, nofollow");
 writeFileSync(path.join(DIST, "404.html"), notFound);
 

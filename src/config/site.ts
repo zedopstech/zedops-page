@@ -33,3 +33,16 @@ export function absoluteUrl(path = "/"): string {
   const clean = path.startsWith("/") ? path : `/${path}`;
   return `${SITE_URL}${clean === "/" ? "/" : clean.replace(/\/+$/, "")}`;
 }
+
+/**
+ * Absolute URL for a page route, carrying the trailing slash the site is served
+ * with. Cloudflare Pages 308-redirects "/solutions" to "/solutions/", so the
+ * canonical and og:url must use the slashed form - otherwise the canonical URL
+ * is itself a redirect. Asset paths (images, og-image) keep using `absoluteUrl`;
+ * a trailing slash there would break the URL.
+ */
+export function pageUrl(path = "/"): string {
+  if (/^https?:\/\//i.test(path)) return path;
+  const clean = path.startsWith("/") ? path : `/${path}`;
+  return clean === "/" ? `${SITE_URL}/` : `${SITE_URL}${clean.replace(/\/+$/, "")}/`;
+}

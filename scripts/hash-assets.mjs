@@ -75,7 +75,7 @@ const HASH_LEN = 10;
  * A filename that already carries a fingerprint, e.g. `hero-reel.67350de94d.mp4`.
  * Used to make this script idempotent: without it, running it twice over the
  * same dist appends a second hash - `hero-reel.67350de94d.67350de94d.mp4` - and
- * the Caddyfile's content-addressed pattern no longer matches the file, so it
+ * public/_headers' content-addressed rules no longer match the file, so it
  * silently drops off the immutable cache rule.
  */
 const ALREADY_HASHED = new RegExp(`\\.[0-9a-f]{${HASH_LEN}}$`);
