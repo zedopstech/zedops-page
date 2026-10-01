@@ -1,8 +1,12 @@
-# ZedOps — marketing site
+# ZedOps — product site
 
-Vite + React 19 + TypeScript + Tailwind v4 single-page app for the ZedOps
-marketing site. Serves the homepage plus the platform, module, persona, how-we-help
-and blog routes.
+The public website for **ZedOps**, the AI platform for MEP and construction
+execution. ZedOps connects schedule, field work, materials, costs and quality in
+one project view for mechanical, electrical and plumbing contractors.
+
+Vite + React 19 + TypeScript + Tailwind v4 single-page app, prerendered to static
+HTML and served from Cloudflare Pages. It carries the homepage plus the platform,
+module, persona, how-we-help and blog routes.
 
 ---
 
