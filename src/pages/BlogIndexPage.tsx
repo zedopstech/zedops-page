@@ -61,7 +61,7 @@ export default function BlogIndexPage() {
         {featured ? (
           <Section label="Featured article">
             <Link href={`/blog/${featured.slug}`} className="group grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
-              <div className="aspect-[16/10] overflow-hidden border-b border-[#E8ECF2] lg:aspect-auto lg:min-h-[420px] lg:border-r lg:border-b-0">
+              <div className="aspect-[16/10] overflow-hidden border-b border-[#E8ECF2] lg:aspect-auto lg:min-h-[420px] lg:border-e lg:border-b-0">
                 <PostCover post={featured} tone="dark" fit="contain" className="transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
               </div>
               <div className={`flex flex-col justify-between gap-10 py-10 lg:py-12 ${framePad} lg:!px-12`}>

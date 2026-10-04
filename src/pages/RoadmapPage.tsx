@@ -25,6 +25,13 @@ const columns: Column[] = [
       { title: "Quality, safety & punch", desc: "Inspections, incidents and closeout." },
       { title: "Budget & cost control", desc: "Budgets, commitments and actuals." },
       { title: "Roles & isolation", desc: "Role-based access, a database per customer." },
+      { title: "Zed AI risk alerts", desc: "RFI drafting and clash checks." },
+      { title: "Custom workflows", desc: "Your own approval chains and automations." },
+      { title: "Drawing takeoff", desc: "Measure drawings and push quantities to the estimate." },
+      { title: "Vendor portal", desc: "RFQ quotes, purchase orders and invoices for vendors." },
+      { title: "Inventory valuation", desc: "Valuation ledger, revaluation and write-downs." },
+      { title: "Smart alerts & forecasts", desc: "Budget alerts, material demand and stock-out risk." },
+      { title: "Multi-currency finance", desc: "Exchange-rate policy, advances, invoices and retention." },
     ],
   },
   {
@@ -32,9 +39,11 @@ const columns: Column[] = [
     note: "Invite only",
     dot: "bg-brand-orange",
     items: [
-      { title: "Zed AI copilot", desc: "Daily summaries and questions on project data." },
+      { title: "Zed AI copilot", desc: "Seven specialists that answer from project data." },
+      { title: "Zed AI drafts & approvals", desc: "Requests, tasks and snags drafted for your approval." },
+      { title: "Scheduled AI briefs", desc: "Recurring summaries delivered to your team." },
       { title: "Project intelligence", desc: "Live analytics across tasks, cost and risk." },
-      { title: "Mobile apps", desc: "iOS and Android for site teams." },
+      { title: "Mobile apps", desc: "Daily logs, time cards, inspections and approvals on site." },
     ],
   },
   {
@@ -42,8 +51,7 @@ const columns: Column[] = [
     note: "Q4 2026",
     dot: "bg-[#2A62DE]",
     items: [
-      { title: "Zed AI actions", desc: "Risk alerts, RFI drafting and clash checks." },
-      { title: "Custom workflows", desc: "Your own approval chains and automations." },
+      { title: "Integrations", desc: "Third-party software and communication apps." },
       { title: "API access", desc: "Connect ZedOps to the tools you already use." },
       { title: "Full drawing markup", desc: "Versions, markup and team review." },
     ],

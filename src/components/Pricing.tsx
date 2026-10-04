@@ -183,9 +183,9 @@ export default function Pricing() {
             <motion.div
               key={plan.name}
               {...scrollMotionProps(isMobile, { y: 24, duration: 0.5, delay: i * 0.1 })}
-              className={`relative flex flex-col p-6 sm:p-8 lg:p-10 ${i < plans.length - 1 ? "border-b border-gray-200 lg:border-b-0" : ""} ${i < 2 ? "lg:border-r lg:border-gray-200" : ""} ${plan.isPro ? "bg-[#172B4D]" : "bg-white"}`}
+              className={`relative flex flex-col p-6 sm:p-8 lg:p-10 ${i < plans.length - 1 ? "border-b border-gray-200 lg:border-b-0" : ""} ${i < 2 ? "lg:border-e lg:border-gray-200" : ""} ${plan.isPro ? "bg-[#172B4D]" : "bg-white"}`}
             >
-              {plan.badge && <div className="absolute top-0 left-0 right-0 h-1 bg-brand-orange" />}
+              {plan.badge && <div className="absolute top-0 start-0 end-0 h-1 bg-brand-orange" />}
               {plan.badge && (
                 <span className="inline-block text-brand-orange text-xs font-black uppercase tracking-widest mb-4">{plan.badge}</span>
               )}
@@ -279,7 +279,7 @@ export default function Pricing() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-gray-100">
-                        <th className="text-left px-8 py-4 text-[#172B4D] font-bold w-1/2">Feature</th>
+                        <th className="text-start px-8 py-4 text-[#172B4D] font-bold w-1/2">Feature</th>
                         {plans.map((p) => (
                           <th key={p.name} className="px-4 py-4 text-center font-extrabold" style={{ color: NAVY, width: "16.6%" }}>
                             {p.name}

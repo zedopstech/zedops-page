@@ -23,7 +23,7 @@ export default function LegalContent({ sections, email }: { sections: readonly {
           {sections.map((section, index) => (
             <article key={section.title} id={`policy-section-${index + 1}`} className="scroll-mt-[130px] border-t border-[#E8ECF2] py-8 first:border-t-0 first:pt-0">
               <h2 className="text-[22px] font-medium leading-tight tracking-[-0.025em] text-brand-navy">
-                <span className="mr-2 font-mono text-[13px] text-[#677388]">{String(index + 1).padStart(2, "0")}</span>
+                <span className="me-2 font-mono text-[13px] text-[#677388]">{String(index + 1).padStart(2, "0")}</span>
                 {section.title.replace(/^\d+\.\s*/, "")}
               </h2>
               <div className="mt-4 max-w-[720px] whitespace-pre-line text-[15.5px] leading-[1.75] text-[#3D4F6E]">{section.body}</div>

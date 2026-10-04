@@ -143,7 +143,7 @@ export default function PerspectiveSelector() {
                   key={p.key}
                   type="button"
                   onClick={() => setActive(i)}
-                  className={`relative flex shrink-0 items-center gap-3 rounded-md px-3 py-2.5 text-left transition-colors lg:w-full ${
+                  className={`relative flex shrink-0 items-center gap-3 rounded-md px-3 py-2.5 text-start transition-colors lg:w-full ${
                     isActive ? "bg-[#F7F8FA] text-brand-navy" : "text-[#5F6B80] hover:text-brand-navy"
                   }`}
                 >
@@ -159,7 +159,7 @@ export default function PerspectiveSelector() {
           </div>
 
           {/* View panel */}
-          <div className="border-t border-[#E8ECF2] bg-[#F7F8FA] p-5 sm:p-8 lg:border-t-0 lg:border-l lg:p-10">
+          <div className="border-t border-[#E8ECF2] bg-[#F7F8FA] p-5 sm:p-8 lg:border-t-0 lg:border-s lg:p-10">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.key}

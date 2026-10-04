@@ -90,7 +90,7 @@ export default function BentoStats() {
             className="min-w-0 bg-[#161B22] flex flex-col justify-center p-6 sm:p-8 relative overflow-hidden"
             style={{ borderRadius: 6 }}
           >
-            <div className="absolute right-0 bottom-0 w-32 h-32 rounded-full bg-brand-navy/20 blur-2xl" />
+            <div className="absolute end-0 bottom-0 w-32 h-32 rounded-full bg-brand-navy/20 blur-2xl" />
             <AnimatedStat target={10} suffix="×" duration={1.2} inView={inView} className="text-white font-black text-4xl leading-none mb-2 sm:text-5xl lg:text-6xl" />
             <p className="text-white/40 text-xs font-bold uppercase tracking-widest">Faster reporting cycles*</p>
           </motion.div>
@@ -134,9 +134,9 @@ export default function BentoStats() {
                   <div key={label} className="flex min-w-0 items-center gap-2">
                     <span className="text-white/30 text-[8px] w-12 shrink-0 sm:w-14">{label}</span>
                     <div className="min-w-0 flex-1 h-3 bg-white/5 relative overflow-hidden">
-                      <div className="absolute inset-y-0 left-0 bg-white/15" style={{ width: `${before}%` }} />
+                      <div className="absolute inset-y-0 start-0 bg-white/15" style={{ width: `${before}%` }} />
                       <motion.div
-                        className="absolute inset-y-0 left-0"
+                        className="absolute inset-y-0 start-0"
                         initial={{ width: 0 }}
                         animate={inView ? { width: `${after}%` } : { width: 0 }}
                         transition={{ duration: 1.2, delay: 0.5 }}
@@ -190,8 +190,8 @@ export default function BentoStats() {
             className="min-w-0 bg-brand-orange p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden sm:col-span-2 lg:col-span-1"
             style={{ borderRadius: 6 }}
           >
-            <div className="absolute -right-6 -bottom-6 w-28 h-28 bg-white/10 rounded-full" />
-            <div className="absolute -right-2 -bottom-2 w-16 h-16 bg-white/10 rounded-full" />
+            <div className="absolute -end-6 -bottom-6 w-28 h-28 bg-white/10 rounded-full" />
+            <div className="absolute -end-2 -bottom-2 w-16 h-16 bg-white/10 rounded-full" />
             <div className="relative min-w-0">
               <AnimatedStat target={3} suffix="×" duration={1.0} inView={inView} className="text-white font-black text-4xl leading-none mb-2 sm:text-5xl lg:text-6xl" />
               <p className="text-white/80 text-xs font-bold uppercase tracking-widest">Faster decisions</p>
@@ -201,7 +201,7 @@ export default function BentoStats() {
             </p>
           </motion.div>
         </div>
-        <p className="text-white/20 text-[10px] mt-4 text-balance sm:text-right">* Based on design targets and industry benchmarks. Actual results will vary.</p>
+        <p className="text-white/20 text-[10px] mt-4 text-balance sm:text-end">* Based on design targets and industry benchmarks. Actual results will vary.</p>
       </div>
     </section>
   );

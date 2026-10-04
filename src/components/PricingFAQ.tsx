@@ -50,7 +50,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
     <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4, delay: index * 0.055 })} className="border-b border-gray-200 last:border-b-0">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 py-5 text-left group"
+        className="w-full flex items-center justify-between gap-4 py-5 text-start group"
       >
         <span
           className="text-base font-bold leading-snug transition-colors duration-150"
@@ -81,7 +81,7 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 pr-10 text-[#42526E] text-sm leading-snug">
+            <p className="pb-5 pe-10 text-[#42526E] text-sm leading-snug">
               {a}
             </p>
           </motion.div>

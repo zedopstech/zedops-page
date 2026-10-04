@@ -70,7 +70,7 @@ function FeatureCard({
         onClick={onToggle}
         aria-expanded={open}
         aria-controls={detailsId}
-        className="flex w-full items-center justify-between gap-3 p-5 text-left"
+        className="flex w-full items-center justify-between gap-3 p-5 text-start"
       >
         <div className="flex min-w-0 items-center gap-2.5">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/30">
@@ -460,7 +460,7 @@ export default function ModulePatternLanding({
                     <span className="h-1.5 w-1.5 rounded-full bg-[#FF5F57]" />
                     <span className="h-1.5 w-1.5 rounded-full bg-[#FEBC2E]" />
                     <span className="h-1.5 w-1.5 rounded-full bg-[#28C840]" />
-                    <span className="ml-2 h-3 flex-1 rounded-sm bg-white/70" />
+                    <span className="ms-2 h-3 flex-1 rounded-sm bg-white/70" />
                   </div>
                   <div className="flex min-h-[148px] items-center justify-center px-4 py-8">
                     <p className="text-center text-sm font-bold tracking-wide text-[#5A6A80]">{page.callout.dashboardLabel}</p>

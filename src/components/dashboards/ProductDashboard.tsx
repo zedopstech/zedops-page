@@ -169,7 +169,7 @@ export default function ProductDashboard({
             >
 
               {/* MAIN SECTIONS */}
-              <div className="relative h-full min-w-0 overflow-hidden rounded-l-xl bg-white">
+              <div className="relative h-full min-w-0 overflow-hidden rounded-s-xl bg-white">
                 <div
                   className={`h-full overflow-y-auto p-2 ${
                     data.sectionColumns === 2
@@ -204,7 +204,7 @@ export default function ProductDashboard({
                     bg-[#172B4D]
                     px-5
                     py-3
-                    text-left
+                    text-start
                     text-white
                     shadow-[0_18px_35px_-12px_rgba(23,43,77,0.55)]
                     transition-transform
@@ -213,7 +213,7 @@ export default function ProductDashboard({
                   "
                 >
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white">
-                    <span className="ml-1 border-y-[7px] border-l-[10px] border-y-transparent border-l-[#172B4D]" />
+                    <span className="ms-1 border-y-[7px] border-s-[10px] border-y-transparent border-s-[#172B4D]" />
                   </span>
 
                   <span>
@@ -231,7 +231,7 @@ export default function ProductDashboard({
 
               {/* RECENT ACTIVITY */}
               {data.activity.length > 0 && (
-              <div className="hidden h-full border-l border-gray-100 bg-white lg:block">
+              <div className="hidden h-full border-s border-gray-100 bg-white lg:block">
 
                 <div className="flex h-11 items-center justify-between border-b border-gray-100 px-4">
 
@@ -815,7 +815,7 @@ function TimelineRow({
           {Array.from({ length: 6 }).map((_, index) => (
             <span
               key={index}
-              className="border-l border-gray-200"
+              className="border-s border-gray-200"
             />
           ))}
         </div>

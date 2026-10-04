@@ -4,6 +4,8 @@ import { dropdownMenus, type DropdownKey } from "@/data/navDropdownMenus";
 import { TicketButton } from "./design-system/primitives";
 import MegaMenu from "./MegaMenu";
 import ZedOpsMark from "./ZedOpsMark";
+import LanguageToggle from "./LanguageToggle";
+import { useI18n } from "@/i18n";
 
 const topLinks = Object.keys(dropdownMenus) as DropdownKey[];
 
@@ -13,6 +15,7 @@ const topLinks = Object.keys(dropdownMenus) as DropdownKey[];
  * (36 + 64) so every page's top padding still clears it.
  */
 export default function Navbar() {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<DropdownKey | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -71,14 +74,14 @@ export default function Navbar() {
     >
       <div className="flex h-9 items-center justify-center bg-[#0E1B33] px-4 text-[13px]">
         <p className="truncate text-white/80">
-          <span className="hidden sm:inline">MEP execution, schedule to punch, tied to real work. </span>
-          <span className="font-semibold text-white">Zed AI</span> works on the same job data.
+          <span className="hidden sm:inline">{t("MEP execution, schedule to punch, tied to real work. ")}</span>
+          <span className="font-semibold text-white">Zed AI</span>{t(" works on the same job data.")}
         </p>
         <a
           href="/early-access"
-          className="ml-3 inline-flex shrink-0 items-center gap-1 font-semibold text-white hover:text-[#FFB37F]"
+          className="ms-3 inline-flex shrink-0 items-center gap-1 font-semibold text-white hover:text-[#FFB37F]"
         >
-          Get access <ArrowRight size={13} aria-hidden />
+          {t("Get access")} <ArrowRight size={13} aria-hidden />
         </a>
       </div>
 
@@ -102,7 +105,7 @@ export default function Navbar() {
               </span>
             </a>
 
-            <div className="ml-10 hidden h-full items-stretch gap-1 lg:flex xl:ml-12">
+            <div className="ms-4 hidden h-full min-w-0 items-stretch xl:flex xl:ms-6">
               {topLinks.map((label) => {
                 const on = activeDropdown === label;
                 return (
@@ -113,11 +116,11 @@ export default function Navbar() {
                     aria-controls="site-nav-panel"
                     onMouseEnter={() => setActiveDropdown(label)}
                     onClick={() => setActiveDropdown(on ? null : label)}
-                    className={`relative flex items-center gap-1 px-3 text-[14.5px] font-medium transition-colors ${
+                    className={`relative flex items-center gap-1 whitespace-nowrap px-2 text-[14px]  font-medium transition-colors ${
                       dark ? "text-white/80 hover:text-white" : on ? "text-brand-navy" : "text-[#3D4F6E] hover:text-brand-navy"
                     }`}
                   >
-                    {label}
+                    {t(label)}
                     <ChevronDown
                       size={14}
                       className={`transition-transform duration-200 ${dark ? "text-white/40" : "text-[#5F6B80]"} ${on ? "rotate-180" : ""}`}
@@ -125,32 +128,33 @@ export default function Navbar() {
                     />
                     <span
                       aria-hidden
-                      className={`absolute inset-x-3 -bottom-px h-[2px] bg-brand-orange transition-opacity ${on ? "opacity-100" : "opacity-0"}`}
+                      className={`absolute inset-x-2 -bottom-px h-[2px] bg-brand-orange transition-opacity ${on ? "opacity-100" : "opacity-0"}`}
                     />
                   </button>
                 );
               })}
             </div>
 
-            <div className="ml-auto hidden items-center gap-5 lg:flex" onMouseEnter={() => setActiveDropdown(null)}>
+            <div className="ms-auto hidden items-center gap-2 ps-4 xl:flex" onMouseEnter={() => setActiveDropdown(null)}>
               <a
                 href="#"
-                className={`inline-flex h-10 items-center rounded-lg border px-3.5 text-[14.5px] font-medium transition-colors ${
+                className={`inline-flex h-10 items-center whitespace-nowrap rounded-lg border px-2.5 text-[14px]  font-medium transition-colors ${
                   dark ? "border-white/20 text-white hover:border-white/40" : "border-transparent text-[#3D4F6E] hover:text-brand-navy"
                 }`}
               >
-                Log in
+                {t("Log in")}
               </a>
+              <LanguageToggle dark={dark} compact />
               <TicketButton href="/early-access" variant={dark ? "white" : "navy"} className="!text-[14px]">
-                Request a demo
+                {t("Request a demo")}
               </TicketButton>
             </div>
 
             <button
               type="button"
-              className={`ml-auto flex h-10 w-10 items-center justify-center rounded-md lg:hidden ${dark ? "text-white hover:bg-white/10" : "text-brand-navy hover:bg-[#F4F6FA]"}`}
+              className={`ms-auto flex h-10 w-10 items-center justify-center rounded-md xl:hidden ${dark ? "text-white hover:bg-white/10" : "text-brand-navy hover:bg-[#F4F6FA]"}`}
               onClick={() => setOpen((v) => !v)}
-              aria-label="Toggle menu"
+              aria-label={t("Toggle menu")}
               aria-expanded={open}
             >
               {open ? <X size={20} /> : <Menu size={20} />}
@@ -161,7 +165,7 @@ export default function Navbar() {
         {panelOpen ? (
           <div
             id="site-nav-panel"
-            className="absolute inset-x-0 top-full hidden border-b border-[#E3E8F0] bg-white shadow-[0_32px_64px_-32px_rgba(14,27,51,0.3)] lg:block"
+            className="absolute inset-x-0 top-full hidden border-b border-[#E3E8F0] bg-white shadow-[0_32px_64px_-32px_rgba(14,27,51,0.3)] xl:block"
           >
             <div className="mx-auto max-w-[1200px] px-6">
               <MegaMenu active={activeDropdown} onNavigate={() => setActiveDropdown(null)} />
@@ -170,18 +174,18 @@ export default function Navbar() {
         ) : null}
 
         {open ? (
-          <div className="max-h-[calc(100vh-100px)] overflow-y-auto border-b border-[#E3E8F0] bg-white px-5 pb-5 lg:hidden">
+          <div className="max-h-[calc(100vh-100px)] overflow-y-auto border-b border-[#E3E8F0] bg-white px-5 pb-5 xl:hidden">
             {topLinks.map((label) => (
               <details key={label} className="group border-b border-[#EDF0F5]">
                 <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-[16px] font-semibold text-brand-navy [&::-webkit-details-marker]:hidden">
-                  {label}
+                  {t(label)}
                   <ChevronDown size={18} className="text-[#5F6B80] transition-transform group-open:rotate-180" aria-hidden />
                 </summary>
                 <div className="space-y-4 pb-5">
                   {dropdownMenus[label].sections.map((section) => (
                     <div key={section.heading}>
                       <p className="mb-1.5 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#616D82]">
-                        {section.heading}
+                        {t(section.heading)}
                       </p>
                       {section.items.map((item) => (
                         <a
@@ -191,7 +195,7 @@ export default function Navbar() {
                           className="block py-2 text-[15px] text-[#2B3A55] hover:text-brand-navy"
                           onClick={() => setOpen(false)}
                         >
-                          {item.label}
+                          {t(item.label)}
                         </a>
                       ))}
                     </div>
@@ -201,14 +205,15 @@ export default function Navbar() {
             ))}
             <div className="mt-5 grid gap-3">
               <TicketButton href="/early-access" full>
-                Request a demo
+                {t("Request a demo")}
               </TicketButton>
               <a
                 href="#"
                 className="flex h-10 items-center justify-center rounded-lg border border-[#C9D2DF] text-[15px] font-semibold text-brand-navy"
               >
-                Log in
+                {t("Log in")}
               </a>
+              <LanguageToggle className="justify-center !border-[#C9D2DF] !text-brand-navy" />
             </div>
           </div>
         ) : null}

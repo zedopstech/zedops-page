@@ -460,7 +460,7 @@ export default function QualitySafetyLanding(_props: {
               onClick={() => setIsDemoOpen(false)}
               className="
                 absolute
-                right-3
+                end-3
                 top-3
                 z-10
                 flex
@@ -918,7 +918,7 @@ export default function QualitySafetyLanding(_props: {
                     key={benefit.title}
                     className={`flex items-center gap-3 px-4 py-3 ${
                       index < coreComparison.benefits.length - 1
-                        ? "border-b border-gray-100 lg:border-b-0 lg:border-r"
+                        ? "border-b border-gray-100 lg:border-b-0 lg:border-e"
                         : ""
                     }`}
                   >
@@ -1057,7 +1057,7 @@ export default function QualitySafetyLanding(_props: {
                     py-8
                     lg:w-[235px]
                     lg:border-b-0
-                    lg:border-r
+                    lg:border-e
                     xl:w-[255px]
                   "
                 >
@@ -1088,9 +1088,9 @@ export default function QualitySafetyLanding(_props: {
                           px-5
                           py-7
                           sm:px-6
-                          lg:border-r
+                          lg:border-e
                           lg:border-b-0
-                          lg:last:border-r-0
+                          lg:last:border-e-0
                         "
                       >
                         <div className="flex min-w-0 flex-col">

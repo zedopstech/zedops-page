@@ -112,7 +112,7 @@ export default function PricingTestimonials() {
               </div>
 
               {/* Right  -  badge panel */}
-              <div className="flex items-center justify-center bg-white m-8 md:m-10 md:ml-0 rounded-md">
+              <div className="flex items-center justify-center bg-white m-8 md:m-10 md:ms-0 rounded-md">
                 <div className="text-center px-6 py-10">
                   <div
                     className="text-2xl font-black leading-snug whitespace-pre-line"

@@ -28,7 +28,7 @@ export default function DashboardKpis({ kpis }: DashboardKpisProps) {
             px-3 py-3
             sm:px-4
             ${index < kpis.length - 1
-              ? "border-b border-gray-100 lg:border-b-0 lg:border-r"
+              ? "border-b border-gray-100 lg:border-b-0 lg:border-e"
               : ""}
           `}
         >

@@ -334,10 +334,8 @@ export const workforceWhy: string[] = [
 ];
 
 export const workforceAiSoon: { icon: LucideIcon; title: string; body: string }[] = [
-  { icon: FileTextIcon, title: "Export reports", body: "Export monthly and weekly reports." },
   { icon: HardHat, title: "Crew matching", body: "Suggest the right people by trade, certs, and availability." },
   { icon: TrendingUp, title: "Productivity look-ahead", body: "Surface crews likely to miss plan before the day ends." },
-  { icon: ShieldCheck, title: "Missing certifications", body: "Prompt when documents or tickets are about to expire." },
 ];
 
 export const workforceCallout = {

@@ -56,7 +56,7 @@ const phases = [
 const pad = (n: number) => String(n).padStart(2, "0");
 
 /** Crop/zoom shared by the screenshot and its outline markers so the markers stay on target. */
-const shotCrop = "absolute left-0 top-0 w-[200%] -translate-y-[8.4%] sm:w-[max(110%,740px)] lg:w-[max(100%,1000px)]";
+const shotCrop = "absolute start-0 top-0 w-[200%] -translate-y-[8.4%] sm:w-[max(110%,740px)] lg:w-[max(100%,1000px)]";
 
 /** Dashed drafting outline on a region of the screenshot (percentages of the full 2000×1134 image). */
 function ShotMarker({ n, box, markerRef }: { n: string; box: [number, number, number, number]; markerRef: RefObject<HTMLDivElement | null> }) {
@@ -163,11 +163,11 @@ function HeroSheet() {
     <div ref={stageRef} className="relative mx-auto max-w-[1110px] pt-9">
       {/* Dimension line */}
       <div className="absolute inset-x-0 top-0 flex h-5 items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#5F6B80]" aria-hidden>
-        <span className="absolute left-0 top-1 h-3 w-px bg-[#A8B8CC]" />
+        <span className="absolute start-0 top-1 h-3 w-px bg-[#A8B8CC]" />
         <span className="h-px flex-1 bg-[#A8B8CC]" />
         <span className="shrink-0">Estimation workspace · live project view</span>
         <span className="h-px flex-1 bg-[#A8B8CC]" />
-        <span className="absolute right-0 top-1 h-3 w-px bg-[#A8B8CC]" />
+        <span className="absolute end-0 top-1 h-3 w-px bg-[#A8B8CC]" />
       </div>
 
       {/* Sheet */}
@@ -175,10 +175,10 @@ function HeroSheet() {
         <CornerTicks />
         <ProductView markerRefs={[marker1, marker2]} />
         {/* Title block */}
-        <div className="absolute bottom-2.5 right-2.5 z-10 flex border border-brand-navy bg-white font-mono text-[9.5px] font-semibold uppercase leading-none tracking-[0.1em] text-brand-navy sm:bottom-3.5 sm:right-3.5 sm:text-[10px]">
+        <div className="absolute bottom-2.5 end-2.5 z-10 flex border border-brand-navy bg-white font-mono text-[9.5px] font-semibold uppercase leading-none tracking-[0.1em] text-brand-navy sm:bottom-3.5 sm:end-3.5 sm:text-[10px]">
           <span className="bg-brand-navy px-2.5 py-2 text-white">E-01</span>
-          <span className="hidden border-l border-brand-navy px-2.5 py-2 sm:block">Estimation dashboard</span>
-          <span className="border-l border-brand-navy px-2.5 py-2">Rev <b className="font-bold text-brand-orange">B</b></span>
+          <span className="hidden border-s border-brand-navy px-2.5 py-2 sm:block">Estimation dashboard</span>
+          <span className="border-s border-brand-navy px-2.5 py-2">Rev <b className="font-bold text-brand-orange">B</b></span>
         </div>
       </div>
 
@@ -196,7 +196,7 @@ function HeroSheet() {
       ) : null}
 
       {/* Callouts */}
-      <div ref={callout1} className="absolute -left-10 top-[58%] z-30 hidden w-[250px] items-start gap-2.5 rounded-xl border border-[#DCE3EE] bg-white p-4 shadow-[0_18px_36px_-18px_rgba(12,31,63,0.45)] lg:flex">
+      <div ref={callout1} className="absolute -start-10 top-[58%] z-30 hidden w-[250px] items-start gap-2.5 rounded-xl border border-[#DCE3EE] bg-white p-4 shadow-[0_18px_36px_-18px_rgba(12,31,63,0.45)] lg:flex">
         <span className="rounded-[4px] bg-brand-orange px-1.5 py-1 font-mono text-[11px] font-bold leading-none text-white">01</span>
         <div>
           <span className="font-mono text-[10px] font-semibold tracking-wider text-[#5F6B80]">ESTIMATE INPUT</span>
@@ -204,7 +204,7 @@ function HeroSheet() {
           <p className="mt-1 text-[12px] leading-snug text-[#616D82]">The detail behind every price stays visible.</p>
         </div>
       </div>
-      <div ref={callout2} className="absolute -right-10 top-[17%] z-30 hidden w-[230px] items-start gap-2.5 rounded-xl border border-[#DCE3EE] bg-white p-4 shadow-[0_18px_36px_-18px_rgba(12,31,63,0.45)] lg:flex">
+      <div ref={callout2} className="absolute -end-10 top-[17%] z-30 hidden w-[230px] items-start gap-2.5 rounded-xl border border-[#DCE3EE] bg-white p-4 shadow-[0_18px_36px_-18px_rgba(12,31,63,0.45)] lg:flex">
         <span className="rounded-[4px] bg-brand-orange px-1.5 py-1 font-mono text-[11px] font-bold leading-none text-white">02</span>
         <div>
           <span className="font-mono text-[10px] font-semibold tracking-wider text-[#5F6B80]">CONNECTED HANDOVER</span>
@@ -220,7 +220,7 @@ function HeroSheet() {
 /*  C1 · Capability vignettes (illustrative product slices, figures are fake)  */
 /* -------------------------------------------------------------------------- */
 
-const th = "border-b border-[#E3E8F0] bg-[#FBFCFE] px-2.5 py-2 text-left font-mono text-[9.5px] font-semibold uppercase tracking-[0.1em] text-[#5F6B80]";
+const th = "border-b border-[#E3E8F0] bg-[#FBFCFE] px-2.5 py-2 text-start font-mono text-[9.5px] font-semibold uppercase tracking-[0.1em] text-[#5F6B80]";
 const td = "whitespace-nowrap border-b border-[#EDF0F5] px-2.5 py-2 text-[#3D4F6E]";
 
 function VignetteTable({ head, rows, right, total, mobileHidden = [] }: { head: string[]; rows: ReactNode[][]; right: number[]; total?: ReactNode[]; mobileHidden?: number[] }) {
@@ -229,17 +229,17 @@ function VignetteTable({ head, rows, right, total, mobileHidden = [] }: { head: 
     <div className="overflow-x-auto rounded-lg border border-[#E3E8F0] bg-white shadow-[0_10px_24px_-18px_rgba(23,43,77,0.35)]">
       <table className="w-full border-collapse text-[12px] tabular-nums">
         <thead>
-          <tr>{head.map((h, i) => <th key={h} className={`${th} ${right.includes(i) ? "!text-right" : ""} ${hide(i)}`}>{h}</th>)}</tr>
+          <tr>{head.map((h, i) => <th key={h} className={`${th} ${right.includes(i) ? "!text-end" : ""} ${hide(i)}`}>{h}</th>)}</tr>
         </thead>
         <tbody>
           {rows.map((r, ri) => (
             <tr key={ri} className="transition-colors hover:bg-[#FFF8F3]">
-              {r.map((c, i) => <td key={i} className={`${td} ${right.includes(i) ? "text-right" : ""} ${hide(i)}`}>{c}</td>)}
+              {r.map((c, i) => <td key={i} className={`${td} ${right.includes(i) ? "text-end" : ""} ${hide(i)}`}>{c}</td>)}
             </tr>
           ))}
           {total ? (
             <tr className="bg-[#FFF8F3]">
-              {total.map((c, i) => <td key={i} className={`whitespace-nowrap px-2.5 py-2 font-bold text-brand-navy ${right.includes(i) ? "text-right" : ""} ${hide(i)}`}>{c}</td>)}
+              {total.map((c, i) => <td key={i} className={`whitespace-nowrap px-2.5 py-2 font-bold text-brand-navy ${right.includes(i) ? "text-end" : ""} ${hide(i)}`}>{c}</td>)}
             </tr>
           ) : null}
         </tbody>
@@ -316,7 +316,7 @@ function CostSplitVignette() {
           <span className="h-2 overflow-hidden rounded-sm bg-[#EDF0F5]">
             <span className={`block h-full rounded-sm ${r.color}`} style={{ width: `${Math.round((r.pct / 46) * 100)}%` }} />
           </span>
-          <b className="text-right font-semibold tabular-nums text-brand-navy">{r.pct}%</b>
+          <b className="text-end font-semibold tabular-nums text-brand-navy">{r.pct}%</b>
         </div>
       ))}
     </div>
@@ -359,7 +359,7 @@ function TrendVignette() {
       <path d="M0 110 L50 96 L100 100 L150 78 L200 82 L250 60 L300 54 L350 40 L400 34 L400 140 L0 140Z" fill="rgba(23,43,77,0.07)" />
       <path d="M0 110 L50 96 L100 100 L150 78 L200 82 L250 60 L300 54 L350 40 L400 34" fill="none" stroke="#172B4D" strokeWidth="2" vectorEffect="non-scaling-stroke" />
     </svg>
-    <span aria-hidden className="absolute right-0 top-[24.3%] h-2.5 w-2.5 -translate-y-1/2 translate-x-1/2 rounded-full bg-brand-orange ring-4 ring-brand-orange/15" />
+    <span aria-hidden className="absolute end-0 top-[24.3%] h-2.5 w-2.5 -translate-y-1/2 translate-x-1/2 rounded-full bg-brand-orange ring-4 ring-brand-orange/15" />
     </div>
   );
 }
@@ -428,15 +428,15 @@ function WorkflowRuler({ isMobile }: { isMobile: boolean }) {
                     setActive(next);
                     document.getElementById(`estimation-phase-${next}`)?.focus();
                   }}
-                  className={`group relative rounded-lg border px-3 py-2.5 text-left text-[14px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange sm:text-[15px] lg:rounded-none lg:border-0 lg:bg-transparent lg:px-2.5 lg:pb-5 lg:pt-2 lg:text-center ${
+                  className={`group relative rounded-lg border px-3 py-2.5 text-start text-[14px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange sm:text-[15px] lg:rounded-none lg:border-0 lg:bg-transparent lg:px-2.5 lg:pb-5 lg:pt-2 lg:text-center ${
                     selected ? "border-brand-orange/40 bg-white text-brand-orange" : "border-[#E3E8F0] text-[#5F6B80] hover:text-brand-navy"
                   }`}
                 >
-                  <span className="mr-1.5 font-mono text-[11px]">{pad(index + 1)}</span>
+                  <span className="me-1.5 font-mono text-[11px]">{pad(index + 1)}</span>
                   {item.label}
-                  <span aria-hidden className="absolute hidden lg:block left-[6px] right-3 bottom-[6px] h-px bg-current" />
+                  <span aria-hidden className="absolute hidden lg:block left-[6px] end-3 bottom-[6px] h-px bg-current" />
                   <span aria-hidden className="absolute hidden lg:block bottom-px left-[6px] h-[11px] w-px bg-current" />
-                  <span aria-hidden className="absolute hidden lg:block bottom-px right-3 h-[11px] w-px bg-current" />
+                  <span aria-hidden className="absolute hidden lg:block bottom-px end-3 h-[11px] w-px bg-current" />
                 </button>
               );
             })}
@@ -449,11 +449,11 @@ function WorkflowRuler({ isMobile }: { isMobile: boolean }) {
               return (
                 <li
                   key={step.title}
-                  className={`relative border-t-2 border-brand-navy pr-3 pt-6 transition-opacity duration-300 ${on ? "opacity-100" : "opacity-45"}`}
+                  className={`relative border-t-2 border-brand-navy pe-3 pt-6 transition-opacity duration-300 ${on ? "opacity-100" : "opacity-45"}`}
                 >
                   <span
                     aria-hidden
-                    className={`absolute -top-[7px] left-0 h-3 w-3 rotate-45 border-2 transition-colors duration-300 ${
+                    className={`absolute -top-[7px] start-0 h-3 w-3 rotate-45 border-2 transition-colors duration-300 ${
                       on ? "border-brand-orange bg-brand-orange" : "border-brand-navy bg-[#F8F9FD]"
                     }`}
                   />

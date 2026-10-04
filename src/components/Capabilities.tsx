@@ -165,7 +165,7 @@ export default function Capabilities() {
             {/* =======================================================
                 01 — PRE-CONSTRUCTION
             ======================================================== */}
-            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] p-5 md:border-r lg:row-span-2 lg:border-b-0">
+            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] p-5 md:border-e lg:row-span-2 lg:border-b-0">
               <span
                 className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange"
                 aria-hidden
@@ -188,7 +188,7 @@ export default function Capabilities() {
             {/* =======================================================
                 02 — CONSTRUCTION EXECUTION
             ======================================================== */}
-            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] bg-white p-5 md:border-r-0 lg:row-span-2 lg:border-r lg:border-b-0">
+            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] bg-white p-5 md:border-e-0 lg:row-span-2 lg:border-e lg:border-b-0">
               <span
                 className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange"
                 aria-hidden
@@ -211,7 +211,7 @@ export default function Capabilities() {
             {/* =======================================================
                 03 — PROJECT CLOSEOUT
             ======================================================== */}
-            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] p-5 md:border-r lg:border-b-0">
+            <article className="group/zone relative flex h-full min-h-0 flex-col border-b border-[#E5E7EB] p-5 md:border-e lg:border-b-0">
               <span
                 className="absolute inset-x-0 top-0 h-[3px] bg-brand-orange"
                 aria-hidden
@@ -264,7 +264,7 @@ export default function Capabilities() {
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/10">
                   <Cpu size={20} className="text-brand-orange" aria-hidden />
                 </span>
-                <div className="min-w-0 text-left">
+                <div className="min-w-0 text-start">
                   <p className="text-base font-extrabold text-white">Zed AI</p>
                   <p className="mt-1 text-sm leading-snug text-[#B8C4D4] sm:text-sm">
                     Copilot on live project data — insights, drafts, and actions with your permissions.

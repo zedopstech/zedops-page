@@ -89,7 +89,7 @@ export default function Resources() {
                       </div>
                     )}
                     <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
-                    <div className="absolute bottom-3 left-3">
+                    <div className="absolute bottom-3 start-3">
                       <span
                         className="bg-brand-orange px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-white"
                         style={{ borderRadius: 6 }}
@@ -114,7 +114,7 @@ export default function Resources() {
               );
             })}
 
-            <div className="flex flex-col gap-0 border-gray-100 lg:border-l lg:pl-6">
+            <div className="flex flex-col gap-0 border-gray-100 lg:border-s lg:ps-6">
               {sidebarItems.map((item, i) => (
                 <a
                   key={`${item.href}-${i}`}

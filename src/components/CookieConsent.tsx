@@ -28,6 +28,7 @@
  *     that read as brown beside the real orange.
  */
 import { useEffect, useRef, useState } from "react";
+import { useI18n } from "@/i18n";
 import { readConsent, writeConsent, type ConsentValue } from "@/lib/consent";
 import { loadAnalytics } from "@/lib/analytics";
 
@@ -41,6 +42,7 @@ type Props = {
 };
 
 export default function CookieConsent({ openSignal = 0, onDismiss }: Props) {
+  const { t } = useI18n();
   const [choice, setChoice] = useState<ConsentValue | null>(null);
   const [visible, setVisible] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -77,8 +79,8 @@ export default function CookieConsent({ openSignal = 0, onDismiss }: Props) {
   return (
     <div
       role="region"
-      aria-label="Cookie consent"
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-4 sm:justify-end sm:px-0 sm:pr-6 sm:pb-6"
+      aria-label={t("Cookie consent")}
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-4 sm:justify-end sm:px-0 sm:pe-6 sm:pb-6"
     >
       <div className="pointer-events-auto w-full max-w-[360px] rounded-[10px] border border-[#CFD9E6] bg-white p-5 shadow-[0_18px_44px_-18px_rgba(23,43,77,0.38)]">
         <h2
@@ -86,16 +88,15 @@ export default function CookieConsent({ openSignal = 0, onDismiss }: Props) {
           tabIndex={-1}
           className="text-[15px] font-semibold tracking-tight text-brand-navy outline-none"
         >
-          Analytics cookies
+          {t("Analytics cookies")}
         </h2>
         <p className="mt-1.5 text-[13px] leading-[1.5] text-[#5E6C84]">
-          We use Google Analytics to see which pages are read. It stays off until
-          you agree &mdash; see the{" "}
+          {t("We use Google Analytics to see which pages are read. It stays off until you agree — see the ")}
           <a
             href="/privacy"
             className="font-medium text-brand-navy underline decoration-brand-orange decoration-2 underline-offset-2 hover:text-[#0E1B33]"
           >
-            privacy policy
+            {t("privacy policy")}
           </a>
           .
         </p>
@@ -105,14 +106,14 @@ export default function CookieConsent({ openSignal = 0, onDismiss }: Props) {
             onClick={() => decide("denied")}
             className="flex-1 rounded-[4px] border border-[#CFD9E6] bg-white px-4 py-2 text-[13px] font-semibold text-brand-navy transition hover:border-brand-navy hover:bg-[#F4F6FA] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
           >
-            Decline
+            {t("Decline")}
           </button>
           <button
             type="button"
             onClick={() => decide("granted")}
             className="flex-1 rounded-[4px] bg-brand-navy px-4 py-2 text-[13px] font-semibold text-white transition hover:bg-brand-navy/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
           >
-            Accept
+            {t("Accept")}
           </button>
         </div>
       </div>

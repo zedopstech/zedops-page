@@ -35,13 +35,13 @@ export default function SectionHeader({
       >
         <h2
           id={id}
-          className={`max-w-2xl text-left ${h2Class} text-brand-navy lg:max-w-none ${titleClassName}`}
+          className={`max-w-2xl text-start ${h2Class} text-brand-navy lg:max-w-none ${titleClassName}`}
         >
           {title}
         </h2>
         {subtitle ? (
           <p
-            className={`max-w-2xl text-left text-[16px] leading-[1.6] text-[#5E6C84] sm:text-[17px] lg:max-w-md lg:pb-2 ${subtitleClassName}`}
+            className={`max-w-2xl text-start text-[16px] leading-[1.6] text-[#5E6C84] sm:text-[17px] lg:max-w-md lg:pb-2 ${subtitleClassName}`}
           >
             {subtitle}
           </p>

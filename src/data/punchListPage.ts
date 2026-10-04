@@ -421,16 +421,6 @@ export const punchAiRoadmap = {
 
     },
 
-    {
-
-      icon: FileBarChart,
-
-      title: "AI Summary & Reports",
-
-      body: "Auto-generate snag summaries & insights.",
-
-    },
-
   ],
 
 } as const;

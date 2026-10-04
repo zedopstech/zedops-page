@@ -17,7 +17,7 @@ export default function ValueStrip() {
         {values.map((v, i) => (
           <li
             key={v.title}
-            className={`border-[#E8ECF2] px-6 py-8 sm:px-8 ${i > 0 ? "border-t sm:border-t-0" : ""} ${i >= 2 ? "sm:border-t lg:border-t-0" : ""} ${i % 2 === 1 ? "sm:border-l" : ""} ${i === 2 ? "lg:border-l" : ""}`}
+            className={`border-[#E8ECF2] px-6 py-8 sm:px-8 ${i > 0 ? "border-t sm:border-t-0" : ""} ${i >= 2 ? "sm:border-t lg:border-t-0" : ""} ${i % 2 === 1 ? "sm:border-s" : ""} ${i === 2 ? "lg:border-s" : ""}`}
           >
             <v.Icon size={18} className="text-brand-orange" aria-hidden />
             <p className="mt-4 text-[15px] font-medium text-brand-navy">{v.title}</p>

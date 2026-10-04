@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useI18n } from "@/i18n";
 import { Pause, Play } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -36,6 +37,7 @@ function prefersReducedMotion() {
 }
 
 export default function HeroVideoBand() {
+  const { t } = useI18n();
   const isMobile = useIsMobile();
   const videoRef = useRef<HTMLVideoElement>(null);
   /** Set once the visitor pauses by hand, so we never fight their choice. */
@@ -132,8 +134,8 @@ export default function HeroVideoBand() {
         <button
           type="button"
           onClick={toggle}
-          aria-label={playing ? "Pause background video" : "Play background video"}
-          className="absolute bottom-[7.5rem] right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-[#0B1A31]/45 text-white backdrop-blur-sm transition-colors duration-150 hover:bg-[#0B1A31]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-6 lg:right-8"
+          aria-label={playing ? t("Pause background video") : t("Play background video")}
+          className="absolute bottom-[7.5rem] end-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-[#0B1A31]/45 text-white backdrop-blur-sm transition-colors duration-150 hover:bg-[#0B1A31]/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:end-6 lg:end-8"
         >
           {playing ? (
             <Pause size={14} aria-hidden />

@@ -38,6 +38,12 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
         detail:
           "Permissions are enforced across navigation, data, and in-product tools such as Zed AI. A user only gets menus, records, and copilot answers that match their role flags, so field, office, and leadership views stay appropriate.",
       },
+      {
+        name: "Two-factor authentication & session policy",
+        summary: "Extra sign-in protection and control over how long sessions last.",
+        detail:
+          "Turn on two-factor sign-in and set a session policy for the organisation. Users can review their active sessions, and administrators decide how long a session stays valid.",
+      },
     ],
   },
   {
@@ -67,6 +73,18 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
         summary: "Shared reference data for estimating and operations  -  one structured library.",
         detail:
           "Central tabs cover management, engineering, materials, labour, productivity, overhead, tools, and equipment so estimators and PMs pull from the same numbers and definitions. That reduces duplicate spreadsheets and keeps project assumptions aligned with how the organisation prices and plans work.",
+      },
+      {
+        name: "Leave & time cards",
+        summary: "Time cards, leave requests and leave balances in one workforce record.",
+        detail:
+          "Employees submit time cards and leave requests, managers approve them, and balances update automatically. Time-card settings and location access keep attendance rules consistent across sites.",
+      },
+      {
+        name: "Payroll files for the GCC",
+        summary: "Mudad and WPS settings for UAE payroll.",
+        detail:
+          "Configure WPS and Mudad payroll settings alongside employee ID, department and KYC details, so the workforce record carries what GCC payroll processing needs.",
       },
     ],
   },
@@ -158,6 +176,18 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
         detail:
           "Compare revisions, lock approved versions, and explain what changed in client meetings. The estimate remains a controlled record, not a folder of conflicting files.",
       },
+      {
+        name: "Drawing takeoff",
+        summary: "Register drawings, measure quantities and push them to the estimate.",
+        detail:
+          "A takeoff workspace tied to a drawing register produces a takeoff report, and the quantities push straight into the estimate so measurement and pricing stay in one chain.",
+      },
+      {
+        name: "BOQ bulk import & publish to budget",
+        summary: "Import a BOQ in bulk and publish the approved estimate as the project budget.",
+        detail:
+          "Bring an existing BOQ in from a spreadsheet, route the estimate through approval, then publish it to become the project budget. A later re-baseline records a budget revision instead of overwriting history.",
+      },
     ],
   },
   {
@@ -175,6 +205,12 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
         summary: "Assign work, track status, and export or hand off where supported.",
         detail:
           "A task dashboard and lists connect people to concrete deliverables with owners and due dates. Workflow hooks and exports (where present) let teams push status into adjacent processes without duplicating the same task in three tools.",
+      },
+      {
+        name: "Gantt chart, lookahead & dependencies",
+        summary: "See the programme as a Gantt, plan the next weeks, and link activities.",
+        detail:
+          "Activity dependencies drive the Gantt chart, and a lookahead view shows what is due in the coming weeks. Activity detail pages keep progress, tasks and notes attached to each line of the programme.",
       },
     ],
   },
@@ -266,6 +302,12 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
         detail:
           "Field teams open the log quickly from anywhere in the app; if no project is selected, the flow prompts for one first. That keeps entries attributed to the right job and feeds reporting, AI context, and owner updates from a single source.",
       },
+      {
+        name: "Document search",
+        summary: "Find documents by meaning, not only by file name.",
+        detail:
+          "Uploaded documents are read (including scanned pages) and indexed so you can search by what a document says. Recent, starred, shared and trash views keep everyday files easy to reach.",
+      },
     ],
   },
   {
@@ -301,6 +343,30 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
         summary: "Request, review, and track payments against contract and progress.",
         detail:
           "Bundle the documentation needed for each pay application so approvers see quantities, retention, and prior payments in one place. Status visibility reduces “where is my cheque?” calls between GC, owner, and finance.",
+      },
+      {
+        name: "Advance payments & client invoices",
+        summary: "Track money paid out in advance and invoices raised to the client.",
+        detail:
+          "Advance payments and client invoices sit beside payment requests and change orders, so commitments, billing and cash position come from the same project record.",
+      },
+      {
+        name: "Multi-currency & exchange rates",
+        summary: "Work in several currencies with an exchange-rate policy.",
+        detail:
+          "Record costs in the currency they were incurred in. An exchange-rate policy converts them for reporting, and stale-rate warnings prompt you to refresh rates before they distort a figure.",
+      },
+      {
+        name: "Vendor retention",
+        summary: "Request, approve and release retention held back from vendors.",
+        detail:
+          "Retention releases go through a request and a second-person approval, and the retention balance shows on the purchase order so nothing is released twice.",
+      },
+      {
+        name: "Budget anomaly detection",
+        summary: "Flag budget lines that move out of pattern.",
+        detail:
+          "A built-in model highlights budget lines whose cost behaviour looks unusual, so a reviewer can look at them before they become a month-end surprise.",
       },
     ],
   },
@@ -362,6 +428,30 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
         detail:
           "Each path carries the fields and approvals that match how your company buys, moves, or reserves stock. Typed requests feed reporting so you can see volume and cycle time by category.",
       },
+      {
+        name: "Rate contracts",
+        summary: "Agree rates once and apply them per purchase-order line.",
+        detail:
+          "A rate contract can be created from the awarded RFQ and then referenced on individual purchase-order lines, so agreed pricing is applied consistently.",
+      },
+      {
+        name: "Goods receipts, delivery notes & returns",
+        summary: "Record what arrived, what was issued, and what went back.",
+        detail:
+          "Goods receipts (with additional costs), delivery notes, issue returns and purchase returns update stock as they are posted, giving a complete trail from purchase to site.",
+      },
+      {
+        name: "Inventory valuation",
+        summary: "Valuation ledger with revaluation and write-downs.",
+        detail:
+          "Stock is valued from a ledger that supports revaluation, net-realisable-value write-downs, standard-cost variances and costing-policy overrides, with diagnostics to check ledger integrity.",
+      },
+      {
+        name: "Vendor portal",
+        summary: "A separate login for vendors to quote, deliver and invoice.",
+        detail:
+          "Vendors receive RFQ invitations and enter quotes, see purchase orders, upload invoices and send advance shipping notices, without needing access to the rest of your workspace.",
+      },
     ],
   },
   {
@@ -379,6 +469,18 @@ export const platformFeatureSections: PlatformFeatureSection[] = [
         summary: "Pull structured data out for analysis where routes exist.",
         detail:
           "When implemented for a given object type, exports let finance and BI teams work in spreadsheets or downstream systems without manual copy-paste. Exports respect the same permission boundaries as the interactive app.",
+      },
+      {
+        name: "Scheduled AI briefs",
+        summary: "Recurring summaries delivered to the people who need them.",
+        detail:
+          "Build a brief once, choose who receives it and when, and Zed AI assembles it from the current project record with charts, ready to review.",
+      },
+      {
+        name: "Reports across modules",
+        summary: "Sixteen report types from budgets to time cards.",
+        detail:
+          "Ready-made reports cover budgets, daily logs, direct and indirect costs, incidents, inspections, leave, requests, purchase orders, payment requests, snags, tasks and time cards.",
       },
     ],
   },

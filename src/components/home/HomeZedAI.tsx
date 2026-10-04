@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { useI18n } from "@/i18n";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
@@ -31,6 +32,7 @@ const panels: { title: string; body: string; mock: ReactNode }[] = [
 
 /** Zed AI: header, then a 2×2 grid of panels, each a two-tone line over a small live product mock. */
 export default function ZedAIPreview() {
+  const { t } = useI18n();
   const isMobile = useIsMobile();
   return (
     <Section id="zed-ai" labelledBy="dp-zedai">
@@ -38,30 +40,29 @@ export default function ZedAIPreview() {
         <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
           <SplitHeader
             id="dp-zedai"
-            title={<>Your construction <Highlight>intelligence copilot.</Highlight></>}
-            body="Zed AI works on the same permissioned project data as your team: it drafts from daily logs, flags risk, and suggests the next step, without exporting anything to a generic LLM."
-            cta={<TicketButton href="/zed-ai">Explore Zed AI</TicketButton>}
+            title={<>{t("Your construction ")}<Highlight>{t("intelligence copilot.")}</Highlight></>}
+            body={t("Zed AI works on the same permissioned project data as your team: it drafts from daily logs, flags risk, and suggests the next step, without exporting anything to a generic LLM.")}
+            cta={<TicketButton href="/zed-ai">{t("Explore Zed AI")}</TicketButton>}
           />
         </motion.div>
       </div>
 
-      <div className="grid border-t border-[#E8ECF2] lg:grid-cols-2">
+      <div className="m-carousel m-carousel-tall grid border-t border-[#E8ECF2] lg:grid-cols-2">
         {panels.map((p, i) => (
           <motion.div
             key={p.title}
             {...scrollMotionProps(isMobile, { y: 18, duration: 0.5, delay: (i % 2) * 0.08 })}
-            className={`flex flex-col border-[#E8ECF2] bg-[#F7F8FA] px-6 pt-10 pb-10 sm:px-10 sm:pt-12 lg:px-12 ${i > 0 ? "border-t" : ""} ${i === 1 ? "lg:border-t-0 lg:border-l" : ""} ${i === 3 ? "lg:border-l" : ""}`}
+            className={`flex flex-col border-[#E8ECF2] bg-[#F7F8FA] px-6 pt-10 pb-10 sm:px-10 sm:pt-12 lg:px-12 ${i > 0 ? "border-t" : ""} ${i === 1 ? "lg:border-t-0 lg:border-s" : ""} ${i === 3 ? "lg:border-s" : ""}`}
           >
             <h3 className="max-w-[26ch] text-[20px] leading-[1.35] font-medium tracking-[-0.02em] text-brand-navy sm:text-[22px]">
-              {p.title} <Muted>{p.body}</Muted>
+              {t(p.title)} <Muted>{t(p.body)}</Muted>
             </h3>
             <div className="mt-10 flex flex-1 items-center justify-center">
-              <div className="w-full max-w-[460px]">{p.mock}</div>
+              <div dir="ltr" className="w-full max-w-[460px]">{p.mock}</div>
             </div>
           </motion.div>
         ))}
       </div>
-
     </Section>
   );
 }

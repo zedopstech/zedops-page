@@ -98,7 +98,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="border-t border-[#E3E8F0] bg-white px-5 py-12 sm:px-8 lg:border-t-0 lg:border-l lg:px-14 lg:py-16">
+            <div className="border-t border-[#E3E8F0] bg-white px-5 py-12 sm:px-8 lg:border-t-0 lg:border-s lg:px-14 lg:py-16">
               {lead.sent ? (
                 <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex min-h-[420px] flex-col items-start justify-center">
                   <CheckCircle2 size={36} className="text-[#1D9A5B]" aria-hidden />

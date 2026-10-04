@@ -368,7 +368,7 @@ export default function Hero() {
       {/* <div className="relative z-10 mt-5 border-t border-gray-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-center text-xs text-[#97A0AF] sm:text-left">
+            <p className="text-center text-xs text-[#97A0AF] sm:text-start">
               <a
                 href="/early-access"
                 className="font-bold text-brand-navy underline-offset-2 hover:text-brand-orange hover:underline"

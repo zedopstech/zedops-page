@@ -10,34 +10,39 @@ import { framePad, Highlight, Muted, Section, SplitHeader } from "@/components/d
 import { ModuleClosingCta } from "@/components/module/ModuleSections";
 
 const pillars = [
-  { icon: Database, title: "A database per customer", body: "Each organisation runs on its own dedicated database. Your project data is never mixed with anyone else’s.", detail: "One tenant, one database" },
-  { icon: Cloud, title: "Private cloud hosting", body: "Hosted on AWS with databases inside private networks, never exposed to the public internet.", detail: "AES-256 at rest · TLS 1.3 in transit" },
-  { icon: Users, title: "Access by role", body: "Every action is checked against the user’s role, so each person sees only what their job needs.", detail: "Enforced in the app and the database" },
-  { icon: Key, title: "Bring your own AI key", body: "Enterprise customers can run Zed AI on their own OpenAI, Azure OpenAI or Anthropic account.", detail: "Your data never trains shared models" },
+  { icon: Database, title: "A database per customer", body: "Each organisation runs on its own dedicated database, so your project records are kept apart from every other customer’s.", detail: "One tenant, one database" },
+  { icon: Cloud, title: "Private networking", body: "Application and database services run on private networks behind a single public web edge. The database is not exposed to the internet.", detail: "TLS in transit" },
+  { icon: Users, title: "Access by role", body: "Every action is checked against the user’s role and permissions, so each person sees only what their job needs. Vendors sign in through a separate portal.", detail: "Permissions enforced in the application" },
+  { icon: Key, title: "Control over AI", body: "Zed AI only reads what your role can already open, and any change it proposes waits for your approval. Customers can add their own OpenAI or Anthropic key.", detail: "AI keys stored encrypted" },
 ];
 
 const flow = [
-  { icon: Users, title: "Sign in", body: "Identity and role are verified before any data is returned." },
-  { icon: Lock, title: "Private network", body: "Requests run inside a private cloud network with no public database endpoint." },
-  { icon: Database, title: "Your database", body: "Your organisation’s own encrypted database answers the request." },
+  { icon: Users, title: "Sign in", body: "Identity and role are verified, with two-factor sign-in and your session policy applied, before any data is returned." },
+  { icon: Lock, title: "Private network", body: "Requests run on private networks, and the database is not exposed publicly." },
+  { icon: Database, title: "Your database", body: "Your organisation’s own database answers the request, and the change is recorded in the activity log." },
 ];
 
 const today = [
-  "Encryption at rest (AES-256)",
-  "Encryption in transit (TLS 1.3)",
-  "Private network, no public database endpoint",
   "Dedicated database per customer",
-  "Role-based access control",
-  "Bring your own AI key (enterprise)",
-  "Regular internal security reviews",
+  "Role-based access control, enforced in the application",
+  "Two-factor sign-in with an authenticator app and recovery codes",
+  "Session policy: idle timeout, session lifetime, concurrent-session limit and IP allowlist",
+  "Rate limiting on sign-in and two-factor attempts",
+  "Activity log of changes, with user and IP address",
+  "Zed AI limited by role permissions, with approval before changes",
+  "Your own OpenAI or Anthropic key for Zed AI, stored encrypted",
+  "Short-lived, signed links for uploaded files",
+  "Separate sign-in and access for the vendor portal",
+  "Biometric app lock and secure token storage on mobile",
+  "Encryption in transit (TLS)",
 ];
-const planned = ["SOC 2 certification", "ISO 27001 certification"];
+const planned = ["SSO / SAML", "SOC 2 certification", "ISO 27001 certification"];
 
 export default function SecurityPage() {
   const isMobile = useIsMobile();
   useSEO({
     title: "Security  -  ZedOps",
-    description: "How ZedOps protects project data: a dedicated database per customer, private cloud hosting, encryption, role-based access and bring-your-own AI keys.",
+    description: "How ZedOps protects project data: a dedicated database per customer, role-based access, two-factor sign-in, session policy, activity logs and controls over Zed AI.",
   });
 
   return (
@@ -54,7 +59,7 @@ export default function SecurityPage() {
         <Section labelledBy="sec-pillars">
           <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-              <SplitHeader id="sec-pillars" title={<>Four layers of <Highlight>protection.</Highlight></>} body="Isolation, private hosting, role-based access and control over the AI your data touches." />
+              <SplitHeader id="sec-pillars" title={<>Four layers of <Highlight>protection.</Highlight></>} body="Isolation, private networking, role-based access and control over the AI your data touches." />
             </motion.div>
           </div>
           <div className="grid gap-px border-t border-[#E8ECF2] bg-[#E8ECF2] sm:grid-cols-2 lg:grid-cols-4">
@@ -74,12 +79,12 @@ export default function SecurityPage() {
         <Section tone="mist" labelledBy="sec-flow">
           <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-              <SplitHeader id="sec-flow" title={<>How a request <Highlight>travels.</Highlight></>} body="Every request is checked, kept inside a private network, and served only from your own database." />
+              <SplitHeader id="sec-flow" title={<>How a request <Highlight>travels.</Highlight></>} body="Every request is checked, kept on private networks, and served only from your own database." />
             </motion.div>
           </div>
           <ol className="grid border-t border-[#E3E8F0] lg:grid-cols-3">
             {flow.map((f, i) => (
-              <li key={f.title} className={`border-[#E3E8F0] px-7 py-9 sm:px-9 ${i > 0 ? "border-t lg:border-t-0 lg:border-l" : ""}`}>
+              <li key={f.title} className={`border-[#E3E8F0] px-7 py-9 sm:px-9 ${i > 0 ? "border-t lg:border-t-0 lg:border-s" : ""}`}>
                 <div className="flex items-center gap-3">
                   <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#DCE3ED] bg-white font-mono text-[12px] text-brand-navy">{String(i + 1).padStart(2, "0")}</span>
                   <f.icon size={17} className="text-[#5F6B80]" aria-hidden />

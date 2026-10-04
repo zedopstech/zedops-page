@@ -12,7 +12,8 @@ by application.
 ## Platform
 
 - [Platform overview](https://zedops.com/solutions/): scheduling, site execution, materials, quality and closeout in one place
-- [Zed AI](https://zedops.com/zed-ai/): AI over the same project record your crews use
+- [Zed AI](https://zedops.com/zed-ai/): AI over the same project record your crews use, with Zed and six specialists (Foreman, Ledger, Hauler, Crew, Gauge, Warden)
+- Mobile app (iOS and Android): daily logs, time cards with GPS check-in, incidents, inspections, punch walkthroughs, material requests, approvals and push notifications
 
 ## Modules
 

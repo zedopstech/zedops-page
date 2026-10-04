@@ -356,9 +356,7 @@ export const supplyChainWhy: string[] = [
 ];
 
 export const supplyChainAiSoon: { icon: LucideIcon; title: string; body: string }[] = [
-  { icon: Sparkles, title: "Demand forecasting", body: "Flag what the job will need next from live consumption." },
   { icon: ScanSearch, title: "Price trend cues", body: "Surface unusual vendor rates before you award." },
-  { icon: Timer, title: "Stock-out risk", body: "Warn when critical items will run short against the programme." },
   { icon: Undo2, title: "Reorder suggestions", body: "Draft the next MR or PR from usage and lead time." },
 ];
 

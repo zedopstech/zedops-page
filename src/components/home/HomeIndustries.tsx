@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useI18n } from "@/i18n";
 import { PiBankFill, PiBuildingsFill, PiDatabaseFill, PiFactoryFill, PiGasPumpFill, PiGearFill, PiHardHatFill, PiHospitalFill, PiLightningFill, PiUsersFill, PiWrenchFill } from "react-icons/pi";
 import type { IconType } from "react-icons";
 import { ArrowUpRight } from "lucide-react";
@@ -134,12 +135,13 @@ const tileLayout = [
 ];
 
 function IndustryTile({ it, index, isMobile }: { it: (typeof industries)[number]; index: number; isMobile: boolean }) {
+  const { t } = useI18n();
   const lead = index === 0;
   return (
     <motion.a
       href="/who-we-serve"
       {...scrollMotionProps(isMobile, { y: 16, duration: 0.45, delay: (index % 4) * 0.05 })}
-      className={`group relative isolate flex min-h-[240px] flex-col justify-end overflow-hidden rounded-xl bg-[#0E1B33] p-5 outline-none focus-visible:ring-2 focus-visible:ring-brand-orange sm:p-6 ${lead ? "min-h-[320px] lg:min-h-0" : ""} ${tileLayout[index] ?? ""}`}
+      className={`group relative isolate flex min-h-0 flex-col justify-end overflow-hidden rounded-xl bg-[#0E1B33] p-5 outline-none focus-visible:ring-2 focus-visible:ring-brand-orange sm:p-6 ${lead ? "min-h-[240px]" : ""} ${tileLayout[index] ?? ""}`}
     >
       <img
         src={it.image}
@@ -157,10 +159,10 @@ function IndustryTile({ it, index, isMobile }: { it: (typeof industries)[number]
             <it.icon size={13} className="text-[#FFB37F]" aria-hidden />
             {String(index + 1).padStart(2, "0")}
           </span>
-          <h3 className={`mt-2 font-medium tracking-[-0.03em] text-white ${lead ? "text-[28px] sm:text-[32px]" : "text-[20px]"}`}>{it.title}</h3>
-          {lead ? <p className="mt-1.5 max-w-[42ch] text-[15px] leading-[1.5] text-white/75">{it.blurb}</p> : null}
+          <h3 className={`mt-2 font-medium tracking-[-0.03em] text-white ${lead ? "text-[28px] sm:text-[32px]" : "text-[20px]"}`}>{t(it.title)}</h3>
+          {lead ? <p className="mt-1.5 max-w-[42ch] text-[15px] leading-[1.5] text-white/75">{t(it.blurb)}</p> : null}
           <ul
-            className={`flex flex-wrap gap-1.5 overflow-hidden transition-all duration-300 ${
+            className={`flex-wrap gap-1.5 overflow-hidden transition-all duration-300 ${lead ? "flex" : "hidden sm:flex"} ${
               lead
                 ? "mt-4 max-h-24 opacity-100"
                 : "max-h-24 opacity-100 [@media(hover:hover)]:mt-0 [@media(hover:hover)]:max-h-0 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:mt-3 [@media(hover:hover)]:group-hover:max-h-24 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:mt-3 [@media(hover:hover)]:group-focus-visible:max-h-24 [@media(hover:hover)]:group-focus-visible:opacity-100 mt-3"
@@ -168,7 +170,7 @@ function IndustryTile({ it, index, isMobile }: { it: (typeof industries)[number]
           >
             {it.items.map((line) => (
               <li key={line} className="rounded-[4px] border border-white/20 bg-white/10 px-2 py-0.5 text-[12px] text-white/90 backdrop-blur-sm">
-                {line}
+                {t(line)}
               </li>
             ))}
           </ul>
@@ -181,7 +183,7 @@ function IndustryTile({ it, index, isMobile }: { it: (typeof industries)[number]
 
 function IndustryShowcase({ isMobile }: { isMobile: boolean }) {
   return (
-    <div className="grid auto-rows-[240px] gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[260px]">
+    <div className="m-carousel grid auto-rows-[200px] grid-cols-2 gap-3 sm:auto-rows-[240px] lg:grid-cols-4 lg:auto-rows-[260px]">
       {industries.map((it, i) => (
         <IndustryTile key={it.title} it={it} index={i} isMobile={isMobile} />
       ))}
@@ -190,6 +192,7 @@ function IndustryShowcase({ isMobile }: { isMobile: boolean }) {
 }
 
 export default function IndustriesPreview() {
+  const { t } = useI18n();
   const isMobile = useIsMobile();
   return (
     <>
@@ -198,8 +201,8 @@ export default function IndustriesPreview() {
           <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
             <SplitHeader
               id="dp-industries"
-              title={<>Built for every construction <Highlight>industry.</Highlight></>}
-              body="ZedOps helps teams plan, execute and deliver projects across a wide range of industries."
+              title={<>{t("Built for every construction ")}<Highlight>{t("industry.")}</Highlight></>}
+              body={t("ZedOps helps teams plan, execute and deliver projects across a wide range of industries.")}
             />
           </motion.div>
           <div className="mt-14 lg:mt-16">
@@ -213,25 +216,25 @@ export default function IndustriesPreview() {
           <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
             <SplitHeader
               id="dp-contractors"
-              title={<>For every <Highlight>contractor.</Highlight></>}
-              body="Whether you build, manage, install or maintain, ZedOps connects your people, processes and projects in one platform."
-              cta={<TicketButton href="/contact">Request a demo</TicketButton>}
+              title={<>{t("For every ")}<Highlight>{t("contractor.")}</Highlight></>}
+              body={t("Whether you build, manage, install or maintain, ZedOps connects your people, processes and projects in one platform.")}
+              cta={<TicketButton href="/contact">{t("Request a demo")}</TicketButton>}
             />
           </motion.div>
         </div>
 
-        <div className="grid gap-px border-t border-[#E3E8F0] bg-[#E3E8F0] sm:grid-cols-2 lg:grid-cols-6">
+        <div className="m-carousel grid grid-cols-2 gap-px border-t border-[#E3E8F0] bg-[#E3E8F0] lg:grid-cols-6">
           {contractors.map((c, i) => (
             <motion.a
               key={c.title}
               href="/who-we-serve"
               {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: i * 0.05 })}
-              className={`group flex flex-col bg-[#F7F8FA] p-5 transition-colors hover:bg-white sm:p-6 ${i < 2 ? "lg:col-span-3" : "lg:col-span-2"}`}
+              className={`group flex flex-col bg-[#F7F8FA] p-5 transition-colors hover:bg-white sm:p-6 ${i < 2 ? "lg:col-span-3" : "lg:col-span-2"} ${i === 4 ? "col-span-2 lg:col-span-2" : ""}`}
             >
-              <div className={`overflow-hidden rounded-lg ${i < 2 ? "h-60" : "h-44"}`}>
+              <div className={`overflow-hidden rounded-lg ${i < 2 ? "h-32 sm:h-60" : "h-32 sm:h-44"}`}>
                 <img
                   src={c.image}
-                  alt={c.title}
+                  alt={t(c.title)}
                   width={1536}
                   height={1024}
                   loading="lazy"
@@ -239,11 +242,11 @@ export default function IndustriesPreview() {
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
               </div>
-              <h3 className="mt-5 flex items-center justify-between gap-2 text-[17px] font-medium tracking-[-0.02em] text-brand-navy">
-                {c.title}
+              <h3 className="mt-3 flex items-center justify-between gap-2 text-[15px] sm:mt-5 sm:text-[17px] font-medium tracking-[-0.02em] text-brand-navy">
+                {t(c.title)}
                 <ArrowUpRight size={16} className="shrink-0 text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden />
               </h3>
-              <p className="mt-1.5 text-[14px] leading-[1.55] text-[#616D82]">{c.desc}</p>
+              <p className="mt-1.5 text-[13px] leading-[1.5] text-[#616D82] sm:text-[14px] sm:leading-[1.55]">{t(c.desc)}</p>
             </motion.a>
           ))}
         </div>

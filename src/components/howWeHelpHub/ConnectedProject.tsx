@@ -49,7 +49,7 @@ function NodeCard({ node }: { node: Node }) {
       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-[#E3E8F0] text-brand-orange">
         <Icon size={16} aria-hidden />
       </span>
-      <span className="min-w-0 text-left">
+      <span className="min-w-0 text-start">
         <span className="block text-[14px] font-medium text-brand-navy">{node.title}</span>
         <span className="block truncate text-[12px] text-[#5F6B80]">{node.desc}</span>
       </span>

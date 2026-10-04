@@ -41,7 +41,7 @@ function Faq({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="border-b border-[#E3E8F0]">
-      <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} className="flex w-full items-center justify-between gap-6 py-5 text-left">
+      <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} className="flex w-full items-center justify-between gap-6 py-5 text-start">
         <span className="text-[17px] font-medium tracking-[-0.01em] text-brand-navy">{q}</span>
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-[#E3E8F0] text-brand-navy">
           {open ? <Minus size={14} aria-hidden /> : <Plus size={14} aria-hidden />}
@@ -114,9 +114,9 @@ export default function EarlyAccessPage() {
                 ))}
               </ul>
               <h3 className="mt-12 text-[15px] font-medium text-brand-navy">What happens next</h3>
-              <ol className="mt-4 border-l border-[#DCE3ED]">
+              <ol className="mt-4 border-s border-[#DCE3ED]">
                 {steps.map((s, i) => (
-                  <li key={s.title} className="relative pb-5 pl-6 last:pb-0">
+                  <li key={s.title} className="relative pb-5 ps-6 last:pb-0">
                     <span className="absolute top-0 -left-[9px] flex h-[18px] w-[18px] items-center justify-center rounded-full border border-[#DCE3ED] bg-white font-mono text-[10px] text-brand-navy">{i + 1}</span>
                     <p className="text-[14.5px] font-medium text-brand-navy">{s.title}</p>
                     <p className="text-[14px] text-[#616D82]">{s.body}</p>
@@ -125,7 +125,7 @@ export default function EarlyAccessPage() {
               </ol>
             </div>
 
-            <div className="border-t border-[#E3E8F0] bg-white px-5 py-12 sm:px-8 lg:border-t-0 lg:border-l lg:px-14 lg:py-16">
+            <div className="border-t border-[#E3E8F0] bg-white px-5 py-12 sm:px-8 lg:border-t-0 lg:border-s lg:px-14 lg:py-16">
               {lead.sent ? (
                 <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex min-h-[460px] flex-col items-start justify-center">
                   <CheckCircle2 size={36} className="text-[#1D9A5B]" aria-hidden />

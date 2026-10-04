@@ -732,22 +732,11 @@ export const dailyAiSoon: {
   },
 
   {
-    icon: ShieldCheck,
-    title: "Team Performance Analytics",
-    body: "Analyze team performance, productivity, and execution trends across projects.",
-  },
-
-  {
     icon: AlertTriangle,
     title: "AI Productivity Summary",
     body: "Summarize daily productivity, identify performance gaps, and highlight improvement areas.",
   },
 
-  {
-    icon: FileBarChart,
-    title: "AI Summary & Reports",
-    body: "Auto-generate Daily Intelligence summaries, reports, and actionable insights.",
-  },
 ];
 
 
@@ -780,22 +769,11 @@ export const dailyAiRoadmap = {
   },
 
   {
-    icon: ShieldCheck,
-    title: "Team Performance Analytics",
-    body: "Analyze team performance, productivity, and execution trends across projects.",
-  },
-
-  {
     icon: AlertTriangle,
     title: "AI Productivity Summary",
     body: "Summarize daily productivity, identify performance gaps, and highlight improvement areas.",
   },
 
-  {
-    icon: FileBarChart,
-    title: "AI Summary & Reports",
-    body: "Auto-generate Daily Intelligence summaries, reports, and actionable insights.",
-  },
   ],
 } as const;
 

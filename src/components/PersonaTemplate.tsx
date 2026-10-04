@@ -142,12 +142,12 @@ export default function PersonaTemplate({
                 {...scrollMotionProps(isMobile, { y: 20, duration: 0.5 })}
                 className="grid border-t border-[#E8ECF2] lg:grid-cols-2"
               >
-                <div className={`flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-14 lg:py-14 ${flip ? "lg:order-2 lg:border-l lg:border-[#E8ECF2]" : ""}`}>
+                <div className={`flex flex-col justify-center px-6 py-10 sm:px-10 lg:px-14 lg:py-14 ${flip ? "lg:order-2 lg:border-s lg:border-[#E8ECF2]" : ""}`}>
                   <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#5F6B80]">{feature.badge}</span>
                   <h3 className="mt-4 max-w-md text-[24px] font-medium leading-[1.2] tracking-[-0.03em] text-brand-navy [text-wrap:balance] sm:text-[28px]">{feature.title}</h3>
                   <p className="mt-4 max-w-md text-[15.5px] leading-[1.6] text-[#5E6C84]">{firstSentence(feature.desc)}</p>
                 </div>
-                <div className={`border-t border-[#E8ECF2] bg-[#F7F8FA] px-6 py-10 sm:px-10 lg:border-t-0 lg:px-12 lg:py-12 ${flip ? "lg:order-1" : "lg:border-l"}`}>
+                <div className={`border-t border-[#E8ECF2] bg-[#F7F8FA] px-6 py-10 sm:px-10 lg:border-t-0 lg:px-12 lg:py-12 ${flip ? "lg:order-1" : "lg:border-s"}`}>
                   <div className="mx-auto max-w-[520px]">
                     <Mock />
                   </div>

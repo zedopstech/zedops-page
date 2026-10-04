@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ComponentType } from "react";
+import { useI18n } from "@/i18n";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
@@ -24,6 +25,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
  * each panel pairs a two-tone line with a small live mock of that part of the product.
  */
 export default function StagesPreview() {
+  const { t } = useI18n();
   const isMobile = useIsMobile();
   const [active, setActive] = useState(0);
   const panelRefs = useRef<(HTMLElement | null)[]>([]);
@@ -47,15 +49,15 @@ export default function StagesPreview() {
         <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
           <SplitHeader
             id="dp-stages"
-            title={<>Every stage of the job, <Highlight>connected.</Highlight></>}
-            body="From the first estimate to the last punch item, each step works from the same project record."
-            cta={<TicketButton href="/early-access">Get started</TicketButton>}
+            title={<>{t("Every stage of the job, ")}<Highlight>{t("connected.")}</Highlight></>}
+            body={t("From the first estimate to the last punch item, each step works from the same project record.")}
+            cta={<TicketButton href="/early-access">{t("Get started")}</TicketButton>}
           />
         </motion.div>
       </div>
 
       <div className="grid border-t border-[#E3E8F0] lg:grid-cols-[280px_minmax(0,1fr)]">
-        <nav aria-label="Project stages" className="hidden lg:block">
+        <nav aria-label={t("Project stages")} className="hidden lg:block">
           <ol className="sticky top-[132px] px-10 py-12">
             {stages.map((s, i) => {
               const on = i === active;
@@ -66,9 +68,9 @@ export default function StagesPreview() {
                     aria-current={on ? "step" : undefined}
                     className={`relative flex items-baseline gap-3 py-2 text-[15px] transition-colors duration-200 ${on ? "text-brand-navy" : "text-[#677388] hover:text-[#5E6C84]"}`}
                   >
-                    <span aria-hidden className={`absolute top-2 bottom-2 -left-10 w-[2px] transition-colors ${on ? "bg-brand-orange" : "bg-transparent"}`} />
+                    <span aria-hidden className={`absolute top-2 bottom-2 -start-10 w-[2px] transition-colors ${on ? "bg-brand-orange" : "bg-transparent"}`} />
                     <span className="font-mono text-[11px]">{pad(i + 1)}</span>
-                    {s.title}
+                    {t(s.title)}
                   </a>
                 </li>
               );
@@ -76,7 +78,7 @@ export default function StagesPreview() {
           </ol>
         </nav>
 
-        <div className="lg:border-l lg:border-[#E3E8F0]">
+        <div className="m-carousel m-carousel-tall lg:border-s lg:border-[#E3E8F0]">
           {stages.map((s, i) => (
             <article
               key={s.id}
@@ -89,16 +91,16 @@ export default function StagesPreview() {
             >
               <div className="px-6 pt-10 sm:px-10 sm:pt-12 lg:px-14">
                 <span className="font-mono text-[11px] text-[#677388] lg:hidden">
-                  {pad(i + 1)} · {s.title}
+                  {pad(i + 1)} · {t(s.title)}
                 </span>
                 <h3 className="mt-2 max-w-[34ch] text-[20px] leading-[1.35] font-medium tracking-[-0.02em] text-brand-navy sm:text-[22px] lg:mt-0">
-                  {s.headline} <Muted>{s.description}</Muted>
+                  {t(s.headline)} <Muted>{t(s.description)}</Muted>
                 </h3>
               </div>
               <div className="px-6 pt-8 pb-10 sm:px-10 sm:pb-12 lg:px-14">
                 <div className="rounded-xl bg-[#EEF1F5] p-5 sm:p-8">
                   <div className="mx-auto max-w-[520px]">
-                    <s.Mock />
+                    <div dir="ltr"><s.Mock /></div>
                   </div>
                 </div>
               </div>

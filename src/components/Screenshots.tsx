@@ -131,7 +131,7 @@ export default function Screenshots() {
                     style={{ borderRadius: 6 }}
                   >
                     <div className="w-14 h-14 flex items-center justify-center" style={{ background: content.color, borderRadius: 6 }}>
-                      <Play size={20} className="text-white ml-1" fill="white" />
+                      <Play size={20} className="text-white ms-1" fill="white" />
                     </div>
                   </motion.div>
                   <p className="text-brand-navy font-bold text-base mb-1.5">{tab.label}  -  video coming soon</p>

@@ -213,7 +213,7 @@ function CofounderNote({ person, index, isMobile }: { person: Cofounder; index: 
         <div className="bg-[#F7F8FA] p-7 sm:p-8">
           <p className="text-[56px] font-medium leading-none tracking-[-0.05em] text-brand-navy">
             {exp.years}
-            <span className="ml-1 text-[20px] tracking-[-0.02em] text-[#5F6B80]">years</span>
+            <span className="ms-1 text-[20px] tracking-[-0.02em] text-[#5F6B80]">years</span>
           </p>
           <p className="mt-4 text-[15px] font-medium text-brand-navy">{exp.title}</p>
           <p className="text-[14px] text-[#616D82]">{exp.where}</p>

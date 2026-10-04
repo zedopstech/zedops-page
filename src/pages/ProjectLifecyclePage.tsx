@@ -86,7 +86,7 @@ export default function ProjectLifecyclePage() {
                         aria-current={on ? "step" : undefined}
                         className={`relative flex items-baseline gap-3 py-2 text-[15px] transition-colors ${on ? "text-brand-navy" : "text-[#677388] hover:text-[#5E6C84]"}`}
                       >
-                        <span aria-hidden className={`absolute top-2 bottom-2 -left-10 w-[2px] ${on ? "bg-brand-orange" : "bg-transparent"}`} />
+                        <span aria-hidden className={`absolute top-2 bottom-2 -start-10 w-[2px] ${on ? "bg-brand-orange" : "bg-transparent"}`} />
                         <span className="font-mono text-[11px]">{pad(i + 1)}</span>
                         {s.title}
                       </a>
@@ -96,7 +96,7 @@ export default function ProjectLifecyclePage() {
               </ol>
             </nav>
 
-            <div className="lg:border-l lg:border-[#E3E8F0]">
+            <div className="lg:border-s lg:border-[#E3E8F0]">
               {projectStages.map((stage, i) => {
                 const Mock = stageMocks[stage.id] ?? StageCore;
                 return (

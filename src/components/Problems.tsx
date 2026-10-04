@@ -139,7 +139,7 @@ export default function Problems() {
               <li
                 key={item.label}
                 className={`px-2 text-center sm:px-4 ${
-                  i > 0 ? "border-l border-[#D0D7E2]" : ""
+                  i > 0 ? "border-s border-[#D0D7E2]" : ""
                 }`}
               >
                 <p className="text-2xl font-black tracking-tight text-brand-orange sm:text-3xl">

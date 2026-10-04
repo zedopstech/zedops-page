@@ -2,6 +2,8 @@ import { ArrowUpRight } from "lucide-react";
 import { COOKIE_SETTINGS_EVENT } from "@/lib/consent";
 import ZedOpsMark from "./ZedOpsMark";
 import { contact, offices } from "@/data/contact";
+import LanguageToggle from "./LanguageToggle";
+import { useI18n } from "@/i18n";
 
 const footerLinks: Record<string, { label: string; href: string | null }[]> = {
   Product: [
@@ -44,6 +46,7 @@ const socials = [
 
 /** Framed footer: lockup, link columns with mono headings, hairline bottom bar, outlined wordmark. */
 export default function Footer() {
+  const { t } = useI18n();
   return (
     <footer data-nav-theme="dark" className="relative overflow-hidden border-t border-white/10 bg-[#0E1B33]">
       <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:border-x lg:border-white/10 lg:px-14">
@@ -58,8 +61,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 py-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,2fr)] lg:pb-16">
           <div className="max-w-sm">
             <p className="text-[15px] leading-[1.65] text-white/70">
-              The execution platform for MEP and construction teams. Estimate, plan, build and
-              hand over from one project record, with Zed AI working on the same data.
+              {t("The execution platform for MEP and construction teams. Estimate, plan, build and hand over from one project record, with Zed AI working on the same data.")}
             </p>
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               {offices.map((o) => (
@@ -83,7 +85,7 @@ export default function Footer() {
                     here skipped two levels on a page whose last heading was an
                     h1 or h2. */}
                 <h2 className="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-white/40">
-                  {category}
+                  {t(category)}
                 </h2>
                 <ul className="space-y-3.5">
                   {links.map((link) => (
@@ -92,16 +94,16 @@ export default function Footer() {
                         <button
                           type="button"
                           onClick={() => window.dispatchEvent(new Event(COOKIE_SETTINGS_EVENT))}
-                          className="text-left text-[14px] text-white/75 transition-colors hover:text-white"
+                          className="text-start text-[14px] text-white/75 transition-colors hover:text-white"
                         >
-                          {link.label}
+                          {t(link.label)}
                         </button>
                       ) : (
                         <a
                           href={link.href}
                           className="text-[14px] text-white/75 transition-colors hover:text-white"
                         >
-                          {link.label}
+                          {t(link.label)}
                         </a>
                       )}
                     </li>
@@ -113,8 +115,9 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-4 border-t border-white/10 py-6 text-[13px] text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 ZedOps, Inc. All rights reserved.</p>
+          <p>{t("© 2026 ZedOps, Inc. All rights reserved.")}</p>
           <div className="flex flex-wrap items-center gap-5">
+            <LanguageToggle dark up className="!h-8 !px-2" />
             {socials.map((s) => (
               <a
                 key={s.label}

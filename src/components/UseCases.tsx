@@ -124,7 +124,7 @@ export default function UseCases() {
                 ))}
               </ul>
               {/* Stat callout */}
-              <div className="border-l-4 pl-5" style={{ borderColor: uc.accent }}>
+              <div className="border-s-4 ps-5" style={{ borderColor: uc.accent }}>
                 <p className="text-3xl font-extrabold" style={{ color: uc.accent }}>{uc.stat.value}</p>
                 <p className="text-[#616D82] text-sm mt-1">{uc.stat.label}</p>
               </div>

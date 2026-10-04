@@ -113,7 +113,7 @@ function Toc({ toc, active }: { toc: TocItem[]; active?: string }) {
   return (
     <nav aria-label="On this page" className="lg:sticky lg:top-[112px]">
       <p className="text-[13px] font-medium text-brand-navy">On this page</p>
-      <ul className="mt-4 border-l border-[#E8ECF2]">
+      <ul className="mt-4 border-s border-[#E8ECF2]">
         {toc
           .filter((item) => item.depth === 2)
           .map((item) => {
@@ -122,7 +122,7 @@ function Toc({ toc, active }: { toc: TocItem[]; active?: string }) {
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
-                  className={`-ml-px block border-l py-1.5 pl-4 text-[13.5px] leading-[1.4] transition-colors ${
+                  className={`-ms-px block border-s py-1.5 ps-4 text-[13.5px] leading-[1.4] transition-colors ${
                     on ? "border-brand-orange text-brand-navy" : "border-transparent text-[#5F6B80] hover:text-brand-navy"
                   }`}
                 >

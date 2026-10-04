@@ -599,3 +599,257 @@ body {
   pointer-events: none;
   opacity: 0.45;
 }
+
+/* Arabic / RTL. Arabic letters join, so negative tracking breaks the script; swap in an Arabic face. */
+html[lang="ar"] {
+  --app-font-sans: 'Noto Sans Arabic', 'Geist', system-ui, sans-serif;
+  --app-font-mono: 'Noto Sans Arabic', 'Geist Mono', ui-monospace, sans-serif;
+}
+html[lang="ar"] body,
+html[lang="ar"] body * {
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+/* Directional arrows point the other way in RTL. */
+html[dir="rtl"] svg.lucide-arrow-right,
+html[dir="rtl"] svg.lucide-arrow-up-right {
+  transform: scaleX(-1);
+}
+
+/* Zed mascot: idle bob, a blink every few seconds, eyes that follow --look-x/--look-y, a hop on hover. */
+@keyframes zed-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.8px);
+  }
+}
+@keyframes zed-blink {
+  0%,
+  93%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.08);
+  }
+}
+@keyframes zed-hop {
+  0% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(-2.4px) rotate(-4deg);
+  }
+  70% {
+    transform: translateY(0) rotate(3deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+.zed-mascot .zed-body,
+.zed-mascot .zed-blink {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+.zed-mascot .zed-body {
+  animation: zed-bob 2.6s ease-in-out infinite;
+}
+.zed-mascot .zed-blink {
+  transform-origin: 50% 50%;
+  animation: zed-blink 5s ease-in-out infinite;
+}
+.zed-mascot .zed-eyes {
+  transform: translate(var(--look-x, 0px), var(--look-y, 0px));
+  transition: transform 0.12s ease-out;
+}
+.group:hover .zed-mascot .zed-body {
+  animation: zed-hop 0.5s ease-out;
+}
+/* Zed and its specialists are painted from four custom properties set inline by ZedMascot (orange by
+   default): an amber-style face under a deeper hat, a darker brim and a light hat stripe. Features stay
+   dark so every bot reads on a white page and on a dark one. */
+.zed-mascot .zed-face {
+  fill: var(--zed-face, #ff9d2e);
+}
+.zed-mascot .zed-eye-fill {
+  fill: #2b1608;
+}
+.zed-mascot .zed-hat {
+  fill: var(--zed-hat, #ea5a1c);
+}
+.zed-mascot .zed-hat-stripe {
+  fill: var(--zed-stripe, #ffd2a0);
+  opacity: 1;
+}
+.zed-mascot .zed-brim {
+  fill: var(--zed-brim, #b93a12);
+}
+
+/* Expression strokes, extras and animated bits. Strokes follow the face contrast like the eye fills. */
+.zed-mascot .zed-eye-stroke {
+  fill: none;
+  stroke: #2b1608;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+.zed-mascot .zed-alert {
+  fill: #ef4444;
+}
+/* Thinking dots pulse in turn. */
+.zed-mascot .zed-dot {
+  fill: #ff8a1f;
+  animation: zed-dot 1.4s ease-in-out infinite;
+}
+.zed-mascot .zed-dot-2 {
+  animation-delay: 0.35s;
+}
+@keyframes zed-dot {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+/* Sleeping: three z's rise, grow and fade one after another. The orange stays visible on either face. */
+.zed-mascot .zed-z {
+  fill: #ff8a1f;
+  font: 800 6px/1 ui-sans-serif, system-ui, sans-serif;
+  opacity: 0;
+  animation: zed-z 2.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+.zed-mascot .zed-z-2 {
+  animation-delay: 0.6s;
+}
+.zed-mascot .zed-z-3 {
+  animation-delay: 1.2s;
+}
+@keyframes zed-z {
+  0% {
+    opacity: 0;
+    transform: translate(-2px, 3px) scale(0.6);
+  }
+  25% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(3px, -5px) scale(1.15);
+  }
+}
+.zed-mascot.zed-mood-sleeping .zed-body {
+  animation: zed-bob 4.2s ease-in-out infinite;
+}
+.zed-mascot.zed-mood-alert .zed-body {
+  animation: zed-shake 0.5s ease-in-out 2;
+}
+@keyframes zed-shake {
+  0%,
+  100% {
+    transform: none;
+  }
+  25% {
+    transform: translateX(-0.8px) rotate(-2deg);
+  }
+  75% {
+    transform: translateX(0.8px) rotate(2deg);
+  }
+}
+.zed-mascot.zed-mood-happy .zed-body {
+  animation: zed-hop 0.6s ease-out 2;
+}
+
+/* Busy: eyes scan side to side, a touch faster bob, no cursor-following. */
+@keyframes zed-scan {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-1.3px, -0.4px);
+  }
+  60% {
+    transform: translate(1.3px, -0.4px);
+  }
+}
+@keyframes zed-bob-fast {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1px) rotate(-2deg);
+  }
+}
+.zed-mascot .zed-scan {
+  transform-box: fill-box;
+}
+.zed-mascot.zed-busy .zed-eyes {
+  transform: none;
+}
+.zed-mascot.zed-busy .zed-scan {
+  animation: zed-scan 1.5s ease-in-out infinite;
+}
+.zed-mascot.zed-busy .zed-body {
+  animation: zed-bob-fast 0.9s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .zed-mascot .zed-body,
+  .zed-mascot .zed-blink,
+  .zed-mascot.zed-busy .zed-scan,
+  .zed-mascot .zed-z,
+  .zed-mascot .zed-dot,
+  .zed-mascot.zed-mood-alert .zed-body,
+  .zed-mascot.zed-mood-happy .zed-body {
+    animation: none;
+  }
+  /* Still show the z's and dots, just without drifting. */
+  .zed-mascot .zed-z,
+  .zed-mascot .zed-dot {
+    opacity: 0.9;
+  }
+}
+
+
+/* Phones: card grids become swipe carousels (the next card peeks in) instead of one very long column. */
+@media (max-width: 639px) {
+  .m-carousel {
+    display: flex !important;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 20px;
+    padding: 16px 20px 20px;
+    background: transparent !important;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .m-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .m-carousel > * {
+    flex: 0 0 80%;
+    min-width: 0;
+    scroll-snap-align: start;
+    border: 1px solid #e3e8f0 !important;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .m-carousel.m-carousel-dark > * {
+    border-color: rgba(255, 255, 255, 0.12) !important;
+  }
+  .m-carousel.m-carousel-tall > * {
+    flex-basis: 88%;
+  }
+}
+

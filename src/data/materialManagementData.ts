@@ -285,11 +285,6 @@ export const materialAiRoadmap = {
   title: "What's Coming Next – ZED AI (Roadmap)",
   items: [
     {
-      icon: TrendingUp,
-      title: "AI Demand Forecast",
-      body: "Predict material demand by activity & schedule.",
-    },
-    {
       icon: AlertTriangle,
       title: "Supplier Risk Score",
       body: "Evaluate supplier risk & reliability.",

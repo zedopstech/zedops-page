@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useI18n } from "@/i18n";
 import { PiCalendarCheckFill, PiCurrencyDollarFill, PiFileTextFill, PiShieldCheckFill, PiTruckFill, PiUsersFill } from "react-icons/pi";
 import type { IconType } from "react-icons";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -29,6 +30,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 /** The problem, stated plainly in a framed grid. */
 export default function ChallengesPreview() {
+  const { t } = useI18n();
   const isMobile = useIsMobile();
   return (
     <>
@@ -37,20 +39,20 @@ export default function ChallengesPreview() {
           <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.45 })}>
             <SplitHeader
               id="dp-challenges"
-              title="What slows MEP projects down?"
-              body="Disconnected plans, field updates, procurement, quality, and costs make progress harder to see and harder to control."
+              title={t("What slows MEP projects down?")}
+              body={t("Disconnected plans, field updates, procurement, quality, and costs make progress harder to see and harder to control.")}
             />
           </motion.div>
         </div>
-        <ul className="grid border-t border-[#E8ECF2] sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="m-carousel grid grid-cols-2 border-t border-[#E8ECF2] lg:grid-cols-4">
           {pains.map((p, i) => (
             <motion.li
               key={p.title}
               {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: (i % 4) * 0.05 })}
-              className={`border-[#E8ECF2] px-6 py-7 sm:px-8 sm:py-9 ${i > 0 ? "border-t sm:border-t-0" : ""} ${i >= 2 ? "sm:border-t" : ""} ${i >= 4 ? "lg:border-t" : "lg:border-t-0"} ${i % 2 === 1 ? "sm:border-l" : ""} ${i % 4 !== 0 ? "lg:border-l" : "lg:border-l-0"}`}
+              className={`border-[#E8ECF2] px-4 py-5 sm:px-8 sm:py-9 ${i >= 2 ? "border-t" : ""} ${i >= 4 ? "lg:border-t" : "lg:border-t-0"} ${i % 2 === 1 ? "border-s" : ""} ${i % 4 !== 0 ? "lg:border-s" : "lg:border-s-0"}`}
             >
               <span className="font-mono text-[12px] text-[#677388]">{pad(i + 1)}</span>
-              <h3 className="mt-6 text-[17px] font-medium tracking-[-0.02em] text-brand-navy">{p.title}</h3>
+              <h3 className="mt-4 text-[15px] font-medium tracking-[-0.02em] text-brand-navy sm:mt-6 sm:text-[17px]">{t(p.title)}</h3>
             </motion.li>
           ))}
         </ul>
@@ -61,6 +63,7 @@ export default function ChallengesPreview() {
 
 /** The connected answer, on the dark band. */
 export function HomeSolutions() {
+  const { t } = useI18n();
   const isMobile = useIsMobile();
   return (
     <>
@@ -70,23 +73,23 @@ export function HomeSolutions() {
             <SplitHeader
               id="dp-solutions"
               tone="dark"
-              title={<>One connected way to <Highlight>get work done.</Highlight></>}
-              body="Every team works from the same project record, from the first estimate to the last punch item."
+              title={<>{t("One connected way to ")}<Highlight>{t("get work done.")}</Highlight></>}
+              body={t("Every team works from the same project record, from the first estimate to the last punch item.")}
             />
           </motion.div>
         </div>
-        <ul className="grid border-t border-white/10 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="m-carousel m-carousel-dark grid grid-cols-2 border-t border-white/10 lg:grid-cols-3">
           {solutions.map((item, i) => (
             <motion.li
               key={item.title}
               {...scrollMotionProps(isMobile, { y: 18, duration: 0.5, delay: (i % 3) * 0.06 })}
-              className={`flex flex-col border-white/10 px-6 py-8 sm:px-8 sm:py-10 ${i > 0 ? "border-t sm:border-t-0" : ""} ${i >= 2 ? "sm:border-t" : ""} ${i >= 3 ? "lg:border-t" : "lg:border-t-0"} ${i % 2 === 1 ? "sm:border-l" : "sm:border-l-0"} ${i % 3 !== 0 ? "lg:border-l" : "lg:border-l-0"}`}
+              className={`flex flex-col border-white/10 px-4 py-6 sm:px-8 sm:py-10 ${i >= 2 ? "border-t" : ""} ${i >= 3 ? "lg:border-t" : "lg:border-t-0"} ${i % 2 === 1 ? "border-s" : "border-s-0"} ${i % 3 !== 0 ? "lg:border-s" : "lg:border-s-0"}`}
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-md border border-white/15 bg-white/[0.04] text-[#FFB37F]">
                 <item.icon size={20} aria-hidden />
               </span>
-              <h3 className="mt-10 text-[18px] font-medium tracking-[-0.02em] text-white">{item.title}</h3>
-              <p className="mt-2 max-w-[34ch] text-[14.5px] leading-[1.55] text-white/60">{item.description}</p>
+              <h3 className="mt-6 text-[16px] font-medium tracking-[-0.02em] text-white sm:mt-10 sm:text-[18px]">{t(item.title)}</h3>
+              <p className="mt-2 max-w-[34ch] text-[13px] leading-[1.5] text-white/60 sm:text-[14.5px] sm:leading-[1.55]">{t(item.description)}</p>
             </motion.li>
           ))}
         </ul>

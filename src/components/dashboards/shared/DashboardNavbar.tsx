@@ -45,7 +45,7 @@ export default function DashboardNavbar({
                 {tab}
                 {isActive && (
                   <span
-                    className={`absolute bottom-0 left-0 right-0 h-[2px] ${accent}`}
+                    className={`absolute bottom-0 start-0 end-0 h-[2px] ${accent}`}
                   />
                 )}
               </button>

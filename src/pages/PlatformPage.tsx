@@ -82,7 +82,7 @@ export default function PlatformPage() {
           <div className="relative z-10 mx-auto max-w-6xl min-w-0 px-4 sm:px-6">
             <div className="grid items-stretch gap-10 lg:grid-cols-12 lg:gap-12 lg:items-center">
               {/* Primary headline  -  one clear page header */}
-              <div className="text-center lg:col-span-7 lg:text-left">
+              <div className="text-center lg:col-span-7 lg:text-start">
                 <motion.div
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -319,7 +319,7 @@ function PlatformSectionBlock({
               type="button"
               onClick={onToggleExpand}
               aria-expanded={isExpanded}
-              className="mt-6 inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-[#FAFBFC] px-4 py-2.5 text-left text-sm font-bold text-brand-navy transition-colors hover:border-brand-navy/25 hover:bg-white"
+              className="mt-6 inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-[#FAFBFC] px-4 py-2.5 text-start text-sm font-bold text-brand-navy transition-colors hover:border-brand-navy/25 hover:bg-white"
             >
               {isExpanded ? (
                 <>

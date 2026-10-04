@@ -114,8 +114,8 @@ export function Eyebrow({
   const dark = tone === "dark";
   return (
     <span
-      className={`inline-flex items-center gap-2.5 rounded-md border p-1 pr-3 text-[13px] font-medium ${
-        tag ? "" : "pl-3"
+      className={`inline-flex items-center gap-2.5 rounded-md border p-1 pe-3 text-[13px] font-medium ${
+        tag ? "" : "ps-3"
       } ${
         dark
           ? "border-white/15 bg-white/[0.07] text-white/85"
@@ -175,12 +175,12 @@ export function TicketButton({
       className={`group inline-flex h-10 items-stretch gap-[3px] text-[15px] font-medium ${full ? "w-full" : ""} ${className}`}
     >
       <span
-        className={`flex items-center whitespace-nowrap rounded-l-lg rounded-r-[3px] px-4 transition-colors duration-200 ${v.label} ${full ? "flex-1" : ""}`}
+        className={`flex items-center whitespace-nowrap rounded-s-lg rounded-e-[3px] px-4 transition-colors duration-200 ${v.label} ${full ? "flex-1" : ""}`}
       >
         {children}
       </span>
       <span
-        className={`flex w-10 shrink-0 items-center justify-center rounded-l-[3px] rounded-r-lg ${v.arrow}`}
+        className={`flex w-10 shrink-0 items-center justify-center rounded-s-[3px] rounded-e-lg ${v.arrow}`}
       >
         <ArrowUpRight
           size={17}
@@ -421,11 +421,11 @@ export function CornerTicks({
     <>
       <span
         aria-hidden
-        className={`pointer-events-none absolute top-2.5 left-2.5 h-3 w-3 border-t-2 border-l-2 ${c}`}
+        className={`pointer-events-none absolute top-2.5 start-2.5 h-3 w-3 border-t-2 border-s-2 ${c}`}
       />
       <span
         aria-hidden
-        className={`pointer-events-none absolute right-2.5 bottom-2.5 h-3 w-3 border-r-2 border-b-2 ${c}`}
+        className={`pointer-events-none absolute end-2.5 bottom-2.5 h-3 w-3 border-e-2 border-b-2 ${c}`}
       />
     </>
   );

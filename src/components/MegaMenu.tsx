@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { dropdownMenus, type DropdownKey } from "@/data/navDropdownMenus";
+import { useI18n } from "@/i18n";
 
 type NavItem = {
   icon: LucideIcon;
@@ -23,6 +24,7 @@ const intros: Record<DropdownKey, { title: string; body: string }> = {
 };
 
 function ItemLink({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
+  const { t } = useI18n();
   return (
     <a
       href={item.href}
@@ -35,19 +37,20 @@ function ItemLink({ item, onNavigate }: { item: NavItem; onNavigate: () => void 
       </span>
       <span className="min-w-0 pt-px">
         <span className="flex items-center gap-1 text-[14px] font-medium leading-snug text-brand-navy">
-          {item.label}
+          {t(item.label)}
           {item.external ? <ArrowUpRight size={13} className="text-[#5F6B80]" aria-hidden /> : null}
         </span>
-        <span className="mt-0.5 block text-[12.5px] leading-snug text-[#616D82]">{item.desc}</span>
+        <span className="mt-0.5 block text-[12.5px] leading-snug text-[#616D82]">{t(item.desc)}</span>
       </span>
     </a>
   );
 }
 
 function Column({ heading, items, onNavigate, cols = 1 }: { heading: string; items: readonly NavItem[]; onNavigate: () => void; cols?: 1 | 2 }) {
+  const { t } = useI18n();
   return (
     <div className="min-w-0">
-      <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#5F6B80]">{heading}</p>
+      <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#5F6B80]">{t(heading)}</p>
       <div className={cols === 2 ? "grid grid-cols-2 gap-x-8" : ""}>
         {items.map((item) => <ItemLink key={item.label} item={item} onNavigate={onNavigate} />)}
       </div>
@@ -56,15 +59,16 @@ function Column({ heading, items, onNavigate, cols = 1 }: { heading: string; ite
 }
 
 function Frame({ active, cta, onNavigate, children }: { active: DropdownKey; cta?: { label: string; href: string }; onNavigate: () => void; children: ReactNode }) {
+  const { t } = useI18n();
   const intro = intros[active];
   return (
     <div className="grid grid-cols-[240px_minmax(0,1fr)] gap-12 py-9">
-      <div className="flex flex-col border-r border-[#EDF0F5] pr-10">
-        <p className="text-[22px] font-medium tracking-[-0.03em] text-brand-navy">{intro.title}</p>
-        <p className="mt-3 text-[14px] leading-[1.55] text-[#5E6C84]">{intro.body}</p>
+      <div className="flex flex-col border-e border-[#EDF0F5] pe-10">
+        <p className="text-[22px] font-medium tracking-[-0.03em] text-brand-navy">{t(intro.title)}</p>
+        <p className="mt-3 text-[14px] leading-[1.55] text-[#5E6C84]">{t(intro.body)}</p>
         {cta ? (
           <a href={cta.href} onClick={onNavigate} className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-semibold text-brand-navy hover:text-brand-orange">
-            {cta.label}
+            {t(cta.label)}
             <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
           </a>
         ) : null}
@@ -75,6 +79,7 @@ function Frame({ active, cta, onNavigate, children }: { active: DropdownKey; cta
 }
 
 function FeatureCard({ href, eyebrow, title, action, image, onNavigate }: { href: string; eyebrow: string; title: string; action: string; image?: string; onNavigate: () => void }) {
+  const { t } = useI18n();
   return (
     <a href={href} onClick={onNavigate} className="group flex h-full flex-col overflow-hidden rounded-lg border border-[#E3E8F0] bg-[#F7F9FC] transition-colors hover:border-[#C9D2DF]">
       {image ? (
@@ -83,10 +88,10 @@ function FeatureCard({ href, eyebrow, title, action, image, onNavigate }: { href
         </div>
       ) : null}
       <div className="flex flex-1 flex-col p-5">
-        <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#5F6B80]">{eyebrow}</span>
-        <span className="mt-2 text-[15px] font-semibold leading-snug text-brand-navy">{title}</span>
+        <span className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#5F6B80]">{t(eyebrow)}</span>
+        <span className="mt-2 text-[15px] font-semibold leading-snug text-brand-navy">{t(title)}</span>
         <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[13px] font-semibold text-brand-navy group-hover:text-brand-orange">
-          {action}
+          {t(action)}
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
         </span>
       </div>
@@ -95,6 +100,7 @@ function FeatureCard({ href, eyebrow, title, action, image, onNavigate }: { href
 }
 
 export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; onNavigate: () => void }) {
+  const { t } = useI18n();
   if (active === "Platform") {
     const p = dropdownMenus.Platform;
     const [pre, exec, closeout, core] = p.sections;
@@ -115,11 +121,11 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
         >
           <span className="flex items-center gap-3">
             <p.footerCard.icon size={18} className="text-[#FFB37F]" aria-hidden />
-            <span className="text-[14.5px] font-semibold">{p.footerCard.label}</span>
-            <span className="text-[13.5px] text-white/70">{p.footerCard.desc}</span>
+            <span className="text-[14.5px] font-semibold">{t(p.footerCard.label)}</span>
+            <span className="text-[13.5px] text-white/70">{t(p.footerCard.desc)}</span>
           </span>
           <span className="inline-flex shrink-0 items-center gap-1.5 text-[13px] font-semibold text-white/90">
-            Explore Zed AI <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
+            {t("Explore Zed AI")} <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
           </span>
         </a>
       </Frame>
@@ -132,15 +138,15 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
       <Frame active={active} cta={s.cta} onNavigate={onNavigate}>
         <div className="grid grid-cols-[1fr_1fr_280px] gap-10">
           <div>
-            <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#5F6B80]">{s.sections[0].heading}</p>
+            <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#5F6B80]">{t(s.sections[0].heading)}</p>
             <div className="space-y-2">
               {s.sections[0].items.map((item) => (
                 <a key={item.label} href={item.href} onClick={onNavigate} className="group -mx-3 block rounded-md px-3 py-3 transition-colors hover:bg-[#F5F7FA]">
                   <span className="flex items-center gap-2.5 text-[15px] font-semibold text-brand-navy">
                     <item.icon size={18} strokeWidth={1.7} className="text-[#5F6B80] group-hover:text-brand-orange" aria-hidden />
-                    {item.label}
+                    {t(item.label)}
                   </span>
-                  <span className="mt-1 block text-[13px] leading-[1.5] text-[#616D82]">{item.desc}</span>
+                  <span className="mt-1 block text-[13px] leading-[1.5] text-[#616D82]">{t(item.desc)}</span>
                 </a>
               ))}
             </div>
@@ -163,10 +169,10 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
                 <img src={item.image} alt="" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
               </div>
               <p className="mt-3 flex items-center gap-1.5 text-[14.5px] font-semibold text-brand-navy group-hover:text-brand-orange">
-                {item.label}
+                {t(item.label)}
                 <ArrowRight size={14} className="opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" aria-hidden />
               </p>
-              <p className="mt-1 text-[13px] leading-snug text-[#616D82]">{item.desc}</p>
+              <p className="mt-1 text-[13px] leading-snug text-[#616D82]">{t(item.desc)}</p>
             </a>
           ))}
         </div>
@@ -180,7 +186,7 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
       <Frame active={active} cta={{ label: "Browse the blog", href: "/blog" }} onNavigate={onNavigate}>
         <div className="grid grid-cols-[minmax(0,1fr)_300px] gap-10">
           <Column heading={r.sections[0].heading} items={r.sections[0].items} cols={2} onNavigate={onNavigate} />
-          <FeatureCard href={r.featured.href} eyebrow={`Featured · ${r.featured.tag}`} title={r.featured.title} action={r.featured.readTime} image={r.featured.image || undefined} onNavigate={onNavigate} />
+          <FeatureCard href={r.featured.href} eyebrow={`${t("Featured · ")}${r.featured.tag}`} title={r.featured.title} action={r.featured.readTime} image={r.featured.image || undefined} onNavigate={onNavigate} />
         </div>
       </Frame>
     );

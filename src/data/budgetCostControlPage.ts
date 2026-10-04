@@ -273,12 +273,6 @@ export const budgetAiRoadmap = {
   items: [
 
     {
-      icon: BadgeCheck,
-      title: "Smart Budget Alerts",
-      body: "Detect risks and decisions before they become problems.",
-    },
-
-    {
       icon: RefreshCcw,
       title: "AI Revision Suggestions",
       body: "Recommend the best actions for budget changes.",
@@ -290,11 +284,6 @@ export const budgetAiRoadmap = {
       body: "Predict budget health and identify emerging risks.",
     },
 
-    {
-      icon: FileBarChart,
-      title: "AI Summary & Reports",
-      body: "Generate intelligent budget summaries and reports.",
-    },
   ],
 } as const;
 

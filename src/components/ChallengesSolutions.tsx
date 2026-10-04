@@ -220,7 +220,7 @@ function CompareVisual() {
       {/* =========================================================
           LEFT - TRADITIONAL / PROBLEM
       ========================================================= */}
-      <div className="absolute inset-y-0 left-0 w-1/2 overflow-hidden">
+      <div className="absolute inset-y-0 start-0 w-1/2 overflow-hidden">
         <img
           src="/traditional%20bg1.png"
           alt="Traditional construction"
@@ -275,7 +275,7 @@ function CompareVisual() {
       {/* =========================================================
           RIGHT - ZEDOPS / SOLUTION
       ========================================================= */}
-      <div className="absolute inset-y-0 right-0 w-1/2 overflow-hidden">
+      <div className="absolute inset-y-0 end-0 w-1/2 overflow-hidden">
         <img
           src="/photos/modern.png"
           alt="Connected construction"

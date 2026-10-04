@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useI18n } from "@/i18n";
 import { CalendarDays } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
@@ -20,6 +21,7 @@ const projectHighlights = [
 
 /** Hero: framed blueprint field with a two-tone headline, then the full-bleed reel and a stat bar. */
 export default function HeroPreview() {
+  const { t } = useI18n();
   const isMobile = useIsMobile();
   const fade = (delay: number, y = 14) =>
     isMobile
@@ -37,28 +39,27 @@ export default function HeroPreview() {
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-14">
             <div>
               <motion.div {...fade(0)} className="mb-6">
-                <Eyebrow tag="AI-powered">MEP &amp; construction execution platform</Eyebrow>
+                <Eyebrow tag={t("AI-powered")}>{t("MEP & construction execution platform")}</Eyebrow>
               </motion.div>
               <motion.h1
               {...fade(0.06, 18)}
               className="text-[40px] font-medium leading-[1] tracking-[-0.045em] text-brand-navy sm:text-[56px] lg:text-[64px]"
             >
-              From takeoff <br className="hidden sm:block" />
-              to handover.
+              {t("From takeoff")} <br className="hidden sm:block" />
+              {t("to handover.")}
               <br />
-              <Muted>One job, one record.</Muted>
+              <Muted>{t("One job, one record.")}</Muted>
               </motion.h1>
             </div>
 
             <motion.div {...fade(0.14)} className="lg:pb-1.5">
               <p className="max-w-md text-[16px] leading-[1.6] text-[#4D5E77] sm:text-[17px]">
-                Estimates, schedules, materials, site work, quality and cost stay connected, so every team works
-                from the same facts and Zed AI shows what to fix next.
+                {t("Estimates, schedules, materials, site work, quality and cost stay connected, so every team works from the same facts and Zed AI shows what to fix next.")}
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
-                <TicketButton href="/early-access">Request early access</TicketButton>
+                <TicketButton href="/early-access">{t("Request early access")}</TicketButton>
                 <GhostButton href="/contact?topic=demo" icon={CalendarDays}>
-                  Book a demo
+                  {t("Book a demo")}
                 </GhostButton>
               </div>
             </motion.div>
@@ -69,7 +70,7 @@ export default function HeroPreview() {
       {/* Full-bleed construction reel, with a pause control and reduced-motion opt-out. */}
       <HeroVideoBand />
 
-      <section className="relative z-10 -mt-20 sm:-mt-24" aria-label="Project highlights">
+      <section className="relative z-10 -mt-20 sm:-mt-24" aria-label={t("Project highlights")}>
         <div className="mx-auto max-w-[1200px] px-5 lg:px-0">
           <motion.dl
             {...scrollMotionProps(isMobile, { y: 32, duration: 0.7 })}
@@ -78,9 +79,9 @@ export default function HeroPreview() {
             {projectHighlights.map(({ value, label }, i) => (
               <div
                 key={label}
-                className={`flex flex-col border-[#E8ECF2] px-5 py-6 sm:px-8 sm:py-9 ${i % 2 === 1 ? "border-l" : ""} ${i > 1 ? "border-t lg:border-t-0" : ""} ${i === 2 ? "lg:border-l" : ""}`}
+                className={`flex flex-col border-[#E8ECF2] px-5 py-6 sm:px-8 sm:py-9 ${i % 2 === 1 ? "border-s" : ""} ${i > 1 ? "border-t lg:border-t-0" : ""} ${i === 2 ? "lg:border-s" : ""}`}
               >
-                <dt className="order-2 mt-4 text-[14px] font-medium leading-snug text-brand-navy sm:text-[15px]">{label}</dt>
+                <dt className="order-2 mt-4 text-[14px] font-medium leading-snug text-brand-navy sm:text-[15px]">{t(label)}</dt>
                 <dd className="order-1 text-[44px] font-medium leading-none tracking-[-0.05em] text-brand-navy sm:text-[60px]">{value}</dd>
               </div>
             ))}

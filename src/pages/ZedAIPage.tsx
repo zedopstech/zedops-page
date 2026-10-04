@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
 import { framePad, GhostButton, Highlight, Muted, Section, SplitHeader, TicketButton } from "@/components/design-system/primitives";
+import ZedSpecialistsSection from "@/components/zed/ZedSpecialistsSection";
 import { ModuleClosingCta } from "@/components/module/ModuleSections";
 import { ZaiActions, ZaiCopilot, ZaiHeroAsk, ZaiInsights, ZaiReports, ZaiRisk, ZaiWriting } from "@/components/mocks/scenes";
 
@@ -40,7 +41,7 @@ const capabilities: Capability[] = [
     label: "Insights",
     icon: LayoutDashboard,
     title: "See trouble before it becomes a delay.",
-    body: "Patterns from schedules, tasks and activity surface early for PMs and leadership, not after the fact.",
+    body: "Patterns from schedules, tasks, materials and cost surface early for PMs and leadership, not after the fact. Built-in models flag likely schedule delays, material demand and budget anomalies.",
     detail: "What you see matches your access: field teams, PMs and executives each get relevant summaries.",
     Mock: ZaiRisk,
   },
@@ -58,8 +59,8 @@ const capabilities: Capability[] = [
     label: "Actions",
     icon: ListChecks,
     title: "From insight to the next step.",
-    body: "Where enabled, create tasks, follow-ups and checklist progress without retyping context.",
-    detail: "Actions respect roles and modules. If you can’t do it manually in ZedOps, the copilot can’t either.",
+    body: "Where enabled, draft material, purchase, transfer and reserve requests, tasks and snags without retyping context.",
+    detail: "Every action arrives as an approval card for you to confirm. Actions respect roles and modules: if you can’t do it manually in ZedOps, the copilot can’t either.",
     Mock: ZaiActions,
   },
 ];
@@ -130,7 +131,7 @@ function CapabilityShowcase({ isMobile }: { isMobile: boolean }) {
               aria-selected={on}
               aria-controls="zai-panel"
               onClick={() => setActive(i)}
-              className={`relative flex items-center gap-2.5 border-[#E8ECF2] px-5 py-5 text-left outline-none transition-colors focus-visible:bg-[#F7F8FA] sm:px-6 ${i > 0 ? "border-l" : ""} ${on ? "bg-[#F7F8FA]" : "hover:bg-[#FAFBFC]"}`}
+              className={`relative flex items-center gap-2.5 border-[#E8ECF2] px-5 py-5 text-start outline-none transition-colors focus-visible:bg-[#F7F8FA] sm:px-6 ${i > 0 ? "border-s" : ""} ${on ? "bg-[#F7F8FA]" : "hover:bg-[#FAFBFC]"}`}
             >
               <span aria-hidden className={`absolute inset-x-0 -top-px h-[2px] ${on ? "bg-brand-orange" : "bg-transparent"}`} />
               <item.icon size={17} className={on ? "text-brand-orange" : "text-[#677388]"} aria-hidden />
@@ -204,7 +205,9 @@ export default function ZedAIPage() {
 
         <CapabilityShowcase isMobile={isMobile} />
 
-        <Section tone="mist" labelledBy="zai-prompts">
+        <ZedSpecialistsSection />
+
+        <Section labelledBy="zai-prompts">
           <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
               <SplitHeader
@@ -228,7 +231,7 @@ export default function ZedAIPage() {
           </ul>
         </Section>
 
-        <Section id="how-it-works" labelledBy="zai-flow" className="scroll-mt-[100px]">
+        <Section tone="mist" id="how-it-works" labelledBy="zai-flow" className="scroll-mt-[100px]">
           <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
               <SplitHeader
@@ -243,7 +246,7 @@ export default function ZedAIPage() {
               <motion.li
                 key={f.title}
                 {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: i * 0.06 })}
-                className={`border-[#E8ECF2] px-6 py-9 sm:px-8 ${i > 0 ? "border-t sm:border-t-0" : ""} ${i >= 2 ? "sm:border-t lg:border-t-0" : ""} ${i % 2 === 1 ? "sm:border-l" : ""} ${i === 2 ? "lg:border-l" : ""}`}
+                className={`border-[#E8ECF2] px-6 py-9 sm:px-8 ${i > 0 ? "border-t sm:border-t-0" : ""} ${i >= 2 ? "sm:border-t lg:border-t-0" : ""} ${i % 2 === 1 ? "sm:border-s" : ""} ${i === 2 ? "lg:border-s" : ""}`}
               >
                 <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E3E8F0] font-mono text-[12px] text-brand-navy">{pad(i + 1)}</span>
                 <h3 className="mt-8 text-[20px] font-medium tracking-[-0.02em] text-brand-navy">{f.title}</h3>
@@ -253,7 +256,7 @@ export default function ZedAIPage() {
           </ol>
         </Section>
 
-        <Section tone="mist" labelledBy="zai-before-after">
+        <Section labelledBy="zai-before-after">
           <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
               <SplitHeader
@@ -284,7 +287,7 @@ export default function ZedAIPage() {
           </div>
         </Section>
 
-        <Section labelledBy="zai-roles">
+        <Section tone="mist" labelledBy="zai-roles">
           <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
               <SplitHeader
@@ -315,7 +318,7 @@ export default function ZedAIPage() {
           </div>
         </Section>
 
-        <Section tone="mist" labelledBy="zai-trust">
+        <Section labelledBy="zai-trust">
           <div className={`grid gap-10 py-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center lg:gap-16 lg:py-20 ${framePad}`}>
             <h2 id="zai-trust" className="text-[26px] font-medium leading-[1.2] tracking-[-0.03em] text-brand-navy sm:text-[30px]">
               Grounded in your data. <Muted>Bounded by your permissions.</Muted>

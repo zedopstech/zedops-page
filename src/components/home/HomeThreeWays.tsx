@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useI18n } from "@/i18n";
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import { FileSpreadsheet, Mail, MessageCircle, Sparkles, StickyNote, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -127,7 +128,7 @@ function DisconnectedVisual({ run }: { run: boolean }) {
           <div className="flex items-center gap-1 border-b border-[#EDF0F5] px-2.5 py-2">
             <span className="h-1.5 w-1.5 rounded-full bg-[#DCE3ED]" />
             <span className="h-1.5 w-1.5 rounded-full bg-[#DCE3ED]" />
-            <span className="ml-1.5 truncate text-[11px] text-[#616D82]">{a.name}</span>
+            <span className="ms-1.5 truncate text-[11px] text-[#616D82]">{a.name}</span>
           </div>
           <div className="space-y-2 p-2.5">
             {Array.from({ length: a.rows }).map((_, k) => (
@@ -201,6 +202,7 @@ const visuals = [SiloVisual, DisconnectedVisual, ConnectedVisual];
  * and a visual of that way of working on the right (dark section).
  */
 export default function ThreeWaysPreview() {
+  const { t } = useI18n();
   const isMobile = useIsMobile();
   const reduce = !!useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
@@ -223,8 +225,8 @@ export default function ThreeWaysPreview() {
         <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
           <SplitHeader
             id="dp-compare"
-            title={<>Three ways to run <Highlight>MEP &amp; construction</Highlight> work.</>}
-            body="From paper processes to digital tools to AI-assisted execution: what changes for the team at each step."
+            title={<>{t("Three ways to run ")}<Highlight>{t("MEP & construction")}</Highlight>{t(" work.")}</>}
+            body={t("From paper processes to digital tools to AI-assisted execution: what changes for the team at each step.")}
           />
         </motion.div>
       </div>
@@ -232,7 +234,7 @@ export default function ThreeWaysPreview() {
       <div ref={ref} className="grid border-t border-[#E3E8F0] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <div
           role="tablist"
-          aria-label="Ways of working"
+          aria-label={t("Ways of working")}
           className="px-6 py-10 sm:px-10 lg:px-14 lg:py-14"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
@@ -248,9 +250,9 @@ export default function ThreeWaysPreview() {
                   aria-selected={on}
                   aria-controls="ways-panel"
                   onClick={() => setActive(i)}
-                  className={`text-left text-[18px] font-medium tracking-[-0.02em] transition-colors ${on ? "text-brand-navy" : "text-[#677388] hover:text-[#5E6C84]"}`}
+                  className={`text-start text-[18px] font-medium tracking-[-0.02em] transition-colors ${on ? "text-brand-navy" : "text-[#677388] hover:text-[#5E6C84]"}`}
                 >
-                  {w.name}
+                  {t(w.name)}
                 </button>
                 <AnimatePresence initial={false}>
                   {on ? (
@@ -261,7 +263,7 @@ export default function ThreeWaysPreview() {
                       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="mt-2 max-w-md text-[15px] leading-[1.55] text-[#616D82]">{w.lead}</p>
+                      <p className="mt-2 max-w-md text-[15px] leading-[1.55] text-[#616D82]">{t(w.lead)}</p>
                       <div className="mt-5 h-[2px] overflow-hidden rounded-full bg-[#E3E8F0]">
                         <motion.div
                           key={`${active}-${paused}-${run}`}
@@ -283,10 +285,10 @@ export default function ThreeWaysPreview() {
           id="ways-panel"
           role="tabpanel"
           aria-labelledby={`ways-tab-${active}`}
-          className="relative flex items-center justify-center overflow-hidden border-t border-[#E3E8F0] bg-white px-6 py-10 sm:px-10 lg:border-t-0 lg:border-l"
+          className="relative flex items-center justify-center overflow-hidden border-t border-[#E3E8F0] bg-white px-6 py-10 sm:px-10 lg:border-t-0 lg:border-s"
         >
           <div aria-hidden className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgba(23,43,77,0.1)_1px,transparent_1px)] [background-size:16px_16px]" />
-          <div className="relative w-full max-w-[520px]">
+          <div dir="ltr" className="relative w-full max-w-[520px]">
             <Canvas width={520} height={340}>
               <AnimatePresence mode="wait">
                 <motion.div

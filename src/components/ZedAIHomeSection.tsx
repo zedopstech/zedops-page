@@ -122,14 +122,14 @@ function ZedAIChat({ active }: { active: boolean }) {
             className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
           >
             {msg.role === "ai" && (
-              <div className="mr-1.5 mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-orange/20">
+              <div className="me-1.5 mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-orange/20">
                 <Sparkles size={9} className="text-brand-orange" />
               </div>
             )}
             <div
               className={`max-w-[82%] px-3 py-2 text-xs leading-snug ${
                 msg.role === "user"
-                  ? "ml-4 bg-brand-navy text-white/80"
+                  ? "ms-4 bg-brand-navy text-white/80"
                   : "border border-blue-800/30 bg-[#1A3352] text-white/90"
               }`}
               style={{
@@ -150,7 +150,7 @@ function ZedAIChat({ active }: { active: boolean }) {
             transition={{ duration: 0.2 }}
             className="flex items-center justify-start"
           >
-            <div className="mr-1.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-orange/20">
+            <div className="me-1.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-orange/20">
               <Sparkles size={9} className="text-brand-orange" />
             </div>
             <div className="border border-blue-800/30 bg-[#1A3352]" style={{ borderRadius: 8, borderBottomLeftRadius: 2 }}>
@@ -185,7 +185,7 @@ export default function ZedAIHomeSection() {
                 <Sparkles size={18} className="text-white" aria-hidden />
               </div>
               <div>
-                <span className="mr-2 bg-white/10 px-2 py-0.5 text-[9px] font-bold tracking-widest text-white/70 uppercase">
+                <span className="me-2 bg-white/10 px-2 py-0.5 text-[9px] font-bold tracking-widest text-white/70 uppercase">
                   New
                 </span>
                 <span className="text-xs font-semibold tracking-widest text-white/50 uppercase">Zed AI</span>
@@ -215,7 +215,7 @@ export default function ZedAIHomeSection() {
             </div>
           </div>
 
-          <div className="flex w-full min-w-0 flex-col justify-between border-t border-white/5 bg-[#0E1E38] p-6 lg:w-[420px] lg:shrink-0 lg:border-t-0 lg:border-l lg:border-white/5 lg:p-8">
+          <div className="flex w-full min-w-0 flex-col justify-between border-t border-white/5 bg-[#0E1E38] p-6 lg:w-[420px] lg:shrink-0 lg:border-t-0 lg:border-s lg:border-white/5 lg:p-8">
             <div className="mb-5 flex items-center gap-2">
               <div className="h-2 w-2 animate-pulse rounded-full bg-brand-orange" />
               <span className="text-[10px] font-bold tracking-widest text-white/40 uppercase">Live · Zed AI Copilot</span>

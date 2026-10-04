@@ -218,7 +218,7 @@ export default function PunchListLanding(_props: {
             <button
               type="button"
               onClick={() => setIsDemoOpen(false)}
-              className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-xl text-white transition hover:bg-black/80"
+              className="absolute end-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-xl text-white transition hover:bg-black/80"
               aria-label="Close video"
             >
               ×
@@ -441,7 +441,7 @@ export default function PunchListLanding(_props: {
                     key={benefit.title}
                     className={`flex items-center gap-3 px-4 py-3 ${
                       index < punchListComparison.benefits.length - 1
-                        ? "border-b border-gray-100 lg:border-b-0 lg:border-r"
+                        ? "border-b border-gray-100 lg:border-b-0 lg:border-e"
                         : ""
                     }`}
                   >
@@ -504,7 +504,7 @@ export default function PunchListLanding(_props: {
             className="overflow-hidden rounded-2xl border border-[#E1E5EB] bg-white shadow-[0_8px_30px_-18px_rgba(23,43,77,0.25)]"
           >
             <div className="flex flex-col lg:flex-row">
-              <div className="flex shrink-0 items-center border-b border-[#E1E5EB] bg-[#F4F6F8] px-7 py-8 lg:w-[235px] lg:border-b-0 lg:border-r xl:w-[255px]">
+              <div className="flex shrink-0 items-center border-b border-[#E1E5EB] bg-[#F4F6F8] px-7 py-8 lg:w-[235px] lg:border-b-0 lg:border-e xl:w-[255px]">
                 <p className="text-lg font-extrabold leading-snug text-brand-navy">
                   What's Coming Next —
                   <span className="mt-1 block text-brand-orange">
@@ -518,7 +518,7 @@ export default function PunchListLanding(_props: {
                   return (
                     <li
                       key={item.title}
-                      className="flex min-w-0 border-b border-[#E1E5EB] px-5 py-7 sm:px-6 lg:border-r lg:border-b-0 lg:last:border-r-0"
+                      className="flex min-w-0 border-b border-[#E1E5EB] px-5 py-7 sm:px-6 lg:border-e lg:border-b-0 lg:last:border-e-0"
                     >
                       <div className="flex min-w-0 flex-col">
                         <span className="mb-4 flex h-9 w-9 items-center justify-center">

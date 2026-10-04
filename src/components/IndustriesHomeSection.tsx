@@ -129,10 +129,10 @@ function wrapIndex(i: number, len: number) {
 function CornerTicks() {
   return (
     <>
-      <span className="pointer-events-none absolute -left-1 -top-1 h-3.5 w-3.5 border-l-2 border-t-2 border-brand-orange" />
-      <span className="pointer-events-none absolute -right-1 -top-1 h-3.5 w-3.5 border-r-2 border-t-2 border-brand-orange" />
-      <span className="pointer-events-none absolute -bottom-1 -left-1 h-3.5 w-3.5 border-b-2 border-l-2 border-brand-orange" />
-      <span className="pointer-events-none absolute -bottom-1 -right-1 h-3.5 w-3.5 border-b-2 border-r-2 border-brand-orange" />
+      <span className="pointer-events-none absolute -start-1 -top-1 h-3.5 w-3.5 border-s-2 border-t-2 border-brand-orange" />
+      <span className="pointer-events-none absolute -end-1 -top-1 h-3.5 w-3.5 border-e-2 border-t-2 border-brand-orange" />
+      <span className="pointer-events-none absolute -bottom-1 -start-1 h-3.5 w-3.5 border-b-2 border-s-2 border-brand-orange" />
+      <span className="pointer-events-none absolute -bottom-1 -end-1 h-3.5 w-3.5 border-b-2 border-e-2 border-brand-orange" />
     </>
   );
 }
@@ -165,13 +165,13 @@ function IndustryShowcase() {
             const Icon = item.icon;
             const isActive = i === active;
             return (
-              <li key={item.title} className="min-w-0 border-b border-[#E5E7EB] last:border-b-0 lg:border-r">
+              <li key={item.title} className="min-w-0 border-b border-[#E5E7EB] last:border-b-0 lg:border-e">
                 <button
                   type="button"
                   role="tab"
                   aria-selected={isActive}
                   aria-controls="industry-panel"
-                  className={`flex w-full min-h-[64px] items-start gap-3 px-5 py-5 text-left transition-colors lg:min-h-[72px] ${
+                  className={`flex w-full min-h-[64px] items-start gap-3 px-5 py-5 text-start transition-colors lg:min-h-[72px] ${
                     isActive ? "bg-brand-navy" : "bg-transparent hover:bg-white"
                   }`}
                   onClick={() => setActive(i)}
@@ -296,7 +296,7 @@ function ContractorShowcase() {
                 >
                   <img src={current.image} alt={current.title} className="h-full w-full object-cover object-center" />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B1220]/75 via-[#0B1220]/15 to-transparent" />
-                  <div className="absolute bottom-5 left-5 flex items-center gap-2.5 sm:bottom-6 sm:left-6">
+                  <div className="absolute bottom-5 start-5 flex items-center gap-2.5 sm:bottom-6 sm:start-6">
                     <CurrentIcon size={20} className="text-brand-orange" aria-hidden />
                     <p className="text-[28px] font-extrabold tracking-tight text-white sm:text-[32px] lg:text-[38px]">
                       {current.title}
@@ -414,7 +414,7 @@ export default function IndustriesHomeSection() {
             Whether you build, manage, install or maintain — ZedOps connects your people, processes and projects in one
             unified platform.
           </p>
-          <p className="flex items-start gap-3 border-t border-white/10 pt-6 text-sm font-semibold leading-snug text-white lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10 sm:text-base">
+          <p className="flex items-start gap-3 border-t border-white/10 pt-6 text-sm font-semibold leading-snug text-white lg:border-t-0 lg:border-s lg:pt-0 lg:ps-10 sm:text-base">
             <Crosshair size={22} className="mt-0.5 shrink-0 text-brand-orange" aria-hidden />
             One Platform. Every Industry. Every Contractor. Every Project.
           </p>

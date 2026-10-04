@@ -34,11 +34,11 @@ function StageCard({ title, desc, icon: Icon }: (typeof stages)[number]) {
   return (
     <article className="relative z-10 flex h-full flex-col items-center rounded-xl bg-brand-navy px-4 py-6 text-center sm:px-5 sm:py-7">
       <span
-        className="pointer-events-none absolute top-1/2 left-0 hidden h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-brand-orange shadow-[0_0_0_3px_rgba(254,93,2,0.18)] lg:block"
+        className="pointer-events-none absolute top-1/2 start-0 hidden h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-brand-orange shadow-[0_0_0_3px_rgba(254,93,2,0.18)] lg:block"
         aria-hidden
       />
       <span
-        className="pointer-events-none absolute top-1/2 right-0 hidden h-2.5 w-2.5 translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-brand-orange shadow-[0_0_0_3px_rgba(254,93,2,0.18)] lg:block"
+        className="pointer-events-none absolute top-1/2 end-0 hidden h-2.5 w-2.5 translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-brand-orange shadow-[0_0_0_3px_rgba(254,93,2,0.18)] lg:block"
         aria-hidden
       />
 
@@ -82,7 +82,7 @@ export default function HowItWorks() {
           <div className="relative hidden lg:block">
             <div className="relative">
               <div
-                className="pointer-events-none absolute top-1/2 right-0 left-0 z-0 h-px -translate-y-1/2 bg-[#C1C7D0]"
+                className="pointer-events-none absolute top-1/2 end-0 start-0 z-0 h-px -translate-y-1/2 bg-[#C1C7D0]"
                 aria-hidden
               />
               <ol className="relative z-10 m-0 grid list-none grid-cols-5 gap-4 p-0 xl:gap-5">
@@ -96,7 +96,7 @@ export default function HowItWorks() {
 
             <div className="relative mt-4">
               <div
-                className="pointer-events-none absolute top-1/2 right-0 left-0 z-0 h-px -translate-y-1/2 bg-[#C1C7D0]"
+                className="pointer-events-none absolute top-1/2 end-0 start-0 z-0 h-px -translate-y-1/2 bg-[#C1C7D0]"
                 aria-hidden
               />
               <ol className="relative z-10 m-0 grid list-none grid-cols-4 gap-4 p-0 xl:gap-5">

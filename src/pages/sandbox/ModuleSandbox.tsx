@@ -119,7 +119,7 @@ export default function ModulePreview() {
                 <a
                   key={it.name}
                   href={`#${slug(it.name)}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-[#E3E8F0] bg-white py-1.5 pr-4 pl-2 text-[14px] font-medium text-brand-navy shadow-[0_4px_14px_-8px_rgba(23,43,77,0.25)] transition-colors hover:border-brand-orange/40"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#E3E8F0] bg-white py-1.5 pe-4 ps-2 text-[14px] font-medium text-brand-navy shadow-[0_4px_14px_-8px_rgba(23,43,77,0.25)] transition-colors hover:border-brand-orange/40"
                 >
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FFE9DD]">
                     <Icon size={13} className="text-brand-orange" aria-hidden />
@@ -209,7 +209,7 @@ export default function ModulePreview() {
                         {item.name}
                       </h3>
                     </div>
-                    <p className="mt-5 border-l-2 border-brand-orange pl-4 text-[17px] font-medium leading-snug text-brand-navy">
+                    <p className="mt-5 border-s-2 border-brand-orange ps-4 text-[17px] font-medium leading-snug text-brand-navy">
                       {item.summary}
                     </p>
                     <p className="mt-4 max-w-lg text-[15px] leading-[1.7] text-[#3D4F6E]">
@@ -261,7 +261,7 @@ export default function ModulePreview() {
             {next ? (
               <a
                 href={`/platform/module/${next.id}`}
-                className="group flex min-w-0 flex-row-reverse items-center gap-5 rounded-xl border border-[#E3E8F0] bg-white p-6 text-right transition-shadow hover:shadow-[0_18px_40px_-24px_rgba(23,43,77,0.4)]"
+                className="group flex min-w-0 flex-row-reverse items-center gap-5 rounded-xl border border-[#E3E8F0] bg-white p-6 text-end transition-shadow hover:shadow-[0_18px_40px_-24px_rgba(23,43,77,0.4)]"
               >
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-brand-navy text-brand-orange transition-colors group-hover:bg-brand-orange group-hover:text-white">
                   <ArrowRight size={18} aria-hidden />

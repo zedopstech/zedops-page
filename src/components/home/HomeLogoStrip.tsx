@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { useI18n } from "@/i18n";
 import { PiBankFill, PiBuildingsFill, PiDatabaseFill, PiFactoryFill, PiGasPumpFill, PiHospitalFill, PiLightningFill } from "react-icons/pi";
 import type { IconType } from "react-icons";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -16,17 +17,18 @@ const industries: { title: string; icon: IconType }[] = [
 ];
 
 function Plate({ title, icon: Icon }: { title: string; icon: IconType }) {
+  const { t } = useI18n();
   return (
     <span className="flex shrink-0 items-center gap-2.5 text-[18px] font-semibold tracking-[-0.02em] text-[#5E6C84]">
       <Icon size={20} className="text-[#677388]" aria-hidden />
-      {title}
+      {t(title)}
     </span>
   );
 }
 
 function Row() {
   return (
-    <div className="flex shrink-0 items-center gap-14 pr-14">
+    <div className="flex shrink-0 items-center gap-14 pe-14">
       {industries.map((it) => (
         <Plate key={it.title} {...it} />
       ))}
@@ -36,12 +38,13 @@ function Row() {
 
 /** Proof strip: one quiet caption over a slow marquee of the industries served. */
 export default function LogoStripPreview() {
+  const { t } = useI18n();
   const reduce = useReducedMotion();
   const isMobile = useIsMobile();
   return (
-    <section className="relative bg-white pt-16 pb-14 sm:pt-20" aria-label="Industries">
+    <section className="relative bg-white pt-16 pb-14 sm:pt-20" aria-label={t("Industries")}>
       <motion.p {...scrollMotionProps(isMobile, { y: 20 })} className="mb-8 px-5 text-center text-[14px] font-medium text-[#616D82]">
-        One platform for every contractor, across every industry
+        {t("One platform for every contractor, across every industry")}
       </motion.p>
       <motion.div {...scrollMotionProps(isMobile, { y: 24, delay: 0.08 })} className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">
         <motion.div

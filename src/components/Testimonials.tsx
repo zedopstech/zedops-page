@@ -256,7 +256,7 @@ export default function Testimonials() {
             return (
               <div
                 key={item.text}
-                className={`flex items-center gap-3 px-3 lg:justify-center ${i > 0 ? "lg:border-l lg:border-[#E5E7EB]" : ""}`}
+                className={`flex items-center gap-3 px-3 lg:justify-center ${i > 0 ? "lg:border-s lg:border-[#E5E7EB]" : ""}`}
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F4F6FB]">
                   <Icon size={16} className="text-brand-orange" aria-hidden />

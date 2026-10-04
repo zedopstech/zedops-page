@@ -134,7 +134,7 @@ export default function Security() {
                   </span>
                 </div>
               ))}
-              <p className="text-xs text-[#97A0AF] mt-1 pl-1">Items marked with a lock icon are planned for a future roadmap stage.</p>
+              <p className="text-xs text-[#97A0AF] mt-1 ps-1">Items marked with a lock icon are planned for a future roadmap stage.</p>
             </div>
           </div>
         </div>
