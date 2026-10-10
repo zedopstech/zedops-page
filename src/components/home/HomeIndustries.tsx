@@ -1,3 +1,4 @@
+import { MotionLocalA } from "@/components/LocalLink";
 import { motion } from "framer-motion";
 import { useI18n } from "@/i18n";
 import { PiBankFill, PiBuildingsFill, PiDatabaseFill, PiFactoryFill, PiGasPumpFill, PiGearFill, PiHardHatFill, PiHospitalFill, PiLightningFill, PiUsersFill, PiWrenchFill } from "react-icons/pi";
@@ -138,7 +139,7 @@ function IndustryTile({ it, index, isMobile }: { it: (typeof industries)[number]
   const { t } = useI18n();
   const lead = index === 0;
   return (
-    <motion.a
+    <MotionLocalA
       href="/who-we-serve"
       {...scrollMotionProps(isMobile, { y: 16, duration: 0.45, delay: (index % 4) * 0.05 })}
       className={`group relative isolate flex min-h-0 flex-col justify-end overflow-hidden rounded-xl bg-[#0E1B33] p-5 outline-none focus-visible:ring-2 focus-visible:ring-brand-orange sm:p-6 ${lead ? "min-h-[240px]" : ""} ${tileLayout[index] ?? ""}`}
@@ -177,7 +178,7 @@ function IndustryTile({ it, index, isMobile }: { it: (typeof industries)[number]
         </div>
         <ArrowUpRight size={18} className="mb-1 shrink-0 text-white/50 transition-colors group-hover:text-white" aria-hidden />
       </div>
-    </motion.a>
+    </MotionLocalA>
   );
 }
 
@@ -225,7 +226,7 @@ export default function IndustriesPreview() {
 
         <div className="m-carousel grid grid-cols-2 gap-px border-t border-[#E3E8F0] bg-[#E3E8F0] lg:grid-cols-6">
           {contractors.map((c, i) => (
-            <motion.a
+            <MotionLocalA
               key={c.title}
               href="/who-we-serve"
               {...scrollMotionProps(isMobile, { y: 14, duration: 0.35, delay: i * 0.05 })}
@@ -247,7 +248,7 @@ export default function IndustriesPreview() {
                 <ArrowUpRight size={16} className="shrink-0 text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden />
               </h3>
               <p className="mt-1.5 text-[13px] leading-[1.5] text-[#616D82] sm:text-[14px] sm:leading-[1.55]">{t(c.desc)}</p>
-            </motion.a>
+            </MotionLocalA>
           ))}
         </div>
       </Section>

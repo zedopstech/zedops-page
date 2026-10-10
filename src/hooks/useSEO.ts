@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
-import { SITE, absoluteUrl, pageUrl } from "@/config/site";
+import { SITE, SITE_URL, absoluteUrl, pageUrl } from "@/config/site";
+import { LANGUAGES, langFromPath, localize, seoText, useI18n } from "@/i18n";
+import { INDEXED_LANGS, isIndexedLang } from "@/config/seoLangs";
+import { ogImagePath } from "@/config/ogImage.mjs";
 
 interface SEOProps {
   title: string;
@@ -18,6 +21,11 @@ interface SEOProps {
   publishedTime?: string;
   modifiedTime?: string;
   author?: string;
+  /**
+   * Whether this page has a version in every language, so it advertises hreflang alternates.
+   * False for English-only pages (blog posts), which then carry only their own canonical.
+   */
+  alternates?: boolean;
   /** JSON-LD objects injected as application/ld+json. */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -77,8 +85,8 @@ function removeMeta(keyAttr: "name" | "property", key: string) {
  * without each one having to pass it.
  */
 export function useSEO({
-  title,
-  description,
+  title: rawTitle,
+  description: rawDescription,
   path,
   image,
   imageAlt,
@@ -87,15 +95,25 @@ export function useSEO({
   publishedTime,
   modifiedTime,
   author,
+  alternates: alternatesProp,
   jsonLd,
 }: SEOProps) {
   const [location] = useLocation();
+  const { lang } = useI18n();
+  // A noindex page (404, sandbox) is not part of the language set.
+  const alternates = alternatesProp ?? !noindex;
+  // Titles and descriptions are written once, in English (see scripts/lib/routes.mjs), and
+  // translated here and by the prerenderer through the same function.
+  const title = seoText(lang, rawTitle);
+  const description = seoText(lang, rawDescription);
 
   useEffect(() => {
-    const routePath = path ?? location;
-    const url = pageUrl(routePath);
-    const imageUrl = absoluteUrl(image ?? SITE.ogImage);
-    const imageDescription = imageAlt ?? `${SITE.name} — ${SITE.tagline}`;
+    // `location` is relative to the router base, which carries the language prefix.
+    const neutralPath = langFromPath(path ?? location).path;
+    const url = pageUrl(localize(neutralPath, lang));
+    // Explicit image wins; otherwise the generated English card for this path (all languages share it).
+    const imageUrl = absoluteUrl(image ?? (noindex ? SITE.ogImage : ogImagePath(neutralPath)));
+    const imageDescription = imageAlt ?? (noindex ? `${SITE.name} – ${SITE.tagline}` : title);
 
     document.title = title;
     setMeta("name", "description", description);
@@ -105,10 +123,43 @@ export function useSEO({
     upsert<HTMLMetaElement>(
       "meta[name='robots']",
       { tag: "meta", attrs: { name: "robots" } },
-      { content: noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large" },
+      {
+        content: noindex
+          ? "noindex, nofollow"
+          : isIndexedLang(lang)
+            ? "index, follow, max-image-preview:large"
+            : "noindex, follow",
+      },
     );
 
+    // Language alternates. Replaced wholesale so a page without translations leaves none behind.
+    document.head.querySelectorAll("link[rel='alternate'][hreflang]").forEach((n) => n.remove());
+    // Only indexed languages appear in a set, and a set needs at least two of them.
+    const hreflangs = LANGUAGES.filter((l) => INDEXED_LANGS.includes(l.code));
+    const emitAlternates = alternates && hreflangs.length > 1;
+    if (emitAlternates) {
+      const addAlternate = (hreflang: string, code: (typeof LANGUAGES)[number]["code"]) => {
+        const link = document.createElement("link");
+        link.setAttribute("rel", "alternate");
+        link.setAttribute("hreflang", hreflang);
+        link.setAttribute("href", pageUrl(localize(neutralPath, code)));
+        document.head.appendChild(link);
+      };
+      hreflangs.forEach((l) => addAlternate(l.code, l.code));
+      addAlternate("x-default", "en");
+    }
+
     // Open Graph.
+    setMeta("property", "og:locale", LANGUAGES.find((l) => l.code === lang)?.locale ?? "en_US");
+    document.head.querySelectorAll("meta[property='og:locale:alternate']").forEach((n) => n.remove());
+    if (emitAlternates) {
+      hreflangs.filter((l) => l.code !== lang).forEach((l) => {
+        const meta = document.createElement("meta");
+        meta.setAttribute("property", "og:locale:alternate");
+        meta.setAttribute("content", l.locale);
+        document.head.appendChild(meta);
+      });
+    }
     setMeta("property", "og:type", type);
     setMeta("property", "og:url", url);
     setMeta("property", "og:title", title);
@@ -142,8 +193,22 @@ export function useSEO({
     // Only page-managed blocks are cleared; the sitewide block in index.html is marked
     // data-seo-jsonld="static" and must survive.
     document.head.querySelectorAll('script[data-seo-jsonld="page"]').forEach((n) => n.remove());
-    if (jsonLd) {
-      const blocks = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+    {
+      // Every page declares its language; articles carry their own BlogPosting.
+      const base = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+      const blocks: Record<string, unknown>[] = base.map((b) => ({ inLanguage: lang, ...b }));
+      if (type !== "article") {
+        blocks.unshift({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": `${url}#webpage`,
+          url,
+          name: title,
+          description,
+          inLanguage: lang,
+          isPartOf: { "@id": `${SITE_URL}/#website` },
+        });
+      }
       blocks.filter(Boolean).forEach((block) => {
         const script = document.createElement("script");
         script.type = "application/ld+json";
@@ -163,7 +228,9 @@ export function useSEO({
     publishedTime,
     modifiedTime,
     author,
+    alternates,
     jsonLd,
     location,
+    lang,
   ]);
 }

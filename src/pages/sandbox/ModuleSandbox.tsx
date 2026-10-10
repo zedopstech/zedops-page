@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { useMemo, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import {
@@ -55,7 +56,7 @@ export default function ModulePreview() {
   const isMobile = useIsMobile();
   const ctx = useMemo(() => getModuleNavContext(MODULE_ID), []);
   useSEO({
-    title: "Sandbox  -  Module",
+    title: "Sandbox – Module",
     description: "Internal design-direction mock of a ZedOps module page.",
     noindex: true,
   });
@@ -116,7 +117,7 @@ export default function ModulePreview() {
             {section.items.map((it) => {
               const Icon = itemVisual[it.name]?.icon ?? LayoutGrid;
               return (
-                <a
+                <LocalA
                   key={it.name}
                   href={`#${slug(it.name)}`}
                   className="inline-flex items-center gap-2 rounded-full border border-[#E3E8F0] bg-white py-1.5 pe-4 ps-2 text-[14px] font-medium text-brand-navy shadow-[0_4px_14px_-8px_rgba(23,43,77,0.25)] transition-colors hover:border-brand-orange/40"
@@ -125,7 +126,7 @@ export default function ModulePreview() {
                     <Icon size={13} className="text-brand-orange" aria-hidden />
                   </span>
                   {it.name}
-                </a>
+                </LocalA>
               );
             })}
           </motion.div>
@@ -241,7 +242,7 @@ export default function ModulePreview() {
             className={`grid gap-4 ${prev && next ? "md:grid-cols-2" : "md:max-w-xl"}`}
           >
             {prev ? (
-              <a
+              <LocalA
                 href={`/platform/module/${prev.id}`}
                 className="group flex min-w-0 items-center gap-5 rounded-xl border border-[#E3E8F0] bg-white p-6 transition-shadow hover:shadow-[0_18px_40px_-24px_rgba(23,43,77,0.4)]"
               >
@@ -256,10 +257,10 @@ export default function ModulePreview() {
                     {prev.title}
                   </p>
                 </div>
-              </a>
+              </LocalA>
             ) : null}
             {next ? (
-              <a
+              <LocalA
                 href={`/platform/module/${next.id}`}
                 className="group flex min-w-0 flex-row-reverse items-center gap-5 rounded-xl border border-[#E3E8F0] bg-white p-6 text-end transition-shadow hover:shadow-[0_18px_40px_-24px_rgba(23,43,77,0.4)]"
               >
@@ -274,7 +275,7 @@ export default function ModulePreview() {
                     {next.title}
                   </p>
                 </div>
-              </a>
+              </LocalA>
             ) : null}
           </div>
         </Container>

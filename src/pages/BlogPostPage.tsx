@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "wouter";
+import { Link, LocalA } from "@/components/LocalLink";
 import type { RouteComponentProps } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, Check, Link2, Linkedin, Mail, Twitter } from "lucide-react";
@@ -16,6 +16,20 @@ import { extractMarkdownToc } from "@/lib/markdownToc";
 import type { TocItem } from "@/lib/markdownToc";
 import { SITE, SITE_URL, absoluteUrl, pageUrl } from "@/config/site";
 import type { BlogPost } from "@/lib/blog";
+import { ogImagePath } from "@/config/ogImage.mjs";
+
+/**
+ * Team and company bylines ("ZedOps Product Team", "Zed AI Team") describe the organisation,
+ * not a person, so they point at the sitewide Organization node. Real names stay Person.
+ * Mirrored in scripts/lib/routes.mjs (authorSchema); keep the two in step.
+ */
+const TEAM_BYLINE = /\b(team|zedops|company|staff|editorial)\b/i;
+function authorSchema(name: string) {
+  if (TEAM_BYLINE.test(name)) {
+    return { "@type": "Organization", name: "ZedOps", "@id": `${SITE_URL}/#organization` };
+  }
+  return { "@type": "Person", name };
+}
 
 /** BlogPosting + BreadcrumbList so posts can earn article rich results and breadcrumb trails. */
 function buildBlogPosting(post: BlogPost) {
@@ -28,14 +42,14 @@ function buildBlogPosting(post: BlogPost) {
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
       headline: post.title,
       description: post.description,
-      image: post.image ? [absoluteUrl(post.image)] : [absoluteUrl(SITE.ogImage)],
+      image: post.image ? [absoluteUrl(post.image)] : [absoluteUrl(ogImagePath(`/blog/${post.slug}`))],
       datePublished: new Date(post.date).toISOString(),
       dateModified: new Date(post.date).toISOString(),
-      author: { "@type": "Organization", name: post.author },
-      publisher: { "@id": `${SITE_URL}#organization` },
+      author: authorSchema(post.author),
+      publisher: { "@id": `${SITE_URL}/#organization` },
       articleSection: post.category,
       inLanguage: "en",
-      isPartOf: { "@id": `${SITE_URL}#website` },
+      isPartOf: { "@id": `${SITE_URL}/#website` },
       wordCount: post.body.trim().split(/\s+/).filter(Boolean).length,
     },
     {
@@ -92,15 +106,15 @@ function ShareRow({ title }: { title: string }) {
 
   return (
     <div className="flex items-center gap-2">
-      <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${u}`} target="_blank" rel="noopener noreferrer" className={btn} aria-label="Share on LinkedIn">
+      <LocalA href={`https://www.linkedin.com/sharing/share-offsite/?url=${u}`} target="_blank" rel="noopener noreferrer" className={btn} aria-label="Share on LinkedIn">
         <Linkedin size={15} aria-hidden />
-      </a>
-      <a href={`https://twitter.com/intent/tweet?url=${u}&text=${t}`} target="_blank" rel="noopener noreferrer" className={btn} aria-label="Share on X">
+      </LocalA>
+      <LocalA href={`https://twitter.com/intent/tweet?url=${u}&text=${t}`} target="_blank" rel="noopener noreferrer" className={btn} aria-label="Share on X">
         <Twitter size={15} aria-hidden />
-      </a>
-      <a href={`mailto:?subject=${t}&body=${u}`} className={btn} aria-label="Share by email">
+      </LocalA>
+      <LocalA href={`mailto:?subject=${t}&body=${u}`} className={btn} aria-label="Share by email">
         <Mail size={15} aria-hidden />
-      </a>
+      </LocalA>
       <button type="button" onClick={copy} className={btn} aria-label={copied ? "Link copied" : "Copy link"}>
         {copied ? <Check size={15} className="text-[#1D9A5B]" aria-hidden /> : <Link2 size={15} aria-hidden />}
       </button>
@@ -120,14 +134,14 @@ function Toc({ toc, active }: { toc: TocItem[]; active?: string }) {
             const on = item.id === active;
             return (
               <li key={item.id}>
-                <a
+                <LocalA
                   href={`#${item.id}`}
                   className={`-ms-px block border-s py-1.5 ps-4 text-[13.5px] leading-[1.4] transition-colors ${
                     on ? "border-brand-orange text-brand-navy" : "border-transparent text-[#5F6B80] hover:text-brand-navy"
                   }`}
                 >
                   {item.text}
-                </a>
+                </LocalA>
               </li>
             );
           })}
@@ -143,13 +157,15 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
   const active = useActiveHeading(toc);
 
   useSEO({
-    title: post ? `${post.title}  -  ZedOps` : "Post not found  -  ZedOps",
+    title: post ? `${post.title} – ZedOps` : "Post not found – ZedOps",
     description: post?.description ?? "The requested article could not be found.",
     // A missing post is a soft 404: keep it out of the index.
     noindex: !post,
     type: post ? "article" : "website",
+    // Posts are English-only: no hreflang alternates, canonical to the English URL (see App.tsx).
+    alternates: false,
     image: post?.image,
-    imageAlt: post ? `${post.title} — ZedOps` : undefined,
+    imageAlt: post ? `${post.title} – ZedOps` : undefined,
     publishedTime: post ? new Date(post.date).toISOString() : undefined,
     author: post?.author,
     jsonLd: post ? buildBlogPosting(post) : undefined,
@@ -177,9 +193,7 @@ export default function BlogPostPage({ params }: RouteComponentProps<{ slug: str
       <main id="main">
         <header className="bg-white">
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={false}
             className={`mx-auto max-w-[1200px] pt-[124px] pb-12 sm:pt-[136px] lg:border-x lg:border-[#E8ECF2] lg:pb-14 ${framePad}`}
           >
             <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[13.5px]">

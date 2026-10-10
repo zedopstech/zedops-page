@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, ChevronDown, Globe } from "lucide-react";
-import { LANGUAGES, useI18n } from "@/i18n";
+import { LANGUAGES, switchLang, useI18n } from "@/i18n";
 
 /** Language dropdown. Each option is shown in its own language. */
 export default function LanguageToggle({
@@ -16,7 +16,7 @@ export default function LanguageToggle({
   /** Icon-only (name kept for screen readers), to keep a crowded navbar on one line. */
   compact?: boolean;
 }) {
-  const { lang, setLang } = useI18n();
+  const { lang } = useI18n();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -65,8 +65,9 @@ export default function LanguageToggle({
                 type="button"
                 lang={l.code}
                 onClick={() => {
-                  setLang(l.code);
                   setOpen(false);
+                  // Each language has its own URL: go to this page there (also saves the preference).
+                  if (l.code !== lang) switchLang(l.code);
                 }}
                 className="flex w-full items-center justify-between gap-3 px-3.5 py-2 text-left text-[14px] text-brand-navy hover:bg-[#F5F7FA]"
               >

@@ -10,7 +10,7 @@ import HubFinalCTA from "@/components/howWeHelpHub/HubFinalCTA";
 
 export default function HowWeHelpHubPage() {
   useSEO({
-    title: "How we help  -  ZedOps",
+    title: "How we help – ZedOps",
     description:
       "Plan, execute, track, and manage MEP projects from one connected record. Explore ZedOps by project stage, company type, team, and role.",
   });

@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
@@ -101,13 +102,13 @@ export default function PricingTestimonials() {
                 <div>
                   <div className="text-sm font-bold mb-0.5" style={{ color: NAVY }}>{t.name}</div>
                   <div className="text-xs text-[#616D82] mb-5">{t.role}</div>
-                  <a
+                  <LocalA
                     href="/early-access"
                     className="inline-flex items-center gap-1.5 text-sm font-bold hover:gap-2.5 transition-all duration-150"
                     style={{ color: ORANGE }}
                   >
                     Request early access <ArrowRight size={14} />
-                  </a>
+                  </LocalA>
                 </div>
               </div>
 

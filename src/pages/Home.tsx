@@ -21,10 +21,8 @@ import Footer from "@/components/Footer";
 export default function Home() {
   const { t } = useI18n();
   useSEO({
-    title: t("ZedOps  -  MEP Operations & Field Execution"),
-    description: t(
-      "ZedOps for mechanical, electrical, and plumbing contractors: connect schedule to tasks, daily logs to follow-ups, inspections and punch to closeout work, with AI where you need it.",
-    ),
+    title: "ZedOps – MEP Operations & Field Execution",
+    description: "ZedOps for mechanical, electrical, and plumbing contractors: connect schedule to tasks, daily logs to follow-ups, inspections and punch to closeout work, with AI where you need it.",
   });
   return (
     <div className="min-h-screen overflow-x-clip bg-white text-brand-navy antialiased">

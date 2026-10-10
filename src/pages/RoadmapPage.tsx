@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Map } from "lucide-react";
 import { FormError, Honeypot, SubmitButton, useLeadForm } from "@/components/forms/useLeadForm";
 import { useSEO } from "@/hooks/useSEO";
+import { useI18n } from "@/i18n";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import Navbar from "@/components/Navbar";
@@ -75,9 +76,10 @@ const field =
 
 export default function RoadmapPage() {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
   const lead = useLeadForm("roadmap");
   useSEO({
-    title: "Product Roadmap  -  ZedOps",
+    title: "Roadmap – ZedOps",
     description: "What is live on ZedOps, what is in early access, and what is coming next. Updated as features ship.",
   });
 
@@ -96,28 +98,28 @@ export default function RoadmapPage() {
       <Navbar />
       <main id="main">
         <PageHero
-          pill="Roadmap"
+          pill={t("Roadmap")}
           PillIcon={Map}
-          title={<>What’s live, and what’s next. <Muted>Shaped by our customers.</Muted></>}
-          subtitle="We ship every week and update this page as features land."
+          title={<>{t("What’s live, and what’s next.")} <Muted>{t("Shaped by our customers.")}</Muted></>}
+          subtitle={t("We ship every week and update this page as features land.")}
         />
 
-        <Section label="Roadmap">
+        <Section label={t("Roadmap")}>
           <div className="grid gap-px bg-[#E8ECF2] sm:grid-cols-2 lg:grid-cols-4">
             {columns.map((col, ci) => (
               <motion.div key={col.label} {...scrollMotionProps(isMobile, { y: 16, duration: 0.45, delay: ci * 0.06 })} className="bg-white">
                 <div className="flex items-center justify-between border-b border-[#E8ECF2] px-6 py-5">
                   <span className="flex items-center gap-2 text-[16px] font-medium text-brand-navy">
                     <span className={`h-2 w-2 rounded-full ${col.dot}`} aria-hidden />
-                    {col.label}
+                    {t(col.label)}
                   </span>
-                  <span className="font-mono text-[11.5px] text-[#5F6B80]">{col.note}</span>
+                  <span className="font-mono text-[11.5px] text-[#5F6B80]">{t(col.note)}</span>
                 </div>
                 <ul className="px-6 py-3">
                   {col.items.map((item) => (
                     <li key={item.title} className="border-b border-[#F1F3F7] py-3.5 last:border-b-0">
-                      <p className="text-[15px] font-medium text-brand-navy">{item.title}</p>
-                      <p className="mt-0.5 text-[13.5px] leading-[1.5] text-[#616D82]">{item.desc}</p>
+                      <p className="text-[15px] font-medium text-brand-navy">{t(item.title)}</p>
+                      <p className="mt-0.5 text-[13.5px] leading-[1.5] text-[#616D82]">{t(item.desc)}</p>
                     </li>
                   ))}
                 </ul>
@@ -130,38 +132,38 @@ export default function RoadmapPage() {
           <div className={`grid gap-10 py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 lg:py-28 ${framePad}`}>
             <div>
               <h2 id="roadmap-request" className="text-[30px] font-medium leading-[1.1] tracking-[-0.04em] text-brand-navy [text-wrap:balance] sm:text-[40px]">
-                Missing something? <Muted>Tell us what your team needs.</Muted>
+                {t("Missing something?")} <Muted>{t("Tell us what your team needs.")}</Muted>
               </h2>
-              <p className="mt-5 max-w-md text-[16px] leading-[1.6] text-[#5E6C84]">Most of this roadmap came from conversations with site and project teams. We read every request.</p>
+              <p className="mt-5 max-w-md text-[16px] leading-[1.6] text-[#5E6C84]">{t("Most of this roadmap came from conversations with site and project teams. We read every request.")}</p>
             </div>
             {lead.sent ? (
               <div className="flex flex-col justify-center rounded-xl border border-[#E3E8F0] bg-white p-6 sm:p-8">
                 <CheckCircle2 size={32} className="text-[#1D9A5B]" aria-hidden />
-                <p className="mt-4 text-[22px] font-medium tracking-[-0.025em] text-brand-navy">Thanks, request received.</p>
-                <p className="mt-2 text-[15px] leading-[1.6] text-[#5E6C84]">We read every one, and we will reply if we have questions.</p>
+                <p className="mt-4 text-[22px] font-medium tracking-[-0.025em] text-brand-navy">{t("Thanks, request received.")}</p>
+                <p className="mt-2 text-[15px] leading-[1.6] text-[#5E6C84]">{t("We read every one, and we will reply if we have questions.")}</p>
               </div>
             ) : (
             <form onSubmit={onSubmit} className="relative rounded-xl border border-[#E3E8F0] bg-white p-6 sm:p-8">
               <Honeypot inputRef={lead.honeypot} />
-              <label className="block text-[13px] text-[#5E6C84]">Work email
-                <input name="email" type="email" required autoComplete="email" placeholder="you@company.com" className={`${field} h-11`} />
+              <label className="block text-[13px] text-[#5E6C84]">{t("Work email")}
+                <input name="email" type="email" required autoComplete="email" placeholder={t("you@company.com")} className={`${field} h-11`} />
               </label>
-              <label className="mt-5 block text-[13px] text-[#5E6C84]">Your role
+              <label className="mt-5 block text-[13px] text-[#5E6C84]">{t("Your role")}
                 <select name="role" className={`${field} h-11`} defaultValue="">
-                  <option value="">Select your role</option>
-                  <option>Project manager</option>
-                  <option>Site engineer / foreman</option>
-                  <option>Estimator / QS</option>
-                  <option>Procurement</option>
-                  <option>Owner / developer</option>
-                  <option>Other</option>
+                  <option value="">{t("Select your role")}</option>
+                  <option value="Project manager">{t("Project manager")}</option>
+                  <option value="Site engineer / foreman">{t("Site engineer / foreman")}</option>
+                  <option value="Estimator / QS">{t("Estimator / QS")}</option>
+                  <option value="Procurement">{t("Procurement")}</option>
+                  <option value="Owner / developer">{t("Owner / developer")}</option>
+                  <option value="Other">{t("Other")}</option>
                 </select>
               </label>
-              <label className="mt-5 block text-[13px] text-[#5E6C84]">What would help?
-                <textarea name="request" required rows={4} placeholder="Describe the feature and the problem it solves." className={`${field} py-3`} />
+              <label className="mt-5 block text-[13px] text-[#5E6C84]">{t("What would help?")}
+                <textarea name="request" required rows={4} placeholder={t("Describe the feature and the problem it solves.")} className={`${field} py-3`} />
               </label>
               <FormError message={lead.error} />
-              <SubmitButton sending={lead.sending}>Send request</SubmitButton>
+              <SubmitButton sending={lead.sending}>{t("Send request")}</SubmitButton>
             </form>
             )}
           </div>

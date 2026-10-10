@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Sparkles } from "lucide-react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
@@ -206,12 +207,12 @@ export default function ZedAIHomeSection() {
               ))}
             </ul>
             <div className="mt-8">
-              <a
+              <LocalA
                 href="/zed-ai"
                 className="inline-flex items-center gap-2 rounded-md bg-brand-orange px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
               >
                 Explore Zed AI →
-              </a>
+              </LocalA>
             </div>
           </div>
 

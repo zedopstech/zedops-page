@@ -8,6 +8,7 @@ import { readConsent, COOKIE_SETTINGS_EVENT } from "@/lib/consent";
 import { loadAnalytics, trackPageView } from "@/lib/analytics";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { langFromPath, setCurrentLang, useI18n } from "@/i18n";
 // import PricingPage from "@/pages/PricingPage";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
@@ -83,7 +84,19 @@ function RouteFallback() {
   return <div className="min-h-screen bg-white" aria-busy="true" aria-label="Loading page" />;
 }
 
+/**
+ * Blog posts are written in English only, so they exist at /blog/<slug> and nowhere else. A
+ * stale /ar/blog/<slug> link (the server answers it with the 404 page) is sent to the English post.
+ */
+function EnglishOnly({ params }: { params: { slug: string } }) {
+  useEffect(() => {
+    window.location.replace(`/blog/${params.slug}`);
+  }, [params.slug]);
+  return null;
+}
+
 function Router() {
+  const { lang } = useI18n();
   return (
     <>
       <ScrollToTop />
@@ -103,7 +116,9 @@ function Router() {
           <Route path="/terms" component={TermsPage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/roadmap" component={RoadmapPage} />
-          <Route path="/blog/:slug" component={BlogPostPage} />
+          <Route path="/blog/:slug">
+            {(params) => (lang === "en" ? <BlogPostPage params={params} /> : <EnglishOnly params={params} />)}
+          </Route>
           <Route path="/blog" component={BlogIndexPage} />
           <Route path="/how-we-help/project-stage" component={ProjectLifecyclePage} />
           <Route path="/how-we-help/company" component={HowWeHelpCompanyPage} />
@@ -174,7 +189,14 @@ function AppMotion({ children }: { children: ReactNode }) {
   );
 }
 
-function App() {
+function App({ ssrPath }: { ssrPath?: string }) {
+  // The language is read from the URL ("/ar/..."), at build time from `ssrPath` and in the
+  // browser from the address bar, so the prerendered HTML and the first client render agree.
+  // The router base carries the prefix: routes below stay language-neutral.
+  const urlPath = ssrPath ?? (typeof window === "undefined" ? "/" : window.location.pathname);
+  const { lang } = langFromPath(urlPath);
+  setCurrentLang(lang);
+
   // 0 means closed. The footer dispatches an event to bump this, which reopens
   // the banner so a visitor can change a choice they already made - the thing
   // the privacy policy promises when it refers to "our cookie banner".
@@ -191,7 +213,7 @@ function App() {
       <TooltipProvider>
         <AppMotion>
           <div className="min-h-screen overflow-x-clip">
-            <WouterRouter base={routerBaseFromVite()}>
+            <WouterRouter base={routerBaseFromVite() + (lang === "en" ? "" : `/${lang}`)} ssrPath={ssrPath}>
               <Router />
               <AnalyticsGate />
               <CookieConsent

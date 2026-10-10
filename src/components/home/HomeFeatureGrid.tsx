@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { motion } from "framer-motion";
 import { useI18n } from "@/i18n";
 import {
@@ -99,7 +100,7 @@ const caps: Capability[] = [
 function Cell({ c }: { c: Capability }) {
   const { t } = useI18n();
   return (
-    <a
+    <LocalA
       href={c.href}
       className="group relative flex flex-col bg-white p-4 transition-colors duration-200 hover:bg-[#FAFBFC] sm:min-h-[248px] sm:p-8"
     >
@@ -115,7 +116,7 @@ function Cell({ c }: { c: Capability }) {
         {t("Explore")}
         <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
       </span>
-    </a>
+    </LocalA>
   );
 }
 

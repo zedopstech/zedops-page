@@ -60,7 +60,7 @@ export default function GCPage() {
   useSEO({
     title: "ZedOps for General Contractors",
     description:
-      "ZedOps for GCs: projects, equipment, materials, work logs, daily logs, estimation, schedule, tasks, material management, finance hooks, inspections, punch list, and the Zed AI copilot  -  with role-based access.",
+      "Connect schedule, site execution, submittals and punch in one project record instead of reconciling five tools.",
   });
 
   return (

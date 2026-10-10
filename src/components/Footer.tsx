@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { ArrowUpRight } from "lucide-react";
 import { COOKIE_SETTINGS_EVENT } from "@/lib/consent";
 import ZedOpsMark from "./ZedOpsMark";
@@ -24,6 +25,7 @@ const footerLinks: Record<string, { label: string; href: string | null }[]> = {
     { label: "About", href: "/about" },
     { label: "Security", href: "/security" },
     { label: "Blog", href: "/blog" },
+    { label: "Documentation", href: "https://docs.zedops.com/" },
     { label: "Careers", href: "mailto:careers@zedops.com" },
     { label: "Contact", href: "/contact" },
   ],
@@ -66,16 +68,16 @@ export default function Footer() {
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               {offices.map((o) => (
                 <address key={o.name} className="text-[13.5px] not-italic leading-[1.6] text-white/55">
-                  <span className="mb-1 block text-[13px] font-medium text-white/80">{o.name}</span>
+                  <span className="mb-1 block text-[13px] font-medium text-white/80">{t(o.name)}</span>
                   {o.address.map((line) => (
-                    <span key={line} className="block">{line}</span>
+                    <span key={line} className="block">{t(line)}</span>
                   ))}
-                  {o.licence && <span className="mt-1 block">{o.licence}</span>}
+                  {o.licence && <span className="mt-1 block">{t(o.licence)}</span>}
                 </address>
               ))}
             </div>
             <div className="mt-5 space-y-1.5 text-[14px]">
-              <a href={`mailto:${contact.email}`} className="block text-white/80 transition-colors hover:text-white">{contact.email}</a>
+              <LocalA href={`mailto:${contact.email}`} className="block text-white/80 transition-colors hover:text-white">{contact.email}</LocalA>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
@@ -99,12 +101,15 @@ export default function Footer() {
                           {t(link.label)}
                         </button>
                       ) : (
-                        <a
+                        <LocalA
                           href={link.href}
+                          {...(link.href.startsWith("https://")
+                            ? { target: "_blank", rel: "noopener noreferrer" }
+                            : {})}
                           className="text-[14px] text-white/75 transition-colors hover:text-white"
                         >
                           {t(link.label)}
-                        </a>
+                        </LocalA>
                       )}
                     </li>
                   ))}
@@ -119,14 +124,14 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-5">
             <LanguageToggle dark up className="!h-8 !px-2" />
             {socials.map((s) => (
-              <a
+              <LocalA
                 key={s.label}
                 href={s.href}
                 className="inline-flex items-center gap-1 font-medium text-white/70 hover:text-white"
               >
-                {s.label}
+                {t(s.label)}
                 <ArrowUpRight size={12} aria-hidden />
-              </a>
+              </LocalA>
             ))}
           </div>
         </div>

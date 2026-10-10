@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -121,13 +122,13 @@ function CapabilityRow({ item }: { item: Capability }) {
       </div>
       <p className="text-sm font-bold leading-snug text-brand-navy">{item.title}</p>
       <p className="mt-1.5 text-sm leading-snug text-[#616D82]">{item.desc}</p>
-      <a
+      <LocalA
         href={item.href}
         className="mt-auto inline-flex items-center justify-center gap-1 pt-3 text-sm font-semibold text-brand-orange transition-[gap] duration-150 hover:gap-1.5"
       >
         Explore more
         <ArrowRight size={13} aria-hidden />
-      </a>
+      </LocalA>
     </div>
   );
 }
@@ -256,7 +257,7 @@ export default function Capabilities() {
               
             </article>
 
-            <a
+            <LocalA
               href="/zed-ai"
               className="group/ai flex items-start gap-4 border-t border-[#E5E7EB] bg-white p-5 md:col-span-2 lg:col-span-2 lg:col-start-3"
             >
@@ -275,7 +276,7 @@ export default function Capabilities() {
                   </span>
                 </div>
               </div>
-            </a>
+            </LocalA>
           </motion.div>
         </div>
       </section>

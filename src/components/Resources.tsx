@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -58,13 +59,13 @@ export default function Resources() {
               build smarter.
             </h2>
           </div>
-          <a
+          <LocalA
             href="/blog"
             className="hidden items-center gap-2 border border-gray-200 px-5 py-2.5 text-sm font-semibold text-[#42526E] transition-colors duration-150 hover:border-brand-navy hover:text-brand-navy sm:inline-flex"
             style={{ borderRadius: 6 }}
           >
             See all articles <ArrowRight size={14} />
-          </a>
+          </LocalA>
         </div>
 
         {posts.length === 0 ? (
@@ -75,7 +76,7 @@ export default function Resources() {
               const { name, role } = authorMeta(article.author);
               const cover = postCoverImage(article);
               return (
-                <a key={article.slug} href={`/blog/${article.slug}`} className="group flex cursor-pointer flex-col">
+                <LocalA key={article.slug} href={`/blog/${article.slug}`} className="group flex cursor-pointer flex-col">
                   <div className="relative mb-4 h-52 w-full overflow-hidden" style={{ borderRadius: 6 }}>
                     {cover ? (
                       <img
@@ -110,13 +111,13 @@ export default function Resources() {
                       <p className="text-xs text-[#97A0AF]">{role}</p>
                     </div>
                   </div>
-                </a>
+                </LocalA>
               );
             })}
 
             <div className="flex flex-col gap-0 border-gray-100 lg:border-s lg:ps-6">
               {sidebarItems.map((item, i) => (
-                <a
+                <LocalA
                   key={`${item.href}-${i}`}
                   href={item.href}
                   className={`group flex gap-4 px-2 py-5 transition-colors duration-150 hover:bg-gray-50 ${
@@ -139,25 +140,25 @@ export default function Resources() {
                   <p className="text-sm font-medium leading-snug text-[#42526E] transition-colors duration-150 group-hover:text-brand-navy">
                     {item.title}
                   </p>
-                </a>
+                </LocalA>
               ))}
-              <a
+              <LocalA
                 href="/blog"
                 className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand-navy transition-colors duration-150 hover:text-brand-orange"
               >
                 See all articles <ArrowRight size={13} />
-              </a>
+              </LocalA>
             </div>
           </motion.div>
         )}
 
-        <a
+        <LocalA
           href="/blog"
           className="mt-10 inline-flex items-center gap-2 border border-gray-200 px-5 py-2.5 text-sm font-semibold text-[#42526E] transition-colors hover:border-brand-navy hover:text-brand-navy sm:hidden"
           style={{ borderRadius: 6 }}
         >
           See all articles <ArrowRight size={14} />
-        </a>
+        </LocalA>
       </div>
     </section>
   );

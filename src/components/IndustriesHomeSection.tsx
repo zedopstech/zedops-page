@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { useEffect, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -310,13 +311,13 @@ function ContractorShowcase() {
               <p className="m-0 max-w-2xl text-base leading-snug font-medium text-white/90">
                 “{current.desc}”
               </p>
-              <a
+              <LocalA
                 href="/contact"
                 className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-md bg-brand-orange px-5 py-3 text-sm font-extrabold text-white uppercase transition-colors hover:bg-brand-orange-soft"
               >
                 Request Demo
                 <ArrowUpRight size={14} aria-hidden />
-              </a>
+              </LocalA>
             </div>
           </div>
         </article>

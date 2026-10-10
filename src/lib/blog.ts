@@ -80,7 +80,7 @@ function parsePost(path: string, raw: string): BlogPost | null {
     return {
       slug,
       title,
-      description: description || `${title}  -  ZedOps`,
+      description: description || `${title} – ZedOps`,
       date,
       author,
       category: toCategory(data.category),

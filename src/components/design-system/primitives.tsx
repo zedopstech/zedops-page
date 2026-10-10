@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 /**
  * ZedOps design system. Calm, product-led SaaS layout (Geist, medium-weight two-tone
  * headlines, white + one mist surface) expressed in blueprint language:
@@ -170,7 +171,7 @@ export function TicketButton({
     },
   }[variant];
   return (
-    <a
+    <LocalA
       href={href}
       className={`group inline-flex h-10 items-stretch gap-[3px] text-[15px] font-medium ${full ? "w-full" : ""} ${className}`}
     >
@@ -189,7 +190,7 @@ export function TicketButton({
           aria-hidden
         />
       </span>
-    </a>
+    </LocalA>
   );
 }
 
@@ -206,7 +207,7 @@ export function GhostButton({
   tone?: "light" | "dark";
 }) {
   return (
-    <a
+    <LocalA
       href={href}
       className={`inline-flex h-10 items-center gap-2 rounded-lg border px-4 text-[15px] font-medium transition-colors ${
         tone === "dark"
@@ -216,7 +217,7 @@ export function GhostButton({
     >
       {children}
       {Icon ? <Icon size={16} strokeWidth={1.8} aria-hidden /> : null}
-    </a>
+    </LocalA>
   );
 }
 
@@ -283,12 +284,12 @@ export function DemoPlaceholder({ title }: { title: string }) {
         Walkthrough video in production. Request early access and we will show you
         the live product instead.
       </p>
-      <a
+      <LocalA
         href="/early-access"
         className="mt-1 rounded-[4px] bg-brand-orange px-4 py-2 text-[13px] font-semibold text-white transition hover:bg-brand-orange-soft"
       >
         Request early access
-      </a>
+      </LocalA>
     </div>
   );
 }

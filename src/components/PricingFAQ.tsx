@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
@@ -113,13 +114,13 @@ export default function PricingFAQ() {
               <p className="text-[#42526E] text-base leading-snug mb-8">
                 Whether you're exploring or ready to get started, our team is here to guide you every step of the way.
               </p>
-              <a
+              <LocalA
                 href="/contact"
                 className="inline-flex items-center gap-2 px-5 py-3 text-sm font-bold text-white transition-all duration-150 hover:opacity-90"
                 style={{ background: NAVY, borderRadius: 6 }}
               >
                 Contact support
-              </a>
+              </LocalA>
             </motion.div>
           </div>
 

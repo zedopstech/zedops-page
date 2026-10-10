@@ -1,7 +1,7 @@
 import { useMemo, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Link } from "wouter";
+import { Link, LocalA } from "@/components/LocalLink";
 import { extractMarkdownToc } from "@/lib/markdownToc";
 
 const proseArticle = [
@@ -52,9 +52,9 @@ export function BlogMarkdown({ children }: { children: string }) {
           return <Link href={href}>{c}</Link>;
         }
         return (
-          <a href={href} target="_blank" rel="noopener noreferrer">
+          <LocalA href={href} target="_blank" rel="noopener noreferrer">
             {c}
-          </a>
+          </LocalA>
         );
       },
       table: ({ children, ...props }: React.ComponentPropsWithoutRef<"table">) => (

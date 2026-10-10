@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "vite --config vite.config.ts --host 0.0.0.0",
     "sitemap": "node scripts/generate-sitemap.mjs",
+    "check:seo": "node scripts/check-seo.mjs",
     "prerender": "node scripts/prerender.mjs",
-    "prebuild": "npm run sitemap",
-    "build": "vite build --config vite.config.ts && npm run prerender && npm run hash-assets",
+    "prebuild": "npm run check:seo && npm run sitemap",
+    "build": "vite build --config vite.config.ts && vite build --config vite.config.ts --ssr src/entry-server.tsx --outDir dist/server && npm run prerender && npm run og && npm run hash-assets",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "hash-assets": "node scripts/hash-assets.mjs"
+    "hash-assets": "node scripts/hash-assets.mjs",
+    "og": "node scripts/generate-og.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -69,12 +71,14 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/typography": "^0.5.15",
     "@tailwindcss/vite": "^4.1.14",
     "@types/node": "^25.3.3",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.4",
+    "satori": "^0.47.1",
     "tailwindcss": "^4.1.14",
     "typescript": "^5.9.3",
     "vite": "^7.3.0"

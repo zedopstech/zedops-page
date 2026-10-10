@@ -1,7 +1,9 @@
+import { MotionLocalA } from "@/components/LocalLink";
 import { motion } from "framer-motion";
 import { ArrowRight, Building2, Layers, ShieldCheck, Users2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useI18n } from "@/i18n";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import { framePad, Highlight, Section, SplitHeader } from "@/components/design-system/primitives";
 
@@ -17,20 +19,21 @@ const lenses: Lens[] = [
 /** Four ways into the platform, as a rail-to-rail grid of links. */
 export default function LensGrid() {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
   return (
     <Section labelledBy="hub-lenses">
       <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
         <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
           <SplitHeader
             id="hub-lenses"
-            title={<>One platform. <Highlight>Four ways in.</Highlight></>}
-            body="Start from the stage of the job, your kind of company, your team or your role."
+            title={<>{t("One platform.")} <Highlight>{t("Four ways in.")}</Highlight></>}
+            body={t("Start from the stage of the job, your kind of company, your team or your role.")}
           />
         </motion.div>
       </div>
       <div className="grid gap-px border-t border-[#E8ECF2] bg-[#E8ECF2] sm:grid-cols-2 lg:grid-cols-4">
         {lenses.map((lens, i) => (
-          <motion.a
+          <MotionLocalA
             key={lens.href}
             href={lens.href}
             {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: i * 0.05 })}
@@ -39,18 +42,18 @@ export default function LensGrid() {
             <span className="flex h-10 w-10 items-center justify-center rounded-md border border-[#E3E8F0] text-[#5E6C84] transition-colors group-hover:border-[#FFCFB0] group-hover:text-brand-orange">
               <lens.Icon size={19} aria-hidden />
             </span>
-            <h3 className="mt-10 text-[20px] font-medium tracking-[-0.025em] text-brand-navy">{lens.label}</h3>
-            <p className="mt-2 text-[15px] leading-[1.55] text-[#616D82]">{lens.desc}</p>
+            <h3 className="mt-10 text-[20px] font-medium tracking-[-0.025em] text-brand-navy">{t(lens.label)}</h3>
+            <p className="mt-2 text-[15px] leading-[1.55] text-[#616D82]">{t(lens.desc)}</p>
             <div className="mt-5 flex flex-wrap gap-1.5">
               {lens.chips.map((c) => (
-                <span key={c} className="rounded-[5px] border border-[#E3E8F0] bg-[#F7F8FA] px-2 py-0.5 text-[12px] text-[#5E6C84]">{c}</span>
+                <span key={c} className="rounded-[5px] border border-[#E3E8F0] bg-[#F7F8FA] px-2 py-0.5 text-[12px] text-[#5E6C84]">{t(c)}</span>
               ))}
             </div>
             <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-[14px] font-medium text-brand-navy">
-              Explore
+              {t("Explore")}
               <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" aria-hidden />
             </span>
-          </motion.a>
+          </MotionLocalA>
         ))}
       </div>
     </Section>

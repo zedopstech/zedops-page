@@ -1,8 +1,9 @@
-import { Link } from "wouter";
+import { Link } from "@/components/LocalLink";
 import ZedOpsMark from "@/components/ZedOpsMark";
 import BlogCover from "@/components/blog/BlogCover";
 import type { BlogPost } from "@/lib/blog";
-import { formatBlogDate, formatReadLabel, postCoverImage } from "@/lib/blogDisplay";
+import { useI18n } from "@/i18n";
+import { formatBlogDate, postCoverImage, readingMinutes } from "@/lib/blogDisplay";
 
 /** Post cover: the frontmatter image when set, otherwise the generated category cover. */
 export function PostCover({
@@ -35,13 +36,18 @@ export function AuthorBadge({ size = 32, tone = "light" }: { size?: number; tone
 }
 
 export function PostMeta({ post, className = "" }: { post: BlogPost; className?: string }) {
+  const { t, lang } = useI18n();
+  const date =
+    lang === "en"
+      ? formatBlogDate(post.date)
+      : new Date(`${post.date.slice(0, 10)}T12:00:00Z`).toLocaleDateString(`${lang}-u-nu-latn`, { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
   return (
     <p className={`flex flex-wrap items-center gap-x-2 text-[13px] text-[#5F6B80] ${className}`}>
-      <span className="font-medium text-brand-orange">{post.category}</span>
+      <span className="font-medium text-brand-orange">{t(post.category)}</span>
       <span aria-hidden>·</span>
-      <time dateTime={post.date}>{formatBlogDate(post.date)}</time>
+      <time dateTime={post.date}>{date}</time>
       <span aria-hidden>·</span>
-      <span>{formatReadLabel(post)}</span>
+      <span>{t("{n} min read").replace("{n}", String(readingMinutes(post)))}</span>
     </p>
   );
 }

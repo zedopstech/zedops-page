@@ -22,13 +22,9 @@ export function scrollMotionProps(isMobile: boolean, opts: FadeUpOpts = {}) {
   const delay = opts.delay ?? 0;
   const duration = Math.max(opts.duration ?? 0.55, isMobile ? 0.48 : 0.6);
   const ease = opts.ease ?? ([0.22, 1, 0.36, 1] as const);
-  const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (prefersReducedMotion) {
-    return { initial: false as const };
-  }
+  // No reduced-motion branch here: reading matchMedia during render gave the browser a different
+  // `initial` than the prerendered HTML (a hydration mismatch). <MotionConfig reducedMotion="user">
+  // in App.tsx already drops transform animations for visitors who ask for less motion.
 
   if (opts.fadeOnly) {
     return {

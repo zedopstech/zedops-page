@@ -178,6 +178,15 @@
 /favicon-32x32.png
   Cache-Control: public, max-age=604800
 
+# ---------------------------------------------------------------------------
+# Generated Open Graph cards (scripts/generate-og.mjs). Stable URLs (not
+# content-addressed: og:image tags and scrapers reference them by path), so a
+# week, like the root-level brand files. /og/ holds only these PNGs, no route
+# HTML, and is not in MEDIA_DIRS in hash-assets.mjs, so it overlaps no other rule.
+# ---------------------------------------------------------------------------
+/og/*
+  Cache-Control: public, max-age=604800
+
 # `-Server` is not reproduced: Pages sends `Server: cloudflare` and it cannot be
 # removed from the project. It is the one Caddy rule with no equivalent here.
 # `Access-Control-Allow-Origin: *` is added by Pages by default and is left as

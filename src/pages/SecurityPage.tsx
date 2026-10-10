@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Check, Cloud, Database, Key, Lock, ShieldCheck, Users } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
+import { useI18n } from "@/i18n";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import Navbar from "@/components/Navbar";
@@ -40,8 +41,9 @@ const planned = ["SSO / SAML", "SOC 2 certification", "ISO 27001 certification"]
 
 export default function SecurityPage() {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
   useSEO({
-    title: "Security  -  ZedOps",
+    title: "Security – ZedOps",
     description: "How ZedOps protects project data: a dedicated database per customer, role-based access, two-factor sign-in, session policy, activity logs and controls over Zed AI.",
   });
 
@@ -50,16 +52,16 @@ export default function SecurityPage() {
       <Navbar />
       <main id="main">
         <PageHero
-          pill="Security"
+          pill={t("Security")}
           PillIcon={ShieldCheck}
-          title={<>Your project data, isolated. <Muted>And in your control.</Muted></>}
-          subtitle="Exactly how we protect your data today, and what is still on the roadmap. No badges we haven’t earned."
+          title={<>{t("Your project data, isolated.")} <Muted>{t("And in your control.")}</Muted></>}
+          subtitle={t("Exactly how we protect your data today, and what is still on the roadmap. No badges we haven’t earned.")}
         />
 
         <Section labelledBy="sec-pillars">
           <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-              <SplitHeader id="sec-pillars" title={<>Four layers of <Highlight>protection.</Highlight></>} body="Isolation, private networking, role-based access and control over the AI your data touches." />
+              <SplitHeader id="sec-pillars" title={<>{t("Four layers of")} <Highlight>{t("protection.")}</Highlight></>} body={t("Isolation, private networking, role-based access and control over the AI your data touches.")} />
             </motion.div>
           </div>
           <div className="grid gap-px border-t border-[#E8ECF2] bg-[#E8ECF2] sm:grid-cols-2 lg:grid-cols-4">
@@ -68,9 +70,9 @@ export default function SecurityPage() {
                 <span className="flex h-10 w-10 items-center justify-center rounded-md border border-[#E3E8F0] text-brand-orange">
                   <p.icon size={19} aria-hidden />
                 </span>
-                <h3 className="mt-8 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">{p.title}</h3>
-                <p className="mt-2 text-[14.5px] leading-[1.55] text-[#616D82]">{p.body}</p>
-                <p className="mt-auto pt-6 font-mono text-[11.5px] text-[#5F6B80]">{p.detail}</p>
+                <h3 className="mt-8 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">{t(p.title)}</h3>
+                <p className="mt-2 text-[14.5px] leading-[1.55] text-[#616D82]">{t(p.body)}</p>
+                <p className="mt-auto pt-6 font-mono text-[11.5px] text-[#5F6B80]">{t(p.detail)}</p>
               </motion.div>
             ))}
           </div>
@@ -79,7 +81,7 @@ export default function SecurityPage() {
         <Section tone="mist" labelledBy="sec-flow">
           <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-              <SplitHeader id="sec-flow" title={<>How a request <Highlight>travels.</Highlight></>} body="Every request is checked, kept on private networks, and served only from your own database." />
+              <SplitHeader id="sec-flow" title={<>{t("How a request")} <Highlight>{t("travels.")}</Highlight></>} body={t("Every request is checked, kept on private networks, and served only from your own database.")} />
             </motion.div>
           </div>
           <ol className="grid border-t border-[#E3E8F0] lg:grid-cols-3">
@@ -89,8 +91,8 @@ export default function SecurityPage() {
                   <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#DCE3ED] bg-white font-mono text-[12px] text-brand-navy">{String(i + 1).padStart(2, "0")}</span>
                   <f.icon size={17} className="text-[#5F6B80]" aria-hidden />
                 </div>
-                <h3 className="mt-6 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">{f.title}</h3>
-                <p className="mt-1.5 text-[15px] leading-[1.55] text-[#616D82]">{f.body}</p>
+                <h3 className="mt-6 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">{t(f.title)}</h3>
+                <p className="mt-1.5 text-[15px] leading-[1.55] text-[#616D82]">{t(f.body)}</p>
               </li>
             ))}
           </ol>
@@ -100,28 +102,28 @@ export default function SecurityPage() {
           <div className={`grid gap-10 py-20 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16 lg:py-28 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
               <h2 id="sec-status" className="text-[30px] font-medium leading-[1.1] tracking-[-0.04em] text-brand-navy [text-wrap:balance] sm:text-[40px]">
-                In place today. <Muted>And what’s next.</Muted>
+                {t("In place today.")} <Muted>{t("And what’s next.")}</Muted>
               </h2>
               <p className="mt-5 max-w-sm text-[16px] leading-[1.6] text-[#5E6C84]">
-                We list only what is live. Certifications move to the left column when they are awarded.
+                {t("We list only what is live. Certifications move to the left column when they are awarded.")}
               </p>
             </motion.div>
             <div className="grid gap-px overflow-hidden rounded-xl border border-[#E3E8F0] bg-[#E3E8F0] sm:grid-cols-2">
               <ul className="bg-white p-6">
-                <p className="mb-4 text-[13px] font-medium text-[#1D7446]">Live</p>
-                {today.map((t) => (
-                  <li key={t} className="flex items-start gap-2.5 py-1.5 text-[14.5px] text-brand-navy">
+                <p className="mb-4 text-[13px] font-medium text-[#1D7446]">{t("Live")}</p>
+                {today.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 py-1.5 text-[14.5px] text-brand-navy">
                     <Check size={15} strokeWidth={2.6} className="mt-0.5 shrink-0 text-[#1D9A5B]" aria-hidden />
-                    {t}
+                    {t(item)}
                   </li>
                 ))}
               </ul>
               <ul className="bg-[#FAFBFC] p-6">
-                <p className="mb-4 text-[13px] font-medium text-[#5F6B80]">On the roadmap</p>
-                {planned.map((t) => (
-                  <li key={t} className="flex items-start gap-2.5 py-1.5 text-[14.5px] text-[#5E6C84]">
+                <p className="mb-4 text-[13px] font-medium text-[#5F6B80]">{t("On the roadmap")}</p>
+                {planned.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 py-1.5 text-[14.5px] text-[#5E6C84]">
                     <Lock size={14} className="mt-0.5 shrink-0 text-[#677388]" aria-hidden />
-                    {t}
+                    {t(item)}
                   </li>
                 ))}
               </ul>
@@ -132,7 +134,7 @@ export default function SecurityPage() {
         <ModuleClosingCta
           isMobile={isMobile}
           id="sec-cta"
-          title={<>Have security questions? <span className="text-white/55">Let’s talk them through.</span></>}
+          title={<>{t("Have security questions?")} <span className="text-white/55">{t("Let’s talk them through.")}</span></>}
           body="We will walk your IT or security team through our architecture, controls, hosting and roadmap."
           primary={{ label: "Talk to our team", href: "/contact?topic=security" }}
           secondary={{ label: "Request early access", href: "/early-access" }}

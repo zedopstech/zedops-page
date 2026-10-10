@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -186,13 +187,13 @@ function MaterialScheduleKpiCard() {
         })}
       </ul>
 
-      <a
+      <LocalA
         href={materialKpis.cta.href}
         className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-orange px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
       >
         {materialKpis.cta.label}
         <ArrowRight size={14} aria-hidden />
-      </a>
+      </LocalA>
       <p className="mt-1 text-[9px] text-white/45">{materialKpis.sampleNote}</p>
     </>
   );

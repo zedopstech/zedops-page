@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 /**
  * Cookie / analytics consent banner.
  *
@@ -92,12 +93,12 @@ export default function CookieConsent({ openSignal = 0, onDismiss }: Props) {
         </h2>
         <p className="mt-1.5 text-[13px] leading-[1.5] text-[#5E6C84]">
           {t("We use Google Analytics to see which pages are read. It stays off until you agree — see the ")}
-          <a
+          <LocalA
             href="/privacy"
             className="font-medium text-brand-navy underline decoration-brand-orange decoration-2 underline-offset-2 hover:text-[#0E1B33]"
           >
             {t("privacy policy")}
-          </a>
+          </LocalA>
           .
         </p>
         <div className="mt-4 flex gap-2.5">

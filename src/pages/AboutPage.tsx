@@ -1,4 +1,6 @@
+import { LocalA } from "@/components/LocalLink";
 import { useState } from "react";
+import { useI18n } from "@/i18n";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Building2, Linkedin, Mail, MapPin } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
@@ -181,9 +183,9 @@ function CofounderNote({ person, index, isMobile }: { person: Cofounder; index: 
               <span className="block text-[14px] text-[#616D82]">{person.role}</span>
             </span>
             {person.linkedin ? (
-              <a href={person.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${person.name} on LinkedIn`} className="mt-0.5 text-[#5F6B80] hover:text-brand-navy">
+              <LocalA href={person.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${person.name} on LinkedIn`} className="mt-0.5 text-[#5F6B80] hover:text-brand-navy">
                 <Linkedin size={17} aria-hidden />
-              </a>
+              </LocalA>
             ) : null}
           </figcaption>
         </motion.figure>
@@ -230,11 +232,12 @@ function CofounderNote({ person, index, isMobile }: { person: Cofounder; index: 
 }
 
 export default function AboutPage() {
+  const { t } = useI18n();
   const isMobile = useIsMobile();
   const [active, setActive] = useState<number | null>(null);
 
   useSEO({
-    title: "About  -  ZedOps",
+    title: "About – ZedOps",
     description:
       "Meet the people building ZedOps, the project execution platform for contractors, and read how the product is coming together.",
   });
@@ -244,10 +247,10 @@ export default function AboutPage() {
       <Navbar />
       <main id="main">
         <PageHero
-          pill="About ZedOps"
+          pill={t("About ZedOps")}
           PillIcon={Building2}
-          title={<>Built by people who have run the projects. <Muted>Now building the software they needed.</Muted></>}
-          subtitle="ZedOps is a project execution platform for contractors, from the first estimate to handover. Built by a small team in Dubai and Madurai, with more than a decade of project delivery behind it."
+          title={<>{t("Built by people who have run the projects.")} <Muted>{t("Now building the software they needed.")}</Muted></>}
+          subtitle={t("ZedOps is a project execution platform for contractors, from the first estimate to handover. Built by a small team in Dubai and Madurai, with more than a decade of project delivery behind it.")}
         />
 
         {/*
@@ -303,9 +306,9 @@ export default function AboutPage() {
                   // "LinkedIn" label was dropped on request; the aria-label
                   // carries the name so the link is not unlabelled for screen
                   // readers, since the icon itself is aria-hidden.
-                  <a href={m.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${m.name} on LinkedIn`} className="mt-3 inline-flex text-[#5F6B80] hover:text-brand-navy">
+                  <LocalA href={m.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${m.name} on LinkedIn`} className="mt-3 inline-flex text-[#5F6B80] hover:text-brand-navy">
                     <Linkedin size={15} aria-hidden />
-                  </a>
+                  </LocalA>
                 ) : null}
               </motion.li>
             ))}
@@ -317,9 +320,9 @@ export default function AboutPage() {
                   We are hiring engineers, designers and people who have run construction projects.
                 </p>
               </div>
-              <a href="mailto:careers@zedops.com" className="mt-10 inline-flex items-center gap-1.5 text-[15px] font-medium text-white hover:text-brand-orange">
+              <LocalA href="mailto:careers@zedops.com" className="mt-10 inline-flex items-center gap-1.5 text-[15px] font-medium text-white hover:text-brand-orange">
                 careers@zedops.com <ArrowUpRight size={16} aria-hidden />
-              </a>
+              </LocalA>
             </li>
           </ul>
         </Section>
@@ -329,15 +332,15 @@ export default function AboutPage() {
         <Section labelledBy="about-beliefs">
           <div className={`pt-20 pb-12 lg:pt-28 lg:pb-14 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-              <SplitHeader id="about-beliefs" title={<>What we believe.</>} body="Three ideas behind every decision we make about the product." />
+              <SplitHeader id="about-beliefs" title={<>{t("What we believe.")}</>} body={t("Three ideas behind every decision we make about the product.")} />
             </motion.div>
           </div>
           <div className="grid gap-px border-t border-[#E3E8F0] bg-[#E3E8F0] lg:grid-cols-3">
             {beliefs.map((b, i) => (
               <motion.div key={b.title} {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: i * 0.06 })} className="bg-[#F7F8FA] p-7 sm:p-9">
                 <span className="font-mono text-[11px] text-[#677388]">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-8 text-[20px] font-medium tracking-[-0.025em] text-brand-navy">{b.title}</h3>
-                <p className="mt-2 text-[15px] leading-[1.6] text-[#616D82]">{b.body}</p>
+                <h3 className="mt-8 text-[20px] font-medium tracking-[-0.025em] text-brand-navy">{t(b.title)}</h3>
+                <p className="mt-2 text-[15px] leading-[1.6] text-[#616D82]">{t(b.body)}</p>
               </motion.div>
             ))}
           </div>
@@ -408,10 +411,10 @@ export default function AboutPage() {
         <ModuleClosingCta
           isMobile={isMobile}
           id="about-cta"
-          title={<>Help shape ZedOps. <span className="text-white/55">Join early access.</span></>}
-          body="We are building ZedOps with a small group of contractors. Bring one live project and help decide what comes next."
-          primary={{ label: "Request early access", href: "/early-access" }}
-          secondary={{ label: "Talk to us", href: "/contact" }}
+          title={<>{t("Help shape ZedOps.")} <span className="text-white/55">{t("Join early access.")}</span></>}
+          body={t("We are building ZedOps with a small group of contractors. Bring one live project and help decide what comes next.")}
+          primary={{ label: t("Request early access"), href: "/early-access" }}
+          secondary={{ label: t("Talk to us"), href: "/contact" }}
           secondaryIcon={Mail}
         />
       </main>

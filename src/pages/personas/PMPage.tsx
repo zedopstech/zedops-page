@@ -60,7 +60,7 @@ export default function PMPage() {
   useSEO({
     title: "ZedOps for Project Managers",
     description:
-      "Project managers use ZedOps for tasks, schedules, issues, inspections, documents, daily logs, requests, procurement visibility, and the Zed AI copilot  -  under the same roles as the rest of the app.",
+      "Know what needs attention today, follow up on the last daily log, and close inspections before they become punch items.",
   });
 
   return (

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { t } from "@/i18n";
 import { Calculator, ClipboardList, FolderOpen, GanttChart, Landmark, Package, Settings2, ShieldCheck, Users } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import type { PlatformFeatureSection } from "@/data/platformFeatures";
@@ -84,11 +85,11 @@ export default function ModuleLandingTemplate({ section }: { section: PlatformFe
   if (!content) return null;
   const related = connectedIds.filter((id) => id !== section.id).slice(0, 6).map((id) => { const found = getLandingSection(id); return { label: found?.title ?? id, icon: connectedIcons[id] ?? FolderOpen, href: `/platform/module/${id}` }; });
   return <>
-    <ModuleHero isMobile={isMobile} eyebrow={content.eyebrow} title={<>{content.headline} <Muted>{content.secondLine}</Muted></>} body={content.intro} product={<ModuleProductPreview id={section.id} />} productCaption="Illustrative product views" capabilitiesId={`${section.id}-capabilities`} />
+    <ModuleHero isMobile={isMobile} eyebrow={content.eyebrow} title={<>{t(content.headline)} <Muted>{t(content.secondLine)}</Muted></>} body={content.intro} product={<ModuleProductPreview id={section.id} />} productCaption="Illustrative product views" capabilitiesId={`${section.id}-capabilities`} />
     <ModuleCapabilities isMobile={isMobile} heading={{ id: `${section.id}-capabilities`, label: `Built for ${content.eyebrow.toLowerCase()}`, title: content.capabilityTitle, body: content.capabilityBody }} features={features} />
     <ModuleWorkflowTabs isMobile={isMobile} heading={{ id: `${section.id}-workflow-title`, label: `${content.eyebrow} workflow`, title: content.workflowTitle, body: content.workflowBody }} tabs={workflowTabs} />
     <ModuleComparison isMobile={isMobile} heading={{ id: `${section.id}-comparison-title`, label: "Before and after", title: content.comparisonTitle, body: "Keep the work and the decisions behind it connected." }} before={content.before.map((title) => ({ title }))} after={content.after.map((title) => ({ title }))} beforeLabel="Fragmented workflow" afterTone="dark" />
-    <ModuleConnected isMobile={isMobile} heading={{ id: `${section.id}-connected-title`, label: "Connected across ZedOps", title: <>Keep this work in <Highlight>project context.</Highlight></>, body: "The same project record connects the teams and modules that depend on this work." }} sourceTitle={content.sourceTitle} sourceBody={content.sourceBody} modules={related} />
+    <ModuleConnected isMobile={isMobile} heading={{ id: `${section.id}-connected-title`, label: "Connected across ZedOps", title: <>{t("Keep this work in")} <Highlight>{t("project context.")}</Highlight></>, body: "The same project record connects the teams and modules that depend on this work." }} sourceTitle={content.sourceTitle} sourceBody={content.sourceBody} modules={related} />
     <ModuleClosingCta isMobile={isMobile} id={`${section.id}-cta-title`} label="See it with your own workflow" title={content.ctaTitle} body={content.ctaBody} />
   </>;
 }

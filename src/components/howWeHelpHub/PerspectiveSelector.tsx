@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { framePad, Highlight, Section, SplitHeader } from "@/components/design-system/primitives";
+import { useI18n } from "@/i18n";
 
 type Metric = {
   label: string;
@@ -92,18 +93,19 @@ function useCountUp(target: number, decimals = 0, duration = 0.8) {
 }
 
 function Stat({ m }: { m: Metric }) {
+  const { t } = useI18n();
   const display = useCountUp(m.value, m.decimals ?? 0);
   return (
     <div className="bg-white p-6">
       <p className="text-[13px] text-[#5F6B80]">
-        {m.label}
+        {t(m.label)}
       </p>
       <p className="mt-2 text-[32px] font-medium leading-none tracking-[-0.03em] text-brand-navy tabular-nums">
         {m.prefix}
         {display}
         {m.suffix}
       </p>
-      <p className="mt-2 text-[13px] text-[#616D82]">{m.sub}</p>
+      <p className="mt-2 text-[13px] text-[#616D82]">{t(m.sub)}</p>
       {typeof m.progress === "number" ? (
         <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-[#EEF1F5]">
           <motion.div
@@ -120,6 +122,7 @@ function Stat({ m }: { m: Metric }) {
 
 export default function PerspectiveSelector() {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
   const [active, setActive] = useState(0);
   const current = perspectives[active];
 
@@ -128,8 +131,8 @@ export default function PerspectiveSelector() {
       <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
         <SplitHeader
           id="hub-perspectives"
-          title={<>One record. <Highlight>Different perspectives.</Highlight></>}
-          body="The same job, seen the way each team needs to see it. Figures below are illustrative."
+          title={<>{t("One record.")} <Highlight>{t("Different perspectives.")}</Highlight></>}
+          body={t("The same job, seen the way each team needs to see it. Figures below are illustrative.")}
         />
       </div>
         <div className="grid border-t border-[#E8ECF2] lg:grid-cols-[280px_1fr]">
@@ -152,7 +155,7 @@ export default function PerspectiveSelector() {
                     className={isActive ? "text-brand-orange" : "text-[#C9D2DF]"}
                     aria-hidden
                   />
-                  <span className="whitespace-nowrap text-[15px] font-medium">{p.label}</span>
+                  <span className="whitespace-nowrap text-[15px] font-medium">{t(p.label)}</span>
                 </button>
               );
             })}
@@ -169,7 +172,7 @@ export default function PerspectiveSelector() {
                 transition={{ duration: 0.25 }}
               >
                 <p className="mb-5 text-[15px] font-medium text-brand-navy">
-                  {current.label} view <span className="font-normal text-[#5F6B80]">· same record, scoped to this team</span>
+                  {t(`${current.label} view`)} <span className="font-normal text-[#5F6B80]">{t("· same record, scoped to this team")}</span>
                 </p>
 
                 <div className="grid gap-px overflow-hidden rounded-lg border border-[#E3E8F0] bg-[#E3E8F0] sm:grid-cols-2">

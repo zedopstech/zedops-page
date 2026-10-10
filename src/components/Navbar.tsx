@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { dropdownMenus, type DropdownKey } from "@/data/navDropdownMenus";
@@ -77,12 +78,12 @@ export default function Navbar() {
           <span className="hidden sm:inline">{t("MEP execution, schedule to punch, tied to real work. ")}</span>
           <span className="font-semibold text-white">Zed AI</span>{t(" works on the same job data.")}
         </p>
-        <a
+        <LocalA
           href="/early-access"
           className="ms-3 inline-flex shrink-0 items-center gap-1 font-semibold text-white hover:text-[#FFB37F]"
         >
           {t("Get access")} <ArrowRight size={13} aria-hidden />
-        </a>
+        </LocalA>
       </div>
 
       <div ref={navAreaRef} className="relative" onMouseLeave={() => setActiveDropdown(null)}>
@@ -96,14 +97,14 @@ export default function Navbar() {
           }`}
         >
           <div className="mx-auto flex h-16 max-w-[1200px] items-center px-5 lg:px-6">
-            <a href="/" className="flex shrink-0 items-center gap-2" onMouseEnter={() => setActiveDropdown(null)}>
+            <LocalA href="/" className="flex shrink-0 items-center gap-2" onMouseEnter={() => setActiveDropdown(null)}>
               <ZedOpsMark tone={dark ? "dark" : "light"} className="h-[22px] w-auto" />
               {/* 19px extrabold keeps "Ops" in the exact brand orange while passing
                   WCAG large-text contrast (3:1). */}
               <span className={`text-[19px] font-extrabold tracking-tight transition-colors ${dark ? "text-white" : "text-brand-navy"}`}>
                 Zed<span className="text-brand-orange">Ops</span>
               </span>
-            </a>
+            </LocalA>
 
             <div className="ms-4 hidden h-full min-w-0 items-stretch xl:flex xl:ms-6">
               {topLinks.map((label) => {
@@ -136,14 +137,14 @@ export default function Navbar() {
             </div>
 
             <div className="ms-auto hidden items-center gap-2 ps-4 xl:flex" onMouseEnter={() => setActiveDropdown(null)}>
-              <a
+              <LocalA
                 href="#"
                 className={`inline-flex h-10 items-center whitespace-nowrap rounded-lg border px-2.5 text-[14px]  font-medium transition-colors ${
                   dark ? "border-white/20 text-white hover:border-white/40" : "border-transparent text-[#3D4F6E] hover:text-brand-navy"
                 }`}
               >
                 {t("Log in")}
-              </a>
+              </LocalA>
               <LanguageToggle dark={dark} compact />
               <TicketButton href="/early-access" variant={dark ? "white" : "navy"} className="!text-[14px]">
                 {t("Request a demo")}
@@ -188,7 +189,7 @@ export default function Navbar() {
                         {t(section.heading)}
                       </p>
                       {section.items.map((item) => (
-                        <a
+                        <LocalA
                           key={item.label}
                           href={item.href}
                           {...("external" in item && item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
@@ -196,7 +197,7 @@ export default function Navbar() {
                           onClick={() => setOpen(false)}
                         >
                           {t(item.label)}
-                        </a>
+                        </LocalA>
                       ))}
                     </div>
                   ))}
@@ -207,12 +208,12 @@ export default function Navbar() {
               <TicketButton href="/early-access" full>
                 {t("Request a demo")}
               </TicketButton>
-              <a
+              <LocalA
                 href="#"
                 className="flex h-10 items-center justify-center rounded-lg border border-[#C9D2DF] text-[15px] font-semibold text-brand-navy"
               >
                 {t("Log in")}
-              </a>
+              </LocalA>
               <LanguageToggle className="justify-center !border-[#C9D2DF] !text-brand-navy" />
             </div>
           </div>

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import LegalContent from "@/components/LegalContent";
 import Footer from "@/components/Footer";
+import { useI18n } from "@/i18n";
 
 // Plain-language draft. Entity name, registered address and regulator references should be confirmed by counsel.
 const sections = [
@@ -90,8 +91,9 @@ Use "Cookie settings" in the footer to change your choice at any time.`,
 ];
 
 export default function PrivacyPage() {
+  const { t } = useI18n();
   useSEO({
-    title: "Privacy Policy  -  ZedOps",
+    title: "Privacy Policy – ZedOps",
     description: "How ZedOps collects, uses and protects personal data on its website and platform, where it is stored, and your rights.",
   });
 
@@ -99,7 +101,7 @@ export default function PrivacyPage() {
     <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
       <main id="main">
-        <PageHero pill="Legal" PillIcon={Shield} title="Privacy Policy" subtitle="Last updated: September 2026" />
+        <PageHero pill={t("Legal")} PillIcon={Shield} title={t("Privacy Policy")} subtitle={t("Last updated: September 2026")} />
         <LegalContent sections={sections} email="privacy@zedops.com" />
       </main>
       <Footer />

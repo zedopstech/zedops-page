@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import type { ReactNode, ComponentType } from "react";
 import { Eyebrow } from "@/components/design-system/primitives";
@@ -14,12 +14,9 @@ interface PageHeroProps {
 
 /** Shared editorial hero for marketing, resource, and information pages. */
 export default function PageHero({ pill, PillIcon = Sparkles, title, subtitle, children, compact = false }: PageHeroProps) {
-  const reduceMotion = useReducedMotion();
-  const enter = (delay: number) => ({
-    initial: reduceMotion ? false : { opacity: 0, y: 16 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.55, delay },
-  });
+  // The hero is the first thing painted (and usually the LCP element), so it is rendered visible:
+  // `initial={false}` keeps opacity:0 out of the static HTML. Below-the-fold sections still animate.
+  const enter = (_delay: number) => ({ initial: false as const });
 
   return (
     <section className="relative overflow-hidden bg-white">

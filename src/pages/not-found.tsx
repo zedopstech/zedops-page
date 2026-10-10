@@ -1,3 +1,4 @@
+import { useI18n } from "@/i18n";
 import { AlertCircle, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
@@ -7,8 +8,9 @@ import { useSEO } from "@/hooks/useSEO";
 import { GhostButton, Muted, TicketButton } from "@/components/design-system/primitives";
 
 export default function NotFound() {
+  const { t } = useI18n();
   useSEO({
-    title: "Page not found  -  ZedOps",
+    title: "Page not found – ZedOps",
     description: "That page does not exist. Head back to the ZedOps home page or explore the platform.",
     noindex: true,
   });
@@ -20,12 +22,12 @@ export default function NotFound() {
         <PageHero
           pill="404"
           PillIcon={AlertCircle}
-          title={<>This page doesn’t exist. <Muted>Let’s get you back on site.</Muted></>}
-          subtitle="The link may be outdated or mistyped."
+          title={<>{t("This page doesn’t exist.")} <Muted>{t("Let’s get you back on site.")}</Muted></>}
+          subtitle={t("The link may be outdated or mistyped.")}
         >
           <div className="flex flex-wrap gap-3">
-            <TicketButton href="/">Back to home</TicketButton>
-            <GhostButton href="/solutions" icon={ArrowRight}>Explore the platform</GhostButton>
+            <TicketButton href="/">{t("Back to home")}</TicketButton>
+            <GhostButton href="/solutions" icon={ArrowRight}>{t("Explore the platform")}</GhostButton>
           </div>
         </PageHero>
 

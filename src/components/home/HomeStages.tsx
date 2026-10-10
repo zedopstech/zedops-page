@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { useEffect, useRef, useState, type ComponentType } from "react";
 import { useI18n } from "@/i18n";
 import { motion } from "framer-motion";
@@ -63,7 +64,7 @@ export default function StagesPreview() {
               const on = i === active;
               return (
                 <li key={s.id}>
-                  <a
+                  <LocalA
                     href={`#stage-${s.id}`}
                     aria-current={on ? "step" : undefined}
                     className={`relative flex items-baseline gap-3 py-2 text-[15px] transition-colors duration-200 ${on ? "text-brand-navy" : "text-[#677388] hover:text-[#5E6C84]"}`}
@@ -71,7 +72,7 @@ export default function StagesPreview() {
                     <span aria-hidden className={`absolute top-2 bottom-2 -start-10 w-[2px] transition-colors ${on ? "bg-brand-orange" : "bg-transparent"}`} />
                     <span className="font-mono text-[11px]">{pad(i + 1)}</span>
                     {t(s.title)}
-                  </a>
+                  </LocalA>
                 </li>
               );
             })}

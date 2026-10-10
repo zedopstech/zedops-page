@@ -1,5 +1,6 @@
 import { Lock } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { t } from "@/i18n";
 import type { PlatformFeatureSection } from "@/data/platformFeatures";
 import { planningAiRoadmap, planningFeatures, planningSources } from "@/data/planningScheduleData";
 import { ModuleCapabilities, ModuleClosingCta, ModuleComparison, ModuleConnected, ModuleHero, ModuleWorkflowTabs } from "@/components/module/ModuleSections";
@@ -87,7 +88,7 @@ function ScheduleVisual({ index }: { index: number }) {
 function Capabilities({ isMobile }: { isMobile: boolean }) {
   return <ModuleCapabilities
     isMobile={isMobile}
-    heading={{ id: "planning-capabilities", label: "Built for project teams", title: <>Make the schedule a <Highlight>working plan.</Highlight></>, body: "Keep sequence, ownership, resources, and progress in one place so the next decision has the right context." }}
+    heading={{ id: "planning-capabilities", label: "Built for project teams", title: <>{t("Make the schedule a ")}<Highlight>{t("working plan.")}</Highlight></>, body: "Keep sequence, ownership, resources, and progress in one place so the next decision has the right context." }}
     features={planningFeatures}
     renderVisual={(index) => <ScheduleVisual index={index} />}
     note="Illustrative schedule data"
@@ -97,7 +98,7 @@ function Capabilities({ isMobile }: { isMobile: boolean }) {
 function Workflow({ isMobile }: { isMobile: boolean }) {
   return <ModuleWorkflowTabs
     isMobile={isMobile}
-    heading={{ id: "planning-workflow-title", label: "Planning workflow", title: <>From the first programme to the <Highlight>next site update.</Highlight></>, body: "Four connected phases keep the baseline, assignments, and field progress in the same conversation." }}
+    heading={{ id: "planning-workflow-title", label: "Planning workflow", title: <>{t("From the first programme to the ")}<Highlight>{t("next site update.")}</Highlight></>, body: "Four connected phases keep the baseline, assignments, and field progress in the same conversation." }}
     tabs={phases}
   />;
 }
@@ -108,7 +109,7 @@ const after = ["One schedule across the project", "Progress recorded against act
 function Comparison({ isMobile }: { isMobile: boolean }) {
   return <ModuleComparison
     isMobile={isMobile}
-    heading={{ id: "planning-comparison-title", label: "Before and after", title: <>A plan the field can <Highlight>actually work from.</Highlight></>, body: "Give the team a clear programme and a reliable way to see what changed." }}
+    heading={{ id: "planning-comparison-title", label: "Before and after", title: <>{t("A plan the field can ")}<Highlight>{t("actually work from.")}</Highlight></>, body: "Give the team a clear programme and a reliable way to see what changed." }}
     before={before.map((title) => ({ title }))}
     after={after.map((title) => ({ title }))}
     beforeLabel="Fragmented planning"
@@ -122,7 +123,7 @@ function Connected({ isMobile }: { isMobile: boolean }) {
   const modules = planningSources.filter((source) => !source.current).slice(0, 6);
   return <ModuleConnected
     isMobile={isMobile}
-    heading={{ id: "planning-connected-title", label: "Connected across ZedOps", title: <>The schedule gives every team <Highlight>a shared sequence.</Highlight></>, body: "Link the plan with estimates, materials, daily updates, tasks, and costs so project decisions keep their context." }}
+    heading={{ id: "planning-connected-title", label: "Connected across ZedOps", title: <>{t("The schedule gives every team ")}<Highlight>{t("a shared sequence.")}</Highlight></>, body: "Link the plan with estimates, materials, daily updates, tasks, and costs so project decisions keep their context." }}
     sourceTitle="Project schedule"
     sourceBody="Activities, owners, baseline dates, and site progress in one working plan."
     sourceRows={[{ label: "Work breakdown structure", status: "defined" }, { label: "Baseline and current dates", status: "visible" }, { label: "Activity ownership", status: "assigned" }]}
@@ -135,19 +136,19 @@ function Connected({ isMobile }: { isMobile: boolean }) {
 
 function PlanningProductView() {
   return <div className="relative mx-auto max-w-[1110px] pt-9">
-    <div className="absolute inset-x-0 top-0 flex h-5 items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#5F6B80]" aria-hidden><span className="h-px flex-1 bg-[#A8B8CC]" /><span>Schedule workspace · project timeline</span><span className="h-px flex-1 bg-[#A8B8CC]" /></div>
-    <div className="relative rounded-[10px] border border-[#CFD9E6] bg-white p-2.5 shadow-[0_40px_80px_-40px_rgba(23,43,77,0.45)] sm:p-3.5"><CornerTicks /><div className="overflow-hidden rounded-md border border-[#E3E8F0] bg-white"><div className="flex h-10 items-center gap-3 border-b border-[#E3E8F0] bg-[#F8F9FD] px-4 sm:h-12"><span className="flex gap-1.5" aria-hidden>{[0, 1, 2].map((i) => <span key={i} className="h-2.5 w-2.5 rounded-full border border-[#D5DCE7] bg-[#EDF0F5]" />)}</span><span className="mx-auto flex h-7 items-center gap-2 rounded-md border border-[#E3E8F0] bg-white px-4 text-[11px] font-medium text-brand-navy"><Lock size={11} className="text-[#5F6B80]" aria-hidden />ZedOps / Schedule dashboard</span></div><div className="h-[240px] overflow-hidden bg-[#F4F6FA] sm:h-[400px] lg:h-[510px]"><img src="/screenshots/schedule-and-planning.png" alt="ZedOps schedule dashboard showing activities alongside a baseline timeline" className="h-full w-full object-cover object-left-top" /></div></div><div className="absolute bottom-2.5 end-2.5 flex border border-brand-navy bg-white font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-navy sm:bottom-3.5 sm:end-3.5"><span className="bg-brand-navy px-2.5 py-2 text-white">P-01</span><span className="hidden px-2.5 py-2 sm:block">Schedule workspace</span></div></div>
+    <div className="absolute inset-x-0 top-0 flex h-5 items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#5F6B80]" aria-hidden><span className="h-px flex-1 bg-[#A8B8CC]" /><span>{t("Schedule workspace · project timeline")}</span><span className="h-px flex-1 bg-[#A8B8CC]" /></div>
+    <div className="relative rounded-[10px] border border-[#CFD9E6] bg-white p-2.5 shadow-[0_40px_80px_-40px_rgba(23,43,77,0.45)] sm:p-3.5"><CornerTicks /><div className="overflow-hidden rounded-md border border-[#E3E8F0] bg-white"><div className="flex h-10 items-center gap-3 border-b border-[#E3E8F0] bg-[#F8F9FD] px-4 sm:h-12"><span className="flex gap-1.5" aria-hidden>{[0, 1, 2].map((i) => <span key={i} className="h-2.5 w-2.5 rounded-full border border-[#D5DCE7] bg-[#EDF0F5]" />)}</span><span className="mx-auto flex h-7 items-center gap-2 rounded-md border border-[#E3E8F0] bg-white px-4 text-[11px] font-medium text-brand-navy"><Lock size={11} className="text-[#5F6B80]" aria-hidden />ZedOps / Schedule dashboard</span></div><div className="h-[240px] overflow-hidden bg-[#F4F6FA] sm:h-[400px] lg:h-[510px]"><img src="/screenshots/schedule-and-planning.png" alt={t("ZedOps schedule dashboard showing activities alongside a baseline timeline")} className="h-full w-full object-cover object-left-top" /></div></div><div className="absolute bottom-2.5 end-2.5 flex border border-brand-navy bg-white font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-navy sm:bottom-3.5 sm:end-3.5"><span className="bg-brand-navy px-2.5 py-2 text-white">P-01</span><span className="hidden px-2.5 py-2 sm:block">{t("Schedule workspace")}</span></div></div>
   </div>;
 }
 
 export default function PlanningScheduleLanding(_props: { prev: NavModule | null; next: NavModule | null }) {
   const isMobile = useIsMobile();
   return <>
-    <ModuleHero isMobile={isMobile} eyebrow="Planning & scheduling" title={<>Make the plan clear.<span className="block text-brand-navy/65">Keep the work moving.</span></>} body="Build the programme, assign activities, and compare field progress with the baseline in one connected scheduling workflow." product={<PlanningProductView />} capabilitiesId="planning-capabilities" />
+    <ModuleHero isMobile={isMobile} eyebrow="Planning & scheduling" title={<>{t("Make the plan clear.")}<span className="block text-brand-navy/65">{t("Keep the work moving.")}</span></>} body="Build the programme, assign activities, and compare field progress with the baseline in one connected scheduling workflow." product={<PlanningProductView />} capabilitiesId="planning-capabilities" />
     <Capabilities isMobile={isMobile} />
     <Workflow isMobile={isMobile} />
     <Comparison isMobile={isMobile} />
     <Connected isMobile={isMobile} />
-    <ModuleClosingCta isMobile={isMobile} id="planning-cta-title" label="See it with your own project" title={<>Plan the work. <Highlight>See what changes.</Highlight></>} body="Walk through your programme, trade assignments, progress updates, and baseline reviews with our team." />
+    <ModuleClosingCta isMobile={isMobile} id="planning-cta-title" label="See it with your own project" title={<>{t("Plan the work.")} <Highlight>{t("See what changes.")}</Highlight></>} body="Walk through your programme, trade assignments, progress updates, and baseline reviews with our team." />
   </>;
 }

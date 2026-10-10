@@ -1,3 +1,4 @@
+import { MotionLocalA } from "@/components/LocalLink";
 import { ArrowUpRight, Cpu } from "lucide-react";
 import { motion } from "framer-motion";
 import {
@@ -6,6 +7,7 @@ import {
   PiShieldCheckFill, PiSquaresFourFill, PiUsersThreeFill,
 } from "react-icons/pi";
 import { useSEO } from "@/hooks/useSEO";
+import { useI18n } from "@/i18n";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import Navbar from "@/components/Navbar";
@@ -20,7 +22,7 @@ import { SolutionsAsk } from "@/components/mocks/scenes";
 const groups = [
   {
     id: "deliver",
-    title: <>Plan and <Highlight>deliver.</Highlight></>,
+    title: (t: (s: string) => string) => <>{t("Plan and")} <Highlight>{t("deliver.")}</Highlight></>,
     body: "From the first estimate to handover: scope becomes a plan, reaches site, and moves through quality checks.",
     modules: [
       ["estimation", PiChartLineUpFill], ["planning-execution", PiCalendarBlankFill],
@@ -30,7 +32,7 @@ const groups = [
   },
   {
     id: "operate",
-    title: <>Run the <Highlight>operation.</Highlight></>,
+    title: (t: (s: string) => string) => <>{t("Run the")} <Highlight>{t("operation.")}</Highlight></>,
     body: "Materials, cost, people, documents and reporting, kept beside the work they support.",
     modules: [
       ["supply-chain", PiPackageFill], ["finance", PiCurrencyDollarFill],
@@ -44,9 +46,10 @@ const groups = [
 /** Platform overview: two module groups as rail-to-rail link grids, then Zed AI, then the CTA. */
 export default function SolutionsPage() {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
   useSEO({
-    title: "Platform  -  ZedOps",
-    description: "Explore ZedOps modules for MEP and construction project delivery, people, materials, cost, quality, and reporting.",
+    title: "Platform – ZedOps",
+    description: "One place for the work behind every project: scheduling, site execution, materials, quality and closeout, connected instead of scattered across tools.",
   });
 
   return (
@@ -54,19 +57,19 @@ export default function SolutionsPage() {
       <Navbar />
       <main id="main">
         <PageHero
-          pill="Platform"
+          pill={t("Platform")}
           PillIcon={Cpu}
-          title={<>Every module on one project record. <Muted>Nothing to reconcile.</Muted></>}
-          subtitle="Fourteen connected modules for MEP and construction teams. Pick the ones you need; they all share the same job data."
+          title={<>{t("Every module on one project record.")} <Muted>{t("Nothing to reconcile.")}</Muted></>}
+          subtitle={t("Fourteen connected modules for MEP and construction teams. Pick the ones you need; they all share the same job data.")}
         >
-          <TicketButton href="/early-access">Request a demo</TicketButton>
+          <TicketButton href="/early-access">{t("Request a demo")}</TicketButton>
         </PageHero>
 
         {groups.map((group, g) => (
           <Section key={group.id} tone={g % 2 ? "mist" : "white"} labelledBy={`sol-${group.id}`}>
             <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
               <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-                <SplitHeader id={`sol-${group.id}`} title={group.title} body={group.body} />
+                <SplitHeader id={`sol-${group.id}`} title={group.title(t)} body={t(group.body)} />
               </motion.div>
             </div>
             <div className={`grid gap-px border-t sm:grid-cols-2 lg:grid-cols-3 ${g % 2 ? "border-[#E3E8F0] bg-[#E3E8F0]" : "border-[#E8ECF2] bg-[#E8ECF2]"}`}>
@@ -75,7 +78,7 @@ export default function SolutionsPage() {
                 const content = moduleLandingContent[id];
                 if (!section) return null;
                 return (
-                  <motion.a
+                  <MotionLocalA
                     key={id}
                     {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: (index % 3) * 0.05 })}
                     href={`/platform/module/${id}`}
@@ -87,9 +90,9 @@ export default function SolutionsPage() {
                       </span>
                       <ArrowUpRight size={16} className="text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden />
                     </div>
-                    <h3 className="mt-10 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">{section.title}</h3>
-                    <p className="mt-1.5 max-w-[38ch] text-[14.5px] leading-[1.55] text-[#616D82]">{content?.intro ?? section.items[0]?.summary}</p>
-                  </motion.a>
+                    <h3 className="mt-10 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">{t(section.title)}</h3>
+                    <p className="mt-1.5 max-w-[38ch] text-[14.5px] leading-[1.55] text-[#616D82]">{t(content?.intro ?? section.items[0]?.summary)}</p>
+                  </MotionLocalA>
                 );
               })}
             </div>
@@ -100,13 +103,13 @@ export default function SolutionsPage() {
           <div className={`grid items-center gap-10 py-20 lg:grid-cols-2 lg:gap-16 lg:py-28 ${framePad}`}>
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
               <h2 id="sol-ai" className="text-[30px] font-medium leading-[1.1] tracking-[-0.04em] text-brand-navy [text-wrap:balance] sm:text-[40px]">
-                Zed AI across every module. <Muted>Grounded in the work.</Muted>
+                {t("Zed AI across every module.")} <Muted>{t("Grounded in the work.")}</Muted>
               </h2>
               <p className="mt-5 max-w-md text-[16px] leading-[1.6] text-[#5E6C84]">
-                The copilot reads the same project context as your team, so it can point to what needs attention and draft the next step.
+                {t("The copilot reads the same project context as your team, so it can point to what needs attention and draft the next step.")}
               </p>
               <div className="mt-8">
-                <TicketButton href="/zed-ai">Explore Zed AI</TicketButton>
+                <TicketButton href="/zed-ai">{t("Explore Zed AI")}</TicketButton>
               </div>
             </motion.div>
             <motion.div {...scrollMotionProps(isMobile, { y: 20, duration: 0.5, delay: 0.06 })} className="rounded-xl bg-[#F7F8FA] p-6 sm:p-10">

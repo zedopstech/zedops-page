@@ -1,6 +1,7 @@
+import { useI18n } from "@/i18n";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "wouter";
+import { Link } from "@/components/LocalLink";
 import { ArrowRight } from "lucide-react";
 import { framePad, Muted, Section } from "@/components/design-system/primitives";
 import Navbar from "@/components/Navbar";
@@ -21,13 +22,14 @@ function initialFilter(): Filter {
 }
 
 export default function BlogIndexPage() {
+  const { t } = useI18n();
   const isMobile = useIsMobile();
   const posts = useMemo(() => getAllPosts(), []);
   const featured = useMemo(() => getFeaturedPost(), []);
   const [filter, setFilter] = useState<Filter>(initialFilter);
 
   useSEO({
-    title: "Blog  -  ZedOps",
+    title: "Blog – ZedOps",
     description:
       "Practical writing on running MEP and construction projects: estimating, procurement, site reporting, quality, handover and AI on live jobs.",
   });
@@ -48,18 +50,16 @@ export default function BlogIndexPage() {
         <section className="bg-white">
           <div className={`mx-auto max-w-[1200px] pt-[132px] pb-12 sm:pt-[144px] lg:border-x lg:border-[#E8ECF2] lg:pb-14 ${framePad}`}>
             <motion.h1
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={false}
               className="max-w-[760px] text-[40px] font-medium leading-[1.04] tracking-[-0.045em] [text-wrap:balance] sm:text-[52px] lg:text-[60px]"
             >
-              The ZedOps blog. <Muted>How good projects actually get run.</Muted>
+              {t("The ZedOps blog.")} <Muted>{t("How good projects actually get run.")}</Muted>
             </motion.h1>
           </div>
         </section>
 
         {featured ? (
-          <Section label="Featured article">
+          <Section label={t("Featured article")}>
             <Link href={`/blog/${featured.slug}`} className="group grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
               <div className="aspect-[16/10] overflow-hidden border-b border-[#E8ECF2] lg:aspect-auto lg:min-h-[420px] lg:border-e lg:border-b-0">
                 <PostCover post={featured} tone="dark" fit="contain" className="transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
@@ -78,7 +78,7 @@ export default function BlogIndexPage() {
                     {featured.author}
                   </span>
                   <span className="inline-flex items-center gap-1.5 text-[14.5px] font-medium text-brand-navy">
-                    Read <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
+                    {t("Read")} <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
                   </span>
                 </div>
               </div>
@@ -89,9 +89,9 @@ export default function BlogIndexPage() {
         <Section labelledBy="blog-all">
           <div className={`flex flex-col gap-5 pt-14 pb-8 sm:flex-row sm:items-end sm:justify-between lg:pt-16 ${framePad}`}>
             <h2 id="blog-all" className="text-[26px] font-medium tracking-[-0.03em] text-brand-navy sm:text-[30px]">
-              {filter === "All" ? "All articles" : filter}
+              {filter === "All" ? t("All articles") : t(filter)}
             </h2>
-            <div role="tablist" aria-label="Filter by topic" className="-mx-1 flex gap-1 overflow-x-auto pb-1 [scrollbar-width:none]">
+            <div role="tablist" aria-label={t("Filter by topic")} className="-mx-1 flex gap-1 overflow-x-auto pb-1 [scrollbar-width:none]">
               {(["All", ...categories] as Filter[]).map((c) => {
                 const active = c === filter;
                 return (
@@ -105,7 +105,7 @@ export default function BlogIndexPage() {
                       active ? "bg-brand-navy text-white" : "text-[#5E6C84] hover:bg-[#F1F4F8] hover:text-brand-navy"
                     }`}
                   >
-                    {c}
+                    {t(c)}
                   </button>
                 );
               })}
@@ -113,7 +113,7 @@ export default function BlogIndexPage() {
           </div>
 
           {listed.length === 0 ? (
-            <p className="border-t border-[#E8ECF2] py-20 text-center text-[15px] text-[#616D82]">No articles in this topic yet.</p>
+            <p className="border-t border-[#E8ECF2] py-20 text-center text-[15px] text-[#616D82]">{t("No articles in this topic yet.")}</p>
           ) : (
             <div className="grid gap-px border-t border-[#E8ECF2] bg-[#E8ECF2] sm:grid-cols-2 lg:grid-cols-3">
               {listed.map((post, i) => (

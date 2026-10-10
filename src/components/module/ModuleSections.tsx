@@ -1,8 +1,10 @@
+import { LocalA } from "@/components/LocalLink";
 import { useState, type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, CalendarDays, Check, X } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
+import { t } from "@/i18n";
 import {
   Eyebrow,
   framePad,
@@ -21,6 +23,9 @@ import {
  * page (template, Estimation, Planning) picks this up as-is. `label` fields are accepted
  * but no longer drawn (eyebrow labels were retired site-wide).
  */
+
+/** Translate a string prop at render time; JSX passes through untouched. */
+const tx = (value: ReactNode): ReactNode => (typeof value === "string" ? t(value) : value);
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
@@ -53,22 +58,22 @@ export function ModuleHero({
       <div className={`relative mx-auto max-w-[1200px] pt-[140px] pb-14 sm:pt-[152px] lg:border-x lg:border-[#E8ECF2] lg:pb-16 ${framePad}`}>
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end lg:gap-14">
           <div>
-            <motion.div {...scrollMotionProps(isMobile, { y: 14, duration: 0.45 })} className="mb-6">
-              <Eyebrow tag="Platform">{eyebrow}</Eyebrow>
+            <motion.div initial={false} className="mb-6">
+              <Eyebrow tag={t("Platform")}>{t(eyebrow)}</Eyebrow>
             </motion.div>
             <motion.h1
-              {...scrollMotionProps(isMobile, { y: 18, duration: 0.55 })}
+              initial={false}
               className="text-[40px] font-medium leading-[1.02] tracking-[-0.045em] text-brand-navy [text-wrap:balance] sm:text-[52px] lg:text-[60px]"
             >
-              {title}
+              {tx(title)}
             </motion.h1>
           </div>
-          <motion.div {...scrollMotionProps(isMobile, { y: 18, duration: 0.55, delay: 0.08 })} className="lg:pb-1.5">
-            <p className="max-w-md text-[16px] leading-[1.6] text-[#4D5E77] sm:text-[17px]">{body}</p>
+          <motion.div initial={false} className="lg:pb-1.5">
+            <p className="max-w-md text-[16px] leading-[1.6] text-[#4D5E77] sm:text-[17px]">{tx(body)}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <TicketButton href="/early-access">Request a demo</TicketButton>
+              <TicketButton href="/early-access">{t("Request a demo")}</TicketButton>
               <GhostButton href={`#${capabilitiesId}`} icon={ArrowRight}>
-                Explore capabilities
+                {t("Explore capabilities")}
               </GhostButton>
             </div>
           </motion.div>
@@ -80,7 +85,7 @@ export function ModuleHero({
           className="mx-auto max-w-[1200px] px-5 py-10 sm:px-8 sm:py-14 lg:border-x lg:border-[#E3E8F0] lg:px-14"
         >
           {product}
-          {productCaption ? <p className="mt-4 text-center text-[12px] text-[#5F6B80]">{productCaption}</p> : null}
+          {productCaption ? <p className="mt-4 text-center text-[12px] text-[#5F6B80]">{t(productCaption)}</p> : null}
         </motion.div>
       </div>
     </section>
@@ -110,7 +115,7 @@ export function ModuleCapabilities({
     <Section id={heading.id} labelledBy={`${heading.id}-title`} className="scroll-mt-[100px]">
       <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
         <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-          <SplitHeader id={`${heading.id}-title`} title={heading.title} body={heading.body} />
+          <SplitHeader id={`${heading.id}-title`} title={tx(heading.title)} body={tx(heading.body)} />
         </motion.div>
       </div>
       <div className={`grid gap-px border-t border-[#E8ECF2] bg-[#E8ECF2] sm:grid-cols-2 ${cols}`}>
@@ -124,12 +129,12 @@ export function ModuleCapabilities({
             >
               <span className="font-mono text-[11px] text-[#677388]">{pad(index + 1)}</span>
               <h3 className="mt-8 text-[18px] font-medium tracking-[-0.02em] text-brand-navy">
-                {feature.title}
+                {t(feature.title)}
                 {first.badge ? (
                   <span className="ms-2 rounded-[4px] bg-[#FFF1E8] px-1.5 py-0.5 align-middle text-[11px] font-medium text-[#C2410C]">{first.badge}</span>
                 ) : null}
               </h3>
-              {first.text ? <p className="mt-2 max-w-[38ch] text-[14.5px] leading-[1.55] text-[#616D82]">{first.text}</p> : null}
+              {first.text ? <p className="mt-2 max-w-[38ch] text-[14.5px] leading-[1.55] text-[#616D82]">{t(first.text)}</p> : null}
             </motion.article>
           );
         })}
@@ -153,10 +158,10 @@ export function ModuleWorkflowTabs({ isMobile, heading, tabs }: { isMobile: bool
     <Section tone="mist" labelledBy={heading.id}>
       <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
         <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-          <SplitHeader id={heading.id} title={heading.title} body={heading.body} />
+          <SplitHeader id={heading.id} title={tx(heading.title)} body={tx(heading.body)} />
         </motion.div>
       </div>
-      <div role="tablist" aria-label="Workflow steps" className={`grid grid-cols-2 border-t border-[#E3E8F0] ${cols}`}>
+      <div role="tablist" aria-label={t("Workflow steps")} className={`grid grid-cols-2 border-t border-[#E3E8F0] ${cols}`}>
         {tabs.map((item, index) => {
           const on = active === index;
           return (
@@ -184,7 +189,7 @@ export function ModuleWorkflowTabs({ isMobile, heading, tabs }: { isMobile: bool
             >
               <span aria-hidden className={`absolute inset-x-0 -top-px h-[2px] ${on ? "bg-brand-orange" : "bg-transparent"}`} />
               <span className="block font-mono text-[11px] text-[#677388]">{pad(index + 1)}</span>
-              <span className={`mt-1 block text-[14.5px] font-medium leading-snug tracking-[-0.01em] ${on ? "text-brand-navy" : "text-[#5E6C84]"}`}>{item.label}</span>
+              <span className={`mt-1 block text-[14.5px] font-medium leading-snug tracking-[-0.01em] ${on ? "text-brand-navy" : "text-[#5E6C84]"}`}>{t(item.label)}</span>
             </button>
           );
         })}
@@ -200,15 +205,15 @@ export function ModuleWorkflowTabs({ isMobile, heading, tabs }: { isMobile: bool
           transition={{ duration: 0.3 }}
           className={`grid gap-6 py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-16 lg:py-16 ${framePad}`}
         >
-          <h3 className="max-w-lg text-[26px] font-medium leading-[1.15] tracking-[-0.035em] text-brand-navy [text-wrap:balance] sm:text-[32px]">{tab.title}</h3>
+          <h3 className="max-w-lg text-[26px] font-medium leading-[1.15] tracking-[-0.035em] text-brand-navy [text-wrap:balance] sm:text-[32px]">{t(tab.title)}</h3>
           <div>
-            <p className="max-w-xl text-[16px] leading-[1.65] text-[#5E6C84]">{tab.body}</p>
+            <p className="max-w-xl text-[16px] leading-[1.65] text-[#5E6C84]">{t(tab.body)}</p>
             {tab.steps?.length ? (
               <ul className="mt-6 space-y-2.5">
                 {tab.steps.map((step) => (
                   <li key={step} className="flex items-center gap-2.5 text-[14.5px] text-brand-navy">
                     <Check size={15} strokeWidth={2.4} className="shrink-0 text-brand-orange" aria-hidden />
-                    {step}
+                    {t(step)}
                   </li>
                 ))}
               </ul>
@@ -243,7 +248,7 @@ export function ModuleComparison({
     <Section labelledBy={heading.id}>
       <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
         <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-          <SplitHeader id={heading.id} title={heading.title} body={heading.body} />
+          <SplitHeader id={heading.id} title={tx(heading.title)} body={tx(heading.body)} />
         </motion.div>
       </div>
       <div className="grid border-t border-[#E8ECF2] lg:grid-cols-2">
@@ -253,7 +258,7 @@ export function ModuleComparison({
             {...scrollMotionProps(isMobile, { y: 18, duration: 0.5, delay: side * 0.08 })}
             className={`px-6 py-10 sm:px-10 lg:px-14 lg:py-14 ${side ? "border-t border-[#E8ECF2] lg:border-t-0 lg:border-s" : "bg-[#FAFBFC]"}`}
           >
-            <p className={`text-[15px] font-medium ${side ? "text-brand-navy" : "text-[#5F6B80]"}`}>{side ? afterLabel : beforeLabel}</p>
+            <p className={`text-[15px] font-medium ${side ? "text-brand-navy" : "text-[#5F6B80]"}`}>{t(side ? afterLabel : beforeLabel)}</p>
             <ul className="mt-6 space-y-4">
               {items.map((item) => (
                 <li key={item.title} className="flex items-start gap-3">
@@ -263,8 +268,8 @@ export function ModuleComparison({
                     {side ? <Check size={12} strokeWidth={3} aria-hidden /> : <X size={12} strokeWidth={3} aria-hidden />}
                   </span>
                   <span>
-                    <span className={`block text-[16px] leading-snug ${side ? "text-brand-navy" : "text-[#5E6C84]"}`}>{item.title}</span>
-                    {item.description ? <span className="mt-0.5 block text-[14px] text-[#5F6B80]">{item.description}</span> : null}
+                    <span className={`block text-[16px] leading-snug ${side ? "text-brand-navy" : "text-[#5E6C84]"}`}>{t(item.title)}</span>
+                    {item.description ? <span className="mt-0.5 block text-[14px] text-[#5F6B80]">{t(item.description)}</span> : null}
                   </span>
                 </li>
               ))}
@@ -304,13 +309,13 @@ export function ModuleConnected({
     <Section tone="mist" labelledBy={heading.id}>
       <div className={`pt-20 pb-14 lg:pt-28 lg:pb-16 ${framePad}`}>
         <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
-          <SplitHeader id={heading.id} title={heading.title} body={heading.body} />
+          <SplitHeader id={heading.id} title={tx(heading.title)} body={tx(heading.body)} />
         </motion.div>
       </div>
       <div className="grid border-t border-[#E3E8F0] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <div className="bg-white px-6 py-10 sm:px-10 lg:px-14 lg:py-12">
           <h3 className="text-[22px] font-medium leading-[1.3] tracking-[-0.025em] text-brand-navy">
-            {sourceTitle}. <Muted>{sourceBody}</Muted>
+            {t(sourceTitle)}. <Muted>{t(sourceBody)}</Muted>
           </h3>
         </div>
         <div className="grid gap-px border-t border-[#E3E8F0] bg-[#E3E8F0] sm:grid-cols-2 lg:border-t-0 lg:border-s">
@@ -320,14 +325,14 @@ export function ModuleConnected({
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[#E3E8F0] bg-white text-[#5E6C84] transition-colors group-hover:border-[#FFCFB0] group-hover:text-brand-orange">
                   <module.icon size={17} strokeWidth={1.8} aria-hidden />
                 </span>
-                <span className="flex-1 text-[15px] font-medium text-brand-navy">{module.label}</span>
+                <span className="flex-1 text-[15px] font-medium text-brand-navy">{t(module.label)}</span>
                 {module.href ? <ArrowUpRight size={15} className="text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden /> : null}
               </>
             );
             return module.href ? (
-              <a key={module.label} href={module.href} className="group flex items-center gap-3.5 bg-[#F7F8FA] px-6 py-5 transition-colors hover:bg-white sm:px-7">
+              <LocalA key={module.label} href={module.href} className="group flex items-center gap-3.5 bg-[#F7F8FA] px-6 py-5 transition-colors hover:bg-white sm:px-7">
                 {inner}
-              </a>
+              </LocalA>
             ) : (
               <div key={module.label} className="group flex items-center gap-3.5 bg-[#F7F8FA] px-6 py-5 sm:px-7">
                 {inner}
@@ -340,15 +345,15 @@ export function ModuleConnected({
         <div className="border-t border-[#E3E8F0]">
           <div className={`flex flex-wrap items-end justify-between gap-4 pt-12 pb-8 ${framePad}`}>
             <h3 className="max-w-xl text-[20px] font-medium leading-[1.35] tracking-[-0.02em] text-brand-navy">
-              {roadmapLabel ?? "On the roadmap"}. <Muted>{roadmapBody}</Muted>
+              {t(roadmapLabel ?? "On the roadmap")}. <Muted>{roadmapBody ? t(roadmapBody) : roadmapBody}</Muted>
             </h3>
-            <span className="rounded-md border border-[#E3E8F0] bg-white px-2.5 py-1 text-[12px] font-medium text-[#616D82]">Planned</span>
+            <span className="rounded-md border border-[#E3E8F0] bg-white px-2.5 py-1 text-[12px] font-medium text-[#616D82]">{t("Planned")}</span>
           </div>
           <div className="grid gap-px border-t border-[#E3E8F0] bg-[#E3E8F0] sm:grid-cols-2 lg:grid-cols-4">
             {roadmapItems.map((item) => (
               <div key={item.title} className="bg-[#F7F8FA] px-6 py-7 sm:px-8">
-                <p className="text-[15px] font-medium text-brand-navy">{item.title}</p>
-                <p className="mt-1.5 text-[14px] leading-[1.5] text-[#616D82]">{item.body}</p>
+                <p className="text-[15px] font-medium text-brand-navy">{t(item.title)}</p>
+                <p className="mt-1.5 text-[14px] leading-[1.5] text-[#616D82]">{t(item.body)}</p>
               </div>
             ))}
           </div>
@@ -384,16 +389,16 @@ export function ModuleClosingCta({
         className={`grid gap-10 py-20 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)] lg:items-end lg:py-24 ${framePad}`}
       >
         <h2 id={id} className="max-w-2xl text-[34px] font-medium leading-[1.05] tracking-[-0.045em] text-white [text-wrap:balance] sm:text-[44px] lg:text-[52px]">
-          {title}
+          {tx(title)}
         </h2>
         <div className="lg:pb-2">
-          <p className="max-w-sm text-[16px] leading-[1.6] text-white/60">{body}</p>
+          <p className="max-w-sm text-[16px] leading-[1.6] text-white/60">{t(body)}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <TicketButton href={primary?.href ?? "/early-access"} variant="white">
-              {primary?.label ?? "Request a demo"}
+              {t(primary?.label ?? "Request a demo")}
             </TicketButton>
             <GhostButton href={secondary?.href ?? "/contact?topic=demo"} icon={secondaryIcon} tone="dark">
-              {secondary?.label ?? "Talk to our team"}
+              {t(secondary?.label ?? "Talk to our team")}
             </GhostButton>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { motion } from "framer-motion";
 import { Database, Cloud, Users, Lock, ShieldCheck, ArrowRight, Check, Key } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -196,13 +197,13 @@ export default function Security() {
           <p className="text-[#616D82] text-sm leading-snug mb-7">
             We're happy to walk your IT or security team through our architecture, controls, and roadmap. No sales pitch  -  just a straightforward conversation.
           </p>
-          <a
+          <LocalA
             href="/contact"
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-orange hover:bg-brand-orange-soft text-white font-bold text-sm transition-all duration-150 group rounded-md"
           >
             Talk to our team
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-          </a>
+          </LocalA>
         </div>
       </section>
     </div>

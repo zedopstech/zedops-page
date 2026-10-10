@@ -60,7 +60,7 @@ export default function OwnersPage() {
   useSEO({
     title: "ZedOps for Owners & Developers",
     description:
-      "Owners use ZedOps for portfolio and project analytics, budgets, change orders, payments, documents, reporting, and permissioned access  -  aligned to how GCs run the job.",
+      "Portfolio oversight without the patchwork. See cost, schedule and quality drift across every project from one view.",
   });
 
   return (

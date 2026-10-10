@@ -23,14 +23,9 @@ const projectHighlights = [
 export default function HeroPreview() {
   const { t } = useI18n();
   const isMobile = useIsMobile();
-  const fade = (delay: number, y = 14) =>
-    isMobile
-      ? { initial: false as const }
-      : {
-          initial: { opacity: 0, y },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
-        };
+  // Hero copy is visible in the prerendered HTML (no opacity:0 start state), so the H1 is the LCP
+  // element from first paint instead of waiting on a fade-in.
+  const fade = (_delay: number, _y = 14) => ({ initial: false as const });
 
   return (
     <>

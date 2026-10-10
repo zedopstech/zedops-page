@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type ReactNode, type RefObject } from "rea
 import { motion, useReducedMotion } from "framer-motion";
 import { Check, ChevronRight, Lock } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { t } from "@/i18n";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import type { PlatformFeatureSection } from "@/data/platformFeatures";
 import {
@@ -87,21 +88,21 @@ function ProductView({ markerRefs }: { markerRefs: [RefObject<HTMLDivElement | n
           <Lock size={11} strokeWidth={2.2} className="shrink-0 text-[#5F6B80]" aria-hidden />
           <span className="font-semibold text-brand-navy">ZedOps</span>
           <ChevronRight size={12} className="shrink-0 text-[#B8C2D0]" aria-hidden />
-          <span className="truncate font-medium text-[#5E6C84]">Estimation workspace</span>
+          <span className="truncate font-medium text-[#5E6C84]">{t("Estimation workspace")}</span>
         </div>
         <span className="hidden shrink-0 items-center gap-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-[#616D82] sm:flex">
           <span className="relative flex h-2 w-2" aria-hidden>
             <span className="absolute inset-0 animate-ping rounded-full bg-brand-orange/50 motion-reduce:animate-none" />
             <span className="relative h-2 w-2 rounded-full bg-brand-orange" />
           </span>
-          Live
+          {t("Live")}
         </span>
       </div>
       <div className="relative h-[245px] overflow-hidden bg-[#F4F6FA] sm:h-[380px] lg:h-[510px]">
         <div className={shotCrop}>
           <img
             src="/screenshots/estimation-dashboard-new.png"
-            alt="Illustrative Estimation dashboard with pipeline value, awarded and overdue offers, status distribution, and estimations created over time"
+            alt={t("Illustrative Estimation dashboard with pipeline value, awarded and overdue offers, status distribution, and estimations created over time")}
             className="block h-auto w-full"
           />
           <ShotMarker n="01" box={[6.2, 25.7, 17.8, 17.3]} markerRef={markerRefs[0]} />
@@ -165,7 +166,7 @@ function HeroSheet() {
       <div className="absolute inset-x-0 top-0 flex h-5 items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[#5F6B80]" aria-hidden>
         <span className="absolute start-0 top-1 h-3 w-px bg-[#A8B8CC]" />
         <span className="h-px flex-1 bg-[#A8B8CC]" />
-        <span className="shrink-0">Estimation workspace · live project view</span>
+        <span className="shrink-0">{t("Estimation workspace · live project view")}</span>
         <span className="h-px flex-1 bg-[#A8B8CC]" />
         <span className="absolute end-0 top-1 h-3 w-px bg-[#A8B8CC]" />
       </div>
@@ -177,8 +178,8 @@ function HeroSheet() {
         {/* Title block */}
         <div className="absolute bottom-2.5 end-2.5 z-10 flex border border-brand-navy bg-white font-mono text-[9.5px] font-semibold uppercase leading-none tracking-[0.1em] text-brand-navy sm:bottom-3.5 sm:end-3.5 sm:text-[10px]">
           <span className="bg-brand-navy px-2.5 py-2 text-white">E-01</span>
-          <span className="hidden border-s border-brand-navy px-2.5 py-2 sm:block">Estimation dashboard</span>
-          <span className="border-s border-brand-navy px-2.5 py-2">Rev <b className="font-bold text-brand-orange">B</b></span>
+          <span className="hidden border-s border-brand-navy px-2.5 py-2 sm:block">{t("Estimation dashboard")}</span>
+          <span className="border-s border-brand-navy px-2.5 py-2">{t("Rev")} <b className="font-bold text-brand-orange">B</b></span>
         </div>
       </div>
 
@@ -199,17 +200,17 @@ function HeroSheet() {
       <div ref={callout1} className="absolute -start-10 top-[58%] z-30 hidden w-[250px] items-start gap-2.5 rounded-xl border border-[#DCE3EE] bg-white p-4 shadow-[0_18px_36px_-18px_rgba(12,31,63,0.45)] lg:flex">
         <span className="rounded-[4px] bg-brand-orange px-1.5 py-1 font-mono text-[11px] font-bold leading-none text-white">01</span>
         <div>
-          <span className="font-mono text-[10px] font-semibold tracking-wider text-[#5F6B80]">ESTIMATE INPUT</span>
-          <p className="mt-1.5 text-[15px] font-semibold text-brand-navy">Scope, quantities, rates.</p>
-          <p className="mt-1 text-[12px] leading-snug text-[#616D82]">The detail behind every price stays visible.</p>
+          <span className="font-mono text-[10px] font-semibold tracking-wider text-[#5F6B80]">{t("ESTIMATE INPUT")}</span>
+          <p className="mt-1.5 text-[15px] font-semibold text-brand-navy">{t("Scope, quantities, rates.")}</p>
+          <p className="mt-1 text-[12px] leading-snug text-[#616D82]">{t("The detail behind every price stays visible.")}</p>
         </div>
       </div>
       <div ref={callout2} className="absolute -end-10 top-[17%] z-30 hidden w-[230px] items-start gap-2.5 rounded-xl border border-[#DCE3EE] bg-white p-4 shadow-[0_18px_36px_-18px_rgba(12,31,63,0.45)] lg:flex">
         <span className="rounded-[4px] bg-brand-orange px-1.5 py-1 font-mono text-[11px] font-bold leading-none text-white">02</span>
         <div>
-          <span className="font-mono text-[10px] font-semibold tracking-wider text-[#5F6B80]">CONNECTED HANDOVER</span>
-          <div className="mt-2 flex items-center gap-2 text-[12.5px] font-medium text-brand-navy"><Check size={14} strokeWidth={2.4} className="text-brand-orange" aria-hidden /> Estimate to execution</div>
-          <div className="mt-1.5 flex items-center gap-2 text-[12.5px] font-medium text-brand-navy"><Check size={14} strokeWidth={2.4} className="text-brand-orange" aria-hidden /> One project context</div>
+          <span className="font-mono text-[10px] font-semibold tracking-wider text-[#5F6B80]">{t("CONNECTED HANDOVER")}</span>
+          <div className="mt-2 flex items-center gap-2 text-[12.5px] font-medium text-brand-navy"><Check size={14} strokeWidth={2.4} className="text-brand-orange" aria-hidden /> {t("Estimate to execution")}</div>
+          <div className="mt-1.5 flex items-center gap-2 text-[12.5px] font-medium text-brand-navy"><Check size={14} strokeWidth={2.4} className="text-brand-orange" aria-hidden /> {t("One project context")}</div>
         </div>
       </div>
     </div>
@@ -369,13 +370,13 @@ const vignettes = [BoqVignette, RateVignette, TakeoffVignette, CostSplitVignette
 function CapabilitiesBento({ isMobile }: { isMobile: boolean }) {
   return <ModuleCapabilities
     isMobile={isMobile}
-    heading={{ id: "estimation-capabilities", label: "Built for estimators", title: <>Everything needed to build a <Highlight>better bid.</Highlight></>, body: "A connected workspace for the details behind every estimate, from the first quantity to the final submission." }}
+    heading={{ id: "estimation-capabilities", label: "Built for estimators", title: <>{t("Everything needed to build a ")}<Highlight>{t("better bid.")}</Highlight></>, body: "A connected workspace for the details behind every estimate, from the first quantity to the final submission." }}
     features={estimationFeatures}
     renderVisual={(index) => {
       const Vignette = vignettes[index] ?? BoqVignette;
       return <Vignette />;
     }}
-    formatBullet={(raw) => ({ text: raw === "Win rate analytics" ? "Bid status and results" : raw.replace(" (Coming Soon)", ""), badge: raw.includes("(Coming Soon)") ? "Soon" : undefined })}
+    formatBullet={(raw) => ({ text: raw === "Win rate analytics" ? "Bid status and results" : raw.replace(" (Coming Soon)", ""), badge: raw.includes("(Coming Soon)") ? t("Soon") : undefined })}
   />;
 }
 
@@ -397,14 +398,14 @@ function WorkflowRuler({ isMobile }: { isMobile: boolean }) {
           <SplitHeader
             id="estimation-process-title"
             label="Estimation workflow"
-            title={<>A clear path from <Highlight>scope to submission.</Highlight></>}
-            body="Move the estimate through four practical phases. Each step keeps the next person working from the same context."
+            title={<>{t("A clear path from ")}<Highlight>{t("scope to submission.")}</Highlight></>}
+            body={t("Move the estimate through four practical phases. Each step keeps the next person working from the same context.")}
           />
         </motion.div>
 
         <motion.div {...scrollMotionProps(isMobile, { y: 28, duration: 0.6, delay: 0.06 })} className="mt-16">
           {/* Dimension brackets: one per phase, spanning its two steps. */}
-          <div role="tablist" aria-label="Estimation workflow phases" className="grid grid-cols-2 gap-x-3 gap-y-2 lg:grid-cols-4 lg:gap-0">
+          <div role="tablist" aria-label={t("Estimation workflow phases")} className="grid grid-cols-2 gap-x-3 gap-y-2 lg:grid-cols-4 lg:gap-0">
             {phases.map((item, index) => {
               const selected = index === active;
               return (
@@ -433,9 +434,9 @@ function WorkflowRuler({ isMobile }: { isMobile: boolean }) {
                   }`}
                 >
                   <span className="me-1.5 font-mono text-[11px]">{pad(index + 1)}</span>
-                  {item.label}
-                  <span aria-hidden className="absolute hidden lg:block left-[6px] end-3 bottom-[6px] h-px bg-current" />
-                  <span aria-hidden className="absolute hidden lg:block bottom-px left-[6px] h-[11px] w-px bg-current" />
+                  {t(item.label)}
+                  <span aria-hidden className="absolute hidden lg:block start-[6px] end-3 bottom-[6px] h-px bg-current" />
+                  <span aria-hidden className="absolute hidden lg:block bottom-px start-[6px] h-[11px] w-px bg-current" />
                   <span aria-hidden className="absolute hidden lg:block bottom-px end-3 h-[11px] w-px bg-current" />
                 </button>
               );
@@ -458,8 +459,8 @@ function WorkflowRuler({ isMobile }: { isMobile: boolean }) {
                     }`}
                   />
                   <span className="font-mono text-[11px] font-semibold text-[#616D82]">{pad(index + 1)}</span>
-                  <p className="mt-2 text-[15px] font-semibold leading-snug tracking-[-0.01em] text-brand-navy">{step.title}</p>
-                  <p className="mt-0.5 text-[13px] leading-snug text-[#616D82]">{step.description}</p>
+                  <p className="mt-2 text-[15px] font-semibold leading-snug tracking-[-0.01em] text-brand-navy">{t(step.title)}</p>
+                  <p className="mt-0.5 text-[13px] leading-snug text-[#616D82]">{t(step.description)}</p>
                 </li>
               );
             })}
@@ -475,10 +476,10 @@ function WorkflowRuler({ isMobile }: { isMobile: boolean }) {
             transition={{ duration: 0.3 }}
             className="mt-12 grid gap-5 border-t border-[#DCE3ED] pt-8 lg:grid-cols-2 lg:gap-12"
           >
-            <h3 className="text-[26px] font-semibold leading-[1.15] tracking-[-0.035em] text-brand-navy sm:text-[30px]">{phase.title}</h3>
+            <h3 className="text-[26px] font-semibold leading-[1.15] tracking-[-0.035em] text-brand-navy sm:text-[30px]">{t(phase.title)}</h3>
             <div>
-              <p className="max-w-xl text-[16px] leading-[1.65] text-[#3D4F6E]">{phase.body}</p>
-              <p className="mt-4 font-mono text-[12px] font-semibold uppercase tracking-[0.06em] text-[#616D82]">{phase.detail}</p>
+              <p className="max-w-xl text-[16px] leading-[1.65] text-[#3D4F6E]">{t(phase.body)}</p>
+              <p className="mt-4 font-mono text-[12px] font-semibold uppercase tracking-[0.06em] text-[#616D82]">{t(phase.detail)}</p>
             </div>
           </motion.div>
         </motion.div>
@@ -498,7 +499,7 @@ function ComparisonSheets({ isMobile }: { isMobile: boolean }) {
   }));
   return <ModuleComparison
     isMobile={isMobile}
-    heading={{ id: "estimation-comparison-title", label: "Before and after", title: <>Less rework between the <Highlight>bid and the build.</Highlight></>, body: "Bring scattered estimating work into a process the project team can follow." }}
+    heading={{ id: "estimation-comparison-title", label: "Before and after", title: <>{t("Less rework between the ")}<Highlight>{t("bid and the build.")}</Highlight></>, body: "Bring scattered estimating work into a process the project team can follow." }}
     before={estimationComparison.traditional}
     after={improved}
     beforeLabel="Fragmented workflow"
@@ -522,7 +523,7 @@ function ConnectedSection({ isMobile }: { isMobile: boolean }) {
   const modules = estimationSources.filter((source) => !source.current).map((source, index) => ({ ...source, category: moduleTags[index] ?? "Connected" }));
   return <ModuleConnected
     isMobile={isMobile}
-    heading={{ id: "estimation-connected-title", label: "Connected across ZedOps", title: <>The approved estimate becomes <Highlight>project context.</Highlight></>, body: "Keep budget, procurement, planning, and execution aligned with the scope and costs the team approved." }}
+    heading={{ id: "estimation-connected-title", label: "Connected across ZedOps", title: <>{t("The approved estimate becomes ")}<Highlight>{t("project context.")}</Highlight></>, body: "Keep budget, procurement, planning, and execution aligned with the scope and costs the team approved." }}
     sourceTitle="Approved estimate"
     sourceBody="Scope, quantities, rates, and review decisions ready for the project team."
     sourceRows={recordRows.map(([label, status]) => ({ label, status }))}
@@ -542,7 +543,7 @@ function ClosingCta({ isMobile }: { isMobile: boolean }) {
     isMobile={isMobile}
     id="estimation-cta-title"
     label="See it with your own workflow"
-    title={<>Price with confidence. <Highlight>Build from the same plan.</Highlight></>}
+    title={<>{t("Price with confidence.")} <Highlight>{t("Build from the same plan.")}</Highlight></>}
     body="Walk through your scope, rate structure, review steps, and the handover to the project team."
   />;
 }
@@ -553,7 +554,7 @@ export default function EstimationLanding(_props: { prev: NavModule | null; next
     <ModuleHero
       isMobile={isMobile}
       eyebrow="Estimation & proposals"
-      title={<>Build estimates with <Highlight>clarity.</Highlight><span className="block text-brand-navy/65">Carry them into delivery.</span></>}
+      title={<>{t("Build estimates with ")}<Highlight>{t("clarity.")}</Highlight><span className="block text-brand-navy/65">{t("Carry them into delivery.")}</span></>}
       body="Bring scope, quantities, rates, review, and proposals into one estimating workflow. Keep the approved cost plan connected to the project that follows."
       product={<HeroSheet />}
       capabilitiesId="estimation-capabilities"

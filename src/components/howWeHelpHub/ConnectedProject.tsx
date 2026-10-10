@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { framePad, Muted, Section, SplitHeader } from "@/components/design-system/primitives";
+import { useI18n } from "@/i18n";
 
 type Node = {
   key: string;
@@ -43,6 +44,7 @@ function curvePath(n: Node) {
 }
 
 function NodeCard({ node }: { node: Node }) {
+  const { t } = useI18n();
   const Icon = node.Icon;
   return (
     <div className="flex w-[196px] items-center gap-3 rounded-lg border border-[#E3E8F0] bg-white px-3.5 py-3 shadow-[0_10px_24px_-18px_rgba(14,27,51,0.35)]">
@@ -50,8 +52,8 @@ function NodeCard({ node }: { node: Node }) {
         <Icon size={16} aria-hidden />
       </span>
       <span className="min-w-0 text-start">
-        <span className="block text-[14px] font-medium text-brand-navy">{node.title}</span>
-        <span className="block truncate text-[12px] text-[#5F6B80]">{node.desc}</span>
+        <span className="block text-[14px] font-medium text-brand-navy">{t(node.title)}</span>
+        <span className="block truncate text-[12px] text-[#5F6B80]">{t(node.desc)}</span>
       </span>
     </div>
   );
@@ -59,14 +61,15 @@ function NodeCard({ node }: { node: Node }) {
 
 export default function ConnectedProject() {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
 
   return (
     <Section tone="mist" labelledBy="hub-connected">
       <div className={`pt-20 pb-6 lg:pt-28 ${framePad}`}>
         <SplitHeader
           id="hub-connected"
-          title={<>One project. <Muted>Every decision connected.</Muted></>}
-          body="Schedule, people, materials, quality, cost and daily logs all hang off the same project record."
+          title={<>{t("One project.")} <Muted>{t("Every decision connected.")}</Muted></>}
+          body={t("Schedule, people, materials, quality, cost and daily logs all hang off the same project record.")}
         />
       </div>
         <motion.div
@@ -99,8 +102,8 @@ export default function ConnectedProject() {
             {/* Central record */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <div className="flex w-[200px] flex-col items-center rounded-xl bg-brand-navy px-6 py-5 text-center shadow-[0_24px_48px_-24px_rgba(14,27,51,0.6)]">
-                <p className="text-[12px] text-white/55">Project record</p>
-                <p className="mt-1 text-[18px] font-medium text-white">Commercial Tower</p>
+                <p className="text-[12px] text-white/55">{t("Project record")}</p>
+                <p className="mt-1 text-[18px] font-medium text-white">{t("Commercial Tower")}</p>
               </div>
             </div>
 
@@ -120,8 +123,8 @@ export default function ConnectedProject() {
           <div className="relative mx-auto mt-12 max-w-sm lg:hidden">
             <div className="flex flex-col items-center">
               <div className="flex w-full flex-col items-center rounded-xl bg-brand-navy px-6 py-5 text-center">
-                <p className="text-[12px] text-white/55">Project record</p>
-                <p className="mt-1 text-[18px] font-medium text-white">Commercial Tower</p>
+                <p className="text-[12px] text-white/55">{t("Project record")}</p>
+                <p className="mt-1 text-[18px] font-medium text-white">{t("Commercial Tower")}</p>
               </div>
               <div className="my-2 h-6 w-px bg-[#C9D2DF]" aria-hidden />
               <div className="flex w-full flex-col gap-3">

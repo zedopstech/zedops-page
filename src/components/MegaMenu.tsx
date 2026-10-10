@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import type { ReactNode } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -26,7 +27,7 @@ const intros: Record<DropdownKey, { title: string; body: string }> = {
 function ItemLink({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
   const { t } = useI18n();
   return (
-    <a
+    <LocalA
       href={item.href}
       {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       onClick={onNavigate}
@@ -42,7 +43,7 @@ function ItemLink({ item, onNavigate }: { item: NavItem; onNavigate: () => void 
         </span>
         <span className="mt-0.5 block text-[12.5px] leading-snug text-[#616D82]">{t(item.desc)}</span>
       </span>
-    </a>
+    </LocalA>
   );
 }
 
@@ -67,10 +68,10 @@ function Frame({ active, cta, onNavigate, children }: { active: DropdownKey; cta
         <p className="text-[22px] font-medium tracking-[-0.03em] text-brand-navy">{t(intro.title)}</p>
         <p className="mt-3 text-[14px] leading-[1.55] text-[#5E6C84]">{t(intro.body)}</p>
         {cta ? (
-          <a href={cta.href} onClick={onNavigate} className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-semibold text-brand-navy hover:text-brand-orange">
+          <LocalA href={cta.href} onClick={onNavigate} className="group mt-6 inline-flex items-center gap-1.5 text-[14px] font-semibold text-brand-navy hover:text-brand-orange">
             {t(cta.label)}
             <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
-          </a>
+          </LocalA>
         ) : null}
       </div>
       <div className="min-w-0">{children}</div>
@@ -81,7 +82,7 @@ function Frame({ active, cta, onNavigate, children }: { active: DropdownKey; cta
 function FeatureCard({ href, eyebrow, title, action, image, onNavigate }: { href: string; eyebrow: string; title: string; action: string; image?: string; onNavigate: () => void }) {
   const { t } = useI18n();
   return (
-    <a href={href} onClick={onNavigate} className="group flex h-full flex-col overflow-hidden rounded-lg border border-[#E3E8F0] bg-[#F7F9FC] transition-colors hover:border-[#C9D2DF]">
+    <LocalA href={href} onClick={onNavigate} className="group flex h-full flex-col overflow-hidden rounded-lg border border-[#E3E8F0] bg-[#F7F9FC] transition-colors hover:border-[#C9D2DF]">
       {image ? (
         <div className="h-32 overflow-hidden">
           <img src={image} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
@@ -95,7 +96,7 @@ function FeatureCard({ href, eyebrow, title, action, image, onNavigate }: { href
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
         </span>
       </div>
-    </a>
+    </LocalA>
   );
 }
 
@@ -114,7 +115,7 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
             <Column heading={core.heading} items={core.items} onNavigate={onNavigate} />
           </div>
         </div>
-        <a
+        <LocalA
           href={p.footerCard.href}
           onClick={onNavigate}
           className="group mt-7 flex items-center justify-between gap-6 rounded-lg bg-brand-navy px-5 py-4 text-white transition-colors hover:bg-[#0E1B33]"
@@ -127,7 +128,7 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
           <span className="inline-flex shrink-0 items-center gap-1.5 text-[13px] font-semibold text-white/90">
             {t("Explore Zed AI")} <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
           </span>
-        </a>
+        </LocalA>
       </Frame>
     );
   }
@@ -141,13 +142,13 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
             <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[#5F6B80]">{t(s.sections[0].heading)}</p>
             <div className="space-y-2">
               {s.sections[0].items.map((item) => (
-                <a key={item.label} href={item.href} onClick={onNavigate} className="group -mx-3 block rounded-md px-3 py-3 transition-colors hover:bg-[#F5F7FA]">
+                <LocalA key={item.label} href={item.href} onClick={onNavigate} className="group -mx-3 block rounded-md px-3 py-3 transition-colors hover:bg-[#F5F7FA]">
                   <span className="flex items-center gap-2.5 text-[15px] font-semibold text-brand-navy">
                     <item.icon size={18} strokeWidth={1.7} className="text-[#5F6B80] group-hover:text-brand-orange" aria-hidden />
                     {t(item.label)}
                   </span>
                   <span className="mt-1 block text-[13px] leading-[1.5] text-[#616D82]">{t(item.desc)}</span>
-                </a>
+                </LocalA>
               ))}
             </div>
           </div>
@@ -164,7 +165,7 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
       <Frame active={active} cta={b.cta} onNavigate={onNavigate}>
         <div className="grid grid-cols-4 gap-5">
           {b.sections[0].items.map((item) => (
-            <a key={item.label} href={item.href} onClick={onNavigate} className="group block">
+            <LocalA key={item.label} href={item.href} onClick={onNavigate} className="group block">
               <div className="aspect-[4/3] overflow-hidden rounded-md bg-[#EEF2F8]">
                 <img src={item.image} alt="" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
               </div>
@@ -173,7 +174,7 @@ export default function MegaMenu({ active, onNavigate }: { active: DropdownKey; 
                 <ArrowRight size={14} className="opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" aria-hidden />
               </p>
               <p className="mt-1 text-[13px] leading-snug text-[#616D82]">{t(item.desc)}</p>
-            </a>
+            </LocalA>
           ))}
         </div>
       </Frame>

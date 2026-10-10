@@ -15,7 +15,8 @@
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { ROOT, SITE_URL, absolute, pageUrl, routes } from "./lib/routes.mjs";
+import { pathToFileURL } from "node:url";
+import { LANGS, ROOT, SITE_URL, absolute, hasAlternates, indexedLangsOf, isIndexedLang, localePath, ogImagePath, pageUrl, routes } from "./lib/routes.mjs";
 
 const DIST = path.join(ROOT, "dist/public");
 const OG_DEFAULT = `${SITE_URL}/og-image.png`;
@@ -61,27 +62,69 @@ function addJsonLd(html, blocks) {
   return html.replace("</head>", `${tags}\n</head>`);
 }
 
-function render(shell, route) {
-  const url = pageUrl(route.path);
-  const image = absolute(route.image || OG_DEFAULT);
-  const imageAlt = route.imageAlt || `${route.title}`;
+// Build-time render of the real React tree (see src/entry-server.tsx, built to dist/server).
+const { render: renderApp, seoText } = await import(pathToFileURL(path.join(ROOT, "dist/server/entry-server.js")).href);
 
-  let html = setTitle(shell, route.title);
-  html = setMeta(html, "name", "description", route.description);
+/**
+ * Put the rendered body into #root. `data-lang` tells the client which language the markup is
+ * in, so it can discard it instead of hydrating when the URL says otherwise (the shared 404.html).
+ */
+function inject(html, body, lang) {
+  const marker = '<div id="root"></div>';
+  if (!html.includes(marker)) throw new Error("prerender: index.html has no empty #root to fill");
+  return html.replace(marker, () => `<div id="root" data-lang="${lang}">${body}</div>`);
+}
+
+/** <html lang dir> for the page language. */
+function setHtmlLang(html, lang) {
+  const rtl = LANGS.find((l) => l.code === lang)?.rtl;
+  return html.replace(/<html[^>]*>/i, `<html lang="${lang}" dir="${rtl ? "rtl" : "ltr"}">`);
+}
+
+/** Head tags only some pages have (alternates, og:locale:alternate), inserted before </head>. */
+function addHead(html, lines) {
+  return lines.length ? html.replace("</head>", `${lines.map((l) => `  ${l}`).join("\n")}\n</head>`) : html;
+}
+
+function render(shell, route, lang) {
+  const neutral = route.path;
+  const url = pageUrl(localePath(neutral, lang));
+  // Explicit image (blog frontmatter) wins; otherwise the generated English card for the path.
+  const image = absolute(route.image || (route.noindex ? OG_DEFAULT : ogImagePath(neutral)));
+  const title = seoText(lang, route.title);
+  const description = seoText(lang, route.description);
+  const imageAlt = route.imageAlt || (route.noindex ? "ZedOps – AI MEP & Construction Execution Platform" : title);
+  const translated = hasAlternates(route);
+
+  let html = setHtmlLang(shell, lang);
+  html = setTitle(html, title);
+  html = setMeta(html, "name", "description", description);
   html = setCanonical(html, url);
+  html = setMeta(html, "property", "og:locale", LANGS.find((l) => l.code === lang).locale);
+  html = addHead(html, [
+    ...(translated
+      ? [
+          ...indexedLangsOf(route).map((code) => `<link rel="alternate" hreflang="${code}" href="${escapeAttr(pageUrl(localePath(neutral, code)))}" />`),
+          `<link rel="alternate" hreflang="x-default" href="${escapeAttr(pageUrl(neutral))}" />`,
+          ...LANGS.filter((l) => l.code !== lang && indexedLangsOf(route).includes(l.code)).map((l) => `<meta property="og:locale:alternate" content="${l.locale}" />`),
+        ]
+      : []),
+  ]);
 
   html = setMeta(html, "property", "og:type", route.type);
   html = setMeta(html, "property", "og:url", url);
-  html = setMeta(html, "property", "og:title", route.title);
-  html = setMeta(html, "property", "og:description", route.description);
+  html = setMeta(html, "property", "og:title", title);
+  html = setMeta(html, "property", "og:description", description);
   html = setMeta(html, "property", "og:image", image);
+  html = setMeta(html, "property", "og:image:width", "1200");
+  html = setMeta(html, "property", "og:image:height", "630");
   html = setMeta(html, "property", "og:image:alt", imageAlt);
   html = setMeta(html, "property", "og:site_name", "ZedOps");
 
   html = setMeta(html, "name", "twitter:card", "summary_large_image");
   html = setMeta(html, "name", "twitter:site", "@zedops");
-  html = setMeta(html, "name", "twitter:title", route.title);
-  html = setMeta(html, "name", "twitter:description", route.description);
+  html = setMeta(html, "name", "twitter:title", title);
+  html = setMeta(html, "name", "twitter:description", description);
   html = setMeta(html, "name", "twitter:image", image);
   html = setMeta(html, "name", "twitter:image:alt", imageAlt);
 
@@ -90,9 +133,30 @@ function render(shell, route) {
   }
   if (route.noindex) {
     html = setMeta(html, "name", "robots", "noindex, nofollow");
+  } else if (!isIndexedLang(lang)) {
+    // Live but not indexed until the language is translated (src/config/seoLangs.json).
+    html = setMeta(html, "name", "robots", "noindex, follow");
+  } else {
+    html = setMeta(html, "name", "robots", "index, follow, max-image-preview:large");
   }
 
-  return addJsonLd(html, route.jsonLd);
+  // Every page declares its language. Articles carry their own BlogPosting (inLanguage "en").
+  const blocks = route.type === "article"
+    ? route.jsonLd
+    : [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": `${url}#webpage`,
+          url,
+          name: title,
+          description,
+          inLanguage: lang,
+          isPartOf: { "@id": `${SITE_URL}/#website` },
+        },
+        ...[route.jsonLd].flat().filter(Boolean).map((b) => ({ inLanguage: lang, ...b })),
+      ];
+  return addJsonLd(html, blocks);
 }
 
 const shell = readFileSync(path.join(DIST, "index.html"), "utf8");
@@ -105,22 +169,23 @@ const all = routes();
 let written = 0;
 
 for (const route of all) {
-  const html = render(shell, route);
-  const dir = route.path === "/" ? DIST : path.join(DIST, route.path.replace(/^\//, ""));
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(path.join(dir, "index.html"), html);
-  written += 1;
+  for (const lang of route.langs) {
+    const rendered = render(shell, route, lang);
+    const html = inject(rendered, await renderApp(localePath(route.path, lang)), lang);
+    const rel = localePath(route.path, lang).replace(/^\//, "");
+    const dir = rel ? path.join(DIST, rel) : DIST;
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(path.join(dir, "index.html"), html);
+    written += 1;
+  }
 }
 
-// The SPA shell at the root keeps the static defaults from index.html, which are
-// already correct for "/". Re-render it anyway so both stay identical.
-writeFileSync(path.join(DIST, "index.html"), render(shell, all.find((r) => r.path === "/") ?? all[0]));
-
-// Real 404 page: same shell, marked noindex.
-let notFound = setTitle(shell, "Page not found  -  ZedOps");
+// Real 404 page: same shell, marked noindex. Cloudflare serves this one file for unknown
+// paths in every language; the client re-renders it in the URL's language (see main.tsx).
+let notFound = setTitle(setHtmlLang(shell, "en"), "Page not found – ZedOps");
 notFound = setMeta(notFound, "name", "description", "That page does not exist. Head back to the ZedOps home page or explore the platform.");
 notFound = setCanonical(notFound, pageUrl("/"));
 notFound = setMeta(notFound, "name", "robots", "noindex, nofollow");
-writeFileSync(path.join(DIST, "404.html"), notFound);
+writeFileSync(path.join(DIST, "404.html"), inject(notFound, await renderApp("/__not-found__"), "en"));
 
-console.log(`prerender: ${written} route files + 404.html`);
+console.log(`prerender: ${written} route files (${all.length} routes, ${LANGS.length} languages) + 404.html`);

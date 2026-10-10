@@ -9,6 +9,12 @@ ZedOps is aimed at MEP contractors, general contractors, owners and developers,
 project managers, and consultants running live construction work. Early access is
 by application.
 
+## Languages
+
+The site is published in English (https://zedops.com/), Arabic (/ar/), French (/fr/), Spanish (/es/)
+and Turkish (/tr/). Every page except individual blog posts exists under each language prefix, for
+example https://zedops.com/ar/platform/module/finance/. Blog posts are English only.
+
 ## Platform
 
 - [Platform overview](https://zedops.com/solutions/): scheduling, site execution, materials, quality and closeout in one place

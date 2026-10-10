@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -263,22 +264,22 @@ export default function Hero() {
           className="mb-7 flex flex-col items-center gap-3 px-1 sm:mb-8"
         >
           <div className="flex w-full max-w-md flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center">
-            <a
+            <LocalA
               href="/early-access"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-center text-sm font-bold text-white transition-all duration-150 bg-brand-orange hover:bg-brand-orange-soft sm:inline-flex"
               style={{ borderRadius: 6 }}
             >
               Request early access
               <ArrowRight size={15} className="shrink-0" />
-            </a>
+            </LocalA>
             <div className="animated-gradient-border w-full sm:w-auto">
-              <a
+              <LocalA
                 href="/contact?topic=demo"
                 className="inline-flex w-full items-center justify-center gap-2 px-7 py-3.5 text-center text-sm font-semibold text-brand-navy transition-all duration-150 bg-white hover:bg-[#F6F8FA] sm:w-auto"
                 style={{ borderRadius: 6 }}
               >
                 Book a demo
-              </a>
+              </LocalA>
             </div>
           </div>
           {/* Social proof
@@ -369,12 +370,12 @@ export default function Hero() {
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-center text-xs text-[#97A0AF] sm:text-start">
-              <a
+              <LocalA
                 href="/early-access"
                 className="font-bold text-brand-navy underline-offset-2 hover:text-brand-orange hover:underline"
               >
                 Request access
-              </a>
+              </LocalA>
               <span className="text-[#C7CDD6]"> · </span>
               <span className="font-medium text-[#616D82]">Rolling invites as we expand capacity.</span>
             </p>

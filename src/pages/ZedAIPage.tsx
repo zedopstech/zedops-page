@@ -1,8 +1,10 @@
+import { MotionLocalA } from "@/components/LocalLink";
 import { useState, type ComponentType } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Brain, Check, CheckCircle2, FileBarChart, LayoutDashboard, ListChecks, MessageSquare, PenLine, Server, ShieldCheck, X } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
+import { useI18n } from "@/i18n";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
 import Navbar from "@/components/Navbar";
@@ -106,6 +108,7 @@ const trust = [
 
 function CapabilityShowcase({ isMobile }: { isMobile: boolean }) {
   const reduce = useReducedMotion();
+  const { t } = useI18n();
   const [active, setActive] = useState(0);
   const c = capabilities[active]!;
   return (
@@ -114,12 +117,12 @@ function CapabilityShowcase({ isMobile }: { isMobile: boolean }) {
         <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
           <SplitHeader
             id="zai-capabilities"
-            title={<>One copilot, <Highlight>five jobs.</Highlight></>}
-            body="Zed AI answers, drafts, spots risk, prepares reports and takes the next step, all inside ZedOps and within your permissions."
+            title={<>{t("One copilot,")} <Highlight>{t("five jobs.")}</Highlight></>}
+            body={t("Zed AI answers, drafts, spots risk, prepares reports and takes the next step, all inside ZedOps and within your permissions.")}
           />
         </motion.div>
       </div>
-      <div role="tablist" aria-label="Zed AI capabilities" className="grid grid-cols-2 border-t border-[#E8ECF2] sm:grid-cols-3 lg:grid-cols-5">
+      <div role="tablist" aria-label={t("Zed AI capabilities")} className="grid grid-cols-2 border-t border-[#E8ECF2] sm:grid-cols-3 lg:grid-cols-5">
         {capabilities.map((item, i) => {
           const on = i === active;
           return (
@@ -135,7 +138,7 @@ function CapabilityShowcase({ isMobile }: { isMobile: boolean }) {
             >
               <span aria-hidden className={`absolute inset-x-0 -top-px h-[2px] ${on ? "bg-brand-orange" : "bg-transparent"}`} />
               <item.icon size={17} className={on ? "text-brand-orange" : "text-[#677388]"} aria-hidden />
-              <span className={`text-[15px] font-medium ${on ? "text-brand-navy" : "text-[#5E6C84]"}`}>{item.label}</span>
+              <span className={`text-[15px] font-medium ${on ? "text-brand-navy" : "text-[#5E6C84]"}`}>{t(item.label)}</span>
             </button>
           );
         })}
@@ -153,9 +156,9 @@ function CapabilityShowcase({ isMobile }: { isMobile: boolean }) {
         >
           <div>
             <h3 className="text-[24px] font-medium leading-[1.3] tracking-[-0.025em] text-brand-navy sm:text-[28px]">
-              {c.title} <Muted>{c.body}</Muted>
+              {t(c.title)} <Muted>{t(c.body)}</Muted>
             </h3>
-            <p className="mt-5 max-w-md text-[15px] leading-[1.6] text-[#616D82]">{c.detail}</p>
+            <p className="mt-5 max-w-md text-[15px] leading-[1.6] text-[#616D82]">{t(c.detail)}</p>
           </div>
           <div className="mx-auto w-full max-w-[520px]">
             <c.Mock />
@@ -168,9 +171,10 @@ function CapabilityShowcase({ isMobile }: { isMobile: boolean }) {
 
 export default function ZedAIPage() {
   const isMobile = useIsMobile();
+  const { t } = useI18n();
 
   useSEO({
-    title: "Zed AI - ZedOps",
+    title: "Zed AI – ZedOps",
     description:
       "Zed AI gives construction teams insights, drafts, reports, and actions directly from ZedOps project data, within the permissions each role already has.",
   });
@@ -180,15 +184,15 @@ export default function ZedAIPage() {
       <Navbar />
       <main id="main">
         <PageHero
-          pill="Zed AI"
+          pill={t("Zed AI")}
           PillIcon={Brain}
-          title={<>Turn project data into decisions. <Muted>Instantly.</Muted></>}
-          subtitle="Insights, drafts, reports and actions from your ZedOps project data, grounded in what each person is allowed to see."
+          title={<>{t("Turn project data into decisions.")} <Muted>{t("Instantly.")}</Muted></>}
+          subtitle={t("Insights, drafts, reports and actions from your ZedOps project data, grounded in what each person is allowed to see.")}
         >
           <div className="flex flex-wrap gap-3">
-            <TicketButton href="/early-access">Request early access</TicketButton>
+            <TicketButton href="/early-access">{t("Request early access")}</TicketButton>
             <GhostButton href="#how-it-works" icon={ArrowRight}>
-              See how it works
+              {t("See how it works")}
             </GhostButton>
           </div>
         </PageHero>
@@ -212,8 +216,8 @@ export default function ZedAIPage() {
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
               <SplitHeader
                 id="zai-prompts"
-                title={<>Ask about <Highlight>any module.</Highlight></>}
-                body="Zed AI works across the whole platform. A few of the questions teams ask every week:"
+                title={<>{t("Ask about")} <Highlight>{t("any module.")}</Highlight></>}
+                body={t("Zed AI works across the whole platform. A few of the questions teams ask every week:")}
               />
             </motion.div>
           </div>
@@ -224,8 +228,8 @@ export default function ZedAIPage() {
                 {...scrollMotionProps(isMobile, { y: 12, duration: 0.35, delay: (i % 5) * 0.04 })}
                 className="flex flex-col bg-[#F7F8FA] px-6 py-7"
               >
-                <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#5F6B80]">{p.module}</span>
-                <p className="mt-4 text-[16px] leading-[1.4] font-medium tracking-[-0.01em] text-brand-navy">“{p.prompt}”</p>
+                <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-[#5F6B80]">{t(p.module)}</span>
+                <p className="mt-4 text-[16px] leading-[1.4] font-medium tracking-[-0.01em] text-brand-navy">“{t(p.prompt)}”</p>
               </motion.li>
             ))}
           </ul>
@@ -236,8 +240,8 @@ export default function ZedAIPage() {
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
               <SplitHeader
                 id="zai-flow"
-                title={<>How Zed AI <Highlight>works.</Highlight></>}
-                body="From a question to an approved action, with a person deciding at every step that matters."
+                title={<>{t("How Zed AI")} <Highlight>{t("works.")}</Highlight></>}
+                body={t("From a question to an approved action, with a person deciding at every step that matters.")}
               />
             </motion.div>
           </div>
@@ -249,8 +253,8 @@ export default function ZedAIPage() {
                 className={`border-[#E8ECF2] px-6 py-9 sm:px-8 ${i > 0 ? "border-t sm:border-t-0" : ""} ${i >= 2 ? "sm:border-t lg:border-t-0" : ""} ${i % 2 === 1 ? "sm:border-s" : ""} ${i === 2 ? "lg:border-s" : ""}`}
               >
                 <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#E3E8F0] font-mono text-[12px] text-brand-navy">{pad(i + 1)}</span>
-                <h3 className="mt-8 text-[20px] font-medium tracking-[-0.02em] text-brand-navy">{f.title}</h3>
-                <p className="mt-1.5 text-[14.5px] leading-[1.55] text-[#616D82]">{f.body}</p>
+                <h3 className="mt-8 text-[20px] font-medium tracking-[-0.02em] text-brand-navy">{t(f.title)}</h3>
+                <p className="mt-1.5 text-[14.5px] leading-[1.55] text-[#616D82]">{t(f.body)}</p>
               </motion.li>
             ))}
           </ol>
@@ -261,8 +265,8 @@ export default function ZedAIPage() {
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
               <SplitHeader
                 id="zai-before-after"
-                title={<>Less busywork. <Muted>More time for decisions.</Muted></>}
-                body="Three routine jobs, before and after Zed AI."
+                title={<>{t("Less busywork.")} <Muted>{t("More time for decisions.")}</Muted></>}
+                body={t("Three routine jobs, before and after Zed AI.")}
               />
             </motion.div>
           </div>
@@ -273,14 +277,14 @@ export default function ZedAIPage() {
                 {...scrollMotionProps(isMobile, { y: 12, duration: 0.35, delay: i * 0.05 })}
                 className={`grid gap-4 py-7 lg:grid-cols-[200px_minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-10 ${framePad} ${i > 0 ? "border-t border-[#EDF0F5]" : ""}`}
               >
-                <span className="text-[15px] font-medium text-brand-navy">{row.module}</span>
+                <span className="text-[15px] font-medium text-brand-navy">{t(row.module)}</span>
                 <span className="flex items-start gap-2.5 text-[15px] text-[#5F6B80]">
                   <X size={15} strokeWidth={2.6} className="mt-1 shrink-0 text-[#C9D2DF]" aria-hidden />
-                  {row.before}
+                  {t(row.before)}
                 </span>
                 <span className="flex items-start gap-2.5 text-[15px] text-brand-navy">
                   <Check size={15} strokeWidth={2.6} className="mt-1 shrink-0 text-brand-orange" aria-hidden />
-                  {row.after}
+                  {t(row.after)}
                 </span>
               </motion.div>
             ))}
@@ -292,14 +296,14 @@ export default function ZedAIPage() {
             <motion.div {...scrollMotionProps(isMobile, { y: 16, duration: 0.4 })}>
               <SplitHeader
                 id="zai-roles"
-                title={<>Built for <Highlight>every role.</Highlight></>}
-                body="Each person gets answers and drafts shaped by the work they do and the records they can access."
+                title={<>{t("Built for")} <Highlight>{t("every role.")}</Highlight></>}
+                body={t("Each person gets answers and drafts shaped by the work they do and the records they can access.")}
               />
             </motion.div>
           </div>
           <div className="grid gap-px border-t border-[#E8ECF2] bg-[#E8ECF2] sm:grid-cols-2 lg:grid-cols-4">
             {roles.map((r, i) => (
-              <motion.a
+              <MotionLocalA
                 key={r.title}
                 href={r.href}
                 {...scrollMotionProps(isMobile, { y: 14, duration: 0.4, delay: i * 0.05 })}
@@ -309,11 +313,11 @@ export default function ZedAIPage() {
                   <img src={r.image} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" />
                 </div>
                 <h3 className="mt-5 flex items-center justify-between gap-2 text-[17px] font-medium tracking-[-0.02em] text-brand-navy">
-                  {r.title}
+                  {t(r.title)}
                   <ArrowUpRight size={16} className="shrink-0 text-[#677388] transition-colors group-hover:text-brand-orange" aria-hidden />
                 </h3>
-                <p className="mt-1.5 text-[14px] leading-[1.55] text-[#616D82]">{r.body}</p>
-              </motion.a>
+                <p className="mt-1.5 text-[14px] leading-[1.55] text-[#616D82]">{t(r.body)}</p>
+              </MotionLocalA>
             ))}
           </div>
         </Section>
@@ -321,14 +325,14 @@ export default function ZedAIPage() {
         <Section labelledBy="zai-trust">
           <div className={`grid gap-10 py-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center lg:gap-16 lg:py-20 ${framePad}`}>
             <h2 id="zai-trust" className="text-[26px] font-medium leading-[1.2] tracking-[-0.03em] text-brand-navy sm:text-[30px]">
-              Grounded in your data. <Muted>Bounded by your permissions.</Muted>
+              {t("Grounded in your data.")} <Muted>{t("Bounded by your permissions.")}</Muted>
             </h2>
             <ul className="grid gap-6 sm:grid-cols-3">
-              {trust.map((t) => (
-                <li key={t.title}>
-                  <t.icon size={20} className="text-brand-orange" aria-hidden />
-                  <p className="mt-4 text-[15px] font-medium text-brand-navy">{t.title}</p>
-                  <p className="mt-1 text-[14px] leading-[1.5] text-[#616D82]">{t.body}</p>
+              {trust.map((item) => (
+                <li key={item.title}>
+                  <item.icon size={20} className="text-brand-orange" aria-hidden />
+                  <p className="mt-4 text-[15px] font-medium text-brand-navy">{t(item.title)}</p>
+                  <p className="mt-1 text-[14px] leading-[1.5] text-[#616D82]">{t(item.body)}</p>
                 </li>
               ))}
             </ul>
@@ -338,8 +342,8 @@ export default function ZedAIPage() {
         <ModuleClosingCta
           isMobile={isMobile}
           id="zai-cta"
-          title={<>Your project has the data. <span className="text-white/55">Zed AI puts it to work.</span></>}
-          body="See Zed AI on your own schedule, logs and punch list. We’ll walk you through it."
+          title={<>{t("Your project has the data.")} <span className="text-white/55">{t("Zed AI puts it to work.")}</span></>}
+          body={t("See Zed AI on your own schedule, logs and punch list. We’ll walk you through it.")}
           primary={{ label: "Request early access", href: "/early-access" }}
         />
       </main>

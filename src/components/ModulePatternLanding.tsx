@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { useState, type ReactNode } from "react";
 import { ArrowRight, Check, ChevronDown, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -182,13 +183,13 @@ export default function ModulePatternLanding({
               <p className="mt-3 text-lg font-semibold text-brand-navy sm:text-xl">{page.hero.tagline}</p>
               <p className="mt-3 max-w-md text-base leading-snug text-[#42526E]">{page.hero.subtitle}</p>
               <div className="mt-6">
-                <a
+                <LocalA
                   href="/early-access"
                   className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-orange px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
                 >
                   Book a Demo
                   <ArrowRight size={15} aria-hidden />
-                </a>
+                </LocalA>
               </div>
               <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
                 {page.highlights.map((b) => {
@@ -469,13 +470,13 @@ export default function ModulePatternLanding({
               ) : (
                 <div className="flex-1" />
               )}
-              <a
+              <LocalA
                 href="/early-access"
                 className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-orange px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-orange-soft"
               >
                 Book a demo
                 <ArrowRight size={15} aria-hidden />
-              </a>
+              </LocalA>
             </motion.article>
           </div>
         </div>

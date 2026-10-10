@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, X, ArrowRight, Shield, Zap, Building2, ChevronDown, Brain, Clock, RefreshCw, Lock } from "lucide-react";
 import { useState } from "react";
@@ -234,14 +235,14 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <a
+              <LocalA
                 href={plan.ctaHref}
                 className={`flex items-center justify-center gap-2 py-4 px-6 text-sm font-bold transition-all duration-150 group ${plan.ctaStyle}`}
                 style={{ borderRadius: 6 }}
               >
                 {plan.cta}
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-              </a>
+              </LocalA>
             </motion.div>
           ))}
         </div>
@@ -305,7 +306,7 @@ export default function Pricing() {
         </AnimatePresence>
 
         <motion.p {...scrollMotionProps(isMobile, { fadeOnly: true, duration: 0.45 })} className="text-center text-[#616D82] text-sm">
-          <a href="/contact" className="text-[#172B4D] hover:underline font-semibold">Contact sales</a> for volume discounts.
+          <LocalA href="/contact" className="text-[#172B4D] hover:underline font-semibold">Contact sales</LocalA> for volume discounts.
         </motion.p>
       </div>
     </section>

@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -233,13 +234,13 @@ export default function Testimonials() {
                     <p className="mt-1 text-sm leading-snug text-white/70">
                       Turn project data and field execution into intelligence and action.
                     </p>
-                    <a
+                    <LocalA
                       href="#capabilities"
                       className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-brand-orange hover:text-white"
                     >
                       Explore ZedOps
                       <ArrowRight size={13} aria-hidden />
-                    </a>
+                    </LocalA>
                   </div>
                 </div>
               </div>

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import PageHero from "@/components/PageHero";
 import LegalContent from "@/components/LegalContent";
 import Footer from "@/components/Footer";
+import { useI18n } from "@/i18n";
 
 // Plain-language draft. Entity name, registered address and jurisdiction should be confirmed by counsel.
 const sections = [
@@ -60,8 +61,9 @@ We may suspend accounts that break these rules.`,
 ];
 
 export default function TermsPage() {
+  const { t } = useI18n();
   useSEO({
-    title: "Terms of Service  -  ZedOps",
+    title: "Terms of Use – ZedOps",
     description: "The terms that govern use of the ZedOps website and platform: accounts, acceptable use, fees, data, Zed AI and liability.",
   });
 
@@ -69,7 +71,7 @@ export default function TermsPage() {
     <div className="min-h-screen overflow-x-clip bg-white text-brand-navy">
       <Navbar />
       <main id="main">
-        <PageHero pill="Legal" PillIcon={FileText} title="Terms of Service" subtitle="Last updated: September 2026" />
+        <PageHero pill={t("Legal")} PillIcon={FileText} title={t("Terms of Service")} subtitle={t("Last updated: September 2026")} />
         <LegalContent sections={sections} email="legal@zedops.com" />
       </main>
       <Footer />

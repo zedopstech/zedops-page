@@ -1,5 +1,7 @@
+import { LocalA } from "@/components/LocalLink";
 import { useRef, useState, type RefObject } from "react";
 import { AlertCircle, ArrowRight, Loader2 } from "lucide-react";
+import { t } from "@/i18n";
 import { contact } from "@/data/contact";
 import { LeadError, submitLead, type LeadFields, type LeadForm } from "@/lib/leads";
 
@@ -23,7 +25,7 @@ export function useLeadForm(form: LeadForm) {
       await submitLead(form, fields, { startedAt: startedAt.current, honeypot: honeypot.current?.value });
       setStatus("sent");
     } catch (err) {
-      setError(err instanceof LeadError ? err.message : "Something went wrong. Please try again.");
+      setError(err instanceof LeadError ? t(err.message) : t("Something went wrong. Please try again."));
       setStatus("error");
     }
   };
@@ -36,7 +38,7 @@ export function Honeypot({ inputRef }: { inputRef: RefObject<HTMLInputElement | 
   return (
     <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
       <label>
-        Website
+        {t("Website")}
         <input ref={inputRef} name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
       </label>
     </div>
@@ -52,7 +54,7 @@ export function SubmitButton({ sending, children }: { sending: boolean; children
     >
       {sending ? (
         <>
-          Sending <Loader2 size={16} className="animate-spin" aria-hidden />
+          {t("Sending")} <Loader2 size={16} className="animate-spin" aria-hidden />
         </>
       ) : (
         <>
@@ -70,10 +72,10 @@ export function FormError({ message }: { message: string }) {
     <p role="alert" className="mt-5 flex items-start gap-2 rounded-lg border border-[#F5C2B8] bg-[#FFF5F2] px-3.5 py-3 text-[14px] leading-[1.5] text-[#9A3412]">
       <AlertCircle size={16} className="mt-0.5 shrink-0" aria-hidden />
       <span>
-        {message} You can also email us at{" "}
-        <a href={`mailto:${contact.email}`} className="font-medium underline underline-offset-2">
+        {message} {t("You can also email us at")}{" "}
+        <LocalA href={`mailto:${contact.email}`} className="font-medium underline underline-offset-2">
           {contact.email}
-        </a>
+        </LocalA>
         .
       </span>
     </p>

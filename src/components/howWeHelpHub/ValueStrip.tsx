@@ -1,6 +1,7 @@
 import { Database, Eye, Link2, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Section } from "@/components/design-system/primitives";
+import { useI18n } from "@/i18n";
 
 const values: { title: string; desc: string; Icon: LucideIcon }[] = [
   { title: "One project record", desc: "Everyone works from the same source of truth.", Icon: Database },
@@ -11,8 +12,9 @@ const values: { title: string; desc: string; Icon: LucideIcon }[] = [
 
 /** Four value statements in hairline cells. */
 export default function ValueStrip() {
+  const { t } = useI18n();
   return (
-    <Section label="What you get">
+    <Section label={t("What you get")}>
       <ul className="grid sm:grid-cols-2 lg:grid-cols-4">
         {values.map((v, i) => (
           <li
@@ -20,8 +22,8 @@ export default function ValueStrip() {
             className={`border-[#E8ECF2] px-6 py-8 sm:px-8 ${i > 0 ? "border-t sm:border-t-0" : ""} ${i >= 2 ? "sm:border-t lg:border-t-0" : ""} ${i % 2 === 1 ? "sm:border-s" : ""} ${i === 2 ? "lg:border-s" : ""}`}
           >
             <v.Icon size={18} className="text-brand-orange" aria-hidden />
-            <p className="mt-4 text-[15px] font-medium text-brand-navy">{v.title}</p>
-            <p className="mt-1 text-[14px] leading-[1.5] text-[#616D82]">{v.desc}</p>
+            <p className="mt-4 text-[15px] font-medium text-brand-navy">{t(v.title)}</p>
+            <p className="mt-1 text-[14px] leading-[1.5] text-[#616D82]">{t(v.desc)}</p>
           </li>
         ))}
       </ul>

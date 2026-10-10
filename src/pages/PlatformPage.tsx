@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { useSEO } from "@/hooks/useSEO";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
@@ -19,7 +20,7 @@ export default function PlatformPage() {
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
   useSEO({
-    title: "Platform features  -  ZedOps",
+    title: "Platform features – ZedOps",
     description:
       "Full overview of ZedOps: multi-tenant access, people, library, projects, planning, quality & safety, documents, finance, material management, reporting, and settings. Zed AI (in-product copilot) has its own page.",
   });
@@ -156,12 +157,12 @@ export default function PlatformPage() {
                       <p className="mb-1 text-sm leading-snug text-white/65 sm:text-base">
                         Copilot for insights, reports, writing assist, and actions  -  permissioned like every module. More workflows on the roadmap.
                       </p>
-                      <a
+                      <LocalA
                         href="/zed-ai"
                         className="mt-3 inline-block text-sm font-semibold text-sky-300 underline decoration-sky-400/40 underline-offset-[5px] transition-colors hover:text-white hover:decoration-white/60"
                       >
                         Zed AI overview
-                      </a>
+                      </LocalA>
                     </div>
                   </div>
                 </div>
@@ -190,13 +191,13 @@ export default function PlatformPage() {
           <p className="text-[#616D82] text-sm max-w-lg mx-auto mb-6">
             The Solutions page groups the big ideas  -  this page is the full module checklist.
           </p>
-          <a
+          <LocalA
             href="/solutions"
             className="inline-flex items-center gap-2 px-6 py-3 border-2 border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white font-bold text-sm rounded-md transition-all duration-150 group"
           >
             Platform overview
             <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-          </a>
+          </LocalA>
         </section>
 
         <FinalCTA />
@@ -293,7 +294,7 @@ function PlatformSectionBlock({
         </div>
 
         <div className="w-full lg:flex-1 min-w-0 flex flex-col justify-center">
-          <a
+          <LocalA
             href={`/platform/module/${section.id}`}
             className="group mb-10 flex items-start justify-between gap-4 border-b border-gray-200 pb-4 transition-colors hover:border-[#0052CC]/35"
           >
@@ -305,7 +306,7 @@ function PlatformSectionBlock({
               className="mt-1 h-10 w-10 shrink-0 text-[#0052CC] opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 -translate-x-2"
               aria-hidden
             />
-          </a>
+          </LocalA>
           <ul className="space-y-0 divide-y divide-gray-200/90">
             {visibleItems.map((item) => (
               <li key={item.name} className="py-5 first:pt-0">

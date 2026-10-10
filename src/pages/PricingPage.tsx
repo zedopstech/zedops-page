@@ -10,7 +10,7 @@ import { Zap } from "lucide-react";
 
 export default function PricingPage() {
   useSEO({
-    title: "Pricing  -  ZedOps",
+    title: "Pricing – ZedOps",
     description: "Simple, transparent pricing for construction teams. Starter, Professional, and Enterprise plans. All plans include early access onboarding with the ZedOps team.",
   });
   return (

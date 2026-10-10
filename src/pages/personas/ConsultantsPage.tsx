@@ -60,7 +60,7 @@ export default function ConsultantsPage() {
   useSEO({
     title: "ZedOps for Consultants & CM Firms",
     description:
-      "CM firms and consultants use ZedOps for multi-project visibility, request and correspondence workflows, reporting, exports, and the Zed AI copilot  -  with tenant and role separation per client.",
+      "Advise on live project data instead of chasing updates across subcontractor reports and site photos.",
   });
 
   return (

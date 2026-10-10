@@ -1,3 +1,4 @@
+import { LocalA } from "@/components/LocalLink";
 import { motion } from "framer-motion";
 import { HardHat, Building2, ClipboardList, Briefcase, ArrowRight, Check } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -128,13 +129,13 @@ export default function UseCases() {
                 <p className="text-3xl font-extrabold" style={{ color: uc.accent }}>{uc.stat.value}</p>
                 <p className="text-[#616D82] text-sm mt-1">{uc.stat.label}</p>
               </div>
-              <a
+              <LocalA
                 href="#"
                 className="inline-flex items-center gap-2 mt-8 text-sm font-bold text-white px-6 py-3 transition-all duration-150 self-start"
                 style={{ background: uc.accent, borderRadius: 6 }}
               >
                 See how it works <ArrowRight size={14} />
-              </a>
+              </LocalA>
             </div>
             {/* Full-bleed image */}
             <div className={`relative overflow-hidden min-h-80 lg:min-h-auto ${i % 2 === 1 ? "lg:order-1" : ""}`}>
