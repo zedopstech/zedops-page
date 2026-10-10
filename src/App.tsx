@@ -1,7 +1,8 @@
 import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from "react";
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { MotionConfig, useReducedMotion } from "framer-motion";
+import { MotionConfig } from "framer-motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Toaster } from "@/components/ui/toaster";
 import CookieConsent from "@/components/CookieConsent";
 import { readConsent, COOKIE_SETTINGS_EVENT } from "@/lib/consent";
@@ -174,10 +175,12 @@ function AnalyticsGate() {
 
 function AppMotion({ children }: { children: ReactNode }) {
   const isMobile = useIsMobile();
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
   return (
     <MotionConfig
-      reducedMotion={prefersReducedMotion ? "always" : "user"}
+      // Explicit "always"/"never", not "user": with "user" framer reads matchMedia itself during
+      // the first client render, which disagrees with the prerendered HTML for reduced-motion visitors.
+      reducedMotion={prefersReducedMotion ? "always" : "never"}
       transition={
         isMobile
           ? { type: "tween", duration: 0.18, ease: "easeOut" }

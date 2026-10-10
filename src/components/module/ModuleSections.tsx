@@ -1,6 +1,7 @@
 import { LocalA } from "@/components/LocalLink";
 import { useState, type ReactNode } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { ArrowRight, ArrowUpRight, CalendarDays, Check, X } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
@@ -149,7 +150,7 @@ export type ModuleWorkflowTab = { label: string; title: string; body: string; st
 
 /** Workflow: a rail-to-rail tab row, then one calm two-column panel. */
 export function ModuleWorkflowTabs({ isMobile, heading, tabs }: { isMobile: boolean; heading: SectionHeading; tabs: readonly ModuleWorkflowTab[] }) {
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const [active, setActive] = useState(0);
   const tab = tabs[active];
   if (!tab) return null;

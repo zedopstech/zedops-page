@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useReducedMotion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Building2, HardHat, ClipboardCheck, Layers } from "lucide-react";
 
 /* ---------- isometric cube helper ---------- */
@@ -69,7 +69,7 @@ function IsoCube({
 /* ---------- hero isometric ---------- */
 
 export function HeroIsometric({ className = "" }: { className?: string }) {
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const cubes = [
     { ox: 96, oy: 286, label: "01" },
     { ox: 184, oy: 232, label: "02" },

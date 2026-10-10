@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Check, ChevronRight, Lock } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { t } from "@/i18n";
@@ -385,7 +386,7 @@ function CapabilitiesBento({ isMobile }: { isMobile: boolean }) {
 /* -------------------------------------------------------------------------- */
 
 function WorkflowRuler({ isMobile }: { isMobile: boolean }) {
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const [active, setActive] = useState(0);
   const phase = phases[active] ?? phases[0];
   const allSteps = phases.flatMap((p, pi) => p.steps.map((s) => ({ ...s, phase: pi })));

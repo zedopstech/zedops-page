@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import ZedOpsMark from "@/components/ZedOpsMark";
 import { ArrowUp, Check, CheckSquare, ClipboardList, MessageSquare, Package, Play, ShoppingCart, Sparkles, Truck } from "lucide-react";
 
@@ -13,7 +14,7 @@ import { ArrowUp, Check, CheckSquare, ClipboardList, MessageSquare, Package, Pla
 export function useLoop(ms: number) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: 0.4 });
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const [cycle, setCycle] = useState(0);
   useEffect(() => {
     if (!inView || reduce) return;

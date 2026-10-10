@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/i18n";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { FileSpreadsheet, Mail, MessageCircle, Sparkles, StickyNote, X } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { scrollMotionProps } from "@/hooks/useScrollSectionMotion";
@@ -204,7 +205,7 @@ const visuals = [SiloVisual, DisconnectedVisual, ConnectedVisual];
 export default function ThreeWaysPreview() {
   const { t } = useI18n();
   const isMobile = useIsMobile();
-  const reduce = !!useReducedMotion();
+  const reduce = !!usePrefersReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: 0.35 });
   const [active, setActive] = useState(0);

@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { useI18n } from "@/i18n";
 import { PiBankFill, PiBuildingsFill, PiDatabaseFill, PiFactoryFill, PiGasPumpFill, PiHospitalFill, PiLightningFill } from "react-icons/pi";
 import type { IconType } from "react-icons";
@@ -39,7 +40,7 @@ function Row() {
 /** Proof strip: one quiet caption over a slow marquee of the industries served. */
 export default function LogoStripPreview() {
   const { t } = useI18n();
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const isMobile = useIsMobile();
   return (
     <section className="relative bg-white pt-16 pb-14 sm:pt-20" aria-label={t("Industries")}>

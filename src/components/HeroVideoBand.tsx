@@ -91,9 +91,21 @@ export default function HeroVideoBand() {
 
   const src = isMobile ? MOBILE_SRC : DESKTOP_SRC;
 
-  // A new source means a fresh load: fall back to the poster until it can play,
-  // so a rotate across the breakpoint does not flash a blank frame.
-  useEffect(() => setReady(false), [src]);
+  // A new source means a fresh load: fall back to the poster until it can play, so a
+  // rotate across the breakpoint does not flash a blank frame. The prerendered <video>
+  // starts loading before hydration, so on a first visit `canplay` can fire before React
+  // attaches onCanPlay - read readyState too, or the video plays hidden behind the poster.
+  useEffect(() => {
+    const video = videoRef.current;
+    setReady(!!video && video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA);
+  }, [src]);
+
+  // The prerendered `autoplay` attribute starts playback before the motion preference
+  // is known, so honour reduced motion once it is.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (reduceMotion && video && !video.paused && !pausedByUser.current) video.pause();
+  }, [reduceMotion]);
 
   return (
     <section className="relative w-full overflow-hidden">

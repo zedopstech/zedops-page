@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useMotionValueEvent, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { motion, useMotionValue, useMotionValueEvent, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { useI18n } from "@/i18n";
 import { TicketButton } from "@/components/design-system/primitives";
 import { ZedMascot, type ZedMood } from "@/components/zed/ZedMascot";
@@ -142,7 +143,7 @@ function StoryLine({ p, range, children, className = "" }: { p: MotionValue<numb
  */
 export default function HomeZedStory() {
   const { t } = useI18n();
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const track = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: track, offset: ["start start", "end end"] });
   // Copy progress into a plain motion value so every effect runs in JS. Framer otherwise hands the
