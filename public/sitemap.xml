@@ -3,201 +3,1983 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://zedops.com/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.00</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.00</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.00</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.00</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/" />
   </url>
   <url>
     <loc>https://zedops.com/solutions/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/solutions/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/solutions/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/solutions/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/solutions/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/solutions/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/solutions/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/solutions/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/solutions/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/solutions/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/solutions/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/solutions/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/solutions/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/solutions/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/solutions/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/solutions/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/solutions/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/solutions/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/solutions/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/solutions/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/solutions/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/solutions/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/solutions/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/solutions/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/solutions/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/solutions/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/solutions/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/solutions/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/solutions/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/solutions/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/solutions/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/solutions/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/solutions/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/solutions/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/solutions/" />
   </url>
   <url>
     <loc>https://zedops.com/zed-ai/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/zed-ai/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/zed-ai/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/zed-ai/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/zed-ai/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/zed-ai/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/zed-ai/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/zed-ai/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/zed-ai/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/zed-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/zed-ai/" />
   </url>
   <url>
     <loc>https://zedops.com/how-we-help/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/how-we-help/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/how-we-help/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/how-we-help/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/how-we-help/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/" />
   </url>
   <url>
     <loc>https://zedops.com/how-we-help/project-stage/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/project-stage/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/how-we-help/project-stage/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/project-stage/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/how-we-help/project-stage/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/project-stage/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/how-we-help/project-stage/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/project-stage/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/how-we-help/project-stage/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/project-stage/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/project-stage/" />
   </url>
   <url>
     <loc>https://zedops.com/how-we-help/company/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/company/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/how-we-help/company/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/company/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/how-we-help/company/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/company/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/how-we-help/company/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/company/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/how-we-help/company/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/company/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/company/" />
   </url>
   <url>
     <loc>https://zedops.com/how-we-help/team/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/team/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/how-we-help/team/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/team/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/how-we-help/team/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/team/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/how-we-help/team/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/team/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/how-we-help/team/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/team/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/team/" />
   </url>
   <url>
     <loc>https://zedops.com/how-we-help/role/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/role/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/how-we-help/role/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/role/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/how-we-help/role/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/role/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/how-we-help/role/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/role/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/how-we-help/role/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/how-we-help/role/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/how-we-help/role/" />
   </url>
   <url>
     <loc>https://zedops.com/who-we-serve/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/who-we-serve/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/who-we-serve/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/who-we-serve/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/who-we-serve/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/" />
   </url>
   <url>
     <loc>https://zedops.com/who-we-serve/general-contractors/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/general-contractors/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/who-we-serve/general-contractors/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/general-contractors/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/who-we-serve/general-contractors/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/general-contractors/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/who-we-serve/general-contractors/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/general-contractors/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/who-we-serve/general-contractors/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/general-contractors/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/general-contractors/" />
   </url>
   <url>
     <loc>https://zedops.com/who-we-serve/owners/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/owners/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/who-we-serve/owners/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/owners/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/who-we-serve/owners/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/owners/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/who-we-serve/owners/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/owners/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/who-we-serve/owners/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/owners/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/owners/" />
   </url>
   <url>
     <loc>https://zedops.com/who-we-serve/project-managers/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/project-managers/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/who-we-serve/project-managers/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/project-managers/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/who-we-serve/project-managers/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/project-managers/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/who-we-serve/project-managers/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/project-managers/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/who-we-serve/project-managers/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/project-managers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/project-managers/" />
   </url>
   <url>
     <loc>https://zedops.com/who-we-serve/consultants/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/consultants/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/who-we-serve/consultants/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/consultants/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/who-we-serve/consultants/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/consultants/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/who-we-serve/consultants/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/consultants/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/who-we-serve/consultants/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/who-we-serve/consultants/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/who-we-serve/consultants/" />
   </url>
   <url>
     <loc>https://zedops.com/security/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/security/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/security/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/security/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/security/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/security/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/security/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/security/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/security/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/security/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/security/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/security/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/security/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/security/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/security/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/security/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/security/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/security/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/security/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/security/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/security/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/security/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/security/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/security/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/security/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/security/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/security/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/security/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/security/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/security/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/security/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/security/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/security/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/security/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/security/" />
   </url>
   <url>
     <loc>https://zedops.com/roadmap/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/roadmap/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/roadmap/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/roadmap/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/roadmap/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/roadmap/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/roadmap/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/roadmap/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/roadmap/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/roadmap/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/roadmap/" />
   </url>
   <url>
     <loc>https://zedops.com/about/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/about/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/about/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/about/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/about/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/about/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/about/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/about/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/about/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/about/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/about/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/about/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/about/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/about/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/about/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/about/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/about/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/about/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/about/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/about/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/about/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/about/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/about/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/about/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/about/" />
   </url>
   <url>
     <loc>https://zedops.com/blog/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/blog/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/blog/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/blog/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/blog/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/blog/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/blog/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/blog/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/blog/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/blog/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/blog/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/blog/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/blog/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/blog/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/blog/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/blog/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/blog/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/blog/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/blog/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/blog/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/blog/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/blog/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/blog/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/blog/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/blog/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/blog/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/blog/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/blog/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/blog/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/blog/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/blog/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/blog/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/blog/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/blog/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/blog/" />
   </url>
   <url>
     <loc>https://zedops.com/early-access/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/early-access/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/early-access/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/early-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/early-access/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/early-access/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/early-access/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/early-access/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/early-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/early-access/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/early-access/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/early-access/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/early-access/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/early-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/early-access/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/early-access/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/early-access/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/early-access/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/early-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/early-access/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/early-access/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/early-access/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/early-access/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/early-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/early-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/early-access/" />
   </url>
   <url>
     <loc>https://zedops.com/contact/</loc>
-    <lastmod>2026-10-04</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/contact/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/contact/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/contact/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/contact/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/contact/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/contact/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/contact/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/contact/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/contact/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/contact/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/contact/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/contact/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/contact/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/contact/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/contact/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/contact/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/contact/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/contact/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/contact/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/contact/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/contact/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/contact/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/contact/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/contact/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/contact/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/contact/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/contact/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/contact/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/contact/" />
   </url>
   <url>
     <loc>https://zedops.com/privacy/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/privacy/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/privacy/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/privacy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/privacy/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/privacy/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/privacy/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/privacy/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/privacy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/privacy/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/privacy/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/privacy/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/privacy/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/privacy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/privacy/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/privacy/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/privacy/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/privacy/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/privacy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/privacy/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/privacy/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/privacy/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/privacy/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/privacy/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/privacy/" />
   </url>
   <url>
     <loc>https://zedops.com/terms/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-10-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/terms/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/terms/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/terms/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/terms/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/terms/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/terms/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/terms/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/terms/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/terms/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/terms/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/terms/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/terms/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/terms/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/terms/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/terms/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/terms/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/terms/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/terms/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/terms/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/terms/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/terms/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/terms/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/terms/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/terms/</loc>
+    <lastmod>2026-10-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.20</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/terms/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/terms/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/terms/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/terms/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/terms/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/platform-access/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/platform-access/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/platform-access/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/platform-access/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/platform-access/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/platform-access/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/platform-access/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/platform-access/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/platform-access/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/platform-access/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/platform-access/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/core/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/core/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/core/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/core/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/core/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/core/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/core/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/core/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/core/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/core/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/core/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/projects/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/projects/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/projects/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/projects/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/projects/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/projects/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/projects/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/projects/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/projects/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/projects/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/projects/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/estimation/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/estimation/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/estimation/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/estimation/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/estimation/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/estimation/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/estimation/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/estimation/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/estimation/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/estimation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/estimation/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/planning-execution/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/planning-execution/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/planning-execution/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/planning-execution/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/planning-execution/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/planning-execution/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/planning-execution/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/planning-execution/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/planning-execution/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/planning-execution/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/planning-execution/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/daily-intelligence/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/daily-intelligence/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/daily-intelligence/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/daily-intelligence/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/daily-intelligence/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/daily-intelligence/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/daily-intelligence/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/daily-intelligence/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/daily-intelligence/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/daily-intelligence/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/daily-intelligence/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/quality-safety-closeout/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/quality-safety-closeout/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/quality-safety-closeout/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/quality-safety-closeout/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/quality-safety-closeout/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/quality-safety-closeout/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/quality-safety-closeout/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/quality-safety-closeout/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/quality-safety-closeout/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/quality-safety-closeout/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/quality-safety-closeout/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/information-management/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/information-management/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/information-management/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/information-management/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/information-management/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/information-management/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/information-management/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/information-management/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/information-management/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/information-management/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/information-management/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/finance/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/finance/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/finance/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/finance/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/finance/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/finance/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/finance/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/finance/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/finance/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/finance/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/finance/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/supply-chain/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/supply-chain/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/supply-chain/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/supply-chain/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/supply-chain/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/supply-chain/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/supply-chain/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/supply-chain/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/supply-chain/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/supply-chain/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/supply-chain/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/reporting-exports/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/reporting-exports/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/reporting-exports/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/reporting-exports/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/reporting-exports/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/reporting-exports/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/reporting-exports/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/reporting-exports/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/reporting-exports/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/reporting-exports/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/reporting-exports/" />
   </url>
   <url>
     <loc>https://zedops.com/platform/module/settings/</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/settings/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/ar/platform/module/settings/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/settings/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/fr/platform/module/settings/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/settings/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/es/platform/module/settings/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/settings/" />
+  </url>
+  <url>
+    <loc>https://zedops.com/tr/platform/module/settings/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zedops.com/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://zedops.com/ar/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zedops.com/fr/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://zedops.com/es/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://zedops.com/tr/platform/module/settings/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zedops.com/platform/module/settings/" />
   </url>
   <url>
     <loc>https://zedops.com/blog/snagging-to-handover/</loc>
