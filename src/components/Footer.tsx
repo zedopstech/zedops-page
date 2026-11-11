@@ -42,8 +42,8 @@ const footerLinks: Record<string, { label: string; href: string | null }[]> = {
 const socials = [
   { label: "X", href: "https://x.com/zedopstech" },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/zedops" },
-  { label: "GitHub", href: "https://github.com/zedops" },
-  { label: "YouTube", href: "https://www.youtube.com/@zedopstech" },
+  { label: "GitHub", href: "https://github.com/zedopstech" },
+  { label: "YouTube", href: "https://www.youtube.com/@ZedOpsVideo" },
 ];
 
 /** Framed footer: lockup, link columns with mono headings, hairline bottom bar, outlined wordmark. */
